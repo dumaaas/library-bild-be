@@ -14,7 +14,7 @@
 
     <!-- Title -->
     <title>Library - ICT Cortex student project</title>
-{{--    <link rel="shortcut icon" href="img/library-favicon.ico" type="image/vnd.microsoft.icon" />--}}
+    <link rel="shortcut icon" href="img/library-favicon.ico" type="image/vnd.microsoft.icon" />
 <!-- End Title -->
 
     <!-- Styles -->
