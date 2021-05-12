@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
-    //
+    public function prikaziEditIzdavac() {
+        return view('editIzdavac');
+    }
 }

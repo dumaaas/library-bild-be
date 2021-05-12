@@ -30,6 +30,7 @@
     <script src="/js/main.js" defer></script>
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
+
     <!-- File upload -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://unpkg.com/create-file-list"></script>
@@ -389,10 +390,23 @@
     @yield('autori')
     @yield('autorProfile')
     @yield('bibliotekari')
-    @yield('arhiviraneRezervacije')
-    @yield('arhiviraneRezervacije')
-    @yield('arhiviraneRezervacije')
-
+    @yield('bibliotekarProfile')
+    @yield('dashboard')
+    @yield('dashboardAktivnost')
+    @yield('editAutor')
+    @yield('editBibliotekar')
+    @yield('editFormat')
+    @yield('editIzdavac')
+    @yield('editKategorija')
+    @yield('editKnjiga')
+    @yield('editKnjigaMultimedija')
+    @yield('editKnjigaSpecifikacija')
+    @yield('editPismo')
+    @yield('editPovez')
+    @yield('editUcenik')
+    @yield('editZanr')
+    @yield('evidencijaKnjiga')
+    @yield('evidencijaKnjigaMultimedija')
 
 </main>
 
@@ -406,5 +420,18 @@
     </p>
 </div>
 
+<script>
+        CKEDITOR.replace('kratki_sadrzaj_edit', {
+            width: "90%",
+            height: "150px"
+        });
+</script>
+
+<script>
+    CKEDITOR.replace('opis_autor_edit', {
+        width: "90%",
+        height: "150px"
+    });
+    </script>
 
 </body>
