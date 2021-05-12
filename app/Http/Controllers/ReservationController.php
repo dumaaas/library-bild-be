@@ -9,4 +9,8 @@ class ReservationController extends Controller
     public function prikaziAktivneRezervacije() {
         return view('aktivneRezervacije');
     }
+
+    public function prikaziArhiviraneRezervacije() {
+        return view('arhiviraneRezervacije');
+    }
 }

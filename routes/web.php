@@ -23,12 +23,15 @@ Route::get('/dashboard', function () {
 
 
 //USER - ROUTES
+Route::get('/bibliotekari', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekare']);
 
 
 //BOOK - ROUTES
 
+
 //RESERVATION - ROUTES
 Route::get('/aktivneRezervacije', [\App\Http\Controllers\ReservationController::class, 'prikaziAktivneRezervacije']);
+Route::get('/arhiviraneRezervacije', [\App\Http\Controllers\ReservationController::class, 'prikaziArhiviraneRezervacije']);
 
 //RENT - ROUTES
 
@@ -52,6 +55,8 @@ Route::get('/aktivneRezervacije', [\App\Http\Controllers\ReservationController::
 
 
 //AUTHOR - ROUTES
+Route::get('/autorProfile', [\App\Http\Controllers\AuthorController::class, 'prikaziAutora']);
+Route::get('/autori', [\App\Http\Controllers\AuthorController::class, 'prikaziAutore']);
 
 
 //GALLERY - ROUTES

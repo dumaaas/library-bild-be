@@ -385,6 +385,15 @@
     </nav>
     <!-- PLACE FOR @YIELDS -->
     @yield('aktivneRezervacije')
+    @yield('arhiviraneRezervacije')
+    @yield('autori')
+    @yield('autorProfile')
+    @yield('bibliotekari')
+    @yield('arhiviraneRezervacije')
+    @yield('arhiviraneRezervacije')
+    @yield('arhiviraneRezervacije')
+
+
 </main>
 
 <!-- Notification for small devices -->
