@@ -384,7 +384,7 @@
         </div>
     </nav>
     <!-- PLACE FOR @YIELDS -->
-
+    @yield('aktivneRezervacije')
 </main>
 
 <!-- Notification for small devices -->
