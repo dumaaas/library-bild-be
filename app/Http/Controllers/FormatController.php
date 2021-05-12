@@ -13,4 +13,7 @@ class FormatController extends Controller
     public function prikaziNoviFormat() {
         return view('noviFormat');
     }
+    public function prikaziSettingsFormat() {
+        return view('settingsFormat');
+    }
 }

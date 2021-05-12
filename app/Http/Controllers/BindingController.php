@@ -13,4 +13,7 @@ class BindingController extends Controller
     public function prikaziNoviPovez() {
         return view('noviPovez');
     }
+    public function prikaziSettingsPovez() {
+        return view('settingsPovez');
+    }
 }

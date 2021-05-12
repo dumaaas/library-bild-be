@@ -6,13 +6,6 @@ use Illuminate\Http\Request;
 
 class RentController extends Controller
 {
-    public function prikaziIzdajKnjigu() {
-        return view('izdajKnjigu');
-    }
-
-    public function prikaziIzdajKnjiguError() {
-        return view('izdajKnjiguError');
-    }
 
     public function prikaziIzdavanjeDetalji() {
         return view('izdavanjeDetalji');
@@ -32,6 +25,26 @@ class RentController extends Controller
 
     public function prikaziKnjigePrekoracenje() {
         return view('knjigePrekoracenje');
+    }
+
+    public function prikaziUcenikIzdate() {
+        return view('ucenikIzdate');
+    }
+
+    public function prikaziUcenikVracene() {
+        return view('ucenikVracene');
+    }
+
+    public function prikaziUcenikPrekoracenje() {
+        return view('ucenikPrekoracenje');
+    }
+
+    public function prikaziIzdateKnjige() {
+        return view('izdateKnjige');
+    }
+
+    public function prikaziVraceneKnjige() {
+        return view('vraceneKnjige');
     }
 
 }

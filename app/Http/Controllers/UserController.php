@@ -25,4 +25,13 @@ class UserController extends Controller
     public function prikaziNoviBibliotekar() {
         return view('noviBibliotekar');
     }
+    public function prikaziUcenike() {
+        return view('ucenik');
+    }
+    public function prikaziUcenikProfile() {
+        return view('ucenikProfile');
+    }
+    public function prikaziNovogUcenika() {
+        return view('noviUcenik');
+    }
 }

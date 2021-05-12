@@ -26,10 +26,6 @@ class BookController extends Controller
         return view('evidencijaKnjigaMultimedija');
     }
 
-    public function prikaziIzdateKnjige() {
-        return view('izdateKnjige');
-    }
-
     public function prikaziKnjigaOsnovniDetalji() {
         return view('knjigaOsnovniDetalji');
     }
@@ -48,5 +44,25 @@ class BookController extends Controller
 
     public function prikaziNovaKnjigaSpecifikacija() {
         return view('novaKnjigaSpecifikacija');
+    }
+
+    public function prikaziVratiKnjigu() {
+        return view('vratiKnjigu');
+    }
+
+    public function prikaziOtpisiKnjigu() {
+        return view('otpisiKnjigu');
+    }
+
+    public function prikaziRezervisiKnjigu() {
+        return view('rezervisiKnjigu');
+    }
+
+    public function prikaziIzdajKnjigu() {
+        return view('izdajKnjigu');
+    }
+
+    public function prikaziIzdajKnjiguError() {
+        return view('izdajKnjiguError');
     }
 }

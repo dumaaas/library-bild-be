@@ -1306,6 +1306,9 @@ h4 {
 .ml-4{
     margin-left: 1rem;
 }
+.ml-\[60px\]{
+    margin-left: 60px;
+}
 .mt-8{
     margin-top: 2rem;
 }
@@ -1437,6 +1440,9 @@ h4 {
 }
 .h-\[300px\]{
     height: 300px;
+}
+.h-\[50px\]{
+    height: 50px;
 }
 .h-16{
     height: 4rem;
@@ -1576,6 +1582,9 @@ h4 {
 .max-w-\[600px\]{
     max-width: 600px;
 }
+.max-w-\[400px\]{
+    max-width: 400px;
+}
 .max-w-6xl{
     max-width: 72rem;
 }
@@ -1642,6 +1651,11 @@ h4 {
         -ms-user-select: none;
             user-select: none;
 }
+.select-all{
+    -webkit-user-select: all;
+       -moz-user-select: all;
+            user-select: all;
+}
 .list-inside{
     list-style-position: inside;
 }
@@ -1658,6 +1672,9 @@ h4 {
 }
 .grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-4{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .grid-cols-1{
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -2098,6 +2115,18 @@ h4 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
 }
+.px-\[50px\]{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.py-8{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.py-\[20px\]{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .px-1{
     padding-left: 0.25rem;
     padding-right: 0.25rem;
@@ -2125,10 +2154,6 @@ h4 {
 .py-\[6px\]{
     padding-top: 6px;
     padding-bottom: 6px;
-}
-.py-\[20px\]{
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 .pl-\[80px\]{
     padding-left: 80px;
@@ -2201,6 +2226,12 @@ h4 {
 }
 .pt-\[20px\]{
     padding-top: 20px;
+}
+.pl-\[60px\]{
+    padding-left: 60px;
+}
+.pl-\[50px\]{
+    padding-left: 50px;
 }
 .pt-8{
     padding-top: 2rem;
@@ -2458,6 +2489,10 @@ h4 {
 .text-red-600{
     --tw-text-opacity: 1;
     color: rgba(220, 38, 38, var(--tw-text-opacity));
+}
+.text-\[\#212121\]{
+    --tw-text-opacity: 1;
+    color: rgba(33, 33, 33, var(--tw-text-opacity));
 }
 .text-indigo-600{
     --tw-text-opacity: 1;
@@ -2726,6 +2761,9 @@ h4 {
 .focus\:z-10:focus{
     z-index: 10;
 }
+.focus\:border-transparent:focus{
+    border-color: transparent;
+}
 .focus\:border-indigo-300:focus{
     --tw-border-opacity: 1;
     border-color: rgba(165, 180, 252, var(--tw-border-opacity));
@@ -2804,6 +2842,10 @@ h4 {
 .focus\:ring-\[\#576cdf\]:focus{
     --tw-ring-opacity: 1;
     --tw-ring-color: rgba(87, 108, 223, var(--tw-ring-opacity));
+}
+.focus\:ring-blue-600:focus{
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgba(37, 99, 235, var(--tw-ring-opacity));
 }
 .focus\:ring-indigo-200:focus{
     --tw-ring-opacity: 1;

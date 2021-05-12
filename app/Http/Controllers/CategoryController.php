@@ -13,4 +13,7 @@ class CategoryController extends Controller
     public function prikaziNovaKategorija() {
         return view('novaKategorija');
     }
+    public function prikaziSettingsKategorije() {
+        return view('settingsKategorije');
+    }
 }
