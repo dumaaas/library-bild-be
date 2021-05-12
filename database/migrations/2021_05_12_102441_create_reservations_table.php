@@ -18,10 +18,10 @@ class CreateReservationsTable extends Migration
             $table->foreignId('book_id');
             $table->foreignId('librarian_id');
             $table->foreignId('student_id');
-            $table->foreignId('closeReservation_id');
+            $table->foreignId('closeReservation_id')->nullable();
             $table->date('request_date');
             $table->date('reservation_date');
-            $table->date('close_date');
+            $table->date('close_date')->nullable();
 
             $table->timestamps();
 
