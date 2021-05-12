@@ -9,4 +9,8 @@ class BindingController extends Controller
     public function prikaziEditPovez() {
         return view('editPovez');
     }
+
+    public function prikaziNoviPovez() {
+        return view('noviPovez');
+    }
 }

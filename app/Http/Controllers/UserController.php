@@ -21,4 +21,8 @@ class UserController extends Controller
     public function prikaziEditUcenik() {
         return view('editUcenik');
     }
+
+    public function prikaziNoviBibliotekar() {
+        return view('noviBibliotekar');
+    }
 }

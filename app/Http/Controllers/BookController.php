@@ -25,4 +25,28 @@ class BookController extends Controller
     public function prikaziEvidencijaKnjigaMultimedija() {
         return view('evidencijaKnjigaMultimedija');
     }
+
+    public function prikaziIzdateKnjige() {
+        return view('izdateKnjige');
+    }
+
+    public function prikaziKnjigaOsnovniDetalji() {
+        return view('knjigaOsnovniDetalji');
+    }
+
+    public function prikaziKnjigaSpecifikacija() {
+        return view('knjigaSpecifikacija');
+    }
+
+    public function prikaziNovaKnjiga() {
+        return view('novaKnjiga');
+    }
+
+    public function prikaziNovaKnjigaMultimedija() {
+        return view('novaKnjigaMultimedija');
+    }
+
+    public function prikaziNovaKnjigaSpecifikacija() {
+        return view('novaKnjigaSpecifikacija');
+    }
 }

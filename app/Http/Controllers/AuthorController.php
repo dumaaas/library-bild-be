@@ -17,4 +17,8 @@ class AuthorController extends Controller
     public function prikaziEditAutor() {
         return view('editAutor');
     }
+
+    public function prikaziNoviAutor() {
+        return view('noviAutor');
+    }
 }

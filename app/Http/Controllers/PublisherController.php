@@ -9,4 +9,8 @@ class PublisherController extends Controller
     public function prikaziEditIzdavac() {
         return view('editIzdavac');
     }
+
+    public function prikaziNoviIzdavac() {
+        return view('noviIzdavac');
+    }
 }
