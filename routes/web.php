@@ -107,10 +107,13 @@ Route::get('/settingsKategorije', [\App\Http\Controllers\CategoryController::cla
 
 
 //AUTHOR - ROUTES
-Route::get('/autorProfile', [\App\Http\Controllers\AuthorController::class, 'prikaziAutora']);
+Route::get('/autorProfile/{autor}', [\App\Http\Controllers\AuthorController::class, 'prikaziAutora'])->name('autorProfile');
 Route::get('/autori', [\App\Http\Controllers\AuthorController::class, 'prikaziAutore']);
-Route::get('/editAutor', [\App\Http\Controllers\AuthorController::class, 'prikaziEditAutor']);
-Route::get('/noviAutor', [\App\Http\Controllers\AuthorController::class, 'prikaziNoviAutor']);
+Route::get('/editAutor/{autor}', [\App\Http\Controllers\AuthorController::class, 'prikaziEditAutor'])->name('editAutor');
+Route::post('/editAutor/{autor}/update', [\App\Http\Controllers\AuthorController::class, 'izmijeniAutora'])->name('updateAutor');
+Route::get('/noviAutor', [\App\Http\Controllers\AuthorController::class, 'prikaziNoviAutor'])->name('noviAutor');
+Route::get('/deleteAutor/{autor}', [\App\Http\Controllers\AuthorController::class, 'izbrisiAutora'])->name('deleteAutor');
+Route::post('/sacuvajAutora', [\App\Http\Controllers\AuthorController::class, 'sacuvajAutora'])->name('sacuvajAutora');
 
 
 //GALLERY - ROUTES

@@ -108,7 +108,7 @@
                                 <i class="far fa-copy mr-[10px] ml-[5px] py-1"></i>
                                 <span class="px-4 py-0">Knjiga</span>
                             </a>
-                            <a href="noviAutor.php" tabindex="0"
+                            <a href="{{ route('noviAutor') }}" tabindex="0"
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                role="menuitem">
                                 <i class="far fa-address-book mr-[10px] ml-[5px] py-1"></i>
@@ -213,7 +213,7 @@
                         <div class="ml-[25px]">
                         <span class="flex justify-between w-full fill-current whitespace-nowrap">
                             <div class="transition duration-300 ease-in group-hover:text-[#576cdf]">
-                                <a href="dashboard.php" aria-label="Dashboard">
+                                <a href="/dashboard" aria-label="Dashboard">
                                     <i
                                         class="text-white bg-[#3F51B5] px-[5px] pt-[4px] pb-[5px] fas fa-tachometer-alt text-[19px] rounded-[3px]"></i>
                                     <div class="hidden sidebar-item">
@@ -229,7 +229,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="bibliotekari.php" aria-label="Bibliotekari">
+                                <a href="/bibliotekari" aria-label="Bibliotekari">
                                     <i
                                         class="text-[25px] text-[#707070] far fa-address-book transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                     <div class="hidden sidebar-item">
@@ -248,7 +248,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="ucenik.php" aria-label="Ucenici">
+                                <a href="/ucenik" aria-label="Ucenici">
                                     <i
                                         class="text-[18px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] fas fa-users"></i>
                                     <div class="hidden sidebar-item">
@@ -266,7 +266,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="evidencijaKnjiga.php" aria-label="Knjige">
+                                <a href="/evidencijaKnjiga" aria-label="Knjige">
                                     <i
                                         class="text-[25px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] far fa-copy"></i>
                                     <div class="hidden sidebar-item">
@@ -284,7 +284,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="autori.php" aria-label="Knjige">
+                                <a href="/autori" aria-label="Knjige">
                                     <i
                                         class="text-[25px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] far fa-address-book"></i>
                                     <div class="hidden sidebar-item">
@@ -302,7 +302,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="izdateKnjige.php" aria-label="Knjige">
+                                <a href="/izdateKnjige" aria-label="Knjige">
                                     <i
                                         class="text-[22px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] fas fa-exchange-alt"></i>
                                     <div class="hidden sidebar-item">
@@ -375,7 +375,7 @@
         </div>
         <div class="sidebar-nav py-[10px] border-t-[1px] border-[#e4dfdf] pt-[23px] pb-[29px]  group hover:bg-[#EFF3F6]">
             <!-- Settings Icon -->
-            <a href="settingsPolisa.php" aria-label="Settngs" class="ml-[30px]">
+            <a href="/settingsPolisa" aria-label="Settngs" class="ml-[30px]">
             <span class="whitespace-nowrap">
                 <i
                     class="transition duration-300 ease-in group-hover:text-[#576cdf] text-[22px] text-[#707070] fas fa-cog"></i>
@@ -473,7 +473,7 @@
 </script>
 
 <script>
-    CKEDITOR.replace('opis_autor_edit', {
+    CKEDITOR.replace('biography', {
         width: "90%",
         height: "150px"
     });
@@ -487,7 +487,7 @@
     </script>
 
 <script>
-    CKEDITOR.replace('opis_autor', {
+    CKEDITOR.replace('authorBiography', {
         width: "90%",
         height: "150px"
     });

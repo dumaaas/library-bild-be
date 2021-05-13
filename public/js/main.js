@@ -80,10 +80,10 @@ $(document).ready(function () {
     }
   });
 
-  // Form
-  $(".forma").submit(function (e) {
-    e.preventDefault();
-  });
+//  // Form
+//  $(".forma").submit(function (e) {
+//    e.preventDefault();
+//  });
 
   // Open Modal
   modal = $(".modal");

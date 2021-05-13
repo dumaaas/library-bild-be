@@ -8,14 +8,14 @@
                 <div class="pl-[30px] py-[10px] flex flex-col">
                     <div>
                         <h1>
-                            Mark Twain
+                            {{$autor -> name}}
                         </h1>
                     </div>
                     <div>
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="autori.php" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="../autori" class="text-[#2196f3] hover:text-blue-600">
                                         Evidencija autora
                                     </a>
                                 </li>
@@ -23,8 +23,8 @@
                                     <span class="mx-2">/</span>
                                 </li>
                                 <li>
-                                    <a href="autorProfile.php" class="text-gray-400 hover:text-blue-600">
-                                        AUTOR-124
+                                    <a href="{{ route('autorProfile', ['autor' => $autor->id]) }}" class="text-gray-400 hover:text-blue-600">
+                                        AUTOR-{{$autor->id}}
                                     </a>
                                 </li>
                             </ol>
@@ -41,13 +41,13 @@
                         <div class="absolute right-0 w-56 mt-[2px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                              aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                             <div class="py-1">
-                                <a href="editAutor.php" tabindex="0"
+                                <a href="{{ route('editAutor', ['autor' => $autor->id]) }}" tabindex="0"
                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                    role="menuitem">
                                     <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                     <span class="px-4 py-0">Izmijeni autora</span>
                                 </a>
-                                <a href="#" tabindex="0"
+                                <a href="{{ route('deleteAutor', ['autor' => $autor->id]) }}" tabindex="0"
                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                    role="menuitem">
                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
@@ -65,19 +65,12 @@
             <div class="mr-[30px]">
                 <div class="mt-[20px]">
                     <span class="text-gray-500">Ime i prezime</span>
-                    <p class="font-medium">Mark Twain</p>
+                    <p class="font-medium">{{$autor->name}}</p>
                 </div>
                 <div class="mt-[40px]">
                     <span class="text-gray-500">Opis</span>
                     <p class="font-medium max-w-[550px]">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque non aperiam voluptas
-                        expedita, laborum deleniti sit ipsum quam!
-                        Quis architecto aliquid deleniti ipsum labore ipsa mollitia aspernatur consequatur incidunt
-                        nesciunt.
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque non aperiam voluptas
-                        expedita, laborum deleniti sit ipsum quam!
-                        Quis architecto aliquid deleniti ipsum labore ipsa mollitia aspernatur consequatur incidunt
-                        nesciunt.
+                        {!! $autor->biography !!}
                     </p>
                 </div>
             </div>
