@@ -20,7 +20,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="evidencijaKnjiga.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('evidencijaKnjiga')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Evidencija knjiga
                                         </a>
                                     </li>
@@ -70,7 +70,7 @@
                                     <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                     <span class="px-4 py-0">Izmijeni knjigu</span>
                                 </a>
-                                <a href="#" tabindex="0"
+                                <a href="{{route('izbrisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                    role="menuitem">
                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
