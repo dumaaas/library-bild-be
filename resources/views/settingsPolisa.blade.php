@@ -25,7 +25,7 @@
                 <a href="settingsIzdavac.php" class="inline ml-[70px] hover:text-blue-800">
                     Izdavac
                 </a>
-                <a href="settingsPovez.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="/settingsPovez" class="inline ml-[70px] hover:text-blue-800">
                     Povez
                 </a>
                 <a href="settingsFormat.php" class="inline ml-[70px] hover:text-blue-800">

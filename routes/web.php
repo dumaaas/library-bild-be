@@ -89,9 +89,12 @@ Route::get('/settingsFormat', [\App\Http\Controllers\FormatController::class, 'p
 
 
 //BINDING - ROUTES
-Route::get('/editPovez', [\App\Http\Controllers\BindingController::class, 'prikaziEditPovez']);
-Route::get('/noviPovez', [\App\Http\Controllers\BindingController::class, 'prikaziNoviPovez']);
-Route::get('/settingsPovez', [\App\Http\Controllers\BindingController::class, 'prikaziSettingsPovez']);
+Route::get('/editPovez/{povez}', [\App\Http\Controllers\BindingController::class, 'prikaziEditPovez'])->name('editPovez');
+Route::get('/noviPovez', [\App\Http\Controllers\BindingController::class, 'prikaziNoviPovez'])->name('noviPovez');
+Route::get('/settingsPovez', [\App\Http\Controllers\BindingController::class, 'prikaziSettingsPovez'])->name('settingsPovez');
+Route::post('/sacuvajPovez', [\App\Http\Controllers\BindingController::class, 'sacuvajPovez'])->name('sacuvajPovez');
+Route::post('/izmijeniPovez/{povez}', [\App\Http\Controllers\BindingController::class, 'izmijeniPovez'])->name('izmijeniPovez');
+Route::get('/izbrisiPovez/{povez}', [\App\Http\Controllers\BindingController::class, 'izbrisiPovez'])->name('izbrisiPovez');
 
 
 //PUBLISHER - ROUTES
@@ -126,6 +129,6 @@ Route::get('/noviZanr', [\App\Http\Controllers\GenreController::class, 'prikaziN
 
 
 //POLICY - ROUTES
-Route::get('/settingsPolisa', [\App\Http\Controllers\PolicyController::class, 'prikaziSettingsPolisa']);
+Route::get('/settingsPolisa', [\App\Http\Controllers\PolicyController::class, 'prikaziSettingsPolisa'])->name('settingsPolisa');
 
 require __DIR__.'/auth.php';

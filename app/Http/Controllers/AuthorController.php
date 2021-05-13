@@ -53,7 +53,7 @@ class AuthorController extends Controller
     }
 
     public function sacuvajAutora() {
-        //request all data, validate and update movie
+        //request all data, validate and update author
         request()->validate([
             'authorName'=>'required',
         ]);
