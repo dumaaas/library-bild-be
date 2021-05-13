@@ -98,9 +98,12 @@ Route::get('/izbrisiPovez/{povez}', [\App\Http\Controllers\BindingController::cl
 
 
 //PUBLISHER - ROUTES
-Route::get('/editIzdavac', [\App\Http\Controllers\PublisherController::class, 'prikaziEditIzdavac']);
-Route::get('/noviIzdavac', [\App\Http\Controllers\PublisherController::class, 'prikaziNoviIzdavac']);
-Route::get('/settingsIzdavac', [\App\Http\Controllers\PublisherController::class, 'prikaziSettingsIzdavac']);
+Route::get('/editIzdavac/{izdavac}', [\App\Http\Controllers\PublisherController::class, 'prikaziEditIzdavac'])->name('editIzdavac');
+Route::get('/noviIzdavac', [\App\Http\Controllers\PublisherController::class, 'prikaziNoviIzdavac'])->name('prikaziNoviIzdavac');
+Route::get('/settingsIzdavac', [\App\Http\Controllers\PublisherController::class, 'prikaziSettingsIzdavac'])->name('settingsIzdavac');
+Route::post('/izmijeniIzdavaca/{izdavac}', [\App\Http\Controllers\PublisherController::class, 'izmijeniIzdavaca'])->name('izmijeniIzdavaca');
+Route::get('/izbrisiIzdavaca/{izdavac}', [\App\Http\Controllers\PublisherController::class, 'izbrisiIzdavaca'])->name('izbrisiIzdavaca');
+Route::post('/sacuvajIzdavaca}', [\App\Http\Controllers\PublisherController::class, 'sacuvajIzdavaca'])->name('sacuvajIzdavaca');
 
 
 //CATEGORY - ROUTES
