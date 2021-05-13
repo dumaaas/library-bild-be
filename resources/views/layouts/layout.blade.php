@@ -476,4 +476,18 @@
     });
     </script>
 
+<script>
+    CKEDITOR.replace('kratki_sadrzaj', {
+        width: "90%",
+        height: "150px"
+    });
+    </script>
+
+<script>
+    CKEDITOR.replace('opis_autor', {
+        width: "90%",
+        height: "150px"
+    });
+    </script>
+
 </body>
