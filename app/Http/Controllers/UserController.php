@@ -1,17 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function prikaziBibliotekara() {
-        return view('bibliotekarProfile');
+    public function prikaziBibliotekara(User $bibliotekar) {
+        return view('bibliotekarProfile', [
+            'bibliotekar' => $bibliotekar
+        ]);
     }
 
     public function prikaziBibliotekare() {
-        return view('bibliotekari');
+        return view('bibliotekari', [
+            'bibliotekari' => User::with('userType')->where('userType_id', '=', 2)->paginate(7)
+        ]);
     }
 
     public function prikaziEditBibliotekar() {

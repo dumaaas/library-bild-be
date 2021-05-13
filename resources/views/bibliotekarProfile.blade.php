@@ -8,14 +8,14 @@
                 <div class="pl-[30px] py-[10px] flex flex-col">
                     <div>
                         <h1>
-                            Valentina Kascelan
+                            {{$bibliotekar -> name}}
                         </h1>
                     </div>
                     <div>
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="bibliotekari.php" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="bibliotekari" class="text-[#2196f3] hover:text-blue-600">
                                         Svi bibliotekari
                                     </a>
                                 </li>
@@ -23,8 +23,8 @@
                                     <span class="mx-2">/</span>
                                 </li>
                                 <li>
-                                    <a href="bibliotekarProfile.php" class="text-[#2196f3] hover:text-blue-600">
-                                        ID-242
+                                    <a href="bibliotekarProfile" class="text-[#2196f3] hover:text-blue-600">
+                                        ID-{{$bibliotekar -> id}}
                                     </a>
                                 </li>
                             </ol>
@@ -36,7 +36,7 @@
                         <i class="fas fa-redo-alt mr-[3px]"></i>
                         Resetuj sifru
                     </a>
-                    <a href="editBibliotekar.php" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                    <a href="editBibliotekar" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                         <i class="fas fa-edit mr-[3px] "></i>
                         Izmjeni podatke
                     </a>
@@ -68,24 +68,24 @@
                 <div class="mr-[30px]">
                     <div class="mt-[20px]">
                         <span class="text-gray-500">Ime i prezime</span>
-                        <p class="font-medium">Valentina Kascelan</p>
+                        <p class="font-medium">{{$bibliotekar -> name}}</p>
                     </div>
                     <div class="mt-[40px]">
                         <span class="text-gray-500">Tip korisnika</span>
-                        <p class="font-medium">Bibliotekar</p>
+                        <p class="font-medium">{{$bibliotekar -> userType -> name}}</p>
                     </div>
                     <div class="mt-[40px]">
                         <span class="text-gray-500">JMBG</span>
-                        <p class="font-medium">1546213456878</p>
+                        <p class="font-medium">{{$bibliotekar -> jmbg}}</p>
                     </div>
                     <div class="mt-[40px]">
                         <span class="text-gray-500">Email</span>
                         <a
-                            class="cursor-pointer block font-medium text-[#2196f3] hover:text-blue-600">valentina.kascelan@domain.net</a>
+                            class="cursor-pointer block font-medium text-[#2196f3] hover:text-blue-600">{{$bibliotekar -> email}}</a>
                     </div>
                     <div class="mt-[40px]">
                         <span class="text-gray-500">Korisnicko ime</span>
-                        <p class="font-medium">valentina.kascelan</p>
+                        <p class="font-medium">{{$bibliotekar -> username}}</p>
                     </div>
                     <div class="mt-[40px]">
                         <span class="text-gray-500">Broj logovanja</span>
@@ -93,11 +93,11 @@
                     </div>
                     <div class="mt-[40px]">
                         <span class="text-gray-500">Poslednji put logovan/a</span>
-                        <p class="font-medium">Juce 11:57 AM</p>
+                        <p class="font-medium">{{$bibliotekar -> updated_at}}</p>
                     </div>
                 </div>
                 <div class="ml-[100px]  mt-[20px]">
-                    <img class="p-2 border-2 border-gray-300" width="300px" src="img/profileExample.jpg" alt="">
+                    <img class="p-2 border-2 border-gray-300" width="300px" src="../img/{{$bibliotekar -> photo}}" alt="">
                 </div>
             </div>
         </div>

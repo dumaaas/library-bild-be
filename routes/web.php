@@ -36,6 +36,7 @@ Route::get('/ucenikVracene', [\App\Http\Controllers\UserController::class, 'prik
 Route::get('/ucenikPrekoracenje', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje']);
 Route::get('/ucenikAktivne', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne']);
 Route::get('/ucenikArhivirane', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane']);
+Route::get('/bibliotekarProfile/{bibliotekar}', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekara'])->name('bibliotekarProfile');
 
 
 //BOOK - ROUTES
