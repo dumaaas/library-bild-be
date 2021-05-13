@@ -211,11 +211,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Returned with delay'
         ]);
 
+        DB::table('status_books')->insert([
+            'id' => 4,
+            'name' => 'Reserved'
+        ]);
+
+
         DB::table('status_reservations')->insert([
             'id' => 1,
             'name' => 'Reserved'
         ]);
-
 
         //SEEDING AUTHORS
         \App\Models\Author::factory(100)->create();
