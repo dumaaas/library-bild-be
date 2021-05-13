@@ -22,10 +22,10 @@
                 <a href="settingsZanrovi.php" class="inline ml-[70px] hover:text-blue-800">
                     Zanrovi
                 </a>
-                <a href="settingsIzdavac.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsIzdavac')}}" class="inline ml-[70px] hover:text-blue-800">
                     Izdavac
                 </a>
-                <a href="settingsPovez.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
                 </a>
                 <a href="settingsFormat.php" class="inline ml-[70px] hover:text-blue-800">
