@@ -14,7 +14,7 @@
 
     <!-- Title -->
     <title>Library - ICT Cortex student project</title>
-    <link rel="shortcut icon" href="img/library-favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="shortcut icon" href="../img/library-favicon.ico" type="image/vnd.microsoft.icon" />
 <!-- End Title -->
 
     <!-- Styles -->
@@ -49,7 +49,7 @@
             <div class="block">
                 <a href="dashboard.php" class="text-[20px] font-medium">
                     <div class="flex">
-                        <img src='./img/logo.svg' alt="" width="35px" height="35px">
+                        <img src='../img/logo.svg' alt="" width="35px" height="35px">
                         <p class="text-[20px] mt-[5px]">&nbsp;&nbsp;Online Biblioteka</p>
                     </div>
 
@@ -160,7 +160,7 @@
                        aria-label="User profile">
                         <div class="flex items-center h-5">
                             <div class="w-[40px] h-[40px] mt-[15px]">
-                                <img class="rounded-full" src="img/profileExample.jpg" alt="">
+                                <img class="rounded-full" src="../img/profileExample.jpg" alt="">
                             </div>
                         </div>
                     </a>

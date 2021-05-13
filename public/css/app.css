@@ -11,6 +11,9 @@
 .btn-animation:hover {
     transform: scale(1.05);
 }
+.tabcontent {
+    display: none;
+}
 /*Login - background*/
 .bg-login {
     background-image: url(/images/login.jpg?d7a4423b6e6fe0380454122f09700366);
@@ -2188,6 +2191,9 @@ h4 {
 .pl-10{
     padding-left: 2.5rem;
 }
+.pt-\[20px\]{
+    padding-top: 20px;
+}
 .pb-4{
     padding-bottom: 1rem;
 }
@@ -2220,9 +2226,6 @@ h4 {
 }
 .pb-\[20px\]{
     padding-bottom: 20px;
-}
-.pt-\[20px\]{
-    padding-top: 20px;
 }
 .pl-\[60px\]{
     padding-left: 60px;

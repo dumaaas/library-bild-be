@@ -15,6 +15,10 @@
     transform: scale(1.05);
 }
 
+.tabcontent {
+    display: none;
+}
+
 /*Login - background*/
 .bg-login {
     background-image: url('../../public/img/login.jpg');
