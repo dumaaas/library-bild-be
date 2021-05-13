@@ -11,32 +11,8 @@ class RentController extends Controller
         return view('izdavanjeDetalji');
     }
 
-    public function prikaziIznajmljivanjeIzdate() {
-        return view('iznajmljivanjeIzdate');
-    }
-
-    public function prikaziIznajmljivanjePrekoracenje() {
-        return view('iznajmljivanjePrekoracenje');
-    }
-
-    public function prikaziIznajmljivanjeVracene() {
-        return view('iznajmljivanjeVracene');
-    }
-
     public function prikaziKnjigePrekoracenje() {
         return view('knjigePrekoracenje');
-    }
-
-    public function prikaziUcenikIzdate() {
-        return view('ucenikIzdate');
-    }
-
-    public function prikaziUcenikVracene() {
-        return view('ucenikVracene');
-    }
-
-    public function prikaziUcenikPrekoracenje() {
-        return view('ucenikPrekoracenje');
     }
 
     public function prikaziIzdateKnjige() {
@@ -45,6 +21,14 @@ class RentController extends Controller
 
     public function prikaziVraceneKnjige() {
         return view('vraceneKnjige');
+    }
+
+    public function prikaziAktivneRezervacije() {
+        return view('aktivneRezervacije');
+    }
+
+    public function prikaziArhiviraneRezervacije() {
+        return view('arhiviraneRezervacije');
     }
 
 }

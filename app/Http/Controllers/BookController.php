@@ -65,4 +65,24 @@ class BookController extends Controller
     public function prikaziIzdajKnjiguError() {
         return view('izdajKnjiguError');
     }
+
+    public function prikaziIznajmljivanjeIzdate() {
+        return view('iznajmljivanjeIzdate');
+    }
+
+    public function prikaziIznajmljivanjePrekoracenje() {
+        return view('iznajmljivanjePrekoracenje');
+    }
+
+    public function prikaziIznajmljivanjeVracene() {
+        return view('iznajmljivanjeVracene');
+    }
+
+    public function prikaziIznajmljivanjeAktivne() {
+        return view('iznajmljivanjeAktivne');
+    }
+
+    public function prikaziIznajmljivanjeArhivirane() {
+        return view('iznajmljivanjeArhivirane');
+    }
 }
