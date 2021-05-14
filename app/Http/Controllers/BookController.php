@@ -24,7 +24,9 @@ class BookController extends Controller
     }
 
     public function prikaziEvidencijaKnjiga() {
-        return view('evidencijaKnjiga');
+        return view('evidencijaKnjiga', [
+            'knjige' => DB::table('books')->paginate(7),
+        ]);
     }
 
     public function prikaziEvidencijaKnjigaMultimedija(Book $knjiga) {
@@ -194,5 +196,10 @@ class BookController extends Controller
             'formati' => DB::table('formats')->get(),
             'jezici' => DB::table('languages')->get(),
         ]);
+    }
+
+    public function izbrisiKnjigu(Book $knjiga) {
+        Book::destroy($knjiga->id);
+        return back();
     }
 }
