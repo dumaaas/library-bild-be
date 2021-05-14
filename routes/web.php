@@ -45,11 +45,11 @@ Route::get('/ucenikArhivirane', [\App\Http\Controllers\UserController::class, 'p
 Route::get('/editKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjiga']);
 Route::get('/editKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjigaMultimedija']);
 Route::get('/editKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjigaSpecifikacija']);
-Route::get('/evidencijaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjiga']);
-Route::get('/evidencijaKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjigaMultimedija']);
-Route::get('/knjigaOsnovniDetalji', [\App\Http\Controllers\BookController::class, 'prikaziKnjigaOsnovniDetalji']);
-Route::get('/knjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziKnjigaSpecifikacija']);
-Route::get('/novaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjiga']);
+Route::get('/evidencijaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjiga'])->name('evidencijaKnjiga');
+Route::get('/evidencijaKnjigaMultimedija/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjigaMultimedija'])->name('evidencijaKnjigaMultimedija');
+Route::get('/knjigaOsnovniDetalji/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziKnjigaOsnovniDetalji'])->name('knjigaOsnovniDetalji');
+Route::get('/knjigaSpecifikacija/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziKnjigaSpecifikacija'])->name('knjigaSpecifikacija');
+Route::get('/novaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjiga'])->name('novaKnjiga');
 Route::get('/novaKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaMultimedija']);
 Route::get('/novaKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaSpecifikacija']);
 Route::get('/vratiKnjigu', [\App\Http\Controllers\BookController::class, 'prikaziVratiKnjigu']);
@@ -57,12 +57,13 @@ Route::get('/otpisiKnjigu', [\App\Http\Controllers\BookController::class, 'prika
 Route::get('/rezervisiKnjigu', [\App\Http\Controllers\BookController::class, 'prikaziRezervisiKnjigu']);
 Route::get('/izdajKnjigu', [\App\Http\Controllers\BookController::class, 'prikaziIzdajKnjigu']);
 Route::get('/izdajKnjiguError', [\App\Http\Controllers\BookController::class, 'prikaziIzdajKnjiguError']);
-Route::get('/iznajmljivanjeIzdate', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeIzdate']);
-Route::get('/iznajmljivanjePrekoracenje', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjePrekoracenje']);
-Route::get('/iznajmljivanjeVracene', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeVracene']);
-Route::get('/iznajmljivanjeAktivne', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeAktivne']);
-Route::get('/iznajmljivanjeArhivirane', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeArhivirane']);
-
+Route::get('/iznajmljivanjeIzdate/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeIzdate'])->name('iznajmljivanjeIzdate');
+Route::get('/iznajmljivanjePrekoracenje/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjePrekoracenje'])->name('iznajmljivanjePrekoracenje');
+Route::get('/iznajmljivanjeVracene/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeVracene'])->name('iznajmljivanjeVracene');
+Route::get('/iznajmljivanjeAktivne/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeAktivne'])->name('iznajmljivanjeAktivne');
+Route::get('/iznajmljivanjeArhivirane/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeArhivirane'])->name('iznajmljivanjeArhivirane');
+Route::post('/sacuvajKnjigu', [\App\Http\Controllers\BookController::class, 'sacuvajKnjigu'])->name('sacuvajKnjigu');
+Route::get('/izbrisiKnjigu/{knjiga}', [\App\Http\Controllers\BookController::class, 'izbrisiKnjigu'])->name('izbrisiKnjigu');
 
 //RESERVATION - ROUTES
 

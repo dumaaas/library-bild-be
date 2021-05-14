@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Models\Book;
+use App\Models\BookAuthor;
+use App\Models\BookCategory;
+use App\Models\BookGenre;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -19,23 +24,40 @@ class BookController extends Controller
     }
 
     public function prikaziEvidencijaKnjiga() {
-        return view('evidencijaKnjiga');
+        return view('evidencijaKnjiga', [
+            'knjige' => DB::table('books')->paginate(7),
+        ]);
     }
 
-    public function prikaziEvidencijaKnjigaMultimedija() {
-        return view('evidencijaKnjigaMultimedija');
+    public function prikaziEvidencijaKnjigaMultimedija(Book $knjiga) {
+        return view('evidencijaKnjigaMultimedija', [
+            'knjiga' => $knjiga,
+        ]);
     }
 
-    public function prikaziKnjigaOsnovniDetalji() {
-        return view('knjigaOsnovniDetalji');
+    public function prikaziKnjigaOsnovniDetalji(Book $knjiga) {
+        return view('knjigaOsnovniDetalji', [
+            'knjiga' => $knjiga,
+        ]);
     }
 
-    public function prikaziKnjigaSpecifikacija() {
-        return view('knjigaSpecifikacija');
+    public function prikaziKnjigaSpecifikacija(Book $knjiga) {
+        return view('knjigaSpecifikacija', [
+            'knjiga' => $knjiga,
+        ]);
     }
 
     public function prikaziNovaKnjiga() {
-        return view('novaKnjiga');
+        return view('novaKnjiga', [
+            'kategorije' => DB::table('categories')->get(),
+            'zanrovi' => DB::table('genres')->get(),
+            'autori' => DB::table('authors')->get(),
+            'izdavaci' => DB::table('publishers')->get(),
+            'pisma' => DB::table('scripts')->get(),
+            'povezi' => DB::table('bindings')->get(),
+            'formati' => DB::table('formats')->get(),
+            'jezici' => DB::table('languages')->get(),
+        ]);
     }
 
     public function prikaziNovaKnjigaMultimedija() {
@@ -66,23 +88,118 @@ class BookController extends Controller
         return view('izdajKnjiguError');
     }
 
-    public function prikaziIznajmljivanjeIzdate() {
-        return view('iznajmljivanjeIzdate');
+    public function prikaziIznajmljivanjeIzdate(Book $knjiga) {
+        return view('iznajmljivanjeIzdate', [
+            'knjiga' => $knjiga
+        ]);
     }
 
-    public function prikaziIznajmljivanjePrekoracenje() {
-        return view('iznajmljivanjePrekoracenje');
+    public function prikaziIznajmljivanjePrekoracenje(Book $knjiga) {
+        return view('iznajmljivanjePrekoracenje', [
+            'knjiga' => $knjiga
+        ]);
     }
 
-    public function prikaziIznajmljivanjeVracene() {
-        return view('iznajmljivanjeVracene');
+    public function prikaziIznajmljivanjeVracene(Book $knjiga) {
+        return view('iznajmljivanjeVracene', [
+            'knjiga' => $knjiga
+        ]);
     }
 
-    public function prikaziIznajmljivanjeAktivne() {
-        return view('iznajmljivanjeAktivne');
+    public function prikaziIznajmljivanjeAktivne(Book $knjiga) {
+        return view('iznajmljivanjeAktivne', [
+            'knjiga' => $knjiga
+        ]);
     }
 
-    public function prikaziIznajmljivanjeArhivirane() {
-        return view('iznajmljivanjeArhivirane');
+    public function prikaziIznajmljivanjeArhivirane(Book $knjiga) {
+        return view('iznajmljivanjeArhivirane', [
+            'knjiga' => $knjiga
+        ]);
+    }
+
+    public function sacuvajKnjigu(Request $request) {
+        //request all data, validate and update author
+        request()->validate([
+            'nazivKnjiga'=>'required',
+            'kratki_sadrzaj'=>'required',
+            'knjigaKategorije'=>'required',
+            'knjigaZanrovi'=>'required',
+            'knjigaAutori'=>'required',
+            'knjigaIzdavac'=>'required',
+            'godinaIzdavanja'=>'required',
+            'knjigaKolicina'=>'required',
+            'brStrana'=>'required',
+            'knjigaPismo'=>'required',
+            'knjigaPovez'=>'required',
+            'knjigaFormat'=>'required',
+            'knjigaIsbn'=>'required',
+            'knjigaJezik' =>'required',
+        ]);
+
+        $knjiga = new Book();
+
+        $knjiga->title=request('nazivKnjiga');
+        $knjiga->pages=request('brStrana');
+        $knjiga->publishYear=request('godinaIzdavanja');
+        $knjiga->ISBN=request('knjigaIsbn');
+        $knjiga->quantity=request('knjigaKolicina');
+        $knjiga->summary=request('kratki_sadrzaj');
+        $knjiga->format_id=request('knjigaFormat');
+        $knjiga->binding_id=request('knjigaPovez');
+        $knjiga->script_id=request('knjigaPismo');
+        $knjiga->publisher_id=request('knjigaIzdavac');
+        $knjiga->language_id=request('knjigaJezik');
+
+
+        $knjiga->save();
+
+        $kategorijeValues = $request->input('valuesKategorije');
+        $kategorije = explode(',', $kategorijeValues);
+
+        foreach($kategorije as $kategorija) {
+            $knjigaKategorije = new BookCategory();
+            $knjigaKategorije->book_id = $knjiga->id;
+            $knjigaKategorije->category_id = $kategorija;
+            $knjigaKategorije->save();
+        }
+
+        $zanroviValues = $request->input('valuesZanrovi');
+        $zanrovi = explode(',', $zanroviValues);
+
+        foreach($zanrovi as $zanr) {
+            $knjigaZanrovi = new BookGenre();
+            $knjigaZanrovi->book_id = $knjiga->id;
+            $knjigaZanrovi->genre_id = $zanr;
+            $knjigaZanrovi->save();
+        }
+
+        $autoriValues = $request->input('valuesAutori');
+        $autori = explode(',', $autoriValues);
+
+        foreach($autori as $autor) {
+            $knjigaAutori = new BookAuthor();
+            $knjigaAutori->book_id = $knjiga->id;
+            $knjigaAutori->author_id = $autor;
+            $knjigaAutori->save();
+        }
+
+
+        //return back to the edit author form
+        return view('novaKnjiga', [
+            'kategorije' => DB::table('categories')->get(),
+            'zanrovi' => DB::table('genres')->get(),
+            'autori' => DB::table('authors')->get(),
+            'izdavaci' => DB::table('publishers')->get(),
+            'pisma' => DB::table('scripts')->get(),
+            'povezi' => DB::table('bindings')->get(),
+            'formati' => DB::table('formats')->get(),
+            'jezici' => DB::table('languages')->get(),
+        ]);
+    }
+
+    public function izbrisiKnjigu(Book $knjiga) {
+        Book::destroy($knjiga->id);
+        return back();
     }
 }

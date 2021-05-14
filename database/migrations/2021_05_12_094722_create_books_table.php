@@ -17,7 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
 
             $table->foreignId('script_id');
-            $table->foreignId('language_id');
+            $table->foreignId('language_id')->default(1);
             $table->foreignId('binding_id');
             $table->foreignId('format_id');
             $table->foreignId('publisher_id');
@@ -27,8 +27,8 @@ class CreateBooksTable extends Migration
             $table->integer('publishYear');
             $table->string('ISBN', 20);
             $table->integer('quantity');
-            $table->integer('rentedBooks')->nullable();
-            $table->integer('reservedBooks')->nullable();
+            $table->integer('rentedBooks')->default(0);
+            $table->integer('reservedBooks')->default(0);
             $table->string('summary', 4128);
             $table->timestamps();
 
