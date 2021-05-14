@@ -60,7 +60,7 @@ class UserController extends Controller
         $bibliotekar->save();
 
         //return back to the edit author form
-        return view('editBibliotekar', [
+        return view('bibliotekarProfile', [
             'bibliotekar' => $bibliotekar
         ]);
     }
@@ -68,7 +68,7 @@ class UserController extends Controller
     public function izbrisiBibliotekara(User $bibliotekar) {
         User::destroy($bibliotekar->id);
 
-        return back();
+        return redirect('bibliotekari');
     }
 
     public function sacuvajBibliotekara(User $bibliotekar) {
