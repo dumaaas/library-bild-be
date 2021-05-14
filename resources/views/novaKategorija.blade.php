@@ -16,7 +16,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="settingsPolisa.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('settingsPolisa')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Settings
                                         </a>
                                     </li>
@@ -24,7 +24,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="settingsKategorije.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('settingsKategorije')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Kategorije
                                         </a>
                                     </li>
@@ -32,7 +32,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-gray-400 hover:text-blue-600">
+                                        <a href="{{route('novaKategorija')}}" class="text-gray-400 hover:text-blue-600">
                                             Nova kategorija
                                         </a>
                                     </li>
@@ -44,7 +44,8 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form class="text-gray-700 forma">
+                <form action="{{route('sacuvajKategoriju')}}" method="POST" class="text-gray-700 forma">
+                @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
                             <div class="mt-[20px]">

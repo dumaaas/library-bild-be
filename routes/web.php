@@ -26,11 +26,14 @@ Route::get('/dashboardAktivnost', [\App\Http\Controllers\DashboardController::cl
 Route::get('/bibliotekarProfile', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekara']);
 Route::get('/bibliotekari', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekare']);
 Route::get('/editBibliotekar', [\App\Http\Controllers\UserController::class, 'prikaziEditBibliotekar']);
-Route::get('/editUcenik', [\App\Http\Controllers\UserController::class, 'prikaziEditUcenik']);
 Route::get('/noviBibliotekar', [\App\Http\Controllers\UserController::class, 'prikaziNoviBibliotekar']);
 Route::get('/ucenik', [\App\Http\Controllers\UserController::class, 'prikaziUcenike']);
-Route::get('/ucenikProfile', [\App\Http\Controllers\UserController::class, 'prikaziUcenikProfile']);
-Route::get('/noviUcenik', [\App\Http\Controllers\UserController::class, 'prikaziNovogUcenika']);
+Route::get('/ucenikProfile/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikProfile'])->name('ucenikProfile');
+Route::get('/editUcenik/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziEditUcenik'])->name('editUcenik');
+Route::post('/editUcenik/{ucenik}/update', [\App\Http\Controllers\UserController::class, 'izmjeniUcenika'])->name('updateUcenik');
+Route::get('/noviUcenik', [\App\Http\Controllers\UserController::class, 'prikaziNovogUcenika'])->name('noviUcenik');
+Route::get('/deleteUcenik/{ucenik}', [\App\Http\Controllers\UserController::class, 'izbrisiUcenika'])->name('deleteUcenik');
+Route::post('/sacuvajUcenika', [\App\Http\Controllers\UserController::class, 'sacuvajUcenika'])->name('sacuvajUcenika');
 Route::get('/ucenikIzdate', [\App\Http\Controllers\UserController::class, 'prikaziUcenikIzdate']);
 Route::get('/ucenikVracene', [\App\Http\Controllers\UserController::class, 'prikaziUcenikVracene']);
 Route::get('/ucenikPrekoracenje', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje']);
@@ -76,9 +79,12 @@ Route::get('/arhiviraneRezervacije', [\App\Http\Controllers\RentController::clas
 
 
 //SCRIPT - ROUTES
-Route::get('/editPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziEditPismo']);
-Route::get('/settingsPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziSettingsPismo']);
-Route::get('/novoPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziNovoPismo']);
+Route::get('/editPismo/{pismo}', [\App\Http\Controllers\ScriptController::class, 'prikaziEditPismo'])->name('editPismo');
+Route::get('/novoPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziNovoPismo'])->name('novoPismo');
+Route::get('/settingsPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziSettingsPismo'])->name('settingsPismo');
+Route::post('/sacuvajPismo', [\App\Http\Controllers\ScriptController::class, 'sacuvajPismo'])->name('sacuvajPismo');
+Route::post('/izmijeniPismo/{pismo}', [\App\Http\Controllers\ScriptController::class, 'izmijeniPismo'])->name('izmijeniPismo');
+Route::get('/izbrisiPismo/{pismo}', [\App\Http\Controllers\ScriptController::class, 'izbrisiPismo'])->name('izbrisiPismo');
 
 
 //FORMAT - ROUTES
@@ -109,9 +115,12 @@ Route::post('/sacuvajIzdavaca}', [\App\Http\Controllers\PublisherController::cla
 
 
 //CATEGORY - ROUTES
-Route::get('/editKategorija', [\App\Http\Controllers\CategoryController::class, 'prikaziEditKategorija']);
-Route::get('/novaKategorija', [\App\Http\Controllers\CategoryController::class, 'prikaziNovaKategorija']);
-Route::get('/settingsKategorije', [\App\Http\Controllers\CategoryController::class, 'prikaziSettingsKategorije']);
+Route::get('/editKategorija/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'prikaziEditKategorija'])->name('editKategorija');
+Route::get('/novaKategorija', [\App\Http\Controllers\CategoryController::class, 'prikaziNovaKategorija'])->name('novaKategorija');
+Route::get('/settingsKategorije', [\App\Http\Controllers\CategoryController::class, 'prikaziSettingsKategorije'])->name('settingsKategorije');
+Route::post('/sacuvajKategoriju', [\App\Http\Controllers\CategoryController::class, 'sacuvajKategoriju'])->name('sacuvajKategoriju');
+Route::post('/izmijeniKategoriju/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'izmijeniKategoriju'])->name('izmijeniKategoriju');
+Route::get('/izbrisiKategoriju/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'izbrisiKategoriju'])->name('izbrisiKategoriju');
 
 
 //AUTHOR - ROUTES
