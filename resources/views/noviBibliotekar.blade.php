@@ -36,7 +36,8 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form class="text-gray-700 text-[14px] forma">
+                <form action="{{route('sacuvajBibliotekara')}}" method="POST" class="text-gray-700 text-[14px] forma">
+                    @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
                         <div class="mt-[20px]">
