@@ -139,9 +139,12 @@ Route::post('/sacuvajAutora', [\App\Http\Controllers\AuthorController::class, 's
 
 
 //GENRE - ROUTES
-Route::get('/editZanr', [\App\Http\Controllers\GenreController::class, 'prikaziEditZanr']);
-Route::get('/settingsZanrovi', [\App\Http\Controllers\GenreController::class, 'prikaziSettingsZanrovi']);
-Route::get('/noviZanr', [\App\Http\Controllers\GenreController::class, 'prikaziNoviZanr']);
+Route::get('/editZanr{zanr}', [\App\Http\Controllers\GenreController::class, 'prikaziEditZanr'])->name('editZanr');
+Route::get('/noviZanr', [\App\Http\Controllers\GenreController::class, 'prikaziNoviZanr'])->name('noviZanr');
+Route::get('/settingsZanrovi', [\App\Http\Controllers\GenreController::class, 'prikaziSettingsZanrovi'])->name('settingsZanrovi');
+Route::post('/sacuvajZanr', [\App\Http\Controllers\GenreController::class, 'sacuvajZanr'])->name('sacuvajZanr');
+Route::post('/izmijeniZanr/{zanr}', [\App\Http\Controllers\GenreController::class, 'izmijeniZanr'])->name('izmijeniZanr');
+Route::get('/izbrisiZanr/{zanr}', [\App\Http\Controllers\GenreController::class, 'izbrisiZanr'])->name('izbrisiZanr');
 
 
 //POLICY - ROUTES

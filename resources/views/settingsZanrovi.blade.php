@@ -13,31 +13,31 @@
                 </div>
             </div>
             <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
-                <a href="settingsPolisa.php" class="inline hover:text-blue-800">
+                <a href="{{route('settingsPolisa')}}" class="inline hover:text-blue-800">
                     Polisa
                 </a>
-                <a href="settingsKategorije.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsKategorije')}}" class="inline ml-[70px] hover:text-blue-800">
                     Kategorije
                 </a>
-                <a href="settingsZanrovi.php" class="inline ml-[70px] hover:text-blue-800 active-book-nav">
+                <a href="{{route('settingsZanrovi')}}" class="inline ml-[70px] hover:text-blue-800 active-book-nav">
                     Zanrovi
                 </a>
-                <a href="settingsIzdavac.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsIzdavac')}}" class="inline ml-[70px] hover:text-blue-800">
                     Izdavac
                 </a>
-                <a href="settingsPovez.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
                 </a>
-                <a href="settingsFormat.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="#" class="inline ml-[70px] hover:text-blue-800">
                     Format
                 </a>
-                <a href="settingsPismo.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsPismo')}}" class="inline ml-[70px] hover:text-blue-800">
                     Pismo
                 </a>
             </div>
             <div class="height-kategorije pb-[30px] scroll">
                 <div class="flex items-center px-[50px] py-8 space-x-3 rounded-lg">
-                    <a href="noviZanr.php"
+                    <a href="{{route('noviZanr')}}"
                         class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
                         <i class="fas fa-plus mr-[15px]"></i> Novi zanr
                     </a>
@@ -60,6 +60,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
+                        @foreach($zanrovi as $zanr)
                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                 <td class="px-4 py-4 whitespace-no-wrap">
                                     <label class="inline-flex items-center">
@@ -67,7 +68,7 @@
                                     </label>
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-4">
-                                    <p>Poezija</p>
+                                    <p>{{$zanr->name}}</p>
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
                                     <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsGenre hover:text-[#606FC7]">
@@ -78,13 +79,13 @@
                                         <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                             aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                             <div class="py-1">
-                                                <a href="editZanr.php" tabindex="0"
+                                                <a href="{{route('editZanr', ['zanr' => $zanr->id])}}" tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
                                                     <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                                     <span class="px-4 py-0">Izmijeni zanr</span>
                                                 </a>
-                                                <a href="#" tabindex="0"
+                                                <a href="{{route('izbrisiZanr', ['zanr' => $zanr->id])}}" tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
                                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
@@ -95,244 +96,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <p>Strucna literatura</p>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
-                                    <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsGenre hover:text-[#606FC7]">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </p>
-                                    <div
-                                        class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-genre">
-                                        <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                                            aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                            <div class="py-1">
-                                                <a href="editZanr.php" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izmijeni zanr</span>
-                                                </a>
-                                                <a href="#" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izbrisi zanr</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <p>Poezija</p>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
-                                    <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsGenre hover:text-[#606FC7]">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </p>
-                                    <div
-                                        class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-genre">
-                                        <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                                            aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                            <div class="py-1">
-                                                <a href="editZanr.php" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izmijeni zanr</span>
-                                                </a>
-                                                <a href="#" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izbrisi zanr</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <p>Strucna literatura</p>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
-                                    <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsGenre hover:text-[#606FC7]">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </p>
-                                    <div
-                                        class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-genre">
-                                        <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                                            aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                            <div class="py-1">
-                                                <a href="editZanr.php" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izmijeni zanr</span>
-                                                </a>
-                                                <a href="#" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izbrisi zanr</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <p>Poezija</p>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
-                                    <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsGenre hover:text-[#606FC7]">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </p>
-                                    <div
-                                        class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-genre">
-                                        <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                                            aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                            <div class="py-1">
-                                                <a href="editZanr.php" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izmijeni zanr</span>
-                                                </a>
-                                                <a href="#" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izbrisi zanr</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <p>Strucna literatura</p>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
-                                    <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsGenre hover:text-[#606FC7]">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </p>
-                                    <div
-                                        class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-genre">
-                                        <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                                            aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                                            <div class="py-1">
-                                                <a href="editZanr.php" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izmijeni zanr</span>
-                                                </a>
-                                                <a href="#" tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                    role="menuitem">
-                                                    <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                                    <span class="px-4 py-0">Izbrisi zanr</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
-                    <div class="flex flex-row items-center justify-end mt-2">
-                        <div>
-                            <p class="inline text-md">
-                                Rows per page:
-                            </p>
-                            <select
-                                class=" text-gray-700 bg-white rounded-md w-[46px] focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-md"
-                                name="ucenici">
-                                <option value="">
-                                    20
-                                </option>
-                                <option value="">
-                                    Option1
-                                </option>
-                                <option value="">
-                                    Option2
-                                </option>
-                                <option value="">
-                                    Option3
-                                </option>
-                                <option value="">
-                                    Option4
-                                </option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <nav class="relative z-0 inline-flex">
-                                <div>
-                                    <a href="#"
-                                        class="relative inline-flex items-center px-4 py-2 -ml-px font-medium leading-5 transition duration-150 ease-in-out text-md focus:z-10 focus:outline-none">
-                                        1 of 1
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="#"
-                                        class="relative inline-flex items-center px-2 py-2 font-medium leading-5 text-gray-500 transition duration-150 ease-in-out text-md rounded-l-md hover:text-gray-400 focus:z-10 focus:outline-none"
-                                        aria-label="Previous"
-                                        v-on:click.prevent="changePage(pagination.current_page - 1)">
-                                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div v-if="pagination.current_page < pagination.last_page">
-                                    <a href="#"
-                                        class="relative inline-flex items-center px-2 py-2 -ml-px font-medium leading-5 text-gray-500 transition duration-150 ease-in-out text-md rounded-r-md hover:text-gray-400 focus:z-10 focus:outline-none"
-                                        aria-label="Next">
-                                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
+                <div class="pt-[20px]">
+                    {{ $zanrovi->links() }}
+                </div>
 
                 </div>
             </div>

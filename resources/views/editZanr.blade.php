@@ -14,7 +14,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="settingsPolisa.php" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="{{route('settingsPolisa')}}" class="text-[#2196f3] hover:text-blue-600">
                                         Settings
                                     </a>
                                 </li>
@@ -22,7 +22,7 @@
                                     <span class="mx-2">/</span>
                                 </li>
                                 <li>
-                                    <a href="settingsZanrovi.php" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="{{route('settingsZanrovi')}}" class="text-[#2196f3] hover:text-blue-600">
                                         Zanrovi
                                     </a>
                                 </li>
@@ -30,7 +30,7 @@
                                     <span class="mx-2">/</span>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-600">
+                                    <a href="{{route('editZanr', ['zanr' => $zanr->id])}}" class="text-gray-400 hover:text-blue-600">
                                         Izmijeni podatke
                                     </a>
                                 </li>
@@ -43,12 +43,13 @@
 
         <!-- Space for content -->
         <div class="scroll height-content section-content">
-            <form class="text-gray-700 forma">
+            <form action="{{route('izmijeniZanr', ['zanr' => $zanr->id])}}" method="POST" class="text-gray-700 forma">
+            @csrf
                 <div class="flex flex-row ml-[30px]">
                     <div class="w-[50%] mb-[150px]">
                         <div class="mt-[20px]">
                             <p>Naziv zanra <span class="text-red-500">*</span></p>
-                            <input type="text" name="nazivZanraEdit" id="nazivZanraEdit" value="Poezija" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNazivZanraEdit()"/>
+                            <input type="text" name="nazivZanraEdit" id="nazivZanraEdit" value="{{$zanr->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNazivZanraEdit()"/>
                             <div id="validateNazivZanraEdit"></div>
                         </div>
                     </div>
