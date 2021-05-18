@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Reservation;
 use App\Models\Rent;
 
@@ -23,6 +24,14 @@ class DashboardController extends Controller
     public function prikaziDashboardAktivnost() {
         return view('dashboardAktivnost', [
             'aktivnosti' => Rent::with('book', 'student', 'librarian')->orderBy('rent_date', 'DESC')->get(),
+            'knjiga' => null
+        ]);
+    }
+
+    public function prikaziDashboardAktivnostKonkretneKnjige(Book $knjiga) {
+        return view('dashboardAktivnost', [
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->get(),
+            'knjiga' => $knjiga,
         ]);
     }
 }

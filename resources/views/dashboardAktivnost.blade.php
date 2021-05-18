@@ -318,9 +318,16 @@
                             <div class="rounded">
                                 <div class="relative">
                                     <button class="w-auto rounded focus:outline-none" id="knjigeMenu">
-                                        <span class='float-left'>
-                                        Knjiga:  <i
-                                            class="px-[7px] fas fa-angle-down"></i></span>
+                                        @if($knjiga != null)
+                                            <span class='float-left bg-blue-200 text-blue-800 px-[8px] py-[2px]'>
+                                                Knjiga:  {{$knjiga->title}}<i class="px-[7px] fas fa-angle-down"></i>
+                                            </span>
+                                        @else
+                                            <span class='float-left'>
+                                                Knjiga:  Sve<i class="px-[7px] fas fa-angle-down"></i>
+                                            </span>
+                                        @endif
+
                                     </button>
                                     <div id="knjigeDropdown"
                                          class="knjigeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">

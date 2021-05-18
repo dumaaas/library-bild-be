@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rent;
 use DB;
 use App\Models\Book;
 use App\Models\BookAuthor;
@@ -42,18 +43,21 @@ class BookController extends Controller
     public function prikaziEvidencijaKnjigaMultimedija(Book $knjiga) {
         return view('evidencijaKnjigaMultimedija', [
             'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
     public function prikaziKnjigaOsnovniDetalji(Book $knjiga) {
         return view('knjigaOsnovniDetalji', [
             'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
     public function prikaziKnjigaSpecifikacija(Book $knjiga) {
         return view('knjigaSpecifikacija', [
             'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
@@ -100,31 +104,36 @@ class BookController extends Controller
 
     public function prikaziIznajmljivanjeIzdate(Book $knjiga) {
         return view('iznajmljivanjeIzdate', [
-            'knjiga' => $knjiga
+            'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
     public function prikaziIznajmljivanjePrekoracenje(Book $knjiga) {
         return view('iznajmljivanjePrekoracenje', [
-            'knjiga' => $knjiga
+            'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
     public function prikaziIznajmljivanjeVracene(Book $knjiga) {
         return view('iznajmljivanjeVracene', [
-            'knjiga' => $knjiga
+            'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
     public function prikaziIznajmljivanjeAktivne(Book $knjiga) {
         return view('iznajmljivanjeAktivne', [
-            'knjiga' => $knjiga
+            'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
     public function prikaziIznajmljivanjeArhivirane(Book $knjiga) {
         return view('iznajmljivanjeArhivirane', [
-            'knjiga' => $knjiga
+            'knjiga' => $knjiga,
+            'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
         ]);
     }
 
