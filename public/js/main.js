@@ -1683,15 +1683,15 @@ function dropdown() {
     },
     selectedValuesKategorijaEdit() {
       const options = document.getElementById('kategorijaEdit').options;
-      return options[1].innerText;
+      return options[1].value;
     },
     selectedValuesZanrEdit() {
       const options = document.getElementById('zanrEdit').options;
-      return options[2].innerText;
+      return options[2].value;
     },
     selectedValuesAutoriEdit() {
       const options = document.getElementById('autoriEdit').options;
-      return options[0].innerText;
+      return options[0].value;
     }
   }
 }

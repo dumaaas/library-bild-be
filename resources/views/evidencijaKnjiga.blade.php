@@ -373,7 +373,7 @@
                                                     <span class="px-4 py-0">Pogledaj detalje</span>
                                                 </a>
 
-                                                <a href="editKnjiga.php" tabindex="0"
+                                                <a href="{{route('editKnjiga', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                    role="menuitem">
                                                     <i class="fas fa-edit mr-[6px] ml-[5px] py-1"></i>

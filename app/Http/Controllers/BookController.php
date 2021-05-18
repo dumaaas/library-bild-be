@@ -11,8 +11,18 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function prikaziEditKnjiga() {
-        return view('editKnjiga');
+    public function prikaziEditKnjiga(Book $knjiga) {
+        return view('editKnjiga', [
+            'knjiga' => $knjiga,
+            'kategorije' => DB::table('categories')->get(),
+            'zanrovi' => DB::table('genres')->get(),
+            'autori' => DB::table('authors')->get(),
+            'izdavaci' => DB::table('publishers')->get(),
+            'pisma' => DB::table('scripts')->get(),
+            'povezi' => DB::table('bindings')->get(),
+            'formati' => DB::table('formats')->get(),
+            'jezici' => DB::table('languages')->get(),
+        ]);
     }
 
     public function prikaziEditKnjigaMultimedija() {
@@ -195,6 +205,62 @@ class BookController extends Controller
             'povezi' => DB::table('bindings')->get(),
             'formati' => DB::table('formats')->get(),
             'jezici' => DB::table('languages')->get(),
+        ]);
+    }
+
+    public function updateKnjiga(Request $request, Book $knjiga) {
+        //request all data, validate and update author
+        request()->validate([
+
+        ]);
+
+        $knjiga->title=request('nazivKnjigaEdit');
+        $knjiga->pages=request('brStranaEdit');
+        $knjiga->publishYear=request('godinaIzdavanjaEdit');
+        $knjiga->ISBN=request('isbnEdit');
+        $knjiga->quantity=request('knjigaKolicinaEdit');
+        $knjiga->summary=request('kratki_sadrzaj_edit');
+        $knjiga->format_id=request('formatEdit');
+        $knjiga->binding_id=request('povezEdit');
+        $knjiga->script_id=request('pismoEdit');
+        $knjiga->publisher_id=request('izdavacEdit');
+        $knjiga->language_id=request('jezikEdit');
+
+        $knjiga->save();
+
+        $kategorijeValues = $request->input('kategorijaValuesEdit');
+        $kategorije = explode(',', $kategorijeValues);
+
+        foreach($kategorije as $kategorija) {
+            $knjigaKategorije = BookCategory::find($kategorija);
+            $knjigaKategorije->book_id = $knjiga->id;
+            $knjigaKategorije->category_id = $kategorija;
+            $knjigaKategorije->save();
+        }
+
+        $zanroviValues = $request->input('zanrValuesEdit');
+        $zanrovi = explode(',', $zanroviValues);
+
+        foreach($zanrovi as $zanr) {
+            $knjigaZanrovi = BookGenre::find($zanr);
+            $knjigaZanrovi->book_id = $knjiga->id;
+            $knjigaZanrovi->genre_id = $zanr;
+            $knjigaZanrovi->save();
+        }
+
+        $autoriValues = $request->input('autoriValuesEdit');
+        $autori = explode(',', $autoriValues);
+
+        foreach($autori as $autor) {
+            $knjigaAutori = BookAuthor::find($autor);
+            $knjigaAutori->book_id = $knjiga->id;
+            $knjigaAutori->author_id = $autor;
+            $knjigaAutori->save();
+        }
+
+        //return back to the edit author form
+        return view('knjigaOsnovniDetalji', [
+            'knjiga' => $knjiga,
         ]);
     }
 
