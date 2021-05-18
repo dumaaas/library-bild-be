@@ -38,11 +38,11 @@ Route::post('/editUcenik/{ucenik}/update', [\App\Http\Controllers\UserController
 Route::get('/noviUcenik', [\App\Http\Controllers\UserController::class, 'prikaziNovogUcenika'])->name('noviUcenik');
 Route::get('/deleteUcenik/{ucenik}', [\App\Http\Controllers\UserController::class, 'izbrisiUcenika'])->name('deleteUcenik');
 Route::post('/sacuvajUcenika', [\App\Http\Controllers\UserController::class, 'sacuvajUcenika'])->name('sacuvajUcenika');
-Route::get('/ucenikIzdate', [\App\Http\Controllers\UserController::class, 'prikaziUcenikIzdate']);
-Route::get('/ucenikVracene', [\App\Http\Controllers\UserController::class, 'prikaziUcenikVracene']);
-Route::get('/ucenikPrekoracenje', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje']);
-Route::get('/ucenikAktivne', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne']);
-Route::get('/ucenikArhivirane', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane']);
+Route::get('/ucenikIzdate', [\App\Http\Controllers\UserController::class, 'prikaziUcenikIzdate'])->name('ucenikIzdate');
+Route::get('/ucenikVracene', [\App\Http\Controllers\UserController::class, 'prikaziUcenikVracene'])->name('ucenikVracene');
+Route::get('/ucenikPrekoracenje', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje'])->name('ucenikPrekoracenje');
+Route::get('/ucenikAktivne', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne'])->name('ucenikAktivne');
+Route::get('/ucenikArhivirane', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane'])->name('ucenikArhivirane');
 
 
 //BOOK - ROUTES

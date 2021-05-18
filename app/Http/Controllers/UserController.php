@@ -6,6 +6,10 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Models\Rent;
+use App\Models\Reservation;
+use Carbon\Carbon;
+use App\Models\Book;
 
 class UserController extends Controller
 {
@@ -203,23 +207,38 @@ class UserController extends Controller
         ]);
     }
 
-    public function prikaziUcenikIzdate() {
-        return view('ucenikIzdate');
+    public function prikaziUcenikIzdate(User $ucenik) {
+        return view('ucenikIzdate', [
+        'ucenik' => $ucenik,
+        'ucenikIzdate'=> Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('student_id', '=', $ucenik->id)->paginate(7),
+        ]);
     }
 
-    public function prikaziUcenikVracene() {
-        return view('ucenikVracene');
+    public function prikaziUcenikVracene(User $ucenik) {
+        return view('ucenikVracene', [
+            'ucenik' => $ucenik,
+            'ucenikVracene' => Rent::with('book', 'student', 'librarian')->where('return_date', '!=', null)->where('student_id', '=', $ucenik->id)->paginate(7),
+        ]);
     }
 
-    public function prikaziUcenikPrekoracenje() {
-        return view('ucenikPrekoracenje');
+    public function prikaziUcenikPrekoracenje(User $ucenik) {
+        return view('ucenikPrekoracenje', [
+            'ucenik' => $ucenik,
+            'ucenikPrekoracene' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('student_id', '=', $ucenik->id)->paginate(7),
+        ]);
     }
 
-    public function prikaziUcenikAktivne() {
-        return view('ucenikAktivne');
+    public function prikaziUcenikAktivne(User $ucenik) {
+        return view('ucenikAktivne', [
+            'ucenik' => $ucenik,
+            'ucenikAktivne' => Reservation::with('book', 'student')->where('close_date', '=', null)->where('student_id', '=', $ucenik->id)->paginate(7),
+        ]);
     }
 
-    public function prikaziUcenikArhivirane() {
-        return view('ucenikArhivirane');
+    public function prikaziUcenikArhivirane(User $ucenik) {
+        return view('ucenikArhivirane', [
+            'ucenik' => $ucenik,
+            'ucenikArhivirane' => Reservation::with('book', 'student', 'reservationStatus')->where('close_date', '!=', null)->where('student_id', '=', $ucenik->id)->paginate(7),
+        ]);
     }
 }
