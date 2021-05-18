@@ -381,12 +381,16 @@
                                         </td>
                                         <td class="flex flex-row items-center px-4 py-3">
                                             <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
-                                            <a href="izdavanjeDetalji.php">
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $prekoracena->book])}}">
                                                 <span class="font-medium text-center">{{$prekoracena->book->title}}</span>
                                             </a>
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$prekoracena->rent_date}}</td>
-                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$prekoracena->student->name}}</td>
+                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <a href="{{route('ucenikProfile', ['ucenik' => $prekoracena->student])}}">
+                                                {{$prekoracena->student->name}}
+                                            </a>
+                                        </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                                             <div
                                                 class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">

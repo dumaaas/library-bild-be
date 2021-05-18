@@ -559,11 +559,15 @@
                                         </td>
                                         <td class="flex flex-row items-center px-4 py-3">
                                             <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
-                                            <a href="izdavanjeDetalji.php">
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $vracena->book])}}">
                                                 <span class="font-medium text-center">{{$vracena->book->title}}</span>
                                             </a>
                                         </td>
-                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$vracena->student->name}}</td>
+                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <a href="{{route('ucenikProfile', ['ucenik' => $vracena->student])}}">
+                                                {{$vracena->student->name}}
+                                            </a>
+                                        </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$vracena->rent_date}}</td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$vracena->return_date}}</td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
@@ -572,7 +576,9 @@
                                             </div>
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                            {{$vracena->librarian->name}}
+                                            <a href="{{route('bibliotekarProfile', ['bibliotekar' => $vracena->librarian])}}">
+                                                {{$vracena->librarian->name}}
+                                            </a>
                                         </td>
                                         <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                             <p

@@ -452,6 +452,7 @@
     @yield('ucenikVracene')
     @yield('vraceneKnjige')
     @yield('vratiKnjigu')
+    @yield('izdavanjeDetaljiError')
 
 </main>
 
