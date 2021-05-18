@@ -16,7 +16,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                 <li>
-                                        <a href="settingsPolisa.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('settingsPolisa')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Settings
                                         </a>
                                     </li>
@@ -24,7 +24,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="settingsFormat.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('settingsFormat')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Formati
                                         </a>
                                     </li>
@@ -45,7 +45,8 @@
             
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form class="text-gray-700 forma">
+                <form action="{{route('sacuvajFormat')}}" method="POST" class="text-gray-700 forma">
+                @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[150px]">
                             <div class="mt-[20px]">

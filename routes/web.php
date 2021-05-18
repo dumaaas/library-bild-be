@@ -91,9 +91,12 @@ Route::get('/izbrisiPismo/{pismo}', [\App\Http\Controllers\ScriptController::cla
 
 
 //FORMAT - ROUTES
-Route::get('/editFormat', [\App\Http\Controllers\FormatController::class, 'prikaziEditFormat']);
-Route::get('/noviFormat', [\App\Http\Controllers\FormatController::class, 'prikaziNoviFormat']);
-Route::get('/settingsFormat', [\App\Http\Controllers\FormatController::class, 'prikaziSettingsFormat']);
+Route::get('/editFormat/{format}', [\App\Http\Controllers\FormatController::class, 'prikaziEditFormat'])->name('editFormat');
+Route::get('/noviFormat', [\App\Http\Controllers\FormatController::class, 'prikaziNoviFormat'])->name('noviFormat');
+Route::get('/settingsFormat', [\App\Http\Controllers\FormatController::class, 'prikaziSettingsFormat'])->name('settingsFormat');
+Route::post('/sacuvajFormat', [\App\Http\Controllers\FormatController::class, 'sacuvajFormat'])->name('sacuvajFormat');
+Route::post('/izmijeniFormat/{format}', [\App\Http\Controllers\FormatController::class, 'izmijeniFormat'])->name('izmijeniFormat');
+Route::get('/izbrisiFormat/{format}', [\App\Http\Controllers\FormatController::class, 'izbrisiFormat'])->name('izbrisiFormat');
 
 
 //LANGUAGE - ROUTES

@@ -28,7 +28,7 @@
                 <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
                 </a>
-                <a href="#" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsFormat')}}" class="inline ml-[70px] hover:text-blue-800">
                     Format
                 </a>
                 <a href="{{route('settingsPismo')}}" class="inline ml-[70px] hover:text-blue-800">
