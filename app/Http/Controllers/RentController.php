@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Rent;
 use App\Models\Reservation;
+use App\Models\Book;
+
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -11,8 +13,18 @@ use Illuminate\Http\Request;
 class RentController extends Controller
 {
 
-    public function prikaziIzdavanjeDetalji() {
-        return view('izdavanjeDetalji');
+    public function prikaziIzdavanjeDetalji(Book $knjiga) {
+        $transakcija = Rent::with('book', 'student', 'librarian')->where('book_id', '=', $knjiga->id)->first();
+        if($transakcija != null) {
+            return view('izdavanjeDetalji', [
+                'transakcija' => $transakcija
+            ]);
+        } else {
+            return view('izdavanjeDetaljiError', [
+                'knjiga' => $knjiga
+            ]);
+        }
+
     }
 
     public function prikaziKnjigePrekoracenje() {

@@ -444,16 +444,14 @@
                                     </td>
                                     <td class="flex flex-row items-center px-4 py-3">
                                         <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
-                                        <a href="izdavanjeDetalji.php">
-                                            <span class="font-medium text-center">{{$aktivna->book->title}}</span>
-                                        </a>
+                                        <span class="font-medium text-center">{{$aktivna->book->title}}</span>
                                     </td>
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->reservation_date}}</td>
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->reservation_date->addDays(20)}}</td>
                                     <td class="flex flex-row items-center px-4 py-3">
                                         <img class="object-cover w-8 h-8 rounded-full" src="img/profileStudent.jpg"
                                              alt="" />
-                                        <a href="ucenikProfile.php" class="ml-2 font-medium text-center">
+                                        <a href="{{route('ucenikProfile', ['ucenik' => $aktivna->student])}}" class="ml-2 font-medium text-center">
                                            {{$aktivna->student->name}}
                                         </a>
                                     </td>

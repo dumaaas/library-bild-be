@@ -239,8 +239,12 @@ class DatabaseSeeder extends Seeder
         //SEEDING USERS
         \App\Models\User::factory(100)->create();
 
-        //SEEDING BOOKS
-        \App\Models\Book::factory(100)->create();
+        //SEEDING RENT_STATUS
+        \App\Models\RentStatus::factory(300)->create();
+
+        //SEEDING RESERVATION_STATUS
+        \App\Models\ReservationStatus::factory(300)->create();
+
 
         //SEEDING BOOK_CATEGORY
         \App\Models\BookCategory::factory(300)->create();
@@ -251,11 +255,6 @@ class DatabaseSeeder extends Seeder
         //SEEDING BOOK_AUTHOR
         \App\Models\BookAuthor::factory(300)->create();
 
-        //SEEDING RENT_STATUS
-        \App\Models\RentStatus::factory(300)->create();
-
-        //SEEDING RESERVATION_STATUS
-        \App\Models\ReservationStatus::factory(300)->create();
 
     }
 }

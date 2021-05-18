@@ -8,19 +8,19 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            <img src="img/tomsojer.jpg" alt="">
+                            <img src="../img/tomsojer.jpg" alt="">
                         </div>
                         <div class="pl-[15px]  flex flex-col">
                             <div>
                                 <h1>
-                                    Tom Sojer
+                                    {{$transakcija->book->title}}
                                 </h1>
                             </div>
                             <div>
                                 <nav class="w-full rounded">
                                     <ol class="flex list-reset">
                                         <li>
-                                            <a href="evidencijaKnjiga.php" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('evidencijaKnjiga')}}" class="text-[#2196f3] hover:text-blue-600">
                                                 Evidencija knjiga
                                             </a>
                                         </li>
@@ -28,18 +28,18 @@
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="knjigaOsnovniDetalji.php"
+                                            <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $transakcija->book])}}"
                                                 class="text-[#2196f3] hover:text-blue-600">
-                                                KNJIGA-467
+                                                KNJIGA-{{$transakcija->book->id}}
                                             </a>
                                         </li>
                                         <li>
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="izdavanjeDetalji.php"
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $transakcija->book])}}"
                                                 class="text-[#2196f3] hover:text-blue-600">
-                                                IZDAVANJE-421
+                                                IZDAVANJE-{{$transakcija->id}}
                                             </a>
                                         </li>
                                     </ol>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="pt-[24px] mr-[30px]">
                         <a href="otpisiKnjigu.php" class="inline hover:text-blue-600">
-                            <i class="fas fa-level-up-alt mr-[3px]"></i> 
+                            <i class="fas fa-level-up-alt mr-[3px]"></i>
                             Otpisi knjigu
                         </a>
                         <a href="izdajKnjigu.php" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
@@ -106,26 +106,35 @@
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Datum akcije</span>
-                                    <p class="font-medium">12.05.2020</p>
+                                    <p class="font-medium">{{$transakcija->rent_date}}</p>
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Trenutno zadrzavanje knjige</span>
-                                    <p class="font-medium">1 nedelja i 4 dana</p>
+                                    <p class="font-medium">{{ \Carbon\Carbon::parse($transakcija->rent_date)->diffAsCarbonInterval() }}</p>
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Prekoracenje</span>
-                                    <p class="font-medium">Nema prekoracenja</p>
+                                    <p class="font-medium">
+                                        @if(now()->lt($transakcija->rent_date->addDays(30)))
+                                            Nema prekoracenja
+                                        @else
+                                            {{ \Carbon\Carbon::parse($transakcija->rent_date->addDays(30))->diffInDays() }} days
+                                        @endif
+                                    </p>
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Bibliotekar</span>
-                                    <a href="bibliotekarProfile.php"
-                                        class="block font-medium text-[#2196f3] hover:text-blue-600">Valentina
-                                        Kascelan</a>
+                                    <a href="{{route('bibliotekarProfile', ['bibliotekar' => $transakcija->librarian])}}"
+                                        class="block font-medium text-[#2196f3] hover:text-blue-600">
+                                        {{$transakcija->librarian->name}}
+                                    </a>
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Ucenik</span>
-                                    <a href="ucenikProfile.php"
-                                        class="block font-medium text-[#2196f3] hover:text-blue-600">Milos Milosevic</a>
+                                    <a href="{{route('ucenikProfile', ['ucenik' => $transakcija->student])}}"
+                                        class="block font-medium text-[#2196f3] hover:text-blue-600">
+                                        {{$transakcija->student->name}}
+                                    </a>
                                 </div>
                             </div>
                         </div>

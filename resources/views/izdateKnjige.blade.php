@@ -531,11 +531,15 @@
                                         </td>
                                         <td class="flex flex-row items-center px-4 py-3">
                                             <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
-                                            <a href="izdavanjeDetalji.php">
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $izdata->book])}}">
                                                 <span class="font-medium text-center">{{$izdata->book->title}}</span>
                                             </a>
                                         </td>
-                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$izdata->student->name}}</td>
+                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <a href="{{route('ucenikProfile', ['ucenik' => $izdata->student])}}">
+                                                {{$izdata->student->name}}
+                                            </a>
+                                        </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$izdata->rent_date}}</td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                                             <div>
@@ -543,7 +547,10 @@
                                             </div>
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                            {{$izdata->librarian->name}}
+                                            <a href="{{route('bibliotekarProfile', ['bibliotekar' => $izdata->librarian])}}">
+                                                {{$izdata->librarian->name}}
+
+                                            </a>
                                         </td>
                                         <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                             <p
