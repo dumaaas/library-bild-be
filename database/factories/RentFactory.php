@@ -27,8 +27,8 @@ class RentFactory extends Factory
             'librarian_id' => User::all()->where('userType_id', '=', 2)->random()->id,
             'student_id' => User::all()->where('userType_id', '=', 3)->random()->id,
             'book_id' => Book::all()->random()->id,
-            'rent_date' => now(),
-            'return_date' => now()->addDays(30),
+            'rent_date' => $this->faker->randomElement([now(), now()->subDays(50)]),
+            'return_date' => $this->faker->randomElement([now()->addDays(30), null]),
         ];
     }
 }

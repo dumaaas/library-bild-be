@@ -24,7 +24,7 @@ class ReservationStatusFactory extends Factory
     {
         return [
             'reservation_id' => Reservation::factory()->create()->id,
-            'statusReservation_id' => 1,
+            'statusReservation_id' => $this->faker->numberBetween(1, 3),
             'date' => now(),
         ];
     }

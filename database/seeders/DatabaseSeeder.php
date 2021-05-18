@@ -222,6 +222,17 @@ class DatabaseSeeder extends Seeder
             'name' => 'Reserved'
         ]);
 
+        DB::table('status_reservations')->insert([
+            'id' => 2,
+            'name' => 'Rented'
+        ]);
+
+        DB::table('status_reservations')->insert([
+            'id' => 3,
+            'name' => 'Reservation refused'
+        ]);
+
+
         //SEEDING AUTHORS
         \App\Models\Author::factory(100)->create();
 

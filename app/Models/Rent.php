@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Rent extends Model
 {
     use HasFactory;
+
+    protected $dates = ['created_at', 'updated_at', 'rent_date'];
+
+
+    public function book(){
+        return $this->belongsTo(Book::class, 'book_id');
+    }
+
+    public function student(){
+        return $this->belongsTo(User::class, 'student_id');
+    }
+
+    public function librarian(){
+        return $this->belongsTo(User::class, 'librarian_id');
+    }
 }

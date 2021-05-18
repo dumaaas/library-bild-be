@@ -42,7 +42,10 @@ class User extends Authenticatable
     ];
 
     public function userType(){
-
         return $this->belongsTo(UserType::class, 'userType_id');
+    }
+
+    public function rent(){
+        return $this->hasMany(Rent::class);
     }
 }

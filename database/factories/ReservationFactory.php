@@ -28,7 +28,8 @@ class ReservationFactory extends Factory
             'student_id' => User::all()->where('userType_id', '=', 3)->random()->id,
             'book_id' => Book::all()->random()->id,
             'reservation_date' => now()->addDays(1),
-            'request_date' => now()
+            'request_date' => now(),
+            'close_date' => $this->faker->randomElement([now()->addSeconds(10), null]),
         ];
     }
 }
