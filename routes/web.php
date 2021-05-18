@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 //DASHBOARD - ROUTES
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'prikaziDashboard']);
-Route::get('/dashboardAktivnost', [\App\Http\Controllers\DashboardController::class, 'prikaziDashboardAktivnost']);
+Route::get('/dashboardAktivnost', [\App\Http\Controllers\DashboardController::class, 'prikaziDashboardAktivnost'])->name('dashboardAktivnost');
 
 //USER - ROUTES
 Route::get('/bibliotekarProfile/{bibliotekar}', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekara'])->name('bibliotekarProfile');
