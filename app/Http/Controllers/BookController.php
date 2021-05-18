@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rent;
 use DB;
 use App\Models\Book;
 use App\Models\BookAuthor;
