@@ -8,6 +8,9 @@ use App\Models\Book;
 use App\Models\BookAuthor;
 use App\Models\BookCategory;
 use App\Models\BookGenre;
+use App\Models\Rent;
+use App\Models\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -103,9 +106,11 @@ class BookController extends Controller
     }
 
     public function prikaziIznajmljivanjeIzdate(Book $knjiga) {
+
         return view('iznajmljivanjeIzdate', [
             'knjiga' => $knjiga,
             'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
+            'iznajmljivanjeIzdate' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('book_id', '=', $knjiga->id)->paginate(7),
         ]);
     }
 
@@ -113,6 +118,7 @@ class BookController extends Controller
         return view('iznajmljivanjePrekoracenje', [
             'knjiga' => $knjiga,
             'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
+            'iznajmljivanjePrekoracene' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->paginate(7),
         ]);
     }
 
@@ -120,6 +126,7 @@ class BookController extends Controller
         return view('iznajmljivanjeVracene', [
             'knjiga' => $knjiga,
             'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
+            'iznajmljivanjeVracene' => Rent::with('book', 'student', 'librarian')->where('return_date', '!=', null)->where('book_id', '=', $knjiga->id)->paginate(7),
         ]);
     }
 
@@ -127,6 +134,7 @@ class BookController extends Controller
         return view('iznajmljivanjeAktivne', [
             'knjiga' => $knjiga,
             'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
+            'iznajmljivanjeAktivne' => Reservation::with('book', 'student')->where('close_date', '=', null)->where('book_id', '=', $knjiga->id)->paginate(7),
         ]);
     }
 
@@ -134,6 +142,7 @@ class BookController extends Controller
         return view('iznajmljivanjeArhivirane', [
             'knjiga' => $knjiga,
             'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->take(3)->get(),
+            'iznajmljivanjeArhivirane' => Reservation::with('book', 'student', 'reservationStatus')->where('close_date', '!=', null)->where('book_id', '=', $knjiga->id)->paginate(7),
         ]);
     }
 
@@ -277,4 +286,5 @@ class BookController extends Controller
         Book::destroy($knjiga->id);
         return back();
     }
+
 }

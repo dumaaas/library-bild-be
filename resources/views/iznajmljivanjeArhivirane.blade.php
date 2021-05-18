@@ -351,25 +351,46 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white">
+                @foreach($iznajmljivanjeArhivirane as $iznajmljivanjeArhivirana)
                     <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                     <td class="px-4 py-3 whitespace-no-wrap">
                         <label class="inline-flex items-center">
                             <input type="checkbox" class="form-checkbox">
                         </label>
                     </td>
-                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">31.04.2019</td>
-                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">10.05.2019</td>
+                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$iznajmljivanjeArhivirana->reservation_date}}</td>
+                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$iznajmljivanjeArhivirana->reservation_date->addDays(20)}}</td>
                     <td class="flex flex-row items-center px-4 py-3">
-                        <img class="object-cover w-8 h-8 rounded-full" src="../img/profileStudent.jpg"
+                        <img class="object-cover w-8 h-8 rounded-full" src="../img/{{$iznajmljivanjeArhivirana->student->photo}}"
                              alt="" />
-                        <a href="ucenikProfile.php" class="ml-2 font-medium text-center">Pero
-                            Perovic</a>
+                        <a href="ucenikProfile.php" class="ml-2 font-medium text-center">{{$iznajmljivanjeArhivirana->student->name}}</a>
                     </td>
                     <td class="px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
-                        <div
-                            class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
-                            <span class="text-xs text-green-800">Knjiga izdata</span>
-                        </div>
+                        @if($iznajmljivanjeArhivirana->reservationStatus->statusReservation_id == 1)
+                            <div
+                                class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
+
+                                <span class="text-xs text-yellow-700">
+                                    Reserved
+                                </span>
+                            </div>
+                        @elseif($iznajmljivanjeArhivirana->reservationStatus->statusReservation_id == 2)
+                            <div
+                                class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
+
+                                <span class="text-xs text-green-800">
+                                    Rented
+                                </span>
+                            </div>
+                        @else
+                            <div
+                                class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
+
+                                <span class="text-xs text-red-800">
+                                    Refused
+                                </span>
+                            </div>
+                        @endif
                     </td>
                     <td class="px-4 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                         <p
@@ -393,7 +414,9 @@
                         </div>
                     </td>
                 </tr>
+                @endforeach
                 </tbody>
+                {{$iznajmljivanjeArhivirane->links()}}
             </table>
         </div>
     </div>
