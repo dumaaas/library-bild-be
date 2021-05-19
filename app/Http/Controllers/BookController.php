@@ -92,8 +92,11 @@ class BookController extends Controller
         return view('otpisiKnjigu');
     }
 
-    public function prikaziRezervisiKnjigu() {
-        return view('rezervisiKnjigu');
+    public function prikaziRezervisiKnjigu(Book $knjiga) {
+        return view('rezervisiKnjigu', [
+            'knjiga' => $knjiga,
+            'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
+        ]);
     }
 
     public function prikaziIzdajKnjigu(Book $knjiga) {
