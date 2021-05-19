@@ -96,12 +96,22 @@ class BookController extends Controller
         return view('rezervisiKnjigu');
     }
 
-    public function prikaziIzdajKnjigu() {
-        return view('izdajKnjigu');
-    }
+    public function prikaziIzdajKnjigu(Book $knjiga) {
 
-    public function prikaziIzdajKnjiguError() {
-        return view('izdajKnjiguError');
+        $knjigeNaRaspolaganju = $knjiga->quantity - $knjiga->rentedBooks - $knjiga->reservedBooks;
+
+        if($knjigeNaRaspolaganju > 0) {
+            return view('izdajKnjigu', [
+                'knjiga' => $knjiga,
+                'prekoraceneKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->get(),
+                'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
+            ]);
+        } else {
+            return view('izdajKnjiguError', [
+                'knjiga' => $knjiga,
+                'prekoraceneKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->get()
+            ]);
+        }
     }
 
     public function prikaziIznajmljivanjeIzdate(Book $knjiga) {

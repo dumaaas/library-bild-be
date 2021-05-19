@@ -58,9 +58,8 @@ Route::get('/novaKnjigaMultimedija', [\App\Http\Controllers\BookController::clas
 Route::get('/novaKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaSpecifikacija']);
 Route::get('/vratiKnjigu', [\App\Http\Controllers\BookController::class, 'prikaziVratiKnjigu']);
 Route::get('/otpisiKnjigu', [\App\Http\Controllers\BookController::class, 'prikaziOtpisiKnjigu']);
-Route::get('/rezervisiKnjigu', [\App\Http\Controllers\BookController::class, 'prikaziRezervisiKnjigu']);
-Route::get('/izdajKnjigu', [\App\Http\Controllers\BookController::class, 'prikaziIzdajKnjigu']);
-Route::get('/izdajKnjiguError', [\App\Http\Controllers\BookController::class, 'prikaziIzdajKnjiguError']);
+Route::get('/rezervisiKnjigu/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziRezervisiKnjigu'])->name('rezervisiKnjigu');
+Route::get('/izdajKnjigu/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIzdajKnjigu'])->name('izdajKnjigu');
 Route::get('/iznajmljivanjeIzdate/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeIzdate'])->name('iznajmljivanjeIzdate');
 Route::get('/iznajmljivanjePrekoracenje/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjePrekoracenje'])->name('iznajmljivanjePrekoracenje');
 Route::get('/iznajmljivanjeVracene/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeVracene'])->name('iznajmljivanjeVracene');
