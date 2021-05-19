@@ -115,7 +115,7 @@
                                 <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('izdateKnjige')}}">
                                     Izdate knjige
                                 </a>
-                                <div class="ml-[30px] bg-green-600 transition duration-200 ease-in  hover:bg-green-900 stats-bar-green h-[26px]">
+                                <div class="ml-[30px] bg-green-600 transition duration-200 ease-in  hover:bg-green-900 stats-bar-green h-[26px]" style="width: {{$izdateNum}}px">
 
                                 </div>
                                 <p class="ml-[10px] number-green text-[#2196f3] hover:text-blue-600">
@@ -126,7 +126,7 @@
                                 <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('aktivneRezervacije')}}">
                                     Rezervisane knjige
                                 </a>
-                                <div class="ml-[30px] bg-yellow-600 transition duration-200 ease-in  hover:bg-yellow-900 stats-bar-yellow  h-[26px]">
+                                <div class="ml-[30px] bg-yellow-600 transition duration-200 ease-in  hover:bg-yellow-900 stats-bar-yellow  h-[26px]" style="width: {{$rezervisaneNum}}px">
 
                                 </div>
                                 <p class="ml-[10px] text-[#2196f3] hover:text-blue-600 number-yellow">
@@ -137,7 +137,7 @@
                                 <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('knjigePrekoracenje')}}">
                                     Knjige u prekoracenju
                                 </a>
-                                <div class="ml-[30px] bg-red-600 transition duration-200 ease-in hover:bg-red-900 stats-bar-red h-[26px]">
+                                <div class="ml-[30px] bg-red-600 transition duration-200 ease-in hover:bg-red-900 stats-bar-red h-[26px]" style="width: {{$prekoraceneNum}}px">
 
                                 </div>
                                 <p class="ml-[10px] text-[#2196f3] hover:text-blue-600 number-red">
@@ -147,21 +147,27 @@
                         </div>
                         <div class="absolute h-[220px] w-[1px] bg-black top-[78px] left-[174px]">
                         </div>
-                        <div class="absolute flex conte left-[175px] border-t-[1px] border-[#e4dfdf] top-[248px] pr-[87px]">
-                            <p class="ml-[-13px]">
+                        <div class="absolute flex conte left-[175px] border-t-[1px] border-[#e4dfdf] top-[248px] pr-[40px]">
+                            <p class="ml-[2px]">
                                 0
                             </p>
-                            <p class="ml-[57px]">
-                                20
+                            <p class="ml-[38px]">
+                                50
                             </p>
-                            <p class="ml-[57px]">
-                                40
+                            <p class="ml-[33px]">
+                                100
                             </p>
-                            <p class="ml-[57px]">
-                                60
+                            <p class="ml-[26px]">
+                                150
                             </p>
-                            <p class="ml-[57px]">
-                                80
+                            <p class="ml-[26px]">
+                                200
+                            </p>
+                            <p class="ml-[26px]">
+                                250
+                            </p>
+                            <p class="ml-[26px]">
+                                300
                             </p>
                         </div>
                     </div>

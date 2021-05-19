@@ -8,7 +8,7 @@
                     <div class="pl-[30px] py-[10px] flex flex-col">
                         <div>
                             <h1>
-                                Pero Perovic
+                                {{$ucenik->name}}
                             </h1>
                         </div>
                         <div>
@@ -24,7 +24,7 @@
                                     </li>
                                     <li>
                                         <a href="ucenikProfile.php" class="text-[#2196f3] hover:text-blue-600">
-                                            ID-354
+                                            ID-{{$ucenik->id}}
                                         </a>
                                     </li>
                                 </ol>
