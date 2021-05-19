@@ -171,162 +171,16 @@ input:checked+svg {
 [x-cloak] {
     display: none;
 }
-/*Animations*/
+/*Graph dashboard*/
 .stats-bar-green {
     width: 0px;
-    -webkit-animation: green-bar 1s ease forwards;
-            animation: green-bar 1s ease forwards;
-    -webkit-animation-delay: 0.5s;
-            animation-delay: 0.5s;
-}
-@-webkit-keyframes green-bar {
 
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 250px;
-    }
-}
-@keyframes green-bar {
-
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 250px;
-    }
-}
-.number-green {
-    opacity: 0;
-    -webkit-animation: number-yellow 0.5s ease-in forwards;
-            animation: number-yellow 0.5s ease-in forwards;
-    -webkit-animation-delay: 2s;
-            animation-delay: 2s;
-}
-@-webkit-keyframes number-green {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-@keyframes number-green {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 .stats-bar-yellow {
     width: 0px;
-
-    -webkit-animation: yellow-bar 1s ease forwards;
-
-            animation: yellow-bar 1s ease forwards;
-    -webkit-animation-delay: 1s;
-            animation-delay: 1s;
-}
-@-webkit-keyframes yellow-bar {
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 150px;
-    }
-}
-@keyframes yellow-bar {
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 150px;
-    }
-}
-.number-yellow {
-    opacity: 0;
-    -webkit-animation: number-yellow 0.5s ease-in forwards;
-            animation: number-yellow 0.5s ease-in forwards;
-    -webkit-animation-delay: 2.2s;
-            animation-delay: 2.2s;
-}
-@-webkit-keyframes number-yellow {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-@keyframes number-yellow {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 .stats-bar-red {
     width: 0px;
-
-    -webkit-animation: red-bar 1s ease forwards;
-
-            animation: red-bar 1s ease forwards;
-    -webkit-animation-delay: 1.5s;
-            animation-delay: 1.5s;
-}
-@-webkit-keyframes red-bar {
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 80px;
-    }
-}
-@keyframes red-bar {
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 80px;
-    }
-}
-.number-red {
-    opacity: 0;
-    -webkit-animation: number-red 0.5s ease-in forwards;
-            animation: number-red 0.5s ease-in forwards;
-    -webkit-animation-delay: 2.4s;
-            animation-delay: 2.4s;
-}
-@-webkit-keyframes number-red {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-@keyframes number-red {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 /*! tailwindcss v2.1.2 | MIT License | https://tailwindcss.com*/
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
@@ -1236,11 +1090,17 @@ h4 {
 .ml-\[10px\]{
     margin-left: 10px;
 }
-.ml-\[-13px\]{
-    margin-left: -13px;
+.ml-\[2px\]{
+    margin-left: 2px;
 }
-.ml-\[57px\]{
-    margin-left: 57px;
+.ml-\[38px\]{
+    margin-left: 38px;
+}
+.ml-\[33px\]{
+    margin-left: 33px;
+}
+.ml-\[26px\]{
+    margin-left: 26px;
 }
 .ml-\[25px\]{
     margin-left: 25px;
@@ -2209,8 +2069,8 @@ h4 {
 .pr-\[10px\]{
     padding-right: 10px;
 }
-.pr-\[87px\]{
-    padding-right: 87px;
+.pr-\[40px\]{
+    padding-right: 40px;
 }
 .pt-\[7px\]{
     padding-top: 7px;
