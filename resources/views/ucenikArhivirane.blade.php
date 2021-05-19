@@ -62,10 +62,10 @@
                 </div>
             </div>
             <div class="border-b-[1px] py-4 text-gray-500 border-[#e4dfdf] pl-[30px]">
-                <a href="{{route('ucenikIzdate', ['ucenik' => $ucenik])}}" class="inline hover:text-blue-800">
+                <a href="{{ route('ucenikProfile', ['ucenik' => $ucenik->id]) }}" class="inline hover:text-blue-800">
                     Osnovni detalji
                 </a>
-                <a href="ucenikIzdate.php" class="inline ml-[70px] active-book-nav">
+                <a href="{{route('ucenikIzdate',['ucenik'=> $ucenik->id])}}" class="inline ml-[70px] active-book-nav">
                     Evidencija iznajmljivanja
                 </a>
             </div>

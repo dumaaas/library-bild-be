@@ -65,7 +65,7 @@
                 <a href="{{ route('ucenikProfile', ['ucenik' => $ucenik->id]) }}" class="inline active-book-nav">
                     Osnovni detalji
                 </a>
-                <a href="{{route('ucenikIzdate')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('ucenikIzdate',['ucenik'=> $ucenik->id])}}" class="inline ml-[70px] hover:text-blue-800">
                     Evidencija iznajmljivanja
                 </a>
             </div>
