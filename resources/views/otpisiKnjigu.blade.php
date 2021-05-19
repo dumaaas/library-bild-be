@@ -7,12 +7,12 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            <img src="img/tomsojer.jpg" alt="">
+                            <img src="../img/tomsojer.jpg" alt="">
                         </div>
                         <div class="pl-[15px]  flex flex-col">
                             <div>
                                 <h1>
-                                    Tom Sojer
+                                {{$knjiga->title}}
                                 </h1>
                             </div>
                             <div>
@@ -29,7 +29,7 @@
                                         <li>
                                             <a href="knjigaOsnovniDetalji.php"
                                                 class="text-[#2196f3] hover:text-blue-600">
-                                                KNJIGA-467
+                                                KNJIGA-{{$knjiga->id}}
                                             </a>
                                         </li>
                                         <li>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="pt-[24px] mr-[30px]">
-                        <a href="otpisiKnjigu.php" class="inline hover:text-blue-600">
+                        <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600">
                             <i class="fas fa-level-up-alt mr-[3px]"></i>
                             Otpisi knjigu
                         </a>
@@ -54,7 +54,7 @@
                             <i class="far fa-hand-scissors mr-[3px]"></i>
                             Izdaj knjigu
                         </a>
-                        <a href="vratiKnjigu.php" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{route('vratiKnjigu', ['knjiga' => $knjiga->id])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-redo-alt mr-[3px] "></i>
                             Vrati knjigu
                         </a>
@@ -138,6 +138,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
+                        @foreach($otpisiKnjige as $otpisiKnjigu)
                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                 <td class="px-4 py-4 whitespace-no-wrap">
                                     <label class="inline-flex items-center">
@@ -145,171 +146,27 @@
                                     </label>
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-4">
-                                    <img class="object-cover w-8 h-8 mr-2 rounded-full" src="img/profileStudent.jpg"
+                                    <img class="object-cover w-8 h-8 mr-2 rounded-full" src="../img/profileStudent.jpg"
                                         alt="" />
                                     <a href="ucenikProfile.php">
-                                        <span class="font-medium text-center">Pero Perovic</span>
+                                        <span class="font-medium text-center">{{$otpisiKnjigu->student->name}}</span>
                                     </a>
                                 </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">21.02.2021</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">2 mjeseca i 15 dana</td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->rent_date}}</td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date)->diffAsCarbonInterval() }}</td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
                                     <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
                                         75 dana
                                     </span>
                                 </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">Valentina Kascelan</td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->librarian->name}}</td>
                             </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <img class="object-cover w-8 h-8 mr-2 rounded-full" src="img/profileStudent.jpg"
-                                        alt="" />
-                                    <a href="ucenikProfile.php">
-                                        <span class="font-medium text-center">Pero Perovic</span>
-                                    </a>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">15.05.2020</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">2 mjeseca i 5 dana</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                    <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                        60 dana
-                                    </span>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">Valentina Kascelan</td>
-                            </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <img class="object-cover w-8 h-8 mr-2 rounded-full" src="img/profileStudent.jpg"
-                                        alt="" />
-                                    <a href="ucenikProfile.php">
-                                        <span class="font-medium text-center">Pero Perovic</span>
-                                    </a>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">09.04.2020</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">2 mjeseca i 2 dana</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                    <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                        31 dan
-                                    </span>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">Valentina Kascelan</td>
-                            </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <img class="object-cover w-8 h-8 mr-2 rounded-full" src="img/profileStudent.jpg"
-                                        alt="" />
-                                    <a href="ucenikProfile.php">
-                                        <span class="font-medium text-center">Pero Perovic</span>
-                                    </a>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">21.02.2021</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">2 mjeseca i 2 dana</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                    <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                        31 dan
-                                    </span>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">Valentina Kascelan</td>
-                            </tr>
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <img class="object-cover w-8 h-8 mr-2 rounded-full" src="img/profileStudent.jpg"
-                                        alt="" />
-                                    <a href="ucenikProfile.php">
-                                        <span class="font-medium text-center">Pero Perovic</span>
-                                    </a>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">12.05.2020</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">1 mjesec i 3 dana</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                    <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                        10 dana
-                                    </span>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">Valentina Kascelan</td>
-                            </tr>
+                         @endforeach
                         </tbody>
                     </table>
 
-                    <div class="flex flex-row items-center justify-end my-2">
-                        <div>
-                            <p class="inline text-md">
-                                Rows per page:
-                            </p>
-                            <select
-                                class=" text-gray-700 bg-white rounded-md w-[46px] focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-md"
-                                name="ucenici">
-                                <option value="">
-                                    20
-                                </option>
-                                <option value="">
-                                    Option1
-                                </option>
-                                <option value="">
-                                    Option2
-                                </option>
-                                <option value="">
-                                    Option3
-                                </option>
-                                <option value="">
-                                    Option4
-                                </option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <nav class="relative z-0 inline-flex">
-                                <div>
-                                    <a href="#"
-                                        class="relative inline-flex items-center px-4 py-2 -ml-px font-medium leading-5 transition duration-150 ease-in-out text-md focus:z-10 focus:outline-none">
-                                        1 of 1
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="#"
-                                        class="relative inline-flex items-center px-2 py-2 font-medium leading-5 text-gray-500 transition duration-150 ease-in-out text-md rounded-l-md hover:text-gray-400 focus:z-10 focus:outline-none"
-                                        aria-label="Previous"
-                                        v-on:click.prevent="changePage(pagination.current_page - 1)">
-                                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div v-if="pagination.current_page < pagination.last_page">
-                                    <a href="#"
-                                        class="relative inline-flex items-center px-2 py-2 -ml-px font-medium leading-5 text-gray-500 transition duration-150 ease-in-out text-md rounded-r-md hover:text-gray-400 focus:z-10 focus:outline-none"
-                                        aria-label="Next">
-                                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </nav>
-                        </div>
+                    <div class="pt-[20px]">
+                        {{$otpisiKnjige->links()}}
                     </div>
 
                 </div>

@@ -84,12 +84,18 @@ class BookController extends Controller
         return view('novaKnjigaSpecifikacija');
     }
 
-    public function prikaziVratiKnjigu() {
-        return view('vratiKnjigu');
+    public function prikaziVratiKnjigu(Book $knjiga) {
+        return view('vratiKnjigu',[
+            'knjiga' => $knjiga,
+            'vratiKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('book_id', '=', $knjiga->id)->paginate(7),
+            ]);
     }
 
-    public function prikaziOtpisiKnjigu() {
-        return view('otpisiKnjigu');
+    public function prikaziOtpisiKnjigu(Book $knjiga) {
+        return view('otpisiKnjigu',[
+            'knjiga' => $knjiga,
+            'otpisiKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->paginate(7),
+            ]);
     }
 
     public function prikaziRezervisiKnjigu() {
