@@ -38,24 +38,30 @@ class DashboardController extends Controller
         return view('dashboardAktivnost', [
             'aktivnosti' => Rent::with('book', 'student', 'librarian')->where('book_id', 'LIKE', $knjiga->id)->orderBy('rent_date', 'DESC')->get(),
             'knjiga' => $knjiga,
+            'ucenici' => User::where('userType_id', '=', 3)->get(),
+            'bibliotekari' => User::where('userType_id', '=', 2)->get(),
+            'knjige' => Book::all(),
         ]);
     }
 
     public function filterAktivnosti(Request $request) {
         $aktivnosti = Rent::query();
         $aktivnosti = $aktivnosti->with('book', 'student', 'librarian');
+
+
         if($request->ucenici) {
             $ucenici = $request->ucenici;
-            $aktivnosti =  $aktivnosti->where('student_id', '=', $ucenici);
+            $aktivnosti =  $aktivnosti->whereIn('student_id', $ucenici);
         }
+
         if($request->bibliotekari) {
             $bibliotekari = $request->bibliotekari;
-            $aktivnosti = $aktivnosti->where('librarian_id', '=', $bibliotekari);
+            $aktivnosti = $aktivnosti->whereIn('librarian_id', $bibliotekari);
         }
 
         if($request->knjige) {
             $knjige = $request->knjige;
-            $aktivnosti = $aktivnosti->where('book_id', '=', $knjige);
+            $aktivnosti = $aktivnosti->whereIn('book_id', $knjige);
         }
 
         if($request->datumOd && $request->datumDo) {
@@ -63,6 +69,7 @@ class DashboardController extends Controller
             $datumDo = $request->datumDo;
             $aktivnosti = $aktivnosti->whereBetween('rent_date', [$datumOd, $datumDo]);
         }
+
 
         $aktivnosti = $aktivnosti->orderBy('rent_date', 'DESC')->get();
 
