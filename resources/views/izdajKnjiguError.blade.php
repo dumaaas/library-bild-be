@@ -8,19 +8,19 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            <img src="img/tomsojer.jpg" alt="">
+                            <img src="../img/tomsojer.jpg" alt="">
                         </div>
                         <div class="pl-[15px]  flex flex-col">
                             <div>
                                 <h1>
-                                    Tom Sojer
+                                    {{$knjiga -> title}}
                                 </h1>
                             </div>
                             <div>
                                 <nav class="w-full rounded">
                                     <ol class="flex list-reset">
                                         <li>
-                                            <a href="evidencijaKnjiga.php" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('evidencijaKnjiga')}}" class="text-[#2196f3] hover:text-blue-600">
                                                 Evidencija knjiga
                                             </a>
                                         </li>
@@ -28,16 +28,16 @@
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="knjigaOsnovniDetalji.php"
+                                            <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga])}}"
                                                 class="text-[#2196f3] hover:text-blue-600">
-                                                KNJIGA-467
+                                                KNJIGA-{{$knjiga -> id}}
                                             </a>
                                         </li>
                                         <li>
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="izdajKnjigu.php" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="#" class="text-[#2196f3] hover:text-blue-600">
                                                 Izdaj knjigu
                                             </a>
                                         </li>
@@ -51,7 +51,7 @@
                             <i class="fas fa-level-up-alt mr-[3px]"></i>
                             Otpisi knjigu
                         </a>
-                        <a href="izdajKnjigu.php" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
+                        <a href="#" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                             <i class="far fa-hand-scissors mr-[3px]"></i>
                             Izdaj knjigu
                         </a>
@@ -59,7 +59,7 @@
                             <i class="fas fa-redo-alt mr-[3px] "></i>
                             Vrati knjigu
                         </a>
-                        <a href="rezervisiKnjigu.php" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="far fa-calendar-check mr-[3px] "></i>
                             Rezervisi knjigu
                         </a>
@@ -72,13 +72,13 @@
                             <div class="absolute right-0 w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <a href="editKnjiga.php" tabindex="0"
+                                    <a href="{{route('editKnjiga', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                         <span class="px-4 py-0">Izmijeni knjigu</span>
                                     </a>
-                                    <a href="#" tabindex="0"
+                                    <a href="{{route('izbrisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
@@ -121,26 +121,26 @@
                                             <span class="mt-[20px]">Ukupna kolicina:</span>
                                         </div>
                                         <div class="flex flex-col text-center ml-[30px]">
-                                            <a href="#"
+                                            <p
                                                 class="mt-[20px] block ml-[30px] bg-green-200 text-green-800 rounded-[10px] px-[6px] py-[2px]">
-                                                0 primjeraka
-                                            </a>
-                                            <a href="iznajmljivanjeAktivne.php"
+                                                {{$knjiga -> quantity- $knjiga->reservedBooks - $knjiga->rentedBooks}} primjeraka
+                                            </p>
+                                            <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga])}}"
                                                 class="mt-[19px] block ml-[30px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px]">
-                                                4 primjerka
+                                                {{$knjiga -> reservedBooks}} primjerka
                                             </a>
-                                            <a href="iznajmljivanjeIzdate.php"
+                                            <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga])}}"
                                                 class="mt-[19px] block ml-[30px] bg-blue-200 text-blue-800 rounded-[10px] px-[6px] py-[2px]">
-                                                10 primjeraka
+                                                {{$knjiga -> rentedBooks}} primjeraka
                                             </a>
-                                            <a href="iznajmljivanjePrekoracenje.php"
+                                            <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga])}}"
                                                 class="mt-[19px] block ml-[30px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px]">
-                                                2 primjerka
+                                                {{count($prekoraceneKnjige)}} primjerka
                                             </a>
-                                            <a href="#"
+                                            <p
                                                 class="mt-[19px] block ml-[30px] border-[1px] border-green-700 text-green-700 rounded-[10px] px-[6px] py-[2px]">
-                                                14 primjeraka
-                                            </a>
+                                                {{$knjiga -> quantity}} primjeraka
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

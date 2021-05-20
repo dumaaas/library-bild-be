@@ -39,19 +39,19 @@
                     </div>
                 </div>
                 <div class="pt-[24px] mr-[30px]">
-                    <a href="otpisiKnjigu.php" class="inline hover:text-blue-600">
+                    <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600">
                         <i class="fas fa-level-up-alt mr-[3px]"></i>
                         Otpisi knjigu
                     </a>
-                    <a href="izdajKnjigu.php" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
+                    <a href="{{route('izdajKnjigu', ['knjiga' => $knjiga])}}" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                         <i class="far fa-hand-scissors mr-[3px]"></i>
                         Izdaj knjigu
                     </a>
-                    <a href="vratiKnjigu.php" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                    <a href="{{route('vratiKnjigu', ['knjiga' => $knjiga->id])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                         <i class="fas fa-redo-alt mr-[3px] "></i>
                         Vrati knjigu
                     </a>
-                    <a href="rezervisiKnjigu.php" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                    <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                         <i class="far fa-calendar-check mr-[3px] "></i>
                         Rezervisi knjigu
                     </a>
