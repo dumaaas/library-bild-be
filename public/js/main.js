@@ -64,24 +64,53 @@ $(function () {
 
 $(document).ready(function () {
 
-    $('#uceniciFilter').click(function (e) {
+    $('#uceniciFilterPonisti').click(function (e) {
+        e.preventDefault();
+        $('.uceniciFilterPonisti').prop("checked", false);
+    })
+
+    $('#bibliotekariFilterPonisti').click(function (e) {
+        e.preventDefault();
+        $('.bibliotekariFilterPonisti').prop("checked", false);
+    })
+
+    $('#knjigeFilterPonisti').click(function (e) {
+        e.preventDefault();
+        $('.knjigeFilterPonisti').prop("checked", false);
+    })
+
+    $('#datumFilterPonisti').click(function (e) {
+        e.preventDefault();
+        $('.datumFilterPonisti').val("");
+    })
+
+    $('#uceniciFilter, #datumFilter, #bibliotekariFilter, #knjigeFilter').click(function (e) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         e.preventDefault();
+        var ucenici = [];
+        var knjige = [];
+        var bibliotekari = [];
+        ucenici = $('input:checked[name="uceniciFilter[]"]').map( function() {
+            return $(this).val();
+        }).get();
 
-        var ucenici = $('input:checked[name="uceniciFilter"]').val();
-        var knjige = $('input:checked[name="knjigeFilter"]').val();
-        var bibliotekari = $('input:checked[name="bibliotekariFilter"]').val();
+        knjige = $('input:checked[name="knjigeFilter[]"]').map( function() {
+            return $(this).val();
+        }).get();
+
+        bibliotekari = $('input:checked[name="bibliotekariFilter[]"]').map( function() {
+            return $(this).val();
+        }).get();
+
         var datumOd = $('#datumOdFilter').val();
         var datumDo = $('#datumDoFilter').val();
 
         var subcat = '';
-        console.log(knjige);
-        console.log(bibliotekari);
-        console.log(ucenici);
+
 
         $.ajax({
             type: "POST",
@@ -95,10 +124,8 @@ $(document).ready(function () {
             url: "/filterAktivnosti",
             dataType: 'json',
             success: function (response) {
-                activityCard();
 
                 if (response.aktivnosti.length > 0) {
-  
                   $('#activityCards3').hide();
                   $('#activityCards2').show();
                     console.log(response);
@@ -106,7 +133,7 @@ $(document).ready(function () {
                     var aktivnosti = response.aktivnosti;
 
                     aktivnosti.forEach(aktivnost => {
-                        subcat += '<div class="activity-card  flex flex-row mb-[30px]">';
+                        subcat += '<div class="activity-card2 hidden flex flex-row mb-[30px]">';
                         subcat += '<div class="w-[60px] h-[60px]">';
                         subcat += '<img class="rounded-full" src="img/profileStudent.jpg" alt="">';
                         subcat += '</div>';
@@ -133,7 +160,7 @@ $(document).ready(function () {
                         subcat += '</a>';
                         subcat += ' on ';
                         subcat += '<span class="font-medium">';
-                        subcat += aktivnost.rent_date;
+                        subcat += aktivnost.rent_date+'.';
                         subcat += '</span>';
                         subcat += '<a href="/izdavanjeDetalji/' + aktivnost.book.id + '" class="text-[#2196f3] hover:text-blue-600">';
                         subcat += ' more details >>';
@@ -143,10 +170,92 @@ $(document).ready(function () {
                         subcat += '</div>';
                         subcat += '</div>';
                     });
+                    
+                    if(aktivnosti.length>10) {
+                        subcat += '<div class="inline-block w-full mt-4">'
+                        subcat += '<button type="button"'
+                        subcat += 'class="btn-animation w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded activity-showMore2 hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">'
+                        subcat += 'Show more'
+                        subcat += '</button>'
+                        subcat += '</div>'
+                    }
 
                     $('#activityCards2').html(subcat);
                     $('#activityCards2').show();
+                    activityCard2();
+                    uceniciString = ucenici.toString();
+                    if(uceniciString != "") {
+                        $('#uceniciSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#uceniciSvi').text("Ucenici: "+uceniciString);
+                    } else {
+                        $('#uceniciSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#uceniciSvi').text("Ucenici: Svi");
+                    }
+
+                    bibliotekariString = bibliotekari.toString();
+                    if(bibliotekariString != "") {
+                        $('#bibliotekariSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#bibliotekariSvi').text("Bibliotekari: "+bibliotekariString);
+                    } else {
+                        $('#bibliotekariSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#bibliotekariSvi').text("Bibliotekari: Svi");
+                    }
+
+                    knjigeString = knjige.toString();
+                    if(knjigeString != "") {
+                        $('#knjigeSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#knjigeSvi').text("Knjige: "+knjigeString);
+                    } else {
+                        $('#knjigeSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#knjigeSvi').text("Knjige: Sve");
+                    }
+
+                    if(datumOd != "" && datumDo != "") {
+                        $('#datumSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#datumSvi').text("Datum: "+datumOd+" - "+datumDo);
+                    } else {
+                        $('#datumSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#datumSvi').text("Datum: Svi");
+                    }
+
+                    
                 } else {
+
+                    uceniciString = ucenici.toString();
+                    if(uceniciString != "") {
+                        $('#uceniciSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#uceniciSvi').text("Ucenici: "+uceniciString);
+                    } else {
+                        $('#uceniciSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#uceniciSvi').text("Ucenici: Svi");
+                    }
+
+                    bibliotekariString = bibliotekari.toString();
+                    if(bibliotekariString != "") {
+                        $('#bibliotekariSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#bibliotekariSvi').text("Bibliotekari: "+bibliotekariString);
+                    } else {
+                        $('#bibliotekariSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#bibliotekariSvi').text("Bibliotekari: Svi");
+                    }
+
+                    knjigeString = knjige.toString();
+                    if(knjigeString != "") {
+                        $('#knjigeSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#knjigeSvi').text("Knjige: "+knjigeString);
+                    } else {
+                        $('#knjigeSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#knjigeSvi').text("Knjige: Sve");
+                    }
+
+                    if(datumOd != "" && datumDo != "") {
+                        $('#datumSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#datumSvi').text("Datum: "+datumOd+" - "+datumDo);
+                    } else {
+                        $('#datumSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#datumSvi').text("Datum: Svi");
+                    }
+
                     $('#activityCards2').hide();
                     $('#activityCards').hide();
 
@@ -2633,6 +2742,24 @@ function activityCard() {
         $('.activity-card:lt(' + x + ')').addClass('flex');
         if (x == size) {
             $('.activity-showMore').hide();
+        }
+    });
+}
+
+function activityCard2() {
+    size = $('.activity-card2').length;
+    x = 10;
+    $('.activity-card2:lt(' + x + ')').removeClass('hidden');
+    $('.activity-card2:lt(' + x + ')').addClass('flex');
+    $('.activity-showMore2').show();
+
+
+    $('.activity-showMore2').on('click', function () {
+        x = (x + 10 < size) ? x + 10 : size;
+        $('.activity-card2:lt(' + x + ')').removeClass('hidden');
+        $('.activity-card2:lt(' + x + ')').addClass('flex');
+        if (x == size) {
+            $('.activity-showMore2').hide();
         }
     });
 }
