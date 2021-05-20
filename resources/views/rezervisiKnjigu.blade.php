@@ -92,7 +92,8 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form class="text-gray-700 forma">
+                <form action="{{route('sacuvajRezervisanje', ['knjiga' => $knjiga->id])}}" method="POST" class="text-gray-700 forma">
+                @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
                             <h3 class="mt-[20px] mb-[10px]">Rezervisi knjigu</h3>

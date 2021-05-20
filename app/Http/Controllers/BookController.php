@@ -10,6 +10,7 @@ use App\Models\BookGenre;
 use App\Models\Rent;
 use App\Models\RentStatus;
 use App\Models\Reservation;
+use App\Models\ReservationStatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,10 +102,20 @@ class BookController extends Controller
     }
 
     public function prikaziRezervisiKnjigu(Book $knjiga) {
-        return view('rezervisiKnjigu', [
-            'knjiga' => $knjiga,
-            'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
-        ]);
+
+        $knjigeNaRaspolaganju = $knjiga->quantity - $knjiga->rentedBooks - $knjiga->reservedBooks;
+
+        if($knjigeNaRaspolaganju > 0) {
+            return view('rezervisiKnjigu', [
+                'knjiga' => $knjiga,
+                'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
+            ]);
+        } else {
+            return view('izdajKnjiguError', [
+                'knjiga' => $knjiga,
+                'prekoraceneKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->get()
+            ]);
+        }
     }
 
     public function prikaziIzdajKnjigu(Book $knjiga) {
@@ -147,13 +158,45 @@ class BookController extends Controller
         $statusIzdavanja->date = $izdavanje->rent_date;
         $statusIzdavanja->save();
 
-        //update broj izdatih knjiga i ukupne kolicine
+        //update broj izdatih knjiga
         $izdataKnjiga = Book::find($knjiga->id);
         $updateIzdateKnjige = $izdataKnjiga->rentedBooks + 1;
         $izdataKnjiga->rentedBooks = $updateIzdateKnjige;
         $izdataKnjiga->save();
         
         return redirect('izdateKnjige');
+    }
+
+    public function sacuvajRezervisanje(Request $request, Book $knjiga) {
+        request()->validate([
+            'ucenik'=>'required',
+            'datumRezervisanja'=>'required',
+        ]);
+
+        $rezervisanje = new Reservation();
+
+        $rezervisanje->book_id = $knjiga->id;
+        $rezervisanje->librarian_id = Auth::id();
+        $rezervisanje->student_id = request('ucenik');
+        $rezervisanje->reservation_date = request('datumRezervisanja');
+        $rezervisanje->request_date = now();
+
+        $rezervisanje->save();
+
+        //dodavanje u tabelu rent_statuses
+        $statusRezervisanja = new ReservationStatus();
+        $statusRezervisanja->reservation_id = $rezervisanje->id;
+        $statusRezervisanja->statusReservation_id = 1;
+        $statusRezervisanja->date = $rezervisanje->reservation_date;
+        $statusRezervisanja->save();
+
+        //update broj rezervisanih knjiga
+        $rezervisanaKnjiga = Book::find($knjiga->id);
+        $updateRezervisanaKnjige = $rezervisanaKnjiga->rentedBooks + 1;
+        $rezervisanaKnjiga->reservedBooks = $updateRezervisanaKnjige;
+        $rezervisanaKnjiga->save();
+        
+        return redirect('aktivneRezervacije');
     }
 
     public function prikaziIznajmljivanjeIzdate(Book $knjiga) {
