@@ -48,4 +48,12 @@ class User extends Authenticatable
     public function rent(){
         return $this->hasMany(Rent::class);
     }
+
+    public function isAdmin() {
+        if(Auth::user()->userType->name == 'admin') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

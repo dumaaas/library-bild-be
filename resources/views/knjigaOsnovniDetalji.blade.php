@@ -26,19 +26,36 @@
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Kategorija</span>
-                            <p class="font-medium">Romani</p>
+                            <p class="font-medium">
+                                @foreach($knjiga->category as $kategorija)
+                                    {{$kategorija->category->name}}
+                                    {{ $loop->last ? '' : ',' }}
+                                @endforeach
+                            </p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Zanr</span>
-                            <p class="font-medium">Knjige za djecu</p>
+                            <p class="font-medium">
+                                @foreach($knjiga->genre as $zanr)
+                                    {{$zanr->genre->name}}
+                                    {{ $loop->last ? '' : ',' }}
+                                @endforeach
+                            </p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Autor/ri</span>
-                            <p class="font-medium">Mark Twain</p>
+                            <p class="font-medium">
+                                @foreach($knjiga->author as $autor)
+                                    {{$autor->author->name}}
+                                    {{ $loop->last ? '' : ',' }}
+                                @endforeach
+                            </p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Izdavac</span>
-                            <p class="font-medium">Delfi Knjizare</p>
+                            <p class="font-medium">
+                                {{$knjiga->publisher->name}}
+                            </p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Godina izdavanja</span>

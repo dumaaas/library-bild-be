@@ -22,7 +22,8 @@ class RentController extends Controller
             ]);
         } else {
             return view('izdavanjeDetaljiError', [
-                'knjiga' => $knjiga
+                'knjiga' => $knjiga,
+                'ucenik' => $ucenik,
             ]);
         }
 
@@ -64,6 +65,15 @@ class RentController extends Controller
     public function prikaziArhiviraneRezervacije() {
         return view('arhiviraneRezervacije', [
             'arhivirane' => Reservation::with('book', 'student', 'reservationStatus')->where('close_date', '!=', null)->paginate(7),
+        ]);
+    }
+
+    public function izbrisiTransakciju(Book $knjiga, User $ucenik) {
+        $transakcija = Rent::where('book_id', '=', $knjiga->id)->where('student_id', '=', $ucenik->id)->first();
+        Rent::destroy($transakcija->id);
+
+        return view('izdateKnjige', [
+            'izdate' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->paginate(7),
         ]);
     }
 

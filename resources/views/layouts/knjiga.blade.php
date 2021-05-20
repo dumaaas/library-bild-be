@@ -104,16 +104,19 @@
                         </div>
                         <div class="text-center pb-[30px]">
                             <p class=" bg-green-200 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
-                                0 primjeraka</p>
-                            <a href="iznajmljivanjeAktivne.php"><p
+                                {{$knjiga->quantity - $knjiga->reservedBooks - $knjiga->rentedBooks}} primjeraka
+                            </p>
+                            <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga->id])}}"><p
                                     class=" mt-[16px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                     {{$knjiga->reservedBooks}} primjerka</p></a>
-                            <a href="iznajmljivanjeIzdate.php"><p
+                            <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga->id])}}"><p
                                     class=" mt-[16px] bg-blue-200 text-blue-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                     {{$knjiga->rentedBooks}} primjerka</p></a>
-                            <a href="iznajmljivanjePrekoracenje.php">  <p
-                                    class=" mt-[16px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
-                                    0 primjerka</p></a>
+                            <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga->id])}}">
+                                <p class=" mt-[16px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
+                                    {{\App\Models\Rent::where('return_date', '=', null)->where('rent_date', '<', Carbon\Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->count()}} primjerka
+                                </p>
+                            </a>
                             <p
                                 class=" mt-[16px] border-[1px] border-green-700 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                 {{$knjiga->quantity}} primjeraka

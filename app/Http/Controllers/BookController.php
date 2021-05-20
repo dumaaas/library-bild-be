@@ -41,7 +41,7 @@ class BookController extends Controller
 
     public function prikaziEvidencijaKnjiga() {
         return view('evidencijaKnjiga', [
-            'knjige' => DB::table('books')->paginate(7),
+            'knjige' => Book::paginate(7),
         ]);
     }
 
@@ -163,7 +163,7 @@ class BookController extends Controller
         $updateIzdateKnjige = $izdataKnjiga->rentedBooks + 1;
         $izdataKnjiga->rentedBooks = $updateIzdateKnjige;
         $izdataKnjiga->save();
-        
+
         return redirect('izdateKnjige');
     }
 
@@ -195,7 +195,7 @@ class BookController extends Controller
         $updateRezervisanaKnjige = $rezervisanaKnjiga->rentedBooks + 1;
         $rezervisanaKnjiga->reservedBooks = $updateRezervisanaKnjige;
         $rezervisanaKnjiga->save();
-        
+
         return redirect('aktivneRezervacije');
     }
 

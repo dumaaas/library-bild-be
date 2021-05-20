@@ -331,25 +331,34 @@
                                         <span class="font-medium text-center">{{$knjiga->title}}</span>
                                     </a>
                                 </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">Maksimovic Darinka,
-                                    Dercanin...</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">Udzbenici</td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                    0
+                                    @foreach($knjiga->author as $autor)
+                                        {{ $autor->author->name }}
+                                        {{ $loop->last ? '' : ',' }}
+                                    @endforeach
+                                </td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                    @foreach($knjiga->category as $kategorija)
+                                        {{$kategorija->category->name}}
+                                        {{ $loop->last ? '' : ',' }}
+                                    @endforeach
+                                </td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                    {{$knjiga->quantity - $knjiga->reservedBooks - $knjiga->rentedBooks}}
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
-                                    <a href="aktivneRezervacije.php">
+                                    <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga->id])}}">
                                         {{$knjiga->reservedBooks}}
                                     </a>
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
-                                    <a href="izdateKnjige.php">
+                                    <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga->id])}}">
                                         {{$knjiga->rentedBooks}}
                                     </a>
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
-                                    <a href="knjigePrekoracenje.php">
-                                        0
+                                    <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga->id])}}">
+                                        {{\App\Models\Rent::where('return_date', '=', null)->where('rent_date', '<', Carbon\Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->count()}}
                                     </a>
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">

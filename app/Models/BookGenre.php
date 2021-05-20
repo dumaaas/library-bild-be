@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BookGenre extends Model
 {
     use HasFactory;
+
+    public function genre() {
+        return $this->belongsTo(Genre::class);
+    }
 }

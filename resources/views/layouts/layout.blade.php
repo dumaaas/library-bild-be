@@ -225,6 +225,7 @@
                         </div>
                     </li>
                     <!-- Bibliotekari Icon -->
+                    @can('isAdmin')
                     <li class="pt-[18px] pb-[14px] mb-[4px] group hover:bg-[#EAEAEA] h-[60px]">
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
@@ -243,6 +244,7 @@
                         </span>
                         </div>
                     </li>
+                    @endcan
                     <!-- Ucenici Icon -->
                     <li class="pt-[18px] pb-[14px] mb-[4px] group hover:bg-[#EAEAEA] h-[60px]">
                         <div class="ml-[30px]">
@@ -373,6 +375,7 @@
                 </ul>
             </div>
         </div>
+        @can('isAdmin')
         <div class="sidebar-nav py-[10px] border-t-[1px] border-[#e4dfdf] pt-[23px] pb-[29px]  group hover:bg-[#EFF3F6]">
             <!-- Settings Icon -->
             <a href="/settingsPolisa" aria-label="Settngs" class="ml-[30px]">
@@ -386,6 +389,7 @@
             </span>
             </a>
         </div>
+        @endcan
     </nav>
     <!-- PLACE FOR @YIELDS -->
     @yield('aktivneRezervacije')

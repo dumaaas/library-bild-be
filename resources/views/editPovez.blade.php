@@ -1,7 +1,8 @@
 @extends('layouts.layout')
 
 @section('editPovez')
-    <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
+    @can('isAdmin')
+        <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading">
             <div class="flex border-b-[1px] border-[#e4dfdf]">
@@ -72,4 +73,5 @@
             </form>
         </div>
     </section>
+    @endcan
 @endsection

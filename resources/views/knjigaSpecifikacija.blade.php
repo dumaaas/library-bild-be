@@ -26,19 +26,19 @@
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Pismo</span>
-                            <p class="font-medium">Cirilica</p>
+                            <p class="font-medium">{{$knjiga->script->name}}</p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Jezik</span>
-                            <p class="font-medium">Crnogorski</p>
+                            <p class="font-medium">{{$knjiga->language->name}}</p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Povez</span>
-                            <p class="font-medium">Tvrd</p>
+                            <p class="font-medium">{{$knjiga->binding->name}}</p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500 text-[14px]">Format</span>
-                            <p class="font-medium">21 cm</p>
+                            <p class="font-medium">{{$knjiga->format->name}}</p>
                         </div>
                         <div class="mt-[40px]">
                                         <span class="text-gray-500 text-[14px]">International Standard Book Number

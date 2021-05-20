@@ -152,10 +152,10 @@
                             class="ml-[10px] btn-animation show-vratiModal shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                             <i class="fas fa-redo-alt mr-[4px] "></i> Vrati knjigu
                         </button>
-                        <button type="button"
-                            class="ml-[10px] btn-animation show-izbrisiModal shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
+                        <a type="button" href="{{route('izbrisiTransakciju', ['knjiga' => $transakcija->book, 'ucenik' => $transakcija->student])}}"
+                            class="text-center ml-[10px] btn-animation show-izbrisiModal shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                             <i class="fas fa-trash mr-[4px]"></i> Izbrisi zapis
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
