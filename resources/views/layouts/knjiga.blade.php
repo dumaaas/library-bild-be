@@ -148,7 +148,7 @@
                                 </p>
                             </div>
                             <div>
-                                <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book])}}" class="text-[#2196f3] hover:text-blue-600">
+                                <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                     more details >>
                                 </a>
                             </div>
