@@ -18,8 +18,9 @@
                             <div class="rounded">
                                 <div class="relative">
                                     <a class="w-auto rounded cursor-pointer focus:outline-none uceniciDrop-toggle">
-                                                <span class="float-left">Ucenici: Svi <i
-                                                        class="px-[7px] fas fa-angle-down"></i></span>
+                                                <span id="uceniciSvi" class="float-left">Ucenici: Svi </span>
+                                                <i
+                                                        class="px-[7px] fas fa-angle-down"></i>
                                     </a>
                                     <div id="uceniciDropdown"
                                          class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
@@ -41,7 +42,7 @@
                                                     <label class="flex items-center justify-start">
                                                         <div
                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                            <input type="checkbox" class="absolute opacity-0" name="uceniciFilter" value="{{$ucenik->id}}">
+                                                            <input type="checkbox" class="absolute opacity-0 uceniciFilterPonisti" name="uceniciFilter[]" value="{{$ucenik->id}}">
                                                             <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                  viewBox="0 0 20 20">
                                                                 <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -63,7 +64,7 @@
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                 Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
-                                            <a href="#"
+                                            <a href="#" id="uceniciFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                 Ponisti <i class="fas fa-times ml-[4px]"></i>
                                             </a>
@@ -76,8 +77,8 @@
                             <div class="rounded">
                                 <div class="relative">
                                     <a class="inline-block w-auto rounded cursor-pointer focus:outline-none bibliotekariDrop-toggle">
-                                                <span class="float-left">Bibliotekari: Svi <i
-                                                        class="px-[7px] fas fa-angle-down"></i></span>
+                                                <span id="bibliotekariSvi" class="float-left">Bibliotekari: Svi </span><i
+                                                        class="px-[7px] fas fa-angle-down"></i>
                                     </a>
                                     <div id="bibliotekariDropdown"
                                          class="bibliotekariMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
@@ -99,7 +100,7 @@
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                <input type="checkbox" class="absolute opacity-0" name="bibliotekariFilter" value="{{$bibliotekar->id}}">
+                                                                <input type="checkbox" class="absolute opacity-0 bibliotekariFilterPonisti" name="bibliotekariFilter[]" value="{{$bibliotekar->id}}">
                                                                 <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                      viewBox="0 0 20 20">
                                                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -108,7 +109,7 @@
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
                                                              src="img/profileExample.jpg">
-                                                        <p
+                                                        <p id="bibliotekariFilter"
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             {{$bibliotekar->name}}
                                                         </p>
@@ -117,11 +118,11 @@
                                             </div>
                                         </ul>
                                         <div class="flex pt-[10px] text-white ">
-                                            <a href="#" id="uceniciFilter"
+                                            <a href="#" id="bibliotekariFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                 Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
-                                            <a href="#"
+                                            <a href="#" id="bibliotekariFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                 Ponisti <i class="fas fa-times ml-[4px]"></i>
                                             </a>
@@ -135,13 +136,16 @@
                                 <div class="relative">
                                     <a class="inline-block w-auto rounded cursor-pointer focus:outline-none" id="knjigeMenu">
                                         @if($knjiga != null)
-                                            <span class='float-left bg-blue-200 text-blue-800 px-[8px] py-[2px]'>
-                                                Knjiga:  {{$knjiga->title}}<i class="px-[7px] fas fa-angle-down"></i>
+                                            <span id="knjigeSvi" class='float-left bg-blue-200 text-blue-800 px-[5px]'>
+                                                Knjige:  {{$knjiga->title}}
                                             </span>
+                                            <i class="px-[7px] fas fa-angle-down"></i>
+
                                         @else
-                                            <span class='float-left'>
-                                                Knjiga:  Sve<i class="px-[7px] fas fa-angle-down"></i>
+                                            <span id="knjigeSvi" class='float-left'>
+                                                Knjiga:  Sve
                                             </span>
+                                            <i class="px-[7px] fas fa-angle-down"></i>
                                         @endif
 
                                     </a>
@@ -165,7 +169,7 @@
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                <input type="checkbox" class="absolute opacity-0" name="knjigeFilter" value="{{$k->id}}">
+                                                                <input type="checkbox" class="absolute opacity-0 knjigeFilterPonisti" name="knjigeFilter[]" value="{{$k->id}}">
                                                                 <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                      viewBox="0 0 20 20">
                                                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -174,7 +178,7 @@
                                                         </label>
                                                         <img width="30px" height="30px" class="ml-[15px]"
                                                              src="img/tomsojer.jpg">
-                                                        <p
+                                                        <p id="knjigeFilter"
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             {{$k->title}}
                                                         </p>
@@ -183,11 +187,11 @@
                                             </div>
                                         </ul>
                                         <div class="flex pt-[10px] text-white ">
-                                            <a href="#" id="uceniciFilter"
+                                            <a href="#" id="knjigeFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                 Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
-                                            <a href="#"
+                                            <a href="#" id="knjigeFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                 Ponisti <i class="fas fa-times ml-[4px]"></i>
                                             </a>
@@ -305,8 +309,10 @@
                             <div class="rounded">
                                 <div class="relative">
                                     <a class="inline-block w-auto rounded cursor-pointer focus:outline-none datumDrop-toggle">
-                                                <span class="float-left">Datum: Svi <i
-                                                        class="px-[7px] fas fa-angle-down"></i></span>
+                                                <span id="datumSvi" class="float-left">
+                                                    Datum: Svi
+                                                </span>
+                                                <i class="px-[7px] fas fa-angle-down"></i>
                                     </a>
                                     <div id="datumDropdown"
                                          class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
@@ -315,20 +321,20 @@
                                             <div>
                                                 <label class="font-medium text-gray-500">Period od:</label>
                                                 <input type="date"
-                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" id="datumOdFilter">
+                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none datumFilterPonisti" id="datumOdFilter">
                                             </div>
                                             <div class="ml-[50px]">
                                                 <label class="font-medium text-gray-500">Period do:</label>
                                                 <input type="date"
-                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" id="datumDoFilter">
+                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none datumFilterPonisti" id="datumDoFilter">
                                             </div>
                                         </div>
                                         <div class="flex pt-[10px] text-white ">
-                                            <a href="#"
+                                            <a href="#" id="datumFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#009688] bg-[#46A149] rounded-[5px]">
                                                 Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
-                                            <a href="#"
+                                            <a href="#" id="datumFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                 Ponisti <i class="fas fa-times ml-[4px]"></i>
                                             </a>
@@ -337,12 +343,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ml-[35px] cursor-pointer hover:text-blue-600">
+                        <a href="{{route('dashboardAktivnost')}}" class="ml-[35px] cursor-pointer hover:text-blue-600">
                             <i class="fas fa-sync-alt"></i>
-                        </div>
-                        <div class="ml-[35px] cursor-pointer hover:text-blue-600">
-                            <button type="submit">Pretrazi</button>
-                        </div>
+                        </a>
                     </div>
                     </form>
                     <!-- Activity Cards -->
@@ -378,7 +381,7 @@
                                             <span class="font-medium">
                                         {{$aktivnost->rent_date}}.
                                     </span>
-                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book])}}" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 more details >>
                                             </a>
                                         </p>
@@ -386,20 +389,21 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                    <div id="activityCards2" style="display: none">
-                            
-                    </div>
-                    <div id="activityCards3" style="display: none">
-                        Ne postoje rezultati za trazene kriterijume!
-                    </div>
-
-                    <div class="inline-block w-full mt-4">
+                        <div class="inline-block w-full mt-4">
                         <button type="button"
                                 class="btn-animation w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded activity-showMore hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">
                             Show more
                         </button>
                     </div>
+                    </div>
+                    <div id="activityCards2" style="display: none">
+
+                    </div>
+                    <div id="activityCards3" style="display: none">
+                        Ne postoje rezultati za trazene kriterijume!
+                    </div>
+
+
                 </div>
             </div>
         </div>
