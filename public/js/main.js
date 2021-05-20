@@ -162,7 +162,7 @@ $(document).ready(function () {
                         subcat += '<span class="font-medium">';
                         subcat += aktivnost.rent_date+'.';
                         subcat += '</span>';
-                        subcat += '<a href="/izdavanjeDetalji/' + aktivnost.book.id + '" class="text-[#2196f3] hover:text-blue-600">';
+                        subcat += '<a href="/izdavanjeDetalji/' + aktivnost.book.id + '/' + aktivnost.student.id+'" class="text-[#2196f3] hover:text-blue-600">';
                         subcat += ' more details >>';
                         subcat += '</a>';
                         subcat += '</p>';
@@ -170,7 +170,7 @@ $(document).ready(function () {
                         subcat += '</div>';
                         subcat += '</div>';
                     });
-                    
+
                     if(aktivnosti.length>10) {
                         subcat += '<div class="inline-block w-full mt-4">'
                         subcat += '<button type="button"'
@@ -218,7 +218,7 @@ $(document).ready(function () {
                         $('#datumSvi').text("Datum: Svi");
                     }
 
-                    
+
                 } else {
 
                     uceniciString = ucenici.toString();

@@ -531,7 +531,7 @@
                                         </td>
                                         <td class="flex flex-row items-center px-4 py-3">
                                             <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
-                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $izdata->book])}}">
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $izdata->book, 'ucenik' => $izdata->student])}}">
                                                 <span class="font-medium text-center">{{$izdata->book->title}}</span>
                                             </a>
                                         </td>

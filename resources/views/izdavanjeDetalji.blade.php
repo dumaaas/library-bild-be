@@ -8,7 +8,7 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            <img src="../img/tomsojer.jpg" alt="">
+                            <img src="../../img/tomsojer.jpg" alt="">
                         </div>
                         <div class="pl-[15px]  flex flex-col">
                             <div>
@@ -37,7 +37,7 @@
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $transakcija->book])}}"
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $transakcija->book, 'ucenik' => $transakcija->student])}}"
                                                 class="text-[#2196f3] hover:text-blue-600">
                                                 IZDAVANJE-{{$transakcija->id}}
                                             </a>
