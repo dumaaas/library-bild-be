@@ -8,9 +8,11 @@ use App\Models\BookAuthor;
 use App\Models\BookCategory;
 use App\Models\BookGenre;
 use App\Models\Rent;
+use App\Models\RentStatus;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -121,6 +123,37 @@ class BookController extends Controller
                 'prekoraceneKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->get()
             ]);
         }
+    }
+
+    public function sacuvajIzdavanje(Request $request, Book $knjiga) {
+        request()->validate([
+            'ucenik'=>'required',
+            'datumIzdavanja'=>'required',
+        ]);
+
+        $izdavanje = new Rent();
+
+        $izdavanje->book_id = $knjiga->id;
+        $izdavanje->librarian_id = Auth::id();
+        $izdavanje->student_id = request('ucenik');
+        $izdavanje->rent_date = request('datumIzdavanja');
+
+        $izdavanje->save();
+
+        //dodavanje u tabelu rent_statuses
+        $statusIzdavanja = new RentStatus();
+        $statusIzdavanja->rent_id = $izdavanje->id;
+        $statusIzdavanja->statusBook_id = 2;
+        $statusIzdavanja->date = $izdavanje->rent_date;
+        $statusIzdavanja->save();
+
+        //update broj izdatih knjiga i ukupne kolicine
+        $izdataKnjiga = Book::find($knjiga->id);
+        $updateIzdateKnjige = $izdataKnjiga->rentedBooks + 1;
+        $izdataKnjiga->rentedBooks = $updateIzdateKnjige;
+        $izdataKnjiga->save();
+        
+        return redirect('izdateKnjige');
     }
 
     public function prikaziIznajmljivanjeIzdate(Book $knjiga) {
