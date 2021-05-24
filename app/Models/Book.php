@@ -11,8 +11,12 @@ class Book extends Model
 
     protected $guarded = [];
 
-    public function rent(){
-        return $this->hasMany(Rent::class);
+    public function studentRent(){
+        return $this->hasMany(Rent::class, 'student_id');
+    }
+
+    public function librarianRent(){
+        return $this->hasMany(Rent::class, 'librarian_id');
     }
 
     public function reservation() {

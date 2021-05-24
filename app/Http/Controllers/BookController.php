@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\Book;
+use App\Models\Author;
 use App\Models\BookAuthor;
+use App\Models\Category;
 use App\Models\BookCategory;
 use App\Models\BookGenre;
 use App\Models\Rent;
@@ -42,6 +44,8 @@ class BookController extends Controller
     public function prikaziEvidencijaKnjiga() {
         return view('evidencijaKnjiga', [
             'knjige' => Book::paginate(7),
+            'autori' => Author::all(),
+            'kategorije' => Category::all(),
         ]);
     }
 
@@ -379,6 +383,37 @@ class BookController extends Controller
     public function izbrisiKnjigu(Book $knjiga) {
         Book::destroy($knjiga->id);
         return back();
+    }
+
+    public function filterAutori(Request $request) {
+        $knjige = Book::query();
+        $knjige = $knjige->with('author', 'category');
+        if(request('autoriFilter')) {
+            $autori = request('autoriFilter');
+            foreach($autori as $autor) {
+                $knjige->whereHas('author', function($q) use ($autor) {
+                    $q->where('author_id', $autor);
+                });
+            }
+        }
+
+        if(request('kategorijeFilter')) {
+            $kategorije = request('kategorijeFilter');
+            foreach($kategorije as $kategorija) {
+                $knjige->whereHas('category', function($q) use ($kategorija) {
+                    $q->where('category_id', $kategorija);
+                });
+            }
+        }
+
+        $knjige = $knjige->paginate(7);
+
+
+        return view('evidencijaKnjiga', [
+            'knjige' => $knjige,
+            'autori' => Author::all(),
+            'kategorije' => Category::all(),
+        ]);
     }
 
 }

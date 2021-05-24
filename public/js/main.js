@@ -64,6 +64,16 @@ $(function () {
 
 $(document).ready(function () {
 
+    $('#autoriFilterPonisti').click(function (e) {
+        e.preventDefault();
+        $('.autoriFilterPonisti').prop("checked", false);
+    })
+
+    $('#kategorijeFilterPonisti').click(function (e) {
+        e.preventDefault();
+        $('.kategorijeFilterPonisti').prop("checked", false);
+    })
+
     $('#uceniciFilterPonisti').click(function (e) {
         e.preventDefault();
         $('.uceniciFilterPonisti').prop("checked", false);
@@ -84,6 +94,12 @@ $(document).ready(function () {
         $('.datumFilterPonisti').val("");
     })
 
+    $('#vracenaFilterPonisti').click(function (e) {
+        e.preventDefault();
+        $('.vracenaFilterPonisti').val("");
+    })
+
+    //dashboardAktivnost filter za pretragu aktivnosti
     $('#uceniciFilter, #datumFilter, #bibliotekariFilter, #knjigeFilter').click(function (e) {
         $.ajaxSetup({
             headers: {
@@ -110,8 +126,7 @@ $(document).ready(function () {
         var datumDo = $('#datumDoFilter').val();
 
         var subcat = '';
-
-
+    
         $.ajax({
             type: "POST",
             data: {

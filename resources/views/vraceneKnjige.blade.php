@@ -135,419 +135,199 @@
                         <div class="w-full mt-[10px] ml-2 px-2">
                             <table class="w-full shadow-lg" id="myTable">
                                 <thead class="bg-[#EFF3F6]">
-                                    <tr class="border-b-[1px] border-[#e4dfdf]">
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
-                                            <label class="inline-flex items-center">
-                                                <input type="checkbox" class="form-checkbox">
-                                            </label>
-                                        </th>
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                            Naziv knjige
-                                            <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
-                                                    onclick="sortTable()"></i>
-                                            </a>
-                                        </th>
-                                        <!-- Izdato uceniku + dropdown filter for ucenik -->
-                                        <th
-                                            class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                            Izdato uceniku<i class="ml-2 fas fa-filter uceniciDrop-toggle"></i>
-                                            <div id="uceniciDropdown"
-                                                class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
-                                                <ul class="border-b-2 border-gray-300 list-reset">
-                                                    <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
-                                                        <input
-                                                            class="w-full h-10 px-2 border-2 rounded focus:outline-none"
-                                                            placeholder="Search"
-                                                            onkeyup="filterFunction('searchUcenici', 'uceniciDropdown', 'dropdown-item-ucenik')"
-                                                            id="searchUcenici"><br>
+                                    <form action="/filterVraceneKnjige" method="GET">
+                                        <tr class="border-b-[1px] border-[#e4dfdf]">
+                                            <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
+                                                <label class="inline-flex items-center">
+                                                    <input type="checkbox" class="form-checkbox">
+                                                </label>
+                                            </th>
+                                            <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                                Naziv knjige
+                                                <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
+                                                        onclick="sortTable()"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Izdato uceniku + dropdown filter for ucenik -->
+                                            <th
+                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                Izdato uceniku<i class="ml-2 fas fa-filter uceniciDrop-toggle"></i>
+                                                <div id="uceniciDropdown"
+                                                    class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
+                                                    <ul class="border-b-2 border-gray-300 list-reset">
+                                                        <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
+                                                            <input
+                                                                class="w-full h-10 px-2 border-2 rounded focus:outline-none"
+                                                                placeholder="Search"
+                                                                onkeyup="filterFunction('searchUcenici', 'uceniciDropdown', 'dropdown-item-ucenik')"
+                                                                id="searchUcenici"><br>
+                                                            <button
+                                                                class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
+                                                                <i class="fas fa-search"></i>
+                                                            </button>
+                                                        </li>
+                                                        <div class="h-[200px] scroll font-normal">
+                                                            @foreach($ucenici as $ucenik)
+                                                                    <li
+                                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                                        <label class="flex items-center justify-start">
+                                                                            <div
+                                                                                class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                                <input type="checkbox" class="absolute opacity-0 uceniciFilterPonisti" name="uceniciFilter[]" value="{{$ucenik->id}}">
+                                                                                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                                    viewBox="0 0 20 20">
+                                                                                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                                </svg>
+                                                                            </div>
+                                                                        </label>
+                                                                        <img width="40px" height="30px"
+                                                                            class="ml-[15px] rounded-full"
+                                                                            src="img/profileStudent.jpg">
+                                                                        <p
+                                                                            class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                                            {{$ucenik->name}}
+                                                                        </p>
+                                                                    </li>
+                                                            @endforeach
+                                                        </div>
+                                                    </ul>
+                                                    <div class="flex pt-[10px] text-white ">
                                                         <button
-                                                            class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
-                                                            <i class="fas fa-search"></i>
+                                                            class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                                                            Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                                         </button>
-                                                    </li>
-                                                    <div class="h-[200px] scroll font-normal">
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileStudent.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Ucenik Ucenikovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileStudent.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Pero Perovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileStudent.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Marko Markovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileStudent.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Nikola Nikolic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileStudent.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Zivko Zivkovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileStudent.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Petar Petrovic
-                                                            </p>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                                <div class="flex pt-[10px] text-white ">
-                                                    <a href="#"
-                                                        class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                        Sacuvaj <i class="fas fa-check ml-[4px]"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                        Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <!-- Datum izdavanja + dropdown filter for date -->
-                                        <th
-                                            class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                            Datum izdavanja<i class="fas fa-filter datumDrop-toggle"></i>
-                                            <div id="datumDropdown"
-                                                class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
-                                                <div
-                                                    class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
-                                                    <div>
-                                                        <label class="font-medium text-gray-500">Period od:</label>
-                                                        <input type="date"
-                                                            class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
-                                                    </div>
-                                                    <div class="ml-[50px]">
-                                                        <label class="font-medium text-gray-500">Period do:</label>
-                                                        <input type="date"
-                                                            class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
+                                                        <a id="uceniciFilterPonisti"
+                                                            class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
+                                                            Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
-                                                <div class="flex pt-[10px] text-white ">
-                                                    <a href="#"
-                                                        class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                        Sacuvaj <i class="fas fa-check ml-[4px]"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                        Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <!-- Datum vracanja + dropdown filter for date -->
-                                        <th
-                                            class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                            Datum vracanja<i class="fas fa-filter vracanjeDrop-toggle"></i>
-                                            <div id="vracanjeDropdown"
-                                                class="vracanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
-                                                <div
-                                                    class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
-                                                    <div>
-                                                        <label class="font-medium text-gray-500">Period od:</label>
-                                                        <input type="date"
-                                                            class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
+                                            </th>
+                                            <!-- Datum izdavanja + dropdown filter for date -->
+                                            <th
+                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                Datum izdavanja<i class="fas fa-filter datumDrop-toggle"></i>
+                                                <div id="datumDropdown"
+                                                    class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
+                                                    <div
+                                                        class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
+                                                        <div>
+                                                            <label class="font-medium text-gray-500">Period od:</label>
+                                                            <input type="date"
+                                                                class="datumFilterPonisti border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterDatumOd">
+                                                        </div>
+                                                        <div class="ml-[50px]">
+                                                            <label class="font-medium text-gray-500">Period do:</label>
+                                                            <input type="date"
+                                                                class="datumFilterPonisti border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterDatumDo">
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-[50px]">
-                                                        <label class="font-medium text-gray-500">Period do:</label>
-                                                        <input type="date"
-                                                            class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
-                                                    </div>
-                                                </div>
-                                                <div class="flex pt-[10px] text-white ">
-                                                    <a href="#"
-                                                        class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                        Sacuvaj <i class="fas fa-check ml-[4px]"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                        Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <!-- Zadrzavanje knjige + dropdown filter for date -->
-                                        <th
-                                            class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                            Zadrzavanje knjige <i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
-                                            <div id="zadrzavanjeDropdown"
-                                                class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
-                                                <div
-                                                    class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
-                                                    <div>
-                                                        <label class="font-medium text-gray-500">Period od:</label>
-                                                        <input type="date"
-                                                            class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
-                                                    </div>
-                                                    <div class="ml-[50px]">
-                                                        <label class="font-medium text-gray-500">Period do:</label>
-                                                        <input type="date"
-                                                            class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
-                                                    </div>
-                                                </div>
-                                                <div class="flex pt-[10px] text-white ">
-                                                    <a href="#"
-                                                        class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                        Sacuvaj <i class="fas fa-check ml-[4px]"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                        Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <!-- Knjigu primio + dropdown filter for bibliotekari -->
-                                        <th
-                                            class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                            Knjigu primio<i class="fas fa-filter bibliotekariDrop-toggle"></i>
-                                            <div id="bibliotekariDropdown"
-                                                class="bibliotekariMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
-                                                <ul class="border-b-2 border-gray-300 list-reset">
-                                                    <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
-                                                        <input
-                                                            class="w-full h-10 px-2 border-2 rounded focus:outline-none"
-                                                            placeholder="Search"
-                                                            onkeyup="filterFunction('searchBibliotekari', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
-                                                            id="searchBibliotekari"><br>
+                                                    <div class="flex pt-[10px] text-white ">
                                                         <button
-                                                            class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
-                                                            <i class="fas fa-search"></i>
+                                                            class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                                                            Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                                         </button>
-                                                    </li>
-                                                    <div class="h-[200px] scroll font-normal">
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileExample.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Bibliotekar Bulatovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileExample.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Pero Perovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileExample.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Marko Markovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileExample.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Nikola Nikolic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileExample.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Zivko Zivkovic
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
-                                                            <label class="flex items-center justify-start">
-                                                                <div
-                                                                    class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                    <input type="checkbox" class="absolute opacity-0">
-                                                                    <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
-                                                                        viewBox="0 0 20 20">
-                                                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-                                                                    </svg>
-                                                                </div>
-                                                            </label>
-                                                            <img width="40px" height="30px"
-                                                                class="ml-[15px] rounded-full"
-                                                                src="img/profileExample.jpg">
-                                                            <p
-                                                                class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                Petar Petrovic
-                                                            </p>
-                                                        </li>
+                                                        <a id="datumFilterPonisti"
+                                                            class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
+                                                            Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                        </a>
                                                     </div>
-                                                </ul>
-                                                <div class="flex pt-[10px] text-white ">
-                                                    <a href="#"
-                                                        class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                        Sacuvaj <i class="fas fa-check ml-[4px]"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                        Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                    </a>
                                                 </div>
-                                            </div>
-                                        </th>
-                                        <th class="px-4 py-4"> </th>
-                                    </tr>
+                                            </th>
+                                            <!-- Datum vracanja + dropdown filter for date -->
+                                            <th
+                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                Datum vracanja<i class="fas fa-filter vracanjeDrop-toggle"></i>
+                                                <div id="vracanjeDropdown"
+                                                    class="vracanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                                    <div
+                                                        class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
+                                                        <div>
+                                                            <label class="font-medium text-gray-500">Period od:</label>
+                                                            <input type="date"
+                                                                class="vracenaFilterPonisti border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterVracenaOd">
+                                                        </div>
+                                                        <div class="ml-[50px]">
+                                                            <label class="font-medium text-gray-500">Period do:</label>
+                                                            <input type="date"
+                                                                class="vracenaFilterPonisti border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterVracenaDo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex pt-[10px] text-white ">
+                                                        <button
+                                                            class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                                                            Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                        </button>
+                                                        <a id="vracenaFilterPonisti"
+                                                            class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
+                                                            Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <!-- Zadrzavanje knjige + dropdown filter for date -->
+                                            <th
+                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                Zadrzavanje knjige
+                                            </th>
+                                            <!-- Knjigu primio + dropdown filter for bibliotekari -->
+                                            <th
+                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                Knjigu primio<i class="fas fa-filter bibliotekariDrop-toggle"></i>
+                                                <div id="bibliotekariDropdown"
+                                                    class="bibliotekariMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                                    <ul class="border-b-2 border-gray-300 list-reset">
+                                                        <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
+                                                            <input
+                                                                class="w-full h-10 px-2 border-2 rounded focus:outline-none"
+                                                                placeholder="Search"
+                                                                onkeyup="filterFunction('searchBibliotekari', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
+                                                                id="searchBibliotekari"><br>
+                                                            <button
+                                                                class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
+                                                                <i class="fas fa-search"></i>
+                                                            </button>
+                                                        </li>
+                                                        <div class="h-[200px] scroll font-normal">
+                                                            @foreach($bibliotekari as $bibliotekar)
+                                                                <li
+                                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                                    <label class="flex items-center justify-start">
+                                                                        <div
+                                                                            class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                            <input type="checkbox" class="absolute opacity-0 bibliotekariFilterPonisti" name="bibliotekariFilter[]" value="{{$bibliotekar->id}}">
+                                                                            <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                                viewBox="0 0 20 20">
+                                                                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                            </svg>
+                                                                        </div>
+                                                                    </label>
+                                                                    <img width="40px" height="30px"
+                                                                        class="ml-[15px] rounded-full"
+                                                                        src="img/profileExample.jpg">
+                                                                    <p
+                                                                        class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                                        {{$bibliotekar->name}}
+                                                                    </p>
+                                                                </li>
+                                                            @endforeach
+                                                        </div>
+                                                    </ul>
+                                                    <div class="flex pt-[10px] text-white ">
+                                                        <button 
+                                                            class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                                                            Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                        </button>
+                                                        <a id="bibliotekariFilterPonisti"
+                                                            class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
+                                                            Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th class="px-4 py-4"> </th>
+                                        </tr>
+                                    </form>
                                 </thead>
                                 <tbody class="bg-white">
                                 @foreach($vracene as $vracena)
@@ -591,14 +371,14 @@
                                                     aria-labelledby="headlessui-menu-button-1"
                                                     id="headlessui-menu-items-117" role="menu">
                                                     <div class="py-1">
-                                                        <a href="izdavanjeDetalji.php" tabindex="0"
+                                                        <a href="{{route('izdavanjeDetalji', ['knjiga' => $vracena->book, 'ucenik' => $vracena->student])}}" tabindex="0"
                                                             class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                             role="menuitem">
                                                             <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
                                                             <span class="px-4 py-0">Pogledaj detalje</span>
                                                         </a>
 
-                                                        <a href="izdajKnjigu.php" tabindex="0"
+                                                        <a href="{{route('izdajKnjigu', ['knjiga' => $vracena->book->id])}}" tabindex="0"
                                                             class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                             role="menuitem">
                                                             <i class="far fa-hand-scissors mr-[10px] ml-[5px] py-1"></i>
@@ -612,7 +392,7 @@
                                                             <span class="px-4 py-0">Vrati knjigu</span>
                                                         </a>
 
-                                                        <a href="rezervisiKnjigu.php" tabindex="0"
+                                                        <a href="{{route('rezervisiKnjigu', ['knjiga' => $vracena->book->id])}}" tabindex="0"
                                                             class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                             role="menuitem">
                                                             <i
@@ -627,7 +407,7 @@
                                                             <span class="px-4 py-0">Otpisi knjigu</span>
                                                         </a>
 
-                                                        <a href="#" tabindex="0"
+                                                        <a href="{{route('izbrisiKnjigu', ['knjiga' => $vracena->book->id])}}" tabindex="0"
                                                             class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                             role="menuitem">
                                                             <i class="fa fa-trash mr-[10px] ml-[5px] py-1"></i>
