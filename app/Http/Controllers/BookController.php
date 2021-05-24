@@ -416,4 +416,38 @@ class BookController extends Controller
         ]);
     }
 
+    public function vratiKnjige(Request $request){
+
+        $knjige=request('vratiKnjigu');
+        
+        foreach($knjige as $knjiga){
+            $rent=Rent::find($knjiga);
+            // dd($rent);
+            $rent->return_date=Carbon::now();
+            $rent->save();
+
+            $rentStatus=new RentStatus();
+            $rentStatus->rent_id=$rent->id;
+
+            if($rent->rent_date<Carbon::now()->subDays(30)){
+                $rentStatus->statusBook_id=3;
+            }
+            else{
+                $rentStatus->statusBook_id=1;
+            }
+
+            $rentStatus->date=Carbon::now();
+            $rentStatus->save();
+            $book=Book::find($rent->book_id);
+            // dd($book);
+            $book->rentedBooks=$book->rentedBooks-1;
+        }
+        return view('izdateKnjige', [
+            'izdate' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->paginate(7),
+            'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
+            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+        ]);
+    }
+
+
 }
