@@ -89,8 +89,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="scroll height-dashboard px-[30px]">
+            <form action="{{route('otpisiKnjige')}}" method="GET">
+                <div class="scroll height-dashboard px-[30px]">
                 <div class="flex items-center justify-between py-4 pt-[20px] space-x-3 rounded-lg">
                     <h3>
                         Otpisi knjigu
@@ -142,7 +142,7 @@
                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                 <td class="px-4 py-4 whitespace-no-wrap">
                                     <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox">
+                                        <input type="checkbox" class="form-checkbox" name="otpisiKnjigu[]" value="{{$otpisiKnjigu->id}}">
                                     </label>
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-4">
@@ -156,7 +156,7 @@
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date)->diffAsCarbonInterval() }}</td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
                                     <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                        75 dana
+                                        {{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date->addDays(30))->diffInDays() }} days
                                     </span>
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->librarian->name}}</td>
@@ -170,14 +170,14 @@
                     </div>
 
                 </div>
-            </div>
-            <div class="absolute bottom-0 w-full">
+                </div>
+                <div class="absolute bottom-0 w-full">
                 <div class="flex flex-row">
                     <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
-                        <button type="button"
+                        <a
                             class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                             Ponisti <i class="fas fa-times ml-[4px]"></i>
-                        </button>
+                        </a>
                         <button type="submit"
                             class="btn-animation disabled-btn shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
                             disabled onclick="validacijaUcenik()">
@@ -185,6 +185,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+                </div>
+            </form>
         </section>
         @endsection

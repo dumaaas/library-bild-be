@@ -448,6 +448,23 @@ class BookController extends Controller
             'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
         ]);
     }
-
+        
+    public function otpisiKnjige(){
+        
+        $knjige=request('otpisiKnjigu');
+        foreach($knjige as $knjiga){
+            $rent=Rent::find($knjiga);
+            $book=Book::find($rent->book_id);
+            $book->rentedBooks=$book->rentedBooks-1;
+            $book->quantity=$book->quantity-1;
+            $book->save();
+            Rent::destroy($rent->id);
+        }
+            return view('knjigePrekoracenje',[
+                'prekoracene' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->paginate(7),
+                'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
+                'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            ]);    
+    }
 
 }

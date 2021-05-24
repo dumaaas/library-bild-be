@@ -154,7 +154,11 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$vratiKnjigu->rent_date}}</td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($vratiKnjigu->rent_date)->diffAsCarbonInterval() }}</td>
-                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">  {{ \Carbon\Carbon::parse($vratiKnjigu->rent_date->addDays(30))->diffInDays() }} days</td>
+                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                        <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
+                                            {{ \Carbon\Carbon::parse($vratiKnjigu->rent_date->addDays(30))->diffInDays() }} days
+                                        </span>
+                                    </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$vratiKnjigu->librarian->name}}</td>
                                 </tr>
                         @endforeach
