@@ -13,6 +13,7 @@ use App\Models\Rent;
 use App\Models\RentStatus;
 use App\Models\Reservation;
 use App\Models\ReservationStatus;
+use App\Models\GlobalVariable;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -131,6 +132,7 @@ class BookController extends Controller
                 'knjiga' => $knjiga,
                 'prekoraceneKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->get(),
                 'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
+                'rokPozajmljivanja' => GlobalVariable::find(1),
             ]);
         } else {
             return view('izdajKnjiguError', [
@@ -167,6 +169,10 @@ class BookController extends Controller
         $updateIzdateKnjige = $izdataKnjiga->rentedBooks + 1;
         $izdataKnjiga->rentedBooks = $updateIzdateKnjige;
         $izdataKnjiga->save();
+
+        //zatvranje rezervacije
+        $rezervacija = Reservation::where('book_id', '=', $izdavanje->book_id)->where('student_id', '=', $izdavanje->student_id)->get();
+        dd($rezervacija);
 
         return redirect('izdateKnjige');
     }

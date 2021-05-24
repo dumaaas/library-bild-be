@@ -118,19 +118,19 @@
                                         <input type="date" name="datumIzdavanja" id="datumIzdavanja"
                                             class="flex w-[90%] mt-2 px-4 py-2 text-base placeholder-gray-400 bg-white border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                             onclick="clearErrorsDatumIzdavanja();"
-                                            onchange="funkcijaDatumVracanja();" />
+                                            onchange="funkcijaDatumVracanja({{$rokPozajmljivanja->value}});" />
                                     </label>
                                     <div id="validateDatumIzdavanja"></div>
                                 </div>
                                 <div class="w-[50%]">
                                     <p>Datum vracanja</p>
                                     <label class="text-gray-700" for="date">
-                                        <input type="text" id="datumVracanja"
+                                        <input type="text" id="datumVracanja" name="datumVracanja" value=""
                                             class="flex w-[90%] mt-2 px-2 py-2 text-base text-gray-400 bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                             disabled />
                                     </label>
                                     <div>
-                                        <p>Rok vracanja: 30 dana</p>
+                                        <p>Rok vracanja: {{$rokPozajmljivanja->value}} dana</p>
                                     </div>
                                 </div>
                             </div>
