@@ -233,6 +233,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        //SEEDING CLOSE RESERVATIONS
+        DB::table('close_reservations')->insert([
+            'id' => 1,
+            'name' => 'Reservation expired'
+        ]);
+
+        DB::table('close_reservations')->insert([
+            'id' => 2,
+            'name' => 'Reservation refused'
+        ]);
+
+        DB::table('close_reservations')->insert([
+            'id' => 3,
+            'name' => 'Reservation canceled'
+        ]);
+
+        DB::table('close_reservations')->insert([
+            'id' => 4,
+            'name' => 'Book rented'
+        ]);
+
         //SEEDING AUTHORS
         \App\Models\Author::factory(100)->create();
 
