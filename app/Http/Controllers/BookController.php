@@ -196,7 +196,7 @@ class BookController extends Controller
 
         //update broj rezervisanih knjiga
         $rezervisanaKnjiga = Book::find($knjiga->id);
-        $updateRezervisanaKnjige = $rezervisanaKnjiga->rentedBooks + 1;
+        $updateRezervisanaKnjige = $rezervisanaKnjiga->reservedBooks + 1;
         $rezervisanaKnjiga->reservedBooks = $updateRezervisanaKnjige;
         $rezervisanaKnjiga->save();
 
