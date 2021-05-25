@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Reservation;
+use App\Models\Book;
 use Carbon\Carbon;
 class CloseReservation extends Command
 {
@@ -38,11 +39,15 @@ class CloseReservation extends Command
      */
     public function handle()
     {
-        $reservations = Reservation::where('close_date', '<', Carbon::now())->get();
+        $reservations = Reservation::where('close_date', '<', Carbon::now())->where('closeReservation_id', '=', null)->get();
 
         foreach($reservations as $reservation) {
             $reservation->closeReservation_id = 1;
             $reservation->save();
+
+            $book = Book::find($reservation->book_id);
+            $book->reservedBooks = $book->reservedBooks - 1;
+            $book->save();
         }
     }
 }
