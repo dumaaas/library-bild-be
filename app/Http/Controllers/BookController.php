@@ -220,6 +220,7 @@ class BookController extends Controller
         $rezervisanje->reservation_date = request('datumRezervisanja');
         $rezervisanje->close_date = $rezervisanje->reservation_date->addDays(20);
         $rezervisanje->request_date = now();
+        $rezervisanje->closeReservation_id = 5;
 
         $rezervisanje->save();
 

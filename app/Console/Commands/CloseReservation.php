@@ -39,7 +39,7 @@ class CloseReservation extends Command
      */
     public function handle()
     {
-        $reservations = Reservation::where('close_date', '<', Carbon::now())->where('closeReservation_id', '=', null)->get();
+        $reservations = Reservation::where('close_date', '<', Carbon::now())->where('closeReservation_id', '=', 5)->get();
 
         foreach($reservations as $reservation) {
             $reservation->closeReservation_id = 1;

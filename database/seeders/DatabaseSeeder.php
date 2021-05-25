@@ -267,6 +267,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Book rented'
         ]);
 
+        DB::table('close_reservations')->insert([
+            'id' => 5,
+            'name' => 'Reservation accepted'
+        ]);
+
+
         //SEEDING AUTHORS
         \App\Models\Author::factory(30)->create();
 
