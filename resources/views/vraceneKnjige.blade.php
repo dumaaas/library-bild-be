@@ -349,7 +349,7 @@
                                             </a>
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$vracena->rent_date}}</td>
-                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$vracena->return_date}}</td>
+                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$vracena->rentStatus[0]->date}}</td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                                             <div>
                                                 <span>{{ \Carbon\Carbon::parse($vracena->rent_date)->diffAsCarbonInterval($vracena->return_date) }}</span>

@@ -17,7 +17,7 @@ class CreateRentStatusesTable extends Migration
             $table->id();
             $table->foreignId('rent_id');
             $table->foreignId('statusBook_id');
-            $table->date('date');
+            $table->timestamp('date');
             $table->timestamps();
 
             $table->foreign('rent_id')

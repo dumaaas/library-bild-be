@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class RentStatus extends Model
 {
     use HasFactory;
+
+    public function rent(){
+        return $this->belongsTo(Rent::class, 'rent_id');
+    }
 }

@@ -10,7 +10,7 @@ class Rent extends Model
     use HasFactory;
 
     protected $dates = ['created_at', 'updated_at', 'rent_date'];
-
+    protected $with = ['book', 'student', 'librarian', 'rentStatus'];
 
     public function book(){
         return $this->belongsTo(Book::class, 'book_id');
@@ -23,4 +23,10 @@ class Rent extends Model
     public function librarian(){
         return $this->belongsTo(User::class, 'librarian_id');
     }
+
+    public function rentStatus(){
+        return $this->hasMany(RentStatus::class);
+    }
+
+    
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rent;
+use App\Models\RentStatus;
 use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Book;
@@ -30,24 +31,59 @@ class RentController extends Controller
     }
 
     public function prikaziKnjigePrekoracenje() {
+
+        $prekoracene = Rent::where('return_date', '<', Carbon::now())->where(function ($query) {
+            $query->select('statusBook_id')
+                ->from('rent_statuses')
+                ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                ->orderByDesc('rent_statuses.date')
+                ->limit(1);
+        }, 2);
+
         return view('knjigePrekoracenje',[
-            'prekoracene' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->paginate(7),
+            'prekoracene' => $prekoracene->paginate(7),
             'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
             'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
         ]);
     }
 
     public function prikaziIzdateKnjige() {
+
+        // pokupi samo knjige sa statusom izdatata
+        $izdate = Rent::where(function ($query) {
+            $query->select('statusBook_id')
+                ->from('rent_statuses')
+                ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                ->orderByDesc('rent_statuses.date')
+                ->limit(1);
+        }, 2);
+
         return view('izdateKnjige', [
-            'izdate' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->paginate(7),
+            'izdate' => $izdate->paginate(7),
             'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
             'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
         ]);
     }
 
     public function prikaziVraceneKnjige() {
+
+        // pokupi samo knjige sa statusom izdatata
+        $vracene = Rent::where(function ($query) {
+            $query->select('statusBook_id')
+                ->from('rent_statuses')
+                ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                ->orderByDesc('rent_statuses.date')
+                ->limit(1);
+        }, 1)->orWhere(function ($query) {
+            $query->select('statusBook_id')
+                ->from('rent_statuses')
+                ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                ->orderByDesc('rent_statuses.date')
+                ->limit(1);
+        }, 3);
+
         return view('vraceneKnjige', [
-            'vracene' => Rent::with('book', 'student', 'librarian')->where('return_date', '!=', null)->paginate(7),
+            'vracene' => $vracene->paginate(7),
             'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
             'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
         ]);
@@ -55,13 +91,13 @@ class RentController extends Controller
 
     public function prikaziAktivneRezervacije() {
         return view('aktivneRezervacije', [
-            'aktivne' => Reservation::with('book', 'student')->where('close_date', '=', null)->paginate(7),
+            'aktivne' => Reservation::with('book', 'student')->where('closeReservation_id', '=', null)->paginate(7),
         ]);
     }
 
     public function prikaziArhiviraneRezervacije() {
         return view('arhiviraneRezervacije', [
-            'arhivirane' => Reservation::with('book', 'student', 'reservationStatus')->where('close_date', '!=', null)->paginate(7),
+            'arhivirane' => Reservation::with('book', 'student', 'reservationStatus')->where('closeReservation_id', '!=', null)->paginate(7),
         ]);
     }
 

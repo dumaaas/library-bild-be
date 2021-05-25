@@ -93,16 +93,32 @@ class BookController extends Controller
     }
 
     public function prikaziVratiKnjigu(Book $knjiga) {
+        $vratiKnjige = Rent::where('book_id', '=', $knjiga->id)
+            ->where(function ($query) {
+            $query->select('statusBook_id')
+                ->from('rent_statuses')
+                ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                ->orderByDesc('rent_statuses.date')
+                ->limit(1);
+        }, 2);
         return view('vratiKnjigu',[
             'knjiga' => $knjiga,
-            'vratiKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('book_id', '=', $knjiga->id)->paginate(7),
+            'vratiKnjige' => $vratiKnjige->paginate(7),
             ]);
     }
 
     public function prikaziOtpisiKnjigu(Book $knjiga) {
+        $otpisiKnjige = Rent::where('book_id', '=', $knjiga->id)
+            ->where(function ($query) {
+            $query->select('statusBook_id')
+                ->from('rent_statuses')
+                ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                ->orderByDesc('rent_statuses.date')
+                ->limit(1);
+        }, 2);
         return view('otpisiKnjigu',[
             'knjiga' => $knjiga,
-            'otpisiKnjige' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->paginate(7),
+            'otpisiKnjige' => $otpisiKnjige->paginate(7),
             ]);
     }
 
@@ -172,7 +188,6 @@ class BookController extends Controller
 
         //zatvranje rezervacije
         $rezervacija = Reservation::where('book_id', '=', $izdavanje->book_id)->where('student_id', '=', $izdavanje->student_id)->get();
-        dd($rezervacija);
 
         return redirect('izdateKnjige');
     }
@@ -189,6 +204,7 @@ class BookController extends Controller
         $rezervisanje->librarian_id = Auth::id();
         $rezervisanje->student_id = request('ucenik');
         $rezervisanje->reservation_date = request('datumRezervisanja');
+        $rezervisanje->close_date = $rezervisanje->reservation_date->addDays(20);
         $rezervisanje->request_date = now();
 
         $rezervisanje->save();
@@ -429,8 +445,6 @@ class BookController extends Controller
         foreach($knjige as $knjiga){
             $rent=Rent::find($knjiga);
             // dd($rent);
-            $rent->return_date=Carbon::now();
-            $rent->save();
 
             $rentStatus=new RentStatus();
             $rentStatus->rent_id=$rent->id;
@@ -444,12 +458,24 @@ class BookController extends Controller
 
             $rentStatus->date=Carbon::now();
             $rentStatus->save();
+
             $book=Book::find($rent->book_id);
-            // dd($book);
             $book->rentedBooks=$book->rentedBooks-1;
+            $book->save();
+           
         }
+
+        $izdate = Rent::where(function ($query) {
+            $query->select('statusBook_id')
+                ->from('rent_statuses')
+                ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                ->orderByDesc('rent_statuses.date')
+                ->limit(1);
+        }, 2);
+
+
         return view('izdateKnjige', [
-            'izdate' => Rent::with('book', 'student', 'librarian')->where('return_date', '=', null)->paginate(7),
+            'izdate' => $izdate->paginate(7),
             'ucenici' => DB::table('users')->where('userType_id', '=', 3)->get(),
             'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
         ]);

@@ -23,12 +23,14 @@ class RentFactory extends Factory
      */
     public function definition()
     {
+        $now = now()->subDays(40);
+        $earlier = now()->subDays(100);
         return [
             'librarian_id' => User::all()->where('userType_id', '=', 2)->random()->id,
             'student_id' => User::all()->where('userType_id', '=', 3)->random()->id,
             'book_id' => Book::factory()->create()->id,
-            'rent_date' => $this->faker->randomElement([now(), now()->subDays(50)]),
-            'return_date' => $this->faker->randomElement([now()->addDays(30), null]),
+            'rent_date' => $this->faker->randomElement([$now, $earlier]),
+            'return_date' => $this->faker->randomElement([$now->addDays(50), $earlier->addDays(50)]),
         ];
     }
 }
