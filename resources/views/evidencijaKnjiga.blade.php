@@ -205,7 +205,7 @@
                                         </td>
                                         <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
                                             <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga->id])}}">
-                                                {{\App\Models\Rent::where('return_date', '=', null)->where('rent_date', '<', Carbon\Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->count()}}
+                                                {{\App\Models\Rent::where('return_date', '<', Carbon\Carbon::now())->where('book_id', '=', $knjiga->id)->count()}}
                                             </a>
                                         </td>
                                         <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
