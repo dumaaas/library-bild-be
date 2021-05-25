@@ -96,11 +96,11 @@
                             </div>
                             <div class="mt-[40px]">
                                 <span class="text-gray-500">Broj logovanja</span>
-                                <p class="font-medium">60</p>
+                                <p class="font-medium">{{$ucenik->login_count}}</p>
                             </div>
                             <div class="mt-[40px]">
                                 <span class="text-gray-500">Poslednji put logovan/a</span>
-                                <p class="font-medium">{{$ucenik->updated_at}}</p>
+                                <p class="font-medium">{{$ucenik->last_login_at}}</p>
                             </div>
 
                         </div>

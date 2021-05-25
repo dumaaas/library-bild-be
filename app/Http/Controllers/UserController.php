@@ -10,13 +10,20 @@ use App\Models\Rent;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use App\Models\Book;
+use Illuminate\Support\Facades\Gate;
+use Auth; 
 
 class UserController extends Controller
 {
     public function prikaziBibliotekara(User $bibliotekar) {
-        return view('bibliotekarProfile', [
-            'bibliotekar' => $bibliotekar
-        ]);
+
+        if ($bibliotekar->userType->name != 'student' && (Gate::allows('isMyAccount', $bibliotekar) || Gate::allows('isAdmin'))) {
+            return view('bibliotekarProfile', [
+                'bibliotekar' => $bibliotekar
+            ]);
+        }
+        return abort(403, trans('Sorry, not sorry!'));
+
     }
 
     public function prikaziBibliotekare() {
@@ -26,9 +33,12 @@ class UserController extends Controller
     }
 
     public function prikaziEditBibliotekar(User $bibliotekar) {
-        return view('editBibliotekar', [
-            'bibliotekar' => $bibliotekar
-        ]);
+        if ($bibliotekar->userType->name != 'student' && (Gate::allows('isMyAccount', $bibliotekar) || Gate::allows('isAdmin'))) {
+            return view('editBibliotekar', [
+                'bibliotekar' => $bibliotekar
+            ]);
+        } 
+        return abort(403, trans('Sorry, not sorry!'));
     }
 
     public function prikaziNoviBibliotekar() {
@@ -70,9 +80,12 @@ class UserController extends Controller
     }
 
     public function izbrisiBibliotekara(User $bibliotekar) {
-        User::destroy($bibliotekar->id);
-
-        return redirect('bibliotekari');
+        if ($bibliotekar->userType->name != 'student' && (Gate::allows('isMyAccount', $bibliotekar) || Gate::allows('isAdmin'))) {
+            User::destroy($bibliotekar->id);
+            return redirect('bibliotekari');
+        } else {
+            return abort(403, trans('Sorry, not sorry!'));
+        }
     }
 
     public function sacuvajBibliotekara(User $bibliotekar) {
@@ -120,17 +133,25 @@ class UserController extends Controller
         ]);
     }
     public function prikaziUcenikProfile(User $ucenik) {
-        return view('ucenikProfile', [
-            'ucenik' => $ucenik
-        ]);
+        if($ucenik->userType->name != 'student') {
+            return abort(403, trans('Sorry, not sorry!'));
+        } else {
+            return view('ucenikProfile', [
+                'ucenik' => $ucenik
+            ]);
+        }
     }
     public function prikaziNovogUcenika() {
         return view('noviUcenik');
     }
     public function prikaziEditUcenik(User $ucenik) {
-        return view('editUcenik', [
-            'ucenik' => $ucenik
-        ]);
+        if($ucenik->userType->name != 'student') {
+            return abort(403, trans('Sorry, not sorry!'));
+        } else {
+            return view('editUcenik', [
+                'ucenik' => $ucenik
+            ]);
+        }
     }
     public function izmjeniUcenika(User $ucenik) {
          //request all data, validate and update student
@@ -165,9 +186,12 @@ class UserController extends Controller
         ]);
     }
     public function izbrisiUcenika(User $ucenik) {
-        User::destroy($ucenik->id);
-
-        return redirect('ucenik');
+        if($ucenik->userType->name != 'student') {
+            return abort(403, trans('Sorry, not sorry!'));
+        } else {
+            User::destroy($ucenik->id);
+            return redirect('ucenik');
+        }
     }
     public function sacuvajUcenika(User $ucenik) {
         //request all data, validate and update student

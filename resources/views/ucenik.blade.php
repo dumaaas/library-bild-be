@@ -58,7 +58,7 @@
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$ucenik->email}}</td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$ucenik->userType->name}}</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$ucenik->updated_at}}</td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$ucenik->last_login_at}}</td>
                                 <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
                                     <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudent hover:text-[#606FC7]">
                                         <i class="fas fa-ellipsis-v"></i>

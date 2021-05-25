@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_login_at',
+        'last_login_ip',
     ];
 
     /**
@@ -39,7 +41,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_online_at' => 'datetime'
     ];
+
+    protected $with = ['userType'];
+
+    protected $dates = ['last_login_at'];
 
     public function userType(){
         return $this->belongsTo(UserType::class, 'userType_id');

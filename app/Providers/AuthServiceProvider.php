@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,10 @@ class AuthServiceProvider extends ServiceProvider
         /* define a user role */
         Gate::define('isStudent', function($user) {
             return $user->userType->name == 'student';
+        });
+
+        Gate::define('isMyAccount', function($user, $profileUser) {
+            return $user->id === $profileUser->id;
         });
     }
 }

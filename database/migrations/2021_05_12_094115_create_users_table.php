@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 256);
             $table->string('photo', 256)->nullable();
+            $table->timestamp("last_login_at")->useCurrent();
+            $table->integer('login_count')->default(1);
             $table->rememberToken();
             $table->timestamps();
 
