@@ -173,6 +173,18 @@ class BookController extends Controller
 
         $izdavanje->save();
 
+        //promijeni status rezervacije u izdata i zatvori rezervaciju
+        $rezervacija = Reservation::where('book_id', '=', $knjiga->id)->where('student_id', '=', $izdavanje->student_id)->where('closeReservation_id', '=', null)->first();
+        
+        if($rezervacija != null) {
+            $rezervacija->closeReservation_id = 4;
+            $rezervacija->save();
+    
+            $reservationStatus = ReservationStatus::find($rezervacija->id);
+            $reservationStatus->statusReservation_id = 2;
+            $reservationStatus->save();
+        }
+
         //dodavanje u tabelu rent_statuses
         $statusIzdavanja = new RentStatus();
         $statusIzdavanja->rent_id = $izdavanje->id;
@@ -184,10 +196,12 @@ class BookController extends Controller
         $izdataKnjiga = Book::find($knjiga->id);
         $updateIzdateKnjige = $izdataKnjiga->rentedBooks + 1;
         $izdataKnjiga->rentedBooks = $updateIzdateKnjige;
+        
+        if($rezervacija != null) {
+            $izdataKnjiga->reservedBooks = $izdataKnjiga->reservedBooks-1;
+        }
+        
         $izdataKnjiga->save();
-
-        //zatvranje rezervacije
-        $rezervacija = Reservation::where('book_id', '=', $izdavanje->book_id)->where('student_id', '=', $izdavanje->student_id)->get();
 
         return redirect('izdateKnjige');
     }
@@ -218,8 +232,7 @@ class BookController extends Controller
 
         //update broj rezervisanih knjiga
         $rezervisanaKnjiga = Book::find($knjiga->id);
-        $updateRezervisanaKnjige = $rezervisanaKnjiga->reservedBooks + 1;
-        $rezervisanaKnjiga->reservedBooks = $updateRezervisanaKnjige;
+        $rezervisanaKnjiga->reservedBooks = $rezervisanaKnjiga->reservedBooks + 1;
         $rezervisanaKnjiga->save();
 
         return redirect('aktivneRezervacije');
