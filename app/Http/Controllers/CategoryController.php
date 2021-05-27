@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use DB;
 use Illuminate\Http\Request;
+use App\Services\CategoryService;
 
 class CategoryController extends Controller
 {
@@ -14,17 +15,21 @@ class CategoryController extends Controller
 
         $viewName = $this->viewFolder . '.editKategorija';
 
-        return view($viewName, [
-        'kategorija'=>$kategorija
-        ]);
+        $viewModel = [
+            'kategorija'=>$kategorija
+        ];
+
+        return view($viewName, $viewModel);
     }
-    public function prikaziSettingsKategorije() {
+    public function prikaziSettingsKategorije(CategoryService $categoryService) {
 
         $viewName = $this->viewFolder . '.settingsKategorije';
 
-        return view($viewName,[
-            'kategorije'=>DB::table('categories')->paginate(7)
-        ]);
+        $viewModel = [
+            'kategorije' => $categoryService->getCategories()->paginate(7)
+        ];
+
+        return view($viewName,$viewModel);
     }
     public function prikaziNovaKategorija() {
 

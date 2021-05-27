@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Script;
 use DB;
 use Illuminate\Http\Request;
+use App\Services\ScriptService;
 
 class ScriptController extends Controller
 {
@@ -14,17 +15,21 @@ class ScriptController extends Controller
 
         $viewName = $this->viewFolder . '.editPismo';
 
-        return view($viewName ,[
-        'pismo'=>$pismo
-        ]);
+        $viewModel = [
+            'pismo'=>$pismo
+        ];
+
+        return view($viewName ,$viewModel);
     }
-    public function prikaziSettingsPismo() {
+    public function prikaziSettingsPismo(ScriptService $scriptService) {
 
         $viewName = $this->viewFolder . '.settingsPismo';
 
-        return view($viewName ,[
-            'pisma'=>DB::table('scripts')->paginate(7)
-        ]);
+        $viewModel = [
+            'pisma' => $scriptService->getScripts()->paginate(7)
+        ];
+
+        return view($viewName ,$viewModel);
     }
     public function prikaziNovoPismo() {
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Publisher;
 use DB;
 use Illuminate\Http\Request;
+use App\Services\PublisherService;
 
 class PublisherController extends Controller
 {
@@ -15,9 +16,11 @@ class PublisherController extends Controller
 
         $viewName = $this->viewFolder . '.editIzdavac';
 
-        return view($viewName, [
-            'izdavac' => $izdavac
-        ]);
+        $viewModel = [
+            'izdavac'=>$izdavac
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziNoviIzdavac() {
@@ -27,13 +30,15 @@ class PublisherController extends Controller
         return view($viewName);
     }
 
-    public function prikaziSettingsIzdavac() {
+    public function prikaziSettingsIzdavac(PublisherService $publisherService) {
 
         $viewName = $this->viewFolder . '.settingsIzdavac';
 
-        return view($viewName, [
-            'izdavaci' => DB::table('publishers')->paginate(7)
-        ]);
+        $viewModel = [
+            'izdavaci' => $publisherService->getPublishers()->paginate(7)
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function izmijeniIzdavaca(Publisher $izdavac) {
