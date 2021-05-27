@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\Book;
 use Illuminate\Support\Facades\Gate;
 use Auth; 
+use App\Services\UserService;
 
 class UserController extends Controller
 {
@@ -33,14 +34,12 @@ class UserController extends Controller
         return abort(403, trans('Sorry, not sorry!'));
     }
 
-    public function prikaziBibliotekare() {
+    public function prikaziBibliotekare(UserService $userService) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekari';
 
         $viewModel = [
-            'bibliotekari' => User::with('userType')
-                ->where('userType_id', '=', 2)
-                ->paginate(7)
+            'bibliotekari' => $userService->getBibliotekari()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -67,7 +66,7 @@ class UserController extends Controller
         return view($viewName);
     }
 
-    public function izmijeniBibliotekara(User $bibliotekar) {
+    public function izmijeniBibliotekara(User $bibliotekar, UserService $userService) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
 
@@ -75,32 +74,7 @@ class UserController extends Controller
             'bibliotekar' => $bibliotekar
         ];
 
-        //request all data, validate and update librarian
-        request()->validate([
-            'imePrezimeBibliotekarEdit' => 'required',
-            'jmbgBibliotekarEdit' => 'required',
-            'emailBibliotekarEdit' => 'required',
-            'usernameBibliotekarEdit' => 'required',
-            'pwBibliotekarEdit' => 'required',
-            'pw2BibliotekarEdit' => 'required',
-        ]);
-
-        $bibliotekar->name=request('imePrezimeBibliotekarEdit');
-        $bibliotekar->jmbg=request('jmbgBibliotekarEdit');
-        $bibliotekar->email=request('emailBibliotekarEdit');
-        $bibliotekar->username=request('usernameBibliotekarEdit');
-
-        $sifra1 = request('pwBibliotekarEdit');
-        $sifra2 = request('pw2BibliotekarEdit');
-
-        if($sifra1 == $sifra2){
-            $bibliotekar->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
-             
-        $bibliotekar->save();
+        $userService->editBibliotekar($bibliotekar);
 
         //return back to the edit author form
         return view($viewName, $viewModel);
@@ -124,56 +98,26 @@ class UserController extends Controller
         }
     }
 
-    public function sacuvajBibliotekara(User $bibliotekar) {
+    public function sacuvajBibliotekara(UserService $userService) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
+
+        $bibliotekar = $userService->saveBibliotekar();
 
         $viewModel = [
             'bibliotekar' => $bibliotekar
         ];
 
-        //request all data, validate and add librarian
-        request()->validate([
-            'imePrezimeBibliotekar' => 'required',
-            'jmbgBibliotekar' => 'required',
-            'emailBibliotekar' => 'required',
-            'usernameBibliotekar' => 'required',
-            'pwBibliotekar' => 'required',
-            'pw2Bibliotekar' => 'required',
-        ]);
-
-        $userTypeId = DB::table('user_types')->select('id')->where('name', '=', 'librarian')->value('id');
-        $bibliotekar->userType_id = $userTypeId;
-
-        $bibliotekar->name=request('imePrezimeBibliotekar');
-        $bibliotekar->jmbg=request('jmbgBibliotekar');
-        $bibliotekar->email_verified_at = now();
-        $bibliotekar->email=request('emailBibliotekar');
-        $bibliotekar->username=request('usernameBibliotekar');
-        $bibliotekar->remember_token = Str::random(10);
-
-        $sifra1 = request('pwBibliotekar');
-        $sifra2 = request('pw2Bibliotekar');
-
-        if($sifra1 == $sifra2){
-            $bibliotekar->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
-             
-        $bibliotekar->save();
-
         //return back to the librarian profile
         return view($viewName, $viewModel);
     }
 
-    public function prikaziUcenike() {
+    public function prikaziUcenike(UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenik';
 
         $viewModel = [
-            'ucenici' => User::with('userType')->where('userType_id', '=', 3)->paginate(7)
+            'ucenici' => $userService->getUcenici()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -215,7 +159,7 @@ class UserController extends Controller
             return view($viewName, $viewModel);
         }
     }
-    public function izmjeniUcenika(User $ucenik) {
+    public function izmjeniUcenika(User $ucenik, UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
 
@@ -223,31 +167,7 @@ class UserController extends Controller
             'ucenik' => $ucenik
         ];
 
-         //request all data, validate and update student
-         request()->validate([
-            'imePrezimeUcenikEdit'=>'required',
-            'jmbgUcenikEdit' => 'required',
-            'emailUcenikEdit' => 'required',
-            'usernameUcenikEdit' => 'required',
-            'pwUcenikEdit' => 'required',
-            'pw2UcenikEdit' => 'required',
-        ]);
-        $ucenik->name=request('imePrezimeUcenikEdit');
-        $ucenik->jmbg=request('jmbgUcenikEdit');
-        $ucenik->email=request('emailUcenikEdit');
-        $ucenik->username=request('usernameUcenikEdit');
-      
-        $sifra1 = request('pwUcenikEdit');
-        $sifra2 = request('pw2UcenikEdit');
-
-        if($sifra1 == $sifra2){
-            $ucenik->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
-             
-        $ucenik->save();
+        $userService->editUcenik($ucenik);
 
         //return back to the edit student form
         return view($viewName, $viewModel);
@@ -271,45 +191,15 @@ class UserController extends Controller
         }
     }
 
-    public function sacuvajUcenika(User $ucenik) {
+    public function sacuvajUcenika(UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
+
+        $ucenik = $userService->saveUcenik();
 
         $viewModel = [
             'ucenik' => $ucenik
         ];
-
-        //request all data, validate and update student
-        request()->validate([
-            'imePrezimeUcenik'=>'required',
-            'jmbgUcenik' => 'required',
-            'emailUcenik' => 'required',
-            'usernameUcenik' => 'required',
-            'pwUcenik' => 'required',
-            'pw2Ucenik' => 'required',
-        ]);
-
-        $userTypeId=DB::table('user_types')->select('id')->where('name', '=', 'student')->value('id');
-        $ucenik->userType_id =$userTypeId;
-    
-        $ucenik->name=request('imePrezimeUcenik');
-        $ucenik->jmbg=request('jmbgUcenik');
-        $ucenik->email_verified_at = now();
-        $ucenik->email=request('emailUcenik');
-        $ucenik->username=request('usernameUcenik');
-        $ucenik->remember_token = Str::random(10);
-
-        $sifra1 = request('pwUcenik');
-        $sifra2 = request('pw2Ucenik');
-
-        if($sifra1 == $sifra2){
-            $ucenik->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
-
-        $ucenik->save();
 
         //return back to the edit student form
         return view($viewName, $viewModel);
