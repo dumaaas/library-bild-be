@@ -7,8 +7,14 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+
+    private $viewFolder = 'pages/autor';
+
     public function prikaziAutore() {
-        return view('autori', [
+
+        $viewName = $this->viewFolder . '.autori';
+
+        return view($viewName, [
             'autori' => DB::table('authors')->paginate(7)
         ]);
     }
