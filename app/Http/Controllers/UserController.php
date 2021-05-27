@@ -23,10 +23,12 @@ class UserController extends Controller
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
 
+        $viewModel = [
+            'bibliotekar' => $bibliotekar
+        ];
+
         if ($bibliotekar->userType->name != 'student' && (Gate::allows('isMyAccount', $bibliotekar) || Gate::allows('isAdmin'))) {
-            return view($viewName, [
-                'bibliotekar' => $bibliotekar
-            ]);
+            return view($viewName, $viewModel);
         }
         return abort(403, trans('Sorry, not sorry!'));
     }
@@ -35,21 +37,25 @@ class UserController extends Controller
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekari';
 
-        return view($viewName, [
+        $viewModel = [
             'bibliotekari' => User::with('userType')
                 ->where('userType_id', '=', 2)
                 ->paginate(7)
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziEditBibliotekar(User $bibliotekar) {
 
         $viewName = $this->viewFolderLibrarian . '.editBibliotekar';
 
+        $viewModel = [
+            'bibliotekar' => $bibliotekar
+        ];
+
         if ($bibliotekar->userType->name != 'student' && (Gate::allows('isMyAccount', $bibliotekar) || Gate::allows('isAdmin'))) {
-            return view($viewName, [
-                'bibliotekar' => $bibliotekar
-            ]);
+            return view($viewName, $viewModel);
         } 
         return abort(403, trans('Sorry, not sorry!'));
     }
@@ -64,6 +70,10 @@ class UserController extends Controller
     public function izmijeniBibliotekara(User $bibliotekar) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
+
+        $viewModel = [
+            'bibliotekar' => $bibliotekar
+        ];
 
         //request all data, validate and update librarian
         request()->validate([
@@ -93,22 +103,22 @@ class UserController extends Controller
         $bibliotekar->save();
 
         //return back to the edit author form
-        return view($viewName, [
-            'bibliotekar' => $bibliotekar
-        ]);
+        return view($viewName, $viewModel);
     }
 
     public function izbrisiBibliotekara(User $bibliotekar) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekari';
 
-        if ($bibliotekar->userType->name != 'student' && (Gate::allows('isMyAccount', $bibliotekar) || Gate::allows('isAdmin'))) {
-            User::destroy($bibliotekar->id);
-            return view($viewName, [
-                'bibliotekari' => User::with('userType')
+        $viewModel = [
+            'bibliotekari' => User::with('userType')
                     ->where('userType_id', '=', 2)
                     ->paginate(7)
-            ]);
+        ];
+
+        if ($bibliotekar->userType->name != 'student' && (Gate::allows('isMyAccount', $bibliotekar) || Gate::allows('isAdmin'))) {
+            User::destroy($bibliotekar->id);
+            return view($viewName, $viewModel);
         } else {
             return abort(403, trans('Sorry, not sorry!'));
         }
@@ -117,6 +127,10 @@ class UserController extends Controller
     public function sacuvajBibliotekara(User $bibliotekar) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
+
+        $viewModel = [
+            'bibliotekar' => $bibliotekar
+        ];
 
         //request all data, validate and add librarian
         request()->validate([
@@ -151,30 +165,32 @@ class UserController extends Controller
         $bibliotekar->save();
 
         //return back to the librarian profile
-        return view($viewName, [
-            'bibliotekar' => $bibliotekar
-        ]);
+        return view($viewName, $viewModel);
     }
 
     public function prikaziUcenike() {
 
         $viewName = $this->viewFolderStudent . '.ucenik';
 
-        return view($viewName, [
+        $viewModel = [
             'ucenici' => User::with('userType')->where('userType_id', '=', 3)->paginate(7)
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziUcenikProfile(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
 
+        $viewModel = [
+            'ucenik' => $ucenik
+        ];
+
         if($ucenik->userType->name != 'student') {
             return abort(403, trans('Sorry, not sorry!'));
         } else {
-            return view($viewName, [
-                'ucenik' => $ucenik
-            ]);
+            return view($viewName, $viewModel);
         }
     }
 
@@ -189,17 +205,23 @@ class UserController extends Controller
 
         $viewName = $this->viewFolderStudent . '.editUcenik';
 
+        $viewModel = [
+            'ucenik' => $ucenik
+        ];
+
         if($ucenik->userType->name != 'student') {
             return abort(403, trans('Sorry, not sorry!'));
         } else {
-            return view($viewName, [
-                'ucenik' => $ucenik
-            ]);
+            return view($viewName, $viewModel);
         }
     }
     public function izmjeniUcenika(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
+
+        $viewModel = [
+            'ucenik' => $ucenik
+        ];
 
          //request all data, validate and update student
          request()->validate([
@@ -228,28 +250,34 @@ class UserController extends Controller
         $ucenik->save();
 
         //return back to the edit student form
-        return view($viewName, [
-            'ucenik' => $ucenik
-        ]);
+        return view($viewName, $viewModel);
     }
+
     public function izbrisiUcenika(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenik';
+
+        $viewModel = [
+            'ucenici' => User::with('userType')
+                    ->where('userType_id', '=', 3)
+                    ->paginate(7)
+        ];
 
         if($ucenik->userType->name != 'student') {
             return abort(403, trans('Sorry, not sorry!'));
         } else {
             User::destroy($ucenik->id);
-            return view($viewName, [
-                'ucenici' => User::with('userType')
-                    ->where('userType_id', '=', 3)
-                    ->paginate(7)
-            ]);
+            return view($viewName, $viewModel);
         }
     }
+
     public function sacuvajUcenika(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
+
+        $viewModel = [
+            'ucenik' => $ucenik
+        ];
 
         //request all data, validate and update student
         request()->validate([
@@ -260,6 +288,7 @@ class UserController extends Controller
             'pwUcenik' => 'required',
             'pw2Ucenik' => 'required',
         ]);
+
         $userTypeId=DB::table('user_types')->select('id')->where('name', '=', 'student')->value('id');
         $ucenik->userType_id =$userTypeId;
     
@@ -283,73 +312,81 @@ class UserController extends Controller
         $ucenik->save();
 
         //return back to the edit student form
-        return view($viewName, [
-            'ucenik' => $ucenik
-        ]);
+        return view($viewName, $viewModel);
     }
 
     public function prikaziUcenikIzdate(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikIzdate';
 
-        return view($viewName, [
-        'ucenik' => $ucenik,
-        'ucenikIzdate'=> Rent::with('book', 'student', 'librarian')
-            ->where('return_date', '=', null)
-            ->where('student_id', '=', $ucenik->id)
-            ->paginate(7),
-        ]);
+        $viewModel = [
+            'ucenik' => $ucenik,
+            'ucenikIzdate'=> Rent::with('book', 'student', 'librarian')
+                ->where('return_date', '=', null)
+                ->where('student_id', '=', $ucenik->id)
+                ->paginate(7),
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziUcenikVracene(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikVracene';
 
-        return view($viewName, [
+        $viewModel = [
             'ucenik' => $ucenik,
             'ucenikVracene' => Rent::with('book', 'student', 'librarian')
                 ->where('return_date', '!=', null)
                 ->where('student_id', '=', $ucenik->id)
                 ->paginate(7),
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziUcenikPrekoracenje(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikPrekoracenje';
 
-        return view($viewName, [
+        $viewModel = [
             'ucenik' => $ucenik,
             'ucenikPrekoracene' => Rent::with('book', 'student', 'librarian')
                 ->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))
                 ->where('student_id', '=', $ucenik->id)
                 ->paginate(7),
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziUcenikAktivne(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikAktivne';
 
-        return view($viewName, [
+        $viewModel = [
             'ucenik' => $ucenik,
             'ucenikAktivne' => Reservation::with('book', 'student')
                 ->where('close_date', '=', null)
                 ->where('student_id', '=', $ucenik->id)
                 ->paginate(7),
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziUcenikArhivirane(User $ucenik) {
 
         $viewName = $this->viewFolderStudent . '.ucenikArhivirane';
 
-        return view($viewName, [
+        $viewModel = [
             'ucenik' => $ucenik,
             'ucenikArhivirane' => Reservation::with('book', 'student', 'reservationStatus')
                 ->where('close_date', '!=', null)
                 ->where('student_id', '=', $ucenik->id)
                 ->paginate(7),
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 }
