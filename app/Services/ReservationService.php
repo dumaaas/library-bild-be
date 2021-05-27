@@ -47,6 +47,6 @@ class ReservationService
      */
     public function getRezervisaneKnjige() {
         return Reservation::with('book', 'student', 'reservationStatus')
-                    ->where('closeReservation_id', '!=', 5);
+                    ->where('closeReservation_id', '=', 5);
     }
 }

@@ -488,7 +488,7 @@
                                             </a>
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
-                                            @if($arhivirana->reservationStatus->statusReservation_id == 1)
+                                            @if($arhivirana->reservationStatus[0]->statusReservation_id == 1)
                                                 <div
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
 
@@ -496,7 +496,7 @@
                                                         Reserved
                                                     </span>
                                                 </div>
-                                            @elseif($arhivirana->reservationStatus->statusReservation_id == 2)
+                                            @elseif($arhivirana->reservationStatus[0]->statusReservation_id == 2)
                                                 <div
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
 

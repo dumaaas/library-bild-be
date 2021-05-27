@@ -21,6 +21,6 @@ class Reservation extends Model
     }
 
     public function reservationStatus(){
-        return $this->belongsTo(ReservationStatus::class, 'student_id');
+        return $this->hasMany(ReservationStatus::class, 'reservation_id');
     }
 }

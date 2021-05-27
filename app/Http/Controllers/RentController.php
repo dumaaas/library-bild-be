@@ -134,7 +134,7 @@ class RentController extends Controller
         $viewName = $this->viewFolder . '.aktivneRezervacije';
 
         $viewModel = [
-            'aktivne' => $reservationService->getAktivneRezervacije->paginate(7),
+            'aktivne' => $reservationService->getAktivneRezervacije()->paginate(7),
         ];
 
         return view($viewName, $viewModel);
