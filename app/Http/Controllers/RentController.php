@@ -131,7 +131,7 @@ class RentController extends Controller
      * @return void
      */
     public function prikaziAktivneRezervacije(ReservationService $reservationService) {
-        $viewName = $this->viewFolder . '.vraceneKnjige';
+        $viewName = $this->viewFolder . '.aktivneRezervacije';
 
         $viewModel = [
             'aktivne' => $reservationService->getAktivneRezervacije->paginate(7),
@@ -147,7 +147,7 @@ class RentController extends Controller
      * @return void
      */
     public function prikaziArhiviraneRezervacije(ReservationService $reservationService) {
-        $viewName = $this->viewFolder . '.vraceneKnjige';
+        $viewName = $this->viewFolder . '.arhiviraneRezervacije';
 
         $viewModel = [
             'arhivirane' => $reservationService->getArhiviraneRezervacije()->paginate(7)
