@@ -150,7 +150,7 @@ class RentController extends Controller
         $viewName = $this->viewFolder . '.vraceneKnjige';
 
         $viewModel = [
-            'arhivirane' => $reservationService->getArhiviraneRezervacije->paginate(7)
+            'arhivirane' => $reservationService->getArhiviraneRezervacije()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
