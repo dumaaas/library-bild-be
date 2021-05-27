@@ -215,7 +215,7 @@ class RentController extends Controller
         $vracene = $rentService->filtirajVraceneKnjige();
 
         $viewModal = [
-            'vracene'       => $vracene,
+            'vracene'      => $vracene,
             'ucenici'      => $userService->getUcenici()->get(),
             'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
@@ -236,7 +236,7 @@ class RentController extends Controller
         $prekoracene = $rentService->filtirajPrekoraceneKnjige();
 
         $viewModal = [
-            'prekoracene'       => $prekoracene,
+            'prekoracene'  => $prekoracene,
             'ucenici'      => $userService->getUcenici()->get(),
             'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
