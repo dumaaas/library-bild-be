@@ -8,18 +8,29 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+    private $viewFolder = 'pages/settings/categories';
+
     public function prikaziEditKategorija(Category $kategorija) {
-        return view('editKategorija',[
+
+        $viewName = $this->viewFolder . '.editKategorija';
+
+        return view($viewName, [
         'kategorija'=>$kategorija
         ]);
     }
     public function prikaziSettingsKategorije() {
-        return view('settingsKategorije',[
+
+        $viewName = $this->viewFolder . '.settingsKategorije';
+
+        return view($viewName,[
             'kategorije'=>DB::table('categories')->paginate(7)
         ]);
     }
     public function prikaziNovaKategorija() {
-        return view('novaKategorija');
+
+        $viewName = $this->viewFolder . '.novaKategorija';
+
+        return view($viewName);
     }
 
     public function sacuvajKategoriju() {

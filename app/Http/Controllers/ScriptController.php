@@ -7,18 +7,30 @@ use Illuminate\Http\Request;
 
 class ScriptController extends Controller
 {
+
+    private $viewFolder = 'pages/settings/scripts';
+
     public function prikaziEditPismo(Script $pismo) {
-        return view('editPismo',[
+
+        $viewName = $this->viewFolder . '.editPismo';
+
+        return view($viewName ,[
         'pismo'=>$pismo
         ]);
     }
     public function prikaziSettingsPismo() {
-        return view('settingsPismo',[
+
+        $viewName = $this->viewFolder . '.settingsPismo';
+
+        return view($viewName ,[
             'pisma'=>DB::table('scripts')->paginate(7)
         ]);
     }
     public function prikaziNovoPismo() {
-        return view('novoPismo');
+
+        $viewName = $this->viewFolder . '.novoPismo';
+
+        return view($viewName);
     }
 
     public function sacuvajPismo() {

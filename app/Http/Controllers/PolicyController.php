@@ -7,8 +7,14 @@ use App\Models\GlobalVariable;
 
 class PolicyController extends Controller
 {
+    
+    private $viewFolder = 'pages/settings/policy';
+
     public function prikaziSettingsPolisa() {
-        return view('settingsPolisa', [
+
+        $viewName = $this->viewFolder . '.settingsPolisa';
+
+        return view($viewName, [
             'rokPozajmljivanja' => GlobalVariable::find(1),
             'rokRezervacije' => GlobalVariable::find(2),
             'rokPrekoracenja' => GlobalVariable::find(3)

@@ -8,18 +8,30 @@ use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
+
+    private $viewFolder = 'pages/settings/publishers';
+
     public function prikaziEditIzdavac(Publisher $izdavac) {
-        return view('editIzdavac', [
+
+        $viewName = $this->viewFolder . '.editIzdavac';
+
+        return view($viewName, [
             'izdavac' => $izdavac
         ]);
     }
 
     public function prikaziNoviIzdavac() {
-        return view('noviIzdavac');
+
+        $viewName = $this->viewFolder . '.noviIzdavac';
+
+        return view($viewName);
     }
 
     public function prikaziSettingsIzdavac() {
-        return view('settingsIzdavac', [
+
+        $viewName = $this->viewFolder . '.settingsIzdavac';
+
+        return view($viewName, [
             'izdavaci' => DB::table('publishers')->paginate(7)
         ]);
     }

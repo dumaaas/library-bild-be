@@ -7,18 +7,30 @@ use Illuminate\Http\Request;
 
 class FormatController extends Controller
 {
+    
+    private $viewFolder = 'pages/settings/format';
+
     public function prikaziEditFormat(Format $format) {
-        return view('editFormat',[
+
+        $viewName = $this->viewFolder . '.editFormat';
+
+        return view($viewName,[
             'format'=>$format
         ]);
     }
 
     public function prikaziNoviFormat() {
-        return view('noviFormat');
+
+        $viewName = $this->viewFolder . '.noviFormat';
+
+        return view($viewName);
     }
 
     public function prikaziSettingsFormat() {
-        return view('settingsFormat',[
+
+        $viewName = $this->viewFolder . '.settingsFormat';
+
+        return view($viewName,[
             'formati'=>DB::table('formats')->paginate(7)
         ]);
     }
