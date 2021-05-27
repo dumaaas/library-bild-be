@@ -35,7 +35,7 @@ class ReservationService
      *
      * @return void
      */
-    public function getAhriviraneRezervacije() {
+    public function getArhiviraneRezervacije() {
         return Reservation::with('book', 'student', 'reservationStatus')
                     ->where('closeReservation_id', '!=', null);
     }
