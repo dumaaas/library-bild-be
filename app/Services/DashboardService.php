@@ -108,48 +108,4 @@ class DashboardService
         return $aktivnosti->orderBy('rent_date', 'DESC')->get();
     }
 
-    /**
-     * Vrati ukupan broj knjiga u prekoracenju
-     *
-     * @return void
-     */
-    public function countPrekoracene() {
-        return Rent::where('return_date', '<', Carbon::now())
-                    ->where(function ($query) {
-                        $query->select('statusBook_id')
-                            ->from('rent_statuses')
-                            ->whereColumn('rent_statuses.rent_id', 'rents.id')
-                            ->orderByDesc('rent_statuses.date')
-                            ->limit(1);
-                    }, 2)
-                    ->count();
-    }
-
-    /**
-     * Vrati ukupan broj rezervisanih knjiga
-     *
-     * @return void
-     */
-    public function countRezervisane() {
-        return Reservation::with('book', 'student')
-                    ->where('closeReservation_id', '=', 5)
-                    ->count();
-    }
-
-    /**
-     * Vrati ukupan broj izdatih knjiga
-     *
-     * @return void
-     */
-    public function countIzdate() {
-        return Rent::where(function ($query) {
-                    $query->select('statusBook_id')
-                        ->from('rent_statuses')
-                        ->whereColumn('rent_statuses.rent_id', 'rents.id')
-                        ->orderByDesc('rent_statuses.date')
-                        ->limit(1);
-                    }, 2)
-                    ->count();
-    }
-
 }

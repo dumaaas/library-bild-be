@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\DashboardService;
 use App\Services\BookService;
+use App\Services\RentService;
+use App\Services\ReservationService;
 use Illuminate\Http\Response;
 use Symfony\Component\Console\Input\Input;
 
@@ -33,15 +35,15 @@ class DashboardController extends Controller
      * @param  DashboardService $dashboardService
      * @return void
      */
-    public function prikaziDashboard(DashboardService $dashboardService) {
+    public function prikaziDashboard(DashboardService $dashboardService, ReservationService $reservationService, RentService $rentService) {
         $viewName = $this->viewFolder . '.dashboard';
 
         $viewModel = [
             'rezervacije'    => $dashboardService->getLatestReservation(),
             'aktivnosti'     => $dashboardService->getLatestActivities(),
-            'prekoraceneNum' => $dashboardService->countPrekoracene(),
-            'rezervisaneNum' => $dashboardService->countRezervisane(),
-            'izdateNum'      => $dashboardService->countIzdate(),
+            'prekoraceneNum' => $rentService->getPrekoraceneKnjige()->count(),
+            'izdateNum'      => $rentService->getIzdateKnjige()->count(),
+            'rezervisaneNum' => $reservationService->getRezervisaneKnjige()->count(),
         ];
 
         return view($viewName, $viewModel);
