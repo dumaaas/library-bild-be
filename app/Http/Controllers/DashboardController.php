@@ -12,6 +12,7 @@ use App\Services\DashboardService;
 use App\Services\BookService;
 use App\Services\RentService;
 use App\Services\ReservationService;
+use App\Services\UserService;
 use Illuminate\Http\Response;
 use Symfony\Component\Console\Input\Input;
 
@@ -54,17 +55,17 @@ class DashboardController extends Controller
      *
      * @param  DashboardService $dashboardService
      * @param  BookService $bookService
+     * @param  UserService $userService
      * @return void
      */
-    public function prikaziDashboardAktivnost(DashboardService $dashboardService, BookService $bookService) {
+    public function prikaziDashboardAktivnost(DashboardService $dashboardService, BookService $bookService, UserService $userService) {
         $viewName = $this->viewFolder . '.dashboardAktivnost';
 
         $viewModel = [
             'aktivnosti'   => $dashboardService->getActivities(),
             'knjiga'       => null,
-            //kad se zavrsi UserService -> izmijeniti 
-            'ucenici'      => User::where('userType_id', '=', 3)->get(),
-            'bibliotekari' => User::where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
             'knjige'       => $bookService->getBooks(),
         ];
 
@@ -74,20 +75,20 @@ class DashboardController extends Controller
     /**
      * Prikazi sve aktivnosti kod konkretne knjige
      *
+     * @param  Book $knjiga
      * @param  DashboardService $dashboardService
      * @param  BookService $bookService
-     * @param Book $knjiga
+     * @param  UserService $userService
      * @return void
      */
-    public function prikaziDashboardAktivnostKonkretneKnjige(Book $knjiga, DashboardService $dashboardService, BookService $bookService) {
+    public function prikaziDashboardAktivnostKonkretneKnjige(Book $knjiga, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
         $viewName = $this->viewFolder . '.dashboardAktivnost';
 
         $viewModel = [
             'aktivnosti'   => $dashboardService->getBookActivity($knjiga->id),
             'knjiga'       => $knjiga,
-            //kad se zavrsi UserService -> izmijeniti 
-            'ucenici'      => User::where('userType_id', '=', 3)->get(),
-            'bibliotekari' => User::where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
             'knjige'       => $bookService->getBooks(),
         ];
 
@@ -100,9 +101,10 @@ class DashboardController extends Controller
      * @param  Request $request
      * @param  DashboardService $dashboardService
      * @param  BookService $bookService
+     * @param  UserService $userService
      * @return void
      */
-    public function filterAktivnosti(Request $request, DashboardService $dashboardService, BookService $bookService) {
+    public function filterAktivnosti(Request $request, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
         
         $aktivnosti = $dashboardService->filterActivities(
             $request->ucenici, 
@@ -115,9 +117,8 @@ class DashboardController extends Controller
         $responseJson = [
             "aktivnosti"   => $aktivnosti,
             'knjiga'       => null,
-            //kad se zavrsi UserService -> izmijeniti 
-            'ucenici'      => User::where('userType_id', '=', 3)->get(),
-            'bibliotekari' => User::where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
             'knjige'       => $bookService->getBooks(),
         ];
 

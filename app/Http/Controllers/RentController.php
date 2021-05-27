@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Book;
 use App\Services\RentService;
+use App\Services\UserService;
 use App\Services\ReservationService;
 use Carbon\Carbon;
 use DB;
@@ -62,18 +63,18 @@ class RentController extends Controller
      * Prikazi knjige u prekoracenju
      *
      * @param  RentService $rentService
+     * @param  UserService $userService
      * @return void
      */
-    public function prikaziKnjigePrekoracenje(RentService $rentService) {
+    public function prikaziKnjigePrekoracenje(RentService $rentService, UserService $userService) {
         $viewName = $this->viewFolder . '.knjigePrekoracenje';
 
         $prekoracene = $rentService->getPrekoraceneKnjige()->paginate(7);
 
         $viewModel = [
             'prekoracene'  => $prekoracene,
-            //kad se zavrsi UserService -> izmijeniti             
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -83,9 +84,10 @@ class RentController extends Controller
      * Prikazi izdate knjige
      *
      * @param  RentService $rentService
+     * @param  UserService $userService
      * @return void
      */
-    public function prikaziIzdateKnjige(RentService $rentService) {
+    public function prikaziIzdateKnjige(RentService $rentService, UserService $userService) {
         $viewName = $this->viewFolder . '.izdateKnjige';
 
         // pokupi samo knjige sa statusom izdatata
@@ -93,9 +95,8 @@ class RentController extends Controller
 
         $viewModel = [
             'izdate'       => $izdate,
-            //kad se zavrsi UserService -> izmijeniti             
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -105,9 +106,10 @@ class RentController extends Controller
      * Prikazi vracene knjige
      *
      * @param  RentService $rentService
+     * @param  UserService $userService
      * @return void
      */
-    public function prikaziVraceneKnjige(RentService $rentService) {
+    public function prikaziVraceneKnjige(RentService $rentService, UserService $userService) {
         $viewName = $this->viewFolder . '.vraceneKnjige';
 
         // pokupi samo knjige sa statusom izdatata
@@ -115,9 +117,8 @@ class RentController extends Controller
 
         $viewModel = [
             'vracene'      => $vracene,
-            //kad se zavrsi UserService -> izmijeniti             
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -161,9 +162,10 @@ class RentController extends Controller
      * @param  Book $knjiga
      * @param  User $ucenik
      * @param  RentService $rentService
+     * @param  UserService $userService
      * @return void
      */
-    public function izbrisiTransakciju(Book $knjiga, User $ucenik, RentService $rentService) {
+    public function izbrisiTransakciju(Book $knjiga, User $ucenik, RentService $rentService, UserService $userService) {
         $viewName = $this->viewFolder . '.izdateKnjige';
 
         $rentService->deleteTransakcija($knjiga->id, $ucenik->id);
@@ -171,9 +173,8 @@ class RentController extends Controller
 
         $viewModel = [
             'izdate'       => $izdate,
-            //kad se zavrsi UserService -> izmijeniti             
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
         
         return view($viewName, $viewModel);
@@ -183,18 +184,18 @@ class RentController extends Controller
      * Prikazi filtrirane izdate knjige
      *
      * @param  RentService $rentService
+     * @param  UserService $userService
      * @return void
      */
-    public function filterIzdateKnjige(RentService $rentService) {
+    public function filterIzdateKnjige(RentService $rentService, UserService $userService) {
         $viewName = $this->viewFolder . '.izdateKnjige';
 
         $izdate = $rentService->filtirajIzdateKnjige();
 
         $viewModal = [
             'izdate'       => $izdate,
-            //kad se zavrsi UserService -> izmijeniti             
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -205,18 +206,18 @@ class RentController extends Controller
      * Prikazi filtirirane vracene knjige
      *
      * @param  RentService $rentService
+     * @param  UserService $userService
      * @return void
      */
-    public function filterVraceneKnjige() {
+    public function filterVraceneKnjige(RentService $rentService, UserService $userService) {
         $viewName = $this->viewFolder . '.vraceneKnjige';
 
         $vracene = $rentService->filtirajVraceneKnjige();
 
         $viewModal = [
             'vracene'       => $vracene,
-            //kad se zavrsi UserService -> izmijeniti             
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -226,18 +227,18 @@ class RentController extends Controller
      * Prikazi filtrirane u prekoracenju
      *
      * @param  RentService $rentService
+     * @param  UserService $userService
      * @return void
      */
-    public function filterPrekoraceneKnjige() {
+    public function filterPrekoraceneKnjige(RentService $rentService, UserService $userService) {
         $viewName = $this->viewFolder . '.knjigePrekoracenje';
 
         $prekoracene = $rentService->filtirajPrekoraceneKnjige();
 
         $viewModal = [
             'prekoracene'       => $prekoracene,
-            //kad se zavrsi UserService -> izmijeniti             
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
 
         return view($viewName, $viewModel);
