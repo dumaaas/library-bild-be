@@ -7,20 +7,32 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
+    
+    private $viewFolder = 'pages/settings/genres';
+ 
     public function prikaziEditZanr(Genre $zanr) {
-        return view('editZanr',[
+
+        $viewName = $this->viewFolder . '.editZanr';
+
+        return view($viewName,[
         'zanr'=>$zanr
         ]);
     }
 
     public function prikaziSettingsZanrovi() {
-        return view('settingsZanrovi',[
+
+        $viewName = $this->viewFolder . '.settingsZanrovi';
+
+        return view($viewName,[
             'zanrovi'=>DB::table('genres')->paginate(7)
         ]);
     }
 
     public function prikaziNoviZanr() {
-        return view('noviZanr');
+        
+        $viewName = $this->viewFolder . '.noviZanr';
+
+        return view($viewName);
     }
 
     public function sacuvajZanr() {

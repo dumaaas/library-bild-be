@@ -8,18 +8,30 @@ use Illuminate\Http\Request;
 
 class BindingController extends Controller
 {
+
+    private $viewFolder = 'pages/settings/bindings';
+
     public function prikaziEditPovez(Binding $povez) {
-        return view('editPovez', [
+
+        $viewName = $this->viewFolder . '.editPovez';
+
+        return view($viewName, [
             'povez' => $povez
         ]);
     }
 
     public function prikaziNoviPovez() {
-        return view('noviPovez');
+
+        $viewName = $this->viewFolder . '.noviPovez';
+
+        return view($viewName);
     }
 
     public function prikaziSettingsPovez() {
-        return view('settingsPovez', [
+
+        $viewName = $this->viewFolder . '.settingsPovez';
+
+        return view($viewName, [
             'povezi' => DB::table('bindings')->paginate(7)
         ]);
     }
