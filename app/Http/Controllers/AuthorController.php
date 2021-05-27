@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Author;
+use App\Services\AuthorService;
 use DB;
 use Illuminate\Http\Request;
 
@@ -10,44 +11,49 @@ class AuthorController extends Controller
 
     private $viewFolder = 'pages/autor';
 
-    public function prikaziAutore() {
+    public function prikaziAutore(AuthorService $autorService) {
 
         $viewName = $this->viewFolder . '.autori';
 
-        return view($viewName, [
-            'autori' => DB::table('authors')->paginate(7)
-        ]);
+        $viewModel = [
+            'autori' => $autorService->getAutori()->paginate(7)
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziAutora(Author $autor) {
-        return view('autorProfile', [
+
+        $viewName = $this->viewFolder . '.autorProfile';
+
+        $viewModel = [
             'autor' => $autor
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziEditAutor(Author $autor) {
-        return view('editAutor', [
+        $viewName = $this->viewFolder . '.editAutor';
+
+        return view($viewName, [
             'autor' => $autor
         ]);
     }
 
     public function prikaziNoviAutor() {
-        return view('noviAutor');
+        $viewName = $this->viewFolder . '.noviAutor';
+
+        return view($viewName);
     }
 
-    public function izmijeniAutora(Author $autor) {
-        //request all data, validate and update movie
-        request()->validate([
-            'name'=>'required',
-        ]);
+    public function izmijeniAutora(Author $autor, AuthorService $autorService) {
+        $viewName = $this->viewFolder . '.editAutor';
 
-        $autor->name=request('name');
-        $autor->biography=request('biography');
-
-        $autor->save();
+        $autorService->editAutor($autor);
 
         //return back to the edit author form
-        return view('editAutor', [
+        return view($viewName, [
             'autor' => $autor
         ]);
     }
@@ -58,21 +64,14 @@ class AuthorController extends Controller
         return back();
     }
 
-    public function sacuvajAutora() {
-        //request all data, validate and update author
-        request()->validate([
-            'authorName'=>'required',
-        ]);
+    public function sacuvajAutora(AuthorService $autorService) {
 
-        $autor = new Author();
+        $viewName = $this->viewFolder . '.autorProfile';
 
-        $autor->name=request('authorName');
-        $autor->biography=request('authorBiography');
-
-        $autor->save();
+        $autor = $autorService->saveAutor();
 
         //return back to the edit author form
-        return view('autorProfile', [
+        return view($viewName, [
             'autor' => $autor
         ]);
     }
