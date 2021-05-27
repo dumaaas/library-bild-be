@@ -1,16 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Author;
 use App\Services\AuthorService;
 use DB;
 use Illuminate\Http\Request;
+
+/*
+|--------------------------------------------------------------------------
+| AuthorController
+|--------------------------------------------------------------------------
+|
+| AuthorController je odgovaran za povezivanje logike
+| izmedju autor view-a i neophodnih Modela
+|
+*/
 
 class AuthorController extends Controller
 {
 
     private $viewFolder = 'pages/autor';
 
+    /**
+     * Prikazi sve autore
+     *
+     * @param  AuthorService $autorService
+     * @return void
+     */
     public function prikaziAutore(AuthorService $autorService) {
 
         $viewName = $this->viewFolder . '.autori';
@@ -22,6 +39,12 @@ class AuthorController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi konkretnog autora
+     *
+     * @param  Author $autor
+     * @return void
+     */
     public function prikaziAutora(Author $autor) {
 
         $viewName = $this->viewFolder . '.autorProfile';
@@ -33,46 +56,78 @@ class AuthorController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi stranicu za editovanje autora
+     *
+     * @param  Author $autor
+     * @return void
+     */
     public function prikaziEditAutor(Author $autor) {
         $viewName = $this->viewFolder . '.editAutor';
 
-        return view($viewName, [
+        $viewModel = [
             'autor' => $autor
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi stranicu za unos novog autora
+     *
+     * @return void
+     */
     public function prikaziNoviAutor() {
         $viewName = $this->viewFolder . '.noviAutor';
 
         return view($viewName);
     }
 
+    /**
+     * Izmijeni podatke o autoru
+     *
+     * @param  Author $autor
+     * @param  AuthorService $autorService
+     * @return void
+     */
     public function izmijeniAutora(Author $autor, AuthorService $autorService) {
         $viewName = $this->viewFolder . '.editAutor';
 
         $autorService->editAutor($autor);
 
-        //return back to the edit author form
-        return view($viewName, [
+        $viewModel = [
             'autor' => $autor
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
+    /**
+     * Izbrisi autora
+     *
+     * @param  Author $autor
+     */
     public function izbrisiAutora(Author $autor) {
         Author::destroy($autor->id);
 
         return back();
     }
 
+    /**
+     * Kreiraj i sacuvaj novog autora
+     *
+     * @param  AuthorService $autorService
+     */
     public function sacuvajAutora(AuthorService $autorService) {
 
         $viewName = $this->viewFolder . '.autorProfile';
 
         $autor = $autorService->saveAutor();
 
-        //return back to the edit author form
-        return view($viewName, [
+        $viewModel = [
             'autor' => $autor
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 }
