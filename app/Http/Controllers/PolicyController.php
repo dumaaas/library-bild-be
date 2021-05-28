@@ -15,7 +15,6 @@ class PolicyController extends Controller
         $viewName = $this->viewFolder . '.settingsPolisa';
 
         $viewModel=[
-
             'rokPozajmljivanja' => GlobalVariable::find(1),
             'rokRezervacije' => GlobalVariable::find(2),
             'rokPrekoracenja' => GlobalVariable::find(3)

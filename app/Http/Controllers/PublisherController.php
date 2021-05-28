@@ -17,7 +17,7 @@ class PublisherController extends Controller
         $viewName = $this->viewFolder . '.editIzdavac';
 
         $viewModel = [
-            'izdavac'=>$izdavac
+            'izdavac' => $izdavac
         ];
 
         return view($viewName, $viewModel);

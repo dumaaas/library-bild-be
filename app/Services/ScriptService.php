@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 class ScriptService {
     
     public function getScripts(){
-
         return $pisma = DB::table('scripts');
     }
 
@@ -25,7 +24,6 @@ class ScriptService {
         $pismo->name=request('nazivPismoEdit');
 
         $pismo->save();
-
    }
 
 }

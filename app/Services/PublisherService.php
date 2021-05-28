@@ -11,21 +11,19 @@ use Illuminate\Support\Str;
 class PublisherService {
     
     public function getPublishers(){
-
         return $izdavaci = DB::table('publishers');
     }
 
     public function editPublisher($izdavac){
 
-         //request all data, validate and update publisher
-         request()->validate([
-            'nazivIzdavacEdit'=>'required',
+        //request all data, validate and update publisher
+        request()->validate([
+            'nazivIzdavacEdit' => 'required',
         ]);
 
         $izdavac->name=request('nazivIzdavacEdit');
 
         $izdavac->save();
-
     }
 
     public function savePublisher(){

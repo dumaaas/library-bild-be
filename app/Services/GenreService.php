@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class GenreService {
     
     public function getGenres(){
-
         return $zanrovi = DB::table('genres');
     }
+    
 }

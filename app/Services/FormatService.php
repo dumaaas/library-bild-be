@@ -11,11 +11,7 @@ use Illuminate\Support\Str;
 class FormatService {
 
         public function getFormats(){
-
             return $formati= DB::table('formats');
         }
-
-
-
-
+        
 }

@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 class BindingService {
     
     public function getBindings(){
-
         return $povezi = DB::table('bindings');
     }
 
@@ -19,7 +18,7 @@ class BindingService {
 
         //request all data, validate and update binding
         request()->validate([
-          'nazivPovezEdit'=>'required',
+          'nazivPovezEdit' => 'required',
         ]);
 
         $povez->name=request('nazivPovezEdit');
