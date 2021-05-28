@@ -14,4 +14,18 @@ class ScriptService {
 
         return $pisma = DB::table('scripts');
     }
+
+    public function editScript($pismo){
+
+        //request all data, validate and update script
+        request()->validate([
+            'nazivPismoEdit'=>'required',
+        ]);
+
+        $pismo->name=request('nazivPismoEdit');
+
+        $pismo->save();
+
+   }
+
 }

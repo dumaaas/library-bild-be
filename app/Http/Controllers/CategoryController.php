@@ -54,20 +54,18 @@ class CategoryController extends Controller
         return back();
     }
 
-    public function izmijeniKategoriju(Category $kategorija) {
-        //request all data, validate and update category
-        request()->validate([
-            'nazivKategorijeEdit'=>'required',
-        ]);
+    public function izmijeniKategoriju(Category $kategorija,CategoryService $categoryService) {
+       
+        $viewName = $this->viewFolder . '.editKategorija';
 
-        $kategorija->name=request('nazivKategorijeEdit');
-        $kategorija->description=request('opisKategorije');
-        $kategorija->save();
+        $viewModel = [
+            'kategorija' => $kategorija
+        ];
+
+        $categoryService->editCategory($kategorija);
 
         //return back to the category
-        return view('editKategorija', [
-            'kategorija' => $kategorija
-        ]);
+        return view($viewName,$viewModel);
     }
 
     public function izbrisiKategoriju(Category $kategorija) {

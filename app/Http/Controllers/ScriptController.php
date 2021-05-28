@@ -54,20 +54,18 @@ class ScriptController extends Controller
         return back();
     }
 
-    public function izmijeniPismo(Script $pismo) {
-        //request all data, validate and update script
-        request()->validate([
-            'nazivPismoEdit'=>'required',
-        ]);
+    public function izmijeniPismo(Script $pismo, ScriptService $scriptService) {
 
-        $pismo->name=request('nazivPismoEdit');
+        $viewName = $this->viewFolder . '.editPismo';
 
-        $pismo->save();
+        $viewModel = [
+            'pismo' => $pismo
+        ];
+
+        $scriptService->editScript($pismo);
 
         //return back to the script
-        return view('editPismo', [
-            'pismo' => $pismo
-        ]);
+        return view($viewName,$viewModel);
     }
 
     public function izbrisiPismo(Script $pismo) {

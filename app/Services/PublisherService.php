@@ -14,4 +14,32 @@ class PublisherService {
 
         return $izdavaci = DB::table('publishers');
     }
+
+    public function editPublisher($izdavac){
+
+         //request all data, validate and update publisher
+         request()->validate([
+            'nazivIzdavacEdit'=>'required',
+        ]);
+
+        $izdavac->name=request('nazivIzdavacEdit');
+
+        $izdavac->save();
+
+    }
+
+    public function savePublisher(){
+
+        //request all data, validate and update publisher
+        request()->validate([
+            'nazivIzdavac'=>'required',
+        ]);
+
+        $izdavac = new Publisher();
+
+        $izdavac->name=request('nazivIzdavac');
+
+        $izdavac->save();
+        
+    }
 }

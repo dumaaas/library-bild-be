@@ -14,4 +14,17 @@ class BindingService {
 
         return $povezi = DB::table('bindings');
     }
+
+    public function editBinding($povez){
+
+        //request all data, validate and update binding
+        request()->validate([
+          'nazivPovezEdit'=>'required',
+        ]);
+
+        $povez->name=request('nazivPovezEdit');
+
+        $povez->save();
+
+   }
 }

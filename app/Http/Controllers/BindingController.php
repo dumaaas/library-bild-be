@@ -57,20 +57,18 @@ class BindingController extends Controller
         return back();
     }
 
-    public function izmijeniPovez(Binding $povez) {
-        //request all data, validate and update binding
-        request()->validate([
-            'nazivPovezEdit'=>'required',
-        ]);
+    public function izmijeniPovez(Binding $povez,BindingService $bindingService) {
+   
+        $viewName = $this->viewFolder . '.editPovez';
 
-        $povez->name=request('nazivPovezEdit');
+        $viewModel = [
+            'povez' => $povez
+        ];
 
-        $povez->save();
+        $bindingService->editBinding($povez);
 
         //return back to the binding
-        return view('editPovez', [
-            'povez' => $povez
-        ]);
+        return view($viewName,$viewModel);
     }
 
     public function izbrisiPovez(Binding $povez) {

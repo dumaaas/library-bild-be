@@ -14,4 +14,17 @@ class CategoryService {
 
         return $kategorije= DB::table('categories');
     }
+
+    public function editCategory($kategorija){
+
+        //request all data, validate and update category
+        request()->validate([
+         'nazivKategorijeEdit'=>'required',
+         ]);
+
+        $kategorija->name=request('nazivKategorijeEdit');
+        $kategorija->description=request('opisKategorije');
+        $kategorija->save();
+
+   }
 }

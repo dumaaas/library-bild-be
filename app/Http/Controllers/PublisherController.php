@@ -41,20 +41,18 @@ class PublisherController extends Controller
         return view($viewName, $viewModel);
     }
 
-    public function izmijeniIzdavaca(Publisher $izdavac) {
-        //request all data, validate and update publisher
-        request()->validate([
-            'nazivIzdavacEdit'=>'required',
-        ]);
+    public function izmijeniIzdavaca(Publisher $izdavac,PublisherService $publisherService) {
 
-        $izdavac->name=request('nazivIzdavacEdit');
+        $viewName = $this->viewFolder . '.editIzdavac';
 
-        $izdavac->save();
-
-        //return back to the publisher
-        return view('editIzdavac', [
+        $viewModel = [
             'izdavac' => $izdavac
-        ]);
+        ];
+
+        $publisherService->editPublisher($izdavac);
+        
+        //return back to the publisher
+        return view($viewName,$viewModel);
     }
 
     public function izbrisiIzdavaca(Publisher $izdavac) {
@@ -62,21 +60,17 @@ class PublisherController extends Controller
         return back();
     }
 
-    public function sacuvajIzdavaca(Publisher $izdavac) {
-        //request all data, validate and update publisher
-        request()->validate([
-            'nazivIzdavac'=>'required',
-        ]);
+    public function sacuvajIzdavaca(Publisher $izdavac,PublisherService $publisherService) {
 
-        $izdavac = new Publisher();
+        $viewName = $this->viewFolder . '.editIzdavac';
 
-        $izdavac->name=request('nazivIzdavac');
+        $viewModel = [
+            'izdavac' => $izdavac
+        ];
 
-        $izdavac->save();
+        $publisherService->savePublisher($izdavac);
 
         //return back to the publisher
-        return view('editIzdavac', [
-            'izdavac' => $izdavac
-        ]);
+        return view($viewName, $viewModel);
     }
 }
