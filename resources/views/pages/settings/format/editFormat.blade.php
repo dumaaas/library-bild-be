@@ -41,6 +41,14 @@
                     </div>
                 </div>
             </div>
+            @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                    <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+            @endif
         </div>
 
         <!-- Space for content -->
@@ -72,14 +80,6 @@
                         </div>
                     </div>
                 </div>
-                @if(Session::has('success'))
-                    <div class="fadeInOut absolute top-[200px] p-[15px] rounded-[15px] text-green-800 bg-green-200 right-[50px] fadeIn">
-                        {{ Session::get('success') }}
-                        @php
-                            Session::forget('success');
-                        @endphp
-                    </div>
-                @endif
             </form>
         </div>
     </section>
