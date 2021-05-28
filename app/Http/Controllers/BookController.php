@@ -110,7 +110,9 @@ class BookController extends Controller
 
         $viewModel = [
             'knjiga'     => $knjiga,
-            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id),
+            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
+                                                    ->take(3)
+                                                    ->get(),
         ];
         
         return view($viewName, $viewModel);

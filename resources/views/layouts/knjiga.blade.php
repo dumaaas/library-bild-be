@@ -159,7 +159,7 @@
                     @endforeach
                     @if($aktivnosti->count() > 0 )
                             <div class="mt-[40px]">
-                                <a href="{{route('dashboardAktivnostKonkretneKnjige', ['knjiga' => $aktivnost->book])}}" class="text-[#2196f3] hover:text-blue-600">
+                                <a href="{{route('dashboardAktivnostKonkretneKnjige', ['knjiga' => $knjiga])}}" class="text-[#2196f3] hover:text-blue-600">
                                     <i class="fas fa-history"></i> Prikazi sve
                                 </a>
                             </div>
