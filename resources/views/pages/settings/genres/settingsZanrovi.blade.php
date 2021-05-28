@@ -69,6 +69,7 @@
                                     </label>
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-4">
+                                    <img class="object-cover w-8 h-8 mr-2" src="/storage/image/{{$zanr->photo}}" alt="" />
                                     <p>{{$zanr->name}}</p>
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">

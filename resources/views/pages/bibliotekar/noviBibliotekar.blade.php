@@ -36,7 +36,7 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('sacuvajBibliotekara')}}" method="POST" class="text-gray-700 text-[14px] forma">
+                <form action="{{route('sacuvajBibliotekara')}}" method="POST" enctype="multipart/form-data" class="text-gray-700 text-[14px] forma">
                     @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
@@ -96,7 +96,7 @@
                                             <polyline points="21 15 16 10 5 21"></polyline>
                                         </svg>
                                         <span class="px-4 py-2 mt-2 leading-normal">Add photo</span>
-                                        <input type='file' class="hidden" :accept="accept" onchange="loadFileLibrarian(event)" />
+                                        <input type='file' name="userImage" class="hidden" :accept="accept" onchange="loadFileLibrarian(event)" />
                                     </div>
                                     <img id="image-output-librarian" class="hidden absolute w-48 h-[188px] bottom-0" />
                                 </div>

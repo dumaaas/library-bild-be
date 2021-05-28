@@ -160,7 +160,7 @@
                        aria-label="User profile">
                         <div class="flex items-center h-5">
                             <div class="w-[40px] h-[40px] mt-[15px]">
-                                <img class="rounded-full" src="../img/profileExample.jpg" alt="">
+                                <img class="rounded-full" src="/storage/image/{{Auth::user()->photo}}" alt="">
                             </div>
                         </div>
                     </a>

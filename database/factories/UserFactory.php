@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'jmbg' => $this->faker->unique()->numerify('##############'),
             'username' => $this->faker->unique()->userName(),
             'email_verified_at' => now(),
+            'photo' => 'default.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

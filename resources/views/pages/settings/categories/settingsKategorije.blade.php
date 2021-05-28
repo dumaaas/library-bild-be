@@ -70,7 +70,7 @@
                                     </label>
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-4">
-                                    <i class="fas fa-utensils fa-lg text-[#707070]"></i>
+                                    <img class="object-cover w-8 h-8 mr-2" src="/storage/image/{{$kategorija->photo}}" alt="" />
                                     <p class="ml-4 text-center">{{$kategorija->name}}</p>
                                 </td>
                                 <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$kategorija->description}}</td>

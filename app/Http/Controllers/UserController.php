@@ -108,7 +108,7 @@ class UserController extends Controller
      * @param  AuthorService $autorService
      * @return void
      */
-    public function izmijeniBibliotekara(User $user, UserService $userService) {
+    public function izmijeniBibliotekara(User $user, UserService $userService, Request $request) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
 
@@ -116,7 +116,7 @@ class UserController extends Controller
             'user' => $user
         ];
 
-        $userService->editBibliotekar($user);
+        $userService->editBibliotekar($user, $request);
 
         //return back to the edit author form
         return view($viewName, $viewModel);
@@ -176,11 +176,11 @@ class UserController extends Controller
      * @param  AuthorService $autorService
      * @return void
      */
-    public function sacuvajBibliotekara(UserService $userService) {
+    public function sacuvajBibliotekara(UserService $userService, Request $request) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
 
-        $user = $userService->saveBibliotekar();
+        $user = $userService->saveBibliotekar($request);
 
         $viewModel = [
             'user' => $user
@@ -268,7 +268,7 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function izmjeniUcenika(User $user, UserService $userService) {
+    public function izmjeniUcenika(User $user, UserService $userService, Request $request) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
 
@@ -276,7 +276,7 @@ class UserController extends Controller
             'user' => $user
         ];
 
-        $userService->editUcenik($user);
+        $userService->editUcenik($user, $request);
 
         //return back to the edit student form
         return view($viewName, $viewModel);
@@ -312,11 +312,11 @@ class UserController extends Controller
      * @param  AuthorService $autorService
      * @return void
      */
-    public function sacuvajUcenika(UserService $userService) {
+    public function sacuvajUcenika(UserService $userService, Request $request) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
 
-        $user = $userService->saveUcenik();
+        $user = $userService->saveUcenik($request);
 
         $viewModel = [
             'user' => $user

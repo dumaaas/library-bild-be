@@ -5,6 +5,7 @@ use App\Models\Genre;
 use DB;
 use Illuminate\Http\Request;
 use App\Services\GenreService;
+use App\Services\UserService;
 
 class GenreController extends Controller
 {
@@ -40,30 +41,16 @@ class GenreController extends Controller
         return view($viewName);
     }
 
-    public function sacuvajZanr() {
-        //request all data, validate and add genre
-        request()->validate([
-            'nazivZanra'=>'required',
-        ]);
-
-        $zanrovi = new Genre();
-
-        $zanrovi->name=request('nazivZanra');
-
-        $zanrovi->save();
+    public function sacuvajZanr(GenreService $genreService, UserService $userService, Request $request) {
+        
+        $genreService->saveGenre($userService, $request);
 
         return redirect('settingsZanrovi');
     }
 
-    public function izmijeniZanr(Genre $zanr) {
-        //request all data, validate and update genre
-        request()->validate([
-            'nazivZanraEdit'=>'required',
-        ]);
-
-        $zanr->name=request('nazivZanraEdit');
-
-        $zanr->save();
+    public function izmijeniZanr(GenreService $genreService, Genre $zanr, UserService $userService, Request $request) {
+        
+        $genreService->editGenre($zanr, $userService, $request);
 
         //return back to all genres
         return redirect('settingsZanrovi');

@@ -61,7 +61,7 @@
                             </label>
                         </td>
                         <td class="flex flex-row items-center px-4 py-4">
-                            <img class="object-cover w-8 h-8 mr-2 rounded-full" src="img/{{$user->photo}}"
+                            <img class="object-cover w-8 h-8 mr-2 rounded-full" src="/storage/image/{{$user->photo}}"
                                  alt="" />
                             <a href="{{ route('bibliotekarProfile', ['user' => $user->id]) }}">
                                 <span class="font-medium text-center">

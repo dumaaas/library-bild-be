@@ -45,7 +45,7 @@
 
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('sacuvajZanr')}}" method="POST" class="text-gray-700 forma">
+                <form action="{{route('sacuvajZanr')}}" method="POST" enctype="multipart/form-data" class="text-gray-700 forma">
                 @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[150px]">
@@ -53,6 +53,20 @@
                                 <p>Naziv zanra <span class="text-red-500">*</span></p>
                                 <input type="text" name="nazivZanra" id="nazivZanra" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNazivZanra()"/>
                                 <div id="validateNazivZanra"></div>
+                            </div>
+                            <div class="mt-[20px]">
+                                <p>Uploaduj ikonicu </p>
+                                <div id="empty-cover-art-ikonica"
+                                    class="flex w-[90%] mt-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
+                                    <div class="bg-gray-300 h-[40px] w-[102px] px-[20px] pt-[10px]">
+                                        <label class="cursor-pointer">
+                                            <p class="leading-normal">Browse...</p>
+                                            <input id="icon-upload" type='file' class="hidden" name="userImage" :multiple="multiple"
+                                                :accept="accept" />
+                                        </label>
+                                    </div>
+                                    <div id="icon-output" class="h-[40px] px-[20px] pt-[7px]"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

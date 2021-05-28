@@ -39,18 +39,21 @@ class DatabaseSeeder extends Seeder
         DB::table('genres')->insert([
             'id' => '1',
             'name' => 'Drama',
+            'photo' => 'default.jpg',
             'description' => $faker->sentence,
         ]);
 
         DB::table('genres')->insert([
             'id' => '2',
             'name' => 'Poetry',
+            'photo' => 'default.jpg',
             'description' => $faker->sentence,
         ]);
 
         DB::table('genres')->insert([
             'id' => '3',
             'name' => 'Romance',
+            'photo' => 'default.jpg',
             'description' => $faker->sentence,
         ]);
 
@@ -58,18 +61,21 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'id' => '1',
             'name' => 'Food & Drink',
+            'photo' => 'default.jpg',
             'description' => $faker->sentence,
         ]);
 
         DB::table('categories')->insert([
             'id' => '2',
             'name' => 'History',
+            'photo' => 'default.jpg',
             'description' => $faker->sentence,
         ]);
 
         DB::table('categories')->insert([
             'id' => '3',
             'name' => 'Law',
+            'photo' => 'default.jpg',
             'description' => $faker->sentence,
         ]);
 
@@ -170,8 +176,8 @@ class DatabaseSeeder extends Seeder
             'jmbg' => 12121212121212,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
+            'photo' => 'default.jpg',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('password'),
         ]);
 
         //SEEDING LIBRARIANS
@@ -182,8 +188,8 @@ class DatabaseSeeder extends Seeder
             'jmbg' => 12121212121213,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
+            'photo' => 'default.jpg',
             'email' => 'dumaaas@gmail.com',
-            'password' => Hash::make('password'),
         ]);
 
         DB::table('users')->insert([
@@ -193,8 +199,8 @@ class DatabaseSeeder extends Seeder
             'jmbg' => 12121212121214,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
+            'photo' => 'default.jpg',
             'email' => 'emilija@gmail.com',
-            'password' => Hash::make('password'),
         ]);
 
         DB::table('users')->insert([
@@ -204,8 +210,8 @@ class DatabaseSeeder extends Seeder
             'jmbg' => 12121212121215,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
+            'photo' => 'default.jpg',
             'email' => 'pavle@gmail.com',
-            'password' => Hash::make('password'),
         ]);
 
         //SEEDING STATUS_BOOK

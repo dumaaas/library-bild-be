@@ -37,7 +37,7 @@ class UserService {
      * @param  User  $bibliotekar
      * @return void
      */
-    public function editBibliotekar($bibliotekar) {
+    public function editBibliotekar($bibliotekar, $request) {
         //request all data, validate and update librarian
         request()->validate([
             'imePrezimeBibliotekarEdit' => 'required',
@@ -46,12 +46,15 @@ class UserService {
             'usernameBibliotekarEdit' => 'required',
             'pwBibliotekarEdit' => 'required',
             'pw2BibliotekarEdit' => 'required',
+            'userImage' => 'image|nullable|max: 1999'
         ]);
 
         $bibliotekar->name=request('imePrezimeBibliotekarEdit');
         $bibliotekar->jmbg=request('jmbgBibliotekarEdit');
         $bibliotekar->email=request('emailBibliotekarEdit');
         $bibliotekar->username=request('usernameBibliotekarEdit');
+
+        $this->uploadEditPhoto($bibliotekar, $request);
 
         $sifra1 = request('pwBibliotekarEdit');
         $sifra2 = request('pw2BibliotekarEdit');
@@ -71,7 +74,7 @@ class UserService {
      *
      * @return void
      */
-    public function saveBibliotekar() {
+    public function saveBibliotekar($request) {
         //request all data, validate and add librarian
         request()->validate([
             'imePrezimeBibliotekar' => 'required',
@@ -80,6 +83,7 @@ class UserService {
             'usernameBibliotekar' => 'required',
             'pwBibliotekar' => 'required',
             'pw2Bibliotekar' => 'required',
+            'userImage' => 'image|nullable|max: 1999'
         ]);
 
         $bibliotekar = new User(); 
@@ -94,6 +98,8 @@ class UserService {
         $bibliotekar->username=request('usernameBibliotekar');
         $bibliotekar->remember_token = Str::random(10);
 
+        $this->uploadPhoto($bibliotekar, $request);
+
         $sifra1 = request('pwBibliotekar');
         $sifra2 = request('pw2Bibliotekar');
 
@@ -107,6 +113,44 @@ class UserService {
         $bibliotekar->save();
 
         return $bibliotekar;
+    }
+
+    /**
+     * Uploaduj sliku ili postavi default sliku
+     * 
+     * @param User $user
+     * @param Request $request
+     * @return void
+     */
+    public function uploadPhoto($user, $request) {
+        if ($request->hasFile('userImage')) {
+            $this->uploadEditPhoto($user, $request);
+        } else {
+            $user->photo = 'default.jpg';
+        }
+    }
+
+    /**
+     * Upload/edit slike 
+     * 
+     * @param User $user
+     * @param Request $request
+     * @return void
+     */
+    public function uploadEditPhoto($user, $request) {
+        if ($request->hasFile('userImage')) {
+            $filenameWithExt = $request->file('userImage')->getClientOriginalName();
+            // Get Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Extension
+            $extension = $request->file('userImage')->getClientOriginalExtension();
+            // Filename To store
+            $fileNameToStore = $filename. '_'. time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('userImage')->storeAs('public/image', $fileNameToStore);
+
+            $user->photo = $fileNameToStore;
+        }
     }
 
     /**
@@ -125,7 +169,7 @@ class UserService {
      * @param  User  $ucenik
      * @return void
      */
-    public function editUcenik($ucenik) {
+    public function editUcenik($ucenik, $request) {
         //request all data, validate and update student
         request()->validate([
             'imePrezimeUcenikEdit'=>'required',
@@ -134,12 +178,15 @@ class UserService {
             'usernameUcenikEdit' => 'required',
             'pwUcenikEdit' => 'required',
             'pw2UcenikEdit' => 'required',
+            'userImage' => 'image|nullable|max: 1999'
         ]);
         $ucenik->name=request('imePrezimeUcenikEdit');
         $ucenik->jmbg=request('jmbgUcenikEdit');
         $ucenik->email=request('emailUcenikEdit');
         $ucenik->username=request('usernameUcenikEdit');
       
+        $this->uploadEditPhoto($ucenik, $request);
+
         $sifra1 = request('pwUcenikEdit');
         $sifra2 = request('pw2UcenikEdit');
 
@@ -158,7 +205,7 @@ class UserService {
      *
      * @return void
      */
-    public function saveUcenik() {
+    public function saveUcenik($request) {
         //request all data, validate and update student
         request()->validate([
             'imePrezimeUcenik'=>'required',
@@ -167,6 +214,7 @@ class UserService {
             'usernameUcenik' => 'required',
             'pwUcenik' => 'required',
             'pw2Ucenik' => 'required',
+            'userImage' => 'image|nullable|max: 1999'
         ]);
 
         $ucenik = new User(); 
@@ -180,6 +228,8 @@ class UserService {
         $ucenik->email=request('emailUcenik');
         $ucenik->username=request('usernameUcenik');
         $ucenik->remember_token = Str::random(10);
+
+        $this->uploadPhoto($ucenik, $request);
 
         $sifra1 = request('pwUcenik');
         $sifra2 = request('pw2Ucenik');

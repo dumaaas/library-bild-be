@@ -14,16 +14,38 @@ class CategoryService {
         return $kategorije = DB::table('categories');
     }
 
-    public function editCategory($kategorija){
+    public function editCategory($kategorija, $userService, $request){
 
         //request all data, validate and update category
         request()->validate([
-            'nazivKategorijeEdit'=>'required',
+            'nazivKategorije' => 'required',
+            'userImage'           => 'image|nullable|max: 1999',
+            'opisKategorije'      => 'required'
         ]);
 
-        $kategorija->name=request('nazivKategorijeEdit');
+        $kategorija->name=request('nazivKategorije');
         $kategorija->description=request('opisKategorije');
 
+        $userService->uploadEditPhoto($kategorija, $request);
+
         $kategorija->save();
+   }
+
+   public function saveCategory($userService, $request) {
+    //request all data, validate and update category
+    request()->validate([
+        'nazivKategorije' => 'required',
+        'userImage'       => 'image|nullable|max: 1999',
+        'opisKategorije'  => 'required',
+    ]);
+
+    $kategorija = new Category();
+
+    $kategorija->name=request('nazivKategorije');
+    $kategorija->description=request('opisKategorije');
+
+    $userService->uploadPhoto($kategorija, $request);
+
+    $kategorija->save();
    }
 }

@@ -66,7 +66,7 @@ class DashboardController extends Controller
             'knjiga'       => null,
             'ucenici'      => $userService->getUcenici()->get(),
             'bibliotekari' => $userService->getBibliotekari()->get(),
-            'knjige'       => $bookService->getBooks(),
+            'knjige'       => $bookService->getBooks()->get(),
         ];
 
         return view($viewName, $viewModel);

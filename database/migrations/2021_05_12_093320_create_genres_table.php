@@ -17,7 +17,7 @@ class CreateGenresTable extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
             $table->string('name', 256);
-            $table->string('icon', 256)->nullable();
+            $table->string('photo', 256)->nullable();
             $table->string('description', 2048)->nullable();
             $table->timestamps();
         });

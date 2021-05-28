@@ -44,7 +44,7 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('sacuvajKategoriju')}}" method="POST" class="text-gray-700 forma">
+                <form action="{{route('sacuvajKategoriju')}}" method="POST" enctype="multipart/form-data" class="text-gray-700 forma">
                 @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
@@ -63,7 +63,7 @@
                                     <div class="bg-gray-300 h-[40px] w-[102px] px-[20px] pt-[10px]">
                                         <label class="cursor-pointer">
                                             <p class="leading-normal">Browse...</p>
-                                            <input id="icon-upload" type='file' class="hidden" :multiple="multiple"
+                                            <input id="icon-upload" type='file' class="hidden" name="userImage" :multiple="multiple"
                                                 :accept="accept" />
                                         </label>
                                     </div>

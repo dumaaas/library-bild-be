@@ -5,6 +5,7 @@ use App\Models\Category;
 use DB;
 use Illuminate\Http\Request;
 use App\Services\CategoryService;
+use App\Services\UserService;
 
 class CategoryController extends Controller
 {
@@ -38,23 +39,15 @@ class CategoryController extends Controller
         return view($viewName);
     }
 
-    public function sacuvajKategoriju() {
-        //request all data, validate and update category
-        request()->validate([
-            'nazivKategorije'=>'required',
-        ]);
-
-        $kategorija = new Category();
-
-        $kategorija->name=request('nazivKategorije');
-        $kategorija->description=request('opisKategorije');
-        $kategorija->save();
+    public function sacuvajKategoriju(CategoryService $categoryService, UserService $userService, Request $request) {
+        
+        $categoryService->saveCategory($userService, $request);
 
         //return back
         return back();
     }
 
-    public function izmijeniKategoriju(Category $kategorija,CategoryService $categoryService) {
+    public function izmijeniKategoriju(Category $kategorija, CategoryService $categoryService, UserService $userService, Request $request) {
        
         $viewName = $this->viewFolder . '.editKategorija';
 
@@ -62,7 +55,7 @@ class CategoryController extends Controller
             'kategorija' => $kategorija
         ];
 
-        $categoryService->editCategory($kategorija);
+        $categoryService->editCategory($kategorija, $userService, $request);
 
         //return back to the category
         return view($viewName,$viewModel);
