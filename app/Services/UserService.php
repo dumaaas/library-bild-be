@@ -8,13 +8,35 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+/*
+|--------------------------------------------------------------------------
+| UserService
+|--------------------------------------------------------------------------
+|
+| UserService je odgovaran za svu logiku koja se desava 
+| unutar UserControllera. Ovdje je moguce definisati sve 
+| pomocne metode koji su potrebne.
+|
+*/
+
 class UserService {
 
+    /**
+     * Vrati sve bibliotekare iz baze podataka
+     *
+     * @return void
+     */
     public function getBibliotekari() {
         return $bibliotekari = User::with('userType')
                             ->where('userType_id', '=', 2);
     }
 
+    /**
+     * Izvrsi validaciju podataka i edituj bibliotekara
+     *
+     * @param  User  $bibliotekar
+     * @return void
+     */
     public function editBibliotekar($bibliotekar) {
         //request all data, validate and update librarian
         request()->validate([
@@ -44,6 +66,11 @@ class UserService {
         $bibliotekar->save();
     }
 
+    /**
+     * Kreiraj novog bibliotekara i sacuvaj ga u bazu
+     *
+     * @return void
+     */
     public function saveBibliotekar() {
         //request all data, validate and add librarian
         request()->validate([
@@ -82,11 +109,22 @@ class UserService {
         return $bibliotekar;
     }
 
+    /**
+     * Vrati sve ucenike iz baze podataka
+     *
+     * @return void
+     */
     public function getUcenici() {
         return $ucenici = User::with('userType')
                         ->where('userType_id', '=', 3);
     }
 
+    /**
+     * Izvrsi validaciju podataka i edituj ucenika
+     *
+     * @param  User  $ucenik
+     * @return void
+     */
     public function editUcenik($ucenik) {
         //request all data, validate and update student
         request()->validate([
@@ -115,6 +153,11 @@ class UserService {
         $ucenik->save();
     }
 
+    /**
+     * Kreiraj novog ucenika i sacuvaj ga u bazu
+     *
+     * @return void
+     */
     public function saveUcenik() {
         //request all data, validate and update student
         request()->validate([
@@ -178,4 +221,5 @@ class UserService {
 
         $user->save();
     }
+
 }

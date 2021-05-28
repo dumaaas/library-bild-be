@@ -13,6 +13,18 @@ use App\Models\Book;
 use Illuminate\Support\Facades\Gate;
 use Auth; 
 use App\Services\UserService;
+use App\Services\RentService;
+use App\Services\ReservationService;
+
+/*
+|--------------------------------------------------------------------------
+| UserController
+|--------------------------------------------------------------------------
+|
+| UserController je odgovaran za povezivanje logike
+| izmedju bibliotekar/ucenik view-a i neophodnih Modela
+|
+*/
 
 class UserController extends Controller
 {
@@ -20,6 +32,12 @@ class UserController extends Controller
     private $viewFolderLibrarian = 'pages/bibliotekar';
     private $viewFolderStudent = 'pages/ucenik';
 
+    /**
+     * Prikazi konkretnog bibliotekara
+     *
+     * @param  User $user
+     * @return void
+     */
     public function prikaziBibliotekara(User $user) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
@@ -34,6 +52,12 @@ class UserController extends Controller
         return abort(403, trans('Sorry, not sorry!'));
     }
 
+    /**
+     * Prikazi sve bibliotekare
+     *
+     * @param  UserService $userService
+     * @return void
+     */
     public function prikaziBibliotekare(UserService $userService) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekari';
@@ -45,6 +69,12 @@ class UserController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi stranicu za editovanje bibliotekara
+     *
+     * @param  User $user
+     * @return void
+     */
     public function prikaziEditBibliotekar(User $user) {
 
         $viewName = $this->viewFolderLibrarian . '.editBibliotekar';
@@ -59,6 +89,11 @@ class UserController extends Controller
         return abort(403, trans('Sorry, not sorry!'));
     }
 
+    /**
+     * Prikazi stranicu za unos novog bibliotekara
+     *
+     * @return void
+     */
     public function prikaziNoviBibliotekar() {
 
         $viewName = $this->viewFolderLibrarian . '.noviBibliotekar';
@@ -66,6 +101,13 @@ class UserController extends Controller
         return view($viewName);
     }
 
+    /**
+     * Izmijeni podatke o bibliotekaru
+     *
+     * @param  User $user
+     * @param  AuthorService $autorService
+     * @return void
+     */
     public function izmijeniBibliotekara(User $user, UserService $userService) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
@@ -80,6 +122,12 @@ class UserController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Izbrisi bibliotekara
+     *
+     * @param  User $user
+     * @return void
+     */
     public function izbrisiBibliotekara(User $user) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekari';
@@ -98,6 +146,13 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Resetuj sifru korisnika
+     *
+     * @param User  $user
+     * @param UserService $userService 
+     * @return void
+     */
     public function resetujSifru(User $user, UserService $userService) {
 
         if($user->userType->id == 2) {
@@ -115,6 +170,12 @@ class UserController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Kreiraj i sacuvaj novog bibliotekara
+     *
+     * @param  AuthorService $autorService
+     * @return void
+     */
     public function sacuvajBibliotekara(UserService $userService) {
 
         $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
@@ -129,6 +190,12 @@ class UserController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi sve ucenike
+     *
+     * @param  UserService $userService
+     * @return void
+     */
     public function prikaziUcenike(UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenik';
@@ -140,6 +207,12 @@ class UserController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi konkretnog ucenika
+     *
+     * @param  User $user
+     * @return void
+     */
     public function prikaziUcenikProfile(User $user) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
@@ -155,6 +228,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Prikazi stranicu za unos novog ucenika
+     *
+     * @return void
+     */
     public function prikaziNovogUcenika() {
 
         $viewName = $this->viewFolderStudent . '.noviUcenik';
@@ -162,6 +240,12 @@ class UserController extends Controller
         return view($viewName);
     }
 
+    /**
+     * Prikazi stranicu za editovanje ucenika
+     *
+     * @param  User $user
+     * @return void
+     */
     public function prikaziEditUcenik(User $user) {
 
         $viewName = $this->viewFolderStudent . '.editUcenik';
@@ -176,6 +260,14 @@ class UserController extends Controller
             return view($viewName, $viewModel);
         }
     }
+
+    /**
+     * Izmijeni podatke o uceniku
+     *
+     * @param  User $user
+     * @param  UserService $userService
+     * @return void
+     */
     public function izmjeniUcenika(User $user, UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
@@ -190,6 +282,12 @@ class UserController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Izbrisi ucenika
+     *
+     * @param  User $user
+     * @return void
+     */
     public function izbrisiUcenika(User $user) {
 
         $viewName = $this->viewFolderStudent . '.ucenik';
@@ -208,6 +306,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Kreiraj i sacuvaj novog ucenika
+     *
+     * @param  AuthorService $autorService
+     * @return void
+     */
     public function sacuvajUcenika(UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikProfile';
@@ -222,76 +326,106 @@ class UserController extends Controller
         return view($viewName, $viewModel);
     }
 
-    public function prikaziUcenikIzdate(User $user) {
+    /**
+     * Prikazi knjige izdate konkretnom uceniku
+     *
+     * @param  User $user
+     * @param  RentService $rentService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function prikaziUcenikIzdate(User $user, RentService $rentService, UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikIzdate';
 
+        // pokupi samo knjige sa statusom izdata za konkretnog ucenika
+        $izdate = $rentService->getIzdateKnjige()->where('student_id', '=', $user->id)->paginate(7);
+
         $viewModel = [
             'user' => $user,
-            'ucenikIzdate'=> Rent::with('book', 'student', 'librarian')
-                ->where('return_date', '=', null)
-                ->where('student_id', '=', $user->id)
-                ->paginate(7),
+            'ucenikIzdate'=> $izdate
         ];
 
         return view($viewName, $viewModel);
     }
 
-    public function prikaziUcenikVracene(User $user) {
+    /**
+     * Prikazi knjige koje je konkretni ucenik vratio
+     *
+     * @param  User $user
+     * @param  RentService $rentService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function prikaziUcenikVracene(User $user, RentService $rentService, UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikVracene';
 
+        $vracene = $rentService->getVraceneKnjige()->where('student_id', '=', $user->id)->paginate(7);
+
         $viewModel = [
             'user' => $user,
-            'ucenikVracene' => Rent::with('book', 'student', 'librarian')
-                ->where('return_date', '!=', null)
-                ->where('student_id', '=', $user->id)
-                ->paginate(7),
+            'ucenikVracene' => $vracene
         ];
 
         return view($viewName, $viewModel);
     }
 
-    public function prikaziUcenikPrekoracenje(User $user) {
+    /**
+     * Prikazi knjige izdate konkretnom uceniku koje su u prekoracenju
+     *
+     * @param  User $user
+     * @param  RentService $rentService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function prikaziUcenikPrekoracenje(User $user, RentService $rentService, UserService $userService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikPrekoracenje';
 
+        $prekoracene = $rentService->getPrekoraceneKnjige()->where('student_id', '=', $user->id)->paginate(7);
+
         $viewModel = [
             'user' => $user,
-            'ucenikPrekoracene' => Rent::with('book', 'student', 'librarian')
-                ->where('return_date', '=', null)->where('rent_date', '<', Carbon::now()->subDays(30))
-                ->where('student_id', '=', $user->id)
-                ->paginate(7),
+            'ucenikPrekoracene' => $prekoracene
         ];
 
         return view($viewName, $viewModel);
     }
 
-    public function prikaziUcenikAktivne(User $user) {
+    /**
+     * Prikazi aktivne rezervacije konkretnog ucenika
+     *
+     * @param  User $user
+     * @param  ReservationService $reservationService
+     * @return void
+     */
+    public function prikaziUcenikAktivne(User $user, ReservationService $reservationService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikAktivne';
 
         $viewModel = [
             'user' => $user,
-            'ucenikAktivne' => Reservation::with('book', 'student')
-                ->where('close_date', '=', null)
-                ->where('student_id', '=', $user->id)
-                ->paginate(7),
+            'ucenikAktivne' => $reservationService->getAktivneRezervacije()->where('student_id', '=', $user->id)->paginate(7)
         ];
 
         return view($viewName, $viewModel);
     }
 
-    public function prikaziUcenikArhivirane(User $user) {
+    /**
+     * Prikazi arhivirane rezervacije konkretnog ucenika
+     *
+     * @param  User $user
+     * @param  ReservationService $reservationService
+     * @return void
+     */
+    public function prikaziUcenikArhivirane(User $user, ReservationService $reservationService) {
 
         $viewName = $this->viewFolderStudent . '.ucenikArhivirane';
 
         $viewModel = [
             'user' => $user,
-            'ucenikArhivirane' => Reservation::with('book', 'student', 'reservationStatus')
-                ->where('close_date', '!=', null)
-                ->where('student_id', '=', $user->id)
-                ->paginate(7),
+            'ucenikArhivirane' => $reservationService->getArhiviraneRezervacije()->where('student_id', '=', $user->id)->paginate(7)
         ];
 
         return view($viewName, $viewModel);
