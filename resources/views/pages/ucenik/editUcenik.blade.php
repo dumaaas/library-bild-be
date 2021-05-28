@@ -35,13 +35,13 @@
         </div>
         <!-- Space for content -->
         <div class="scroll height-content section-content">
-            <form method="POST" action="{{ route('updateUcenik', ['ucenik' => $ucenik->id]) }}" class="text-gray-700 text-[14px] forma">
+            <form method="POST" action="{{ route('updateUcenik', ['user' => $user->id]) }}" class="text-gray-700 text-[14px] forma">
             @csrf
                 <div class="flex flex-row ml-[30px]">
                     <div class="w-[50%] mb-[100px]">
                         <div class="mt-[20px]">
                             <span>Ime i prezime <span class="text-red-500">*</span></span>
-                            <input type="text" name="imePrezimeUcenikEdit" id="imePrezimeUcenikEdit" value="{{$ucenik->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameUcenikEdit()"/>
+                            <input type="text" name="imePrezimeUcenikEdit" id="imePrezimeUcenikEdit" value="{{$user->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameUcenikEdit()"/>
                             <div id="validateNameUcenikEdit"></div>
                         </div>
 
@@ -56,31 +56,31 @@
 
                         <div class="mt-[20px]">
                             <span>JMBG <span class="text-red-500">*</span></span>
-                            <input type="text" name="jmbgUcenikEdit" id="jmbgUcenikEdit" value="{{$ucenik->jmbg}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgUcenikEdit()"/>
+                            <input type="text" name="jmbgUcenikEdit" id="jmbgUcenikEdit" value="{{$user->jmbg}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgUcenikEdit()"/>
                             <div id="validateJmbgUcenikEdit"></div>
                         </div>
 
                         <div class="mt-[20px]">
                             <span>E-mail <span class="text-red-500">*</span></span>
-                            <input type="email" name="emailUcenikEdit" id="emailUcenikEdit" value="{{$ucenik->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailUcenikEdit()"/>
+                            <input type="email" name="emailUcenikEdit" id="emailUcenikEdit" value="{{$user->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailUcenikEdit()"/>
                             <div id="validateEmailUcenikEdit"></div>
                         </div>
 
                         <div class="mt-[20px]">
                             <span>Korisnicko ime <span class="text-red-500">*</span></span>
-                            <input type="text" name="usernameUcenikEdit" id="usernameUcenikEdit" value="{{$ucenik->username}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameUcenikEdit()"/>
+                            <input type="text" name="usernameUcenikEdit" id="usernameUcenikEdit" value="{{$user->username}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameUcenikEdit()"/>
                             <div id="validateUsernameUcenikEdit"></div>
                         </div>
 
                         <div class="mt-[20px]">
                             <span>Sifra <span class="text-red-500">*</span></span>
-                            <input type="password" name="pwUcenikEdit" id="pwUcenikEdit" value="{{$ucenik->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwUcenikEdit()"/>
+                            <input type="password" name="pwUcenikEdit" id="pwUcenikEdit" value="{{$user->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwUcenikEdit()"/>
                             <div id="validatePwUcenikEdit"></div>
                         </div>
 
                         <div class="mt-[20px]">
                             <span>Ponovi sifru <span class="text-red-500">*</span></span>
-                            <input type="password" name="pw2UcenikEdit" id="pw2UcenikEdit" value="{{$ucenik->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2UcenikEdit()"/>
+                            <input type="password" name="pw2UcenikEdit" id="pw2UcenikEdit" value="{{$user->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2UcenikEdit()"/>
                             <div id="validatePw2UcenikEdit"></div>
                         </div>
                     </div>

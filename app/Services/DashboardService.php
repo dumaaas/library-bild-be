@@ -66,8 +66,7 @@ class DashboardService
     public function getBookActivity($knjiga) {
         return Rent::with('book', 'student', 'librarian')
                         ->where('book_id', 'LIKE', $knjiga)
-                        ->orderBy('rent_date', 'DESC')
-                        ->get();
+                        ->orderBy('rent_date', 'DESC');
     }
 
     /**

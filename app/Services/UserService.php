@@ -152,4 +152,30 @@ class UserService {
 
         return $ucenik;
     }
+
+    /**
+     * Resetuj sifru korisnika
+     *
+     * @param  User  $ucenik
+     * @return void
+     */
+    public function resetujSifru($user) {
+        //request all data, validate and update student
+        request()->validate([
+            'pwReset'=>'required',
+            'pw2Reset' => 'required',
+        ]);
+
+        $sifra1 = request('pwReset');
+        $sifra2 = request('pw2Reset');
+
+        if($sifra1 == $sifra2){
+            $user->password=Hash::make($sifra1);  
+        }else{
+            //Promijeniti ovo
+            echo('Moraju se poklapati sifre');
+        }
+
+        $user->save();
+    }
 }

@@ -30,7 +30,7 @@
                             </div>
                             <div class="">
                                 <p>
-                                    <a href="{{route('bibliotekarProfile', ['bibliotekar' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
                                         {{$aktivnost->librarian->name}}
                                     </a>
                                     rented a book
@@ -38,7 +38,7 @@
                                         {{$aktivnost->book->title}}
                                     </a>
                                     to
-                                    <a href="{{route('ucenikProfile', ['ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                         {{$aktivnost->student->name}}
                                     </a>
                                     on
@@ -72,7 +72,7 @@
                                     <td class="flex flex-row items-center px-2 py-4">
                                         <img class="object-cover w-8 h-8 rounded-full "
                                              src="img/profileStudent.jpg" alt="" />
-                                        <a href="{{route('ucenikProfile', ['ucenik' => $rezervacija->student])}}" class="ml-2 font-medium text-center">
+                                        <a href="{{route('ucenikProfile', ['user' => $rezervacija->student])}}" class="ml-2 font-medium text-center">
                                             {{$rezervacija->student->name}}
                                         </a>
                                     <td>

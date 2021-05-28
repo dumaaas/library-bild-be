@@ -44,5 +44,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isMyAccount', function($user, $profileUser) {
             return $user->id === $profileUser->id;
         });
+
     }
 }

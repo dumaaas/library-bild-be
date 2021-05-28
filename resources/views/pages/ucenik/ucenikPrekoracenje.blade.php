@@ -8,7 +8,7 @@
                     <div class="pl-[30px] py-[10px] flex flex-col">
                         <div>
                             <h1>
-                                {{$ucenik->name}}
+                                {{$user->name}}
                             </h1>
                         </div>
                         <div>
@@ -24,7 +24,7 @@
                                     </li>
                                     <li>
                                         <a href="ucenikProfile.php" class="text-[#2196f3] hover:text-blue-600">
-                                            ID-{{$ucenik->id}}
+                                            ID-{{$user->id}}
                                         </a>
                                     </li>
                                 </ol>
@@ -32,10 +32,12 @@
                         </div>
                     </div>
                     <div class="pt-[24px] pr-[30px]">
-                        <a href="#" class="inline hover:text-blue-600">
-                            <i class="fas fa-redo-alt mr-[3px]"></i>
-                            Resetuj sifru
-                        </a>
+                        @can('isMyAccount', $user)
+                            <a href="#" class="inline hover:text-blue-600 show-modal">
+                                <i class="fas fa-redo-alt mr-[3px]"></i>
+                                Resetuj sifru
+                            </a>
+                        @endcan
                         <a href="editUcenik.php" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-edit mr-[3px] "></i>
                             Izmjeni podatke
@@ -62,10 +64,10 @@
                 </div>
             </div>
             <div class="border-b-[1px] py-4 text-gray-500 border-[#e4dfdf] pl-[30px]">
-                <a href="{{ route('ucenikProfile', ['ucenik' => $ucenik->id]) }}" class="inline hover:text-blue-800">
+                <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="inline hover:text-blue-800">
                     Osnovni detalji
                 </a>
-                <a href="{{route('ucenikIzdate',['ucenik'=> $ucenik->id])}}" class="inline ml-[70px] active-book-nav">
+                <a href="{{route('ucenikIzdate',['user'=> $user->id])}}" class="inline ml-[70px] active-book-nav">
                     Evidencija iznajmljivanja
                 </a>
             </div>
@@ -78,7 +80,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                     <div
                                         class="py-[15px] px-[20px] w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
-                                        <a href="{{route('ucenikIzdate', ['ucenik' => $ucenik])}}" aria-label="Sve knjige" class="flex items-center">
+                                        <a href="{{route('ucenikIzdate', ['user' => $user])}}" aria-label="Sve knjige" class="flex items-center">
                                             <i
                                                 class="text-[#707070] transition duration-300 ease-in group-hover:text-[#576cdf] far fa-copy text-[20px]"></i>
                                             <div>
@@ -97,7 +99,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikVracene', ['ucenik' => $ucenik])}}" aria-label="Vracene knjige"
+                                        <a href="{{route('ucenikVracene', ['user' => $user])}}" aria-label="Vracene knjige"
                                             class="flex items-center">
                                             <i
                                                 class="transition duration-300 ease-in  text-[#707070] text-[20px] fas fa-file group-hover:text-[#576cdf]"></i>
@@ -117,7 +119,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikPrekoracenje', ['ucenik' => $ucenik])}}" aria-label="Knjige na raspolaganju"
+                                        <a href="{{route('ucenikPrekoracenje', ['user' => $user])}}" aria-label="Knjige na raspolaganju"
                                             class="flex items-center">
                                             <i
                                                 class="text-[#576cdf] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in "></i>
@@ -137,7 +139,7 @@
                                     class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikAktivne', ['ucenik' => $ucenik])}}" aria-label="Rezervacije" class="flex items-center">
+                                        <a href="{{route('ucenikAktivne', ['user' => $user])}}" aria-label="Rezervacije" class="flex items-center">
                                             <i
                                                 class="text-[#707070] text-[20px] far fa-calendar-check transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                             <div>
@@ -155,7 +157,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikArhivirane', ['ucenik' => $ucenik])}}" aria-label="Rezervacije"
+                                        <a href="{{route('ucenikArhivirane', ['user' => $user])}}" aria-label="Rezervacije"
                                             class="flex items-center">
                                             <i
                                                 class="text-[#707070] text-[20px] fas fa-calendar-alt transition duration-300 ease-in group-hover:text-[#576cdf]"></i>

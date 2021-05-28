@@ -124,14 +124,14 @@
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Bibliotekar</span>
-                                    <a href="{{route('bibliotekarProfile', ['bibliotekar' => $transakcija->librarian])}}"
+                                    <a href="{{route('bibliotekarProfile', ['user' => $transakcija->librarian])}}"
                                         class="block font-medium text-[#2196f3] hover:text-blue-600">
                                         {{$transakcija->librarian->name}}
                                     </a>
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Ucenik</span>
-                                    <a href="{{route('ucenikProfile', ['ucenik' => $transakcija->student])}}"
+                                    <a href="{{route('ucenikProfile', ['user' => $transakcija->student])}}"
                                         class="block font-medium text-[#2196f3] hover:text-blue-600">
                                         {{$transakcija->student->name}}
                                     </a>

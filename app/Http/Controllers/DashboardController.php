@@ -85,11 +85,11 @@ class DashboardController extends Controller
         $viewName = $this->viewFolder . '.dashboardAktivnost';
 
         $viewModel = [
-            'aktivnosti'   => $dashboardService->getBookActivity($knjiga->id),
+            'aktivnosti'   => $dashboardService->getBookActivity($knjiga->id)->get(),
             'knjiga'       => $knjiga,
             'ucenici'      => $userService->getUcenici()->get(),
             'bibliotekari' => $userService->getBibliotekari()->get(),
-            'knjige'       => $bookService->getBooks(),
+            'knjige'       => $bookService->getBooks()->get(),
         ];
 
         return view($viewName, $viewModel);

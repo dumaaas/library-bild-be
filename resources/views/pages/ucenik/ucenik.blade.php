@@ -43,7 +43,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-                        @foreach($ucenici as $ucenik)
+                        @foreach($ucenici as $user)
                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                 <td class="px-4 py-4 whitespace-no-wrap">
                                     <label class="inline-flex items-center">
@@ -52,13 +52,13 @@
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-4">
                                     <img class="object-cover w-8 h-8 mr-2 rounded-full" src="img/profileStudent.jpg" alt=""/>
-                                    <a href="{{ route('ucenikProfile', ['ucenik' => $ucenik->id]) }}">
-                                        <span class="font-medium text-center">{{$ucenik->name}}</span>
+                                    <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}">
+                                        <span class="font-medium text-center">{{$user->name}}</span>
                                     </a>
                                 </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$ucenik->email}}</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$ucenik->userType->name}}</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$ucenik->last_login_at}}</td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->email}}</td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->userType->name}}</td>
+                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->last_login_at}}</td>
                                 <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
                                     <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudent hover:text-[#606FC7]">
                                         <i class="fas fa-ellipsis-v"></i>
@@ -68,19 +68,19 @@
                                         <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                             aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                             <div class="py-1">
-                                                <a href="{{ route('ucenikProfile', ['ucenik' => $ucenik->id]) }}" tabindex="0"
+                                                <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
                                                     <i class="far fa-file mr-[5px] ml-[5px] py-1"></i>
                                                     <span class="px-4 py-0">Pogledaj detalje</span>
                                                 </a>
-                                                <a href="{{ route('editUcenik', ['ucenik' => $ucenik->id]) }}" tabindex="0"
+                                                <a href="{{ route('editUcenik', ['user' => $user->id]) }}" tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
                                                     <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                                     <span class="px-4 py-0">Izmijeni korisnika</span>
                                                 </a>
-                                                <a href="{{ route('deleteUcenik', ['ucenik' => $ucenik->id]) }}" tabindex="0"
+                                                <a href="{{ route('deleteUcenik', ['user' => $user->id]) }}" tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
                                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>

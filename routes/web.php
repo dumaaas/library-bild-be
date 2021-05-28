@@ -26,25 +26,26 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/filterAktivnosti', [\App\Http\Controllers\DashboardController::class, 'filterAktivnosti'])->name('filterAktivnosti');
 
     //USER - ROUTES
-    Route::get('/bibliotekarProfile/{bibliotekar}', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekara'])->name('bibliotekarProfile');
+    Route::get('/bibliotekarProfile/{user}', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekara'])->name('bibliotekarProfile');
     Route::get('/bibliotekari', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekare']);
-    Route::get('/editBibliotekar{bibliotekar}', [\App\Http\Controllers\UserController::class, 'prikaziEditBibliotekar'])->name('editBibliotekar');
-    Route::post('/editBibliotekar/{bibliotekar}/update', [\App\Http\Controllers\UserController::class, 'izmijeniBibliotekara'])->name('updateBibliotekar');
-    Route::get('/deleteBibliotekar/{bibliotekar}', [\App\Http\Controllers\UserController::class, 'izbrisiBibliotekara'])->name('deleteBibliotekar');
+    Route::get('/editBibliotekar{user}', [\App\Http\Controllers\UserController::class, 'prikaziEditBibliotekar'])->name('editBibliotekar');
+    Route::post('/editBibliotekar/{user}/update', [\App\Http\Controllers\UserController::class, 'izmijeniBibliotekara'])->name('updateBibliotekar');
+    Route::get('/deleteBibliotekar/{user}', [\App\Http\Controllers\UserController::class, 'izbrisiBibliotekara'])->name('deleteBibliotekar');
     Route::get('/noviBibliotekar', [\App\Http\Controllers\UserController::class, 'prikaziNoviBibliotekar'])->name('noviBibliotekar');
     Route::post('/sacuvajBibliotekara', [\App\Http\Controllers\UserController::class, 'sacuvajBibliotekara'])->name('sacuvajBibliotekara');
     Route::get('/ucenik', [\App\Http\Controllers\UserController::class, 'prikaziUcenike']);
-    Route::get('/ucenikProfile/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikProfile'])->name('ucenikProfile');
-    Route::get('/editUcenik/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziEditUcenik'])->name('editUcenik');
-    Route::post('/editUcenik/{ucenik}/update', [\App\Http\Controllers\UserController::class, 'izmjeniUcenika'])->name('updateUcenik');
+    Route::get('/ucenikProfile/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikProfile'])->name('ucenikProfile');
+    Route::get('/editUcenik/{user}', [\App\Http\Controllers\UserController::class, 'prikaziEditUcenik'])->name('editUcenik');
+    Route::post('/editUcenik/{user}/update', [\App\Http\Controllers\UserController::class, 'izmjeniUcenika'])->name('updateUcenik');
     Route::get('/noviUcenik', [\App\Http\Controllers\UserController::class, 'prikaziNovogUcenika'])->name('noviUcenik');
-    Route::get('/deleteUcenik/{ucenik}', [\App\Http\Controllers\UserController::class, 'izbrisiUcenika'])->name('deleteUcenik');
+    Route::get('/deleteUcenik/{user}', [\App\Http\Controllers\UserController::class, 'izbrisiUcenika'])->name('deleteUcenik');
     Route::post('/sacuvajUcenika', [\App\Http\Controllers\UserController::class, 'sacuvajUcenika'])->name('sacuvajUcenika');
-    Route::get('/ucenikIzdate/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikIzdate'])->name('ucenikIzdate');
-    Route::get('/ucenikVracene/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikVracene'])->name('ucenikVracene');
-    Route::get('/ucenikPrekoracenje/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje'])->name('ucenikPrekoracenje');
-    Route::get('/ucenikAktivne/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne'])->name('ucenikAktivne');
-    Route::get('/ucenikArhivirane/{ucenik}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane'])->name('ucenikArhivirane');
+    Route::get('/ucenikIzdate/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikIzdate'])->name('ucenikIzdate');
+    Route::get('/ucenikVracene/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikVracene'])->name('ucenikVracene');
+    Route::get('/ucenikPrekoracenje/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje'])->name('ucenikPrekoracenje');
+    Route::get('/ucenikAktivne/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne'])->name('ucenikAktivne');
+    Route::get('/ucenikArhivirane/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane'])->name('ucenikArhivirane');
+    Route::post('/resetujSifru/{user}', [\App\Http\Controllers\UserController::class, 'resetujSifru'])->name('resetujSifru');
 
 
     //BOOK - ROUTES

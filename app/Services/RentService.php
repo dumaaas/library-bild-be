@@ -5,7 +5,9 @@ namespace App\Services;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Rent;
+use App\Models\RentStatus;
 use Carbon\Carbon;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +88,42 @@ class RentService
                     }, 3);
     }
 
+    /**
+     * Sacuvaj rent
+     *
+     * @param  Book  $knjiga
+     * @return void
+     */
+    public function saveRent($knjiga) {
+        $izdavanje = new Rent();
+
+        $izdavanje->book_id = $knjiga;
+        $izdavanje->librarian_id = Auth::id();
+        $izdavanje->student_id = request('ucenik');
+        $izdavanje->rent_date = request('datumIzdavanja');
+
+        $izdavanje->save();
+
+        return $izdavanje;
+    }
+
+    /**
+     * Sacuvaj rent status
+     *
+     * @param  int $rentId
+     * @param  date $rentDate
+     * @return void
+     */
+    public function saveRentStatus($rentId, $rentDate) {
+        $statusIzdavanja = new RentStatus();
+
+        $statusIzdavanja->rent_id = $rentId;
+        $statusIzdavanja->statusBook_id = 2;
+        $statusIzdavanja->date = $rentDate;
+
+        $statusIzdavanja->save();
+    }
+    
     /**
      * Izbrisi transakciju
      *

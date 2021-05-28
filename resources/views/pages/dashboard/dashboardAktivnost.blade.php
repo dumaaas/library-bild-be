@@ -366,7 +366,7 @@
                                     </div>
                                     <div class="">
                                         <p>
-                                            <a href="{{route('bibliotekarProfile', ['bibliotekar' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 {{$aktivnost->librarian->name}}
                                             </a>
                                             rented a book
@@ -374,7 +374,7 @@
                                                 {{$aktivnost->book->title}}
                                             </a>
                                             to
-                                            <a href="{{route('ucenikProfile', ['ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 {{$aktivnost->student->name}}
                                             </a>
                                             on
