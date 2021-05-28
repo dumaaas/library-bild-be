@@ -438,20 +438,20 @@ class BookController extends Controller
 
         //request all data, validate and update author
         request()->validate([
-            'nazivKnjiga'     =>'required',
-            'kratki_sadrzaj'  =>'required',
-            'knjigaKategorije'=>'required',
-            'knjigaZanrovi'   =>'required',
-            'knjigaAutori'    =>'required',
-            'knjigaIzdavac'   =>'required',
-            'godinaIzdavanja' =>'required',
-            'knjigaKolicina'  =>'required',
-            'brStrana'        =>'required',
-            'knjigaPismo'     =>'required',
-            'knjigaPovez'     =>'required',
-            'knjigaFormat'    =>'required',
-            'knjigaIsbn'      =>'required',
-            'knjigaJezik'     =>'required',
+            'nazivKnjiga'      => 'required',
+            'kratki_sadrzaj'   => 'required',
+            'knjigaKategorije' => 'required',
+            'knjigaZanrovi'    => 'required',
+            'knjigaAutori'     => 'required',
+            'knjigaIzdavac'    => 'required',
+            'godinaIzdavanja'  => 'required',
+            'knjigaKolicina'   => 'required',
+            'brStrana'         => 'required',
+            'knjigaPismo'      => 'required',
+            'knjigaPovez'      => 'required',
+            'knjigaFormat'     => 'required',
+            'knjigaIsbn'       => 'required',
+            'knjigaJezik'      => 'required',
         ]);
 
         $knjiga = $bookService->saveBook();
