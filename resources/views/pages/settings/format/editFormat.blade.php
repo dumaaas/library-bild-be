@@ -47,12 +47,14 @@
         <div class="scroll height-content section-content">
             <form action="{{route('izmijeniFormat', ['format' => $format->id])}}" method="POST" class="text-gray-700 forma">
             @csrf
-                <div class="flex flex-row ml-[30px]">
+                <div class="flex flex-col ml-[30px]">
                     <div class="w-[50%] mb-[150px]">
                         <div class="mt-[20px]">
                             <p>Naziv formata <span class="text-red-500">*</span></p>
                             <input type="text" name="nazivFormatEdit" id="nazivFormatEdit" value="{{$format->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNazivFormatEdit()"/>
-                            <div id="validateNazivFormatEdit"></div>
+                            @error('nazivFormatEdit')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -70,6 +72,14 @@
                         </div>
                     </div>
                 </div>
+                @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[200px] p-[15px] rounded-[15px] text-green-800 bg-green-200 right-[50px] fadeIn">
+                        {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
             </form>
         </div>
     </section>

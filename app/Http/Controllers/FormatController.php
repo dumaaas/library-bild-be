@@ -60,7 +60,7 @@ class FormatController extends Controller
 
         //request all data, validate and update genre
         request()->validate([
-            'nazivFormatEdit'=>'required',
+            'nazivFormatEdit'=>'required|',
         ]);
 
         $format->name=request('nazivFormatEdit');
@@ -68,7 +68,7 @@ class FormatController extends Controller
         $format->save();
 
         //return back to all genres
-        return redirect('settingsFormat');
+        return back()->with('success', 'Format uspjesno izmijenjen!');
     }
 
     public function izbrisiFormat(Format $format) {
