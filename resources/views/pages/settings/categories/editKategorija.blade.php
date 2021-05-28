@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('editKategorija')
     @can('isAdmin')
-        <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700"
+    <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700"></section>
     @elsecan('isLibrarian', 'isStudent')
         <div class="pl-[110px] section- mt-[35px]">
             <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">

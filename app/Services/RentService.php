@@ -231,4 +231,28 @@ class RentService
 
         return $prekoracene;
     }
+
+    /**
+     * Vrati pretrazene izdate knjige
+     *
+     * @return void
+     */
+    public function searchIzdateKnjige() {
+        $izdate = Rent::query();
+        
+        $izdate = $this->getIzdateKnjige();
+
+        if(request('searchIzdate')) {
+            $knjiga = request('searchIzdate');
+            $izdate = $izdate->where(function ($query) {
+                $query->select('title')
+                    ->from('books')
+                    ->whereColumn('books.id', 'rents.book_id');
+            }, 'LIKE', '%'.$knjiga.'%');
+        }
+
+        $izdate = $izdate->paginate(7);
+
+        return $izdate;
+    }
 }

@@ -203,6 +203,28 @@ class RentController extends Controller
     }
 
     /**
+     * Prikazi filtrirane izdate knjige
+     *
+     * @param  RentService $rentService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function searchIzdateKnjige(RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.izdateKnjige';
+
+        $izdate = $rentService->searchIzdateKnjige();
+
+        $viewModel = [
+            'izdate'       => $izdate,
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
+        ];
+
+        return view($viewName, $viewModel);
+
+    }
+
+    /**
      * Prikazi filtirirane vracene knjige
      *
      * @param  RentService $rentService

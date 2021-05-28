@@ -90,8 +90,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/filterIzdateKnjige', [\App\Http\Controllers\RentController::class, 'filterIzdateKnjige'])->name('filterIzdateKnjige');
     Route::get('/filterVraceneKnjige', [\App\Http\Controllers\RentController::class, 'filterVraceneKnjige'])->name('filterVraceneKnjige');
     Route::get('/filterPrekoraceneKnjige', [\App\Http\Controllers\RentController::class, 'filterPrekoraceneKnjige'])->name('filterPrekoraceneKnjige');
+    Route::get('/searchIzdateKnjige', [\App\Http\Controllers\RentController::class, 'searchIzdateKnjige'])->name('searchIzdateKnjige');
 
-    
     //SCRIPT - ROUTES
     Route::get('/editPismo/{pismo}', [\App\Http\Controllers\ScriptController::class, 'prikaziEditPismo'])->name('editPismo');
     Route::get('/novoPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziNovoPismo'])->name('novoPismo');
