@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use DB;
 use Illuminate\Http\Request;
+use App\Services\CategoryService;
 
 class CategoryController extends Controller
 {
@@ -14,17 +15,21 @@ class CategoryController extends Controller
 
         $viewName = $this->viewFolder . '.editKategorija';
 
-        return view($viewName, [
-        'kategorija'=>$kategorija
-        ]);
+        $viewModel = [
+            'kategorija'=>$kategorija
+        ];
+
+        return view($viewName, $viewModel);
     }
-    public function prikaziSettingsKategorije() {
+    public function prikaziSettingsKategorije(CategoryService $categoryService) {
 
         $viewName = $this->viewFolder . '.settingsKategorije';
 
-        return view($viewName,[
-            'kategorije'=>DB::table('categories')->paginate(7)
-        ]);
+        $viewModel = [
+            'kategorije' => $categoryService->getCategories()->paginate(7)
+        ];
+
+        return view($viewName,$viewModel);
     }
     public function prikaziNovaKategorija() {
 
@@ -49,20 +54,18 @@ class CategoryController extends Controller
         return back();
     }
 
-    public function izmijeniKategoriju(Category $kategorija) {
-        //request all data, validate and update category
-        request()->validate([
-            'nazivKategorijeEdit'=>'required',
-        ]);
+    public function izmijeniKategoriju(Category $kategorija,CategoryService $categoryService) {
+       
+        $viewName = $this->viewFolder . '.editKategorija';
 
-        $kategorija->name=request('nazivKategorijeEdit');
-        $kategorija->description=request('opisKategorije');
-        $kategorija->save();
+        $viewModel = [
+            'kategorija' => $kategorija
+        ];
+
+        $categoryService->editCategory($kategorija);
 
         //return back to the category
-        return view('editKategorija', [
-            'kategorija' => $kategorija
-        ]);
+        return view($viewName,$viewModel);
     }
 
     public function izbrisiKategoriju(Category $kategorija) {

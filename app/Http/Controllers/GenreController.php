@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use DB;
 use Illuminate\Http\Request;
+use App\Services\GenreService;
 
 class GenreController extends Controller
 {
@@ -14,18 +15,22 @@ class GenreController extends Controller
 
         $viewName = $this->viewFolder . '.editZanr';
 
-        return view($viewName,[
-        'zanr'=>$zanr
-        ]);
+        $viewModel = [
+            'zanr'=>$zanr
+        ];
+
+        return view($viewName,$viewModel);
     }
 
-    public function prikaziSettingsZanrovi() {
+    public function prikaziSettingsZanrovi(GenreService $genreService) {
 
         $viewName = $this->viewFolder . '.settingsZanrovi';
 
-        return view($viewName,[
-            'zanrovi'=>DB::table('genres')->paginate(7)
-        ]);
+        $viewModel = [
+            'zanrovi'=> $genreService->getGenres()->paginate(7)
+        ];
+
+        return view($viewName,$viewModel);
     }
 
     public function prikaziNoviZanr() {

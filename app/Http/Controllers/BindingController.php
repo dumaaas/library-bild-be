@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Binding;
 use DB;
 use Illuminate\Http\Request;
+use App\Services\BindingService;
 
 class BindingController extends Controller
 {
@@ -15,9 +16,11 @@ class BindingController extends Controller
 
         $viewName = $this->viewFolder . '.editPovez';
 
-        return view($viewName, [
-            'povez' => $povez
-        ]);
+        $viewModel = [
+            'povez'=>$povez
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function prikaziNoviPovez() {
@@ -27,13 +30,15 @@ class BindingController extends Controller
         return view($viewName);
     }
 
-    public function prikaziSettingsPovez() {
+    public function prikaziSettingsPovez(BindingService $bindingService) {
 
         $viewName = $this->viewFolder . '.settingsPovez';
 
-        return view($viewName, [
-            'povezi' => DB::table('bindings')->paginate(7)
-        ]);
+        $viewModel = [
+            'povezi'=>$bindingService->getBindings()->paginate(7)
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function sacuvajPovez() {
@@ -52,20 +57,18 @@ class BindingController extends Controller
         return back();
     }
 
-    public function izmijeniPovez(Binding $povez) {
-        //request all data, validate and update binding
-        request()->validate([
-            'nazivPovezEdit'=>'required',
-        ]);
+    public function izmijeniPovez(Binding $povez,BindingService $bindingService) {
+   
+        $viewName = $this->viewFolder . '.editPovez';
 
-        $povez->name=request('nazivPovezEdit');
+        $viewModel = [
+            'povez' => $povez
+        ];
 
-        $povez->save();
+        $bindingService->editBinding($povez);
 
         //return back to the binding
-        return view('editPovez', [
-            'povez' => $povez
-        ]);
+        return view($viewName,$viewModel);
     }
 
     public function izbrisiPovez(Binding $povez) {

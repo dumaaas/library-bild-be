@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Format;
 use DB;
 use Illuminate\Http\Request;
+use App\Services\FormatService;
 
 class FormatController extends Controller
 {
@@ -14,9 +15,11 @@ class FormatController extends Controller
 
         $viewName = $this->viewFolder . '.editFormat';
 
-        return view($viewName,[
+        $viewModel = [
             'format'=>$format
-        ]);
+        ];
+
+        return view($viewName,$viewModel);
     }
 
     public function prikaziNoviFormat() {
@@ -26,16 +29,19 @@ class FormatController extends Controller
         return view($viewName);
     }
 
-    public function prikaziSettingsFormat() {
+    public function prikaziSettingsFormat(FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.settingsFormat';
 
-        return view($viewName,[
-            'formati'=>DB::table('formats')->paginate(7)
-        ]);
+        $viewModel = [
+            'formati' => $formatService->getFormats()->paginate(7)
+        ];
+
+        return view($viewName,$viewModel);
     }
 
     public function sacuvajFormat() {
+
         //request all data, validate and add format
         request()->validate([
             'nazivFormat'=>'required',
@@ -51,6 +57,7 @@ class FormatController extends Controller
     }
 
     public function izmijeniFormat(Format $format) {
+
         //request all data, validate and update genre
         request()->validate([
             'nazivFormatEdit'=>'required',
@@ -65,6 +72,7 @@ class FormatController extends Controller
     }
 
     public function izbrisiFormat(Format $format) {
+    
         Format::destroy($format->id);
         return redirect('settingsFormat');
     }

@@ -14,19 +14,25 @@ class PolicyController extends Controller
 
         $viewName = $this->viewFolder . '.settingsPolisa';
 
-        return view($viewName, [
+        $viewModel=[
+
             'rokPozajmljivanja' => GlobalVariable::find(1),
             'rokRezervacije' => GlobalVariable::find(2),
             'rokPrekoracenja' => GlobalVariable::find(3)
-        ]);
+        ];
+
+        return view($viewName, $viewModel);
     }
 
     public function izmijeniRokRezervacije(){
+
+        $viewName = $this->viewFolder . '.settingsPolisa';
+
         $rezervacija = GlobalVariable::find(2);
         $rezervacija->value = request('rokRezervacije');
         $rezervacija->save();
 
-        return view('settingsPolisa', [
+        return view($viewName, [
             'rokPozajmljivanja' => GlobalVariable::find(1),
             'rokRezervacije' => $rezervacija,
             'rokPrekoracenja' => GlobalVariable::find(3)
@@ -34,11 +40,14 @@ class PolicyController extends Controller
     }
 
     public function izmijeniRokPozajmljivanja(){
+
+        $viewName = $this->viewFolder . '.settingsPolisa';
+
         $rezervacija = GlobalVariable::find(1);
         $rezervacija->value = request('rokPozajmljivanja');
         $rezervacija->save();
 
-        return view('settingsPolisa', [
+        return view($viewName, [
             'rokPozajmljivanja' => $rezervacija,
             'rokRezervacije' => GlobalVariable::find(2),
             'rokPrekoracenja' => GlobalVariable::find(3)
@@ -46,11 +55,14 @@ class PolicyController extends Controller
     }
 
     public function izmijeniRokPrekoracenja(){
+
+        $viewName = $this->viewFolder . '.settingsPolisa';
+
         $rezervacija = GlobalVariable::find(3);
         $rezervacija->value = request('rokPrekoracenja');
         $rezervacija->save();
 
-        return view('settingsPolisa', [
+        return view($viewName, [
             'rokPozajmljivanja' => GlobalVariable::find(1),
             'rokRezervacije' => GlobalVariable::find(2),
             'rokPrekoracenja' => $rezervacija
