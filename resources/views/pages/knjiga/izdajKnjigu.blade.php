@@ -90,6 +90,14 @@
                         </div>
                     </div>
                 </div>
+                @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                        <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
             </div>
 
             <!-- Space for content -->
@@ -115,7 +123,7 @@
                                 <div class="w-[50%]">
                                     <p>Datum izdavanja <span class="text-red-500">*</span></p>
                                     <label class="text-gray-700" for="date">
-                                        <input type="date" name="datumIzdavanja" id="datumIzdavanja"
+                                        <input type="date" name="datumIzdavanja" id="datumIzdavanja" min="{{Carbon\Carbon::now()->format('Y-m-d')}}"
                                             class="flex w-[90%] mt-2 px-4 py-2 text-base placeholder-gray-400 bg-white border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                             onclick="clearErrorsDatumIzdavanja();"
                                             onchange="funkcijaDatumVracanja({{$rokPozajmljivanja->value}});" />

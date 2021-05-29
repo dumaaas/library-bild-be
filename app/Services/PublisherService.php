@@ -21,7 +21,7 @@ class PublisherService {
             'nazivIzdavacEdit' => 'required',
         ]);
 
-        $izdavac->name=request('nazivIzdavacEdit');
+        $izdavac->name = request('nazivIzdavacEdit');
 
         $izdavac->save();
     }
@@ -30,12 +30,12 @@ class PublisherService {
 
         //request all data, validate and update publisher
         request()->validate([
-            'nazivIzdavac'=>'required',
+            'nazivIzdavac' => 'required',
         ]);
 
         $izdavac = new Publisher();
 
-        $izdavac->name=request('nazivIzdavac');
+        $izdavac->name = request('nazivIzdavac');
 
         $izdavac->save();
         

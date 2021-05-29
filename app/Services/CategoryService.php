@@ -18,13 +18,13 @@ class CategoryService {
 
         //request all data, validate and update category
         request()->validate([
-            'nazivKategorije' => 'required',
+            'nazivKategorije'     => 'required',
             'userImage'           => 'image|nullable|max: 1999',
             'opisKategorije'      => 'required'
         ]);
 
-        $kategorija->name=request('nazivKategorije');
-        $kategorija->description=request('opisKategorije');
+        $kategorija->name        = request('nazivKategorije');
+        $kategorija->description = request('opisKategorije');
 
         $userService->uploadEditPhoto($kategorija, $request);
 
@@ -41,8 +41,8 @@ class CategoryService {
 
     $kategorija = new Category();
 
-    $kategorija->name=request('nazivKategorije');
-    $kategorija->description=request('opisKategorije');
+    $kategorija->name        = request('nazivKategorije');
+    $kategorija->description = request('opisKategorije');
 
     $userService->uploadPhoto($kategorija, $request);
 

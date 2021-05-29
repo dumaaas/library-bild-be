@@ -18,10 +18,10 @@ class ScriptService {
 
         //request all data, validate and update script
         request()->validate([
-            'nazivPismoEdit'=>'required',
+            'nazivPismoEdit' => 'required',
         ]);
 
-        $pismo->name=request('nazivPismoEdit');
+        $pismo->name = request('nazivPismoEdit');
 
         $pismo->save();
    }

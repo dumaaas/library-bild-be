@@ -192,7 +192,7 @@ class RentController extends Controller
 
         $izdate = $rentService->filtirajIzdateKnjige();
 
-        $viewModal = [
+        $viewModel = [
             'izdate'       => $izdate,
             'ucenici'      => $userService->getUcenici()->get(),
             'bibliotekari' => $userService->getBibliotekari()->get(),

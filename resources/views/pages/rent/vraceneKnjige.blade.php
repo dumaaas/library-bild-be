@@ -345,7 +345,7 @@
                                                 </a>
                                             </td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                                <a href="{{route('ucenikProfile', ['ucenik' => $vracena->student])}}">
+                                                <a href="{{route('ucenikProfile', ['user' => $vracena->student])}}">
                                                     {{$vracena->student->name}}
                                                 </a>
                                             </td>
@@ -357,7 +357,7 @@
                                                 </div>
                                             </td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                                <a href="{{route('bibliotekarProfile', ['bibliotekar' => $vracena->librarian])}}">
+                                                <a href="{{route('bibliotekarProfile', ['user' => $vracena->librarian])}}">
                                                     {{$vracena->librarian->name}}
                                                 </a>
                                             </td>

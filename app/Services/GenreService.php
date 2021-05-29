@@ -17,13 +17,13 @@ class GenreService {
     public function saveGenre($userService, $request) {
         //request all data, validate and add genre
         request()->validate([
-            'nazivZanra'=>'required',
-            'userImage' => 'image|nullable|max: 1999'
+            'nazivZanra' => 'required',
+            'userImage'  => 'image|nullable|max: 1999'
         ]);
 
         $zanr = new Genre();
 
-        $zanr->name=request('nazivZanra');
+        $zanr->name = request('nazivZanra');
         $userService->uploadPhoto($zanr, $request);
 
         $zanr->save();
@@ -32,11 +32,11 @@ class GenreService {
     public function editGenre($zanr, $userService, $request) {
          //request all data, validate and update genre
          request()->validate([
-            'nazivZanraEdit'=>'required',
-            'userImage' => 'image|nullable|max: 1999'
+            'nazivZanraEdit' => 'required',
+            'userImage'      => 'image|nullable|max: 1999'
         ]);
 
-        $zanr->name=request('nazivZanraEdit');
+        $zanr->name = request('nazivZanraEdit');
         $userService->uploadEditPhoto($zanr, $request);
 
         $zanr->save();

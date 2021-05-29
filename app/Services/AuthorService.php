@@ -37,14 +37,13 @@ class AuthorService {
     public function editAutor($autor) {
         //request all data, validate and update movie
         request()->validate([
-            'name'=>'required',
+            'name' => 'required',
         ]);
 
-        $autor->name=request('name');
-        $autor->biography=request('biography');
+        $autor->name      = request('name');
+        $autor->biography = request('biography');
 
         $autor->save();
-        
     }
 
     /**
@@ -55,13 +54,13 @@ class AuthorService {
     public function saveAutor() {
         //request all data, validate and update author
         request()->validate([
-            'authorName'=>'required',
+            'authorName' => 'required',
         ]);
 
         $autor = new Author();
 
-        $autor->name=request('authorName');
-        $autor->biography=request('authorBiography');
+        $autor->name      = request('authorName');
+        $autor->biography = request('authorBiography');
 
         $autor->save();
 

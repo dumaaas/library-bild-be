@@ -10,7 +10,7 @@ use App\Models\RentStatus;
 use App\Models\BookCategory;
 use App\Models\BookGenre;
 use App\Models\BookAuthor;
-
+use Carbon\Carbon;
 use Auth; 
 
 /*
@@ -135,13 +135,17 @@ class BookService {
      * @param Category $kategorija
      * @return void
      */
-    public function saveBookCategories($knjiga, $kategorija) {
-        $knjigaKategorije = new BookCategory();
+    public function saveBookCategories($kategorijeValues, $knjiga) {
+        $kategorije = explode(',', $kategorijeValues);
 
-        $knjigaKategorije->book_id = $knjiga;
-        $knjigaKategorije->category_id = $kategorija;
+        foreach($kategorije as $kategorija) {
+            $knjigaKategorije = new BookCategory();
 
-        $knjigaKategorije->save();
+            $knjigaKategorije->book_id = $knjiga;
+            $knjigaKategorije->category_id = $kategorija;
+    
+            $knjigaKategorije->save();
+       }    
     }
 
     /**
@@ -151,13 +155,17 @@ class BookService {
      * @param Genre $zanr
      * @return void
      */
-    public function saveBookGenres($knjiga, $zanr) {
-        $knjigaZanrovi = new BookGenre();
+    public function saveBookGenres($zanroviValues, $knjiga) {
+        $zanrovi = explode(',', $zanroviValues);
 
-        $knjigaZanrovi->book_id = $knjiga;
-        $knjigaZanrovi->genre_id = $zanr;
+        foreach($zanrovi as $zanr) {
+            $knjigaZanrovi = new BookGenre();
 
-        $knjigaZanrovi->save();
+            $knjigaZanrovi->book_id = $knjiga;
+            $knjigaZanrovi->genre_id = $zanr;
+
+            $knjigaZanrovi->save();
+        }
     }
     
     /**
@@ -167,12 +175,95 @@ class BookService {
      * @param Author $autor
      * @return void
      */
-    public function saveBookAuthors($knjiga, $autor) {
-        $knjigaAutori = new BookAuthor();
+    public function saveBookAuthors($autoriValues, $knjiga) {
+        $autori = explode(',', $autoriValues);
 
-        $knjigaAutori->book_id = $knjiga;
-        $knjigaAutori->author_id = $autor;
+        foreach($autori as $autor) {
+            $knjigaAutori = new BookAuthor();
 
-        $knjigaAutori->save();
+            $knjigaAutori->book_id = $knjiga;
+            $knjigaAutori->author_id = $autor;
+
+            $knjigaAutori->save();
+        }
+        
+    }
+
+    /**
+     * Vrati trazene autore
+     *
+     * @return void
+     */
+    public function filterAutori() {
+        $knjige = Book::query();
+        $knjige = $knjige->with('author', 'category');
+
+        if(request('autoriFilter')) {
+            $autori = request('autoriFilter');
+            foreach($autori as $autor) {
+                $knjige->whereHas('author', function($q) use ($autor) {
+                    $q->where('author_id', $autor);
+                });
+            }
+        }
+
+        if(request('kategorijeFilter')) {
+            $kategorije = request('kategorijeFilter');
+            foreach($kategorije as $kategorija) {
+                $knjige->whereHas('category', function($q) use ($kategorija) {
+                    $q->where('category_id', $kategorija);
+                });
+            }
+        }
+
+        return $knjige;
+    }
+
+    /**
+     * Sacuvaj vracanje knjiga
+     *
+     * @return void
+     */
+    public function vratiKnjige() {
+        $knjige=request('vratiKnjigu');
+        
+        foreach($knjige as $knjiga){
+            $rent=Rent::find($knjiga);
+
+            $rentStatus=new RentStatus();
+            $rentStatus->rent_id=$rent->id;
+
+            if($rent->rent_date<Carbon::now()->subDays(30)){
+                $rentStatus->statusBook_id=3;
+            }
+            else{
+                $rentStatus->statusBook_id=1;
+            }
+
+            $rentStatus->date=Carbon::now();
+            $rentStatus->save();
+
+            $book=Book::find($rent->book_id);
+            $book->rentedBooks=$book->rentedBooks-1;
+            $book->save();
+        }
+    }
+
+    /**
+     * Sacuvaj otpisivanje knjiga
+     *
+     * @return void
+     */
+    public function otpisiKnjige() {
+        $knjige=request('otpisiKnjigu');
+
+        foreach($knjige as $knjiga){
+            $rent=Rent::find($knjiga);
+            $book=Book::find($rent->book_id);
+            $book->rentedBooks=$book->rentedBooks-1;
+            $book->quantity=$book->quantity-1;
+            $book->save();
+            Rent::destroy($rent->id);
+        }
     }
 }

@@ -21,7 +21,7 @@ class BindingService {
           'nazivPovezEdit' => 'required',
         ]);
 
-        $povez->name=request('nazivPovezEdit');
+        $povez->name = request('nazivPovezEdit');
 
         $povez->save();
 

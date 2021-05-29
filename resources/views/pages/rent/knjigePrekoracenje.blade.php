@@ -266,7 +266,7 @@
                                             </td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$prekoracena->rent_date}}</td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                                <a href="{{route('ucenikProfile', ['ucenik' => $prekoracena->student])}}">
+                                                <a href="{{route('ucenikProfile', ['user' => $prekoracena->student])}}">
                                                     {{$prekoracena->student->name}}
                                                 </a>
                                             </td>

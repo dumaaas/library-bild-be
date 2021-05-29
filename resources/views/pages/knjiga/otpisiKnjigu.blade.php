@@ -88,104 +88,123 @@
                         </div>
                     </div>
                 </div>
+                @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                        <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
             </div>
-            <form action="{{route('otpisiKnjige')}}" method="GET">
-                <div class="scroll height-dashboard px-[30px]">
-                <div class="flex items-center justify-between py-4 pt-[20px] space-x-3 rounded-lg">
-                    <h3>
-                        Otpisi knjigu
-                    </h3>
-                    <div class="relative text-gray-600 focus-within:text-gray-400">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                            <button type="submit" class="p-1 focus:outline-none focus:shadow-outline">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
-                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
+            @if(count($otpisiKnjige) > 0)
+                <form action="{{route('otpisiKnjige')}}" method="GET">
+                    <div class="scroll height-dashboard px-[30px]">
+                    <div class="flex items-center justify-between py-4 pt-[20px] space-x-3 rounded-lg">
+                        <h3>
+                            Otpisi knjigu
+                        </h3>
+                        <div class="relative text-gray-600 focus-within:text-gray-400">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                <button type="submit" class="p-1 focus:outline-none focus:shadow-outline">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
+                                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </button>
+                            </span>
+                            <input type="search" name="q"
+                                class="py-2 pl-10 border-[#e4dfdf] text-sm text-white border-[1px] bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
+                                placeholder="Search..." autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div
+                        class="inline-block min-w-full pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
+                        <table class="min-w-full shadow-lg" id="vratiKnjiguTable">
+                            <thead class="bg-[#EFF3F6]">
+                                <tr class="border-b-[1px] border-[#e4dfdf]">
+                                    <th class="px-4 py-3 leading-4 tracking-wider text-left text-blue-500">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="select-all form-checkbox">
+                                        </label>
+                                    </th>
+                                    <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        Izdato uceniku
+                                    </th>
+                                    <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        Datum izdavanja
+                                    </th>
+                                    <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        Trenutno zadrzavanje knjige
+                                    </th>
+                                    <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        Prekoracenje u danima
+                                    </th>
+                                    <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        Knjigu izdao
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                            @foreach($otpisiKnjige as $otpisiKnjigu)
+                                <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
+                                    <td class="px-4 py-4 whitespace-no-wrap">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" name="otpisiKnjigu[]" value="{{$otpisiKnjigu->id}}">
+                                        </label>
+                                    </td>
+                                    <td class="flex flex-row items-center px-4 py-4">
+                                        <img class="object-cover w-8 h-8 mr-2 rounded-full" src="../img/profileStudent.jpg"
+                                            alt="" />
+                                        <a href="ucenikProfile.php">
+                                            <span class="font-medium text-center">{{$otpisiKnjigu->student->name}}</span>
+                                        </a>
+                                    </td>
+                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->rent_date}}</td>
+                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date)->diffAsCarbonInterval() }}</td>
+                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                        <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
+                                            {{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date->addDays(30))->diffInDays() }} days
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->librarian->name}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                        <div class="pt-[20px]">
+                            {{$otpisiKnjige->links()}}
+                        </div>
+
+                    </div>
+                    </div>
+                    <div class="absolute bottom-0 w-full">
+                    <div class="flex flex-row">
+                        <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
+                            <a
+                                class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
+                                Ponisti <i class="fas fa-times ml-[4px]"></i>
+                            </a>
+                            <button type="submit"
+                                class="btn-animation disabled-btn shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
+                                disabled onclick="validacijaUcenik()">
+                                Otpisi knjigu <i class="fas fa-check ml-[4px]"></i>
                             </button>
-                        </span>
-                        <input type="search" name="q"
-                            class="py-2 pl-10 border-[#e4dfdf] text-sm text-white border-[1px] bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
-                            placeholder="Search..." autocomplete="off">
+                        </div>
                     </div>
-                </div>
-
-                <div
-                    class="inline-block min-w-full pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
-                    <table class="min-w-full shadow-lg" id="vratiKnjiguTable">
-                        <thead class="bg-[#EFF3F6]">
-                            <tr class="border-b-[1px] border-[#e4dfdf]">
-                                <th class="px-4 py-3 leading-4 tracking-wider text-left text-blue-500">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="select-all form-checkbox">
-                                    </label>
-                                </th>
-                                <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                    Izdato uceniku
-                                </th>
-                                <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                    Datum izdavanja
-                                </th>
-                                <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                    Trenutno zadrzavanje knjige
-                                </th>
-                                <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                    Prekoracenje u danima
-                                </th>
-                                <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                    Knjigu izdao
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                        @foreach($otpisiKnjige as $otpisiKnjigu)
-                            <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                <td class="px-4 py-4 whitespace-no-wrap">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox" name="otpisiKnjigu[]" value="{{$otpisiKnjigu->id}}">
-                                    </label>
-                                </td>
-                                <td class="flex flex-row items-center px-4 py-4">
-                                    <img class="object-cover w-8 h-8 mr-2 rounded-full" src="../img/profileStudent.jpg"
-                                        alt="" />
-                                    <a href="ucenikProfile.php">
-                                        <span class="font-medium text-center">{{$otpisiKnjigu->student->name}}</span>
-                                    </a>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->rent_date}}</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date)->diffAsCarbonInterval() }}</td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                    <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                        {{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date->addDays(30))->diffInDays() }} days
-                                    </span>
-                                </td>
-                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->librarian->name}}</td>
-                            </tr>
-                         @endforeach
-                        </tbody>
-                    </table>
-
-                    <div class="pt-[20px]">
-                        {{$otpisiKnjige->links()}}
                     </div>
-
-                </div>
-                </div>
-                <div class="absolute bottom-0 w-full">
-                <div class="flex flex-row">
-                    <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
-                        <a
-                            class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                            Ponisti <i class="fas fa-times ml-[4px]"></i>
-                        </a>
-                        <button type="submit"
-                            class="btn-animation disabled-btn shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
-                            disabled onclick="validacijaUcenik()">
-                            Otpisi knjigu <i class="fas fa-check ml-[4px]"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-            </form>
+                </form>
+            @else
+                <div class="w-[380px] mx-[20px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
+                        <path fill="currentColor"
+                                d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                        </path>
+                    </svg>
+                    <p class="font-medium text-red-600"> Nijedan primjerak knjige nije u prekoracenju! </p>
+                </div> 
+            @endif
         </section>
         @endsection

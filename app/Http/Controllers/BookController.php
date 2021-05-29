@@ -19,6 +19,7 @@ use App\Services\BookService;
 use App\Services\DashboardService;
 use App\Services\RentService;
 use App\Services\UserService;
+use App\Services\CategoryService;
 use App\Services\ReservationService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -287,7 +288,7 @@ class BookController extends Controller
 
         $bookService->saveRent($knjiga->id, $rentService, $reservationService);
 
-        return redirect('izdateKnjige');
+        return back()->with('success', 'Uspjesno izdato!');
     }
 
     /**
@@ -303,7 +304,7 @@ class BookController extends Controller
 
         $bookService->saveReservation($knjiga, $reservationService);
 
-        return redirect('aktivneRezervacije');
+        return back()->with('success', 'Uspjesno rezervisano!');
     }
 
     /**
@@ -433,8 +434,8 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @return void
      */
-    public function sacuvajKnjigu(Request $request, BookService $bookService) {
-        $viewName = $this->viewFolder . '.novaKnjiga';
+    public function sacuvajKnjigu(Request $request, BookService $bookService, DashboardService $dashboardService) {
+        $viewName = $this->viewFolder . '.knjigaOsnovniDetalji';
 
         //request all data, validate and update author
         request()->validate([
@@ -457,35 +458,19 @@ class BookController extends Controller
         $knjiga = $bookService->saveBook();
 
         $kategorijeValues = $request->input('valuesKategorije');
-        $kategorije = explode(',', $kategorijeValues);
-
-        foreach($kategorije as $kategorija) {
-            $bookService->saveBookCategories($knjiga->id, $kategorija);
-        }
+        $bookService->saveBookCategories($kategorijeValues, $knjiga->id);
 
         $zanroviValues = $request->input('valuesZanrovi');
-        $zanrovi = explode(',', $zanroviValues);
-
-        foreach($zanrovi as $zanr) {
-            $bookService->saveBookGenres($knjiga->id, $zanr);
-        }
+        $bookService->saveBookGenres($zanroviValues, $knjiga->id);
 
         $autoriValues = $request->input('valuesAutori');
-        $autori = explode(',', $autoriValues);
-
-        foreach($autori as $autor) {
-            $bookService->saveBookAuthors($knjiga->id, $autor);
-        }
+        $bookService->saveBookAuthors($autoriValues, $knjiga->id);
 
         $viewModel = [
-            'kategorije' => DB::table('categories')->get(),
-            'zanrovi'    => DB::table('genres')->get(),
-            'autori'     => DB::table('authors')->get(),
-            'izdavaci'   => DB::table('publishers')->get(),
-            'pisma'      => DB::table('scripts')->get(),
-            'povezi'     => DB::table('bindings')->get(),
-            'formati'    => DB::table('formats')->get(),
-            'jezici'     => DB::table('languages')->get(),
+            'knjiga'     => $knjiga,
+            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
+                                ->take(3)
+                                ->get(),
         ];
         
         //return back to the edit author form
@@ -552,7 +537,10 @@ class BookController extends Controller
         }
 
         $viewModel = [
-            'knjiga' => $knjiga
+            'knjiga'     => $knjiga,
+            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
+                                ->take(3)
+                                ->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -569,106 +557,53 @@ class BookController extends Controller
         return back();
     }
 
-    public function filterAutori(Request $request) {
+    /**
+     * Filter autora u tabeli 
+     *
+     * @param  BookService $bookService
+     * @param  AuthorService $autorService
+     * @param  CategoryService $kategorijaService
+     * @return void
+     */
+    public function filterAutori(BookService $bookService, AuthorService $autorService, CategoryService $kategorijaService) {
         $viewName = $this->viewFolder . '.evidencijaKnjiga';
 
-        $knjige = Book::query();
-        $knjige = $knjige->with('author', 'category');
-        if(request('autoriFilter')) {
-            $autori = request('autoriFilter');
-            foreach($autori as $autor) {
-                $knjige->whereHas('author', function($q) use ($autor) {
-                    $q->where('author_id', $autor);
-                });
-            }
-        }
-
-        if(request('kategorijeFilter')) {
-            $kategorije = request('kategorijeFilter');
-            foreach($kategorije as $kategorija) {
-                $knjige->whereHas('category', function($q) use ($kategorija) {
-                    $q->where('category_id', $kategorija);
-                });
-            }
-        }
+        $knjige = $bookService->filterAutori();
 
         $viewModel = [
             'knjige'     => $knjige->paginate(7),
-            'autori'     => Author::all(),
-            'kategorije' => Category::all(),
+            'autori'     => $autorService->getAutori()->get(),
+            'kategorije' => $kategorijaService->getCategories()->get(),
         ];
 
         return view($viewName, $viewModel);
     }
 
-    public function vratiKnjige(Request $request){
-        $viewName = $this->viewFolder . '.izdateKnjige';
+    /**
+     * Vrati knjige
+     *
+     * @param  BookService $bookService
+     * @return void
+     */
+    public function vratiKnjige(BookService $bookService) {
 
-        $knjige=request('vratiKnjigu');
-        
-        foreach($knjige as $knjiga){
-            $rent=Rent::find($knjiga);
-            // dd($rent);
+        $bookService->vratiKnjige();
 
-            $rentStatus=new RentStatus();
-            $rentStatus->rent_id=$rent->id;
-
-            if($rent->rent_date<Carbon::now()->subDays(30)){
-                $rentStatus->statusBook_id=3;
-            }
-            else{
-                $rentStatus->statusBook_id=1;
-            }
-
-            $rentStatus->date=Carbon::now();
-            $rentStatus->save();
-
-            $book=Book::find($rent->book_id);
-            $book->rentedBooks=$book->rentedBooks-1;
-            $book->save();
-           
-        }
-
-        $izdate = Rent::where(function ($query) {
-            $query->select('statusBook_id')
-                ->from('rent_statuses')
-                ->whereColumn('rent_statuses.rent_id', 'rents.id')
-                ->orderByDesc('rent_statuses.date')
-                ->limit(1);
-        }, 2);
-
-        $viewModel = [
-            'izdate'       => $izdate->paginate(7),
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),
-        ];
-
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Uspjesno vraceno!');
     }
         
-    public function otpisiKnjige(){
-        $viewName = $this->viewFolder . '.knjigePrekoracenje';
-
-        $knjige=request('otpisiKnjigu');
-        foreach($knjige as $knjiga){
-            $rent=Rent::find($knjiga);
-            $book=Book::find($rent->book_id);
-            $book->rentedBooks=$book->rentedBooks-1;
-            $book->quantity=$book->quantity-1;
-            $book->save();
-            Rent::destroy($rent->id);
-        }
-
-        $viewModel = [
-            'prekoracene'  => Rent::with('book', 'student', 'librarian')
-                                ->where('return_date', '=', null)
-                                ->where('rent_date', '<', Carbon::now()->subDays(30))
-                                ->paginate(7),
-            'ucenici'      => DB::table('users')->where('userType_id', '=', 3)->get(),
-            'bibliotekari' => DB::table('users')->where('userType_id', '=', 2)->get(),  
-        ];
+    /**
+     * Otpisi knjige
+     *
+     * @param  BookService $bookService
+     * @param  RentService $rentService
+     * @return void
+     */
+    public function otpisiKnjige(BookService $bookService){
         
-        return view($viewName, $viewModel);
+        $bookService->otpisiKnjige();
+
+        return back()->with('success', 'Uspjesno otpisano!');
     }
 
 }

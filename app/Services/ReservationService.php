@@ -85,12 +85,12 @@ class ReservationService
     public function saveReservation($knjiga) {
         $rezervisanje = new Reservation();
 
-        $rezervisanje->book_id = $knjiga;
-        $rezervisanje->librarian_id = Auth::id();
-        $rezervisanje->student_id = request('ucenik');
-        $rezervisanje->reservation_date = request('datumRezervisanja');
-        $rezervisanje->close_date = $rezervisanje->reservation_date->addDays(20);
-        $rezervisanje->request_date = now();
+        $rezervisanje->book_id             = $knjiga;
+        $rezervisanje->librarian_id        = Auth::id();
+        $rezervisanje->student_id          = request('ucenik');
+        $rezervisanje->reservation_date    = request('datumRezervisanja');
+        $rezervisanje->close_date          = $rezervisanje->reservation_date->addDays(20);
+        $rezervisanje->request_date        = now();
         $rezervisanje->closeReservation_id = 5;
 
         $rezervisanje->save();
@@ -108,9 +108,9 @@ class ReservationService
     public function saveReservationStatus($rezervacijaId, $rezervacijaDate) {
         $statusRezervisanja = new ReservationStatus();
 
-        $statusRezervisanja->reservation_id = $rezervacijaId;
+        $statusRezervisanja->reservation_id       = $rezervacijaId;
         $statusRezervisanja->statusReservation_id = 1;
-        $statusRezervisanja->date = $rezervacijaDate;
+        $statusRezervisanja->date                 = $rezervacijaDate;
 
         $statusRezervisanja->save();
     }
