@@ -312,4 +312,46 @@ class RentController extends Controller
 
     }
 
+    /**
+     * Prikazi pretrazene aktivne rezervacije / Nije testirano!
+     *
+     * @param  ReservationService $reservationService
+     * @param  UserService $userService
+     * @return void
+     */
+    // public function searchAktivneRezervacije(ReservationService $reservationService, UserService $userService) {
+
+    //     $viewName = $this->viewFolder . '.aktivneRezervacije';
+
+    //     $aktivne = $reservationService->searchAktivneRezervacije();
+
+    //     $viewModel = [
+    //         'aktivne' => $aktivne
+    //     ];
+
+    //     return view($viewName, $viewModel);
+
+    // }
+
+    /**
+     * Prikazi pretrazene arhivirane rezervacije
+     *
+     * @param  ReservationService $reservationService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function searchArhiviraneRezervacije(ReservationService $reservationService, UserService $userService) {
+
+        $viewName = $this->viewFolder . '.arhiviraneRezervacije';
+
+        $arhivirane = $reservationService->searchArhiviraneRezervacije();
+
+        $viewModel = [
+            'arhivirane' => $arhivirane
+        ];
+
+        return view($viewName, $viewModel);
+
+    }
+
 }

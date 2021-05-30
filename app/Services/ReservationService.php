@@ -114,4 +114,54 @@ class ReservationService
 
         $statusRezervisanja->save();
     }
+
+    /**
+     * Vrati pretrazene aktivne rezervacije / Nije testirano!
+     *
+     * @return void
+     */
+    // public function searchAktivneRezervacije() {
+
+    //     $aktivne = Reservation::query();
+        
+    //     $aktivne = $this->getAktivneRezervacije();
+
+    //     if(request('searchAktivne')) {
+    //         $knjiga = request('searchAktivne');
+    //         $aktivne = $aktivne->where(function ($query) {
+    //             $query->select('title')
+    //                 ->from('books')
+    //                 ->whereColumn('books.id', 'reservations.book_id');
+    //         }, 'LIKE', '%'.$knjiga.'%');
+    //     }
+
+    //     $aktivne = $aktivne->paginate(7);
+
+    //     return $aktivne;
+    // }
+
+    /**
+     * Vrati pretrazene arhivirane rezervacije
+     *
+     * @return void
+     */
+    public function searchArhiviraneRezervacije() {
+
+        $arhivirane = Reservation::query();
+        
+        $arhivirane = $this->getArhiviraneRezervacije();
+
+        if(request('searchArhivirane')) {
+            $knjiga = request('searchArhivirane');
+            $arhivirane = $arhivirane->where(function ($query) {
+                $query->select('title')
+                    ->from('books')
+                    ->whereColumn('books.id', 'reservations.book_id');
+            }, 'LIKE', '%'.$knjiga.'%');
+        }
+
+        $arhivirane = $arhivirane->paginate(7);
+
+        return $arhivirane;
+    }
 }
