@@ -319,19 +319,19 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    // public function searchAktivneRezervacije(ReservationService $reservationService, UserService $userService) {
+    public function searchAktivneRezervacije(ReservationService $reservationService, UserService $userService) {
 
-    //     $viewName = $this->viewFolder . '.aktivneRezervacije';
+        $viewName = $this->viewFolder . '.aktivneRezervacije';
 
-    //     $aktivne = $reservationService->searchAktivneRezervacije();
+        $aktivne = $reservationService->searchAktivneRezervacije();
 
-    //     $viewModel = [
-    //         'aktivne' => $aktivne
-    //     ];
+        $viewModel = [
+            'aktivne' => $aktivne
+        ];
 
-    //     return view($viewName, $viewModel);
+        return view($viewName, $viewModel);
 
-    // }
+    }
 
     /**
      * Prikazi pretrazene arhivirane rezervacije

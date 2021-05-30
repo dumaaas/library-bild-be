@@ -120,25 +120,25 @@ class ReservationService
      *
      * @return void
      */
-    // public function searchAktivneRezervacije() {
+    public function searchAktivneRezervacije() {
 
-    //     $aktivne = Reservation::query();
+        $aktivne = Reservation::query();
         
-    //     $aktivne = $this->getAktivneRezervacije();
+        $aktivne = $this->getAktivneRezervacije();
 
-    //     if(request('searchAktivne')) {
-    //         $knjiga = request('searchAktivne');
-    //         $aktivne = $aktivne->where(function ($query) {
-    //             $query->select('title')
-    //                 ->from('books')
-    //                 ->whereColumn('books.id', 'reservations.book_id');
-    //         }, 'LIKE', '%'.$knjiga.'%');
-    //     }
+        if(request('searchAktivne')) {
+            $knjiga = request('searchAktivne');
+            $aktivne = $aktivne->where(function ($query) {
+                $query->select('title')
+                    ->from('books')
+                    ->whereColumn('books.id', 'reservations.book_id');
+            }, 'LIKE', '%'.$knjiga.'%');
+        }
 
-    //     $aktivne = $aktivne->paginate(7);
+        $aktivne = $aktivne->paginate(7);
 
-    //     return $aktivne;
-    // }
+        return $aktivne;
+    }
 
     /**
      * Vrati pretrazene arhivirane rezervacije
