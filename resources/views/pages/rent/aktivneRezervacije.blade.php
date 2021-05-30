@@ -452,7 +452,7 @@
                                         <td class="flex flex-row items-center px-4 py-3">
                                             <img class="object-cover w-8 h-8 rounded-full" src="img/profileStudent.jpg"
                                                 alt="" />
-                                            <a href="{{route('ucenikProfile', ['ucenik' => $aktivna->student])}}" class="ml-2 font-medium text-center">
+                                            <a href="{{route('ucenikProfile', ['user' => $aktivna->student])}}" class="ml-2 font-medium text-center">
                                             {{$aktivna->student->name}}
                                             </a>
                                         </td>

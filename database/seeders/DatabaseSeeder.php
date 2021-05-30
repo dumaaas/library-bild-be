@@ -279,18 +279,19 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // //SEEDING AUTHORS
-        // \App\Models\Author::factory(30)->create();
+        //SEEDING AUTHORS
+        \App\Models\Author::factory(30)->create();
 
         //SEEDING USERS
         \App\Models\User::factory(10)->create();
 
-        // //SEEDING RENT_STATUS
+        //SEEDING RENT_STATUS
         // \App\Models\RentStatus::factory(300)->create();
 
-        // //SEEDING RESERVATION_STATUS
-        // \App\Models\ReservationStatus::factory(300)->create();
+        //SEEDING RESERVATION_STATUS
+        \App\Models\ReservationStatus::factory(4)->create();
 
+        //SEEDING BOOKS
         \App\Models\Book::factory(10)->create();
 
         //SEEDING BOOK_CATEGORY
@@ -299,8 +300,9 @@ class DatabaseSeeder extends Seeder
         //SEEDING BOOK_GENRE
         \App\Models\BookGenre::factory(30)->create();
 
-        // //SEEDING BOOK_AUTHOR
-        // \App\Models\BookAuthor::factory(30)->create();
+        //SEEDING BOOK_AUTHOR
+        \App\Models\BookAuthor::factory(30)->create();
+
 
     }
 }

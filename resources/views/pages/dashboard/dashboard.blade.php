@@ -14,51 +14,64 @@
                 <div class="mr-[30px]">
                     <h3 class="uppercase mb-[20px]">Aktivnosti</h3>
                     <!-- Activity Cards -->
-                    @foreach($aktivnosti as $aktivnost)
-                        <div class="activity-card flex flex-row mb-[30px]">
-                        <div class="w-[60px] h-[60px]">
-                            <img class="rounded-full" src="/storage/image/{{$aktivnost->librarian->photo}}" alt="">
-                        </div>
-                        <div class="ml-[15px] mt-[5px] flex flex-col">
-                            <div class="text-gray-500 mb-[5px]">
-                                <p class="uppercase">
-                                    Izdavanje knjige
-                                    <span class="inline lowercase">
-                                            - {{$aktivnost->rent_date->diffForHumans()}}
-                                        </span>
-                                </p>
+                    @if(count($aktivnosti) > 0)
+                        @foreach($aktivnosti as $aktivnost)
+                            <div class="activity-card flex flex-row mb-[30px]">
+                                <div class="w-[60px] h-[60px]">
+                                    <img class="rounded-full" src="/storage/image/{{$aktivnost->librarian->photo}}" alt="">
+                                </div>
+                                <div class="ml-[15px] mt-[5px] flex flex-col">
+                                    <div class="text-gray-500 mb-[5px]">
+                                        <p class="uppercase">
+                                            Izdavanje knjige
+                                            <span class="inline lowercase">
+                                                    - {{$aktivnost->rent_date->diffForHumans()}}
+                                                </span>
+                                        </p>
+                                    </div>
+                                    <div class="">
+                                        <p>
+                                            <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
+                                                {{$aktivnost->librarian->name}}
+                                            </a>
+                                            rented a book
+                                            <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
+                                                {{$aktivnost->book->title}}
+                                            </a>
+                                            to
+                                            <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                                {{$aktivnost->student->name}}
+                                            </a>
+                                            on
+                                            <span class="font-medium">
+                                                {{$aktivnost->rent_date}}.
+                                            </span>
+                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                                more details >>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="">
-                                <p>
-                                    <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
-                                        {{$aktivnost->librarian->name}}
-                                    </a>
-                                    rented a book
-                                    <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
-                                        {{$aktivnost->book->title}}
-                                    </a>
-                                    to
-                                    <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
-                                        {{$aktivnost->student->name}}
-                                    </a>
-                                    on
-                                    <span class="font-medium">
-                                        {{$aktivnost->rent_date}}.
-                                    </span>
-                                    <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
-                                        more details >>
-                                    </a>
-                                </p>
-                            </div>
+                        @endforeach
+                        <div class="inline-block w-full mt-4">
+                            <a href="{{route('dashboardAktivnost')}}"
+                            class="btn-animation block text-center w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">
+                                Show
+                            </a>
                         </div>
-                    </div>
-                    @endforeach
-                    <div class="inline-block w-full mt-4">
-                        <a href="{{route('dashboardAktivnost')}}"
-                           class="btn-animation block text-center w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">
-                            Show
-                        </a>
-                    </div>
+                    @else
+                        <div>
+                            <div class="w-[200px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">                       
+                                <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
+                                    <path fill="currentColor"
+                                            d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                                    </path>
+                                </svg>
+                                <p class="font-medium text-red-600"> Nema aktivnosti. </p>
+                            </div>
+                        </div> 
+                    @endif
                 </div>
                 <div class="mr-[50px] ">
                     <h3 class="uppercase mb-[20px] text-left">
