@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/ucenikAktivne/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne'])->name('ucenikAktivne');
     Route::get('/ucenikArhivirane/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane'])->name('ucenikArhivirane');
     Route::post('/resetujSifru/{user}', [\App\Http\Controllers\UserController::class, 'resetujSifru'])->name('resetujSifru');
+    Route::get('/searchBibliotekari', [\App\Http\Controllers\UserController::class, 'searchBibliotekari'])->name('searchBibliotekari');
+    Route::get('/searchUcenici', [\App\Http\Controllers\UserController::class, 'searchUcenici'])->name('searchUcenici');
 
 
     //BOOK - ROUTES

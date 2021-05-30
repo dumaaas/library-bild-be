@@ -115,6 +115,27 @@ class UserService {
     }
 
     /**
+     * Vrati pretrazene bibliotekare
+     *
+     * @return void
+     */
+    public function searchBibliotekari() {
+
+        $bibliotekari = User::query();
+        
+        $bibliotekari = $this->getBibliotekari();
+
+        if(request('searchBibliotekari')) {
+            $bibliotekarPretraga = request('searchBibliotekari');
+            $bibliotekari = $bibliotekari->where('name', 'LIKE', '%'.$bibliotekarPretraga.'%');
+        }
+
+        $bibliotekari = $bibliotekari->paginate(7);
+
+        return $bibliotekari;
+    }
+
+    /**
      * Uploaduj sliku ili postavi default sliku
      * 
      * @param User $user
@@ -243,6 +264,27 @@ class UserService {
         $ucenik->save();
 
         return $ucenik;
+    }
+
+    /**
+     * Vrati pretrazene ucenike
+     *
+     * @return void
+     */
+    public function searchUcenici() {
+
+        $ucenici = User::query();
+        
+        $ucenici = $this->getUcenici();
+
+        if(request('searchUcenici')) {
+            $ucenikPretraga = request('searchUcenici');
+            $ucenici = $ucenici->where('name', 'LIKE', '%'.$ucenikPretraga.'%');
+        }
+
+        $ucenici = $ucenici->paginate(7);
+
+        return $ucenici;
     }
 
     /**
