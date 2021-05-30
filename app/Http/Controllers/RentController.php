@@ -203,7 +203,7 @@ class RentController extends Controller
     }
 
     /**
-     * Prikazi filtrirane izdate knjige
+     * Prikazi pretrazene izdate knjige
      *
      * @param  RentService $rentService
      * @param  UserService $userService
@@ -246,6 +246,29 @@ class RentController extends Controller
     }
 
     /**
+     * Prikazi pretrazene vracene knjige
+     *
+     * @param  RentService $rentService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function searchVraceneKnjige(RentService $rentService, UserService $userService) {
+
+        $viewName = $this->viewFolder . '.vraceneKnjige';
+
+        $vracene = $rentService->searchVraceneKnjige();
+
+        $viewModel = [
+            'vracene'       => $vracene,
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
+        ];
+
+        return view($viewName, $viewModel);
+
+    }
+
+    /**
      * Prikazi filtrirane u prekoracenju
      *
      * @param  RentService $rentService
@@ -264,6 +287,71 @@ class RentController extends Controller
         ];
 
         return view($viewName, $viewModel);
+    }
+
+    /**
+     * Prikazi pretrazene knjige u prekoracenju
+     *
+     * @param  RentService $rentService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function searchPrekoraceneKnjige(RentService $rentService, UserService $userService) {
+
+        $viewName = $this->viewFolder . '.knjigePrekoracenje';
+
+        $prekoracene = $rentService->searchPrekoraceneKnjige();
+
+        $viewModel = [
+            'prekoracene'       => $prekoracene,
+            'ucenici'      => $userService->getUcenici()->get(),
+            'bibliotekari' => $userService->getBibliotekari()->get(),
+        ];
+
+        return view($viewName, $viewModel);
+
+    }
+
+    /**
+     * Prikazi pretrazene aktivne rezervacije / Nije testirano!
+     *
+     * @param  ReservationService $reservationService
+     * @param  UserService $userService
+     * @return void
+     */
+    // public function searchAktivneRezervacije(ReservationService $reservationService, UserService $userService) {
+
+    //     $viewName = $this->viewFolder . '.aktivneRezervacije';
+
+    //     $aktivne = $reservationService->searchAktivneRezervacije();
+
+    //     $viewModel = [
+    //         'aktivne' => $aktivne
+    //     ];
+
+    //     return view($viewName, $viewModel);
+
+    // }
+
+    /**
+     * Prikazi pretrazene arhivirane rezervacije
+     *
+     * @param  ReservationService $reservationService
+     * @param  UserService $userService
+     * @return void
+     */
+    public function searchArhiviraneRezervacije(ReservationService $reservationService, UserService $userService) {
+
+        $viewName = $this->viewFolder . '.arhiviraneRezervacije';
+
+        $arhivirane = $reservationService->searchArhiviraneRezervacije();
+
+        $viewModel = [
+            'arhivirane' => $arhivirane
+        ];
+
+        return view($viewName, $viewModel);
+
     }
 
 }

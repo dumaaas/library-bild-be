@@ -255,4 +255,63 @@ class RentService
 
         return $izdate;
     }
+
+    /**
+     * Vrati pretrazene vracene knjige
+     *
+     * @return void
+     */
+    public function searchVraceneKnjige() {
+
+        if(request('searchVracene')) {
+            $knjiga = request('searchVracene');
+            $vracene = Rent::where(function ($query) {
+                $query->select('title')
+                    ->from('books')
+                    ->whereColumn('books.id', 'rents.book_id');
+            }, 'LIKE', '%'.$knjiga.'%')
+                ->where(function ($query) {
+                $query->select('statusBook_id')
+                    ->from('rent_statuses')
+                    ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                    ->orderByDesc('rent_statuses.date')
+                    ->limit(1);
+            }, 1)->orWhere(function ($query) {
+                $query->select('statusBook_id')
+                    ->from('rent_statuses')
+                    ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                    ->orderByDesc('rent_statuses.date')
+                    ->limit(1);
+            }, 3);
+        }
+
+        $vracene = $vracene->paginate(7);
+
+        return $vracene;
+    }
+
+    /**
+     * Vrati pretrazene knjige u prekoracenju
+     *
+     * @return void
+     */
+    public function searchPrekoraceneKnjige() {
+
+        $prekoracene = Rent::query();
+        
+        $prekoracene = $this->getPrekoraceneKnjige();
+
+        if(request('searchPrekoracene')) {
+            $knjiga = request('searchPrekoracene');
+            $prekoracene = $prekoracene->where(function ($query) {
+                $query->select('title')
+                    ->from('books')
+                    ->whereColumn('books.id', 'rents.book_id');
+            }, 'LIKE', '%'.$knjiga.'%');
+        }
+
+        $prekoracene = $prekoracene->paginate(7);
+
+        return $prekoracene;
+    }
 }

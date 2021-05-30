@@ -191,6 +191,25 @@ class UserController extends Controller
     }
 
     /**
+     * Prikazi pretrazene bibliotekare
+     *
+     * @param  UserService $userService
+     * @return void
+     */
+    public function searchBibliotekari(UserService $userService) {
+
+        $viewName = $this->viewFolderLibrarian . '.bibliotekari';
+
+        $bibliotekari = $userService->searchBibliotekari();
+
+        $viewModel = [
+            'bibliotekari' => $bibliotekari
+        ];
+
+        return view($viewName, $viewModel);
+    }
+
+    /**
      * Prikazi sve ucenike
      *
      * @param  UserService $userService
@@ -323,6 +342,25 @@ class UserController extends Controller
         ];
 
         //return back to the edit student form
+        return view($viewName, $viewModel);
+    }
+
+    /**
+     * Prikazi pretrazene ucenike
+     *
+     * @param  UserService $userService
+     * @return void
+     */
+    public function searchUcenici(UserService $userService) {
+
+        $viewName = $this->viewFolderStudent . '.ucenik';
+
+        $ucenici = $userService->searchUcenici();
+
+        $viewModel = [
+            'ucenici' => $ucenici
+        ];
+
         return view($viewName, $viewModel);
     }
 

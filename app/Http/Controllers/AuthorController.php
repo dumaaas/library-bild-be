@@ -130,4 +130,23 @@ class AuthorController extends Controller
 
         return view($viewName, $viewModel);
     }
+
+    /**
+     * Prikazi pretrazene autore
+     *
+     * @param  AuthorService $authorService
+     * @return void
+     */
+    public function searchAutori(AuthorService $authorService) {
+
+        $viewName = $this->viewFolder . '.autori';
+
+        $autori = $authorService->searchAutori();
+
+        $viewModel = [
+            'autori' => $autori
+        ];
+
+        return view($viewName, $viewModel);
+    }
 }
