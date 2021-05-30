@@ -279,8 +279,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        //SEEDING AUTHORS
-        \App\Models\Author::factory(30)->create();
+        // //SEEDING AUTHORS
+        // \App\Models\Author::factory(30)->create();
 
         //SEEDING USERS
         \App\Models\User::factory(10)->create();
@@ -299,9 +299,8 @@ class DatabaseSeeder extends Seeder
         //SEEDING BOOK_GENRE
         \App\Models\BookGenre::factory(30)->create();
 
-        //SEEDING BOOK_AUTHOR
-        \App\Models\BookAuthor::factory(30)->create();
-
+        // //SEEDING BOOK_AUTHOR
+        // \App\Models\BookAuthor::factory(30)->create();
 
     }
 }

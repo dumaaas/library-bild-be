@@ -150,7 +150,7 @@ $(document).ready(function () {
                     aktivnosti.forEach(aktivnost => {
                         subcat += '<div class="activity-card2 hidden flex flex-row mb-[30px]">';
                         subcat += '<div class="w-[60px] h-[60px]">';
-                        subcat += '<img class="rounded-full" src="img/profileStudent.jpg" alt="">';
+                        subcat += '<img class="rounded-full" src="/storage/image/'+ aktivnost.librarian.photo + '" alt="">';
                         subcat += '</div>';
                         subcat += '<div class="ml-[15px] mt-[5px] flex flex-col">';
                         subcat += '<div class="text-gray-500 mb-[5px]">';
