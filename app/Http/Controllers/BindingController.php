@@ -44,7 +44,7 @@ class BindingController extends Controller
     public function sacuvajPovez() {
         //request all data, validate and update binding
         request()->validate([
-            'nazivPovez'=>'required',
+            'nazivPovez'=>'required|max:256',
         ]);
 
         $povez = new Binding();
@@ -54,7 +54,7 @@ class BindingController extends Controller
         $povez->save();
 
         //return back
-        return back();
+        return back()->with('success', 'Povez uspjesno sacuvan!');
     }
 
     public function izmijeniPovez(Binding $povez,BindingService $bindingService) {

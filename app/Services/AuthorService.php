@@ -37,7 +37,7 @@ class AuthorService {
     public function editAutor($autor) {
         //request all data, validate and update movie
         request()->validate([
-            'name' => 'required',
+            'name' => 'required|max:128',
         ]);
 
         $autor->name      = request('name');
@@ -54,7 +54,7 @@ class AuthorService {
     public function saveAutor() {
         //request all data, validate and update author
         request()->validate([
-            'authorName' => 'required',
+            'authorName' => 'required|max:128',
         ]);
 
         $autor = new Author();

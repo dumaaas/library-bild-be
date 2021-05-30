@@ -33,9 +33,17 @@
                     </div>
                 </div>
             </div>
+            @if(Session::has('success'))
+                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                    @php
+                        Session::forget('success');
+                    @endphp
+                </div>
+            @endif
         </div>
         <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
-            <p onclick="openTab(event, 'details')" class="active-book-nav cursor-pointer tablinks inline hover:text-blue-800">
+            <p onclick="openTab(event, 'details')" class="inline cursor-pointer active-book-nav tablinks hover:text-blue-800">
                 Osnovni detalji
             </p>
             <p  onclick="openTab(event, 'specification')" class="cursor-pointer tablinks inline ml-[70px] hover:text-blue-800 ">
@@ -49,7 +57,7 @@
         <div class="scroll height-content section-content">
             <form class="text-gray-700 forma" action="{{route('sacuvajKnjigu')}}" method="POST">
                 @csrf
-                <div id="details" class="tabcontent block">
+                <div id="details" class="block tabcontent">
                     <div class="flex flex-row ml-[30px] mb-[150px]">
                         <div class="w-[50%]">
                             <div class="mt-[20px]">
@@ -57,7 +65,9 @@
                                 <input type="text" name="nazivKnjiga" id="nazivKnjiga"
                                        class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                        onkeydown="clearErrorsNazivKnjiga()" />
-                                <div id="validateNazivKnjiga"></div>
+                                @error('nazivKnjiga')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
@@ -160,7 +170,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="validateKategorija"></div>
+                            @error('knjigaKategorije')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -254,7 +266,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="validateZanr"></div>
+                        @error('knjigaZanrovi')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
             </div>
 
@@ -348,7 +362,9 @@
                         </div>
                     </div>
                 </div>
-                <div id="validateAutori"></div>
+                @error('knjigaAutori')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mt-[20px]">
@@ -363,7 +379,9 @@
                         </option>
                     @endforeach
                 </select>
-                <div id="validateIzdavac"></div>
+                @error('knjigaIzdavac')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mt-[20px]">
@@ -378,7 +396,9 @@
                         </option>
                     @endfor
                 </select>
-                <div id="validateGodinaIzdavanja"></div>
+                @error('godinaIzdavanja')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mt-[20px]">
@@ -386,7 +406,9 @@
                 <input type="text" name="knjigaKolicina" id="knjigaKolicina"
                        class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                        onkeydown="clearErrorsKnjigaKolicina()" />
-                <div id="validateKnjigaKolicina"></div>
+                @error('knjigaKolicina')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             </div>
             </div>
             </div>
@@ -525,11 +547,13 @@
                         <div class="mt-[20px]">
                             <p>Broj strana <span class="text-red-500">*</span></p>
                             <input type="text" name="brStrana" id="brStrana" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsBrStrana()"/>
-                            <div id="validateBrStrana"></div>
+                            @error('brStrana')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
-                            <p>Pismo <span class="text-red-500">*</span></p>
+                            <p>Jezik <span class="text-red-500">*</span></p>
                             <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="knjigaJezik" id="jezik">
                                 <option disabled selected></option>
                                 @foreach($jezici as $jezik)
@@ -538,7 +562,9 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <div id="validatePismo"></div>
+                            @error('knjigaJezik')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -551,7 +577,9 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <div id="validatePismo"></div>
+                            @error('knjigaPismo')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -564,7 +592,9 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <div id="validatePovez"></div>
+                            @error('knjigaPovez')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -577,13 +607,17 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <div id="validateFormat"></div>
+                            @error('knjigaFormat')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>International Standard Book Num <span class="text-red-500">*</span></p>
                             <input type="text" name="knjigaIsbn" id="isbn" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbn()"/>
-                            <div id="validateIsbn"></div>
+                            @error('knjigaIsbn')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

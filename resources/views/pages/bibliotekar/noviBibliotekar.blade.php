@@ -33,6 +33,14 @@
                         </div>
                     </div>
                 </div>
+                @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                    <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
@@ -43,7 +51,9 @@
                         <div class="mt-[20px]">
                                 <span>Ime i prezime <span class="text-red-500">*</span></span>
                                 <input type="text" name="imePrezimeBibliotekar" id="imePrezimeBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameBibliotekar()"/>
-                                <div id="validateNameBibliotekar"></div>
+                                @error('imePrezimeBibliotekar')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
@@ -58,31 +68,41 @@
                             <div class="mt-[20px]">
                                 <span>JMBG <span class="text-red-500">*</span></span>
                                 <input type="text" name="jmbgBibliotekar" id="jmbgBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgBibliotekar()"/>
-                                <div id="validateJmbgBibliotekar"></div>
+                                @error('jmbgBibliotekar')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>E-mail <span class="text-red-500">*</span></span>
                                 <input type="email" name="emailBibliotekar" id="emailBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailBibliotekar()"/>
-                                <div id="validateEmailBibliotekar"></div>
+                                @error('emailBibliotekar')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Korisnicko ime <span class="text-red-500">*</span></span>
                                 <input type="text" name="usernameBibliotekar" id="usernameBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekar()"/>
-                                <div id="validateUsernameBibliotekar"></div>
+                                @error('usernameBibliotekar')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Sifra <span class="text-red-500">*</span></span>
                                 <input type="password" name="pwBibliotekar" id="pwBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekar()"/>
-                                <div id="validatePwBibliotekar"></div>
+                                @error('pwBibliotekar')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Ponovi sifru <span class="text-red-500">*</span></span>
                                 <input type="password" name="pw2Bibliotekar" id="pw2Bibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2Bibliotekar()"/>
-                                <div id="validatePw2Bibliotekar"></div>
+                                @error('pw2Bibliotekar')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 

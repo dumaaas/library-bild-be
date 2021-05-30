@@ -32,6 +32,14 @@
                     </div>
                 </div>
             </div>
+            @if(Session::has('success'))
+                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                    @php
+                        Session::forget('success');
+                    @endphp
+                </div>
+            @endif
         </div>
         <div class="border-b-[2px] py-4 text-gray-500 border-gray-300 pl-[30px]">
             <a href="editKnjiga.php" class="inline hover:text-blue-800">
@@ -52,7 +60,9 @@
                         <div class="mt-[20px]">
                             <p>Broj strana <span class="text-red-500">*</span></p>
                             <input type="text" name="brStranaEdit" id="brStranaEdit" value="264" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsBrStranaEdit()"/>
-                            <div id="validateBrStranaEdit"></div>
+                            @error('brStranaEdit')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -72,7 +82,9 @@
                                     Kinesko
                                 </option>
                             </select>
-                            <div id="validatePismoEdit"></div>
+                            @error('pismoEdit')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -86,7 +98,9 @@
                                     Meki
                                 </option>
                             </select>
-                            <div id="validatePovezEdit"></div>
+                            @error('povezEdit')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -103,13 +117,17 @@
                                     21 cm
                                 </option>
                             </select>
-                            <div id="validateFormatEdit"></div>
+                            @error('formatEdit')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>International Standard Book Num <span class="text-red-500">*</span></p>
                             <input type="text" name="isbnEdit" id="isbnEdit" value="1546213456878" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbnEdit()"/>
-                            <div id="validateIsbnEdit"></div>
+                            @error('isbnEdit')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

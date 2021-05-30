@@ -40,13 +40,13 @@ class UserService {
     public function editBibliotekar($bibliotekar, $request) {
         //request all data, validate and update librarian
         request()->validate([
-            'imePrezimeBibliotekarEdit' => 'required',
-            'jmbgBibliotekarEdit'       => 'required',
-            'emailBibliotekarEdit'      => 'required',
-            'usernameBibliotekarEdit'   => 'required',
-            'pwBibliotekarEdit'         => 'required',
-            'pw2BibliotekarEdit'        => 'required',
-            'userImage'                 => 'image|nullable|max: 1999'
+            'imePrezimeBibliotekarEdit' => 'required|max:128',
+            'jmbgBibliotekarEdit'       => 'required|unique:users,jmbg|max:14',
+            'emailBibliotekarEdit'      => 'required|unique:users,email|max:128',
+            'usernameBibliotekarEdit'   => 'required|max:64',
+            'pwBibliotekarEdit'         => 'required|max:256',
+            'pw2BibliotekarEdit'        => 'required|max:256',
+            'userImage'                 => 'image|nullable|max: 256'
         ]);
 
         $bibliotekar->name     = request('imePrezimeBibliotekarEdit');
@@ -77,13 +77,13 @@ class UserService {
     public function saveBibliotekar($request) {
         //request all data, validate and add librarian
         request()->validate([
-            'imePrezimeBibliotekar' => 'required',
-            'jmbgBibliotekar'       => 'required',
-            'emailBibliotekar'      => 'required',
-            'usernameBibliotekar'   => 'required',
-            'pwBibliotekar'         => 'required',
-            'pw2Bibliotekar'        => 'required',
-            'userImage'             => 'image|nullable|max: 1999'
+            'imePrezimeBibliotekar' => 'required|max:128',
+            'jmbgBibliotekar'       => 'required|unique:users,jmbg|max:14',
+            'emailBibliotekar'      => 'required|unique:users,email|max:128',
+            'usernameBibliotekar'   => 'required|max:64',
+            'pwBibliotekar'         => 'required|max:256',
+            'pw2Bibliotekar'        => 'required|max:256',
+            'userImage'             => 'image|nullable|max: 256'
         ]);
 
         $bibliotekar = new User(); 
@@ -192,13 +192,13 @@ class UserService {
     public function editUcenik($ucenik, $request) {
         //request all data, validate and update student
         request()->validate([
-            'imePrezimeUcenikEdit'=> 'required',
-            'jmbgUcenikEdit'      => 'required',
-            'emailUcenikEdit'     => 'required',
-            'usernameUcenikEdit'  => 'required',
-            'pwUcenikEdit'        => 'required',
-            'pw2UcenikEdit'       => 'required',
-            'userImage'           => 'image|nullable|max: 1999'
+            'imePrezimeUcenikEdit'=> 'required|max:128',
+            'jmbgUcenikEdit'      => 'required|unique:users,jmbg|max:14',
+            'emailUcenikEdit'     => 'required|unique:users,email|max:128',
+            'usernameUcenikEdit'  => 'required|max:64',
+            'pwUcenikEdit'        => 'required|max:256',
+            'pw2UcenikEdit'       => 'required|max:256',
+            'userImage'           => 'image|nullable|max: 256'
         ]);
 
         $ucenik->name     = request('imePrezimeUcenikEdit');
@@ -229,13 +229,13 @@ class UserService {
     public function saveUcenik($request) {
         //request all data, validate and update student
         request()->validate([
-            'imePrezimeUcenik' => 'required',
-            'jmbgUcenik'       => 'required',
-            'emailUcenik'      => 'required',
-            'usernameUcenik'   => 'required',
-            'pwUcenik'         => 'required',
-            'pw2Ucenik'        => 'required',
-            'userImage'        => 'image|nullable|max: 1999'
+            'imePrezimeUcenik' => 'required|max:128',
+            'jmbgUcenik'       => 'required|unique:users,jmbg|max:14',
+            'emailUcenik'      => 'required|unique:users,email|max:128',
+            'usernameUcenik'   => 'required|max:64',
+            'pwUcenik'         => 'required|max:256',
+            'pw2Ucenik'        => 'required|max:256',
+            'userImage'        => 'image|nullable|max: 256'
         ]);
 
         $ucenik = new User(); 

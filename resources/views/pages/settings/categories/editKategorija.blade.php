@@ -40,6 +40,14 @@
                         </div>
                     </div>
                 </div>
+                @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                    <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
@@ -49,10 +57,12 @@
                         <div class="w-[50%] mb-[100px]">
                             <div class="mt-[20px]">
                                 <p>Naziv kategorije <span class="text-red-500">*</span></p>
-                                <input type="text" name="nazivKategorije" id="nazivKategorije" value="{{$kategorija->name}}"
+                                <input type="text" name="nazivKategorijeEdit" id="nazivKategorijeEdit" value="{{$kategorija->name}}"
                                     class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                     onkeydown="clearErrorsNazivKategorije()" />
-                                <div id="validateNazivKategorije"></div>
+                                    @error('nazivKategorijeEdit')
+                                        <div class="text-red-500">{{ $message }}</div>
+                                    @enderror
                             </div>
 
                             <div class="mt-[20px]">

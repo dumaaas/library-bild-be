@@ -41,7 +41,7 @@ class ScriptController extends Controller
     public function sacuvajPismo() {
         //request all data, validate and update script
         request()->validate([
-            'nazivPismo'=>'required',
+            'nazivPismo'=>'required|max:256',
         ]);
 
         $pisma = new Script();
@@ -51,7 +51,7 @@ class ScriptController extends Controller
         $pisma->save();
 
         //return back
-        return back();
+        return back()->with('success', 'Pismo uspjesno sacuvano!');
     }
 
     public function izmijeniPismo(Script $pismo, ScriptService $scriptService) {

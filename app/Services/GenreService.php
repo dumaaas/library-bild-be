@@ -17,8 +17,8 @@ class GenreService {
     public function saveGenre($userService, $request) {
         //request all data, validate and add genre
         request()->validate([
-            'nazivZanra' => 'required',
-            'userImage'  => 'image|nullable|max: 1999'
+            'nazivZanra' => 'required|max:256',
+            'userImage'  => 'image|nullable|max: 256'
         ]);
 
         $zanr = new Genre();
@@ -32,8 +32,8 @@ class GenreService {
     public function editGenre($zanr, $userService, $request) {
          //request all data, validate and update genre
          request()->validate([
-            'nazivZanraEdit' => 'required',
-            'userImage'      => 'image|nullable|max: 1999'
+            'nazivZanraEdit' => 'required|max:256',
+            'userImage'      => 'image|nullable|max: 256'
         ]);
 
         $zanr->name = request('nazivZanraEdit');

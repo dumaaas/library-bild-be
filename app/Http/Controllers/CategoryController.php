@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $categoryService->saveCategory($userService, $request);
 
         //return back
-        return back();
+        return back()->with('success', 'Kategorija uspjesno sacuvana!');
     }
 
     public function izmijeniKategoriju(Category $kategorija, CategoryService $categoryService, UserService $userService, Request $request) {

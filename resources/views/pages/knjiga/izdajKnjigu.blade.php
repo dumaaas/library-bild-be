@@ -117,7 +117,9 @@
                                         <option value="{{$ucenik->id}}">{{$ucenik->name}}</option>
                                     @endforeach
                                 </select>
-                                <div id="validateUcenikIzdavanje"></div>
+                                @error('ucenik')
+                                <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mt-[20px] flex justify-between w-[90%]">
                                 <div class="w-[50%]">
@@ -128,7 +130,9 @@
                                             onclick="clearErrorsDatumIzdavanja();"
                                             onchange="funkcijaDatumVracanja({{$rokPozajmljivanja->value}});" />
                                     </label>
-                                    <div id="validateDatumIzdavanja"></div>
+                                    @error('datumIzdavanja')
+                                        <div class="text-red-500">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="w-[50%]">
                                     <p>Datum vracanja</p>

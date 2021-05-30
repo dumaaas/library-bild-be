@@ -32,6 +32,14 @@
                         </div>
                     </div>
                 </div>
+                @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                    <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
@@ -42,7 +50,9 @@
                             <div class="mt-[20px]">
                                 <span>Ime i prezime <span class="text-red-500">*</span></span>
                                 <input type="text" name="imePrezimeUcenik" id="imePrezimeUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameUcenik()"/>
-                                <div id="validateNameUcenik"></div>
+                                @error('imePrezimeUcenik')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
@@ -57,31 +67,41 @@
                             <div class="mt-[20px]">
                                 <span>JMBG <span class="text-red-500">*</span></span>
                                 <input type="text" name="jmbgUcenik" id="jmbgUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgUcenik()"/>
-                                <div id="validateJmbgUcenik"></div>
+                                @error('jmbgUcenik')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>E-mail <span class="text-red-500">*</span></span>
                                 <input type="email" name="emailUcenik" id="emailUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailUcenik()"/>
-                                <div id="validateEmailUcenik"></div>
+                                @error('emailUcenik')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Korisnicko ime <span class="text-red-500">*</span></span>
                                 <input type="text" name="usernameUcenik" id="usernameUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameUcenik()"/>
-                                <div id="validateUsernameUcenik"></div>
+                                @error('usernameUcenik')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Sifra <span class="text-red-500">*</span></span>
                                 <input type="password" name="pwUcenik" id="pwUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwUcenik()"/>
-                                <div id="validatePwUcenik"></div>
+                                @error('pwUcenik')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Ponovi sifru <span class="text-red-500">*</span></span>
                                 <input type="password" name="pw2Ucenik" id="pw2Ucenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2Ucenik()"/>
-                                <div id="validatePw2Ucenik"></div>
+                                @error('pw2Ucenik')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 

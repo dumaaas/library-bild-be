@@ -18,7 +18,7 @@ class BindingService {
 
         //request all data, validate and update binding
         request()->validate([
-          'nazivPovezEdit' => 'required',
+          'nazivPovezEdit' => 'required|max:256',
         ]);
 
         $povez->name = request('nazivPovezEdit');

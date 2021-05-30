@@ -115,7 +115,9 @@
                                         <option value="{{$ucenik->id}}">{{$ucenik->name}}</option>
                                     @endforeach
                                 </select>
-                                <div id="validateUcenikRezervisanje"></div>
+                                @error('ucenik')
+                                <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mt-[20px]">
                                 <p>Datum rezervisanja <span class="text-red-500">*</span></p>
@@ -124,7 +126,9 @@
                                         class="flex w-[50%] mt-2 px-4 py-2 text-base placeholder-gray-400 bg-white border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                         onclick="clearErrorsDatumRezervisanja()" />
                                 </label>
-                                <div id="validateDatumRezervisanja"></div>
+                                @error('datumRezervisanja')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

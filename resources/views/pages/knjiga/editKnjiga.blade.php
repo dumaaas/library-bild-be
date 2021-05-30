@@ -31,9 +31,17 @@
                     </div>
                 </div>
             </div>
+            @if(Session::has('success'))
+                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                    @php
+                        Session::forget('success');
+                    @endphp
+                </div>
+            @endif
         </div>
         <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
-            <p onclick="openTab(event, 'editDetails')" class="active-book-nav cursor-pointer tablinks inline hover:text-blue-800">
+            <p onclick="openTab(event, 'editDetails')" class="inline cursor-pointer active-book-nav tablinks hover:text-blue-800">
                 Osnovni detalji
             </p>
             <p  onclick="openTab(event, 'editSpecification')" class="cursor-pointer tablinks inline ml-[70px] hover:text-blue-800 ">
@@ -46,7 +54,7 @@
         <!-- Space for content -->
         <form action="{{route('updateKnjiga', ['knjiga' => $knjiga->id])}}" method="POST" class="text-gray-700 forma">
             @csrf
-            <div id="editDetails" class="tabcontent block">
+            <div id="editDetails" class="block tabcontent">
                 <div class="scroll height-content section-content">
 
                     <div class="flex flex-row ml-[30px] mb-[150px]">
@@ -56,7 +64,9 @@
                                 <input type="text" name="nazivKnjigaEdit" id="nazivKnjigaEdit" value="{{$knjiga->title}}"
                                        class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                        onkeydown="clearErrorsNazivKnjigaEdit()" />
-                                <div id="validateNazivKnjigaEdit"></div>
+                                @error('nazivKnjigaEdit')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">
@@ -159,7 +169,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="validateKategorijaEdit"></div>
+                            @error('kategorijaValuesEdit')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-[20px]">
@@ -253,7 +265,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="validateZanrEdit"></div>
+                        @error('zanrValuesEdit')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -347,7 +361,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="validateAutoriEdit"></div>
+                    @error('autoriValuesEdit')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mt-[20px]">
@@ -360,7 +376,9 @@
                             <option value="{{$izdavac->id}}">{{$izdavac->name}}</option>
                         @endforeach
                     </select>
-                    <div id="validateIzdavacEdit"></div>
+                    @error('izdavacEdit')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mt-[20px]">
@@ -373,7 +391,9 @@
                             <option value="{{$i}}">{{$i}}</option>
                         @endfor
                     </select>
-                    <div id="validateGodinaIzdavanjaEdit"></div>
+                    @error('godinaIzdavanjaEdit')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mt-[20px]">
@@ -381,7 +401,9 @@
                     <input type="text" name="knjigaKolicinaEdit" id="knjigaKolicinaEdit" value="{{$knjiga->quantity}}"
                            class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                            onkeydown="clearErrorsKnjigaKolicinaEdit()" />
-                    <div id="validateKnjigaKolicinaEdit"></div>
+                    @error('knjigaKolicinaEdit')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
                 </div>
                 </div>
                 </div>
@@ -392,7 +414,9 @@
                     <div class="mt-[20px]">
                         <p>Broj strana <span class="text-red-500">*</span></p>
                         <input type="text" name="brStranaEdit" id="brStranaEdit" value="{{$knjiga->pages}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsBrStranaEdit()"/>
-                        <div id="validateBrStranaEdit"></div>
+                        @error('brStranaEdit')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mt-[20px]">
@@ -403,7 +427,9 @@
                                 <option value="{{$pismo->id}}">{{$pismo->name}}</option>
                             @endforeach
                         </select>
-                        <div id="validatePismoEdit"></div>
+                        @error('pismoEdit')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mt-[20px]">
@@ -414,7 +440,9 @@
                                 <option value="{{$jezik->id}}">{{$jezik->name}}</option>
                             @endforeach
                         </select>
-                        <div id="validatePismoEdit"></div>
+                        @error('jezikEdit')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mt-[20px]">
@@ -425,7 +453,9 @@
                                 <option value="{{$povez->id}}">{{$povez->name}}</option>
                             @endforeach
                         </select>
-                        <div id="validatePovezEdit"></div>
+                        @error('povezEdit')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mt-[20px]">
@@ -436,13 +466,17 @@
                                 <option value="{{$format->id}}">{{$format->name}}</option>
                             @endforeach
                         </select>
-                        <div id="validateFormatEdit"></div>
+                        @error('formatEdit')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mt-[20px]">
                         <p>International Standard Book Num <span class="text-red-500">*</span></p>
                         <input type="text" name="isbnEdit" id="isbnEdit" value="{{$knjiga->ISBN}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbnEdit()"/>
-                        <div id="validateIsbnEdit"></div>
+                        @error('isbnEdit')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>

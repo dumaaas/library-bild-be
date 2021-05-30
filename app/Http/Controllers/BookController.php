@@ -439,8 +439,8 @@ class BookController extends Controller
 
         //request all data, validate and update author
         request()->validate([
-            'nazivKnjiga'      => 'required',
-            'kratki_sadrzaj'   => 'required',
+            'nazivKnjiga'      => 'required|max:256',
+            'kratki_sadrzaj'   => 'required|max:4128',
             'knjigaKategorije' => 'required',
             'knjigaZanrovi'    => 'required',
             'knjigaAutori'     => 'required',
@@ -451,7 +451,7 @@ class BookController extends Controller
             'knjigaPismo'      => 'required',
             'knjigaPovez'      => 'required',
             'knjigaFormat'     => 'required',
-            'knjigaIsbn'       => 'required',
+            'knjigaIsbn'       => 'required|max:20',
             'knjigaJezik'      => 'required',
         ]);
 
@@ -489,7 +489,20 @@ class BookController extends Controller
 
         //request all data, validate and update author
         request()->validate([
-
+            'nazivKnjigaEdit'       => 'required|max:256',
+            'kratki_sadrzaj_edit'   => 'required|max:4128',
+            'kategorijaValuesEdit'  => 'required',
+            'zanrValuesEdit'        => 'required',
+            'autoriValuesEdit'      => 'required',
+            'izdavacEdit'           => 'required',
+            'godinaIzdavanjaEdit'   => 'required',
+            'knjigaKolicinaEdit'    => 'required',
+            'brStranaEdit'          => 'required',
+            'pismoEdit'             => 'required',
+            'povezEdit'             => 'required',
+            'formatEdit'            => 'required',
+            'isbnEdit'              => 'required|max:20',
+            'jezikEdit'             => 'required',
         ]);
 
         $knjiga->title=request('nazivKnjigaEdit');

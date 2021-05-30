@@ -42,6 +42,14 @@
                         </div>
                     </div>
                 </div>
+                @if(Session::has('success'))
+                    <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                    <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                @endif
             </div>
 
             <!-- Space for content -->
@@ -53,7 +61,9 @@
                             <div class="mt-[20px]">
                                 <p>Naziv poveza <span class="text-red-500">*</span></p>
                                 <input type="text" name="nazivPovez" id="nazivPovez" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNazivPovez()"/>
-                                <div id="validateNazivPovez"></div>
+                                @error('nazivPovez')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

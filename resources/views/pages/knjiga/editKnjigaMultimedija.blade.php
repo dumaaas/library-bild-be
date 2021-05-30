@@ -32,6 +32,14 @@
                     </div>
                 </div>
             </div>
+            @if(Session::has('success'))
+                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                    @php
+                        Session::forget('success');
+                    @endphp
+                </div>
+            @endif
         </div>
         <div class="border-b-[2px] py-4 text-gray-500 border-gray-300 pl-[30px]">
             <a href="editKnjiga.php" class="inline hover:text-blue-800">

@@ -18,7 +18,7 @@ class ScriptService {
 
         //request all data, validate and update script
         request()->validate([
-            'nazivPismoEdit' => 'required',
+            'nazivPismoEdit' => 'required|max:256',
         ]);
 
         $pismo->name = request('nazivPismoEdit');

@@ -44,7 +44,7 @@ class FormatController extends Controller
 
         //request all data, validate and add format
         request()->validate([
-            'nazivFormat'=>'required',
+            'nazivFormat'=>'required|max:256',
         ]);
 
         $formati = new Format();
@@ -53,14 +53,14 @@ class FormatController extends Controller
 
         $formati->save();
 
-        return redirect('settingsFormat');
+        return back()->with('success', 'Format uspjesno sacuvan!');
     }
 
     public function izmijeniFormat(Format $format) {
 
         //request all data, validate and update genre
         request()->validate([
-            'nazivFormatEdit'=>'required|',
+            'nazivFormatEdit'=>'required|max:256',
         ]);
 
         $format->name=request('nazivFormatEdit');

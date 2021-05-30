@@ -18,12 +18,12 @@ class CategoryService {
 
         //request all data, validate and update category
         request()->validate([
-            'nazivKategorije'     => 'required',
-            'userImage'           => 'image|nullable|max: 1999',
-            'opisKategorije'      => 'required'
+            'nazivKategorijeEdit'     => 'required|max:256',
+            'userImage'           => 'image|nullable|max: 256',
+            'opisKategorije'      => 'required|nullable|max:2048'
         ]);
 
-        $kategorija->name        = request('nazivKategorije');
+        $kategorija->name        = request('nazivKategorijeEdit');
         $kategorija->description = request('opisKategorije');
 
         $userService->uploadEditPhoto($kategorija, $request);
@@ -34,9 +34,9 @@ class CategoryService {
    public function saveCategory($userService, $request) {
     //request all data, validate and update category
     request()->validate([
-        'nazivKategorije' => 'required',
-        'userImage'       => 'image|nullable|max: 1999',
-        'opisKategorije'  => 'required',
+        'nazivKategorije' => 'required|max:256',
+        'userImage'       => 'image|nullable|max: 256',
+        'opisKategorije'  => 'required|nullable|max:2048',
     ]);
 
     $kategorija = new Category();
