@@ -606,4 +606,25 @@ class BookController extends Controller
         return back()->with('success', 'Uspjesno otpisano!');
     }
 
+    /**
+     * Prikazi pretrazene knjige
+     *
+     * @param  BookService $bookService
+     * @return void
+     */
+    public function searchKnjige(BookService $bookService, Authorservice $authorService) {
+
+        $viewName = $this->viewFolder . '.evidencijaKnjiga';
+
+        $knjige = $bookService->searchKnjige();
+
+        $viewModel = [
+            'knjige'     => $knjige,
+            'autori'     => $authorService->getAutori()->get(),
+            'kategorije' => Category::all()
+        ];
+
+        return view($viewName, $viewModel);
+    }
+
 }

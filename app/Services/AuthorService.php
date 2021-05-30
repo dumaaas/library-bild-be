@@ -66,4 +66,23 @@ class AuthorService {
 
         return $autor;
     }
+
+    /**
+     * Vrati pretrazene autore
+     *
+     * @return void
+     */
+    public function searchAutori() {
+
+        $autori = Author::query();
+
+        if(request('searchAutori')) {
+            $autoriPretraga = request('searchAutori');
+            $autori = $autori->where('name', 'LIKE', '%'.$autoriPretraga.'%');
+        }
+
+        $autori = $autori->paginate(7);
+
+        return $autori;
+    }
 }

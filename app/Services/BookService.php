@@ -266,4 +266,23 @@ class BookService {
             Rent::destroy($rent->id);
         }
     }
+
+    /**
+     * Vrati pretrazene knjige
+     *
+     * @return void
+     */
+    public function searchKnjige() {
+
+        $knjige = Book::query();
+
+        if(request('searchKnjige')) {
+            $knjigaPretraga = request('searchKnjige');
+            $knjige = $knjige->where('title', 'LIKE', '%'.$knjigaPretraga.'%');
+        }
+
+        $knjige = $knjige->paginate(7);
+
+        return $knjige;
+    }
 }
