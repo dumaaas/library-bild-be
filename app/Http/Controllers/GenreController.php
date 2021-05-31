@@ -12,6 +12,12 @@ class GenreController extends Controller
     
     private $viewFolder = 'pages/settings/genres';
  
+    /**
+     * Prikazi stranicu za editovanje zanra
+     *
+     * @param  Genre $zanr
+     * @return void
+     */
     public function prikaziEditZanr(Genre $zanr) {
 
         $viewName = $this->viewFolder . '.editZanr';
@@ -23,6 +29,12 @@ class GenreController extends Controller
         return view($viewName,$viewModel);
     }
 
+    /**
+     * Prikazi sve zanrove
+     *
+     * @param  GenreService $genreService
+     * @return void
+     */
     public function prikaziSettingsZanrovi(GenreService $genreService) {
 
         $viewName = $this->viewFolder . '.settingsZanrovi';
@@ -34,6 +46,11 @@ class GenreController extends Controller
         return view($viewName,$viewModel);
     }
 
+    /**
+     * Prikazi stranicu za unos novog zanra
+     *
+     * @return void
+     */
     public function prikaziNoviZanr() {
         
         $viewName = $this->viewFolder . '.noviZanr';
@@ -41,6 +58,13 @@ class GenreController extends Controller
         return view($viewName);
     }
 
+    /**
+     * Kreiraj i sacuvaj novi zanr
+     *
+     * @param  GenreService $genreService
+     * @param  UserService $userService
+     * @param  Request $request
+     */
     public function sacuvajZanr(GenreService $genreService, UserService $userService, Request $request) {
         
         $genreService->saveGenre($userService, $request);
@@ -48,7 +72,16 @@ class GenreController extends Controller
         return back()->with('success', 'Zanr uspjesno sacuvan!');
     }
 
-    public function izmijeniZanr(GenreService $genreService, Genre $zanr, UserService $userService, Request $request) {
+    /**
+     * Izmijeni podatke o zanru
+     *
+     * @param  Genre $zanr
+     * @param  GenreService $genreService
+     * @param  UserService $userService
+     * @param  Request $request
+     * @return void
+     */
+    public function izmijeniZanr(Genre $zanr, GenreService $genreService, UserService $userService, Request $request) {
         
         $genreService->editGenre($zanr, $userService, $request);
 
@@ -56,6 +89,11 @@ class GenreController extends Controller
         return back()->with('success', 'Zanr uspjesno izmijenjen!');
     }
 
+    /**
+     * Izbrisi zanr
+     *
+     * @param  Genre $zanr
+     */
     public function izbrisiZanr(Genre $zanr) {
         Genre::destroy($zanr->id);
         return redirect('settingsZanrovi');

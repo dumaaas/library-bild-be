@@ -10,10 +10,20 @@ use Illuminate\Support\Str;
 
 class FormatService {
 
+    /**
+     * Vrati sve formate iz baze podataka
+     *
+     * @return void
+     */
     public function getFormats(){
         return $formati = DB::table('formats');
     }
-        
+       
+    /**
+     * Kreiraj novi format i sacuvaj ga u bazi
+     *
+     * @return void
+     */
     public function saveFormat(){
 
         //request all data, validate and add format
@@ -29,6 +39,12 @@ class FormatService {
     
     }
 
+    /**
+     * Izvrsi validaciju podataka i edituj format
+     *
+     * @param  Format $format
+     * @return void
+     */
     public function editFormat($format){
 
         //request all data, validate and update genre

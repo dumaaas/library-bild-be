@@ -11,6 +11,12 @@ class ScriptController extends Controller
 
     private $viewFolder = 'pages/settings/scripts';
 
+    /**
+     * Prikazi stranicu za editovanje pisma
+     *
+     * @param  Script $pismo
+     * @return void
+     */
     public function prikaziEditPismo(Script $pismo) {
 
         $viewName = $this->viewFolder . '.editPismo';
@@ -21,6 +27,13 @@ class ScriptController extends Controller
 
         return view($viewName ,$viewModel);
     }
+
+    /**
+     * Prikazi sva pisma
+     *
+     * @param  ScriptService $scriptService
+     * @return void
+     */
     public function prikaziSettingsPismo(ScriptService $scriptService) {
 
         $viewName = $this->viewFolder . '.settingsPismo';
@@ -31,6 +44,12 @@ class ScriptController extends Controller
 
         return view($viewName ,$viewModel);
     }
+
+    /**
+     * Prikazi stranicu za unos novog pisma
+     *
+     * @return void
+     */
     public function prikaziNovoPismo() {
 
         $viewName = $this->viewFolder . '.novoPismo';
@@ -38,7 +57,13 @@ class ScriptController extends Controller
         return view($viewName);
     }
 
-    public function sacuvajPismo(Script $pismo,ScriptService $scriptService) {
+    /**
+     * Kreiraj i sacuvaj novo pismo
+     *
+     * @param  Script $pismo
+     * @param  ScriptService $scriptService
+     */
+    public function sacuvajPismo(Script $pismo, ScriptService $scriptService) {
         
         $viewName = $this->viewFolder . '.editPismo';
 
@@ -52,6 +77,13 @@ class ScriptController extends Controller
         return back()->with('success', 'Pismo uspjesno sacuvano!');
     }
 
+    /**
+     * Izmijeni podatke o pismu
+     *
+     * @param  Script $pismo
+     * @param  ScriptService $scriptService
+     * @return void
+     */
     public function izmijeniPismo(Script $pismo, ScriptService $scriptService) {
 
         $viewName = $this->viewFolder . '.editPismo';
@@ -66,6 +98,11 @@ class ScriptController extends Controller
         return back()->with('success', 'Pismo uspjesno izmjenjeno!');
     }
 
+    /**
+     * Izbrisi pismo
+     *
+     * @param  Script $pismo
+     */
     public function izbrisiPismo(Script $pismo) {
         Script::destroy($pismo->id);
         return back();

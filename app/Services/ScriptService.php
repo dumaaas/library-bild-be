@@ -10,10 +10,21 @@ use Illuminate\Support\Str;
 
 class ScriptService {
     
+    /**
+     * Vrati sva pisma iz baze podataka
+     *
+     * @return void
+     */
     public function getScripts(){
         return $pisma = DB::table('scripts');
     }
 
+    /**
+     * Izvrsi validaciju podataka i edituj pismo
+     *
+     * @param  Script $pismo
+     * @return void
+     */
     public function editScript($pismo){
 
         //request all data, validate and update script
@@ -26,6 +37,11 @@ class ScriptService {
         $pismo->save();
    }
 
+   /**
+     * Kreiraj novo pismo i sacuvaj ga u bazi
+     *
+     * @return void
+     */
     public function saveScript(){
 
         //request all data, validate and update script

@@ -10,10 +10,22 @@ use Illuminate\Support\Str;
 
 class GenreService {
     
+    /**
+     * Vrati sve zanrove iz baze podataka
+     *
+     * @return void
+     */
     public function getGenres(){
         return $zanrovi = DB::table('genres');
     }
 
+    /**
+     * Kreiraj novi zanr i sacuvaj ga u bazi
+     *
+     * @param  UserService $userService
+     * @param  Request $request
+     * @return void
+     */
     public function saveGenre($userService, $request) {
         //request all data, validate and add genre
         request()->validate([
@@ -29,6 +41,14 @@ class GenreService {
         $zanr->save();
     }
 
+    /**
+     * Izvrsi validaciju podataka i edituj zanr
+     *
+     * @param  Genre $zanr
+     * @param  UserService $userService
+     * @param  Request $request
+     * @return void
+     */
     public function editGenre($zanr, $userService, $request) {
          //request all data, validate and update genre
          request()->validate([

@@ -10,10 +10,23 @@ use Illuminate\Support\Str;
 
 class CategoryService {
 
+    /**
+     * Vrati sve kategorije iz baze podataka
+     *
+     * @return void
+     */
     public function getCategories(){
         return $kategorije = DB::table('categories');
     }
 
+    /**
+     * Izvrsi validaciju podataka i edituj kategoriju
+     *
+     * @param  Category  $kategorija
+     * @param  UserService $userService
+     * @param  Request $request
+     * @return void
+     */
     public function editCategory($kategorija, $userService, $request){
 
         //request all data, validate and update category
@@ -31,6 +44,13 @@ class CategoryService {
         $kategorija->save();
    }
 
+   /**
+     * Kreiraj novu kategoriju i sacuvaj je u bazi
+     *
+     * @param  UserService $userService
+     * @param  Request $request
+     * @return void
+     */
    public function saveCategory($userService, $request) {
     //request all data, validate and update category
     request()->validate([

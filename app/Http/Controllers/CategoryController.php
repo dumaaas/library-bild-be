@@ -12,6 +12,12 @@ class CategoryController extends Controller
 
     private $viewFolder = 'pages/settings/categories';
 
+    /**
+     * Prikazi stranicu za editovanje kategorije
+     *
+     * @param  Category $kategorija
+     * @return void
+     */
     public function prikaziEditKategorija(Category $kategorija) {
 
         $viewName = $this->viewFolder . '.editKategorija';
@@ -22,6 +28,13 @@ class CategoryController extends Controller
 
         return view($viewName, $viewModel);
     }
+
+    /**
+     * Prikazi sve kategorije
+     *
+     * @param  CategoryService $categoryService
+     * @return void
+     */
     public function prikaziSettingsKategorije(CategoryService $categoryService) {
 
         $viewName = $this->viewFolder . '.settingsKategorije';
@@ -32,6 +45,12 @@ class CategoryController extends Controller
 
         return view($viewName,$viewModel);
     }
+
+    /**
+     * Prikazi stranicu za unos nove kategorije
+     *
+     * @return void
+     */
     public function prikaziNovaKategorija() {
 
         $viewName = $this->viewFolder . '.novaKategorija';
@@ -39,6 +58,13 @@ class CategoryController extends Controller
         return view($viewName);
     }
 
+    /**
+     * Kreiraj i sacuvaj novu kategoriju
+     *
+     * @param  CategoryService $categoryService
+     * @param  UserService $userService
+     * @param  Request $request
+     */
     public function sacuvajKategoriju(CategoryService $categoryService, UserService $userService, Request $request) {
         
         $categoryService->saveCategory($userService, $request);
@@ -47,6 +73,15 @@ class CategoryController extends Controller
         return back()->with('success', 'Kategorija uspjesno sacuvana!');
     }
 
+    /**
+     * Izmijeni podatke o kategoriji
+     *
+     * @param  Category $kategorija
+     * @param  CategoryService $categoryService
+     * @param  UserService $userService
+     * @param  Request $request
+     * @return void
+     */
     public function izmijeniKategoriju(Category $kategorija, CategoryService $categoryService, UserService $userService, Request $request) {
        
         $viewName = $this->viewFolder . '.editKategorija';
@@ -61,6 +96,11 @@ class CategoryController extends Controller
         return back()->with('success', 'Kategorija uspjesno izmjenjena!');
     }
 
+    /**
+     * Izbrisi kategoriju
+     *
+     * @param  Category $kategorija
+     */
     public function izbrisiKategoriju(Category $kategorija) {
         Category::destroy($kategorija->id);
         return back();

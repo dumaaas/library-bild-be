@@ -10,6 +10,11 @@ class PolicyController extends Controller
     
     private $viewFolder = 'pages/settings/policy';
 
+    /**
+     * Prikazi sve polise
+     *
+     * @return void
+     */
     public function prikaziSettingsPolisa() {
 
         $viewName = $this->viewFolder . '.settingsPolisa';

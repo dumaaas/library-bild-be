@@ -10,10 +10,21 @@ use Illuminate\Support\Str;
 
 class BindingService {
     
+    /**
+     * Vrati sve poveze iz baze podataka
+     *
+     * @return void
+     */
     public function getBindings(){
         return $povezi = DB::table('bindings');
     }
 
+    /**
+     * Izvrsi validaciju podataka i edituj povez
+     *
+     * @param  Binding  $povez
+     * @return void
+     */
     public function editBinding($povez){
 
         //request all data, validate and update binding
@@ -27,6 +38,11 @@ class BindingService {
 
    }
 
+    /**
+     * Kreiraj novi povez i sacuvaj ga u bazi
+     *
+     * @return void
+     */
     public function saveBinding(){
         
         //request all data, validate and update binding

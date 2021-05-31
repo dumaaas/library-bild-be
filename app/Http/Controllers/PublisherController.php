@@ -12,6 +12,12 @@ class PublisherController extends Controller
 
     private $viewFolder = 'pages/settings/publishers';
 
+    /**
+     * Prikazi stranicu za editovanje izdavaca
+     *
+     * @param  Publisher $izdavac
+     * @return void
+     */
     public function prikaziEditIzdavac(Publisher $izdavac) {
 
         $viewName = $this->viewFolder . '.editIzdavac';
@@ -23,6 +29,11 @@ class PublisherController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi stranicu za unos novog izdavaca
+     *
+     * @return void
+     */
     public function prikaziNoviIzdavac() {
 
         $viewName = $this->viewFolder . '.noviIzdavac';
@@ -30,6 +41,12 @@ class PublisherController extends Controller
         return view($viewName);
     }
 
+    /**
+     * Prikazi sve izdavace
+     *
+     * @param  PublisherService $publisherService
+     * @return void
+     */
     public function prikaziSettingsIzdavac(PublisherService $publisherService) {
 
         $viewName = $this->viewFolder . '.settingsIzdavac';
@@ -41,7 +58,14 @@ class PublisherController extends Controller
         return view($viewName, $viewModel);
     }
 
-    public function izmijeniIzdavaca(Publisher $izdavac,PublisherService $publisherService) {
+    /**
+     * Izmijeni podatke o izdavacu
+     *
+     * @param  Publisher $izdavac
+     * @param  PublisherService $publisherService
+     * @return void
+     */
+    public function izmijeniIzdavaca(Publisher $izdavac, PublisherService $publisherService) {
 
         $viewName = $this->viewFolder . '.editIzdavac';
 
@@ -55,12 +79,23 @@ class PublisherController extends Controller
         return back()->with('success', 'Izdavac uspjesno izmjenjen!');
     }
 
+    /**
+     * Izbrisi izdavaca
+     *
+     * @param  Publisher $izdavac
+     */
     public function izbrisiIzdavaca(Publisher $izdavac) {
         Publisher::destroy($izdavac->id);
         return back();
     }
 
-    public function sacuvajIzdavaca(Publisher $izdavac,PublisherService $publisherService) {
+    /**
+     * Kreiraj i sacuvaj novog izdavaca
+     *
+     * @param  Publisher $izdavac
+     * @param  PublisherService $publisherService
+     */
+    public function sacuvajIzdavaca(Publisher $izdavac, PublisherService $publisherService) {
 
         $viewName = $this->viewFolder . '.editIzdavac';
 

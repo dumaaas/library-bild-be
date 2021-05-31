@@ -12,6 +12,12 @@ class BindingController extends Controller
 
     private $viewFolder = 'pages/settings/bindings';
 
+    /**
+     * Prikazi stranicu za editovanje poveza
+     *
+     * @param  Binding $povez
+     * @return void
+     */
     public function prikaziEditPovez(Binding $povez) {
 
         $viewName = $this->viewFolder . '.editPovez';
@@ -23,6 +29,11 @@ class BindingController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi stranicu za unos novog poveza
+     *
+     * @return void
+     */
     public function prikaziNoviPovez() {
 
         $viewName = $this->viewFolder . '.noviPovez';
@@ -30,6 +41,12 @@ class BindingController extends Controller
         return view($viewName);
     }
 
+     /**
+     * Prikazi sve poveze
+     *
+     * @param  BindingService $bindingService
+     * @return void
+     */
     public function prikaziSettingsPovez(BindingService $bindingService) {
 
         $viewName = $this->viewFolder . '.settingsPovez';
@@ -41,7 +58,13 @@ class BindingController extends Controller
         return view($viewName, $viewModel);
     }
 
-    public function sacuvajPovez(Binding $povez,BindingService $bindingService) {
+    /**
+     * Kreiraj i sacuvaj novi povez
+     *
+     * @param  Binding $povez
+     * @param  BindingService $bindingService
+     */
+    public function sacuvajPovez(Binding $povez, BindingService $bindingService) {
         
         $viewName = $this->viewFolder . '.editPovez';
 
@@ -55,7 +78,14 @@ class BindingController extends Controller
         return back()->with('success', 'Povez uspjesno sacuvan!');
     }
 
-    public function izmijeniPovez(Binding $povez,BindingService $bindingService) {
+    /**
+     * Izmijeni podatke o povezu
+     *
+     * @param  Binding $povez
+     * @param  BindingService $bindingService
+     * @return void
+     */
+    public function izmijeniPovez(Binding $povez, BindingService $bindingService) {
    
         $viewName = $this->viewFolder . '.editPovez';
 
@@ -69,6 +99,11 @@ class BindingController extends Controller
         return back()->with('success', 'Povez uspjesno izmjenjen!');
     }
 
+    /**
+     * Izbrisi povez
+     *
+     * @param  Binding $povez
+     */
     public function izbrisiPovez(Binding $povez) {
         Binding::destroy($povez->id);
         return back();

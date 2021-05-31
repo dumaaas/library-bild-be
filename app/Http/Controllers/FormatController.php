@@ -11,6 +11,12 @@ class FormatController extends Controller
     
     private $viewFolder = 'pages/settings/format';
 
+     /**
+     * Prikazi stranicu za editovanje formata
+     *
+     * @param  Format $format
+     * @return void
+     */
     public function prikaziEditFormat(Format $format) {
 
         $viewName = $this->viewFolder . '.editFormat';
@@ -22,6 +28,11 @@ class FormatController extends Controller
         return view($viewName,$viewModel);
     }
 
+    /**
+     * Prikazi stranicu za unos novog formata
+     *
+     * @return void
+     */
     public function prikaziNoviFormat() {
 
         $viewName = $this->viewFolder . '.noviFormat';
@@ -29,6 +40,12 @@ class FormatController extends Controller
         return view($viewName);
     }
 
+    /**
+     * Prikazi sve formate
+     *
+     * @param  FormatService $formatService
+     * @return void
+     */
     public function prikaziSettingsFormat(FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.settingsFormat';
@@ -40,7 +57,13 @@ class FormatController extends Controller
         return view($viewName,$viewModel);
     }
 
-    public function sacuvajFormat(Format $format,FormatService $formatService) {
+    /**
+     * Kreiraj i sacuvaj novi format
+     *
+     * @param  Format $format
+     * @param  FormatService $formatService
+     */
+    public function sacuvajFormat(Format $format, FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.editFormat';
 
@@ -53,6 +76,13 @@ class FormatController extends Controller
         return back()->with('success', 'Format uspjesno sacuvan!');
     }
 
+    /**
+     * Izmijeni podatke o formatu
+     *
+     * @param  Format $format
+     * @param  FormatService $formatService
+     * @return void
+     */
     public function izmijeniFormat(Format $format, FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.editFormat';
@@ -67,6 +97,11 @@ class FormatController extends Controller
         return back()->with('success', 'Format uspjesno izmijenjen!');
     }
 
+    /**
+     * Izbrisi format
+     *
+     * @param  Format $format
+     */
     public function izbrisiFormat(Format $format) {
     
         Format::destroy($format->id);
