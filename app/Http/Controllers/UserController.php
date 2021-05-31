@@ -119,7 +119,7 @@ class UserController extends Controller
         $userService->editBibliotekar($user, $request);
 
         //return back to the edit author form
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Bibliotekar uspjesno izmjenjen!');
     }
 
     /**
@@ -140,7 +140,7 @@ class UserController extends Controller
 
         if ($user->userType->name != 'student' && (Gate::allows('isMyAccount', $user) || Gate::allows('isAdmin'))) {
             User::destroy($user->id);
-            return view($viewName, $viewModel);
+            return back()->with('success', 'Bibliotekar uspjesno izbrisan!');
         } else {
             return abort(403, trans('Sorry, not sorry!'));
         }
@@ -187,7 +187,7 @@ class UserController extends Controller
         ];
 
         //return back to the librarian profile
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Bibliotekar uspjesno sacuvan!');
     }
 
     /**
@@ -298,7 +298,7 @@ class UserController extends Controller
         $userService->editUcenik($user, $request);
 
         //return back to the edit student form
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Ucenik uspjesno izmjenjen!');
     }
 
     /**
@@ -321,7 +321,7 @@ class UserController extends Controller
             return abort(403, trans('Sorry, not sorry!'));
         } else {
             User::destroy($user->id);
-            return view($viewName, $viewModel);
+            return back()->with('success', 'Ucenik uspjesno izbrisan!');
         }
     }
 
@@ -342,7 +342,7 @@ class UserController extends Controller
         ];
 
         //return back to the edit student form
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Ucenik uspjesno sacuvan!');
     }
 
     /**

@@ -96,6 +96,6 @@ class GenreController extends Controller
      */
     public function izbrisiZanr(Genre $zanr) {
         Genre::destroy($zanr->id);
-        return redirect('settingsZanrovi');
+        return back()->with('success', 'Zanr uspjesno izbrisan!');
     }
 }

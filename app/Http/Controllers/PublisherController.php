@@ -86,7 +86,7 @@ class PublisherController extends Controller
      */
     public function izbrisiIzdavaca(Publisher $izdavac) {
         Publisher::destroy($izdavac->id);
-        return back();
+        return back()->with('success', 'Izdavac uspjesno izbrisan!');
     }
 
     /**

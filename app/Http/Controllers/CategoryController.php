@@ -103,6 +103,6 @@ class CategoryController extends Controller
      */
     public function izbrisiKategoriju(Category $kategorija) {
         Category::destroy($kategorija->id);
-        return back();
+        return back()->with('success', 'Kategorija uspjesno izbrisana!');
     }
 }

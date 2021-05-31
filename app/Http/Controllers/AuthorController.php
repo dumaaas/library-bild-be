@@ -110,7 +110,7 @@ class AuthorController extends Controller
     public function izbrisiAutora(Author $autor) {
         Author::destroy($autor->id);
 
-        return back();
+        return back()->with('success', 'Autor uspjesno izbrisan!');
     }
 
     /**

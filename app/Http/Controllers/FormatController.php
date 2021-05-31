@@ -105,6 +105,6 @@ class FormatController extends Controller
     public function izbrisiFormat(Format $format) {
     
         Format::destroy($format->id);
-        return redirect('settingsFormat');
+        return back()->with('success', 'Format uspjesno izbrisan!');
     }
 }
