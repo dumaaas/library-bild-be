@@ -502,8 +502,8 @@ class BookController extends Controller
             'pismoEdit'             => 'sometimes|string',
             'povezEdit'             => 'sometimes|string',
             'formatEdit'            => 'sometimes|string',
-            'isbnEdit'              => 'required|numeric|max:20',
-            'jezikEdit'             => 'required|string',
+            'isbnEdit'              => 'sometimes|numeric|max:20',
+            'jezikEdit'             => 'sometimes|string',
         ]);
 
         $knjiga->title=request('nazivKnjigaEdit');

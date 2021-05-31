@@ -41,7 +41,7 @@ class UserService {
         //request all data, validate and update librarian
         request()->validate([
             'imePrezimeBibliotekarEdit' => 'sometimes|string|max:128',
-            'jmbgBibliotekarEdit'       => 'sometimes|numeric|unique:users,jmbg|max:14',
+            'jmbgBibliotekarEdit'       => 'sometimes|digits:14|unique:users,jmbg',
             'emailBibliotekarEdit'      => 'sometimes|string|unique:users,email|max:128',
             'usernameBibliotekarEdit'   => 'sometimes|string|max:64',
             'pwBibliotekarEdit'         => 'sometimes|max:256',
@@ -78,7 +78,7 @@ class UserService {
         //request all data, validate and add librarian
         request()->validate([
             'imePrezimeBibliotekar' => 'required|string|max:128',
-            'jmbgBibliotekar'       => 'required|numeric|unique:users,jmbg|max:14',
+            'jmbgBibliotekar'       => 'required|digits:14|unique:users,jmbg',
             'emailBibliotekar'      => 'required|string|unique:users,email|max:128',
             'usernameBibliotekar'   => 'required|string|max:64',
             'pwBibliotekar'         => 'required|max:256',
@@ -193,7 +193,7 @@ class UserService {
         //request all data, validate and update student
         request()->validate([
             'imePrezimeUcenikEdit'=> 'sometimes|string|max:128',
-            'jmbgUcenikEdit'      => 'sometimes|numeric|unique:users,jmbg|max:14',
+            'jmbgUcenikEdit'      => 'sometimes|digits:14|unique:users,jmbg',
             'emailUcenikEdit'     => 'sometimes|string|unique:users,email|max:128',
             'usernameUcenikEdit'  => 'sometimes|string|max:64',
             'pwUcenikEdit'        => 'sometimes|max:256',
@@ -230,7 +230,7 @@ class UserService {
         //request all data, validate and update student
         request()->validate([
             'imePrezimeUcenik' => 'required|string|max:128',
-            'jmbgUcenik'       => 'required|numeric|unique:users,jmbg|max:14',
+            'jmbgUcenik'       => 'required|digits:14|unique:users,jmbg',
             'emailUcenik'      => 'required|string|unique:users,email|max:128',
             'usernameUcenik'   => 'required|string|max:64',
             'pwUcenik'         => 'required|max:256',
