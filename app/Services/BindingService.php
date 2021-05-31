@@ -26,4 +26,20 @@ class BindingService {
         $povez->save();
 
    }
+
+    public function saveBinding(){
+        
+        //request all data, validate and update binding
+        request()->validate([
+        'nazivPovez'=>'required|max:256',
+        ]);
+        
+        $povez = new Binding();
+        
+        $povez->name=request('nazivPovez');
+        
+        $povez->save();
+
+    }
+
 }

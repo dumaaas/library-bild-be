@@ -52,7 +52,7 @@ class PublisherController extends Controller
         $publisherService->editPublisher($izdavac);
         
         //return back to the publisher
-        return view($viewName,$viewModel);
+        return back()->with('success', 'Izdavac uspjesno izmjenjen!');
     }
 
     public function izbrisiIzdavaca(Publisher $izdavac) {
@@ -71,6 +71,6 @@ class PublisherController extends Controller
         $publisherService->savePublisher($izdavac);
 
         //return back to the publisher
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Izdavac uspjesno sacuvan!');
     }
 }

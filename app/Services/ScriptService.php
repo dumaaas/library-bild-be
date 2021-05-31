@@ -26,4 +26,18 @@ class ScriptService {
         $pismo->save();
    }
 
+    public function saveScript(){
+
+        //request all data, validate and update script
+        request()->validate([
+            'nazivPismo'=>'required|max:256',
+        ]);
+
+        $pisma = new Script();
+
+        $pisma->name=request('nazivPismo');
+
+        $pisma->save();
+    }
+
 }

@@ -40,32 +40,28 @@ class FormatController extends Controller
         return view($viewName,$viewModel);
     }
 
-    public function sacuvajFormat() {
+    public function sacuvajFormat(Format $format,FormatService $formatService) {
 
-        //request all data, validate and add format
-        request()->validate([
-            'nazivFormat'=>'required|max:256',
-        ]);
+        $viewName = $this->viewFolder . '.editFormat';
 
-        $formati = new Format();
+        $viewModel = [
+            'format' => $format
+        ];
 
-        $formati->name=request('nazivFormat');
-
-        $formati->save();
+        $formatService->saveFormat($format);
 
         return back()->with('success', 'Format uspjesno sacuvan!');
     }
 
-    public function izmijeniFormat(Format $format) {
+    public function izmijeniFormat(Format $format, FormatService $formatService) {
 
-        //request all data, validate and update genre
-        request()->validate([
-            'nazivFormatEdit'=>'required|max:256',
-        ]);
+        $viewName = $this->viewFolder . '.editFormat';
 
-        $format->name=request('nazivFormatEdit');
+        $viewModel = [
+            'format' => $format
+        ];
 
-        $format->save();
+        $formatService->editFormat($format);
 
         //return back to all genres
         return back()->with('success', 'Format uspjesno izmijenjen!');

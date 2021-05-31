@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $categoryService->editCategory($kategorija, $userService, $request);
 
         //return back to the category
-        return view($viewName,$viewModel);
+        return back()->with('success', 'Kategorija uspjesno izmjenjena!');
     }
 
     public function izbrisiKategoriju(Category $kategorija) {

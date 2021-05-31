@@ -40,4 +40,5 @@ class PublisherService {
         $izdavac->save();
         
     }
+    
 }

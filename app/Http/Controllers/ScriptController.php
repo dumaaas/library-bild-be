@@ -38,17 +38,15 @@ class ScriptController extends Controller
         return view($viewName);
     }
 
-    public function sacuvajPismo() {
-        //request all data, validate and update script
-        request()->validate([
-            'nazivPismo'=>'required|max:256',
-        ]);
+    public function sacuvajPismo(Script $pismo,ScriptService $scriptService) {
+        
+        $viewName = $this->viewFolder . '.editPismo';
 
-        $pisma = new Script();
+        $viewModel = [
+            'pismo' => $pismo
+        ];
 
-        $pisma->name=request('nazivPismo');
-
-        $pisma->save();
+        $scriptService->saveScript($pismo);
 
         //return back
         return back()->with('success', 'Pismo uspjesno sacuvano!');
@@ -65,7 +63,7 @@ class ScriptController extends Controller
         $scriptService->editScript($pismo);
 
         //return back to the script
-        return view($viewName,$viewModel);
+        return back()->with('success', 'Pismo uspjesno izmjenjeno!');
     }
 
     public function izbrisiPismo(Script $pismo) {

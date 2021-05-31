@@ -17,10 +17,10 @@
                 <a href="{{route('settingsPolisa')}}" class="inline hover:text-blue-800">
                     Polisa
                 </a>
-                <a href="settingsKategorije.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsKategorije')}}" class="inline ml-[70px] hover:text-blue-800">
                     Kategorije
                 </a>
-                <a href="settingsZanrovi.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsZanrovi')}}" class="inline ml-[70px] hover:text-blue-800">
                     Zanrovi
                 </a>
                 <a href="{{route('settingsIzdavac')}}" class="inline ml-[70px] hover:text-blue-800 active-book-nav">
@@ -29,10 +29,10 @@
                 <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
                 </a>
-                <a href="settingsFormat.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsFormat')}}" class="inline ml-[70px] hover:text-blue-800">
                     Format
                 </a>
-                <a href="settingsPismo.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('settingsPismo')}}" class="inline ml-[70px] hover:text-blue-800">
                     Pismo
                 </a>
             </div>

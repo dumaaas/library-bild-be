@@ -41,17 +41,15 @@ class BindingController extends Controller
         return view($viewName, $viewModel);
     }
 
-    public function sacuvajPovez() {
-        //request all data, validate and update binding
-        request()->validate([
-            'nazivPovez'=>'required|max:256',
-        ]);
+    public function sacuvajPovez(Binding $povez,BindingService $bindingService) {
+        
+        $viewName = $this->viewFolder . '.editPovez';
 
-        $povez = new Binding();
+        $viewModel = [
+            'povez' => $povez
+        ];
 
-        $povez->name=request('nazivPovez');
-
-        $povez->save();
+        $bindingService->saveBinding($povez);
 
         //return back
         return back()->with('success', 'Povez uspjesno sacuvan!');
@@ -68,7 +66,7 @@ class BindingController extends Controller
         $bindingService->editBinding($povez);
 
         //return back to the binding
-        return view($viewName,$viewModel);
+        return back()->with('success', 'Povez uspjesno izmjenjen!');
     }
 
     public function izbrisiPovez(Binding $povez) {
