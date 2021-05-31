@@ -99,7 +99,7 @@ class AuthorController extends Controller
             'autor' => $autor
         ];
 
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Autor uspjesno izmjenjen!');
     }
 
     /**
@@ -110,7 +110,7 @@ class AuthorController extends Controller
     public function izbrisiAutora(Author $autor) {
         Author::destroy($autor->id);
 
-        return back();
+        return back()->with('success', 'Autor uspjesno izbrisan!');
     }
 
     /**
@@ -128,7 +128,7 @@ class AuthorController extends Controller
             'autor' => $autor
         ];
 
-        return view($viewName, $viewModel);
+        return back()->with('success', 'Autor uspjesno sacuvan!');
     }
 
     /**

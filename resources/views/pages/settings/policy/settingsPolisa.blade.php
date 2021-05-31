@@ -61,6 +61,9 @@
                                             placeholder="{{$rokRezervacije->value}}" />
                                         <p class="ml-[10px] mt-[10px]">dana</p>
                                     </div>
+                                    @error('rokRezervacije')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                    @enderror
                                     <div>
                                         <button class="btn-animation mt-[10px] text-white shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                             Sacuvaj
@@ -90,6 +93,9 @@
                                             placeholder="{{$rokPozajmljivanja->value}}" />
                                         <p class="ml-[10px] mt-[10px]">dana</p>
                                     </div>
+                                    @error('rokPozajmljivanja')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                    @enderror
                                     <div>
                                         <button class="btn-animation mt-[10px] text-white shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                             Sacuvaj
@@ -119,6 +125,9 @@
                                             placeholder="{{$rokPrekoracenja->value}}" />
                                         <p class="ml-[10px] mt-[10px]">dana</p>
                                     </div>
+                                    @error('rokPrekoracenja')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                    @enderror
                                     <div>
                                         <button class="btn-animation mt-[10px] text-white shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                             Sacuvaj

@@ -106,6 +106,6 @@ class BindingController extends Controller
      */
     public function izbrisiPovez(Binding $povez) {
         Binding::destroy($povez->id);
-        return back();
+        return back()->with('success', 'Povez uspjesno izbrisan!');
     }
 }

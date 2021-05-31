@@ -32,6 +32,11 @@ class PolicyController extends Controller
 
         $viewName = $this->viewFolder . '.settingsPolisa';
 
+         //request all data, validate and update RESERVATION_PERIOD
+         request()->validate([
+            'rokRezervacije' => 'numeric|sometimes|max:256',
+        ]);
+
         $rezervacija = GlobalVariable::find(2);
         $rezervacija->value = request('rokRezervacije');
         $rezervacija->save();
@@ -47,6 +52,11 @@ class PolicyController extends Controller
 
         $viewName = $this->viewFolder . '.settingsPolisa';
 
+         //request all data, validate and update RETURN_DUE_DATE
+         request()->validate([
+            'rokPozajmljivanja' => 'numeric|sometimes|max:256',
+        ]);
+
         $rezervacija = GlobalVariable::find(1);
         $rezervacija->value = request('rokPozajmljivanja');
         $rezervacija->save();
@@ -61,6 +71,11 @@ class PolicyController extends Controller
     public function izmijeniRokPrekoracenja(){
 
         $viewName = $this->viewFolder . '.settingsPolisa';
+
+        //request all data, validate and update OVERDRAFT_PERIOD
+        request()->validate([
+            'rokPrekoracenja' => 'numeric|sometimes|max:256',
+        ]);
 
         $rezervacija = GlobalVariable::find(3);
         $rezervacija->value = request('rokPrekoracenja');

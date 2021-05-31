@@ -8,6 +8,14 @@
             <h1 class="pl-[30px] pb-[21px] border-b-[1px] border-[#e4dfdf] ">
                 Bibliotekari
             </h1>
+            @if(Session::has('success'))
+                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                    @php
+                        Session::forget('success');
+                    @endphp
+                </div>
+            @endif
         </div>
         <!-- Space for content -->
         @if(count($bibliotekari) > 0)

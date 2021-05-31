@@ -105,6 +105,6 @@ class ScriptController extends Controller
      */
     public function izbrisiPismo(Script $pismo) {
         Script::destroy($pismo->id);
-        return back();
+        return back()->with('success', 'Pismo uspjesno izbrisano!');
     }
 }

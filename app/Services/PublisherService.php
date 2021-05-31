@@ -29,7 +29,7 @@ class PublisherService {
 
         //request all data, validate and update publisher
         request()->validate([
-            'nazivIzdavacEdit' => 'required|max:256',
+            'nazivIzdavacEdit' => 'sometimes|string|max:256',
         ]);
 
         $izdavac->name = request('nazivIzdavacEdit');
@@ -46,7 +46,7 @@ class PublisherService {
 
         //request all data, validate and update publisher
         request()->validate([
-            'nazivIzdavac' => 'required|max:256',
+            'nazivIzdavac' => 'required|string|max:256',
         ]);
 
         $izdavac = new Publisher();

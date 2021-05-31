@@ -29,7 +29,7 @@ class BindingService {
 
         //request all data, validate and update binding
         request()->validate([
-          'nazivPovezEdit' => 'required|max:256',
+          'nazivPovezEdit' => 'sometimes|string|max:256',
         ]);
 
         $povez->name = request('nazivPovezEdit');
@@ -47,7 +47,7 @@ class BindingService {
         
         //request all data, validate and update binding
         request()->validate([
-        'nazivPovez'=>'required|max:256',
+        'nazivPovez'=>'required|string|max:256',
         ]);
         
         $povez = new Binding();

@@ -77,15 +77,21 @@
                                         </label>
                                     </div>
                                     <div id="icon-output" class="h-[40px] px-[20px] pt-[7px]"></div>
+                                    @error('userImageEdit')
+                                        <div class="text-red-500">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="mt-[20px]">
                                 <p class="inline-block">Opis</p>
-                                <textarea name="opisKategorije" rows="10"
+                                <textarea name="opisKategorijeEdit" rows="10"
                                     class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
                                     {{$kategorija->description}}
                                 </textarea>
+                                @error('opisKategorijeEdit')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

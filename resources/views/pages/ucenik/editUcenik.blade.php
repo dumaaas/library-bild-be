@@ -120,6 +120,9 @@
                                 <img src="/storage/image/{{$user->photo}}" id="image-output-student" class="absolute w-48 h-[188px] bottom-0" />
                             </div>
                         </label>
+                        @error('userImage')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
