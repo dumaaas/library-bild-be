@@ -30,7 +30,9 @@ class GlobalVariableService {
      * @return void
      */
     public function getRokIzdavanja() {
-        return DB::table('global_variables')->where('id', '=', 1)->value('');
+        $rok =  DB::table('global_variables')->where('id', '=', 1)->value('');
+
+        return $rok->value;
     }
 
     /**
@@ -40,6 +42,7 @@ class GlobalVariableService {
      */
     public function getRokRezervacije() {
         $rok = DB::table('global_variables')->where('id', '=', 2)->first();
+
         return $rok->value;
     }
 
