@@ -85,13 +85,13 @@ class BookService {
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function saveReservation($knjiga, $reservationService) {
+    public function saveReservation($knjiga, $reservationService, $globalVariableService) {
         request()->validate([
             'ucenik'            => 'required',
             'datumRezervisanja' => 'required',
         ]);
 
-        $rezervisanje = $reservationService->saveReservation($knjiga->id);
+        $rezervisanje = $reservationService->saveReservation($knjiga->id, $globalVariableService);
 
         //dodavanje u tabelu reservation_statuses
         $statusRezervisanja = $reservationService->saveReservationStatus($rezervisanje->id, $rezervisanje->reservation_date);

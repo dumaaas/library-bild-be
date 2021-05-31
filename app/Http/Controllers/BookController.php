@@ -21,6 +21,7 @@ use App\Services\RentService;
 use App\Services\UserService;
 use App\Services\CategoryService;
 use App\Services\ReservationService;
+use App\Services\GlobalVariableService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -300,9 +301,9 @@ class BookController extends Controller
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function sacuvajRezervisanje(Book $knjiga, BookService $bookService, ReservationService $reservationService) {
+    public function sacuvajRezervisanje(Book $knjiga, BookService $bookService, ReservationService $reservationService, GlobalVariableService $globalVariableService) {
 
-        $bookService->saveReservation($knjiga, $reservationService);
+        $bookService->saveReservation($knjiga, $reservationService, $globalVariableService);
 
         return back()->with('success', 'Uspjesno rezervisano!');
     }

@@ -42,7 +42,7 @@ class RentService
      * @return void
      */
     public function getPrekoraceneKnjige() {
-        return Rent::where('return_date', '<', Carbon::now())
+        return Rent::where('return_date', '>', [Carbon::now()])
                     ->where(function ($query) {
                         $query->select('statusBook_id')
                             ->from('rent_statuses')

@@ -46,9 +46,10 @@
                                     Rok za rezervaciju
                                 </h3>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eligendi nihil, vel
-                                    necessitatibus saepe laboriosam! Perspiciatis laboriosam culpa veritatis ea
-                                    voluptatum commodi tempora unde, dolorum debitis quia id dicta vitae.
+                                    Ovdje se definise rok za rezervaciju u danima. Po isteku tog roka, rezervacija istice i dobija status zatvaranja 'Rezervacija istekla'.
+                                </p>
+                                <p class="pt-[15px] max-w-[400px]">
+                                    Trenutni rok: {{$rokRezervacije->value}} dana
                                 </p>
                             </div>
                             <div class="relative flex ml-[60px] mt-[20px]">
@@ -74,9 +75,10 @@
                                     Rok pozajmljivanja
                                 </h3>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eligendi nihil, vel
-                                    necessitatibus saepe laboriosam! Perspiciatis laboriosam culpa veritatis ea
-                                    voluptatum commodi tempora unde, dolorum debitis quia id dicta vitae.
+                                    Ovdje se definise rok za vracanje u danima. Po isteku tog roka + rok prekoracenja, izdata knjiga ulazi u prekoracanje i moguce je otpisati primjerak.
+                                </p>
+                                <p class="pt-[15px] max-w-[400px]">
+                                    Trenutni rok: {{$rokPozajmljivanja->value}} dana
                                 </p>
                             </div>
                             <div class="relative flex ml-[60px] mt-[20px]">
@@ -102,9 +104,10 @@
                                     Rok prekoracenja
                                 </h3>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eligendi nihil, vel
-                                    necessitatibus saepe laboriosam! Perspiciatis laboriosam culpa veritatis ea
-                                    voluptatum commodi tempora unde, dolorum debitis quia id dicta vitae.
+                                    Ovdje se definise rok za prekoracenje u danima. Nakon isteka roka za vracanje student moze vratiti knjigu u roku prekoracenja, nakon cega izdati primjerak ulazi u knjige u prekoracenju.
+                                </p>
+                                <p class="pt-[15px] max-w-[400px]">
+                                    Trenutni rok: {{$rokPrekoracenja->value}} dana
                                 </p>
                             </div>
                             <div class="relative flex ml-[60px] mt-[20px]">
