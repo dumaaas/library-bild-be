@@ -19,7 +19,7 @@ class CreateRentsTable extends Migration
             $table->foreignId('librarian_id');
             $table->foreignId('student_id');
             $table->timestamp('rent_date');
-            $table->date('return_date')->nullable();
+            $table->timestamp('return_date')->nullable();
             $table->timestamps();
 
             $table->foreign('book_id')

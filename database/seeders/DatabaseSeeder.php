@@ -153,19 +153,19 @@ class DatabaseSeeder extends Seeder
         DB::table('global_variables')->insert([
             'id' => 1,
             'variable' => 'RETURN_DUE_DATE',
-            'value' => '20',
+            'value' => 20,
         ]);
 
         DB::table('global_variables')->insert([
             'id' => 2,
             'variable' => 'RESERVATION_PERIOD',
-            'value' => '20',
+            'value' => 20,
         ]);
 
         DB::table('global_variables')->insert([
             'id' => 3,
             'variable' => 'OVERDRAFT_PERIOD',
-            'value' => '5',
+            'value' => 5,
         ]);
 
         //SEEDING ADMIN

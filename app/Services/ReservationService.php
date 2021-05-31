@@ -82,14 +82,14 @@ class ReservationService
      * @param  Book  $knjiga
      * @return void
      */
-    public function saveReservation($knjiga) {
+    public function saveReservation($knjiga, $globalVariableService) {
         $rezervisanje = new Reservation();
 
         $rezervisanje->book_id             = $knjiga;
         $rezervisanje->librarian_id        = Auth::id();
         $rezervisanje->student_id          = request('ucenik');
         $rezervisanje->reservation_date    = request('datumRezervisanja');
-        $rezervisanje->close_date          = $rezervisanje->reservation_date->addDays(20);
+        $rezervisanje->close_date          = $rezervisanje->reservation_date->addDays($globalVariableService->getRokRezervacije());
         $rezervisanje->request_date        = now();
         $rezervisanje->closeReservation_id = 5;
 

@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Rent;
 use App\Models\RentStatus;
+use App\Services\GlobalVariableService;
 use Carbon\Carbon;
 use Auth;
 
@@ -42,7 +43,11 @@ class RentService
      * @return void
      */
     public function getPrekoraceneKnjige() {
-        return Rent::where('return_date', '<', Carbon::now())
+        
+        $rok = new GlobalVariableService();
+        $rokValue = $rok->getRokPrekoracenja();
+
+        return Rent::whereRaw('return_date + interval '. $rokValue .' day < ?', [Carbon::now()])
                     ->where(function ($query) {
                         $query->select('statusBook_id')
                             ->from('rent_statuses')
@@ -101,6 +106,7 @@ class RentService
         $izdavanje->librarian_id = Auth::id();
         $izdavanje->student_id = request('ucenik');
         $izdavanje->rent_date = request('datumIzdavanja');
+        $izdavanje->return_date = request('datumVracanja');
 
         $izdavanje->save();
 

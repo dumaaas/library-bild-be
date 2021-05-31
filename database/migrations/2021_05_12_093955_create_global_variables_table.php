@@ -16,7 +16,7 @@ class CreateGlobalVariablesTable extends Migration
         Schema::create('global_variables', function (Blueprint $table) {
             $table->id();
             $table->string('variable', 256);
-            $table->string('value', 256);
+            $table->integer('value');
             $table->timestamps();
         });
     }
