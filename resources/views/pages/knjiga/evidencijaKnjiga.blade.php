@@ -12,7 +12,7 @@
             <div class="scroll height-evidencija">
                 <div class="flex items-center justify-between px-[30px] py-4 space-x-3 rounded-lg">
                     <a href="{{route('novaKnjiga')}}"
-                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
+                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                         <i class="fas fa-plus mr-[15px]"></i> Nova knjiga
                     </a>
                     <form action="searchKnjige" method="GET">
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <button
-                                class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">Pretrazi
+                                class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretrazi
                             </button>
                         </div>
                     </form>
@@ -181,7 +181,9 @@
                                                     </label>
                                                 </td>
                                                 <td class="flex flex-row items-center px-4 py-4">
-                                                    <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
+                                                    @if(count($knjiga->coverImage) > 0 ) 
+                                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="" />
+                                                    @endif
                                                     <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga->id])}}">
                                                         <span class="font-medium text-center">{{$knjiga->title}}</span>
                                                     </a>
@@ -310,7 +312,7 @@
             </div>
         @else
             <div class="mx-[20px] mt-[20px]">
-                    <a href="{{route('novaKnjiga')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
+                    <a href="{{route('novaKnjiga')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                         <i class="fas fa-plus mr-[15px]"></i> Nova knjiga
                     </a>
                 <div class="w-[360px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">                       

@@ -467,6 +467,8 @@ class BookController extends Controller
         $autoriValues = $request->input('valuesAutori');
         $bookService->saveBookAuthors($autoriValues, $knjiga->id);
 
+        $bookService->uploadBookImages($knjiga->id, $request);
+
         $viewModel = [
             'knjiga'     => $knjiga,
             'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)

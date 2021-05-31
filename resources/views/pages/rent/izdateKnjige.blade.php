@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <button
-                            class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">Pretrazi
+                            class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretrazi
                         </button>
                     </div>
                 </form>
@@ -92,7 +92,7 @@
                                     </div>
                                 </li>
                                 <li class="mb-[4px]">
-                                    <div class="w-[300px] w-[300px] border-t-[1px] border-[#e4dfdf]">
+                                    <div class="w-[300px] border-t-[1px] border-[#e4dfdf]">
                                         <span
                                             class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
@@ -186,7 +186,7 @@
                                                                     </label>
                                                                     <img width="40px" height="30px"
                                                                         class="ml-[15px] rounded-full"
-                                                                        src="img/profileStudent.jpg">
+                                                                        src="/storage/image/{{$ucenik->photo}}">
                                                                     <p
                                                                         class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                                         {{$ucenik->name}}
@@ -313,7 +313,9 @@
                                                 </label>
                                             </td>
                                             <td class="flex flex-row items-center px-4 py-3">
-                                                <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
+                                                @if(count($izdata->book->coverImage) > 0 ) 
+                                                    <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$izdata->book->coverImage[0]->photo}}" alt="" />
+                                                @endif
                                                 <a href="{{route('izdavanjeDetalji', ['knjiga' => $izdata->book, 'ucenik' => $izdata->student])}}">
                                                     <span class="font-medium text-center">{{$izdata->book->title}}</span>
                                                 </a>

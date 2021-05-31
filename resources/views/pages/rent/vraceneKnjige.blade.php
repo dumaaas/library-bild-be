@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <button
-                            class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">Pretrazi
+                            class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretrazi
                         </button>
                     </div>
                 </form>
@@ -59,7 +59,7 @@
                                                 <a href="{{route('vraceneKnjige')}}" aria-label="Vracene knjige"
                                                     class="flex items-center">
                                                     <i
-                                                        class="transition duration-300 ease-in  text-[#707070] text-[20px] fas fa-file text-[#576cdf]"></i>
+                                                        class="transition duration-300 ease-in text-[20px] fas fa-file text-[#576cdf]"></i>
                                                     <div>
                                                         <p
                                                             class="transition duration-300 ease-in  text-[15px] ml-[21px] text-[#576cdf]">
@@ -92,7 +92,7 @@
                                     </div>
                                 </li>
                                 <li class="mb-[4px]">
-                                    <div class="w-[300px] w-[300px] border-t-[1px] border-[#e4dfdf]">
+                                    <div class="w-[300px] border-t-[1px] border-[#e4dfdf]">
                                         <span
                                             class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
@@ -185,7 +185,7 @@
                                                                             </label>
                                                                             <img width="40px" height="30px"
                                                                                 class="ml-[15px] rounded-full"
-                                                                                src="img/profileStudent.jpg">
+                                                                                src="/storage/image/{{$ucenik->photo}}">
                                                                             <p
                                                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                                                 {{$ucenik->name}}
@@ -307,7 +307,7 @@
                                                                         </label>
                                                                         <img width="40px" height="30px"
                                                                             class="ml-[15px] rounded-full"
-                                                                            src="img/profileExample.jpg">
+                                                                            src="/storage/image/{{$bibliotekar->photo}}">
                                                                         <p
                                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                                             {{$bibliotekar->name}}
@@ -341,7 +341,9 @@
                                                 </label>
                                             </td>
                                             <td class="flex flex-row items-center px-4 py-3">
-                                                <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
+                                                @if(count($vracena->book->coverImage) > 0 ) 
+                                                    <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$vracena->book->coverImage[0]->photo}}" alt="" />
+                                                @endif
                                                 <a href="{{route('izdavanjeDetalji', ['knjiga' => $vracena->book, 'ucenik' => $vracena->student])}}">
                                                     <span class="font-medium text-center">{{$vracena->book->title}}</span>
                                                 </a>

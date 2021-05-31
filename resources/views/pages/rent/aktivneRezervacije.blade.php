@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <button
-                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">Pretrazi
+                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretrazi
                     </button>
                 </div>
             </form>
@@ -92,7 +92,7 @@
                                 </div>
                             </li>
                             <li class="mb-[4px]">
-                                <div class="w-[300px] w-[300px] border-t-[1px] border-[#e4dfdf]">
+                                <div class="w-[300px] border-t-[1px] border-[#e4dfdf]">
                                         <span
                                             class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
@@ -446,13 +446,15 @@
                                             </label>
                                         </td>
                                         <td class="flex flex-row items-center px-4 py-3">
-                                            <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
+                                            @if(count($aktivna->book->coverImage) > 0 ) 
+                                                <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$aktivna->book->coverImage[0]->photo}}" alt="" />
+                                            @endif
                                             <span class="font-medium text-center">{{$aktivna->book->title}}</span>
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->reservation_date}}</td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->reservation_date->addDays(20)}}</td>
                                         <td class="flex flex-row items-center px-4 py-3">
-                                            <img class="object-cover w-8 h-8 rounded-full" src="img/profileStudent.jpg"
+                                            <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$aktivna->student->photo}}"
                                                 alt="" />
                                             <a href="{{route('ucenikProfile', ['user' => $aktivna->student])}}" class="ml-2 font-medium text-center">
                                             {{$aktivna->student->name}}

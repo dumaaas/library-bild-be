@@ -55,7 +55,7 @@
         </div>
         <!-- Space for content -->
         <div class="scroll height-content section-content">
-            <form class="text-gray-700 forma" action="{{route('sacuvajKnjigu')}}" method="POST">
+            <form class="text-gray-700 forma" action="{{route('sacuvajKnjigu')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div id="details" class="block tabcontent">
                     <div class="flex flex-row ml-[30px] mb-[150px]">
@@ -429,13 +429,16 @@
                 </div>
             </div>
             </div>
+
             <div id="multimedia" class="tabcontent">
                 <div class="w-9/12 mx-auto bg-white rounded p7 mt-[40px] mb-[150px]">
+                <p class="m-0 text-gray-500">Selektujte sliku za koju zelite da bude cover knjige.</p>
                     <div x-data="dataFileDnD()"
                          class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                         <div x-ref="dnd"
                              class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
-                            <input accept="*" type="file" multiple
+                            <input accept="*" type="file" multiple 
+                                   name="movieImages[]"
                                    class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
                                    @change="addFiles($event)"
                                    @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');"
@@ -449,7 +452,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
-                                <p class="m-0">Drag your files here or click in this area.</p>
+                                <p class="m-0">Drag your images here or click in this area.</p>
                             </div>
                         </div>
 
@@ -465,7 +468,9 @@
                                         <!-- Checkbox -->
                                         <input
                                             class="absolute top-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"
-                                            type="radio" name="chosen_image" />
+                                            type="radio" 
+                                            name="imageCover"
+                                            :value="index" />
                                         <!-- End checkbox -->
                                         <button
                                             class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"

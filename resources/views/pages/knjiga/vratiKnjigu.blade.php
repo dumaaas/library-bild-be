@@ -7,7 +7,9 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            <img src="../img/tomsojer.jpg" alt="">
+                            @if(count($knjiga->coverImage) > 0 ) 
+                                <img src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="">
+                            @endif
                         </div>
                         <div class="pl-[15px]  flex flex-col">
                             <div>
@@ -154,7 +156,7 @@
                                                 </label>
                                             </td>
                                             <td class="flex flex-row items-center px-4 py-4">
-                                                <img class="object-cover w-8 h-8 mr-2 rounded-full" src="../img/profileStudent.jpg"
+                                                <img class="object-cover w-8 h-8 mr-2 rounded-full" src="/storage/image/{{$vratiKnjigu->student->photo}}"
                                                     alt="" />
                                                 <a href="ucenikProfile.php">
                                                     <span class="font-medium text-center">{{$vratiKnjigu->student->name}}</span>

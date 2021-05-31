@@ -12,7 +12,7 @@
             @if(count($ucenici) > 0)
                 <div class="scroll height-dashboard">
                     <div class="flex items-center justify-between px-[50px] py-4 space-x-3 rounded-lg">
-                        <a href="{{ route('noviUcenik') }}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
+                        <a href="{{ route('noviUcenik') }}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                             <i class="fas fa-plus mr-[15px]"></i> Novi ucenik  
                         </a>
                         <form action="searchUcenici" method="GET">
@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <button
-                                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">Pretrazi
+                                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretrazi
                                 </button>
                             </div>
                         </form>
@@ -116,7 +116,7 @@
                 </div>
             @else
                 <div class="mx-[40px] mt-[20px]">
-                        <a href="{{route('noviUcenik')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
+                        <a href="{{route('noviUcenik')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                             <i class="fas fa-plus mr-[15px]"></i> Novi ucenik
                         </a>
                     <div class="w-[360px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">

@@ -54,4 +54,12 @@ class Book extends Model
     public function format() {
         return $this->belongsTo(Format::class);
     }
+
+    public function coverImage() {
+        return $this->hasMany(Galery::class)->where('cover', '=', 1);
+    }
+
+    public function galery() {
+        return $this->hasMany(Galery::class);
+    }
 }

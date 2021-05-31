@@ -134,7 +134,7 @@
                             </div>
                         </li>
                         <li class="mb-[4px]">
-                            <div class="w-[300px] w-[300px] border-t-[1px] border-[#e4dfdf]">
+                            <div class="w-[300px] border-t-[1px] border-[#e4dfdf]">
                                 <span
                                     class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
@@ -173,6 +173,7 @@
                         </li>
                     </ul>
                 </div>
+                @if(count($ucenikAktivne) > 0)
                 <div class="w-full mt-[10px] ml-2 px-2">
                     <table class="w-full shadow-lg rezervacije" id="myTable">
                         <thead class="bg-[#EFF3F6]">
@@ -469,7 +470,9 @@
                                     </label>
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-3">
-                                    <img class="object-cover w-8 mr-2 h-11" src="img/tomsojer.jpg" alt="" />
+                                    @if(count($ucenikAktivna->book->coverImage) > 0 ) 
+                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$ucenikAktivna->book->coverImage[0]->photo}}" alt="" />
+                                    @endif 
                                     <a href="izdavanjeDetalji.php">
                                         <span class="font-medium text-center">{{$ucenikAktivna->book->title}}</span>
                                     </a>
@@ -477,7 +480,7 @@
                                 <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikAktivna->reservation_date}}</td>
                                 <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikAktivna->reservation_date->addDays(20)}}</td>
                                 <td class="flex flex-row items-center px-4 py-3">
-                                    <img class="object-cover w-8 h-8 rounded-full" src="img/profileStudent.jpg"
+                                    <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$ucenikAktivna->student->photo}}"
                                         alt="" />
                                     <a href="ucenikProfile.php" class="ml-2 font-medium text-center">{{$ucenikAktivna->student->name}}</a>
                                 </td>
@@ -545,6 +548,16 @@
                     </div>
 
                 </div>
+                @else
+                    <div class="mx-[40px] h-[60px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
+                        <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
+                            <path fill="currentColor"
+                                d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                            </path>
+                        </svg>
+                        <p class="font-medium text-red-600"> Ucenik {{$user->name}} nema aktivnih rezervacija! </p>
+                    </div>
+                @endif
             </div>
         </section>
         @endsection
