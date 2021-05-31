@@ -10,6 +10,7 @@ use App\Models\Book;
 use App\Services\RentService;
 use App\Services\UserService;
 use App\Services\ReservationService;
+use App\Services\GlobalVariableService;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -66,10 +67,10 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziKnjigePrekoracenje(RentService $rentService, UserService $userService) {
+    public function prikaziKnjigePrekoracenje(RentService $rentService, UserService $userService, GlobalVariableService $globalVariableService) {
         $viewName = $this->viewFolder . '.knjigePrekoracenje';
 
-        $prekoracene = $rentService->getPrekoraceneKnjige()->paginate(7);
+        $prekoracene = $rentService->getPrekoraceneKnjige($globalVariableService)->paginate(7);
 
         $viewModel = [
             'prekoracene'  => $prekoracene,
