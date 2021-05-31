@@ -1903,17 +1903,10 @@ function dropdown() {
 }
 
 function funkcijaDatumVracanja(numberOfDaysToAdd) {
+
     var selectedDate = new Date($('#datumIzdavanja').val());
-
-    selectedDate.setDate(selectedDate.getDate() + numberOfDaysToAdd);
-
-    var day = selectedDate.getDate();
-    var month = selectedDate.getMonth() + 1;
-    var year = selectedDate.getFullYear();
-
-    var newDate = [month, day, year].join('/');
-
-    document.getElementById('datumVracanja').value = newDate;
+    selectedDate.setDate(selectedDate.getDate() + parseInt(numberOfDaysToAdd));
+    document.getElementById('datumVracanja').valueAsDate = selectedDate;
 }
 
 //click on one and check all checkboxes (vratiKnjigu.php)
