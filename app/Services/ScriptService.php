@@ -29,7 +29,7 @@ class ScriptService {
 
         //request all data, validate and update script
         request()->validate([
-            'nazivPismoEdit' => 'required|max:256',
+            'nazivPismoEdit' => 'sometimes|string|max:256',
         ]);
 
         $pismo->name = request('nazivPismoEdit');
@@ -46,7 +46,7 @@ class ScriptService {
 
         //request all data, validate and update script
         request()->validate([
-            'nazivPismo'=>'required|max:256',
+            'nazivPismo'=>'required|string|max:256',
         ]);
 
         $pisma = new Script();

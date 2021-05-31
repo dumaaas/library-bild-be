@@ -439,20 +439,20 @@ class BookController extends Controller
 
         //request all data, validate and update author
         request()->validate([
-            'nazivKnjiga'      => 'required|max:256',
-            'kratki_sadrzaj'   => 'required|max:4128',
-            'knjigaKategorije' => 'required',
-            'knjigaZanrovi'    => 'required',
-            'knjigaAutori'     => 'required',
-            'knjigaIzdavac'    => 'required',
-            'godinaIzdavanja'  => 'required',
-            'knjigaKolicina'   => 'required',
-            'brStrana'         => 'required',
-            'knjigaPismo'      => 'required',
-            'knjigaPovez'      => 'required',
-            'knjigaFormat'     => 'required',
-            'knjigaIsbn'       => 'required|max:20',
-            'knjigaJezik'      => 'required',
+            'nazivKnjiga'      => 'required|string|max:256',
+            'kratki_sadrzaj'   => 'required|string|max:4128',
+            'knjigaKategorije' => 'required|string',
+            'knjigaZanrovi'    => 'required|string',
+            'knjigaAutori'     => 'required|string',
+            'knjigaIzdavac'    => 'required|string',
+            'godinaIzdavanja'  => 'required|numeric',
+            'knjigaKolicina'   => 'required|numeric',
+            'brStrana'         => 'required|numeric',
+            'knjigaPismo'      => 'required|string',
+            'knjigaPovez'      => 'required|string',
+            'knjigaFormat'     => 'required|string',
+            'knjigaIsbn'       => 'required|numeric|max:20',
+            'knjigaJezik'      => 'required|string',
         ]);
 
         $knjiga = $bookService->saveBook();
@@ -489,20 +489,20 @@ class BookController extends Controller
 
         //request all data, validate and update author
         request()->validate([
-            'nazivKnjigaEdit'       => 'required|max:256',
-            'kratki_sadrzaj_edit'   => 'required|max:4128',
-            'kategorijaValuesEdit'  => 'required',
-            'zanrValuesEdit'        => 'required',
-            'autoriValuesEdit'      => 'required',
-            'izdavacEdit'           => 'required',
-            'godinaIzdavanjaEdit'   => 'required',
-            'knjigaKolicinaEdit'    => 'required',
-            'brStranaEdit'          => 'required',
-            'pismoEdit'             => 'required',
-            'povezEdit'             => 'required',
-            'formatEdit'            => 'required',
-            'isbnEdit'              => 'required|max:20',
-            'jezikEdit'             => 'required',
+            'nazivKnjigaEdit'       => 'sometimes|string|max:256',
+            'kratki_sadrzaj_edit'   => 'sometimes|string|max:4128',
+            'kategorijaValuesEdit'  => 'sometimes|string',
+            'zanrValuesEdit'        => 'sometimes|string',
+            'autoriValuesEdit'      => 'sometimes|string',
+            'izdavacEdit'           => 'sometimes|string',
+            'godinaIzdavanjaEdit'   => 'sometimes|numeric',
+            'knjigaKolicinaEdit'    => 'sometimes|numeric',
+            'brStranaEdit'          => 'sometimes|numeric',
+            'pismoEdit'             => 'sometimes|string',
+            'povezEdit'             => 'sometimes|string',
+            'formatEdit'            => 'sometimes|string',
+            'isbnEdit'              => 'required|numeric|max:20',
+            'jezikEdit'             => 'required|string',
         ]);
 
         $knjiga->title=request('nazivKnjigaEdit');

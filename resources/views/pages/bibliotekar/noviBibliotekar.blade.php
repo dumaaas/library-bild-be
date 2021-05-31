@@ -121,6 +121,9 @@
                                     <img id="image-output-librarian" class="hidden absolute w-48 h-[188px] bottom-0" />
                                 </div>
                             </label>
+                            @error('userImage')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
