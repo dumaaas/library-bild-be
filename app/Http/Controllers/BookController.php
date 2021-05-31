@@ -442,9 +442,9 @@ class BookController extends Controller
         request()->validate([
             'nazivKnjiga'      => 'required|string|max:256',
             'kratki_sadrzaj'   => 'required|string|max:4128',
-            'knjigaKategorije' => 'required|string',
-            'knjigaZanrovi'    => 'required|string',
-            'knjigaAutori'     => 'required|string',
+            'knjigaKategorije' => 'required',
+            'knjigaZanrovi'    => 'required',
+            'knjigaAutori'     => 'required',
             'knjigaIzdavac'    => 'required|string',
             'godinaIzdavanja'  => 'required|numeric',
             'knjigaKolicina'   => 'required|numeric',
@@ -454,6 +454,9 @@ class BookController extends Controller
             'knjigaFormat'     => 'required|string',
             'knjigaIsbn'       => 'required|numeric|max:20',
             'knjigaJezik'      => 'required|string',
+            'movieImages'      => 'required',
+            'movieImages.*'    => 'mimes:jpeg,png,jpg',
+            'imageCover'       => 'required'
         ]);
 
         $knjiga = $bookService->saveBook();
@@ -487,10 +490,10 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @return void
      */
-    public function updateKnjiga(Request $request, Book $knjiga) {
+    public function updateKnjiga(Request $request, Book $knjiga, DashboardService $dashboardService, BookService $bookService) {
         $viewName = $this->viewFolder . '.knjigaOsnovniDetalji';
 
-        //request all data, validate and update author
+        request all data, validate and update author
         request()->validate([
             'nazivKnjigaEdit'       => 'sometimes|string|max:256',
             'kratki_sadrzaj_edit'   => 'sometimes|string|max:4128',
@@ -551,6 +554,8 @@ class BookController extends Controller
             $knjigaAutori->author_id = $autor;
             $knjigaAutori->save();
         }
+
+        $bookService->editBookImages($knjiga->id, $request);
 
         $viewModel = [
             'knjiga'     => $knjiga,

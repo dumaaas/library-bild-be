@@ -509,62 +509,38 @@
 
                     <!-- <template x-if="files.length > 0"> -->
                     <div class="grid grid-cols-3 gap-4 mt-4 2xl:grid-cols-4"
-                         @drop.prevent="drop($event)"
-                         @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
-                        <!-- Image 1 -->
-                        <div class="relative flex flex-col text-xs bg-white bg-opacity-50 hiddenImage1">
-                            <img src="img/tomsojer.jpg" alt="" class="h-[322px]">
-                            <!-- Checkbox -->
-                            <input
-                                class="absolute top-[10px] right-[10px] z-50 p-1 bg-white rounded-bl focus:outline-none"
-                                type="radio" name="chosen_image" checked />
-                            <!-- End checkbox -->
-                            <button
-                                class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"
-                                type="button" id="hide-image1">
-                                <svg class="w-[25px] h-[25px] text-gray-700"
-                                     xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     nviewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                            </button>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs text-center bg-white bg-opacity-50">
-                                                        <span
-                                                            class="w-full font-bold text-gray-900 truncate">tomsojer.jpg</span>
-                                <span class="text-xs text-gray-900">89kB</span>
+                        @drop.prevent="drop($event)"
+                        @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
+                        @foreach($knjiga->galery as $slika)
+                            <div class="relative flex flex-col text-xs bg-white bg-opacity-50 hiddenImage1"
+                                @dragstart="dragstart($event)"
+                                @dragend="fileDragging = null"
+                                :class="{'border-blue-600': fileDragging == index}"
+                                draggable="true" :data-index="index">
+                                <img src="/storage/image/{{$slika->photo}}" alt="" class="h-[322px]">
+                                <!-- Checkbox (checked if image is cover photo of book)-->
+                                <input
+                                    class="absolute top-[10px] right-[10px] z-50 p-1 bg-white rounded-bl focus:outline-none"
+                                    type="radio" name="imageCover" {{ $slika->cover == 1 ? 'checked' : '' }} />
+                                <!-- End checkbox -->
+                                <button
+                                    class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"
+                                    type="button" id="hide-image1">
+                                    <svg class="w-[25px] h-[25px] text-gray-700"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        nviewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs text-center bg-white bg-opacity-50">
+                                        <span class="w-full font-bold text-gray-900 truncate">{{$slika->photo}}</span>
+                                    <span class="text-xs text-gray-900">89kB</span>
+                                </div>
                             </div>
-                        </div>
-                        <!-- End of image 1 -->
-                        <!-- Image 2 -->
-                        <div class="relative flex flex-col text-xs bg-white bg-opacity-50 hiddenImage2">
-                            <img src="img/tomsojer2.jpg" alt="" class="h-[322px]">
-                            <!-- Checkbox -->
-                            <input
-                                class="absolute top-[10px] right-[10px] z-50 p-1 bg-white rounded-bl focus:outline-none"
-                                type="radio" name="chosen_image" />
-                            <!-- End checkbox -->
-                            <button
-                                class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"
-                                type="button" id="hide-image2">
-                                <svg class="w-[25px] h-[25px] text-gray-700"
-                                     xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     nviewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                            </button>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs text-center bg-white bg-opacity-50">
-                                                        <span
-                                                            class="w-full font-bold text-gray-900 truncate">tomsojer2.jpg</span>
-                                <span class="text-xs text-gray-900">41kB</span>
-                            </div>
-                        </div>
-                        <!-- End of image 2 -->
+                        @endforeach
 
                         <template x-for="(_, index) in Array.from({ length: files.length })">
                             <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none"

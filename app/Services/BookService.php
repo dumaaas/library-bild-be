@@ -320,6 +320,37 @@ class BookService {
         }
     }
 
+    public function editBookImages($knjiga, $request) {
+        if ($request->hasFile('movieImages')) {
+            $movieImages = $request->file('movieImages');
+            $coverImage = request('imageCover');
+            foreach($movieImages as $movieImage) {
+
+                $filenameWithExt = $movieImage->getClientOriginalName();
+                // Get Filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just Extension
+                $extension = $movieImage->getClientOriginalExtension();
+                // Filename To store
+                $fileNameToStore = $filename. '_'. time().'.'.$extension;
+                // Upload Image
+                $path = $movieImage->storeAs('public/image', $fileNameToStore);
+    
+                // Save image in Galery
+                $galery = new Galery();
+
+                $galery->book_id = $knjiga;
+                $galery->photo = $fileNameToStore;
+
+                if($movieImages[$coverImage] == $movieImage) {
+                    $galery->cover = 1;
+                }
+
+                $galery->save();
+            }
+        }
+    }
+
     // public function getCoverImage($knjiga) {
     //     return Galery::where('book_id', '=', $knjiga)
     //                         ->where('cover', '=', 1)
