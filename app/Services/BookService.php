@@ -48,6 +48,7 @@ class BookService {
         request()->validate([
             'ucenik'         => 'required',
             'datumIzdavanja' => 'required',
+            'datumVracanja'  => 'required',
         ]);
 
         //sacuvaj izdavanje

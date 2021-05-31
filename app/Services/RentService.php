@@ -101,6 +101,7 @@ class RentService
         $izdavanje->librarian_id = Auth::id();
         $izdavanje->student_id = request('ucenik');
         $izdavanje->rent_date = request('datumIzdavanja');
+        $izdavanje->return_date = request('datumVracanja');
 
         $izdavanje->save();
 
