@@ -11,14 +11,14 @@ use App\Models\Author;
 | AuthorService
 |--------------------------------------------------------------------------
 |
-| AuthorService je odgovaran za svu logiku koja se desava 
-| unutar AuthorControllera. Ovdje je moguce definisati sve 
+| AuthorService je odgovaran za svu logiku koja se desava
+| unutar AuthorControllera. Ovdje je moguce definisati sve
 | pomocne metode koji su potrebni.
 |
 */
 
 class AuthorService {
-    
+
     /**
      * Vrati sve autore iz baze podataka
      *
@@ -37,7 +37,7 @@ class AuthorService {
     public function editAutor($autor) {
         //request all data, validate and update movie
         request()->validate([
-            'name'        => 'sometimes|string|max:128',
+            'name'        => 'sometimes|regex:/^([^0-9]*)$/|max:128',
             'biography'   => 'nullable|string|max:4128'
         ]);
 
@@ -55,7 +55,7 @@ class AuthorService {
     public function saveAutor() {
         //request all data, validate and update author
         request()->validate([
-            'authorName'        => 'required|string|max:128',
+            'authorName'        => 'required|max:128|regex:/^([^0-9]*)$/',
             'authorBiography'   => 'nullable|string|max:4128'
         ]);
 

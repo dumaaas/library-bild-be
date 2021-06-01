@@ -21,7 +21,7 @@
                 <div class="scroll height-dashboard">
                     <div class="flex items-center justify-between px-[50px] py-4 space-x-3 rounded-lg">
                         <a href="{{ route('noviUcenik') }}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
-                            <i class="fas fa-plus mr-[15px]"></i> Novi ucenik  
+                            <i class="fas fa-plus mr-[15px]"></i> Novi ucenik
                         </a>
                         <form action="searchUcenici" method="GET">
                             <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
@@ -72,7 +72,9 @@
                                         </a>
                                     </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->email}}</td>
-                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->userType->name}}</td>
+                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                        Ucenik
+                                    </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
                                     @if ($user->login_count == 0)
                                         Nikad nije logovan/a!
@@ -134,7 +136,7 @@
                             <i class="fas fa-plus mr-[15px]"></i> Novi ucenik
                         </a>
                     <div class="w-[360px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
-                        
+
                         <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
                             <path fill="currentColor"
                                     d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
@@ -142,7 +144,7 @@
                         </svg>
                         <p class="font-medium text-red-600"> Ne postoji nijedan ucenik u bazi podataka </p>
                     </div>
-                </div>   
-            @endif          
+                </div>
+            @endif
         </section>
 @endsection

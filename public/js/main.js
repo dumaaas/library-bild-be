@@ -126,7 +126,7 @@ $(document).ready(function () {
         var datumDo = $('#datumDoFilter').val();
 
         var subcat = '';
-    
+
         $.ajax({
             type: "POST",
             data: {

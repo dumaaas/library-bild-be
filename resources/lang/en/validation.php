@@ -137,6 +137,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'imePrezimeBibliotekar' => [
+            'required' => 'Polje ime i prezime je obavezno!',
+            'regex' => 'Ime i prezime ne moze sadrzati brojeve!',
+        ]
     ],
 
     /*

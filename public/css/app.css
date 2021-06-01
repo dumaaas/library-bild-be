@@ -189,29 +189,45 @@ input:checked+svg {
 @-webkit-keyframes fadeInOut {
     0% {
         opacity: 0;
+        transform: translateX(0px);
     }
     20% {
         opacity: 1;
+        transform: translateX(0px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(0px);
     }
     80% {
-        opacity: 1;
+        opacity: 0;
+        transform: translateX(0px);
     }
     100% {
         opacity: 0;
+        transform: translateX(500px);
     }
 }
 @keyframes fadeInOut {
     0% {
         opacity: 0;
+        transform: translateX(0px);
     }
     20% {
         opacity: 1;
+        transform: translateX(0px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(0px);
     }
     80% {
-        opacity: 1;
+        opacity: 0;
+        transform: translateX(0px);
     }
     100% {
         opacity: 0;
+        transform: translateX(500px);
     }
 }
 /*! tailwindcss v2.1.2 | MIT License | https://tailwindcss.com*/
@@ -916,14 +932,14 @@ h4 {
 .right-\[12px\]{
     right: 12px;
 }
-.right-\[25px\]{
-    right: 25px;
-}
 .top-\[91px\]{
     top: 91px;
 }
 .right-\[20px\]{
     right: 20px;
+}
+.right-\[25px\]{
+    right: 25px;
 }
 .bottom-0{
     bottom: 0px;
@@ -1010,21 +1026,17 @@ h4 {
     margin-left: 0px;
     margin-right: 0px;
 }
-.my-\[10px\]{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 .mx-\[40px\]{
     margin-left: 40px;
     margin-right: 40px;
 }
+.my-\[10px\]{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .mx-\[50px\]{
     margin-left: 50px;
     margin-right: 50px;
-}
-.mx-\[40xp\]{
-    margin-left: 40xp;
-    margin-right: 40xp;
 }
 .ml-4{
     margin-left: 1rem;
@@ -1347,20 +1359,11 @@ h4 {
 .h-11{
     height: 2.75rem;
 }
-.h-\[50px\]{
-    height: 50px;
-}
-.h-\[100px\]{
-    height: 100px;
-}
-.h-\[150px\]{
-    height: 150px;
-}
 .h-\[300px\]{
     height: 300px;
 }
-.max-h-\[100px\]{
-    max-height: 100px;
+.h-\[50px\]{
+    height: 50px;
 }
 .min-h-screen{
     min-height: 100vh;
@@ -1467,6 +1470,9 @@ h4 {
 .w-\[80\%\]{
     width: 80%;
 }
+.w-\[430px\]{
+    width: 430px;
+}
 .w-\[268px\]{
     width: 268px;
 }
@@ -1484,12 +1490,6 @@ h4 {
 }
 .w-\[102px\]{
     width: 102px;
-}
-.w-\[450px\]{
-    width: 450px;
-}
-.w-\[430px\]{
-    width: 430px;
 }
 .min-w-\[20\%\]{
     min-width: 20%;
@@ -1515,17 +1515,11 @@ h4 {
 .max-w-full{
     max-width: 100%;
 }
-.max-w-\[200px\]{
-    max-width: 200px;
-}
 .max-w-\[600px\]{
     max-width: 600px;
 }
 .max-w-\[400px\]{
     max-width: 400px;
-}
-.max-w-\[500px\]{
-    max-width: 500px;
 }
 .flex-initial{
     flex: 0 1 auto;
@@ -1707,11 +1701,11 @@ h4 {
 .rounded-\[5px\]{
     border-radius: 5px;
 }
-.rounded-lg{
-    border-radius: 0.5rem;
-}
 .rounded-\[15px\]{
     border-radius: 15px;
+}
+.rounded-lg{
+    border-radius: 0.5rem;
 }
 .rounded-t{
     border-top-left-radius: 0.25rem;
@@ -1893,6 +1887,10 @@ h4 {
     --tw-bg-opacity: 1;
     background-color: rgba(63, 81, 181, var(--tw-bg-opacity));
 }
+.bg-red-600{
+    --tw-bg-opacity: 1;
+    background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
+}
 .bg-gray-300{
     --tw-bg-opacity: 1;
     background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
@@ -1908,10 +1906,6 @@ h4 {
 .bg-yellow-600{
     --tw-bg-opacity: 1;
     background-color: rgba(217, 119, 6, var(--tw-bg-opacity));
-}
-.bg-red-600{
-    --tw-bg-opacity: 1;
-    background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
 }
 .bg-\[\#46A149\]{
     --tw-bg-opacity: 1;
@@ -2053,13 +2047,13 @@ h4 {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
 }
-.py-3{
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-}
 .py-\[15px\]{
     padding-top: 15px;
     padding-bottom: 15px;
+}
+.py-3{
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 .py-\[48px\]{
     padding-top: 48px;
@@ -2092,22 +2086,6 @@ h4 {
 .py-8{
     padding-top: 2rem;
     padding-bottom: 2rem;
-}
-.px-\[15px\]{
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.px-\[20xp\]{
-    padding-left: 20xp;
-    padding-right: 20xp;
-}
-.px-\[40xp\]{
-    padding-left: 40xp;
-    padding-right: 40xp;
-}
-.px-\[40px\]{
-    padding-left: 40px;
-    padding-right: 40px;
 }
 .pt-8{
     padding-top: 2rem;
@@ -2432,6 +2410,10 @@ h4 {
 .text-\[\#333333\]{
     --tw-text-opacity: 1;
     color: rgba(51, 51, 51, var(--tw-text-opacity));
+}
+.text-red-200{
+    --tw-text-opacity: 1;
+    color: rgba(254, 202, 202, var(--tw-text-opacity));
 }
 .text-green-500{
     --tw-text-opacity: 1;

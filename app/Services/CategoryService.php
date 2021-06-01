@@ -32,7 +32,7 @@ class CategoryService {
         //request all data, validate and update category
         request()->validate([
             'nazivKategorijeEdit'     => 'string|max:256',
-            'userImageEdit'           => 'image|nullable|string|max: 256',
+            'userImage'               => 'nullable|mimes:jpeg,png,jpg',
             'opisKategorijeEdit'      => 'nullable|string|max:2048'
         ]);
 
@@ -55,7 +55,7 @@ class CategoryService {
     //request all data, validate and update category
     request()->validate([
         'nazivKategorije' => 'required|string|max:256',
-        'userImage'       => 'image|nullable|string|max: 256',
+        'userImage'       => 'nullable|mimes:jpeg,png,jpg',
         'opisKategorije'  => 'nullable|string|max:2048',
     ]);
 

@@ -242,15 +242,23 @@ input:checked+svg {
 @keyframes fadeInOut {
     0% {
         opacity: 0;
+        transform: translateX(0px);
     }
     20% {
         opacity: 1;
+        transform: translateX(0px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(0px);
     }
     80% {
-        opacity: 1;
+        opacity: 0;
+        transform: translateX(0px);
     }
     100% {
         opacity: 0;
+        transform: translateX(500px);
     }
 }
 

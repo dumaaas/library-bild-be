@@ -75,10 +75,11 @@
                                 </label>
                             </div>
                             <div id="icon-output" class="h-[40px] px-[20px] pt-[7px]"></div>
-                            @error('userImage')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
+
                             </div>
+                            @error('userImage')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

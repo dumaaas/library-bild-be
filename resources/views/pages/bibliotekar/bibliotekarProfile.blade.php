@@ -31,13 +31,18 @@
                             </nav>
                         </div>
                         @if(Session::has('success'))
-                            <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                            <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px]">
                                 <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
                                 @php
                                     Session::forget('success');
                                 @endphp
                             </div>
                         @endif
+                        @error('pwReset')
+                            <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-red-600 right-[20px]">
+                                <p class="text-red-200">Password nije uspjesno resetovan!</p>
+                            </div>
+                        @enderror
                     </div>
                     <div class="pt-[24px] pr-[30px]">
                         @can('isMyAccount', $user)

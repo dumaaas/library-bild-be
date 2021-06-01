@@ -67,7 +67,7 @@ class BookController extends Controller
     /**
      * Prikazi sve knjige
      *
-     * @param  AuthorService $autorService 
+     * @param  AuthorService $autorService
      * @return void
      */
     public function prikaziEvidencijaKnjiga(AuthorService $autorService) {
@@ -96,7 +96,7 @@ class BookController extends Controller
             'knjiga'     => $knjiga,
             'aktivnosti' => $dashboardService->getBookActivity($knjiga->id),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -116,7 +116,7 @@ class BookController extends Controller
                                                     ->take(3)
                                                     ->get(),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -134,7 +134,7 @@ class BookController extends Controller
             'knjiga'     => $knjiga,
             'aktivnosti' => $dashboardService->getBookActivity($knjiga->id),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -175,7 +175,7 @@ class BookController extends Controller
         $vratiKnjige = $rentService->getIzdateKnjige()
                             ->where('book_id', '=', $knjiga->id)
                             ->paginate(7);
-        
+
         $viewModel = [
             'knjiga'      => $knjiga,
             'vratiKnjige' => $vratiKnjige,
@@ -200,9 +200,9 @@ class BookController extends Controller
 
         $viewModel = [
             'knjiga'       => $knjiga,
-            'otpisiKnjige' => $otpisiKnjige  
+            'otpisiKnjige' => $otpisiKnjige
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -277,7 +277,7 @@ class BookController extends Controller
     }
 
     /**
-     * Izdaj knjigu 
+     * Izdaj knjigu
      *
      * @param  Book $knjiga
      * @param  BookService $bookService
@@ -293,7 +293,7 @@ class BookController extends Controller
     }
 
     /**
-     * Rezervisi knjigu 
+     * Rezervisi knjigu
      *
      * @param  Book $knjiga
      * @param  BookService $bookService
@@ -350,9 +350,9 @@ class BookController extends Controller
                                                 ->get(),
             'iznajmljivanjePrekoracene' => $rentService->getPrekoraceneKnjige()
                                                 ->where('book_id', '=', $knjiga->id)
-                                                ->paginate(7),                               
+                                                ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -374,9 +374,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeVracene' => $rentService->getVraceneKnjige()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),                              
+                                            ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -390,7 +390,7 @@ class BookController extends Controller
      */
     public function prikaziIznajmljivanjeAktivne(Book $knjiga, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.iznajmljivanjeAktivne';
-        
+
         $viewModel = [
             'knjiga'                => $knjiga,
             'aktivnosti'            => $dashboardService->getBookActivity($knjiga->id)
@@ -398,9 +398,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeAktivne' => $reservationService->getRezervisaneKnjige()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),                              
+                                            ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -414,7 +414,7 @@ class BookController extends Controller
      */
     public function prikaziIznajmljivanjeArhivirane(Book $knjiga, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.iznajmljivanjeArhivirane';
-        
+
         $viewModel = [
             'knjiga'                   => $knjiga,
             'aktivnosti'               => $dashboardService->getBookActivity($knjiga->id)
@@ -422,9 +422,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeArhivirane' => $reservationService->getArhiviraneRezervacije()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),                               
+                                            ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -452,7 +452,6 @@ class BookController extends Controller
             'knjigaPismo'      => 'required|string',
             'knjigaPovez'      => 'required|string',
             'knjigaFormat'     => 'required|string',
-            'knjigaIsbn'       => 'required|numeric|max:20',
             'knjigaJezik'      => 'required|string',
             'movieImages'      => 'required',
             'movieImages.*'    => 'mimes:jpeg,png,jpg',
@@ -478,7 +477,7 @@ class BookController extends Controller
                                 ->take(3)
                                 ->get(),
         ];
-        
+
         //return back to the edit author form
         return view($viewName, $viewModel);
     }
@@ -579,7 +578,7 @@ class BookController extends Controller
     }
 
     /**
-     * Filter autora u tabeli 
+     * Filter autora u tabeli
      *
      * @param  BookService $bookService
      * @param  AuthorService $autorService
@@ -612,7 +611,7 @@ class BookController extends Controller
 
         return back()->with('success', 'Uspjesno vraceno!');
     }
-        
+
     /**
      * Otpisi knjige
      *
@@ -621,7 +620,7 @@ class BookController extends Controller
      * @return void
      */
     public function otpisiKnjige(BookService $bookService){
-        
+
         $bookService->otpisiKnjige();
 
         return back()->with('success', 'Uspjesno otpisano!');

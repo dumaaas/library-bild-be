@@ -13,8 +13,8 @@ use Illuminate\Support\Str;
 | UserService
 |--------------------------------------------------------------------------
 |
-| UserService je odgovaran za svu logiku koja se desava 
-| unutar UserControllera. Ovdje je moguce definisati sve 
+| UserService je odgovaran za svu logiku koja se desava
+| unutar UserControllera. Ovdje je moguce definisati sve
 | pomocne metode koji su potrebne.
 |
 */
@@ -40,27 +40,35 @@ class UserService {
     public function editBibliotekar($bibliotekar, $request) {
         //request all data, validate and update librarian
         request()->validate([
-            'imePrezimeBibliotekarEdit' => 'sometimes|string|max:128|regex:/^([^0-9]*)$/',
-            'jmbgBibliotekarEdit'       => 'sometimes|digits:14|unique:users,jmbg',
-            'emailBibliotekarEdit'      => 'sometimes|string|unique:users,email|max:128',
-            'usernameBibliotekarEdit'   => 'sometimes|string|max:64',
-            'pwBibliotekarEdit'         => 'sometimes|max:256|min:8|same:pw2BibliotekarEdit',
-            'pw2BibliotekarEdit'        => 'sometimes|max:256|min:8|same:pwBibliotekarEdit',
-            'userImage'                 => 'image|nullable|max: 256'
+            'imePrezimeBibliotekarEdit' => 'nullable|string|max:128|regex:/^([^0-9]*)$/',
+            'jmbgBibliotekarEdit'       => 'nullable|digits:14|unique:users,jmbg',
+            'emailBibliotekarEdit'      => 'nullable|string|unique:users,email|max:128',
+            'usernameBibliotekarEdit'   => 'nullable|string|max:64',
+            'pwBibliotekarEdit'         => 'nullable|max:256|min:8|same:pw2BibliotekarEdit',
+            'pw2BibliotekarEdit'        => 'nullable|max:256|min:8|same:pwBibliotekarEdit',
+            'userImage'                 => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $bibliotekar->name     = request('imePrezimeBibliotekarEdit');
-        $bibliotekar->jmbg     = request('jmbgBibliotekarEdit');
-        $bibliotekar->email    = request('emailBibliotekarEdit');
-        $bibliotekar->username = request('usernameBibliotekarEdit');
+        if(request('imePrezimeBibliotekarEdit')) {
+            $bibliotekar->name     = request('imePrezimeBibliotekarEdit');
+        }
+        if(request('jmbgBibliotekarEdit')) {
+            $bibliotekar->jmbg     = request('jmbgBibliotekarEdit');
+        }
+        if(request('emailBibliotekarEdit')) {
+            $bibliotekar->email    = request('emailBibliotekarEdit');
+        }
+        if(request('usernameBibliotekarEdit')) {
+            $bibliotekar->username = request('usernameBibliotekarEdit');
+        }
 
         $this->uploadEditPhoto($bibliotekar, $request);
 
-        $sifra1 = request('pwBibliotekarEdit');
-        $sifra2 = request('pw2BibliotekarEdit');
+        if(request('pwBibliotekarEdit')) {
+            $sifra1 = request('pwBibliotekarEdit');
+            $bibliotekar->password=Hash::make($sifra1);
+        }
 
-        $bibliotekar->password=Hash::make($sifra1);  
-             
         $bibliotekar->save();
     }
 
@@ -72,16 +80,16 @@ class UserService {
     public function saveBibliotekar($request) {
         //request all data, validate and add librarian
         request()->validate([
-            'imePrezimeBibliotekar' => 'required|string|max:128|regex:/^([^0-9]*)$/',
+            'imePrezimeBibliotekar' => 'required|max:128|regex:/^([^0-9]*)$/',
             'jmbgBibliotekar'       => 'required|digits:14|unique:users,jmbg',
             'emailBibliotekar'      => 'required|string|unique:users,email|max:128',
             'usernameBibliotekar'   => 'required|string|max:64',
             'pwBibliotekar'         => 'required|max:256|min:8|same:pw2Bibliotekar',
             'pw2Bibliotekar'        => 'required|max:256|min:8|same:pwBibliotekar',
-            'userImage'             => 'image|nullable|max:256'
+            'userImage'             => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $bibliotekar = new User(); 
+        $bibliotekar = new User();
 
         $bibliotekar->userType_id = 2;
 
@@ -97,8 +105,8 @@ class UserService {
         $sifra1 = request('pwBibliotekar');
         $sifra2 = request('pw2Bibliotekar');
 
-        $bibliotekar->password=Hash::make($sifra1);  
-             
+        $bibliotekar->password=Hash::make($sifra1);
+
         $bibliotekar->save();
 
         return $bibliotekar;
@@ -112,7 +120,7 @@ class UserService {
     public function searchBibliotekari() {
 
         $bibliotekari = User::query();
-        
+
         $bibliotekari = $this->getBibliotekari();
 
         if(request('searchBibliotekari')) {
@@ -127,7 +135,7 @@ class UserService {
 
     /**
      * Uploaduj sliku ili postavi default sliku
-     * 
+     *
      * @param User $user
      * @param Request $request
      * @return void
@@ -141,8 +149,8 @@ class UserService {
     }
 
     /**
-     * Upload/edit slike 
-     * 
+     * Upload/edit slike
+     *
      * @param User $user
      * @param Request $request
      * @return void
@@ -182,27 +190,35 @@ class UserService {
     public function editUcenik($ucenik, $request) {
         //request all data, validate and update student
         request()->validate([
-            'imePrezimeUcenikEdit'=> 'sometimes|string|max:128|regex:/^([^0-9]*)$/',
-            'jmbgUcenikEdit'      => 'sometimes|digits:14|unique:users,jmbg',
-            'emailUcenikEdit'     => 'sometimes|string|unique:users,email|max:128',
-            'usernameUcenikEdit'  => 'sometimes|string|max:64',
-            'pwUcenikEdit'        => 'sometimes|max:256|min:8|same:pw2UcenikEdit',
-            'pw2UcenikEdit'       => 'sometimes|max:256|min:8|same:pwUcenikEdit',
-            'userImage'           => 'image|nullable|max: 256'
+            'imePrezimeUcenikEdit'=> 'nullable|string|max:128|regex:/^([^0-9]*)$/',
+            'jmbgUcenikEdit'      => 'nullable|digits:14|unique:users,jmbg',
+            'emailUcenikEdit'     => 'nullable|string|unique:users,email|max:128',
+            'usernameUcenikEdit'  => 'nullable|string|max:64',
+            'pwUcenikEdit'        => 'nullable|max:256|min:8|same:pw2UcenikEdit',
+            'pw2UcenikEdit'       => 'nullable|max:256|min:8|same:pwUcenikEdit',
+            'userImage'           => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $ucenik->name     = request('imePrezimeUcenikEdit');
-        $ucenik->jmbg     = request('jmbgUcenikEdit');
-        $ucenik->email    = request('emailUcenikEdit');
-        $ucenik->username = request('usernameUcenikEdit');
-      
+        if(request('imePrezimeUcenikEdit')) {
+            $ucenik->name = request('imePrezimeUcenikEdit');
+        }
+        if(request('jmbgUcenikEdit')) {
+            $ucenik->jmbg = request('jmbgUcenikEdit');
+        }
+        if(request('emailUcenikEdit')) {
+            $ucenik->email = request('emailUcenikEdit');
+        }
+        if(request('usernameUcenikEdit')) {
+            $ucenik->username = request('usernameUcenikEdit');
+        }
+
         $this->uploadEditPhoto($ucenik, $request);
 
-        $sifra1 = request('pwUcenikEdit');
-        $sifra2 = request('pw2UcenikEdit');
+        if(request('pwUcenikEdit')) {
+            $sifra1 = request('pwUcenikEdit');
+            $ucenik->password=Hash::make($sifra1);
+        }
 
-        $ucenik->password=Hash::make($sifra1);  
-        
         $ucenik->save();
     }
 
@@ -220,13 +236,13 @@ class UserService {
             'usernameUcenik'   => 'required|string|max:64',
             'pwUcenik'         => 'required|max:256|min:8|same:pw2Ucenik',
             'pw2Ucenik'        => 'required|max:256|min:8|same:pwUcenik',
-            'userImage'        => 'image|nullable|max: 256'
+            'userImage'        => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $ucenik = new User(); 
+        $ucenik = new User();
 
         $ucenik->userType_id = 3;
-    
+
         $ucenik->name              = request('imePrezimeUcenik');
         $ucenik->jmbg              = request('jmbgUcenik');
         $ucenik->email_verified_at = now();
@@ -239,8 +255,8 @@ class UserService {
         $sifra1 = request('pwUcenik');
         $sifra2 = request('pw2Ucenik');
 
-        $ucenik->password=Hash::make($sifra1);  
-        
+        $ucenik->password=Hash::make($sifra1);
+
         $ucenik->save();
 
         return $ucenik;
@@ -254,7 +270,7 @@ class UserService {
     public function searchUcenici() {
 
         $ucenici = User::query();
-        
+
         $ucenici = $this->getUcenici();
 
         if(request('searchUcenici')) {
@@ -283,7 +299,7 @@ class UserService {
         $sifra1 = request('pwReset');
         $sifra2 = request('pw2Reset');
 
-        $user->password=Hash::make($sifra1);  
+        $user->password=Hash::make($sifra1);
 
         $user->save();
     }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class GenreService {
-    
+
     /**
      * Vrati sve zanrove iz baze podataka
      *
@@ -30,7 +30,7 @@ class GenreService {
         //request all data, validate and add genre
         request()->validate([
             'nazivZanra' => 'required|string|max:256',
-            'userImage'  => 'image|nullable|string|max: 256'
+            'userImage'  => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
         $zanr = new Genre();
@@ -53,7 +53,7 @@ class GenreService {
          //request all data, validate and update genre
          request()->validate([
             'nazivZanraEdit' => 'sometimes|string|max:256',
-            'userImage'      => 'image|nullable|string|max: 256'
+            'userImage'      => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
         $zanr->name = request('nazivZanraEdit');
@@ -61,5 +61,5 @@ class GenreService {
 
         $zanr->save();
     }
-    
+
 }

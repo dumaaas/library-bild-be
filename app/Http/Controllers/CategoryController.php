@@ -66,7 +66,7 @@ class CategoryController extends Controller
      * @param  Request $request
      */
     public function sacuvajKategoriju(CategoryService $categoryService, UserService $userService, Request $request) {
-        
+
         $categoryService->saveCategory($userService, $request);
 
         //return back
@@ -83,13 +83,7 @@ class CategoryController extends Controller
      * @return void
      */
     public function izmijeniKategoriju(Category $kategorija, CategoryService $categoryService, UserService $userService, Request $request) {
-       
-        $viewName = $this->viewFolder . '.editKategorija';
-
-        $viewModel = [
-            'kategorija' => $kategorija
-        ];
-
+        
         $categoryService->editCategory($kategorija, $userService, $request);
 
         //return back to the category

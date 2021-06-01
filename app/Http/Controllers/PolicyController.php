@@ -7,7 +7,7 @@ use App\Models\GlobalVariable;
 
 class PolicyController extends Controller
 {
-    
+
     private $viewFolder = 'pages/settings/policy';
 
     /**
@@ -30,8 +30,6 @@ class PolicyController extends Controller
 
     public function izmijeniRokRezervacije(){
 
-        $viewName = $this->viewFolder . '.settingsPolisa';
-
          //request all data, validate and update RESERVATION_PERIOD
          request()->validate([
             'rokRezervacije' => 'numeric|sometimes|max:256',
@@ -41,16 +39,10 @@ class PolicyController extends Controller
         $rezervacija->value = request('rokRezervacije');
         $rezervacija->save();
 
-        return view($viewName, [
-            'rokPozajmljivanja' => GlobalVariable::find(1),
-            'rokRezervacije' => $rezervacija,
-            'rokPrekoracenja' => GlobalVariable::find(3)
-        ]);
+        return back()->with('success', 'Uspjesno izmijenjen rok rezervacije!');
     }
 
     public function izmijeniRokPozajmljivanja(){
-
-        $viewName = $this->viewFolder . '.settingsPolisa';
 
          //request all data, validate and update RETURN_DUE_DATE
          request()->validate([
@@ -61,16 +53,10 @@ class PolicyController extends Controller
         $rezervacija->value = request('rokPozajmljivanja');
         $rezervacija->save();
 
-        return view($viewName, [
-            'rokPozajmljivanja' => $rezervacija,
-            'rokRezervacije' => GlobalVariable::find(2),
-            'rokPrekoracenja' => GlobalVariable::find(3)
-        ]);
+        return back()->with('success', 'Uspjesno izmijenjen rok pozajmljivanja!');
     }
 
     public function izmijeniRokPrekoracenja(){
-
-        $viewName = $this->viewFolder . '.settingsPolisa';
 
         //request all data, validate and update OVERDRAFT_PERIOD
         request()->validate([
@@ -81,10 +67,6 @@ class PolicyController extends Controller
         $rezervacija->value = request('rokPrekoracenja');
         $rezervacija->save();
 
-        return view($viewName, [
-            'rokPozajmljivanja' => GlobalVariable::find(1),
-            'rokRezervacije' => GlobalVariable::find(2),
-            'rokPrekoracenja' => $rezervacija
-        ]);
+        return back()->with('success', 'Uspjesno izmijenjen rok prekoracenja!');
     }
 }

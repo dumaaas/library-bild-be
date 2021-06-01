@@ -11,7 +11,7 @@ use App\Models\Reservation;
 use Carbon\Carbon;
 use App\Models\Book;
 use Illuminate\Support\Facades\Gate;
-use Auth; 
+use Auth;
 use App\Services\UserService;
 use App\Services\RentService;
 use App\Services\ReservationService;
@@ -85,7 +85,7 @@ class UserController extends Controller
 
         if ($user->userType->name != 'student' && (Gate::allows('isMyAccount', $user) || Gate::allows('isAdmin'))) {
             return view($viewName, $viewModel);
-        } 
+        }
         return abort(403, trans('Sorry, not sorry!'));
     }
 
@@ -109,12 +109,6 @@ class UserController extends Controller
      * @return void
      */
     public function izmijeniBibliotekara(User $user, UserService $userService, Request $request) {
-
-        $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
-
-        $viewModel = [
-            'user' => $user
-        ];
 
         $userService->editBibliotekar($user, $request);
 
@@ -150,24 +144,13 @@ class UserController extends Controller
      * Resetuj sifru korisnika
      *
      * @param User  $user
-     * @param UserService $userService 
+     * @param UserService $userService
      * @return void
      */
     public function resetujSifru(User $user, UserService $userService) {
 
-        if($user->userType->id == 2) {
-            $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
-        } else {
-            $viewName = $this->viewFolderStudent . '.ucenikProfile';
-        }
-
-        $viewModel = [
-            'user' => $user
-        ];
-
         $userService->resetujSifru($user);
 
-        // return view($viewName, $viewModel);
         return back()->with('success', 'Sifra uspjesno resetovana!');
     }
 

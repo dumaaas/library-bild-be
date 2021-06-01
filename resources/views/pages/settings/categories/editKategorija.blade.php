@@ -30,7 +30,7 @@
                                     <li>
                                         <span class="mx-2">/</span>
                                     </li>
-                                    <li> 
+                                    <li>
                                         <a href="{{ route('editKategorija', ['kategorija' => $kategorija]) }}" class="text-gray-400 hover:text-blue-600">
                                             Izmijeni kategoriju
                                         </a>
@@ -77,10 +77,10 @@
                                         </label>
                                     </div>
                                     <div id="icon-output" class="h-[40px] px-[20px] pt-[7px]"></div>
-                                    @error('userImageEdit')
-                                        <div class="text-red-500">{{ $message }}</div>
-                                    @enderror
                                 </div>
+                                @error('userImage')
+                                <div class="text-red-500">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mt-[20px]">

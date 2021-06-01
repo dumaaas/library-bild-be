@@ -48,7 +48,7 @@
                     <div class="w-[50%] mb-[100px]">
                         <div class="mt-[20px]">
                             <span>Ime i prezime <span class="text-red-500">*</span></span>
-                            <input type="text" name="imePrezimeBibliotekarEdit" id="imePrezimeBibliotekarEdit" value="{{$user->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameBibliotekarEdit()"/>
+                            <input type="text" name="imePrezimeBibliotekarEdit" id="imePrezimeBibliotekarEdit" placeholder="{{$user->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameBibliotekarEdit()"/>
                             @error('imePrezimeBibliotekarEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -65,7 +65,7 @@
 
                         <div class="mt-[20px]">
                             <span>JMBG <span class="text-red-500">*</span></span>
-                            <input type="text" name="jmbgBibliotekarEdit" id="jmbgBibliotekarEdit" value="{{$user->jmbg}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgBibliotekarEdit()"/>
+                            <input type="text" name="jmbgBibliotekarEdit" id="jmbgBibliotekarEdit" placeholder="{{$user->jmbg}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgBibliotekarEdit()"/>
                             @error('jmbgBibliotekarEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -73,7 +73,7 @@
 
                         <div class="mt-[20px]">
                             <span>E-mail <span class="text-red-500">*</span></span>
-                            <input type="email" name="emailBibliotekarEdit" id="emailBibliotekarEdit" value="{{$user->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailBibliotekarEdit()"/>
+                            <input type="email" name="emailBibliotekarEdit" id="emailBibliotekarEdit" placeholder="{{$user->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailBibliotekarEdit()"/>
                             @error('emailBibliotekarEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -81,7 +81,7 @@
 
                         <div class="mt-[20px]">
                             <span>Korisnicko ime <span class="text-red-500">*</span></span>
-                            <input type="text" name="usernameBibliotekarEdit" id="usernameBibliotekarEdit" value="{{$user->username}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekarEdit()"/>
+                            <input type="text" name="usernameBibliotekarEdit" id="usernameBibliotekarEdit" placeholder="{{$user->username}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekarEdit()"/>
                             @error('usernameBibliotekarEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -89,7 +89,7 @@
 
                         <div class="mt-[20px]">
                             <span>Sifra <span class="text-red-500">*</span></span>
-                            <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" value="{{$user->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
+                            <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
                             @error('pwBibliotekarEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -97,7 +97,7 @@
 
                         <div class="mt-[20px]">
                             <span>Ponovi sifru <span class="text-red-500">*</span></span>
-                            <input type="password" name="pw2BibliotekarEdit" id="pw2BibliotekarEdit" value="{{$user->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2BibliotekarEdit()"/>
+                            <input type="password" name="pw2BibliotekarEdit" id="pw2BibliotekarEdit" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2BibliotekarEdit()"/>
                             @error('pw2BibliotekarEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
