@@ -180,39 +180,6 @@
                                         </div>
                                     </th>
 
-                                    <!-- Rezervacija istice + dropdown filter for date -->
-                                    <th
-                                        class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                        Rezervacija
-                                        istice<i class="ml-2 fas fa-filter zadrzavanjeDrop-toggle"></i>
-                                        <div id="zadrzavanjeDropdown"
-                                            class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
-                                            <div
-                                                class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
-                                                <div>
-                                                    <label class="font-medium text-gray-500">Period od:</label>
-                                                    <input type="date"
-                                                        class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
-                                                </div>
-                                                <div class="ml-[50px]">
-                                                    <label class="font-medium text-gray-500">Period do:</label>
-                                                    <input type="date"
-                                                        class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none">
-                                                </div>
-                                            </div>
-                                            <div class="flex pt-[10px] text-white ">
-                                                <a href="#"
-                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                    Sacuvaj <i class="fas fa-check ml-[4px]"></i>
-                                                </a>
-                                                <a href="#"
-                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                    Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </th>
-
                                     <!-- Rezervaciju podnio + dropdown filter for ucenik -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
@@ -451,8 +418,7 @@
                                             @endif
                                             <span class="font-medium text-center">{{$aktivna->book->title}}</span>
                                         </td>
-                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->reservation_date}}</td>
-                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->reservation_date->addDays(20)}}</td>
+                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->request_date}}</td>
                                         <td class="flex flex-row items-center px-4 py-3">
                                             <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$aktivna->student->photo}}"
                                                 alt="" />

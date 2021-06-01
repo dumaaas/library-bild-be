@@ -25,7 +25,7 @@ class Rent extends Model
     }
 
     public function rentStatus(){
-        return $this->hasMany(RentStatus::class);
+        return $this->hasMany(RentStatus::class)->orderBy('date', 'DESC');
     }
     
 }
