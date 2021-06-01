@@ -40,13 +40,13 @@ class UserService {
     public function editBibliotekar($bibliotekar, $request) {
         //request all data, validate and update librarian
         request()->validate([
-            'imePrezimeBibliotekarEdit' => 'sometimes|string|max:128',
+            'imePrezimeBibliotekarEdit' => 'sometimes|string|max:128|regex:/^([^0-9]*)$/',
             'jmbgBibliotekarEdit'       => 'sometimes|digits:14|unique:users,jmbg',
             'emailBibliotekarEdit'      => 'sometimes|string|unique:users,email|max:128',
             'usernameBibliotekarEdit'   => 'sometimes|string|max:64',
-            'pwBibliotekarEdit'         => 'sometimes|max:256',
-            'pw2BibliotekarEdit'        => 'sometimes|max:256',
-            'userImage'                 => 'image|nullable|string|max: 256'
+            'pwBibliotekarEdit'         => 'sometimes|max:256|min:8|same:pw2BibliotekarEdit',
+            'pw2BibliotekarEdit'        => 'sometimes|max:256|min:8|same:pwBibliotekarEdit',
+            'userImage'                 => 'image|nullable|max: 256'
         ]);
 
         $bibliotekar->name     = request('imePrezimeBibliotekarEdit');
@@ -59,12 +59,7 @@ class UserService {
         $sifra1 = request('pwBibliotekarEdit');
         $sifra2 = request('pw2BibliotekarEdit');
 
-        if($sifra1 == $sifra2){
-            $bibliotekar->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
+        $bibliotekar->password=Hash::make($sifra1);  
              
         $bibliotekar->save();
     }
@@ -77,13 +72,13 @@ class UserService {
     public function saveBibliotekar($request) {
         //request all data, validate and add librarian
         request()->validate([
-            'imePrezimeBibliotekar' => 'required|string|max:128',
+            'imePrezimeBibliotekar' => 'required|string|max:128|regex:/^([^0-9]*)$/',
             'jmbgBibliotekar'       => 'required|digits:14|unique:users,jmbg',
             'emailBibliotekar'      => 'required|string|unique:users,email|max:128',
             'usernameBibliotekar'   => 'required|string|max:64',
-            'pwBibliotekar'         => 'required|max:256',
-            'pw2Bibliotekar'        => 'required|max:256',
-            'userImage'             => 'image|nullable|string|max: 256'
+            'pwBibliotekar'         => 'required|max:256|min:8|same:pw2Bibliotekar',
+            'pw2Bibliotekar'        => 'required|max:256|min:8|same:pwBibliotekar',
+            'userImage'             => 'image|nullable|max:256'
         ]);
 
         $bibliotekar = new User(); 
@@ -102,12 +97,7 @@ class UserService {
         $sifra1 = request('pwBibliotekar');
         $sifra2 = request('pw2Bibliotekar');
 
-        if($sifra1 == $sifra2){
-            $bibliotekar->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
+        $bibliotekar->password=Hash::make($sifra1);  
              
         $bibliotekar->save();
 
@@ -192,13 +182,13 @@ class UserService {
     public function editUcenik($ucenik, $request) {
         //request all data, validate and update student
         request()->validate([
-            'imePrezimeUcenikEdit'=> 'sometimes|string|max:128',
+            'imePrezimeUcenikEdit'=> 'sometimes|string|max:128|regex:/^([^0-9]*)$/',
             'jmbgUcenikEdit'      => 'sometimes|digits:14|unique:users,jmbg',
             'emailUcenikEdit'     => 'sometimes|string|unique:users,email|max:128',
             'usernameUcenikEdit'  => 'sometimes|string|max:64',
-            'pwUcenikEdit'        => 'sometimes|max:256',
-            'pw2UcenikEdit'       => 'sometimes|max:256',
-            'userImage'           => 'image|nullable|string|max: 256'
+            'pwUcenikEdit'        => 'sometimes|max:256|min:8|same:pw2UcenikEdit',
+            'pw2UcenikEdit'       => 'sometimes|max:256|min:8|same:pwUcenikEdit',
+            'userImage'           => 'image|nullable|max: 256'
         ]);
 
         $ucenik->name     = request('imePrezimeUcenikEdit');
@@ -211,13 +201,8 @@ class UserService {
         $sifra1 = request('pwUcenikEdit');
         $sifra2 = request('pw2UcenikEdit');
 
-        if($sifra1 == $sifra2){
-            $ucenik->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
-             
+        $ucenik->password=Hash::make($sifra1);  
+        
         $ucenik->save();
     }
 
@@ -229,13 +214,13 @@ class UserService {
     public function saveUcenik($request) {
         //request all data, validate and update student
         request()->validate([
-            'imePrezimeUcenik' => 'required|string|max:128',
+            'imePrezimeUcenik' => 'required|string|max:128|regex:/^([^0-9]*)$/',
             'jmbgUcenik'       => 'required|digits:14|unique:users,jmbg',
             'emailUcenik'      => 'required|string|unique:users,email|max:128',
             'usernameUcenik'   => 'required|string|max:64',
-            'pwUcenik'         => 'required|max:256',
-            'pw2Ucenik'        => 'required|max:256',
-            'userImage'        => 'image|nullable|string|max: 256'
+            'pwUcenik'         => 'required|max:256|min:8|same:pw2Ucenik',
+            'pw2Ucenik'        => 'required|max:256|min:8|same:pwUcenik',
+            'userImage'        => 'image|nullable|max: 256'
         ]);
 
         $ucenik = new User(); 
@@ -254,13 +239,8 @@ class UserService {
         $sifra1 = request('pwUcenik');
         $sifra2 = request('pw2Ucenik');
 
-        if($sifra1 == $sifra2){
-            $ucenik->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
-
+        $ucenik->password=Hash::make($sifra1);  
+        
         $ucenik->save();
 
         return $ucenik;
@@ -296,19 +276,14 @@ class UserService {
     public function resetujSifru($user) {
         //request all data, validate and update student
         request()->validate([
-            'pwReset'  => 'required',
-            'pw2Reset' => 'required',
+            'pwReset'  => 'required|same:pw2Reset|min:8|max:256',
+            'pw2Reset' => 'required|same:pwReset|min:8|max:256',
         ]);
 
         $sifra1 = request('pwReset');
         $sifra2 = request('pw2Reset');
 
-        if($sifra1 == $sifra2){
-            $user->password=Hash::make($sifra1);  
-        }else{
-            //Promijeniti ovo
-            echo('Moraju se poklapati sifre');
-        }
+        $user->password=Hash::make($sifra1);  
 
         $user->save();
     }

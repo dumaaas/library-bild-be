@@ -433,12 +433,16 @@
                 <div class="flex flex-col pb-[30px]">
                     <span>Unesi novu sifru <span class="text-red-500">*</span></span>
                     <input class="h-[40px] px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" type="password" name="pwReset" id="pwResetBibliotekar" onkeydown="clearErrorsPwResetBibliotekar()">
-                    <div id="validatePwResetBibliotekar"></div>
+                    @error('pwReset')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="flex flex-col pb-[30px]">
                     <span>Ponovi sifru <span class="text-red-500">*</span></span>
                     <input class="h-[40px] px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" type="password" name="pw2Reset" id="pw2ResetBibliotekar" onkeydown="clearErrorsPw2ResetBibliotekar()">
-                    <div id="validatePw2ResetBibliotekar"></div>
+                    @error('pw2Reset')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="flex items-center justify-end px-[30px] py-[20px] border-t w-100 text-white">

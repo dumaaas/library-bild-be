@@ -140,7 +140,7 @@ class UserController extends Controller
 
         if ($user->userType->name != 'student' && (Gate::allows('isMyAccount', $user) || Gate::allows('isAdmin'))) {
             User::destroy($user->id);
-            return back()->with('success', 'Bibliotekar uspjesno izbrisan!');
+            return redirect('bibliotekari')->with('success', 'Bibliotekar uspjesno izbrisan!');
         } else {
             return abort(403, trans('Sorry, not sorry!'));
         }
@@ -167,7 +167,8 @@ class UserController extends Controller
 
         $userService->resetujSifru($user);
 
-        return view($viewName, $viewModel);
+        // return view($viewName, $viewModel);
+        return back()->with('success', 'Sifra uspjesno resetovana!');
     }
 
     /**
@@ -321,7 +322,7 @@ class UserController extends Controller
             return abort(403, trans('Sorry, not sorry!'));
         } else {
             User::destroy($user->id);
-            return back()->with('success', 'Ucenik uspjesno izbrisan!');
+            return redirect('ucenik')->with('success', 'Ucenik uspjesno izbrisan!');
         }
     }
 

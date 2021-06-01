@@ -73,7 +73,13 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->email}}</td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->userType->name}}</td>
-                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->last_login_at}}</td>
+                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                    @if ($user->login_count == 0)
+                                        Nikad nije logovan/a!
+                                    @else
+                                        {{$user->last_login_at}}
+                                    @endif
+                                    </td>
                                     <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
                                         <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudent hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
@@ -101,12 +107,12 @@
                                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Izbrisi korisnika</span>
                                                     </a>
-                                                    <a href="#" tabindex="0"
+                                                    <!-- <a href="#" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fa fa-redo-alt mr-[3px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Resetuj sifru</span>
-                                                    </a>
+                                                    </a> -->
                                                 </div>
                                             </div>
                                         </td>

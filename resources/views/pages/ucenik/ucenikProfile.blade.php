@@ -102,7 +102,13 @@
                             </div>
                             <div class="mt-[40px]">
                                 <span class="text-gray-500">Poslednji put logovan/a</span>
-                                <p class="font-medium">{{$user->last_login_at}}</p>
+                                <p class="font-medium">
+                                    @if ($user->login_count == 0)
+                                        Nikad nije logovan!
+                                    @else
+                                        {{$user->last_login_at}}
+                                    @endif
+                                </p>
                             </div>
 
                         </div>

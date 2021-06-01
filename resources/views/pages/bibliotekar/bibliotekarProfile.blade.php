@@ -23,13 +23,21 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="bibliotekarProfile" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="#" class="text-[#2196f3] hover:text-blue-600">
                                             ID-{{$user -> id}}
                                         </a>
                                     </li>
                                 </ol>
                             </nav>
                         </div>
+                        @if(Session::has('success'))
+                            <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+                                <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                                @php
+                                    Session::forget('success');
+                                @endphp
+                            </div>
+                        @endif
                     </div>
                     <div class="pt-[24px] pr-[30px]">
                         @can('isMyAccount', $user)
@@ -95,7 +103,13 @@
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500">Poslednji put logovan/a</span>
-                            <p class="font-medium">{{$user->last_login_at}}</p>
+                            <p class="font-medium">
+                                @if ($user->login_count == 0)
+                                    Nikad nije logovan!
+                                @else
+                                    {{$user->last_login_at}}
+                                @endif
+                            </p>
                         </div>
                     </div>
                     <div class="ml-[100px]  mt-[20px]">

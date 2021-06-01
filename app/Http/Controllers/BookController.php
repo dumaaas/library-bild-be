@@ -493,7 +493,7 @@ class BookController extends Controller
     public function updateKnjiga(Request $request, Book $knjiga, DashboardService $dashboardService, BookService $bookService) {
         $viewName = $this->viewFolder . '.knjigaOsnovniDetalji';
 
-        request all data, validate and update author
+        //request all data, validate and update author
         request()->validate([
             'nazivKnjigaEdit'       => 'sometimes|string|max:256',
             'kratki_sadrzaj_edit'   => 'sometimes|string|max:4128',

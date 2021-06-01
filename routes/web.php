@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
     //USER - ROUTES
     Route::get('/bibliotekarProfile/{user}', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekara'])->name('bibliotekarProfile');
     Route::get('/bibliotekari', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekare']);
-    Route::get('/editBibliotekar{user}', [\App\Http\Controllers\UserController::class, 'prikaziEditBibliotekar'])->name('editBibliotekar');
+    Route::get('/editBibliotekar/{user}', [\App\Http\Controllers\UserController::class, 'prikaziEditBibliotekar'])->name('editBibliotekar');
     Route::post('/editBibliotekar/{user}/update', [\App\Http\Controllers\UserController::class, 'izmijeniBibliotekara'])->name('updateBibliotekar');
     Route::get('/deleteBibliotekar/{user}', [\App\Http\Controllers\UserController::class, 'izbrisiBibliotekara'])->name('deleteBibliotekar');
     Route::get('/noviBibliotekar', [\App\Http\Controllers\UserController::class, 'prikaziNoviBibliotekar'])->name('noviBibliotekar');
