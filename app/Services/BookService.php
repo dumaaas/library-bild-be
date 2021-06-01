@@ -231,6 +231,8 @@ class BookService {
         
         foreach($knjige as $knjiga){
             $rent=Rent::find($knjiga);
+            $rent->librarian_received_id = Auth::user()->id;
+            $rent->save();
 
             $rentStatus=new RentStatus();
             $rentStatus->rent_id=$rent->id;

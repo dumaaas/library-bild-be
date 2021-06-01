@@ -18,6 +18,7 @@ class CreateRentsTable extends Migration
             $table->foreignId('book_id');
             $table->foreignId('librarian_id');
             $table->foreignId('student_id');
+            $table->foreignId('librarian_received_id')->nullable();
             $table->timestamp('rent_date');
             $table->timestamp('return_date')->nullable();
             $table->timestamps();
@@ -33,6 +34,11 @@ class CreateRentsTable extends Migration
                 ->onDelete('cascade');
 
             $table->foreign('student_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('librarian_received_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');

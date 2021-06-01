@@ -361,8 +361,8 @@
                                                 </div>
                                             </td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                                <a href="{{route('bibliotekarProfile', ['user' => $vracena->librarian])}}">
-                                                    {{$vracena->librarian->name}}
+                                                <a href="{{route('bibliotekarProfile', ['user' => $vracena->receivedLibrarian])}}">
+                                                    {{$vracena->receivedLibrarian->name}}
                                                 </a>
                                             </td>
                                             <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
