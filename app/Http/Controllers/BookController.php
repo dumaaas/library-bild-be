@@ -441,7 +441,7 @@ class BookController extends Controller
         //request all data, validate and update author
         request()->validate([
             'nazivKnjiga'      => 'required|string|max:256',
-            'kratki_sadrzaj'   => 'required|string|max:4128',
+            'kratki_sadrzaj'   => 'nullable|string|max:4128',
             'knjigaKategorije' => 'required',
             'knjigaZanrovi'    => 'required',
             'knjigaAutori'     => 'required',
@@ -453,6 +453,7 @@ class BookController extends Controller
             'knjigaPovez'      => 'required|string',
             'knjigaFormat'     => 'required|string',
             'knjigaJezik'      => 'required|string',
+            'knjigaIsbn'       => 'required|string|unique:books,ISBN',
             'movieImages'      => 'required',
             'movieImages.*'    => 'mimes:jpeg,png,jpg',
             'imageCover'       => 'required'
@@ -479,7 +480,7 @@ class BookController extends Controller
         ];
 
         //return back to the edit author form
-        return view($viewName, $viewModel);
+        return redirect('knjigaOsnovniDetalji/'.$knjiga->id)->with('success', 'Knjiga je uspjesno sacuvana!');
     }
 
     /**
@@ -494,20 +495,20 @@ class BookController extends Controller
 
         //request all data, validate and update author
         request()->validate([
-            'nazivKnjigaEdit'       => 'sometimes|string|max:256',
-            'kratki_sadrzaj_edit'   => 'sometimes|string|max:4128',
-            'kategorijaValuesEdit'  => 'sometimes|string',
-            'zanrValuesEdit'        => 'sometimes|string',
-            'autoriValuesEdit'      => 'sometimes|string',
-            'izdavacEdit'           => 'sometimes|string',
-            'godinaIzdavanjaEdit'   => 'sometimes|numeric',
-            'knjigaKolicinaEdit'    => 'sometimes|numeric',
-            'brStranaEdit'          => 'sometimes|numeric',
-            'pismoEdit'             => 'sometimes|string',
-            'povezEdit'             => 'sometimes|string',
-            'formatEdit'            => 'sometimes|string',
-            'isbnEdit'              => 'sometimes|numeric|max:20',
-            'jezikEdit'             => 'sometimes|string',
+            'nazivKnjigaEdit'       => 'nullable|string|max:256',
+            'kratki_sadrzaj_edit'   => 'nullable|string|max:4128',
+            'kategorijaValuesEdit'  => 'nullable|string',
+            'zanrValuesEdit'        => 'nullable|string',
+            'autoriValuesEdit'      => 'nullable|string',
+            'izdavacEdit'           => 'nullable|string',
+            'godinaIzdavanjaEdit'   => 'nullable|numeric',
+            'knjigaKolicinaEdit'    => 'nullable|numeric',
+            'brStranaEdit'          => 'nullable|numeric',
+            'pismoEdit'             => 'nullable|string',
+            'povezEdit'             => 'nullable|string',
+            'formatEdit'            => 'nullable|string',
+            'isbnEdit'              => 'nullable|string|max:20|unique:books,ISBN',
+            'jezikEdit'             => 'nullable|string',
         ]);
 
         $knjiga->title=request('nazivKnjigaEdit');
@@ -521,6 +522,10 @@ class BookController extends Controller
         $knjiga->script_id=request('pismoEdit');
         $knjiga->publisher_id=request('izdavacEdit');
         $knjiga->language_id=request('jezikEdit');
+
+        if(request('isbnEdit')) {
+            $knjiga->ISBN = request('isbnEdit');
+        }
 
         $knjiga->save();
 
@@ -574,7 +579,7 @@ class BookController extends Controller
      */
     public function izbrisiKnjigu(Book $knjiga) {
         Book::destroy($knjiga->id);
-        return back();
+        return redirect('evidencijaKnjiga')->with('success', 'Knjiga je uspjesno obrisana!');
     }
 
     /**

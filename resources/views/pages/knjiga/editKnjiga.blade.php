@@ -14,7 +14,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="evidencijaKnjiga.php" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="../evidencijaKnjiga" class="text-[#2196f3] hover:text-blue-600">
                                         Evidencija knjiga
                                     </a>
                                 </li>
@@ -473,7 +473,7 @@
 
                     <div class="mt-[20px]">
                         <p>International Standard Book Num <span class="text-red-500">*</span></p>
-                        <input type="text" name="isbnEdit" id="isbnEdit" value="{{$knjiga->ISBN}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbnEdit()"/>
+                        <input type="text" name="isbnEdit" id="isbnEdit" placeholder="{{$knjiga->ISBN}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbnEdit()"/>
                         @error('isbnEdit')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror

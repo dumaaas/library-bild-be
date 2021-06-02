@@ -25,11 +25,11 @@ class CreateBooksTable extends Migration
             $table->string('title', 256);
             $table->integer('pages');
             $table->integer('publishYear');
-            $table->string('ISBN', 20);
+            $table->string('ISBN', 20)->unique();
             $table->integer('quantity');
             $table->integer('rentedBooks')->default(0);
             $table->integer('reservedBooks')->default(0);
-            $table->string('summary', 4128);
+            $table->string('summary', 4128)->nullable();
             $table->timestamps();
 
             $table->foreign('script_id')

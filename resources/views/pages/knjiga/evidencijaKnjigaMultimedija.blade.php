@@ -18,6 +18,7 @@
         </div>
         <div class="">
             <!-- Space for content -->
+            @if(count($knjiga->galery) > 0)
             <div class="mt-[20px] mx-0 w-[100%]">
                 <div class="flex flex-row">
                     <div class="w-[100%]">
@@ -31,6 +32,11 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div class="mx-[40px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
+                <p class="font-medium text-red-600"> Knjiga {{$knjiga->title}} nema slike! </p>
+            </div>
+        @endif
         </div>
     </div>
 @endsection

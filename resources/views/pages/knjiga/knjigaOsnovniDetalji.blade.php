@@ -1,8 +1,17 @@
 @extends('layouts.knjiga')
 @section('osnovniDetalji')
+
     <div class="w-[80%]">
+    @if(Session::has('success'))
+        <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
+            <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                @php
+                    Session::forget('success');
+                @endphp
+        </div>
+    @endif
         <div class="border-b-[1px] py-4 text-gray-500 border-[#e4dfdf] pl-[30px]">
-            <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga])}}" class="active-book-nav inline hover:text-blue-800">
+            <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga])}}" class="inline active-book-nav hover:text-blue-800">
                 Osnovni detalji
             </a>
             <a href="{{route('knjigaSpecifikacija', ['knjiga' => $knjiga])}}" class="inline ml-[70px] hover:text-blue-800">

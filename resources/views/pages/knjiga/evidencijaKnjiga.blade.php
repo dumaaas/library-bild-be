@@ -6,6 +6,14 @@
             <h1 class="pl-[30px] pb-[21px] border-b-[1px] border-[#e4dfdf] ">
                 Knjige
             </h1>
+            @if(Session::has('success'))
+                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px]">
+                    <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                </div>
+            @endif
         </div>
         <!-- Space for content -->
         @if(count($knjige) > 0)
@@ -103,10 +111,10 @@
                                                                 class="py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                                     Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                                                 </button>
-                                                                <a href="#" id="autoriFilterPonisti"
+                                                                <button type="reset" id="autoriFilterPonisti"
                                                                 class="ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                                     Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                                </a>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                 </th>
@@ -153,10 +161,10 @@
                                                                 class="py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                                     Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                                                 </button>
-                                                                <a href="#"
+                                                                <button type="reset"
                                                                 class="ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                                     Ponisti <i class="fas fa-times ml-[4px]"></i>
-                                                                </a>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                 </th>
@@ -204,7 +212,7 @@
                                                     {{$knjiga->quantity - $knjiga->reservedBooks - $knjiga->rentedBooks}}
                                                 </td>
                                                 <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
-                                                    <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga->id])}}">
+                                                    <a href="{{route('iznajmljivanjeArhivirane', ['knjiga' => $knjiga->id])}}">
                                                         {{$knjiga->reservedBooks}}
                                                     </a>
                                                 </td>
@@ -246,28 +254,28 @@
                                                                     <span class="px-4 py-0">Izmijeni knjigu</span>
                                                                 </a>
 
-                                                                <a href="otpisiKnjigu.php" tabindex="0"
+                                                                <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="fas fa-level-up-alt mr-[14px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Otpisi knjigu</span>
                                                                 </a>
 
-                                                                <a href="izdajKnjigu.php" tabindex="0"
+                                                                <a href="{{route('izdajKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="far fa-hand-scissors mr-[10px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Izdaj knjigu</span>
                                                                 </a>
 
-                                                                <a href="vratiKnjigu.php" tabindex="0"
+                                                                <a href="{{route('vratiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="fas fa-redo-alt mr-[10px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Vrati knjigu</span>
                                                                 </a>
 
-                                                                <a href="rezervisiKnjigu.php" tabindex="0"
+                                                                <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="far fa-calendar-check mr-[10px] ml-[5px] py-1"></i>

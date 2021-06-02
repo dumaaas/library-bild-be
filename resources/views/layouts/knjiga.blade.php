@@ -108,7 +108,7 @@
                             <p class=" bg-green-200 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                 {{$knjiga->quantity - $knjiga->reservedBooks - $knjiga->rentedBooks}} primjeraka
                             </p>
-                            <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga->id])}}"><p
+                            <a href="{{route('iznajmljivanjeArhivirane', ['knjiga' => $knjiga->id])}}"><p
                                     class=" mt-[16px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                     {{$knjiga->reservedBooks}} primjerka</p></a>
                             <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga->id])}}"><p

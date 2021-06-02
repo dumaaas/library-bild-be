@@ -21,7 +21,7 @@
                                 <nav class="w-full rounded">
                                     <ol class="flex list-reset">
                                         <li>
-                                            <a href="evidencijaKnjiga.php" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="../evidencijaKnjiga" class="text-[#2196f3] hover:text-blue-600">
                                                 Evidencija knjiga
                                             </a>
                                         </li>
@@ -29,7 +29,7 @@
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="knjigaOsnovniDetalji.php"
+                                            <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga->id])}}"
                                                 class="text-[#2196f3] hover:text-blue-600">
                                                 KNJIGA-{{$knjiga->id}}
                                             </a>
@@ -38,7 +38,7 @@
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="vratiKnjigu.php" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="#" class="text-[#2196f3] hover:text-blue-600">
                                                 Vrati knjigu
                                             </a>
                                         </li>
@@ -52,7 +52,7 @@
                             <i class="fas fa-level-up-alt mr-[3px]"></i>
                             Otpisi knjigu
                         </a>
-                        <a href="izdajKnjigu.php" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
+                        <a href="{{route('izdajKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                             <i class="far fa-hand-scissors mr-[3px]"></i>
                             Izdaj knjigu
                         </a>
@@ -60,7 +60,7 @@
                             <i class="fas fa-redo-alt mr-[3px] "></i>
                             Vrati knjigu
                         </a>
-                        <a href="rezervisiKnjigu.php" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga->id])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="far fa-calendar-check mr-[3px] "></i>
                             Rezervisi knjigu
                         </a>
@@ -73,13 +73,13 @@
                             <div class="absolute right-0 w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <a href="editKnjiga.php" tabindex="0"
+                                    <a href="{{route('editKnjiga', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                         <span class="px-4 py-0">Izmijeni knjigu</span>
                                     </a>
-                                    <a href="#" tabindex="0"
+                                    <a href="{{route('izbrisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>

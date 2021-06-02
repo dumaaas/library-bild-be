@@ -33,14 +33,11 @@
                     </div>
                 </div>
             </div>
-            @if(Session::has('success'))
-                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
-                <i class="fa fa-check mr-[5px]" aria-hidden="true"></i> {{ Session::get('success') }}
-                    @php
-                        Session::forget('success');
-                    @endphp
+            @error('knjigaIsbn')
+                <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-red-600 right-[20px]">
+                    <p class="text-red-200">Knjiga nije uspjesno unesena!</p>
                 </div>
-            @endif
+            @enderror
         </div>
         <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
             <p onclick="openTab(event, 'details')" class="inline cursor-pointer active-book-nav tablinks hover:text-blue-800">
