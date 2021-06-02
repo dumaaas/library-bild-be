@@ -368,26 +368,44 @@
                             <a href="ucenikProfile.php" class="ml-2 font-medium text-center">{{$iznajmljivanjeArhivirana->student->name}}</a>
                         </td>
                         <td class="px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
-                            @if($iznajmljivanjeArhivirana->reservationStatus->statusReservation_id == 1)
+                            @if($iznajmljivanjeArhivirana->closeReservation_id == 1)
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
-
                                     <span class="text-xs text-yellow-700">
-                                        Reserved
+                                        Expired
                                     </span>
                                 </div>
-                            @elseif($iznajmljivanjeArhivirana->reservationStatus->statusReservation_id == 2)
+                            @elseif($iznajmljivanjeArhivirana->closeReservation_id == 2)
+                                <div
+                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
+                                    <span class="text-xs text-red-800">
+                                        Refused
+                                    </span>
+                                </div>
+                            @elseif($iznajmljivanjeArhivirana->closeReservation_id == 3)
+                                <div
+                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
+                                    <span class="text-xs text-red-800">
+                                        Canceled
+                                    </span>
+                                </div>
+                            @elseif($iznajmljivanjeArhivirana->closeReservation_id == 4)
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
-
                                     <span class="text-xs text-green-800">
                                         Rented
                                     </span>
                                 </div>
+                            @elseif($iznajmljivanjeArhivirana->closeReservation_id == 5)
+                                <div
+                                    class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
+                                    <span class="text-xs text-green-800">
+                                        Reserved
+                                    </span>
+                                </div>
                             @else
                                 <div
-                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
-
+                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px
                                     <span class="text-xs text-red-800">
                                         Refused
                                     </span>
@@ -405,7 +423,7 @@
                                     aria-labelledby="headlessui-menu-button-1"
                                     id="headlessui-menu-items-117" role="menu">
                                     <div class="py-1">
-                                        <a href="izdavanjeDetalji.php" tabindex="0"
+                                        <a href="{{route('izdavanjeDetalji',['knjiga'=>$iznajmljivanjeArhivirana->book,'ucenik'=>$iznajmljivanjeArhivirana->student])}}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                             <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>

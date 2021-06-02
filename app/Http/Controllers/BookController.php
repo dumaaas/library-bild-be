@@ -21,7 +21,6 @@ use App\Services\RentService;
 use App\Services\UserService;
 use App\Services\CategoryService;
 use App\Services\ReservationService;
-use App\Services\GlobalVariableService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +66,7 @@ class BookController extends Controller
     /**
      * Prikazi sve knjige
      *
-     * @param  AuthorService $autorService
+     * @param  AuthorService $autorService 
      * @return void
      */
     public function prikaziEvidencijaKnjiga(AuthorService $autorService) {
@@ -96,7 +95,7 @@ class BookController extends Controller
             'knjiga'     => $knjiga,
             'aktivnosti' => $dashboardService->getBookActivity($knjiga->id),
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -116,7 +115,7 @@ class BookController extends Controller
                                                     ->take(3)
                                                     ->get(),
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -134,7 +133,7 @@ class BookController extends Controller
             'knjiga'     => $knjiga,
             'aktivnosti' => $dashboardService->getBookActivity($knjiga->id),
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -175,7 +174,7 @@ class BookController extends Controller
         $vratiKnjige = $rentService->getIzdateKnjige()
                             ->where('book_id', '=', $knjiga->id)
                             ->paginate(7);
-
+        
         $viewModel = [
             'knjiga'      => $knjiga,
             'vratiKnjige' => $vratiKnjige,
@@ -200,9 +199,9 @@ class BookController extends Controller
 
         $viewModel = [
             'knjiga'       => $knjiga,
-            'otpisiKnjige' => $otpisiKnjige
+            'otpisiKnjige' => $otpisiKnjige  
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -277,7 +276,7 @@ class BookController extends Controller
     }
 
     /**
-     * Izdaj knjigu
+     * Izdaj knjigu 
      *
      * @param  Book $knjiga
      * @param  BookService $bookService
@@ -293,7 +292,7 @@ class BookController extends Controller
     }
 
     /**
-     * Rezervisi knjigu
+     * Rezervisi knjigu 
      *
      * @param  Book $knjiga
      * @param  BookService $bookService
@@ -301,9 +300,9 @@ class BookController extends Controller
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function sacuvajRezervisanje(Book $knjiga, BookService $bookService, ReservationService $reservationService, GlobalVariableService $globalVariableService) {
+    public function sacuvajRezervisanje(Book $knjiga, BookService $bookService, ReservationService $reservationService) {
 
-        $bookService->saveReservation($knjiga, $reservationService, $globalVariableService);
+        $bookService->saveReservation($knjiga, $reservationService);
 
         return back()->with('success', 'Uspjesno rezervisano!');
     }
@@ -350,9 +349,9 @@ class BookController extends Controller
                                                 ->get(),
             'iznajmljivanjePrekoracene' => $rentService->getPrekoraceneKnjige()
                                                 ->where('book_id', '=', $knjiga->id)
-                                                ->paginate(7),
+                                                ->paginate(7),                               
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -374,9 +373,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeVracene' => $rentService->getVraceneKnjige()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),
+                                            ->paginate(7),                              
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -390,7 +389,7 @@ class BookController extends Controller
      */
     public function prikaziIznajmljivanjeAktivne(Book $knjiga, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.iznajmljivanjeAktivne';
-
+        
         $viewModel = [
             'knjiga'                => $knjiga,
             'aktivnosti'            => $dashboardService->getBookActivity($knjiga->id)
@@ -398,9 +397,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeAktivne' => $reservationService->getRezervisaneKnjige()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),
+                                            ->paginate(7),                              
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -414,7 +413,7 @@ class BookController extends Controller
      */
     public function prikaziIznajmljivanjeArhivirane(Book $knjiga, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.iznajmljivanjeArhivirane';
-
+        
         $viewModel = [
             'knjiga'                   => $knjiga,
             'aktivnosti'               => $dashboardService->getBookActivity($knjiga->id)
@@ -422,9 +421,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeArhivirane' => $reservationService->getArhiviraneRezervacije()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),
+                                            ->paginate(7),                               
         ];
-
+        
         return view($viewName, $viewModel);
     }
 
@@ -440,23 +439,20 @@ class BookController extends Controller
 
         //request all data, validate and update author
         request()->validate([
-            'nazivKnjiga'      => 'required|string|max:256',
-            'kratki_sadrzaj'   => 'nullable|string|max:4128',
+            'nazivKnjiga'      => 'required|max:256',
+            'kratki_sadrzaj'   => 'required|max:4128',
             'knjigaKategorije' => 'required',
             'knjigaZanrovi'    => 'required',
             'knjigaAutori'     => 'required',
-            'knjigaIzdavac'    => 'required|string',
-            'godinaIzdavanja'  => 'required|numeric',
-            'knjigaKolicina'   => 'required|numeric',
-            'brStrana'         => 'required|numeric',
-            'knjigaPismo'      => 'required|string',
-            'knjigaPovez'      => 'required|string',
-            'knjigaFormat'     => 'required|string',
-            'knjigaJezik'      => 'required|string',
-            'knjigaIsbn'       => 'required|string|unique:books,ISBN',
-            'movieImages'      => 'required',
-            'movieImages.*'    => 'mimes:jpeg,png,jpg',
-            'imageCover'       => 'required'
+            'knjigaIzdavac'    => 'required',
+            'godinaIzdavanja'  => 'required',
+            'knjigaKolicina'   => 'required',
+            'brStrana'         => 'required',
+            'knjigaPismo'      => 'required',
+            'knjigaPovez'      => 'required',
+            'knjigaFormat'     => 'required',
+            'knjigaIsbn'       => 'required|max:20',
+            'knjigaJezik'      => 'required',
         ]);
 
         $knjiga = $bookService->saveBook();
@@ -470,17 +466,15 @@ class BookController extends Controller
         $autoriValues = $request->input('valuesAutori');
         $bookService->saveBookAuthors($autoriValues, $knjiga->id);
 
-        $bookService->uploadBookImages($knjiga->id, $request);
-
         $viewModel = [
             'knjiga'     => $knjiga,
             'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
                                 ->take(3)
                                 ->get(),
         ];
-
+        
         //return back to the edit author form
-        return redirect('knjigaOsnovniDetalji/'.$knjiga->id)->with('success', 'Knjiga je uspjesno sacuvana!');
+        return view($viewName, $viewModel);
     }
 
     /**
@@ -490,25 +484,25 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @return void
      */
-    public function updateKnjiga(Request $request, Book $knjiga, DashboardService $dashboardService, BookService $bookService) {
+    public function updateKnjiga(Request $request, Book $knjiga) {
         $viewName = $this->viewFolder . '.knjigaOsnovniDetalji';
 
         //request all data, validate and update author
         request()->validate([
-            'nazivKnjigaEdit'       => 'nullable|string|max:256',
-            'kratki_sadrzaj_edit'   => 'nullable|string|max:4128',
-            'kategorijaValuesEdit'  => 'nullable|string',
-            'zanrValuesEdit'        => 'nullable|string',
-            'autoriValuesEdit'      => 'nullable|string',
-            'izdavacEdit'           => 'nullable|string',
-            'godinaIzdavanjaEdit'   => 'nullable|numeric',
-            'knjigaKolicinaEdit'    => 'nullable|numeric',
-            'brStranaEdit'          => 'nullable|numeric',
-            'pismoEdit'             => 'nullable|string',
-            'povezEdit'             => 'nullable|string',
-            'formatEdit'            => 'nullable|string',
-            'isbnEdit'              => 'nullable|string|max:20|unique:books,ISBN',
-            'jezikEdit'             => 'nullable|string',
+            'nazivKnjigaEdit'       => 'required|max:256',
+            'kratki_sadrzaj_edit'   => 'required|max:4128',
+            'kategorijaValuesEdit'  => 'required',
+            'zanrValuesEdit'        => 'required',
+            'autoriValuesEdit'      => 'required',
+            'izdavacEdit'           => 'required',
+            'godinaIzdavanjaEdit'   => 'required',
+            'knjigaKolicinaEdit'    => 'required',
+            'brStranaEdit'          => 'required',
+            'pismoEdit'             => 'required',
+            'povezEdit'             => 'required',
+            'formatEdit'            => 'required',
+            'isbnEdit'              => 'required|max:20',
+            'jezikEdit'             => 'required',
         ]);
 
         $knjiga->title=request('nazivKnjigaEdit');
@@ -522,10 +516,6 @@ class BookController extends Controller
         $knjiga->script_id=request('pismoEdit');
         $knjiga->publisher_id=request('izdavacEdit');
         $knjiga->language_id=request('jezikEdit');
-
-        if(request('isbnEdit')) {
-            $knjiga->ISBN = request('isbnEdit');
-        }
 
         $knjiga->save();
 
@@ -559,8 +549,6 @@ class BookController extends Controller
             $knjigaAutori->save();
         }
 
-        $bookService->editBookImages($knjiga->id, $request);
-
         $viewModel = [
             'knjiga'     => $knjiga,
             'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
@@ -579,11 +567,11 @@ class BookController extends Controller
      */
     public function izbrisiKnjigu(Book $knjiga) {
         Book::destroy($knjiga->id);
-        return redirect('evidencijaKnjiga')->with('success', 'Knjiga je uspjesno obrisana!');
+        return back();
     }
 
     /**
-     * Filter autora u tabeli
+     * Filter autora u tabeli 
      *
      * @param  BookService $bookService
      * @param  AuthorService $autorService
@@ -616,7 +604,7 @@ class BookController extends Controller
 
         return back()->with('success', 'Uspjesno vraceno!');
     }
-
+        
     /**
      * Otpisi knjige
      *
@@ -625,7 +613,7 @@ class BookController extends Controller
      * @return void
      */
     public function otpisiKnjige(BookService $bookService){
-
+        
         $bookService->otpisiKnjige();
 
         return back()->with('success', 'Uspjesno otpisano!');

@@ -136,7 +136,7 @@
                                 </p>
                             </div>
                             <div class="flex pb-[30px]">
-                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('aktivneRezervacije')}}">
+                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('arhiviraneRezervacije')}}">
                                     Rezervisane knjige
                                 </a>
                                 <div class="ml-[30px] bg-yellow-600 transition duration-200 ease-in  hover:bg-yellow-900 stats-bar-yellow  h-[26px]" style="width: {{$rezervisaneNum}}px">
