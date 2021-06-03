@@ -444,10 +444,10 @@
                                         </a>
                                     </td>
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikVracena->rent_date}}</td>
-                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikVracena->return_date}}</td>
+                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikVracena->rentStatus[0]->date}}</td>
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                                         <div>
-                                            <span>2 nedelje i 3 dana</span>
+                                            <span>{{ \Carbon\Carbon::parse($ucenikVracena->rent_date)->diffAsCarbonInterval($ucenikVracena->rentStatus[0]->date) }}</span>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikVracena->librarian->name}}</td>

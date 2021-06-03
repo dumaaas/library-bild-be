@@ -7,7 +7,7 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            @if(count($knjiga->coverImage) > 0 ) 
+                            @if(count($knjiga->coverImage) > 0 )
                                 <img src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="">
                             @endif
                         </div>
@@ -158,15 +158,22 @@
                                             <td class="flex flex-row items-center px-4 py-4">
                                                 <img class="object-cover w-8 h-8 mr-2 rounded-full" src="/storage/image/{{$vratiKnjigu->student->photo}}"
                                                     alt="" />
-                                                <a href="ucenikProfile.php">
+                                                <a href="{{route('ucenikProfile', ['user' => $vratiKnjigu->student])}}">
                                                     <span class="font-medium text-center">{{$vratiKnjigu->student->name}}</span>
                                                 </a>
                                             </td>
                                             <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$vratiKnjigu->rent_date}}</td>
                                             <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($vratiKnjigu->rent_date)->diffAsCarbonInterval() }}</td>
                                             <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                                <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                                    {{ \Carbon\Carbon::parse($vratiKnjigu->rent_date->addDays(30))->diffInDays() }} days
+                                                    @if($vratiKnjigu->return_date < \Carbon\Carbon::now())
+                                                        <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
+                                                            {{ \Carbon\Carbon::parse($vratiKnjigu->return_date)->diffInDays(\Carbon\Carbon::now()) }} days
+                                                        </span>
+                                                    @else
+                                                        <span class="px-[6px] py-[2px] bg-green-200 text-green-800 rounded-[10px]">
+                                                            Nema prekoracenja
+                                                        </span>
+                                                    @endif
                                                 </span>
                                             </td>
                                             <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$vratiKnjigu->librarian->name}}</td>
@@ -205,7 +212,7 @@
                     </path>
                 </svg>
                 <p class="font-medium text-red-600"> Nijedan primjerak knjige nije izdat! </p>
-            </div>          
+            </div>
             @endif
         </section>
         @endsection

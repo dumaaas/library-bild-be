@@ -272,7 +272,9 @@
                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                             <div
                                 class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
-                                <span class="text-xs text-red-800">{{ \Carbon\Carbon::parse($iznajmljivanjePrekoracena->rent_date->addDays(30))->diffInDays() }} days</span>
+                                <span class="text-xs text-red-800">
+                                    {{ \Carbon\Carbon::parse($iznajmljivanjePrekoracena->return_date)->diffInDays(\Carbon\Carbon::now()) }} days
+                                </span>
                             </div>
                         </td>
                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
