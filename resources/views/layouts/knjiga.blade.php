@@ -8,7 +8,7 @@
             <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                 <div class="py-[10px] flex flex-row">
                     <div class="w-[77px] pl-[30px]">
-                        @if(count($knjiga->coverImage) > 0 ) 
+                        @if(count($knjiga->coverImage) > 0 )
                             <img class="w-[77px]" src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="">
                         @endif
                     </div>
@@ -116,7 +116,10 @@
                                     {{$knjiga->rentedBooks}} primjerka</p></a>
                             <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga->id])}}">
                                 <p class=" mt-[16px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
-                                    {{\App\Models\Rent::where('return_date', '=', null)->where('rent_date', '<', Carbon\Carbon::now()->subDays(30))->where('book_id', '=', $knjiga->id)->count()}} primjerka
+                                    @php
+                                        $service = new \App\Services\RentService;
+                                    @endphp
+                                    {{count($service->getPrekoraceneKnjige()->where('book_id', '=', $knjiga->id)->get())}} primjeraka
                                 </p>
                             </a>
                             <p
@@ -128,27 +131,47 @@
                 </div>
                 <div class="mx-[30px]">
                     @foreach($aktivnosti as $aktivnost)
+
                         <div class="mt-[40px] flex flex-col max-w-[304px]">
                             <div class="text-gray-500 ">
-                                <p class="inline uppercase">
-                                    Izdavanja knjige
-                                </p>
-                                <span>
-                                        - {{$aktivnost->rent_date->diffForHumans()}}
-                                    </span>
+                                @if(count($aktivnost->rentStatus) > 0)
+                                    @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                        <p class="inline uppercase">
+                                            Izdavanje knjige
+                                            <span class="inline lowercase">
+                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    </span>
+                                        </p>
+                                    @else
+                                        <p class="inline uppercase">
+                                            Vracanje knjige
+                                            <span class="inline lowercase">
+                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    </span>
+                                        </p>
+                                    @endif
+                                @endif
                             </div>
                             <div>
                                 <p>
                                     <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
                                         {{$aktivnost->librarian->name}}
                                     </a>
-                                    rented a book to
+                                    @if(count($aktivnost->rentStatus) > 0)
+                                        @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                            rented a book to
+                                        @else
+                                            returned a book from
+                                        @endif
+                                    @endif
                                     <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                         {{$aktivnost->student->name}}
                                     </a>
                                     on
                                     <span class="font-medium">
-                                        {{$aktivnost->rent_date->toDateString()}}.
+                                        @if(count($aktivnost->rentStatus) > 0)
+                                            {{$aktivnost->rentStatus[0]->date}}.
+                                        @endif
                                     </span>
                                 </p>
                             </div>

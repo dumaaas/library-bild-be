@@ -39,7 +39,6 @@
                                                 </p>
                                             @endif
                                         @endif
-
                                     </div>
                                     <div class="">
                                         <p>

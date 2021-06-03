@@ -291,8 +291,8 @@ class DatabaseSeeder extends Seeder
         //SEEDING RESERVATION_STATUS
         \App\Models\ReservationStatus::factory(4)->create();
 
-        //SEEDING BOOKS
-        \App\Models\Book::factory(10)->create();
+        //SEEDING BOOKS AND COVERS
+        \App\Models\Galery::factory(10)->create();
 
         //SEEDING BOOK_CATEGORY
         \App\Models\BookCategory::factory(30)->create();

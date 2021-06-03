@@ -383,11 +383,27 @@ class UserController extends Controller
 
         $viewName = $this->viewFolderStudent . '.ucenikVracene';
 
-        $vracene = $rentService->getVraceneKnjige()->where('student_id', '=', $user->id)->paginate(7);
+        $ucenikV = Rent::where('student_id', '=', $user->id)
+            ->where(function ($query) {
+                $query->select('statusBook_id')
+                    ->from('rent_statuses')
+                    ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                    ->orderByDesc('rent_statuses.date')
+                    ->limit(1);
+            }, 1);
+
+        $ucenikVracene = Rent::where('student_id', '=', $user->id)
+            ->where(function ($query) {
+                $query->select('statusBook_id')
+                    ->from('rent_statuses')
+                    ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                    ->orderByDesc('rent_statuses.date')
+                    ->limit(1);
+            }, 3)->union($ucenikV);
 
         $viewModel = [
             'user' => $user,
-            'ucenikVracene' => $vracene
+            'ucenikVracene' => $ucenikVracene->paginate(7)
         ];
 
         return view($viewName, $viewModel);

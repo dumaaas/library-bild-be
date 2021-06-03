@@ -368,17 +368,31 @@ class BookController extends Controller
      * @param  RentService $rentService
      * @return void
      */
-    public function prikaziIznajmljivanjeVracene(Book $knjiga, DashboardService $dashboardService, RentService $rentService) {
+    public function prikaziIznajmljivanjeVracene(Book $knjiga, DashboardService $dashboardService) {
         $viewName = $this->viewFolder . '.iznajmljivanjeVracene';
 
+        $iznajmljivanjeV = Rent::where('book_id', '=', $knjiga->id)
+                                    ->where(function ($query) {
+                                    $query->select('statusBook_id')
+                                        ->from('rent_statuses')
+                                        ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                                        ->orderByDesc('rent_statuses.date')
+                                        ->limit(1);
+                                    }, 1);
+        $iznajmljivanjeVracene = Rent::where('book_id', '=', $knjiga->id)
+                                    ->where(function ($query) {
+                                    $query->select('statusBook_id')
+                                        ->from('rent_statuses')
+                                        ->whereColumn('rent_statuses.rent_id', 'rents.id')
+                                        ->orderByDesc('rent_statuses.date')
+                                        ->limit(1);
+                                    }, 3)->union($iznajmljivanjeV);
         $viewModel = [
             'knjiga'                => $knjiga,
             'aktivnosti'            => $dashboardService->getBookActivity($knjiga->id)
                                             ->take(3)
                                             ->get(),
-            'iznajmljivanjeVracene' => $rentService->getVraceneKnjige()
-                                            ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),
+            'iznajmljivanjeVracene' => $iznajmljivanjeVracene->paginate(7),
         ];
 
         return view($viewName, $viewModel);
@@ -400,7 +414,8 @@ class BookController extends Controller
             'aktivnosti'            => $dashboardService->getBookActivity($knjiga->id)
                                             ->take(3)
                                             ->get(),
-            'iznajmljivanjeAktivne' => $reservationService->getRezervisaneKnjige()
+
+            'iznajmljivanjeAktivne' => $reservationService->getAktivneRezervacije()
                                             ->where('book_id', '=', $knjiga->id)
                                             ->paginate(7),
         ];
@@ -464,6 +479,7 @@ class BookController extends Controller
         ]);
 
         $knjiga = $bookService->saveBook();
+        $bookService->uploadBookImages($knjiga->id, $request);
 
         $kategorijeValues = $request->input('valuesKategorije');
         $bookService->saveBookCategories($kategorijeValues, $knjiga->id);
@@ -492,7 +508,7 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @return void
      */
-    public function updateKnjiga(Request $request, Book $knjiga) {
+    public function updateKnjiga(Request $request, Book $knjiga, DashboardService $dashboardService) {
         $viewName = $this->viewFolder . '.knjigaOsnovniDetalji';
 
         //request all data, validate and update author

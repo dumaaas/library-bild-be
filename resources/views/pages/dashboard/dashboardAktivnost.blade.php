@@ -356,13 +356,25 @@
                                     <img class="rounded-full" src="/storage/image/{{$aktivnost->librarian->photo}}" alt="">
                                 </div>
                                 <div class="ml-[15px] mt-[5px] flex flex-col">
+
                                     <div class="text-gray-500 mb-[5px]">
-                                        <p class="uppercase">
-                                            Izdavanje knjige
-                                            <span class="inline lowercase">
-                                            - {{$aktivnost->rent_date->diffForHumans()}}
-                                        </span>
-                                        </p>
+                                        @if(count($aktivnost->rentStatus) > 0)
+                                            @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                                <p class="uppercase">
+                                                    Izdavanje knjige
+                                                    <span class="inline lowercase">
+                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    </span>
+                                                </p>
+                                            @else
+                                                <p class="uppercase">
+                                                    Vracanje knjige
+                                                    <span class="inline lowercase">
+                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    </span>
+                                                </p>
+                                            @endif
+                                        @endif
                                     </div>
                                     <div class="">
                                         <p>

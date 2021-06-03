@@ -498,10 +498,10 @@
                                         </label>
                                     </td>
                                     <td class="flex flex-row items-center px-4 py-3">
-                                        @if(count($ucenikArhivirana->book->coverImage) > 0 ) 
+                                        @if(count($ucenikArhivirana->book->coverImage) > 0 )
                                             <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$ucenikArhivirana->book->coverImage[0]->photo}}" alt="" />
-                                        @endif                                    
-                                        <a href="izdavanjeDetalji.php">
+                                        @endif
+                                        <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $ucenikArhivirana->book])}}">
                                             <span class="font-medium text-center">{{$ucenikArhivirana->book->title}}</span>
                                         </a>
                                     </td>
@@ -510,7 +510,7 @@
                                     <td class="flex flex-row items-center px-4 py-3">
                                         <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$ucenikArhivirana->student->photo}}"
                                             alt="" />
-                                        <a href="ucenikProfile.php" class="ml-2 font-medium text-center">{{$ucenikArhivirana->student->name}}</a>
+                                        <a href="{{route('ucenikProfile', ['user' => $ucenikArhivirana->student])}}" class="ml-2 font-medium text-center">{{$ucenikArhivirana->student->name}}</a>
                                     </td>
                                     <td class="px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
                                         @if($ucenikArhivirana->reservationStatus[0]->statusReservation_id == 1)
@@ -550,7 +550,7 @@
                                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117"
                                                 role="menu">
                                                 <div class="py-1">
-                                                    <a href="izdavanjeDetalji.php" tabindex="0"
+                                                    <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $ucenikArhivirana->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
