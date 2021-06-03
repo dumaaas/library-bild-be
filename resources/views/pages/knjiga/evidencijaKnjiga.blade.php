@@ -78,7 +78,7 @@
                                                                 <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                                     <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                                         placeholder="Search"
-                                                                        onkeyup="filterFunction('searchAutori', 'autoriDropdown')"
+                                                                        onkeyup="filterFunction('searchAutori', 'autoriDropdown', 'dropdown-item-autor')"
                                                                         id="searchAutori"><br>
                                                                     <button
                                                                         class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
@@ -87,7 +87,7 @@
                                                                 </li>
                                                                 <div class="h-[200px] scroll font-normal">
                                                                     @foreach($autori as $autor)
-                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200">
+                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-autor">
                                                                             <label class="flex items-center justify-start">
                                                                                 <div
                                                                                     class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -128,7 +128,7 @@
                                                                 <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                                     <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                                         placeholder="Search"
-                                                                        onkeyup="filterFunction('searchKategorije', 'kategorijeDropdown')"
+                                                                        onkeyup="filterFunction('searchKategorije', 'kategorijeDropdown', 'dropdown-item-kategorija')"
                                                                         id="searchKategorije"><br>
                                                                     <button
                                                                         class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
@@ -137,7 +137,7 @@
                                                                 </li>
                                                                 <div class="h-[200px] scroll font-normal">
                                                                     @foreach($kategorije as $kategorija)
-                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200">
+                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-kategorija">
                                                                             <label class="flex items-center justify-start">
                                                                                 <div
                                                                                     class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -157,7 +157,7 @@
                                                                 </div>
                                                             </ul>
                                                             <div class="flex pt-[10px] text-white ">
-                                                                <button href="#"
+                                                                <button
                                                                 class="py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                                     Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                                                 </button>
@@ -189,7 +189,7 @@
                                                     </label>
                                                 </td>
                                                 <td class="flex flex-row items-center px-4 py-4">
-                                                    @if(count($knjiga->coverImage) > 0 ) 
+                                                    @if(count($knjiga->coverImage) > 0 )
                                                         <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="" />
                                                     @endif
                                                     <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga->id])}}">
@@ -299,7 +299,7 @@
                             <div class="pt-[20px]">
                                 {{$knjige->links()}}
                             </div>
-                            @else 
+                            @else
                             <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                                 <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
                                     <path fill="currentColor"
@@ -310,7 +310,7 @@
                             </div>
                             <div>
                                 <a class="text-blue-500" href="{{route('evidencijaKnjiga')}}">
-                                    &#8592; Back 
+                                    &#8592; Back
                                 </a>
                             </div>
                             @endif
@@ -323,7 +323,7 @@
                     <a href="{{route('novaKnjiga')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                         <i class="fas fa-plus mr-[15px]"></i> Nova knjiga
                     </a>
-                <div class="w-[360px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">                       
+                <div class="w-[360px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                     <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
                         <path fill="currentColor"
                                 d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
@@ -331,7 +331,7 @@
                     </svg>
                     <p class="font-medium text-red-600"> Ne postoji nijedna knjiga u bazi podataka </p>
                 </div>
-            </div>   
-        @endif 
+            </div>
+        @endif
     </section>
 @endsection

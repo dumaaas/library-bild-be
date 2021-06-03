@@ -77,7 +77,7 @@
                                 Storyline (Kratki sadrzaj)
                             </h4>
                             <p class="addReadMore showlesscontent my-[10px]">
-                                {{$knjiga->summary}}
+                                {!! $knjiga->summary !!}
                             </p>
                         </div>
                     </div>

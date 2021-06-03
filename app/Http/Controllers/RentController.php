@@ -38,21 +38,23 @@ class RentController extends Controller
      * @param  RentService $rentService
      * @return void
      */
-    public function prikaziIzdavanjeDetalji(Book $knjiga, User $ucenik, RentService $rentService) {
+    public function prikaziIzdavanjeDetalji(Book $knjiga, User $ucenik, ReservationService $reservationService, RentService $rentService) {
+
         $viewName      = $this->viewFolder . '.izdavanjeDetalji';
         $viewNameError = $this->viewFolder . '.izdavanjeDetaljiError';
+
 
         $transakcija = $rentService->getTransakcija($knjiga->id, $ucenik->id);
 
         $viewModel = [
-            'transakcija' => $transakcija
+            'transakcija' => $transakcija,
         ];
 
         $viewModelError = [
             'knjiga' => $knjiga,
             'ucenik' => $ucenik,
         ];
-        
+
         if($transakcija != null) {
             return view($viewName, $viewModel);
         } else {
@@ -177,7 +179,7 @@ class RentController extends Controller
             'ucenici'      => $userService->getUcenici()->get(),
             'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
-        
+
         return redirect('izdateKnjige')->with('success','Zapis uspjesno izbrisan!');
     }
 

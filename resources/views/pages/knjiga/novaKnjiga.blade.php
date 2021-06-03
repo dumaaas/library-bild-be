@@ -170,7 +170,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @error('knjigaKategorije')
+                            @error('valuesKategorije')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
@@ -266,7 +266,7 @@
                                 </div>
                             </div>
                         </div>
-                        @error('knjigaZanrovi')
+                        @error('valuesZanrovi')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
@@ -362,7 +362,7 @@
                         </div>
                     </div>
                 </div>
-                @error('knjigaAutori')
+                @error('valuesAutori')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
             </div>
@@ -432,12 +432,12 @@
 
             <div id="multimedia" class="tabcontent">
                 <div class="w-9/12 mx-auto bg-white rounded p7 mt-[40px] mb-[150px]">
-                <p class="m-0 text-gray-500">Selektujte sliku za koju zelite da bude cover knjige.</p>
+                <p class="m-0 text-gray-500">Selektujte sliku za koju zelite da bude cover knjige. <span class="text-red-600">*</span></p>
                     <div x-data="dataFileDnD()"
                          class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                         <div x-ref="dnd"
                              class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
-                            <input accept="*" type="file" multiple 
+                            <input accept="*" type="file" multiple
                                    name="movieImages[]"
                                    class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
                                    @change="addFiles($event)"
@@ -468,7 +468,7 @@
                                         <!-- Checkbox -->
                                         <input
                                             class="absolute top-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"
-                                            type="radio" 
+                                            type="radio"
                                             name="imageCover"
                                             :value="index" />
                                         <!-- End checkbox -->

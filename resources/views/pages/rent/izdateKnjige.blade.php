@@ -321,7 +321,7 @@
                                                 </label>
                                             </td>
                                             <td class="flex flex-row items-center px-4 py-3">
-                                                @if(count($izdata->book->coverImage) > 0 ) 
+                                                @if(count($izdata->book->coverImage) > 0 )
                                                     <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$izdata->book->coverImage[0]->photo}}" alt="" />
                                                 @endif
                                                 <a href="{{route('izdavanjeDetalji', ['knjiga' => $izdata->book, 'ucenik' => $izdata->student])}}">
@@ -386,7 +386,7 @@
                                 </table>
 
                                 {{$izdate->links()}}
-                            @else 
+                            @else
                                 <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                                     <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
                                         <path fill="currentColor"
@@ -397,7 +397,7 @@
                                 </div>
                                 <div>
                                     <a class="text-blue-500" href="{{route('izdateKnjige')}}">
-                                        &#8592; Back 
+                                        &#8592; Back
                                     </a>
                                 </div>
                             @endif

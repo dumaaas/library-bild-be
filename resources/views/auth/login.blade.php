@@ -32,6 +32,10 @@
                                 required autocomplete="current-password" />
             </div>
 
+                @if (session('message'))
+                    <div class="text-red-600 bg-red-200 mt-[10px] px-[5px] py-[10px] rounded-[10px]">{{ session('message') }}</div>
+            @endif
+
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">

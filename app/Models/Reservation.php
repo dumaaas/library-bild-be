@@ -20,6 +20,10 @@ class Reservation extends Model
         return $this->belongsTo(User::class, 'student_id');
     }
 
+    public function librarian(){
+        return $this->belongsTo(User::class, 'librarian_id');
+    }
+
     public function reservationStatus(){
         return $this->hasMany(ReservationStatus::class, 'reservation_id');
     }

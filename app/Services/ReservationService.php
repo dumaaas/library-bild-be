@@ -14,13 +14,13 @@ use Auth;
 | ReservationService
 |--------------------------------------------------------------------------
 |
-| ReservationService je odgovaran za svu logiku koja se desava 
-| unutar ReservationControllera. Ovdje je moguce definisati sve 
+| ReservationService je odgovaran za svu logiku koja se desava
+| unutar ReservationControllera. Ovdje je moguce definisati sve
 | pomocne metode koji su potrebni.
 |
 */
 
-class ReservationService 
+class ReservationService
 {
     /**
      * Vrati sve aktivne rezervacije
@@ -60,7 +60,7 @@ class ReservationService
     public function getRezervacija($knjiga, $ucenik) {
         return Reservation::where('book_id', '=', $knjiga)
                                 ->where('student_id', '=', $ucenik)
-                                ->where('closeReservation_id', '=', null)
+                                ->where('closeReservation_id', '=', 5)
                                 ->first();
     }
 
@@ -123,7 +123,7 @@ class ReservationService
     public function searchAktivneRezervacije() {
 
         $aktivne = Reservation::query();
-        
+
         $aktivne = $this->getAktivneRezervacije();
 
         if(request('searchAktivne')) {
@@ -148,7 +148,7 @@ class ReservationService
     public function searchArhiviraneRezervacije() {
 
         $arhivirane = Reservation::query();
-        
+
         $arhivirane = $this->getArhiviraneRezervacije();
 
         if(request('searchArhivirane')) {
@@ -163,5 +163,12 @@ class ReservationService
         $arhivirane = $arhivirane->paginate(7);
 
         return $arhivirane;
+    }
+
+    public function getTransakcija($knjiga, $ucenik) {
+        return Reservation::with('book', 'student', 'librarian')
+            ->where('book_id', '=', $knjiga)
+            ->where('student_id', '=', $ucenik)
+            ->first();
     }
 }

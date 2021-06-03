@@ -12,15 +12,15 @@ use App\Models\BookGenre;
 use App\Models\BookAuthor;
 use App\Models\Galery;
 use Carbon\Carbon;
-use Auth; 
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
 | BookService
 |--------------------------------------------------------------------------
 |
-| RentService je odgovaran za svu logiku koja se desava 
-| unutar BookControllera. Ovdje je moguce definisati sve 
+| RentService je odgovaran za svu logiku koja se desava
+| unutar BookControllera. Ovdje je moguce definisati sve
 | pomocne metode koji su potrebni.
 |
 */
@@ -45,7 +45,7 @@ class BookService {
      * @return void
      */
     public function saveRent($knjiga, $rentService, $reservationService) {
-        
+
         request()->validate([
             'ucenik'         => 'required',
             'datumIzdavanja' => 'required',
@@ -57,11 +57,11 @@ class BookService {
 
         //promijeni status rezervacije u izdata i zatvori rezervaciju
         $rezervacija = $reservationService->getRezervacija($knjiga, $izdavanje->student_id);
-        
+
         if($rezervacija != null) {
             $rezervacija->closeReservation_id = 4;
             $rezervacija->save();
-    
+
             $reservationService->updateReservationStatus($rezervacija->id);
         }
 
@@ -72,11 +72,11 @@ class BookService {
         $izdataKnjiga = Book::find($knjiga);
         $updateIzdateKnjige = $izdataKnjiga->rentedBooks + 1;
         $izdataKnjiga->rentedBooks = $updateIzdateKnjige;
-        
+
         if($rezervacija != null) {
             $izdataKnjiga->reservedBooks = $izdataKnjiga->reservedBooks-1;
         }
-        
+
         $izdataKnjiga->save();
     }
 
@@ -96,7 +96,7 @@ class BookService {
         $rezervisanje = $reservationService->saveReservation($knjiga->id, $globalVariableService);
 
         //dodavanje u tabelu reservation_statuses
-        $statusRezervisanja = $reservationService->saveReservationStatus($rezervisanje->id, $rezervisanje->reservation_date);
+        $reservationService->saveReservationStatus($rezervisanje->id, $rezervisanje->reservation_date);
 
         //update broj rezervisanih knjiga
         $rezervisanaKnjiga = Book::find($knjiga->id);
@@ -145,9 +145,9 @@ class BookService {
 
             $knjigaKategorije->book_id = $knjiga;
             $knjigaKategorije->category_id = $kategorija;
-    
+
             $knjigaKategorije->save();
-       }    
+       }
     }
 
     /**
@@ -169,7 +169,7 @@ class BookService {
             $knjigaZanrovi->save();
         }
     }
-    
+
     /**
      * Sacuvaj autore za konkretnu knjigu
      *
@@ -188,7 +188,7 @@ class BookService {
 
             $knjigaAutori->save();
         }
-        
+
     }
 
     /**
@@ -226,18 +226,19 @@ class BookService {
      *
      * @return void
      */
-    public function vratiKnjige() {
+    public function vratiKnjige($globalVariableService) {
         $knjige=request('vratiKnjigu');
-        
+
         foreach($knjige as $knjiga){
             $rent=Rent::find($knjiga);
+
             $rent->librarian_received_id = Auth::user()->id;
             $rent->save();
 
             $rentStatus=new RentStatus();
             $rentStatus->rent_id=$rent->id;
 
-            if($rent->rent_date<Carbon::now()->subDays(30)){
+            if($rent->rent_date<Carbon::now()->subDays($globalVariableService->getRokIzdavanja() + $globalVariableService->getRokPrekoracenja())){
                 $rentStatus->statusBook_id=3;
             }
             else{
@@ -306,7 +307,7 @@ class BookService {
                 $fileNameToStore = $filename. '_'. time().'.'.$extension;
                 // Upload Image
                 $path = $movieImage->storeAs('public/image', $fileNameToStore);
-    
+
                 // Save image in Galery
                 $galery = new Galery();
 
@@ -337,7 +338,7 @@ class BookService {
                 $fileNameToStore = $filename. '_'. time().'.'.$extension;
                 // Upload Image
                 $path = $movieImage->storeAs('public/image', $fileNameToStore);
-    
+
                 // Save image in Galery
                 $galery = new Galery();
 

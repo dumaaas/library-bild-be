@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\GlobalVariableService;
 use DB;
 use App\Models\Book;
 use App\Models\Author;
@@ -66,7 +67,7 @@ class BookController extends Controller
     /**
      * Prikazi sve knjige
      *
-     * @param  AuthorService $autorService 
+     * @param  AuthorService $autorService
      * @return void
      */
     public function prikaziEvidencijaKnjiga(AuthorService $autorService) {
@@ -93,9 +94,11 @@ class BookController extends Controller
 
         $viewModel = [
             'knjiga'     => $knjiga,
-            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id),
+            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
+                                ->take(3)
+                                ->get(),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -115,7 +118,7 @@ class BookController extends Controller
                                                     ->take(3)
                                                     ->get(),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -131,9 +134,11 @@ class BookController extends Controller
 
         $viewModel = [
             'knjiga'     => $knjiga,
-            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id),
+            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
+                                ->take(3)
+                                ->get(),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -174,7 +179,7 @@ class BookController extends Controller
         $vratiKnjige = $rentService->getIzdateKnjige()
                             ->where('book_id', '=', $knjiga->id)
                             ->paginate(7);
-        
+
         $viewModel = [
             'knjiga'      => $knjiga,
             'vratiKnjige' => $vratiKnjige,
@@ -199,9 +204,9 @@ class BookController extends Controller
 
         $viewModel = [
             'knjiga'       => $knjiga,
-            'otpisiKnjige' => $otpisiKnjige  
+            'otpisiKnjige' => $otpisiKnjige
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -276,7 +281,7 @@ class BookController extends Controller
     }
 
     /**
-     * Izdaj knjigu 
+     * Izdaj knjigu
      *
      * @param  Book $knjiga
      * @param  BookService $bookService
@@ -292,7 +297,7 @@ class BookController extends Controller
     }
 
     /**
-     * Rezervisi knjigu 
+     * Rezervisi knjigu
      *
      * @param  Book $knjiga
      * @param  BookService $bookService
@@ -300,9 +305,9 @@ class BookController extends Controller
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function sacuvajRezervisanje(Book $knjiga, BookService $bookService, ReservationService $reservationService) {
+    public function sacuvajRezervisanje(Book $knjiga, BookService $bookService, ReservationService $reservationService, GlobalVariableService $globalVariableService) {
 
-        $bookService->saveReservation($knjiga, $reservationService);
+        $bookService->saveReservation($knjiga, $reservationService, $globalVariableService);
 
         return back()->with('success', 'Uspjesno rezervisano!');
     }
@@ -349,9 +354,9 @@ class BookController extends Controller
                                                 ->get(),
             'iznajmljivanjePrekoracene' => $rentService->getPrekoraceneKnjige()
                                                 ->where('book_id', '=', $knjiga->id)
-                                                ->paginate(7),                               
+                                                ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -373,9 +378,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeVracene' => $rentService->getVraceneKnjige()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),                              
+                                            ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -389,7 +394,7 @@ class BookController extends Controller
      */
     public function prikaziIznajmljivanjeAktivne(Book $knjiga, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.iznajmljivanjeAktivne';
-        
+
         $viewModel = [
             'knjiga'                => $knjiga,
             'aktivnosti'            => $dashboardService->getBookActivity($knjiga->id)
@@ -397,9 +402,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeAktivne' => $reservationService->getRezervisaneKnjige()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),                              
+                                            ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -413,7 +418,7 @@ class BookController extends Controller
      */
     public function prikaziIznajmljivanjeArhivirane(Book $knjiga, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.iznajmljivanjeArhivirane';
-        
+
         $viewModel = [
             'knjiga'                   => $knjiga,
             'aktivnosti'               => $dashboardService->getBookActivity($knjiga->id)
@@ -421,9 +426,9 @@ class BookController extends Controller
                                             ->get(),
             'iznajmljivanjeArhivirane' => $reservationService->getArhiviraneRezervacije()
                                             ->where('book_id', '=', $knjiga->id)
-                                            ->paginate(7),                               
+                                            ->paginate(7),
         ];
-        
+
         return view($viewName, $viewModel);
     }
 
@@ -441,18 +446,21 @@ class BookController extends Controller
         request()->validate([
             'nazivKnjiga'      => 'required|max:256',
             'kratki_sadrzaj'   => 'required|max:4128',
-            'knjigaKategorije' => 'required',
-            'knjigaZanrovi'    => 'required',
-            'knjigaAutori'     => 'required',
+            'valuesKategorije' => 'required',
+            'valuesZanrovi'    => 'required',
+            'valuesAutori'     => 'required',
             'knjigaIzdavac'    => 'required',
             'godinaIzdavanja'  => 'required',
             'knjigaKolicina'   => 'required',
             'brStrana'         => 'required',
             'knjigaPismo'      => 'required',
             'knjigaPovez'      => 'required',
-            'knjigaFormat'     => 'required',
-            'knjigaIsbn'       => 'required|max:20',
+            'knjigaFormat'     => 'required|',
+            'knjigaIsbn'       => 'required|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/',
             'knjigaJezik'      => 'required',
+            'movieImages'      => 'required',
+            'movieImages.*'    => 'mimes:jpeg,png,jpg',
+            'imageCover'       => 'required'
         ]);
 
         $knjiga = $bookService->saveBook();
@@ -472,7 +480,7 @@ class BookController extends Controller
                                 ->take(3)
                                 ->get(),
         ];
-        
+
         //return back to the edit author form
         return view($viewName, $viewModel);
     }
@@ -571,7 +579,7 @@ class BookController extends Controller
     }
 
     /**
-     * Filter autora u tabeli 
+     * Filter autora u tabeli
      *
      * @param  BookService $bookService
      * @param  AuthorService $autorService
@@ -581,10 +589,15 @@ class BookController extends Controller
     public function filterAutori(BookService $bookService, AuthorService $autorService, CategoryService $kategorijaService) {
         $viewName = $this->viewFolder . '.evidencijaKnjiga';
 
-        $knjige = $bookService->filterAutori();
+        $knjige = $bookService->filterAutori()
+                        ->paginate(7)
+                        ->appends([
+                            'autoriFilter' => request('autoriFilter'),
+                            'kategorijeFilter' => request('kategorijeFilter')
+                        ]);
 
         $viewModel = [
-            'knjige'     => $knjige->paginate(7),
+            'knjige'     => $knjige,
             'autori'     => $autorService->getAutori()->get(),
             'kategorije' => $kategorijaService->getCategories()->get(),
         ];
@@ -598,13 +611,13 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @return void
      */
-    public function vratiKnjige(BookService $bookService) {
+    public function vratiKnjige(BookService $bookService, GlobalVariableService $globalVariableService) {
 
-        $bookService->vratiKnjige();
+        $bookService->vratiKnjige($globalVariableService);
 
         return back()->with('success', 'Uspjesno vraceno!');
     }
-        
+
     /**
      * Otpisi knjige
      *
@@ -613,7 +626,7 @@ class BookController extends Controller
      * @return void
      */
     public function otpisiKnjige(BookService $bookService){
-        
+
         $bookService->otpisiKnjige();
 
         return back()->with('success', 'Uspjesno otpisano!');

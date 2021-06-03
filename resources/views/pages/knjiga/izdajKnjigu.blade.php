@@ -8,7 +8,7 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            @if(count($knjiga->coverImage) > 0 ) 
+                            @if(count($knjiga->coverImage) > 0 )
                                 <img src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="">
                             @endif
                         </div>
@@ -127,7 +127,7 @@
                                 <div class="w-[50%]">
                                     <p>Datum izdavanja <span class="text-red-500">*</span></p>
                                     <label class="text-gray-700" for="date">
-                                        <input type="date" name="datumIzdavanja" id="datumIzdavanja" min="{{Carbon\Carbon::now()->format('Y-m-d')}}"
+                                        <input type="date" name="datumIzdavanja" id="datumIzdavanja" max="{{Carbon\Carbon::now()->format('Y-m-d')}}"
                                             class="flex w-[90%] mt-2 px-4 py-2 text-base placeholder-gray-400 bg-white border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                             onclick="clearErrorsDatumIzdavanja();"
                                             onchange="funkcijaDatumVracanja({{$rokPozajmljivanja->value}});" />

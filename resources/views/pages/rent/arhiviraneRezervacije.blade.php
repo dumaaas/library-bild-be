@@ -477,9 +477,9 @@
                                             </label>
                                         </td>
                                         <td class="flex flex-row items-center px-4 py-3">
-                                            @if(count($arhivirana->book->coverImage) > 0 ) 
+                                            @if(count($arhivirana->book->coverImage) > 0 )
                                                 <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$arhivirana->book->coverImage[0]->photo}}" alt="" />
-                                            @endif  
+                                            @endif
                                             <span class="font-medium text-center">{{$arhivirana->book->title}}</span>
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$arhivirana->reservation_date}}</td>
@@ -568,7 +568,7 @@
                                 </tbody>
                             </table>
                             {{$arhivirane->links()}}
-                        @else 
+                        @else
                             <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                                 <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
                                     <path fill="currentColor"
@@ -579,7 +579,7 @@
                             </div>
                             <div>
                                 <a class="text-blue-500" href="{{route('izdateKnjige')}}">
-                                    &#8592; Back 
+                                    &#8592; Back
                                 </a>
                             </div>
                         @endif

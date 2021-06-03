@@ -989,6 +989,9 @@ h4 {
 .z-0{
     z-index: 0;
 }
+.z-30{
+    z-index: 30;
+}
 .float-left{
     float: left;
 }
@@ -1958,6 +1961,9 @@ h4 {
 }
 .p-\[15px\]{
     padding: 15px;
+}
+.p-\[20px\]{
+    padding: 20px;
 }
 .py-4{
     padding-top: 1rem;

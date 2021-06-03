@@ -11,7 +11,7 @@ use App\Models\BookCategory;
 use App\Models\BookGenre;
 use App\Models\BookAuthor;
 use Carbon\Carbon;
-use Auth; 
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ class GlobalVariableService {
      * @return void
      */
     public function getRokIzdavanja() {
-        $rok =  DB::table('global_variables')->where('id', '=', 1)->value('');
+        $rok =  DB::table('global_variables')->where('id', '=', 1)->first();
 
         return $rok->value;
     }

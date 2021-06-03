@@ -31,5 +31,5 @@ class Rent extends Model
     public function receivedLibrarian(){
         return $this->belongsTo(User::class, 'librarian_received_id');
     }
-    
+
 }

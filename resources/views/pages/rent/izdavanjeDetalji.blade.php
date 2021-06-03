@@ -8,7 +8,7 @@
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
                         <div class="w-[77px] pl-[30px]">
-                            @if(count($transakcija->book->coverImage) > 0 ) 
+                            @if(count($transakcija->book->coverImage) > 0 )
                                 <img src="/storage/image/{{$transakcija->book->coverImage[0]->photo}}" alt="">
                             @endif
                         </div>
@@ -98,39 +98,89 @@
                     <!-- Space for content -->
                     <div class="pl-[30px] section- mt-[20px]">
                         <div class="flex flex-row justify-between">
-                            <div class="mr-[30px]">
+                            @if($transakcija->rentStatus[0]->statusBook_id == 2)
+                                <div class="mr-[30px]">
+                                    <div class="mt-[20px]">
+                                        <span class="text-gray-500">Tip transakcije</span><br>
+                                        <p
+                                            class="inline-block bg-blue-200 text-blue-800 rounded-[10px] text-center px-[6px] py-[2px]">
+                                            Izdavanje knjiga
+                                        </p>
+                                    </div>
+                                    <div class="mt-[40px]">
+                                        <span class="text-gray-500">Datum akcije</span>
+                                        <p class="font-medium">{{$transakcija->rent_date}}</p>
+                                    </div>
+                                    <div class="mt-[40px]">
+                                        <span class="text-gray-500">Trenutno zadrzavanje knjige</span>
+                                        <p class="font-medium">{{ \Carbon\Carbon::parse($transakcija->rent_date)->diffAsCarbonInterval() }}</p>
+                                    </div>
+                                    <div class="mt-[40px]">
+                                        <span class="text-gray-500">Prekoracenje</span>
+                                        <p class="font-medium">
+                                            @if($transakcija->return_date > \Carbon\Carbon::now())
+                                                Nema prekoracenja
+                                            @else
+                                                {{ \Carbon\Carbon::parse($transakcija->return_date)->diffInDays(\Carbon\Carbon::now()) }} days
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="mt-[40px]">
+                                        <span class="text-gray-500">Bibliotekar</span>
+                                        <a href="{{route('bibliotekarProfile', ['user' => $transakcija->librarian])}}"
+                                           class="block font-medium text-[#2196f3] hover:text-blue-600">
+                                            {{$transakcija->librarian->name}}
+                                        </a>
+                                    </div>
+                                    <div class="mt-[40px]">
+                                        <span class="text-gray-500">Ucenik</span>
+                                        <a href="{{route('ucenikProfile', ['user' => $transakcija->student])}}"
+                                           class="block font-medium text-[#2196f3] hover:text-blue-600">
+                                            {{$transakcija->student->name}}
+                                        </a>
+                                    </div>
+                                </div>
+                            @elseif($transakcija->rentStatus[0]->statusBook_id == 1 || $transakcija->rentStatus[0]->statusBook_id == 3)
+                                <div class="mr-[30px]">
                                 <div class="mt-[20px]">
                                     <span class="text-gray-500">Tip transakcije</span><br>
                                     <p
                                         class="inline-block bg-blue-200 text-blue-800 rounded-[10px] text-center px-[6px] py-[2px]">
-                                        Izdavanje knjiga
+                                        Vracanje knjige
                                     </p>
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Datum akcije</span>
-                                    <p class="font-medium">{{$transakcija->rent_date}}</p>
+                                    <p class="font-medium">{{$transakcija->rentStatus[0]->date}}</p>
                                 </div>
                                 <div class="mt-[40px]">
-                                    <span class="text-gray-500">Trenutno zadrzavanje knjige</span>
-                                    <p class="font-medium">{{ \Carbon\Carbon::parse($transakcija->rent_date)->diffAsCarbonInterval() }}</p>
+                                    <span class="text-gray-500">Knjiga zadrzana</span>
+                                    <p class="font-medium">{{ \Carbon\Carbon::parse($transakcija->rent_date)->diffAsCarbonInterval($transakcija->rentStatus[0]->date) }}</p>
                                 </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Prekoracenje</span>
                                     <p class="font-medium">
-                                        @if(now()->lt($transakcija->rent_date->addDays(30)))
-                                            Nema prekoracenja
+                                        @if($transakcija->rentStatus[0]->statusBook_id == 1)
+                                            Vracena na vrijeme
                                         @else
-                                            {{ \Carbon\Carbon::parse($transakcija->rent_date->addDays(30))->diffInDays() }} days
+                                            {{ \Carbon\Carbon::parse($transakcija->return_date)->diffInDays($transakcija->rentStatus[0]->date) }} days
                                         @endif
                                     </p>
                                 </div>
                                 <div class="mt-[40px]">
-                                    <span class="text-gray-500">Bibliotekar</span>
+                                    <span class="text-gray-500">Bibliotekar (izdao)</span>
                                     <a href="{{route('bibliotekarProfile', ['user' => $transakcija->librarian])}}"
                                         class="block font-medium text-[#2196f3] hover:text-blue-600">
                                         {{$transakcija->librarian->name}}
                                     </a>
                                 </div>
+                                    <div class="mt-[40px]">
+                                        <span class="text-gray-500">Bibliotekar (vratio)</span>
+                                        <a href="{{route('bibliotekarProfile', ['user' => $transakcija->receivedLibrarian])}}"
+                                           class="block font-medium text-[#2196f3] hover:text-blue-600">
+                                            {{$transakcija->receivedLibrarian->name}}
+                                        </a>
+                                    </div>
                                 <div class="mt-[40px]">
                                     <span class="text-gray-500">Ucenik</span>
                                     <a href="{{route('ucenikProfile', ['user' => $transakcija->student])}}"
@@ -139,6 +189,7 @@
                                     </a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
