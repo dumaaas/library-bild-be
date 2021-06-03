@@ -14,13 +14,13 @@ use Illuminate\Http\Request;
 | DashboardService
 |--------------------------------------------------------------------------
 |
-| DashboardService je odgovaran za svu logiku koja se desava 
-| unutar DashboardControllera. Ovdje je moguce definisati sve 
+| DashboardService je odgovaran za svu logiku koja se desava
+| unutar DashboardControllera. Ovdje je moguce definisati sve
 | pomocne metode koji su potrebni.
 |
 */
 
-class DashboardService 
+class DashboardService
 {
     /**
      * Vrati poslednje 4 rezervacije iz baze
@@ -43,6 +43,7 @@ class DashboardService
         return Rent::with('book', 'student', 'librarian')
                     ->orderBy('rent_date', 'DESC')
                     ->get();
+
     }
 
     /**

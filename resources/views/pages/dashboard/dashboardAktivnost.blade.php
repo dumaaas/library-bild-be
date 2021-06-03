@@ -369,7 +369,13 @@
                                             <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 {{$aktivnost->librarian->name}}
                                             </a>
-                                            rented a book
+                                            @if(count($aktivnost->rentStatus) > 0)
+                                                @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                                    rented a book
+                                                @else
+                                                    returned a book
+                                                @endif
+                                            @endif
                                             <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
                                                 {{$aktivnost->book->title}}
                                             </a>

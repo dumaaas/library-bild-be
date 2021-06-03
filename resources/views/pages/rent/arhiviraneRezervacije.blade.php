@@ -518,9 +518,9 @@
                                                 </div>
                                             @elseif($arhivirana->closeReservation_id == 4)
                                                 <div
-                                                    class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
+                                                    class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
 
-                                                    <span class="text-xs text-green-800">
+                                                    <span class="text-xs text-yellow-800">
                                                         Rented
                                                     </span>
                                                 </div>
@@ -530,14 +530,6 @@
 
                                                     <span class="text-xs text-green-800">
                                                         Reserved
-                                                    </span>
-                                                </div>
-                                            @else
-                                                <div
-                                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
-
-                                                    <span class="text-xs text-red-800">
-                                                        Refused
                                                     </span>
                                                 </div>
                                             @endif
