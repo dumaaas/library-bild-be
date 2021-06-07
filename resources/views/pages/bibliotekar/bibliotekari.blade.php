@@ -91,7 +91,7 @@
                             </td>
                             <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
                             @if ($user->login_count == 0)
-                                Nikad nije logovan!
+                                Nije logovan
                             @else
                                 {{$user->last_login_at}}
                             @endif

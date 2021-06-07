@@ -104,7 +104,7 @@
                                 <span class="text-gray-500">Poslednji put logovan/a</span>
                                 <p class="font-medium">
                                     @if ($user->login_count == 0)
-                                        Nikad nije logovan!
+                                        Nije logovan
                                     @else
                                         {{$user->last_login_at}}
                                     @endif

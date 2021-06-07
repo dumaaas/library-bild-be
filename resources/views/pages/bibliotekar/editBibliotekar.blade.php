@@ -86,22 +86,6 @@
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        <div class="mt-[20px]">
-                            <span>Sifra <span class="text-red-500">*</span></span>
-                            <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
-                            @error('pwBibliotekarEdit')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mt-[20px]">
-                            <span>Ponovi sifru <span class="text-red-500">*</span></span>
-                            <input type="password" name="pw2BibliotekarEdit" id="pw2BibliotekarEdit" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2BibliotekarEdit()"/>
-                            @error('pw2BibliotekarEdit')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                        </div>
                     </div>
 
                     <div class="mt-[50px]">
