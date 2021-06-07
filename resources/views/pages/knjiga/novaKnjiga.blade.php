@@ -35,7 +35,7 @@
             </div>
             @error('knjigaIsbn')
                 <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-red-600 right-[20px]">
-                    <p class="text-red-200">Knjiga nije uspjesno unesena!</p>
+                    <p class="text-red-200">Knjiga nije uspješno unesena!</p>
                 </div>
             @enderror
         </div>
@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="mt-[20px]">
-                                <p class="inline-block mb-2">Kratki sadrzaj</p>
+                                <p class="inline-block mb-2">Kratki sadržaj</p>
                                 <textarea name="kratki_sadrzaj"
                                           class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
 
@@ -176,7 +176,7 @@
                         </div>
 
                         <div class="mt-[20px]">
-                            <p>Izaberite zanrove <span class="text-red-500">*</span></p>
+                            <p>Izaberite žanrove <span class="text-red-500">*</span></p>
                             <select x-cloak id="zanr" name="knjigaZanrovi[]">
                                 @foreach($zanrovi as $zanr)
                                     <option value="{{$zanr->id}}">{{$zanr->name}}</option>
@@ -368,7 +368,7 @@
             </div>
 
             <div class="mt-[20px]">
-                <p>Izdavac <span class="text-red-500">*</span></p>
+                <p>Izdavač <span class="text-red-500">*</span></p>
                 <select
                     class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                     name="knjigaIzdavac" id="izdavac" onclick="clearErrorsIzdavac()">
@@ -402,7 +402,7 @@
             </div>
 
             <div class="mt-[20px]">
-                <p>Kolicina <span class="text-red-500">*</span></p>
+                <p>Količina <span class="text-red-500">*</span></p>
                 <input type="text" name="knjigaKolicina" id="knjigaKolicina"
                        class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                        onkeydown="clearErrorsKnjigaKolicina()" />
@@ -418,12 +418,12 @@
                     <div class="inline-block w-full text-white text-right py-[7px] mr-[100px]">
                         <button type="button"
                                 class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                <i class="fas fa-times mr-[7px]"></i> Poništi 
                         </button>
                         <button id="sacuvajKnjigu" type="submit"
                                 class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
                                 onclick="validacijaKnjiga()">
-                                <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                         </button>
                     </div>
                 </div>
@@ -432,7 +432,7 @@
 
             <div id="multimedia" class="tabcontent">
                 <div class="w-9/12 mx-auto bg-white rounded p7 mt-[40px] mb-[150px]">
-                <p class="m-0 text-gray-500">Selektujte sliku za koju zelite da bude cover knjige. <span class="text-red-600">*</span></p>
+                <p class="m-0 text-gray-500">Selektujte sliku za koju želite da bude cover knjige. <span class="text-red-600">*</span></p>
                     <div x-data="dataFileDnD()"
                          class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                         <div x-ref="dnd"
@@ -452,7 +452,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
-                                <p class="m-0">Drag your images here or click in this area.</p>
+                                <p class="m-0">Prevucite slike ovdje ili kliknite na ovo polje.</p>
                             </div>
                         </div>
 
@@ -542,11 +542,11 @@
                         <div class="inline-block w-full text-white text-right py-[7px] mr-[100px]">
                             <button type="button"
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                             </button>
                             <button id="vratiKnjigu" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                             </button>
                         </div>
                     </div>
@@ -624,8 +624,8 @@
                         </div>
 
                         <div class="mt-[20px]">
-                            <p>International Standard Book Num <span class="text-red-500">*</span></p>
-                            <input type="text" name="knjigaIsbn" id="isbn" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbn()"/>
+                            <p>Međunarodni standardni broj knjige <span class="text-red-500">*</span></p>
+                            <input type="text" name="knjigaIsbn" id="isbn" placeholder="111-1-11-111111-1" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbn()"/>
                             @error('knjigaIsbn')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -637,11 +637,11 @@
                         <div class="inline-block w-full text-white text-right py-[7px] mr-[100px]">
                             <button type="reset"
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi
                             </button>
                             <button id="sacuvajSpecifikaciju" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaSpecifikacija()">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj
                             </button>
                         </div>
                     </div>

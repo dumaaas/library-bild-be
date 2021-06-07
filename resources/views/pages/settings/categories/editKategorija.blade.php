@@ -16,7 +16,7 @@
                                 <ol class="flex list-reset">
                                     <li>
                                         <a href="{{route('settingsPolisa')}}" class="text-[#2196f3] hover:text-blue-600">
-                                            Settings
+                                            Podešavanja
                                         </a>
                                     </li>
                                     <li>
@@ -66,12 +66,12 @@
                             </div>
 
                             <div class="mt-[20px]">
-                                <p>Uploaduj ikonicu </p>
+                                <p>Odaberi ikonicu </p>
                                 <div id="empty-cover-art-ikonica"
                                     class="flex w-[90%] mt-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
                                     <div class="bg-gray-300 h-[40px] w-[102px] px-[20px] pt-[10px]">
                                         <label class="cursor-pointer">
-                                            <p class="leading-normal">Browse...</p>
+                                            <p class="leading-normal">Pretraži...</p>
                                             <input id="icon-upload" type='file' class="hidden" name="userImage" :multiple="multiple"
                                                 :accept="accept" />
                                         </label>
@@ -100,12 +100,12 @@
                             <div class="inline-block w-full text-white text-right py-[7px] mr-[100px]">
                                 <button type="reset"
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi
                                 </button>
                                 <button id="sacuvajKategoriju" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
                                     onclick="validacijaKategorija()">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                 </button>
                             </div>
                         </div>

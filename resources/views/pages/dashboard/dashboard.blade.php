@@ -55,7 +55,13 @@
                                             <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
                                                 {{$aktivnost->book->title}}
                                             </a>
-                                            učeniku
+                                            @if(count($aktivnost->rentStatus) > 0)
+                                                @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                                    učeniku
+                                                @else
+                                                    od učenika
+                                                @endif
+                                            @endif
                                             <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 {{$aktivnost->student->name}}
                                             </a>

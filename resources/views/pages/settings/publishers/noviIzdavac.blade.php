@@ -10,7 +10,7 @@
                             <div class="pl-[30px] py-[10px] flex flex-col">
                                 <div>
                                     <h1>
-                                        Novi izdavac
+                                        Novi izdavač
                                     </h1>
                                 </div>
                                 <div>
@@ -18,7 +18,7 @@
                                         <ol class="flex list-reset">
                                         <li>
                                                 <a href="{{route('settingsPolisa')}}" class="text-[#2196f3] hover:text-blue-600">
-                                                    Settings
+                                                    Podešavanja
                                                 </a>
                                             </li>
                                             <li>
@@ -26,7 +26,7 @@
                                             </li>
                                             <li>
                                                 <a href="{{route('settingsIzdavac')}}" class="text-[#2196f3] hover:text-blue-600">
-                                                    Izdavaci
+                                                    Izdavači
                                                 </a>
                                             </li>
                                             <li>
@@ -34,7 +34,7 @@
                                             </li>
                                             <li>
                                                 <a href="{{route('prikaziNoviIzdavac')}}" class="text-gray-400 hover:text-blue-600">
-                                                    Novi izdavac
+                                                    Novi izdavač
                                                 </a>
                                             </li>
                                         </ol>
@@ -59,7 +59,7 @@
                             <div class="flex flex-row ml-[30px]">
                                 <div class="w-[50%] mb-[150px]">
                                     <div class="mt-[20px]">
-                                        <p>Naziv izdavaca <span class="text-red-500">*</span></p>
+                                        <p>Naziv izdavača <span class="text-red-500">*</span></p>
                                         <input type="text" name="nazivIzdavac" id="nazivIzdavac" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNazivIzdavac()"/>
                                         @error('nazivIzdavac')
                                             <div class="text-red-500">{{ $message }}</div>
@@ -72,11 +72,11 @@
                                     <div class="inline-block w-full text-white text-right py-[7px] mr-[100px]">
                                         <button type="reset"
                                             class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                            <i class="fas fa-times mr-[7px]"></i>  Ponisti
+                                            <i class="fas fa-times mr-[7px]"></i>  Poništi
                                         </button>
                                         <button id="sacuvajIzdavac" type="submit"
                                             class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaIzdavac()">
-                                            <i class="fas fa-check mr-[7px]"></i> Sacuvaj
+                                            <i class="fas fa-check mr-[7px]"></i> Sačuvaj
                                         </button>
                                     </div>
                                 </div>

@@ -38,7 +38,7 @@
                                         </span>
                                     <input type="search" name="searchBibliotekari"
                                         class="py-2 pl-10 text-sm text-white bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
-                                        placeholder="Search..." autocomplete="off">
+                                        placeholder="Pretraži bibliotekare..." autocomplete="off">
                                 </div>
                             </div>
                             <button

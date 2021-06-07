@@ -2653,7 +2653,7 @@ $('.checkAll').click(function () {
     if ($(this).is(':checked')) {
         $('.form-checkbox').prop('checked', true);
         $('tr').addClass('bg-gray-200');
-        $('tr').children().eq(1).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fa fa-trash ml-4"></i>  Izbrisi knjigu</a>')
+        $('tr').children().eq(1).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fa fa-trash ml-4"></i>  Izbriši knjigu</a>')
         $('tr').children().eq(2).html('')
         $('tr').children().eq(3).html('')
         $('tr').children().eq(4).html('')
@@ -2670,8 +2670,8 @@ $('.checkAll').click(function () {
         $('tr').children().eq(4).html('Na raspolaganju')
         $('tr').children().eq(5).html('Rezervisano')
         $('tr').children().eq(6).html('Izdato')
-        $('tr').children().eq(7).html('U prekoracenju')
-        $('tr').children().eq(8).html('Ukupna kolicina')
+        $('tr').children().eq(7).html('U prekoračenju')
+        $('tr').children().eq(8).html('Ukupna količina')
     }
 });
 $('.checkOthers').change(function () {
@@ -2679,16 +2679,16 @@ $('.checkOthers').change(function () {
     if (checked == 1) {
         $(this).addClass('bg-gray-200');
         $('tr').children().eq(1).html('<a class="text-blue-800" href="knjigaOsnovniDetalji.php"><i class="far fa-copy"></i>  Pogledaj detalje</a>')
-        $('tr').children().eq(2).html('<a class="text-blue-800" href="editKnjiga.php.php"><i class="far fa-copy"></i>  Izmjeni knjigu</a>')
-        $('tr').children().eq(3).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fas fa-level-up-alt ml-4"></i>  Otpisi knjigu</a>')
+        $('tr').children().eq(2).html('<a class="text-blue-800" href="editKnjiga.php.php"><i class="far fa-copy"></i>  Izmijeni knjigu</a>')
+        $('tr').children().eq(3).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fas fa-level-up-alt ml-4"></i>  Otpiši knjigu</a>')
         $('tr').children().eq(4).html('<a class="text-blue-800" href="izdajKnjigu.php"><i class="far fa-hand-scissors"></i>  Izdaj knjigu</a>')
         $('tr').children().eq(5).html('<a class="text-blue-800" href="vratiKnjigu.php"><i class="fas fa-redo-alt"></i>  Vrati knjigu</a>')
-        $('tr').children().eq(6).html('<a class="text-blue-800" href="otpisiKnjigu.php"><i class="far fa-calendar-check"></i>  Rezervisi knjigu</a>')
-        $('tr').children().eq(7).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fa fa-trash ml-4"></i>  Izbrisi knjigu</a>')
+        $('tr').children().eq(6).html('<a class="text-blue-800" href="otpisiKnjigu.php"><i class="far fa-calendar-check"></i>  Rezerviši knjigu</a>')
+        $('tr').children().eq(7).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fa fa-trash ml-4"></i>  Izbriši knjigu</a>')
         $('tr').children().eq(8).html('')
     } else if (checked >= 2) {
         $(this).addClass('bg-gray-200');
-        $('tr').children().eq(1).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fa fa-trash ml-4"></i>  Izbrisi knjigu</a>')
+        $('tr').children().eq(1).html('<a class="text-blue-800 border-l-2 border-gray-200" href="otpisiKnjigu.php"><i class="fa fa-trash ml-4"></i>  Izbriši knjigu</a>')
         $('tr').children().eq(2).html('')
         $('tr').children().eq(3).html('')
         $('tr').children().eq(4).html('')
@@ -2705,8 +2705,8 @@ $('.checkOthers').change(function () {
         $('tr').children().eq(4).html('Na raspolaganju')
         $('tr').children().eq(5).html('Rezervisano')
         $('tr').children().eq(6).html('Izdato')
-        $('tr').children().eq(7).html('U prekoracenju')
-        $('tr').children().eq(8).html('Ukupna kolicina')
+        $('tr').children().eq(7).html('U prekoračenju')
+        $('tr').children().eq(8).html('Ukupna količina')
     }
 });
 

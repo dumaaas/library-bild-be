@@ -25,12 +25,12 @@
             <a href="{{route('iznajmljivanjeVracene', ['knjiga' => $knjiga])}}"
                class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] ml-[20px] pr-[10px]">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] fas fa-file mr-[3px]"></i>
-                Vracene knjige
+                Vraćene knjige
             </a>
             <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga])}}"
                class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] mx-[20px] pr-[10px]">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] fas fa-exclamation-triangle mr-[3px]"></i>
-                Knjige u prekoracenju
+                Knjige u prekoračenju
             </a>
             <a class="border-r-[1px] py-[10px] border-[#e4dfdf]"></a>
             <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga])}}"
@@ -74,16 +74,16 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div>
                         </th>
-                        <th class="relative px-4 py-3 text-sm leading-4 tracking-wider text-left cursor-pointer">Rezervacija istice<i class="ml-2 fas fa-filter zadrzavanjeDrop-toggle"></i>
+                        <th class="relative px-4 py-3 text-sm leading-4 tracking-wider text-left cursor-pointer">Rezervacija ističe<i class="ml-2 fas fa-filter zadrzavanjeDrop-toggle"></i>
                             <div id="zadrzavanjeDropdown"
                                 class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                 <div
@@ -102,11 +102,11 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                                                 src="../img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Ucenik Ucenikovic
+                                                Učenik Učeniković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -162,7 +162,7 @@
                                                 src="../img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Pero Perovic
+                                                Pero Perović
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -181,7 +181,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Marko Markovic
+                                                Marko Marković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -200,7 +200,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Nikola Nikolic
+                                                Nikola Nikolić
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -219,7 +219,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Zivko Zivkovic
+                                                Živko Živković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -238,7 +238,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Petar Petrovic
+                                                Petar Petrović
                                             </p>
                                         </li>
                                     </div>
@@ -246,11 +246,11 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div>
@@ -340,11 +340,11 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div>
@@ -372,42 +372,42 @@
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
                                     <span class="text-xs text-yellow-700">
-                                        Expired
+                                        Istekla
                                     </span>
                                 </div>
                             @elseif($iznajmljivanjeArhivirana->closeReservation_id == 2)
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
                                     <span class="text-xs text-red-800">
-                                        Refused
+                                        Odbijena
                                     </span>
                                 </div>
                             @elseif($iznajmljivanjeArhivirana->closeReservation_id == 3)
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
                                     <span class="text-xs text-red-800">
-                                        Canceled
+                                        Otkazana
                                     </span>
                                 </div>
                             @elseif($iznajmljivanjeArhivirana->closeReservation_id == 4)
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
                                     <span class="text-xs text-green-800">
-                                        Rented
+                                        Izdata
                                     </span>
                                 </div>
                             @elseif($iznajmljivanjeArhivirana->closeReservation_id == 5)
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
                                     <span class="text-xs text-green-800">
-                                        Reserved
+                                        Rezervisana
                                     </span>
                                 </div>
                             @else
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px
                                     <span class="text-xs text-red-800">
-                                        Refused
+                                        Odbijena
                                     </span>
                                 </div>
                             @endif

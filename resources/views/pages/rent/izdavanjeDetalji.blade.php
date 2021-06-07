@@ -52,7 +52,7 @@
                     <div class="pt-[24px] mr-[30px]">
                         <a href="{{route('otpisiKnjigu', ['knjiga' => $transakcija->book])}}" class="inline hover:text-blue-600">
                             <i class="fas fa-level-up-alt mr-[3px]"></i>
-                            Otpisi knjigu
+                            Otpiši knjigu
                         </a>
                         <a href="{{route('izdajKnjigu', ['knjiga' => $transakcija->book])}}" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                             <i class="far fa-hand-scissors mr-[3px]"></i>
@@ -64,7 +64,7 @@
                         </a>
                         <a href="{{route('rezervisiKnjigu', ['knjiga' => $transakcija->book])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="far fa-calendar-check mr-[3px] "></i>
-                            Rezervisi knjigu
+                            Rezerviši knjigu
                         </a>
                         <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-[#e4dfdf] dotsIzdavanjeDetalji hover:text-[#606FC7]">
                             <i
@@ -85,7 +85,7 @@
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                        <span class="px-4 py-0">Izbrisi knjigu</span>
+                                        <span class="px-4 py-0">Izbriši knjigu</span>
                                     </a>
                                 </div>
                             </div>
@@ -112,14 +112,14 @@
                                         <p class="font-medium">{{$transakcija->rent_date}}</p>
                                     </div>
                                     <div class="mt-[40px]">
-                                        <span class="text-gray-500">Trenutno zadrzavanje knjige</span>
+                                        <span class="text-gray-500">Trenutno zadržavanje knjige</span>
                                         <p class="font-medium">{{ \Carbon\Carbon::parse($transakcija->rent_date)->diffAsCarbonInterval() }}</p>
                                     </div>
                                     <div class="mt-[40px]">
-                                        <span class="text-gray-500">Prekoracenje</span>
+                                        <span class="text-gray-500">Prekoračenje</span>
                                         <p class="font-medium">
                                             @if($transakcija->return_date > \Carbon\Carbon::now())
-                                                Nema prekoracenja
+                                                Nema prekoračenja
                                             @else
                                                 {{ \Carbon\Carbon::parse($transakcija->return_date)->diffInDays(\Carbon\Carbon::now()) }} days
                                             @endif
@@ -133,7 +133,7 @@
                                         </a>
                                     </div>
                                     <div class="mt-[40px]">
-                                        <span class="text-gray-500">Ucenik</span>
+                                        <span class="text-gray-500">Učenik</span>
                                         <a href="{{route('ucenikProfile', ['user' => $transakcija->student])}}"
                                            class="block font-medium text-[#2196f3] hover:text-blue-600">
                                             {{$transakcija->student->name}}
@@ -146,7 +146,7 @@
                                     <span class="text-gray-500">Tip transakcije</span><br>
                                     <p
                                         class="inline-block bg-blue-200 text-blue-800 rounded-[10px] text-center px-[6px] py-[2px]">
-                                        Vracanje knjige
+                                        Vraćanje knjige
                                     </p>
                                 </div>
                                 <div class="mt-[40px]">
@@ -154,14 +154,14 @@
                                     <p class="font-medium">{{$transakcija->rentStatus[0]->date}}</p>
                                 </div>
                                 <div class="mt-[40px]">
-                                    <span class="text-gray-500">Knjiga zadrzana</span>
+                                    <span class="text-gray-500">Knjiga zadržana</span>
                                     <p class="font-medium">{{ \Carbon\Carbon::parse($transakcija->rent_date)->diffAsCarbonInterval($transakcija->rentStatus[0]->date) }}</p>
                                 </div>
                                 <div class="mt-[40px]">
-                                    <span class="text-gray-500">Prekoracenje</span>
+                                    <span class="text-gray-500">Prekoračenje</span>
                                     <p class="font-medium">
                                         @if($transakcija->rentStatus[0]->statusBook_id == 1)
-                                            Vracena na vrijeme
+                                            Vraćena na vrijeme
                                         @else
                                             {{ \Carbon\Carbon::parse($transakcija->return_date)->diffInDays($transakcija->rentStatus[0]->date) }} days
                                         @endif
@@ -182,7 +182,7 @@
                                         </a>
                                     </div>
                                 <div class="mt-[40px]">
-                                    <span class="text-gray-500">Ucenik</span>
+                                    <span class="text-gray-500">Učenik</span>
                                     <a href="{{route('ucenikProfile', ['user' => $transakcija->student])}}"
                                         class="block font-medium text-[#2196f3] hover:text-blue-600">
                                         {{$transakcija->student->name}}
@@ -199,7 +199,7 @@
                     <div class="inline-block w-full text-white text-right py-[7px] mr-[100px]">
                         <a href="{{route('otpisiKnjigu', ['knjiga' => $transakcija->book])}}"
                             class="btn-animation show-otpisiModal shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#FF470E] bg-[#FF5722]">
-                            <i class="fas fa-level-up-alt mr-[4px] "></i> Otpisi knjigu
+                            <i class="fas fa-level-up-alt mr-[4px] "></i> Otpiši knjigu
                         </a>
                         <a href="{{route('vratiKnjigu', ['knjiga' => $transakcija->book])}}"
                             class="ml-[10px] btn-animation show-vratiModal shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
@@ -207,7 +207,7 @@
                         </a>
                         <a type="button" href="{{route('izbrisiTransakciju', ['knjiga' => $transakcija->book, 'ucenik' => $transakcija->student])}}"
                             class="text-center ml-[10px] btn-animation show-izbrisiModal shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                            <i class="fas fa-trash mr-[4px]"></i> Izbrisi zapis
+                            <i class="fas fa-trash mr-[4px]"></i> Izbriši zapis
                         </a>
                     </div>
                 </div>

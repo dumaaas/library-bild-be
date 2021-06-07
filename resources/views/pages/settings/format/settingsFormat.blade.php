@@ -8,7 +8,7 @@
                 <div class="border-b-[1px] border-[#e4dfdf]">
                     <div class="pl-[30px] pb-[21px]">
                         <h1>
-                            Settings
+                            Podešavanja
                         </h1>
                     </div>
                 </div>
@@ -26,13 +26,13 @@
                     Polisa
                 </a>
                 <a href="{{route('settingsKategorije')}}" class="inline ml-[70px] hover:text-blue-800">
-                    Kategorije
+                    Kategorija
                 </a>
                 <a href="{{route('settingsZanrovi')}}" class="inline ml-[70px] hover:text-blue-800">
-                    Zanrovi
+                    Žanr
                 </a>
                 <a href="{{route('settingsIzdavac')}}" class="inline ml-[70px] hover:text-blue-800">
-                    Izdavac
+                    Izdavač
                 </a>
                 <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
@@ -98,7 +98,7 @@
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                                        <span class="px-4 py-0">Izbrisi format</span>
+                                                        <span class="px-4 py-0">Izbriši format</span>
                                                     </a>
                                                 </div>
                                             </div>

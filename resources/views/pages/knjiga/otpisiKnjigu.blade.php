@@ -39,7 +39,7 @@
                                         </li>
                                         <li>
                                             <a href="#" class="text-gray-400 hover:text-blue-600">
-                                                Otpisi knjigu
+                                                Otpiši knjigu
                                             </a>
                                         </li>
                                     </ol>
@@ -50,7 +50,7 @@
                     <div class="pt-[24px] mr-[30px]">
                         <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600">
                             <i class="fas fa-level-up-alt mr-[3px]"></i>
-                            Otpisi knjigu
+                            Otpiši knjigu
                         </a>
                         <a href="{{route('izdajKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                             <i class="far fa-hand-scissors mr-[3px]"></i>
@@ -62,7 +62,7 @@
                         </a>
                         <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga->id])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="far fa-calendar-check mr-[3px] "></i>
-                            Rezervisi knjigu
+                            Rezerviši knjigu
                         </a>
                         <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-[#e4dfdf] dotsOtpisiKnjigu hover:text-[#606FC7]">
                             <i
@@ -83,7 +83,7 @@
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                        <span class="px-4 py-0">Izbrisi knjigu</span>
+                                        <span class="px-4 py-0">Izbriši knjigu</span>
                                     </a>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                     <div class="scroll height-dashboard px-[30px]">
                     <div class="flex items-center justify-between py-4 pt-[20px] space-x-3 rounded-lg">
                         <h3>
-                            Otpisi knjigu
+                            Otpiši knjigu
                         </h3>
                         <div class="relative text-gray-600 focus-within:text-gray-400">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -117,7 +117,7 @@
                             </span>
                             <input type="search" name="q"
                                 class="py-2 pl-10 border-[#e4dfdf] text-sm text-white border-[1px] bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
-                                placeholder="Search..." autocomplete="off">
+                                placeholder="Pretraži učenike..." autocomplete="off">
                         </div>
                     </div>
 
@@ -132,16 +132,16 @@
                                         </label>
                                     </th>
                                     <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                        Izdato uceniku
+                                        Izdato učeniku
                                     </th>
                                     <th class="px-4 py-4 leading-4 tracking-wider text-left">
                                         Datum izdavanja
                                     </th>
                                     <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                        Trenutno zadrzavanje knjige
+                                        Trenutno zadržavanje knjige
                                     </th>
                                     <th class="px-4 py-4 leading-4 tracking-wider text-left">
-                                        Prekoracenje u danima
+                                        Prekoračenje u danima
                                     </th>
                                     <th class="px-4 py-4 leading-4 tracking-wider text-left">
                                         Knjigu izdao
@@ -167,7 +167,7 @@
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($otpisiKnjigu->rent_date)->diffAsCarbonInterval() }}</td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
                                         <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
-                                            {{ \Carbon\Carbon::parse($otpisiKnjigu->return_date)->diffInDays(\Carbon\Carbon::now()) }} days
+                                            {{ \Carbon\Carbon::parse($otpisiKnjigu->return_date)->diffInDays(\Carbon\Carbon::now()) }} dan/a
                                         </span>
                                     </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$otpisiKnjigu->librarian->name}}</td>
@@ -187,12 +187,12 @@
                         <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
                             <button type="reset"
                                 class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                <i class="fas fa-times mr-[7px]"></i> Ponisti
+                                <i class="fas fa-times mr-[7px]"></i> Poništi
                             </button>
                             <button type="submit"
                                 class="btn-animation disabled-btn shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
                                 disabled onclick="validacijaUcenik()">
-                                <i class="fas fa-check mr-[7px]"></i> Otpisi knjigu 
+                                <i class="fas fa-check mr-[7px]"></i> Otpiši knjigu 
                             </button>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                                 d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
                         </path>
                     </svg>
-                    <p class="font-medium text-red-600"> Nijedan primjerak knjige nije u prekoracenju! </p>
+                    <p class="font-medium text-red-600"> Nijedan primjerak knjige nije u prekoračenju! </p>
                 </div>
             @endif
         </section>

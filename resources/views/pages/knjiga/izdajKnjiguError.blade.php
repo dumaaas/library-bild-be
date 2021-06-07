@@ -40,7 +40,7 @@
                                         </li>
                                         <li>
                                             <a href="#" class="text-gray-400 hover:text-blue-600">
-                                                Greska
+                                                Greška
                                             </a>
                                         </li>
                                     </ol>
@@ -51,7 +51,7 @@
                     <div class="pt-[24px] mr-[30px]">
                         <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600">
                             <i class="fas fa-level-up-alt mr-[3px]"></i>
-                            Otpisi knjigu
+                            Otpiši knjigu
                         </a>
                         <a href="#" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                             <i class="far fa-hand-scissors mr-[3px]"></i>
@@ -63,7 +63,7 @@
                         </a>
                         <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="far fa-calendar-check mr-[3px] "></i>
-                            Rezervisi knjigu
+                            Rezerviši knjigu
                         </a>
                         <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-[#e4dfdf] dotsIzdajKnjiguError hover:text-[#606FC7]">
                             <i
@@ -84,7 +84,7 @@
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                        <span class="px-4 py-0">Izbrisi knjigu</span>
+                                        <span class="px-4 py-0">Izbriši knjigu</span>
                                     </a>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                 <!-- End Alert Error -->
                                 <div class="px-6 py-4 bg-gray-200 rounded-lg">
                                     <p class="font-medium">
-                                        Da bi izdali knjigu korisnik koji ju je zaduzio prvo mora vratiti. U nastavku su
+                                        Da bi izdali knjigu korisnik koji ju je zadužio prvo mora vratiti. U nastavku su
                                         detalji o poslednjem izdavanju.
                                     </p>
                                     <div class="mt-[20px] flex-row flex">
@@ -119,8 +119,8 @@
                                             <span class="mt-[20px]">Na raspolaganju:</span>
                                             <span class="mt-[20px]">Rezervisano:</span>
                                             <span class="mt-[20px]">Izdato:</span>
-                                            <span class="mt-[20px]">U prekoracenju:</span>
-                                            <span class="mt-[20px]">Ukupna kolicina:</span>
+                                            <span class="mt-[20px]">U prekoračenju:</span>
+                                            <span class="mt-[20px]">Ukupna količina:</span>
                                         </div>
                                         <div class="flex flex-col text-center ml-[30px]">
                                             <p

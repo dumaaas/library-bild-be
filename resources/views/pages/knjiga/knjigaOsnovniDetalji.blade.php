@@ -43,7 +43,7 @@
                             </p>
                         </div>
                         <div class="mt-[40px]">
-                            <span class="text-gray-500 text-[14px]">Zanr</span>
+                            <span class="text-gray-500 text-[14px]">Žanr</span>
                             <p class="font-medium">
                                 @foreach($knjiga->genre as $zanr)
                                     {{$zanr->genre->name}}
@@ -52,7 +52,7 @@
                             </p>
                         </div>
                         <div class="mt-[40px]">
-                            <span class="text-gray-500 text-[14px]">Autor/ri</span>
+                            <span class="text-gray-500 text-[14px]">Autor/i</span>
                             <p class="font-medium">
                                 @foreach($knjiga->author as $autor)
                                     {{$autor->author->name}}
@@ -61,7 +61,7 @@
                             </p>
                         </div>
                         <div class="mt-[40px]">
-                            <span class="text-gray-500 text-[14px]">Izdavac</span>
+                            <span class="text-gray-500 text-[14px]">Izdavač</span>
                             <p class="font-medium">
                                 {{$knjiga->publisher->name}}
                             </p>
@@ -74,7 +74,7 @@
                     <div class="mr-[70px] mt-[20px] flex flex-col max-w-[600px]">
                         <div>
                             <h4 class="text-gray-500 ">
-                                Storyline (Kratki sadrzaj)
+                                Kratki sadržaj
                             </h4>
                             <p class="addReadMore showlesscontent my-[10px]">
                                 {!! $knjiga->summary !!}

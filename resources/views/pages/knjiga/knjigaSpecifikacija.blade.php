@@ -41,7 +41,7 @@
                             <p class="font-medium">{{$knjiga->format->name}}</p>
                         </div>
                         <div class="mt-[40px]">
-                                        <span class="text-gray-500 text-[14px]">International Standard Book Number
+                                        <span class="text-gray-500 text-[14px]">Međunarodni standardni broj knjige
                                             (ISBN)</span>
                             <p class="font-medium">{{$knjiga->ISBN}}</p>
                         </div>

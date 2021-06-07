@@ -43,7 +43,7 @@
                 <div class="pt-[24px] mr-[30px]">
                     <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600">
                         <i class="fas fa-level-up-alt mr-[3px]"></i>
-                        Otpisi knjigu
+                        Otpiši knjigu
                     </a>
                     <a href="{{route('izdajKnjigu', ['knjiga' => $knjiga])}}" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                         <i class="far fa-hand-scissors mr-[3px]"></i>
@@ -55,7 +55,7 @@
                     </a>
                     <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                         <i class="far fa-calendar-check mr-[3px] "></i>
-                        Rezervisi knjigu
+                        Rezerviši knjigu
                     </a>
                     <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-[#e4dfdf] dotsKnjigaOsnovniDetalji hover:text-[#606FC7]">
                         <i
@@ -76,7 +76,7 @@
                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                    role="menuitem">
                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                    <span class="px-4 py-0">Izbrisi knjigu</span>
+                                    <span class="px-4 py-0">Izbriši knjigu</span>
                                 </a>
                             </div>
                         </div>
@@ -101,8 +101,8 @@
                             <p>Na raspolaganju:</p>
                             <p class="mt-[20px]">Rezervisano:</p>
                             <p class="mt-[20px]">Izdato:</p>
-                            <p class="mt-[20px]">U prekoracenju:</p>
-                            <p class="mt-[20px]">Ukupna kolicina:</p>
+                            <p class="mt-[20px]">U prekoračenju:</p>
+                            <p class="mt-[20px]">Ukupna količina:</p>
                         </div>
                         <div class="text-center pb-[30px]">
                             <p class=" bg-green-200 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
@@ -144,7 +144,7 @@
                                         </p>
                                     @else
                                         <p class="inline uppercase">
-                                            Vracanje knjige
+                                            Vraćanje knjige
                                             <span class="inline lowercase">
                                                     - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
                                                     </span>
@@ -159,15 +159,15 @@
                                     </a>
                                     @if(count($aktivnost->rentStatus) > 0)
                                         @if($aktivnost->rentStatus[0]->statusBook_id == 2)
-                                            rented a book to
+                                            izdao/la knjigu učeniku
                                         @else
-                                            returned a book from
+                                            vratio/la knjigu od učenika
                                         @endif
                                     @endif
                                     <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                         {{$aktivnost->student->name}}
                                     </a>
-                                    on
+                                    dana
                                     <span class="font-medium">
                                         @if(count($aktivnost->rentStatus) > 0)
                                             {{$aktivnost->rentStatus[0]->date}}.
@@ -177,7 +177,7 @@
                             </div>
                             <div>
                                 <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
-                                    more details >>
+                                    više detalja >>
                                 </a>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                     @if($aktivnosti->count() > 0 )
                             <div class="mt-[40px]">
                                 <a href="{{route('dashboardAktivnostKonkretneKnjige', ['knjiga' => $knjiga])}}" class="text-[#2196f3] hover:text-blue-600">
-                                    <i class="fas fa-history"></i> Prikazi sve
+                                    <i class="fas fa-history"></i> Prikaži sve
                                 </a>
                             </div>
                         @else

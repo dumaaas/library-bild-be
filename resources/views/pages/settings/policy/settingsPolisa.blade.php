@@ -8,7 +8,7 @@
                 <div class="border-b-[1px] border-[#e4dfdf]">
                     <div class="pl-[30px] pb-[21px]">
                         <h1>
-                            Settings
+                            Podešavanja
                         </h1>
                     </div>
                 </div>
@@ -26,13 +26,13 @@
                     Polisa
                 </a>
                 <a href="{{route('settingsKategorije')}}" class="inline ml-[70px] hover:text-blue-800">
-                    Kategorije
+                    Kategorija
                 </a>
                 <a href="{{route('settingsZanrovi')}}" class="inline ml-[70px] hover:text-blue-800">
-                    Zanrovi
+                    Žanr
                 </a>
                 <a href="{{route('settingsIzdavac')}}" class="inline ml-[70px] hover:text-blue-800">
-                    Izdavac
+                    Izdavač
                 </a>
                 <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
@@ -54,7 +54,7 @@
                                     Rok za rezervaciju
                                 </h3>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Ovdje se definise rok za rezervaciju u danima. Po isteku tog roka, rezervacija istice i dobija status zatvaranja 'Rezervacija istekla'.
+                                    Ovdje se definiše rok za rezervaciju u danima. Po isteku tog roka, rezervacija ističe i dobija status zatvaranja 'Rezervacija istekla'.
                                 </p>
                                 <p class="pt-[15px] max-w-[400px]">
                                     Trenutni rok: {{$rokRezervacije->value}} dana
@@ -80,7 +80,7 @@
                                     Rok pozajmljivanja
                                 </h3>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Ovdje se definise rok za vracanje u danima. Po isteku tog roka + rok prekoracenja, izdata knjiga ulazi u prekoracanje i moguce je otpisati primjerak.
+                                    Ovdje se definiše rok za vraćanje u danima. Po isteku tog roka + rok prekoračenja, izdata knjiga ulazi u prekoračenje i moguće je otpisati primjerak.
                                 </p>
                                 <p class="pt-[15px] max-w-[400px]">
                                     Trenutni rok: {{$rokPozajmljivanja->value}} dana
@@ -101,10 +101,10 @@
                         <div class="pl-[30px] flex border-b-[1px] border-[#e4dfdf]  py-[20px]">
                             <div>
                                 <h3>
-                                    Rok prekoracenja
+                                    Rok prekoračenja
                                 </h3>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Ovdje se definise rok za prekoracenje u danima. Nakon isteka roka za vracanje student moze vratiti knjigu u roku prekoracenja, nakon cega izdati primjerak ulazi u knjige u prekoracenju.
+                                    Ovdje se definiše rok za prekoračenje u danima. Nakon isteka roka za vraćanje student može vratiti knjigu u roku prekoračenja, nakon čega izdati primjerak ulazi u knjige u prekoračenju.
                                 </p>
                                 <p class="pt-[15px] max-w-[400px]">
                                     Trenutni rok: {{$rokPrekoracenja->value}} dana
@@ -124,7 +124,7 @@
                         </div>
                         <div class="py-[20px] pl-[30px]">
                             <button class="btn-animation mt-[10px] text-white shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
-                            <i class="fas fa-check mr-[7px]"></i> Sacuvaj
+                            <i class="fas fa-check mr-[7px]"></i> Sačuvaj
                             </button>
                         </div>
                         </form>

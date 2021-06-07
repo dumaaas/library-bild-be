@@ -52,7 +52,7 @@
                     <div class="pt-[24px] mr-[30px]">
                         <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" class="inline hover:text-blue-600">
                             <i class="fas fa-level-up-alt mr-[3px]"></i>
-                            Otpisi knjigu
+                            Otpiši knjigu
                         </a>
                         <a href="#" class="inline hover:text-blue-600 ml-[20px] pr-[10px]">
                             <i class="far fa-hand-scissors mr-[3px]"></i>
@@ -64,7 +64,7 @@
                         </a>
                         <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga])}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="far fa-calendar-check mr-[3px] "></i>
-                            Rezervisi knjigu
+                            Rezerviši knjigu
                         </a>
                         <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-[#e4dfdf] dotsIzdajKnjigu hover:text-[#606FC7]">
                             <i
@@ -85,7 +85,7 @@
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                        <span class="px-4 py-0">Izbrisi knjigu</span>
+                                        <span class="px-4 py-0">Izbriši knjigu</span>
                                     </a>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                         <div class="w-[50%] mb-[100px] mr-[100px]">
                             <h3 class="mt-[20px] mb-[10px]">Izdaj knjigu</h3>
                             <div class="mt-[20px]">
-                                <p>Izaberi ucenika koji zaduzuje knjigu <span class="text-red-500">*</span></p>
+                                <p>Izaberi učenika koji zadužuje knjigu <span class="text-red-500">*</span></p>
                                 <select
                                     class="flex w-[90%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                     name="ucenik" id="ucenikIzdavanje" onclick="clearErrorsUcenikIzdavanje()">
@@ -137,14 +137,14 @@
                                     @enderror
                                 </div>
                                 <div class="w-[50%]">
-                                    <p>Datum vracanja</p>
+                                    <p>Datum vraćanja</p>
                                     <label class="text-gray-700" for="date">
                                         <input type="date" id="datumVracanja" name="datumVracanja"
                                             class="flex w-[90%] mt-2 px-2 py-2 text-base text-gray-400 bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                             readonly="readonly" />
                                     </label>
                                     <div>
-                                        <p>Rok vracanja: {{$rokPozajmljivanja->value}} dana</p>
+                                        <p>Rok vraćanja: {{$rokPozajmljivanja->value}} dana</p>
                                     </div>
                                 </div>
                             </div>
@@ -152,14 +152,14 @@
 
                         <div class="w-[50%] mb-[100px]">
                             <div class="border-[1px] border-[#e4dfdf] w-[360px] mt-[75px]">
-                                <h2 class="mt-[20px] ml-[30px]">KOLICINE</h2>
+                                <h2 class="mt-[20px] ml-[30px]">KOLIČINE</h2>
                                 <div class="ml-[30px] mr-[70px] mt-[20px] flex flex-row justify-between">
                                     <div class="text-gray-500 ">
                                         <p>Na raspolaganju:</p>
                                         <p class="mt-[20px]">Rezervisano:</p>
                                         <p class="mt-[20px]">Izdato:</p>
-                                        <p class="mt-[20px]">U prekoracenju:</p>
-                                        <p class="mt-[20px]">Ukupna kolicina:</p>
+                                        <p class="mt-[20px]">U prekoračenju:</p>
+                                        <p class="mt-[20px]">Ukupna količina:</p>
                                     </div>
                                     <div class="text-center pb-[30px]">
                                         <p
@@ -195,7 +195,7 @@
                             <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
                                 <button type="reset"
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                 </button>
                                 <button id="izdajKnjigu" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"

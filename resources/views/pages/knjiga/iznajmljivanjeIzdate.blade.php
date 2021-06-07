@@ -24,12 +24,12 @@
             <a href="{{route('iznajmljivanjeVracene', ['knjiga' => $knjiga])}}"
                class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] ml-[20px] pr-[10px]">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] fas fa-file mr-[3px]"></i>
-                Vracene knjige
+                Vraćene knjige
             </a>
             <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga])}}"
                class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] mx-[20px] pr-[10px]">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] fas fa-exclamation-triangle mr-[3px]"></i>
-                Knjige u prekoracenju
+                Knjige u prekoračenju
             </a>
             <a class="border-r-[1px] py-[10px] border-[#e4dfdf]"></a>
             <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga])}}"
@@ -54,7 +54,7 @@
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </th>
-                        <th class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">Izdato uceniku<i class="ml-2 fas fa-filter uceniciDrop-toggle"></i>
+                        <th class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">Izdato učeniku<i class="ml-2 fas fa-filter uceniciDrop-toggle"></i>
                             <div id="uceniciDropdown"
                                 class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
                                 <ul class="border-b-2 border-gray-300 list-reset">
@@ -86,7 +86,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Ucenik Ucenikovic
+                                                Učenik Učeniković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -105,7 +105,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Pero Perovic
+                                                Pero Perović
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -124,7 +124,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Marko Markovic
+                                                Marko Marković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -143,7 +143,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Nikola Nikolic
+                                                Nikola Nikolić
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -162,7 +162,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Zivko Zivkovic
+                                                Živko Živković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
@@ -181,7 +181,7 @@
                                                 src="img/profileStudent.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Petar Petrovic
+                                                Petar Petrović
                                             </p>
                                         </li>
                                     </div>
@@ -189,11 +189,11 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div></th>
@@ -216,17 +216,17 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div>
                         </th>
                         <th class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">Trenutno
-                            zadrzavanje knjige <i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
+                            zadržavanje knjige <i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
                             <div id="zadrzavanjeDropdown"
                                 class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                 <div
@@ -245,11 +245,11 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div></th>
@@ -285,7 +285,7 @@
                                                 src="img/profileExample.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Bibliotekar Bulatovic
+                                                Bibliotekar Bulatović
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
@@ -304,7 +304,7 @@
                                                 src="img/profileExample.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Pero Perovic
+                                                Pero Perović
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
@@ -323,7 +323,7 @@
                                                 src="img/profileExample.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Marko Markovic
+                                                Marko Marković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
@@ -342,7 +342,7 @@
                                                 src="img/profileExample.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Nikola Nikolic
+                                                Nikola Nikolić
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
@@ -361,7 +361,7 @@
                                                 src="img/profileExample.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Zivko Zivkovic
+                                                Živko Živković
                                             </p>
                                         </li>
                                         <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
@@ -380,7 +380,7 @@
                                                 src="img/profileExample.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                Petar Petrovic
+                                                Petar Petrović
                                             </p>
                                         </li>
                                     </div>
@@ -388,11 +388,11 @@
                                 <div class="flex pt-[10px] text-white ">
                                     <a href="#"
                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                     </a>
                                     <a href="#"
                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
                             </div></th>
@@ -437,7 +437,7 @@
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                             <i class="fas fa-level-up-alt mr-[14px] ml-[5px] py-1"></i>
-                                            <span class="px-4 py-0">Otpisi knjigu</span>
+                                            <span class="px-4 py-0">Otpiši knjigu</span>
                                         </a>
 
                                         <a href="{{route('vratiKnjigu',['knjiga'=>$iznajmljivanjeIzdata->book])}}" tabindex="0"
