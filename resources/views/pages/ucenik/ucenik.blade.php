@@ -5,7 +5,7 @@
             <!-- Heading of content -->
             <div class="heading mt-[7px]">
                 <h1 class="pl-[50px] pb-[21px]  border-b-[1px] border-[#e4dfdf] ">
-                    Ucenici
+                    Učenici
                 </h1>
                 @if(Session::has('success'))
                     <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn">
@@ -21,7 +21,7 @@
                 <div class="scroll height-dashboard">
                     <div class="flex items-center justify-between px-[50px] py-4 space-x-3 rounded-lg">
                         <a href="{{ route('noviUcenik') }}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
-                            <i class="fas fa-plus mr-[15px]"></i> Novi ucenik
+                            <i class="fas fa-plus mr-[15px]"></i> Novi učenik
                         </a>
                         <form action="searchUcenici" method="GET">
                             <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <button
-                                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretrazi
+                                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretraži
                                 </button>
                             </div>
                         </form>
@@ -51,7 +51,7 @@
                                         </label>
                                     </th>
                                     <th class="px-4 py-4 leading-4 tracking-wider text-left">Ime i prezime<a href="#"><i class="ml-3 fa-lg fas fa-long-arrow-alt-down" onclick="sortTable()"></i></a></th>
-                                    <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Email</th>
+                                    <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">E-mail</th>
                                     <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Tip korisnika</th>
                                     <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Zadnji pristup sistemu</th>
                                     <th class="px-4 py-4"> </th>
@@ -73,7 +73,7 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->email}}</td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
-                                        Ucenik
+                                        Učenik
                                     </td>
                                     <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
                                     @if ($user->login_count == 0)
@@ -107,7 +107,7 @@
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                                        <span class="px-4 py-0">Izbrisi korisnika</span>
+                                                        <span class="px-4 py-0">Izbriši korisnika</span>
                                                     </a>
                                                     <!-- <a href="#" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
@@ -133,7 +133,7 @@
             @else
                 <div class="mx-[40px] mt-[20px]">
                         <a href="{{route('noviUcenik')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
-                            <i class="fas fa-plus mr-[15px]"></i> Novi ucenik
+                            <i class="fas fa-plus mr-[15px]"></i> Novi učenik
                         </a>
                     <div class="w-[360px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
 
@@ -142,7 +142,7 @@
                                     d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
                             </path>
                         </svg>
-                        <p class="font-medium text-red-600"> Ne postoji nijedan ucenik u bazi podataka </p>
+                        <p class="font-medium text-red-600"> Ne postoji nijedan učenik u bazi podataka </p>
                     </div>
                 </div>
             @endif

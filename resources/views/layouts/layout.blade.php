@@ -100,7 +100,7 @@
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                role="menuitem">
                                 <i class="fas fa-users mr-[5px] ml-[3px] py-1"></i>
-                                <span class="px-4 py-0">Ucenik</span>
+                                <span class="px-4 py-0">Učenik</span>
                             </a>
                             <a href="{{route('novaKnjiga')}}" tabindex="0"
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
@@ -174,7 +174,7 @@
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                role="menuitem">
                                 <i class="fas fa-file mr-[8px] ml-[5px] py-1"></i>
-                                <span class="px-4 py-0">Profile</span>
+                                <span class="px-4 py-0">Profil</span>
                             </a>
                             <a href="#" tabindex="0"
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
@@ -182,7 +182,7 @@
                                 <i class="fas fa-sign-out-alt mr-[5px] ml-[5px] py-1"></i>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button class="inline-block px-4 py-0">Logout</button>
+                                    <button class="inline-block px-4 py-0">Odjavi se</button>
                                 </form>
                             </a>
                         </div>

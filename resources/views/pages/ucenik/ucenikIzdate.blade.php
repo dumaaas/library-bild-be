@@ -16,7 +16,7 @@
                                 <ol class="flex list-reset">
                                     <li>
                                         <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
-                                            Svi ucenici
+                                            Svi učenici
                                         </a>
                                     </li>
                                     <li>
@@ -35,12 +35,12 @@
                         @can('isMyAccount', $user)
                             <a href="#" class="inline hover:text-blue-600 show-modal">
                                 <i class="fas fa-redo-alt mr-[3px]"></i>
-                                Resetuj sifru
+                                Resetuj šifru
                             </a>
                         @endcan
                         <a href="{{ route('editUcenik', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-edit mr-[3px] "></i>
-                            Izmjeni podatke
+                            Izmijeni podatke
                         </a>
                         <p
                             class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsStudentProfileEvidencija hover:text-[#606FC7]">
@@ -55,7 +55,7 @@
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                        <span class="px-4 py-0">Izbrisi korisnika</span>
+                                        <span class="px-4 py-0">Izbriši korisnika</span>
                                     </a>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                             <div>
                                                 <p
                                                     class="text-[15px] ml-[21px] transition duration-300 ease-in group-hover:text-[#576cdf]">
-                                                    Vracene knjige</p>
+                                                    Vraćene knjige</p>
                                             </div>
                                         </a>
                                     </div>
@@ -124,7 +124,7 @@
                                             <div>
                                                 <p
                                                     class="text-[15px] ml-[17px] transition duration-300 ease-in group-hover:text-[#576cdf]">
-                                                    Knjige u prekoracenju</p>
+                                                    Knjige u prekoračenju</p>
                                             </div>
                                         </a>
                                     </div>
@@ -209,11 +209,11 @@
                                             <div class="flex pt-[10px] text-white ">
                                                 <a href="#"
                                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                    Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                    Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                                 </a>
                                                 <a href="#"
                                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                    Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                    Poništi <i class="fas fa-times ml-[4px]"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -221,7 +221,7 @@
                                     <!-- Trenutno zadrzavanje + dropdown filter for zadrzavanje -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                        Trenutno zadrzavanje knjige<i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
+                                        Trenutno zadržavanje knjige<i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
                                         <div id="zadrzavanjeDropdown"
                                             class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                             <div
@@ -240,11 +240,11 @@
                                             <div class="flex pt-[10px] text-white ">
                                                 <a href="#"
                                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                    Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                    Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                                 </a>
                                                 <a href="#"
                                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                    Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                    Poništi <i class="fas fa-times ml-[4px]"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -386,11 +386,11 @@
                                             <div class="flex pt-[10px] text-white ">
                                                 <a href="#"
                                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                    Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                    Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                                 </a>
                                                 <a href="#"
                                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                    Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                    Poništi <i class="fas fa-times ml-[4px]"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -450,14 +450,14 @@
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fas fa-level-up-alt mr-[14px] ml-[5px] py-1"></i>
-                                                        <span class="px-4 py-0">Otpisi knjigu</span>
+                                                        <span class="px-4 py-0">Otpiši knjigu</span>
                                                     </a>
 
                                                     <a href="#" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fa fa-trash mr-[10px] ml-[5px] py-1"></i>
-                                                        <span class="px-4 py-0">Izbrisi knjigu</span>
+                                                        <span class="px-4 py-0">Izbriši knjigu</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -478,7 +478,7 @@
                                 d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
                             </path>
                         </svg>
-                        <p class="font-medium text-red-600"> Ucenik {{$user->name}} nema izdatih primjeraka! </p>
+                        <p class="font-medium text-red-600"> Učenik {{$user->name}} nema izdatih primjeraka! </p>
                     </div>
                 @endif
             </div>

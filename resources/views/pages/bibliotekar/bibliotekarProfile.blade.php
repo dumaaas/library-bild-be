@@ -69,7 +69,7 @@
                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                     role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                        <span class="px-4 py-0">Izbrisi korisnika</span>
+                                        <span class="px-4 py-0">Izbriši korisnika</span>
                                     </a>
                                 </div>
                             </div>
@@ -94,12 +94,12 @@
                             <p class="font-medium">{{$user -> jmbg}}</p>
                         </div>
                         <div class="mt-[40px]">
-                            <span class="text-gray-500">Email</span>
+                            <span class="text-gray-500">E-mail</span>
                             <a
                                 class="cursor-pointer block font-medium text-[#2196f3] hover:text-blue-600">{{$user -> email}}</a>
                         </div>
                         <div class="mt-[40px]">
-                            <span class="text-gray-500">Korisnicko ime</span>
+                            <span class="text-gray-500">Korisničko ime</span>
                             <p class="font-medium">{{$user -> username}}</p>
                         </div>
                         <div class="mt-[40px]">

@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="mt-[20px]">
-                            <span>Korisnicko ime <span class="text-red-500">*</span></span>
+                            <span>Korisničko ime <span class="text-red-500">*</span></span>
                             <input type="text" name="usernameBibliotekarEdit" id="usernameBibliotekarEdit" placeholder="{{$user->username}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekarEdit()"/>
                             @error('usernameBibliotekarEdit')
                                 <div class="text-red-500">{{ $message }}</div>
@@ -114,11 +114,11 @@
                         <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
                             <button type="reset"
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px] "></i> Ponisti 
+                                    <i class="fas fa-times mr-[7px] "></i> Poništi 
                             </button>
                             <button id="sacuvajBibliotekaraEdit" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaBibliotekarEdit()">
-                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                             </button>
                         </div>
                     </div>

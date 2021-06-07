@@ -16,7 +16,7 @@
                             <ol class="flex list-reset">
                                 <li>
                                     <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
-                                        Svi ucenici
+                                        Svi učenici
                                     </a>
                                 </li>
                                 <li>
@@ -35,12 +35,12 @@
                     @can('isMyAccount', $user)
                         <a href="#" class="inline hover:text-blue-600 show-modal">
                             <i class="fas fa-redo-alt mr-[3px]"></i>
-                            Resetuj sifru
+                            Resetuj šifru
                         </a>
                     @endcan
                     <a href="{{ route('editUcenik', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                         <i class="fas fa-edit mr-[3px] "></i>
-                        Izmjeni podatke
+                        Izmijeni podatke
                     </a>
                     <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsStudentProfile hover:text-[#606FC7]">
                         <i
@@ -55,7 +55,7 @@
                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                     role="menuitem">
                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
-                                    <span class="px-4 py-0">Izbrisi korisnika</span>
+                                    <span class="px-4 py-0">Izbriši korisnika</span>
                                 </a>
                             </div>
                         </div>
@@ -89,11 +89,11 @@
                                 <p class="font-medium">{{$user->jmbg}}</p>
                             </div>
                             <div class="mt-[40px]">
-                                <span class="text-gray-500">Email</span>
+                                <span class="text-gray-500">E-mail</span>
                                 <a href="#" class="block font-medium text-[#2196f3]">{{$user->email}}t</a>
                             </div>
                             <div class="mt-[40px]">
-                                <span class="text-gray-500">Korisnicko ime</span>
+                                <span class="text-gray-500">Korisničko ime</span>
                                 <p class="font-medium">{{$user->username}}</p>
                             </div>
                             <div class="mt-[40px]">

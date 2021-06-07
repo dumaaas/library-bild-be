@@ -8,7 +8,7 @@
                     <div class="pl-[30px] py-[10px] flex flex-col">
                         <div>
                             <h1 class="">
-                                Novi ucenik
+                                Novi učenik
                             </h1>
                         </div>
                         <div>
@@ -16,7 +16,7 @@
                                 <ol class="flex list-reset">
                                     <li>
                                         <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
-                                            Svi ucenici
+                                            Svi učenici
                                         </a>
                                     </li>
                                     <li>
@@ -24,7 +24,7 @@
                                     </li>
                                     <li>
                                         <a href="#" class="text-gray-400 hover:text-blue-600">
-                                            Novi ucenik
+                                            Novi učenik
                                         </a>
                                     </li>
                                 </ol>
@@ -59,7 +59,7 @@
                                 <span>Tip korisnika</span>
                                 <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="tip_korisnika" disabled>
                                     <option value="">
-                                        Ucenik
+                                        Učenik
                                     </option>
                                 </select>
                             </div>
@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="mt-[20px]">
-                                <span>Korisnicko ime <span class="text-red-500">*</span></span>
+                                <span>Korisničko ime <span class="text-red-500">*</span></span>
                                 <input type="text" name="usernameUcenik" id="usernameUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameUcenik()"/>
                                 @error('usernameUcenik')
                                     <div class="text-red-500">{{ $message }}</div>
@@ -89,7 +89,7 @@
                             </div>
 
                             <div class="mt-[20px]">
-                                <span>Sifra <span class="text-red-500">*</span></span>
+                                <span>Šifra <span class="text-red-500">*</span></span>
                                 <input type="password" name="pwUcenik" id="pwUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwUcenik()"/>
                                 @error('pwUcenik')
                                     <div class="text-red-500">{{ $message }}</div>
@@ -97,7 +97,7 @@
                             </div>
 
                             <div class="mt-[20px]">
-                                <span>Ponovi sifru <span class="text-red-500">*</span></span>
+                                <span>Ponovi šifru <span class="text-red-500">*</span></span>
                                 <input type="password" name="pw2Ucenik" id="pw2Ucenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2Ucenik()"/>
                                 @error('pw2Ucenik')
                                     <div class="text-red-500">{{ $message }}</div>
@@ -131,11 +131,11 @@
                             <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
                                 <button type="reset"
                                         class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                        <i class="fas fa-times mr-[7px]"></i>  Ponisti 
+                                        <i class="fas fa-times mr-[7px]"></i>  Poništi 
                                 </button>
                                 <button id="sacuvajUcenika" type="submit"
                                         class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaUcenik()">
-                                        <i class="fas fa-check mr-[7px]"></i>  Sacuvaj 
+                                        <i class="fas fa-check mr-[7px]"></i>  Sačuvaj 
                                 </button>
                             </div>
                         </div>        

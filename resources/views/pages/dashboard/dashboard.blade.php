@@ -32,7 +32,7 @@
                                                 </p>
                                             @else
                                                 <p class="uppercase">
-                                                    Vracanje knjige
+                                                    Vraćanje knjige
                                                     <span class="inline lowercase">
                                                     - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
                                                     </span>
@@ -47,26 +47,26 @@
                                             </a>
                                             @if(count($aktivnost->rentStatus) > 0)
                                                 @if($aktivnost->rentStatus[0]->statusBook_id == 2)
-                                                    rented a book
+                                                    izdao/la knjigu
                                                 @else
-                                                    returned a book
+                                                    vratio/la knjigu
                                                 @endif
                                             @endif
                                             <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
                                                 {{$aktivnost->book->title}}
                                             </a>
-                                            to
+                                            učeniku
                                             <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 {{$aktivnost->student->name}}
                                             </a>
-                                            on
+                                            dana
                                             <span class="font-medium">
                                                 @if(count($aktivnost->rentStatus) > 0)
                                                     {{$aktivnost->rentStatus[0]->date}}.
                                                 @endif
                                             </span>
                                             <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
-                                                more details >>
+                                                više detalja >>
                                             </a>
                                         </p>
                                     </div>
@@ -76,7 +76,7 @@
                         <div class="inline-block w-full mt-4">
                             <a href="{{route('dashboardAktivnost')}}"
                             class="btn-animation block text-center w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">
-                                Show
+                                Prikaži
                             </a>
                         </div>
                     @else
@@ -134,7 +134,7 @@
                         <div class="text-right mt-[5px]">
                             <a href="{{route('aktivneRezervacije')}}" class="text-[#2196f3] hover:text-blue-600">
                                 <i class="fas fa-calendar-alt mr-[4px]" aria-hidden="true"></i>
-                                Prikazi sve
+                                Prikaži sve
                             </a>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="flex pb-[30px]">
                                 <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('knjigePrekoracenje')}}">
-                                    Knjige u prekoracenju
+                                    Knjige u prekoračenju
                                 </a>
                                 <div class="ml-[30px] bg-red-600 transition duration-200 ease-in hover:bg-red-900 stats-bar-red h-[26px]" style="width: {{$prekoraceneNum}}px">
 

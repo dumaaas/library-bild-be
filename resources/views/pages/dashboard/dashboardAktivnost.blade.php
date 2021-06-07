@@ -18,7 +18,7 @@
                             <div class="rounded">
                                 <div class="relative">
                                     <a class="w-auto rounded cursor-pointer focus:outline-none uceniciDrop-toggle">
-                                                <span id="uceniciSvi" class="float-left">Ucenici: Svi </span>
+                                                <span id="uceniciSvi" class="float-left">Učenici: Svi </span>
                                                 <i
                                                         class="px-[7px] fas fa-angle-down"></i>
                                     </a>
@@ -62,11 +62,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="uceniciFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
                                             <a href="#" id="uceniciFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                Poništi <i class="fas fa-times ml-[4px]"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -120,11 +120,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="bibliotekariFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
                                             <a href="#" id="bibliotekariFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                Poništi <i class="fas fa-times ml-[4px]"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -189,11 +189,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="knjigeFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
                                             <a href="#" id="knjigeFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                Poništi <i class="fas fa-times ml-[4px]"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -252,7 +252,7 @@
                                                     </label>
                                                     <p
                                                         class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                        Vracanje knjiga
+                                                        Vraćanje knjiga
                                                     </p>
                                                 </li>
                                                 <li
@@ -294,11 +294,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#009688] bg-[#46A149] rounded-[5px]">
-                                                Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
                                             <a href="#"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                Poništi <i class="fas fa-times ml-[4px]"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -332,11 +332,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="datumFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#009688] bg-[#46A149] rounded-[5px]">
-                                                Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
                                             </a>
                                             <a href="#" id="datumFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                Poništi <i class="fas fa-times ml-[4px]"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -368,7 +368,7 @@
                                                 </p>
                                             @else
                                                 <p class="uppercase">
-                                                    Vracanje knjige
+                                                    Vraćanje knjige
                                                     <span class="inline lowercase">
                                                     - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
                                                     </span>
@@ -383,24 +383,24 @@
                                             </a>
                                             @if(count($aktivnost->rentStatus) > 0)
                                                 @if($aktivnost->rentStatus[0]->statusBook_id == 2)
-                                                    rented a book
+                                                    izdao/la knjigu
                                                 @else
-                                                    returned a book
+                                                    vratio/la knjigu
                                                 @endif
                                             @endif
                                             <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
                                                 {{$aktivnost->book->title}}
                                             </a>
-                                            to
+                                            učeniku
                                             <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 {{$aktivnost->student->name}}
                                             </a>
-                                            on
+                                            dana
                                             <span class="font-medium">
                                         {{$aktivnost->rent_date}}.
                                     </span>
                                             <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
-                                                more details >>
+                                                više detalja >>
                                             </a>
                                         </p>
                                     </div>
@@ -410,7 +410,7 @@
                         <div class="inline-block w-full mt-4">
                         <button type="button"
                                 class="btn-animation w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded activity-showMore hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">
-                            Show more
+                            Prikaži više
                         </button>
                     </div>
                     </div>
@@ -418,7 +418,7 @@
 
                     </div>
                     <div id="activityCards3" style="display: none">
-                        Ne postoje rezultati za trazene kriterijume!
+                        Ne postoje rezultati za tražene kriterijume!
                     </div>
 
 
