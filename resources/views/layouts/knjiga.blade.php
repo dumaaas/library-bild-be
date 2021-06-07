@@ -96,8 +96,8 @@
             @yield('knjigeMultimedija')
             <div class="min-w-[20%] border-l-[1px] border-[#e4dfdf] ">
                 <div class="border-b-[1px] border-[#e4dfdf]">
-                    <div class="ml-[30px] mr-[70px] mt-[20px] flex flex-row justify-between">
-                        <div class="text-gray-500 ">
+                    <div class="mx-[30px] mt-[20px] flex flex-row">
+                        <div class="text-gray-500 mr-[30px]">
                             <p>Na raspolaganju:</p>
                             <p class="mt-[20px]">Rezervisano:</p>
                             <p class="mt-[20px]">Izdato:</p>
@@ -110,10 +110,10 @@
                             </p>
                             <a href="{{route('iznajmljivanjeArhivirane', ['knjiga' => $knjiga->id])}}"><p
                                     class=" mt-[16px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
-                                    {{$knjiga->reservedBooks}} primjerka</p></a>
+                                    {{$knjiga->reservedBooks}} primjeraka</p></a>
                             <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga->id])}}"><p
                                     class=" mt-[16px] bg-blue-200 text-blue-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
-                                    {{$knjiga->rentedBooks}} primjerka</p></a>
+                                    {{$knjiga->rentedBooks}} primjeraka</p></a>
                             <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga->id])}}">
                                 <p class=" mt-[16px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                     @php
@@ -123,7 +123,7 @@
                                 </p>
                             </a>
                             <p
-                                class=" mt-[16px] border-[1px] border-green-700 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
+                                class=" mt-[16px] bg-purple-200 text-purple-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                 {{$knjiga->quantity}} primjeraka
                             </p>
                         </div>

@@ -129,7 +129,7 @@
                                             </p>
                                             <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga])}}"
                                                 class="mt-[19px] block ml-[30px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px]">
-                                                {{$knjiga -> reservedBooks}} primjerka
+                                                {{$knjiga -> reservedBooks}} primjeraka
                                             </a>
                                             <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga])}}"
                                                 class="mt-[19px] block ml-[30px] bg-blue-200 text-blue-800 rounded-[10px] px-[6px] py-[2px]">
@@ -137,10 +137,10 @@
                                             </a>
                                             <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga])}}"
                                                 class="mt-[19px] block ml-[30px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px]">
-                                                {{count($prekoraceneKnjige)}} primjerka
+                                                {{count($prekoraceneKnjige)}} primjeraka
                                             </a>
                                             <p
-                                                class="mt-[19px] block ml-[30px] border-[1px] border-green-700 text-green-700 rounded-[10px] px-[6px] py-[2px]">
+                                                class="mt-[19px] block ml-[30px] bg-purple-200 text-purple-700 rounded-[10px] px-[6px] py-[2px]">
                                                 {{$knjiga -> quantity}} primjeraka
                                             </p>
                                         </div>

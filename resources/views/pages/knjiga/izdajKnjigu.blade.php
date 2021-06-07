@@ -169,7 +169,7 @@
                                         <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $knjiga])}}">
                                             <p
                                                 class=" mt-[16px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
-                                                {{$knjiga -> reservedBooks}} primjerka</p>
+                                                {{$knjiga -> reservedBooks}} primjeraka</p>
                                         </a>
                                         <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga])}}">
                                             <p
@@ -182,7 +182,7 @@
                                                 {{count($prekoraceneKnjige)}} primjeraka</p>
                                         </a>
                                         <p
-                                            class=" mt-[16px] border-[1px] border-green-700 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
+                                            class=" mt-[16px] bg-purple-200 text-purple-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                             {{$knjiga -> quantity}} primjeraka</p>
                                     </div>
                                 </div>
