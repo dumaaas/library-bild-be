@@ -76,7 +76,7 @@ class PublisherController extends Controller
         $publisherService->editPublisher($izdavac);
         
         //return back to the publisher
-        return back()->with('success', 'Izdavac uspjesno izmjenjen!');
+        return redirect('settingsIzdavac')->with('success', 'Izdavac uspjesno izmjenjen!');
     }
 
     /**
@@ -106,6 +106,6 @@ class PublisherController extends Controller
         $publisherService->savePublisher($izdavac);
 
         //return back to the publisher
-        return back()->with('success', 'Izdavac uspjesno sacuvan!');
+        return redirect('settingsIzdavac')->with('success', 'Izdavac uspjesno sacuvan!');
     }
 }

@@ -69,7 +69,7 @@ class GenreController extends Controller
         
         $genreService->saveGenre($userService, $request);
 
-        return back()->with('success', 'Zanr uspjesno sacuvan!');
+        return redirect('settingsZanrovi')->with('success', 'Zanr uspjesno sacuvan!');
     }
 
     /**
@@ -86,7 +86,7 @@ class GenreController extends Controller
         $genreService->editGenre($zanr, $userService, $request);
 
         //return back to all genres
-        return back()->with('success', 'Zanr uspjesno izmijenjen!');
+        return redirect('settingsZanrovi')->with('success', 'Zanr uspjesno izmijenjen!');
     }
 
     /**

@@ -73,7 +73,7 @@ class FormatController extends Controller
 
         $formatService->saveFormat($format);
 
-        return back()->with('success', 'Format uspjesno sacuvan!');
+        return redirect('settingsFormat')->with('success', 'Format uspjesno sacuvan!');
     }
 
     /**
@@ -94,7 +94,7 @@ class FormatController extends Controller
         $formatService->editFormat($format);
 
         //return back to all genres
-        return back()->with('success', 'Format uspjesno izmijenjen!');
+        return redirect('settingsFormat')->with('success', 'Format uspjesno izmijenjen!');
     }
 
     /**

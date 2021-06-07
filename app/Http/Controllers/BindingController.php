@@ -75,7 +75,7 @@ class BindingController extends Controller
         $bindingService->saveBinding($povez);
 
         //return back
-        return back()->with('success', 'Povez uspjesno sacuvan!');
+        return redirect('settingsPovez')->with('success', 'Povez uspjesno sacuvan!');
     }
 
     /**
@@ -96,7 +96,7 @@ class BindingController extends Controller
         $bindingService->editBinding($povez);
 
         //return back to the binding
-        return back()->with('success', 'Povez uspjesno izmjenjen!');
+        return redirect('settingsPovez')->with('success', 'Povez uspjesno izmjenjen!');
     }
 
     /**

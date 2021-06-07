@@ -99,7 +99,7 @@ class AuthorController extends Controller
             'autor' => $autor
         ];
 
-        return back()->with('success', 'Autor uspjesno izmjenjen!');
+        return redirect('autori')->with('success', 'Autor uspjesno izmjenjen!');
     }
 
     /**
@@ -128,7 +128,7 @@ class AuthorController extends Controller
             'autor' => $autor
         ];
 
-        return back()->with('success', 'Autor uspjesno sacuvan!');
+        return redirect('autori')->with('success', 'Autor uspjesno sacuvan!');
     }
 
     /**

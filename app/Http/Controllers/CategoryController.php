@@ -70,7 +70,7 @@ class CategoryController extends Controller
         $categoryService->saveCategory($userService, $request);
 
         //return back
-        return back()->with('success', 'Kategorija uspjesno sacuvana!');
+        return redirect('settingsKategorije')->with('success', 'Kategorija uspjesno sacuvana!');
     }
 
     /**
@@ -87,7 +87,7 @@ class CategoryController extends Controller
         $categoryService->editCategory($kategorija, $userService, $request);
 
         //return back to the category
-        return back()->with('success', 'Kategorija uspjesno izmjenjena!');
+        return redirect('settingsKategorije')->with('success', 'Kategorija uspjesno izmjenjena!');
     }
 
     /**

@@ -498,7 +498,7 @@ class BookController extends Controller
         ];
 
         //return back to the edit author form
-        return view($viewName, $viewModel);
+        return redirect('evidencijaKnjiga')->with('success','Knjiga uspjesno sacuvana!');
     }
 
     /**

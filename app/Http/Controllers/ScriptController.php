@@ -74,7 +74,7 @@ class ScriptController extends Controller
         $scriptService->saveScript($pismo);
 
         //return back
-        return back()->with('success', 'Pismo uspjesno sacuvano!');
+        return redirect('settingsPismo')->with('success', 'Pismo uspjesno sacuvano!');
     }
 
     /**
@@ -95,7 +95,7 @@ class ScriptController extends Controller
         $scriptService->editScript($pismo);
 
         //return back to the script
-        return back()->with('success', 'Pismo uspjesno izmjenjeno!');
+        return redirect('settingsPismo')->with('success', 'Pismo uspjesno izmjenjeno!');
     }
 
     /**
