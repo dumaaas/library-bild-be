@@ -113,7 +113,7 @@ class UserController extends Controller
         $userService->editBibliotekar($user, $request);
 
         //return back to the edit author form
-        return back()->with('success', 'Bibliotekar uspjesno izmjenjen!');
+        return redirect('bibliotekari')->with('success', 'Bibliotekar uspjesno izmjenjen!');
     }
 
     /**
@@ -171,7 +171,7 @@ class UserController extends Controller
         ];
 
         //return back to the librarian profile
-        return back()->with('success', 'Bibliotekar uspjesno sacuvan!');
+        return redirect('bibliotekari')->with('success', 'Bibliotekar uspjesno sacuvan!');
     }
 
     /**
@@ -282,7 +282,7 @@ class UserController extends Controller
         $userService->editUcenik($user, $request);
 
         //return back to the edit student form
-        return back()->with('success', 'Ucenik uspjesno izmjenjen!');
+        return redirect('ucenik')->with('success', 'Ucenik uspjesno izmjenjen!');
     }
 
     /**
@@ -326,7 +326,7 @@ class UserController extends Controller
         ];
 
         //return back to the edit student form
-        return back()->with('success', 'Ucenik uspjesno sacuvan!');
+        return redirect('ucenik')->with('success', 'Ucenik uspjesno sacuvan!');
     }
 
     /**
