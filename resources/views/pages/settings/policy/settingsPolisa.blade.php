@@ -63,11 +63,11 @@
                             <div class="relative flex ml-[60px] mt-[20px]">
                                 <form action="{{route('izmijeniRok')}}" method="POST">
                                 @csrf
-                                    <div class="flex">
+                                    <div class="flex items-center w-[245px]">
                                         <input type="text" name="rokRezervacije"
                                             class="h-[50px] flex-1 w-full px-4 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border-[1px]  border-[#e4dfdf]  rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                                             placeholder="{{$rokRezervacije->value}}" />
-                                        <p class="ml-[10px] mt-[10px]">dana</p>
+                                        <p class="ml-[10px]">dana</p>
                                     </div>
                                     @error('rokRezervacije')
                                     <div class="text-red-500">{{ $message }}</div>
@@ -86,12 +86,12 @@
                                     Trenutni rok: {{$rokPozajmljivanja->value}} dana
                                 </p>
                             </div>
-                            <div class="relative flex ml-[60px] mt-[20px]">
-                                    <div class="flex">
+                            <div class="relative flex flex-col ml-[60px] mt-[20px]">
+                                    <div class="flex items-center w-[245px]">
                                         <input type="text" name="rokPozajmljivanja"
                                             class="h-[50px] flex-1 w-full px-4 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border-[1px]  border-[#e4dfdf]  rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                                             placeholder="{{$rokPozajmljivanja->value}}" />
-                                        <p class="ml-[10px] mt-[10px]">dana</p>
+                                        <p class="ml-[10px]">dana</p>
                                     </div>
                                     @error('rokPozajmljivanja')
                                     <div class="text-red-500">{{ $message }}</div>
@@ -110,12 +110,12 @@
                                     Trenutni rok: {{$rokPrekoracenja->value}} dana
                                 </p>
                             </div>
-                            <div class="relative flex ml-[60px] mt-[20px]">
-                                    <div class="flex">
+                            <div class="relative flex flex-col ml-[60px] mt-[20px]">
+                                    <div class="flex items-center w-[245px]">
                                         <input type="text" name="rokPrekoracenja"
                                             class="h-[50px] flex-1 w-full px-4 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border-[1px]  border-[#e4dfdf]  rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                                             placeholder="{{$rokPrekoracenja->value}}" />
-                                        <p class="ml-[10px] mt-[10px]">dana</p>
+                                        <p class="ml-[10px]">dana</p>
                                     </div>
                                     @error('rokPrekoracenja')
                                     <div class="text-red-500">{{ $message }}</div>
