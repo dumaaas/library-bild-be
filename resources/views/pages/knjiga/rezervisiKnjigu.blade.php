@@ -38,7 +38,7 @@
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="text-[#2196f3] hover:text-blue-600">
+                                                class="text-gray-400 hover:text-blue-600">
                                                 Rezervisi knjigu
                                             </a>
                                         </li>

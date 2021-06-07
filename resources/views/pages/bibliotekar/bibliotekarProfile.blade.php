@@ -23,7 +23,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="#" class="text-gray-400 hover:text-blue-600">
                                             ID-{{$user -> id}}
                                         </a>
                                     </li>

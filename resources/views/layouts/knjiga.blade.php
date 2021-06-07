@@ -31,7 +31,7 @@
                                     </li>
                                     <li>
                                         <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga])}}"
-                                           class="text-[#2196f3] hover:text-blue-600">
+                                           class="text-gray-400 hover:text-blue-600">
                                             KNJIGA-{{$knjiga->id}}
                                         </a>
                                     </li>
