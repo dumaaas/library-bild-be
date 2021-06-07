@@ -28,45 +28,36 @@ class PolicyController extends Controller
         return view($viewName, $viewModel);
     }
 
-    public function izmijeniRokRezervacije(){
+    public function izmijeniRok(){
 
-         //request all data, validate and update RESERVATION_PERIOD
+         //request all data, validate and update RESERVATION_PERIOD, OVERDRAFT_PERIOD, RETURN_DUE_DATE
          request()->validate([
-            'rokRezervacije' => 'numeric|sometimes|max:256',
+            'rokRezervacije' => 'numeric|nullable|max:256',
+            'rokPozajmljivanja' => 'numeric|nullable|max:256',
+            'rokPrekoracenja' => 'numeric|nullable|max:256',
         ]);
 
-        $rezervacija = GlobalVariable::find(2);
-        $rezervacija->value = request('rokRezervacije');
-        $rezervacija->save();
+        $rokPozajmljivanja = GlobalVariable::find(1);
+        $rokRezervacije = GlobalVariable::find(2);
+        $rokPrekoracenja = GlobalVariable::find(3);
 
-        return back()->with('success', 'Uspjesno izmijenjen rok rezervacije!');
+        if(request('rokPozajmljivanja')) {
+            $rokPozajmljivanja->value = request('rokPozajmljivanja');
+        }
+
+        if(request('rokRezervacije')) {
+            $rokRezervacije->value = request('rokRezervacije');
+        }
+
+        if(request('rokPrekoracenja')) {
+            $rokPrekoracenja->value = request('rokPrekoracenja');
+        }
+
+        $rokPozajmljivanja->save();
+        $rokRezervacije->save();
+        $rokPrekoracenja->save();
+
+        return back()->with('success', 'Uspjesno izmijenjen rok!');
     }
 
-    public function izmijeniRokPozajmljivanja(){
-
-         //request all data, validate and update RETURN_DUE_DATE
-         request()->validate([
-            'rokPozajmljivanja' => 'numeric|sometimes|max:256',
-        ]);
-
-        $rezervacija = GlobalVariable::find(1);
-        $rezervacija->value = request('rokPozajmljivanja');
-        $rezervacija->save();
-
-        return back()->with('success', 'Uspjesno izmijenjen rok pozajmljivanja!');
-    }
-
-    public function izmijeniRokPrekoracenja(){
-
-        //request all data, validate and update OVERDRAFT_PERIOD
-        request()->validate([
-            'rokPrekoracenja' => 'numeric|sometimes|max:256',
-        ]);
-
-        $rezervacija = GlobalVariable::find(3);
-        $rezervacija->value = request('rokPrekoracenja');
-        $rezervacija->save();
-
-        return back()->with('success', 'Uspjesno izmijenjen rok prekoracenja!');
-    }
 }

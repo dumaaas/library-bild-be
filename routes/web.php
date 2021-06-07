@@ -172,9 +172,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     //POLICY - ROUTES
     Route::get('/settingsPolisa', [\App\Http\Controllers\PolicyController::class, 'prikaziSettingsPolisa'])->name('settingsPolisa');
-    Route::post('/izmijeniRokRezervacije', [\App\Http\Controllers\PolicyController::class, 'izmijeniRokRezervacije'])->name('izmijeniRokRezervacije');
-    Route::post('/izmijeniRokPozajmljivanja', [\App\Http\Controllers\PolicyController::class, 'izmijeniRokPozajmljivanja'])->name('izmijeniRokPozajmljivanja');
-    Route::post('/izmijeniRokPrekoracenja', [\App\Http\Controllers\PolicyController::class, 'izmijeniRokPrekoracenja'])->name('izmijeniRokPrekoracenja');
+    Route::post('/izmijeniRok', [\App\Http\Controllers\PolicyController::class, 'izmijeniRok'])->name('izmijeniRok');
 
 });
 
