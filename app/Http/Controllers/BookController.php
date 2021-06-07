@@ -592,7 +592,7 @@ class BookController extends Controller
      */
     public function izbrisiKnjigu(Book $knjiga) {
         Book::destroy($knjiga->id);
-        return back();
+        return redirect('evidencijaKnjiga')->with('success','Knjiga uspjesno obrisana');
     }
 
     /**
