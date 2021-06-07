@@ -62,11 +62,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="uceniciFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
+                                               <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                             </a>
                                             <a href="#" id="uceniciFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Poništi <i class="fas fa-times ml-[4px]"></i>
+                                               <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
                                         </div>
                                     </div>
@@ -120,11 +120,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="bibliotekariFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
+                                               <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                             </a>
                                             <a href="#" id="bibliotekariFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Poništi <i class="fas fa-times ml-[4px]"></i>
+                                               <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
                                         </div>
                                     </div>
@@ -189,11 +189,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="knjigeFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
+                                               <i class="fas fa-check ml-[4px]"></i> Sačuvaj 
                                             </a>
                                             <a href="#" id="knjigeFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Poništi <i class="fas fa-times ml-[4px]"></i>
+                                               <i class="fas fa-times ml-[4px]"></i> Poništi 
                                             </a>
                                         </div>
                                     </div>
@@ -294,11 +294,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#009688] bg-[#46A149] rounded-[5px]">
-                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
+                                               <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                             </a>
                                             <a href="#"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Poništi <i class="fas fa-times ml-[4px]"></i>
+                                               <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
                                         </div>
                                     </div>
@@ -332,11 +332,11 @@
                                         <div class="flex pt-[10px] text-white ">
                                             <a href="#" id="datumFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#009688] bg-[#46A149] rounded-[5px]">
-                                                Sačuvaj <i class="fas fa-check ml-[4px]"></i>
+                                               <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                             </a>
                                             <a href="#" id="datumFilterPonisti"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                Poništi <i class="fas fa-times ml-[4px]"></i>
+                                               <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
                                         </div>
                                     </div>

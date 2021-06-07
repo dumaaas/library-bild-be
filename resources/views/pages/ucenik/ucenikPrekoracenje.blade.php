@@ -210,11 +210,11 @@
                                             <div class="flex pt-[10px] text-white ">
                                                 <a href="#"
                                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                    Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
                                                 </a>
                                                 <a href="#"
                                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                    Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
                                                 </a>
                                             </div>
                                         </div>
@@ -242,11 +242,11 @@
                                             <div class="flex pt-[10px] text-white ">
                                                 <a href="#"
                                                     class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                                    Sacuvaj <i class="fas fa-check ml-[4px]"></i>
+                                                    <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
                                                 </a>
                                                 <a href="#"
                                                     class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                                    Ponisti <i class="fas fa-times ml-[4px]"></i>
+                                                    <i class="fas fa-times mr-[7px]"></i> Ponisti 
                                                 </a>
                                             </div>
                                         </div>
