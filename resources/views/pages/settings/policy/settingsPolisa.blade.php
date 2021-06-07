@@ -124,7 +124,7 @@
                         </div>
                         <div class="py-[20px] pl-[30px]">
                             <button class="btn-animation mt-[10px] text-white shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
-                                Sacuvaj
+                            <i class="fas fa-check mr-[7px]"></i> Sacuvaj
                             </button>
                         </div>
                         </form>
