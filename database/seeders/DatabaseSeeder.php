@@ -378,12 +378,46 @@ class DatabaseSeeder extends Seeder
             'rent_date'=>'2021-04-08',
             'return_date'=>'2021-04-28',
           ]);
+          
+          DB::table('rents')->insert([
+            'id'=>10,
+            'librarian_id'=>3,
+            'student_id'=>5,
+            'book_id'=>6,
+            'rent_date'=>'2021-06-08',
+            'return_date'=>'2021-06-28',
+          ]);
+          DB::table('rents')->insert([
+            'id'=>11,
+            'librarian_id'=>3,
+            'student_id'=>5,
+            'book_id'=>7,
+            'rent_date'=>'2021-04-08',
+            'return_date'=>'2021-04-28',
+          ]);
+          DB::table('rents')->insert([
+            'id'=>12,
+            'librarian_id'=>4,
+            'student_id'=>6,
+            'book_id'=>5,
+            'rent_date'=>'2021-04-08',
+            'return_date'=>'2021-04-28',
+          ]);
+          DB::table('rents')->insert([
+            'id'=>13,
+            'librarian_id'=>2,
+            'student_id'=>7,
+            'book_id'=>5,
+            'librarian_received_id'=>2,
+            'rent_date'=>'2021-06-08',
+            'return_date'=>'2021-06-20',
+          ]);
 
 
           DB::table('reservations')->insert([
             'id'=>5,
             'librarian_id'=>2,
-            'student_id'=>5,
+            'student_id'=>7,
             'book_id'=>5,
             'closeReservation_id'=>1,
             'request_date'=>'2021-05-08',
@@ -403,7 +437,7 @@ class DatabaseSeeder extends Seeder
           DB::table('reservations')->insert([
             'id'=>9,
             'librarian_id'=>3,
-            'student_id'=>9,
+            'student_id'=>5,
             'book_id'=>9,
             'closeReservation_id'=>5,
             'request_date'=>'2021-06-08',
@@ -445,6 +479,22 @@ class DatabaseSeeder extends Seeder
         DB::table('rent_statuses')->insert([
             'rent_id'=>9,
             'statusBook_id'=>2,
+        ]);
+        DB::table('rent_statuses')->insert([
+            'rent_id'=>10,
+            'statusBook_id'=>2,
+        ]);
+        DB::table('rent_statuses')->insert([
+            'rent_id'=>11,
+            'statusBook_id'=>2,
+        ]);
+        DB::table('rent_statuses')->insert([
+            'rent_id'=>12,
+            'statusBook_id'=>2,
+        ]);
+        DB::table('rent_statuses')->insert([
+            'rent_id'=>13,
+            'statusBook_id'=>1,
         ]);
     }
 }

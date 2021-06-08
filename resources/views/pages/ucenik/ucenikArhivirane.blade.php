@@ -513,31 +513,47 @@
                                         <a href="{{route('ucenikProfile', ['user' => $ucenikArhivirana->student])}}" class="ml-2 font-medium text-center">{{$ucenikArhivirana->student->name}}</a>
                                     </td>
                                     <td class="px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
-                                        @if($ucenikArhivirana->reservationStatus[0]->statusReservation_id == 1)
-                                            <div
-                                                class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
+                                            @if($ucenikArhivirana->closeReservation_id == 1)
+                                                <div
+                                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
 
-                                                <span class="text-xs text-yellow-700">
-                                                    Rezervisana
-                                                </span>
-                                            </div>
-                                        @elseif($ucenikArhivirana->reservationStatus[0]->statusReservation_id == 2)
-                                            <div
-                                                class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
+                                                    <span class="text-xs text-red-700">
+                                                        Istekla
+                                                    </span>
+                                                </div>
+                                            @elseif($ucenikArhivirana->closeReservation_id == 2)
+                                                <div
+                                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
 
-                                                <span class="text-xs text-green-800">
-                                                    Izdata
-                                                </span>
-                                            </div>
-                                        @else
-                                            <div
-                                                class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
+                                                    <span class="text-xs text-red-800">
+                                                        Odbijena
+                                                    </span>
+                                                </div>
+                                            @elseif($ucenikArhivirana->closeReservation_id == 3)
+                                                <div
+                                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
 
-                                                <span class="text-xs text-red-800">
-                                                    Odbijena
-                                                </span>
-                                            </div>
-                                        @endif
+                                                    <span class="text-xs text-red-800">
+                                                        Otkazana
+                                                    </span>
+                                                </div>
+                                            @elseif($ucenikArhivirana->closeReservation_id == 4)
+                                                <div
+                                                    class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
+
+                                                    <span class="text-xs text-yellow-800">
+                                                        Izdata
+                                                    </span>
+                                                </div>
+                                            @elseif($ucenikArhivirana->closeReservation_id == 5)
+                                                <div
+                                                    class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
+
+                                                    <span class="text-xs text-green-800">
+                                                        Rezervisana
+                                                    </span>
+                                                </div>
+                                            @endif
                                     </td>
                                     <td class="px-4 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                         <p
