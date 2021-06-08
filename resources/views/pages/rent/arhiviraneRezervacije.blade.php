@@ -494,9 +494,9 @@
                                         <td class="px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
                                             @if($arhivirana->closeReservation_id == 1)
                                                 <div
-                                                    class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
+                                                    class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
 
-                                                    <span class="text-xs text-yellow-700">
+                                                    <span class="text-xs text-red-700">
                                                         Istekla
                                                     </span>
                                                 </div>
