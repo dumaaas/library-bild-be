@@ -354,6 +354,58 @@ class BookService {
         }
     }
 
+    /**
+     * Vrati pretrazene ucenike od kojih se vraca knjiga
+     *
+     * @return void
+     */
+    public function searchVratiKnjige(Book $knjiga, RentService $rentService) {
+        $vratiKnjige = Rent::query();
+        if(request('searchVrati')) {
+            $ucenikPretraga = request('searchVrati');
+            $vratiKnjige = $rentService->getIzdateKnjige()
+                            ->where('book_id', '=', $knjiga->id)
+                            ->where(function ($query) {
+                                $query->select('name')
+                                    ->from('users')
+                                    ->whereColumn('users.id', 'rents.student_id');
+                            }, 'LIKE', '%'.$ucenikPretraga.'%');
+        }else{
+            $vratiKnjige = $rentService->getIzdateKnjige()
+                            ->where('book_id', '=', $knjiga->id);
+        }
+
+        $vratiKnjige = $vratiKnjige->paginate(7);
+
+        return $vratiKnjige;
+    }
+
+    /**
+     * Vrati pretrazene ucenike od kojih se otpisuje knjiga
+     *
+     * @return void
+     */
+    public function searchOtpisiKnjige(Book $knjiga, RentService $rentService) {
+        $otpisiKnjige = Rent::query();
+        if(request('searchOtpisi')) {
+            $ucenikPretraga = request('searchOtpisi');
+            $otpisiKnjige = $rentService->getPrekoraceneKnjige()
+                            ->where('book_id', '=', $knjiga->id)
+                            ->where(function ($query) {
+                                $query->select('name')
+                                    ->from('users')
+                                    ->whereColumn('users.id', 'rents.student_id');
+                            }, 'LIKE', '%'.$ucenikPretraga.'%');
+        }else{
+            $otpisiKnjige = $rentService->getPrekoraceneKnjige()
+                            ->where('book_id', '=', $knjiga->id);
+        }
+
+        $otpisiKnjige = $otpisiKnjige->paginate(7);
+
+        return $otpisiKnjige;
+    }
+
     // public function getCoverImage($knjiga) {
     //     return Galery::where('book_id', '=', $knjiga)
     //                         ->where('cover', '=', 1)

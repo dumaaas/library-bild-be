@@ -79,6 +79,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/editKnjiga/{knjiga}/update', [\App\Http\Controllers\BookController::class, 'updateKnjiga'])->name('updateKnjiga');
     Route::get('/filterAutori', [\App\Http\Controllers\BookController::class, 'filterAutori'])->name('filterAutori');
     Route::get('/searchKnjige', [\App\Http\Controllers\BookController::class, 'searchKnjige'])->name('searchKnjige');
+    Route::get('/searchVrati/{knjiga}', [\App\Http\Controllers\BookController::class, 'searchVrati'])->name('searchVrati');
+    Route::get('/searchOtpisi/{knjiga}', [\App\Http\Controllers\BookController::class, 'searchOtpisi'])->name('searchOtpisi');
 
     //RESERVATION - ROUTES
 

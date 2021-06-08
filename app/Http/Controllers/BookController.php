@@ -670,4 +670,44 @@ class BookController extends Controller
         return view($viewName, $viewModel);
     }
 
+    /**
+     * Prikazi pretrazene ucenike cije se knjige vracaju
+     *
+     * @param  BookService $bookService
+     * @return void
+     */
+    public function searchVrati(Book $knjiga, BookService $bookService, RentService $rentService) {
+
+        $viewName = $this->viewFolder . '.vratiKnjigu';
+
+        $knjigeVrati = $bookService->searchVratiKnjige($knjiga, $rentService);
+
+        $viewModel = [
+            'vratiKnjige'     => $knjigeVrati,
+            'knjiga'     => $knjiga
+        ];
+
+        return view($viewName, $viewModel);
+    }
+
+    /**
+     * Prikazi pretrazene ucenike cije se knjige otpisuju
+     *
+     * @param  BookService $bookService
+     * @return void
+     */
+    public function searchOtpisi(Book $knjiga, BookService $bookService, RentService $rentService) {
+
+        $viewName = $this->viewFolder . '.otpisiKnjigu';
+
+        $knjigeOtpisi = $bookService->searchOtpisiKnjige($knjiga, $rentService);
+
+        $viewModel = [
+            'otpisiKnjige'     => $knjigeOtpisi,
+            'knjiga'     => $knjiga
+        ];
+
+        return view($viewName, $viewModel);
+    }
+
 }

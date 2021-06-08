@@ -100,26 +100,35 @@
                 @endif
             </div>
             @if(count($vratiKnjige) > 0)
-                <form action="{{route('vratiKnjige')}}" method="GET">
                     <div class="scroll height-dashboard px-[30px]">
                         <div class="flex items-center justify-between py-4 pt-[20px] space-x-3 rounded-lg">
                             <h3>
                                 Vrati knjigu
                             </h3>
-                            <div class="relative text-gray-600 focus-within:text-gray-400">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                                    <a class="p-1 focus:outline-none focus:shadow-outline">
-                                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
-                                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                        </svg>
-                                    </a>
-                                </span>
-                                <input type="search" name="q"
-                                    class="py-2 pl-10 border-[#e4dfdf] text-sm text-white border-[1px] bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
-                                    placeholder="Pretraži učenike..." autocomplete="off">
-                            </div>
+                            <form action="{{ route('searchVrati', ['knjiga' => $knjiga->id]) }}" method="GET">
+                                <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
+                                    <div class="flex items-center">
+                                        <div class="relative text-gray-600 focus-within:text-gray-400">
+                                            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                                <a class="p-1 focus:outline-none focus:shadow-outline">
+                                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
+                                                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                                    </svg>
+                                                </a>
+                                            </span>
+                                            <input type="search" name="searchVrati"
+                                                class="py-2 pl-10 border-[#e4dfdf] text-sm text-white border-[1px] bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
+                                                placeholder="Pretraži učenike..." autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <button name="pretraziVrati"
+                                        class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">Pretraži
+                                    </button>
+                                </div>
+                            </form>
                         </div>
+                <form action="{{route('vratiKnjige')}}" method="GET">
                         <div
                             class="inline-block min-w-full pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
                             <table class="min-w-full shadow-lg" id="vratiKnjiguTable">
@@ -204,6 +213,15 @@
                         </div>
                     </div>
                 </form>
+            @elseif(count($vratiKnjige) == 0 && isset($_GET['pretraziVrati']))
+                <div class="w-[320px] mx-[20px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
+                        <path fill="currentColor"
+                                d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                        </path>
+                    </svg>
+                    <p class="font-medium text-red-600"> Ne postoje traženi rezultati! </p>
+                </div>
             @else
             <div class="w-[320px] mx-[20px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                 <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
