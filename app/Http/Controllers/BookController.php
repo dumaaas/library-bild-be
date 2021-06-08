@@ -293,7 +293,7 @@ class BookController extends Controller
 
         $bookService->saveRent($knjiga->id, $rentService, $reservationService);
 
-        return back()->with('success', 'Uspjesno izdato!');
+        return back()->with('success', 'Knjiga je uspješno izdata!');
     }
 
     /**
@@ -309,7 +309,7 @@ class BookController extends Controller
 
         $bookService->saveReservation($knjiga, $reservationService, $globalVariableService);
 
-        return back()->with('success', 'Uspjesno rezervisano!');
+        return back()->with('success', 'Knjiga je uspješno rezervisana!');
     }
 
     /**
@@ -592,7 +592,7 @@ class BookController extends Controller
      */
     public function izbrisiKnjigu(Book $knjiga) {
         Book::destroy($knjiga->id);
-        return redirect('evidencijaKnjiga')->with('success','Knjiga uspjesno obrisana');
+        return redirect('evidencijaKnjiga')->with('success','Knjiga je uspješno obrisana!');
     }
 
     /**
@@ -632,7 +632,7 @@ class BookController extends Controller
 
         $bookService->vratiKnjige($globalVariableService);
 
-        return back()->with('success', 'Uspjesno vraceno!');
+        return back()->with('success', 'Knjiga je uspješno vraćena!');
     }
 
     /**
@@ -646,7 +646,7 @@ class BookController extends Controller
 
         $bookService->otpisiKnjige();
 
-        return back()->with('success', 'Uspjesno otpisano!');
+        return back()->with('success', 'Knjiga je uspješno otpisana!');
     }
 
     /**

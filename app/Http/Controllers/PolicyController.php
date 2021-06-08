@@ -57,7 +57,7 @@ class PolicyController extends Controller
         $rokRezervacije->save();
         $rokPrekoracenja->save();
 
-        return back()->with('success', 'Uspjesno izmijenjen rok!');
+        return back()->with('success', 'Rok je uspješno izmijenjen!');
     }
 
 }

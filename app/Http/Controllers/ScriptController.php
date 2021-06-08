@@ -74,7 +74,7 @@ class ScriptController extends Controller
         $scriptService->saveScript($pismo);
 
         //return back
-        return redirect('settingsPismo')->with('success', 'Pismo uspjesno sacuvano!');
+        return redirect('settingsPismo')->with('success', 'Pismo je uspješno uneseno!');
     }
 
     /**
@@ -95,7 +95,7 @@ class ScriptController extends Controller
         $scriptService->editScript($pismo);
 
         //return back to the script
-        return redirect('settingsPismo')->with('success', 'Pismo uspjesno izmjenjeno!');
+        return redirect('settingsPismo')->with('success', 'Pismo je uspješno izmijenjeno!');
     }
 
     /**
@@ -105,6 +105,6 @@ class ScriptController extends Controller
      */
     public function izbrisiPismo(Script $pismo) {
         Script::destroy($pismo->id);
-        return back()->with('success', 'Pismo uspjesno izbrisano!');
+        return back()->with('success', 'Pismo je uspješno izbrisano!');
     }
 }

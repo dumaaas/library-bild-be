@@ -180,7 +180,7 @@ class RentController extends Controller
             'bibliotekari' => $userService->getBibliotekari()->get(),
         ];
 
-        return redirect('izdateKnjige')->with('success','Zapis uspjesno izbrisan!');
+        return redirect('izdateKnjige')->with('success','Zapis je uspješno izbrisan!');
     }
 
     /**

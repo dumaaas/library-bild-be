@@ -73,7 +73,7 @@ class FormatController extends Controller
 
         $formatService->saveFormat($format);
 
-        return redirect('settingsFormat')->with('success', 'Format uspjesno sacuvan!');
+        return redirect('settingsFormat')->with('success', 'Format je uspješno unesen!');
     }
 
     /**
@@ -94,7 +94,7 @@ class FormatController extends Controller
         $formatService->editFormat($format);
 
         //return back to all genres
-        return redirect('settingsFormat')->with('success', 'Format uspjesno izmijenjen!');
+        return redirect('settingsFormat')->with('success', 'Format je uspješno izmijenjen!');
     }
 
     /**
@@ -105,6 +105,6 @@ class FormatController extends Controller
     public function izbrisiFormat(Format $format) {
     
         Format::destroy($format->id);
-        return back()->with('success', 'Format uspjesno izbrisan!');
+        return back()->with('success', 'Format je uspješno izbrisan!');
     }
 }
