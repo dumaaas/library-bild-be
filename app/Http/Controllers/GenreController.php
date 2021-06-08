@@ -69,7 +69,7 @@ class GenreController extends Controller
         
         $genreService->saveGenre($userService, $request);
 
-        return redirect('settingsZanrovi')->with('success', 'Zanr uspjesno sacuvan!');
+        return redirect('settingsZanrovi')->with('success', 'Žanr je uspješno unesen!');
     }
 
     /**
@@ -86,7 +86,7 @@ class GenreController extends Controller
         $genreService->editGenre($zanr, $userService, $request);
 
         //return back to all genres
-        return redirect('settingsZanrovi')->with('success', 'Zanr uspjesno izmijenjen!');
+        return redirect('settingsZanrovi')->with('success', 'Žanr je uspješno izmijenjen!');
     }
 
     /**
@@ -96,6 +96,6 @@ class GenreController extends Controller
      */
     public function izbrisiZanr(Genre $zanr) {
         Genre::destroy($zanr->id);
-        return back()->with('success', 'Zanr uspjesno izbrisan!');
+        return back()->with('success', 'Žanr je uspješno izbrisan!');
     }
 }

@@ -76,7 +76,7 @@ class PublisherController extends Controller
         $publisherService->editPublisher($izdavac);
         
         //return back to the publisher
-        return redirect('settingsIzdavac')->with('success', 'Izdavac uspjesno izmjenjen!');
+        return redirect('settingsIzdavac')->with('success', 'Izdavač je uspješno izmijenjen!');
     }
 
     /**
@@ -86,7 +86,7 @@ class PublisherController extends Controller
      */
     public function izbrisiIzdavaca(Publisher $izdavac) {
         Publisher::destroy($izdavac->id);
-        return back()->with('success', 'Izdavac uspjesno izbrisan!');
+        return back()->with('success', 'Izdavač je uspješno izbrisan!');
     }
 
     /**
@@ -106,6 +106,6 @@ class PublisherController extends Controller
         $publisherService->savePublisher($izdavac);
 
         //return back to the publisher
-        return redirect('settingsIzdavac')->with('success', 'Izdavac uspjesno sacuvan!');
+        return redirect('settingsIzdavac')->with('success', 'Izdavač je uspješno unesen!');
     }
 }

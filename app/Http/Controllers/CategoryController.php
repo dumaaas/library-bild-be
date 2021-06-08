@@ -70,7 +70,7 @@ class CategoryController extends Controller
         $categoryService->saveCategory($userService, $request);
 
         //return back
-        return redirect('settingsKategorije')->with('success', 'Kategorija uspjesno sacuvana!');
+        return redirect('settingsKategorije')->with('success', 'Kategorija je uspješno unesena!');
     }
 
     /**
@@ -87,7 +87,7 @@ class CategoryController extends Controller
         $categoryService->editCategory($kategorija, $userService, $request);
 
         //return back to the category
-        return redirect('settingsKategorije')->with('success', 'Kategorija uspjesno izmjenjena!');
+        return redirect('settingsKategorije')->with('success', 'Kategorija je uspješno izmijenjena!');
     }
 
     /**
@@ -97,6 +97,6 @@ class CategoryController extends Controller
      */
     public function izbrisiKategoriju(Category $kategorija) {
         Category::destroy($kategorija->id);
-        return back()->with('success', 'Kategorija uspjesno izbrisana!');
+        return back()->with('success', 'Kategorija je uspješno izbrisana!');
     }
 }

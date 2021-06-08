@@ -99,7 +99,7 @@ class AuthorController extends Controller
             'autor' => $autor
         ];
 
-        return redirect('autori')->with('success', 'Autor uspjesno izmjenjen!');
+        return redirect('autori')->with('success', 'Autor je uspješno izmijenjen!');
     }
 
     /**
@@ -110,7 +110,7 @@ class AuthorController extends Controller
     public function izbrisiAutora(Author $autor) {
         Author::destroy($autor->id);
 
-        return redirect('autori')->with('success', 'Autor uspjesno izbrisan!');
+        return redirect('autori')->with('success', 'Autor je uspješno izbrisan!');
     }
 
     /**
@@ -128,7 +128,7 @@ class AuthorController extends Controller
             'autor' => $autor
         ];
 
-        return redirect('autori')->with('success', 'Autor uspjesno sacuvan!');
+        return redirect('autori')->with('success', 'Autor je uspješno unesen!');
     }
 
     /**

@@ -113,7 +113,7 @@ class UserController extends Controller
         $userService->editBibliotekar($user, $request);
 
         //return back to the edit author form
-        return redirect('bibliotekari')->with('success', 'Bibliotekar uspjesno izmjenjen!');
+        return redirect('bibliotekari')->with('success', 'Bibliotekar je uspješno izmijenjen!');
     }
 
     /**
@@ -134,7 +134,7 @@ class UserController extends Controller
 
         if ($user->userType->name != 'student' && (Gate::allows('isMyAccount', $user) || Gate::allows('isAdmin'))) {
             User::destroy($user->id);
-            return redirect('bibliotekari')->with('success', 'Bibliotekar uspjesno izbrisan!');
+            return redirect('bibliotekari')->with('success', 'Bibliotekar je uspješno izbrisan!');
         } else {
             return abort(403, trans('Sorry, not sorry!'));
         }
@@ -151,7 +151,7 @@ class UserController extends Controller
 
         $userService->resetujSifru($user);
 
-        return back()->with('success', 'Sifra uspjesno resetovana!');
+        return back()->with('success', 'Šifra je uspješno resetovana!');
     }
 
     /**
@@ -171,7 +171,7 @@ class UserController extends Controller
         ];
 
         //return back to the librarian profile
-        return redirect('bibliotekari')->with('success', 'Bibliotekar uspjesno sacuvan!');
+        return redirect('bibliotekari')->with('success', 'Bibliotekar je uspješno unesen!');
     }
 
     /**
@@ -282,7 +282,7 @@ class UserController extends Controller
         $userService->editUcenik($user, $request);
 
         //return back to the edit student form
-        return redirect('ucenik')->with('success', 'Ucenik uspjesno izmjenjen!');
+        return redirect('ucenik')->with('success', 'Učenik je uspješno izmijenjen!');
     }
 
     /**
@@ -305,7 +305,7 @@ class UserController extends Controller
             return abort(403, trans('Sorry, not sorry!'));
         } else {
             User::destroy($user->id);
-            return redirect('ucenik')->with('success', 'Ucenik uspjesno izbrisan!');
+            return redirect('ucenik')->with('success', 'Učenik je uspješno izbrisan!');
         }
     }
 
@@ -326,7 +326,7 @@ class UserController extends Controller
         ];
 
         //return back to the edit student form
-        return redirect('ucenik')->with('success', 'Ucenik uspjesno sacuvan!');
+        return redirect('ucenik')->with('success', 'Učenik je uspješno unesen!');
     }
 
     /**

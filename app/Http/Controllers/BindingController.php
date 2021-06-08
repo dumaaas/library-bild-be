@@ -75,7 +75,7 @@ class BindingController extends Controller
         $bindingService->saveBinding($povez);
 
         //return back
-        return redirect('settingsPovez')->with('success', 'Povez uspjesno sacuvan!');
+        return redirect('settingsPovez')->with('success', 'Povez je uspješno unesen!');
     }
 
     /**
@@ -96,7 +96,7 @@ class BindingController extends Controller
         $bindingService->editBinding($povez);
 
         //return back to the binding
-        return redirect('settingsPovez')->with('success', 'Povez uspjesno izmjenjen!');
+        return redirect('settingsPovez')->with('success', 'Povez je uspješno izmijenjen!');
     }
 
     /**
@@ -106,6 +106,6 @@ class BindingController extends Controller
      */
     public function izbrisiPovez(Binding $povez) {
         Binding::destroy($povez->id);
-        return back()->with('success', 'Povez uspjesno izbrisan!');
+        return back()->with('success', 'Povez je uspješno izbrisan!');
     }
 }
