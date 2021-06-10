@@ -320,17 +320,22 @@ $(document).ready(function () {
     $(".otpisi-modal").on('click', function () {
         otpisiModal.addClass('hidden');
     })
-
-    // Izbrisi Zapis Modal
-    izbrisiModal = $(".izbrisi-modal");
-    $(".show-izbrisiModal").on('click', function () {
-        izbrisiModal.removeClass('hidden');
-    })
-    // Close Modal
-    $(".izbrisi-modal").on('click', function () {
-        izbrisiModal.addClass('hidden');
-    })
 });
+
+    // Izbrisi ucenika
+    // izbrisiModal = $(".izbrisi-modal");
+    $(".show-izbrisiModal").on('click', function (e) {
+        e.preventDefault();
+        var id=$(this).attr('id');
+        var modal_id = "izbrisi-modal_"+id; 
+        $("."+modal_id).removeClass('hidden');
+    });
+    // Close Modal
+    $(".ponisti").on('click', function () {
+        var id=$(this).attr('id');
+        var modal_id = "izbrisi-modal_"+id; 
+        $("."+modal_id).addClass('hidden');
+    });
 
 function AddReadMore() {
     //This limit you can set after how much characters you want to show Read More.

@@ -424,7 +424,9 @@
         <!-- Modal Header -->
         <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
             <h3>Resetuj šifru: {{Auth::user()->name}}</h3>
-            <button class="text-black close-modal">&cross;</button>
+            <button class="text-black close-modal focus:outline-none">
+                <span aria-hidden="true" class="text-[30px]">&times;</span>
+            </button>
         </div>
         <!-- Modal Body -->
         <form class="forma" method="POST" action="{{route('resetujSifru', ['user' => Auth::user()])}}">

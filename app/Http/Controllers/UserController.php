@@ -298,12 +298,13 @@ class UserController extends Controller
         $viewModel = [
             'ucenici' => User::with('userType')
                     ->where('userType_id', '=', 3)
-                    ->paginate(7)
+                    ->paginate(7),
         ];
 
         if($user->userType->name != 'student') {
             return abort(403, trans('Sorry, not sorry!'));
         } else {
+           
             User::destroy($user->id);
             return redirect('ucenik')->with('success', 'Učenik je uspješno izbrisan!');
         }

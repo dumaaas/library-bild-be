@@ -1479,11 +1479,11 @@ h4 {
 .w-\[268px\]{
     width: 268px;
 }
-.w-\[380px\]{
-    width: 380px;
-}
 .w-\[320px\]{
     width: 320px;
+}
+.w-\[380px\]{
+    width: 380px;
 }
 .w-\[600px\]{
     width: 600px;
@@ -1930,6 +1930,9 @@ h4 {
 .bg-opacity-80{
     --tw-bg-opacity: 0.8;
 }
+.bg-opacity-10{
+    --tw-bg-opacity: 0.1;
+}
 .bg-gradient-to-r{
     background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -2286,6 +2289,9 @@ h4 {
 .text-xl{
     font-size: 1.25rem;
     line-height: 1.75rem;
+}
+.text-\[30px\]{
+    font-size: 30px;
 }
 .font-semibold{
     font-weight: 600;
