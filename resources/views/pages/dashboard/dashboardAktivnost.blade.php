@@ -351,7 +351,7 @@
                     <!-- Activity Cards -->
                     <div id="activityCards">
                         @foreach($aktivnosti as $aktivnost)
-                            <div class="activity-card hidden flex flex-row mb-[30px]">
+                            <div class="activity-card hidden flex-row mb-[30px]">
                                 <div class="w-[60px] h-[60px]">
                                     <img class="rounded-full" src="/storage/image/{{$aktivnost->librarian->photo}}" alt="">
                                 </div>

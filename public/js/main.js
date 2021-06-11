@@ -148,7 +148,7 @@ $(document).ready(function () {
                     var aktivnosti = response.aktivnosti;
 
                     aktivnosti.forEach(aktivnost => {
-                        subcat += '<div class="activity-card2 hidden flex flex-row mb-[30px]">';
+                        subcat += '<div class="activity-card2 hidden flex-row mb-[30px]">';
                         subcat += '<div class="w-[60px] h-[60px]">';
                         subcat += '<img class="rounded-full" src="/storage/image/'+ aktivnost.librarian.photo + '" alt="">';
                         subcat += '</div>';
@@ -201,10 +201,10 @@ $(document).ready(function () {
                     uceniciString = ucenici.toString();
                     if(uceniciString != "") {
                         $('#uceniciSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Ucenici: "+uceniciString);
+                        $('#uceniciSvi').text("Učenici: "+uceniciString);
                     } else {
                         $('#uceniciSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Ucenici: Svi");
+                        $('#uceniciSvi').text("Učenici: Svi");
                     }
 
                     bibliotekariString = bibliotekari.toString();
@@ -239,10 +239,10 @@ $(document).ready(function () {
                     uceniciString = ucenici.toString();
                     if(uceniciString != "") {
                         $('#uceniciSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Ucenici: "+uceniciString);
+                        $('#uceniciSvi').text("Učenici: "+uceniciString);
                     } else {
                         $('#uceniciSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Ucenici: Svi");
+                        $('#uceniciSvi').text("Učenici: Svi");
                     }
 
                     bibliotekariString = bibliotekari.toString();
@@ -295,10 +295,12 @@ $(document).ready(function () {
     modal = $(".modal");
     $(".show-modal").on('click', function () {
         modal.removeClass('hidden');
+        modal.addClass('flex');
     })
     // Close Modal
     $(".close-modal").on('click', function () {
         modal.addClass('hidden');
+        modal.removeClass('flex');
     })
 
     // Vrati Knjigu Modal
@@ -329,12 +331,14 @@ $(document).ready(function () {
         var id=$(this).attr('id');
         var modal_id = "izbrisi-modal_"+id; 
         $("."+modal_id).removeClass('hidden');
+        $("."+modal_id).addClass('flex');
     });
     // Close Modal
     $(".ponisti").on('click', function () {
         var id=$(this).attr('id');
         var modal_id = "izbrisi-modal_"+id; 
         $("."+modal_id).addClass('hidden');
+        $("."+modal_id).removeClass('flex');
     });
 
 function AddReadMore() {

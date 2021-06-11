@@ -24,7 +24,7 @@
         <div class="height-autori pb-[30px] scroll">
             <div class="flex items-center px-[30px] py-4 space-x-3 rounded-lg justify-between">
                 <a href="{{ route('noviAutor') }}"
-                   class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
+                   class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                     <i class="fas fa-plus mr-[15px]"></i> Novi autor
                 </a>
                 <form action="searchAutori" method="GET">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <button
-                            class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">Pretraži
+                            class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">Pretraži
                         </button>
                     </div>
                 </form>
@@ -121,7 +121,7 @@
                         </tr>
                         <!--Modal-->
                         <div
-                            class="absolute z-20 top-0 left-0 flex items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$autor->id}}" id="{{$autor->id}}">
+                            class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$autor->id}}" id="{{$autor->id}}">
                             <!-- Modal -->
                             <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
                                 <!-- Modal Header -->
@@ -155,7 +155,7 @@
         @else
         <div class="mx-[20px] mt-[20px]">
             <a href="{{ route('noviAutor') }}"
-                class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
+                class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                 <i class="fas fa-plus mr-[15px]"></i> Novi autor
             </a>
             <div class="w-[350px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">

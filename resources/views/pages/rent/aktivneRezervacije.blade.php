@@ -448,7 +448,7 @@
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                             <p
-                                                class="hidden inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsAktivneRezervacije hover:text-[#606FC7]">
+                                                class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsAktivneRezervacije hover:text-[#606FC7]">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </p>
                                             <div
