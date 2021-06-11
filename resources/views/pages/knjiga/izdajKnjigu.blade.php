@@ -81,8 +81,8 @@
                                         <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                         <span class="px-4 py-0">Izmijeni knjigu</span>
                                     </a>
-                                    <a href="{{route('izbrisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
-                                        class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
+                                    <a href="#" tabindex="0" id="{{$knjiga->id}}"
+                                        class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-izbrisiModal"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
                                         <span class="px-4 py-0">Izbriši knjigu</span>
@@ -206,6 +206,30 @@
                         </div>
                     </div>
                 </form>
+                 <!--Modal-->
+                 <div
+                    class="absolute z-20 top-0 left-0 flex items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$knjiga->id}}" id="{{$knjiga->id}}">
+                    <!-- Modal -->
+                    <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
+                        <!-- Modal Header -->
+                        <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
+                            <h3>Da li ste sigurni da želite da izbrišete knjigu?</h3>
+                            <button class="text-black close ponisti focus:outline-none" id="{{$knjiga->id}}">
+                                <span aria-hidden="true" class="text-[30px]">&times;</span>
+                            </button>
+                        </div>
+                        <!-- Modal Body -->
+                        <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
+                            <a href="{{route('izbrisiKnjigu', ['knjiga' => $knjiga->id])}}"
+                                class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                                <i class="fas fa-check mr-[7px]"></i> Izbriši
+                            </a>
+                            <a href="#" id="{{$knjiga->id}}" class="ponisti shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                            <i class="fas fa-times mr-[7px]"></i> Poništi 
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
