@@ -49,7 +49,7 @@ class FormatService {
 
         //request all data, validate and update genre
         request()->validate([
-            'nazivFormatEdit'=>'sometimes|string|max:256',
+            'nazivFormatEdit'=>'string|max:256',
         ]);
 
         $format->name=request('nazivFormatEdit');

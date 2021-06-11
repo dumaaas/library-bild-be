@@ -29,7 +29,7 @@ class ScriptService {
 
         //request all data, validate and update script
         request()->validate([
-            'nazivPismoEdit' => 'sometimes|string|max:256',
+            'nazivPismoEdit' => 'string|max:256',
         ]);
 
         $pismo->name = request('nazivPismoEdit');

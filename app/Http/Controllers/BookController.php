@@ -460,7 +460,7 @@ class BookController extends Controller
         //request all data, validate and update author
         request()->validate([
             'nazivKnjiga'      => 'required|max:256',
-            'kratki_sadrzaj'   => 'required|max:4128',
+            'kratki_sadrzaj'   => 'max:4128',
             'valuesKategorije' => 'required',
             'valuesZanrovi'    => 'required',
             'valuesAutori'     => 'required',
@@ -470,8 +470,8 @@ class BookController extends Controller
             'brStrana'         => 'required',
             'knjigaPismo'      => 'required',
             'knjigaPovez'      => 'required',
-            'knjigaFormat'     => 'required|',
-            'knjigaIsbn'       => 'required|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/',
+            'knjigaFormat'     => 'required',
+            'knjigaIsbn'       => 'required|unique|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/',
             'knjigaJezik'      => 'required',
             'movieImages'      => 'required',
             'movieImages.*'    => 'mimes:jpeg,png,jpg',
