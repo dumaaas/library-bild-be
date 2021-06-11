@@ -34,23 +34,28 @@ class CreateBooksTable extends Migration
 
             $table->foreign('script_id')
                 ->references('id')
-                ->on('scripts');
+                ->on('scripts')
+                ->onDelete('cascade');
 
             $table->foreign('language_id')
                 ->references('id')
-                ->on('languages');
+                ->on('languages')
+                ->onDelete('cascade');
 
             $table->foreign('binding_id')
                 ->references('id')
-                ->on('bindings');
+                ->on('bindings')
+                ->onDelete('cascade');
 
             $table->foreign('format_id')
                 ->references('id')
-                ->on('formats');
+                ->on('formats')
+                ->onDelete('cascade');
 
             $table->foreign('publisher_id')
                 ->references('id')
-                ->on('publishers');
+                ->on('publishers')
+                ->onDelete('cascade');
 
         });
     }
