@@ -87,4 +87,11 @@
             </div>
         </section>
 
+        <script>
+            CKEDITOR.replace('authorBiography', {
+                width: "90%",
+                height: "150px"
+            });
+        </script>
+
 @endsection

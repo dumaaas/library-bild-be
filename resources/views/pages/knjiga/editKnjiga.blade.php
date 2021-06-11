@@ -633,4 +633,11 @@
                 </div>
         </form>
     </section>
+
+    <script>
+        CKEDITOR.replace('kratki_sadrzaj_edit', {
+            width: "90%",
+            height: "150px"
+        });
+    </script>
 @endsection

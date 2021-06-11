@@ -651,4 +651,12 @@
         </div>
     </section>
 
+    <script>
+        CKEDITOR.replace('kratki_sadrzaj', {
+            width: "90%",
+            height: "150px"
+        });
+    </script>
+
 @endsection
+

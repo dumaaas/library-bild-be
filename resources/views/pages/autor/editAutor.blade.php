@@ -85,4 +85,11 @@
             </form>
         </div>
     </section>
+
+    <script>
+        CKEDITOR.replace('biography', {
+            width: "90%",
+            height: "150px"
+        });
+    </script>
 @endsection
