@@ -112,8 +112,8 @@
                             </div>
 
                         </div>
-                        <div class="ml-[100px]  mt-[20px]">
-                            <img class="p-2 border-2 border-gray-300" width="300px" src="/storage/image/{{$user->photo}}" alt="">
+                        <div class="ml-[100px] mt-[20px] w-48 h-48">
+                            <img class="border-2 border-gray-300" width="300px" src="/storage/image/{{$user->photo}}" alt="">
                         </div>
                     </div>
             </div>
