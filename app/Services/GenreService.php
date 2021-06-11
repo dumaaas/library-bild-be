@@ -52,7 +52,7 @@ class GenreService {
     public function editGenre($zanr, $userService, $request) {
          //request all data, validate and update genre
          request()->validate([
-            'nazivZanraEdit' => 'sometimes|string|max:256',
+            'nazivZanraEdit' => 'string|max:256',
             'userImage'      => 'nullable|mimes:jpeg,png,jpg'
         ]);
 

@@ -292,8 +292,8 @@ class UserService {
     public function resetujSifru($user) {
         //request all data, validate and update student
         request()->validate([
-            'pwReset'  => 'required|same:pw2Reset|min:8|max:256',
-            'pw2Reset' => 'required|same:pwReset|min:8|max:256',
+            'pwReset'  => 'required|min:8|max:256|same:pw2Reset',
+            'pw2Reset' => 'required|min:8|max:256|same:pwReset',
         ]);
 
         $sifra1 = request('pwReset');

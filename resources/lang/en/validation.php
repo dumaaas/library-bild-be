@@ -138,9 +138,205 @@ return [
             'rule-name' => 'custom-message',
         ],
         'imePrezimeBibliotekar' => [
-            'required' => 'Polje ime i prezime je obavezno!',
-            'regex' => 'Ime i prezime ne moze sadrzati brojeve!',
-        ]
+            'required' => 'Ime i prezime bibliotekara je obavezno.',
+            'regex' => 'Ime i prezime bibliotekara ne može sadržati brojeve.',
+        ],
+        'jmbgBibliotekar' => [
+            'required' => 'JMBG bibliotekara je obavezan.',
+            'unique' => 'JMBG bibliotekara već postoji u bazi podataka.',
+            'digits' => 'JMBG bibliotekara mora sadržati samo brojeve.',
+        ],
+        'emailBibliotekar' => [
+            'required' => 'E-mail bibliotekara je obavezan.',
+            'unique' => 'E-mail bibliotekara već postoji u bazi podataka.',
+        ],
+        'usernameBibliotekar' => [
+            'required' => 'Korisničko ime bibliotekara je obavezno.',
+        ],
+        'pwBibliotekar' => [
+            'required' => 'Šifra bibliotekara je obavezna.',
+            'min' => 'Šifra bibliotekara mora sadržati minimum 8 cifara.',
+            'same' => 'Šifre bibliotekara se moraju poklapati.',
+        ],
+        'pw2Bibliotekar' => [
+            'required' => 'Šifra bibliotekara je obavezna.',
+            'min' => 'Šifra bibliotekara mora sadržati minimum 8 cifara.',
+            'same' => 'Šifre bibliotekara se moraju poklapati.',
+        ],
+        'userImage' => [
+            'mimes' => 'Slika bibliotekara mora biti tipa: jpeg,png,jpg.',
+        ],
+        'imePrezimeBibliotekarEdit' => [
+            'regex' => 'Ime i prezime bibliotekara ne može sadržati brojeve.',
+        ],
+        'jmbgBibliotekarEdit' => [
+            'unique' => 'JMBG bibliotekara već postoji u bazi podataka.',
+            'digits' => 'JMBG bibliotekara mora sadržati samo brojeve.',
+        ],
+        'emailBibliotekarEdit' => [
+            'unique' => 'E-mail bibliotekara već postoji u bazi podataka.',
+        ],
+        'pwReset' => [
+            'required' => 'Nova šifra bibliotekara je obavezna.',
+            'min' => 'Šifra bibliotekara mora sadržati minimum 8 cifara.',
+            'same' => 'Šifre bibliotekara se moraju poklapati.',
+        ],
+        'pw2Reset' => [
+            'required' => 'Nova šifra bibliotekara je obavezna.',
+            'min' => 'Šifra bibliotekara mora sadržati minimum 8 cifara.',
+            'same' => 'Šifre bibliotekara se moraju poklapati.',
+        ],
+        'imePrezimeUcenik' => [
+            'required' => 'Ime i prezime učenika je obavezno.',
+            'regex' => 'Ime i prezime učenika ne može sadržati brojeve.',
+        ],
+        'jmbgUcenik' => [
+            'required' => 'JMBG učenika je obavezan.',
+            'unique' => 'JMBG učenika već postoji u bazi podataka.',
+            'digits' => 'JMBG učenika mora sadržati samo brojeve.',
+        ],
+        'emailUcenik' => [
+            'required' => 'E-mail učenika je obavezan.',
+            'unique' => 'E-mail učenika već postoji u bazi podataka.',
+        ],
+        'usernameUcenik' => [
+            'required' => 'Korisničko ime učenika je obavezno.',
+        ],
+        'pwUcenik' => [
+            'required' => 'Šifra učenika je obavezna.',
+            'min' => 'Šifra učenika mora sadržati minimum 8 cifara.',
+            'same' => 'Šifre učenika se moraju poklapati.',
+        ],
+        'pw2Ucenik' => [
+            'required' => 'Šifra učenika je obavezna.',
+            'min' => 'Šifra učenika mora sadržati minimum 8 cifara.',
+            'same' => 'Šifre učenika se moraju poklapati.',
+        ],
+        'imePrezimeUcenikEdit' => [
+            'regex' => 'Ime i prezime učenika ne može sadržati brojeve.',
+        ],
+        'jmbgUcenikEdit' => [
+            'unique' => 'JMBG učenika već postoji u bazi podataka.',
+            'digits' => 'JMBG učenika mora sadržati samo brojeve.',
+        ],
+        'emailUcenikEdit' => [
+            'unique' => 'E-mail učenika već postoji u bazi podataka.',
+        ],
+        'authorName' => [
+            'required' => 'Ime i prezime autora je obavezno.',
+            'regex' => 'Ime i prezime autora ne može sadržati brojeve.',
+        ],
+        'name' => [
+            'regex' => 'Ime i prezime autora ne može sadržati brojeve.',
+        ],
+        'nazivKnjiga' => [
+            'required' => 'Naziv knjige je obavezan.',
+        ],
+        'valuesKategorije' => [
+            'required' => 'Kategorija je obavezna.',
+        ],
+        'valuesZanrovi' => [
+            'required' => 'Žanr je obavezan.',
+        ],
+        'valuesAutori' => [
+            'required' => 'Autor je obavezan.',
+        ],
+        'knjigaIzdavac' => [
+            'required' => 'Izdavač je obavezan.',
+        ],
+        'godinaIzdavanja' => [
+            'required' => 'Godina izdavanja je obavezna.',
+        ],
+        'knjigaKolicina' => [
+            'required' => 'Količina je obavezna.',
+        ],
+        'brStrana' => [
+            'required' => 'Broj strana je obavezan.',
+        ],
+        'knjigaPismo' => [
+            'required' => 'Pismo je obavezno.',
+        ],
+        'knjigaJezik' => [
+            'required' => 'Jezik je obavezan.',
+        ],
+        'knjigaPovez' => [
+            'required' => 'Povez je obavezan.',
+        ],
+        'knjigaFormat' => [
+            'required' => 'Format je obavezan.',
+        ],
+        'knjigaIsbn' => [
+            'required' => 'ISBN knjige je obavezan.',
+            'unique' => 'ISBN knjige već postoji u bazi podataka.',
+            'regex' => 'ISBN knjige mora biti pravilnog formata.',
+        ],
+        'movieImages' => [
+            'required' => 'Slika knjige je obavezna.',
+        ],
+        'movieImages.*' => [
+            'mimes' => 'Slika bibliotekara mora biti tipa: jpeg,png,jpg.',
+        ],
+        'imageCover' => [
+            'required' => 'Cover slika knjige je obavezna.',
+        ],
+        'isbnEdit' => [
+            'unique' => 'ISBN knjige već postoji u bazi podataka.',
+            'regex' => 'ISBN knjige mora biti pravilnog formata.',
+        ],
+        'ucenik' => [
+            'required' => 'Obavezno je odabrati učenika.',
+        ],
+        'datumIzdavanja' => [
+            'required' => 'Datum izdavanja je obavezan.',
+        ],
+        'datumRezervisanja' => [
+            'required' => 'Datum rezervisanja je obavezan.',
+        ],
+        'rokRezervacije' => [
+            'numeric' => 'Rok rezervacije mora sadržati samo brojeve.',
+        ],
+        'rokPozajmljivanja' => [
+            'numeric' => 'Rok pozajmljivanja mora sadržati samo brojeve.',
+        ],
+        'rokPrekoracenja' => [
+            'numeric' => 'Rok prekoračenja mora sadržati samo brojeve.',
+        ],
+        'nazivKategorije' => [
+            'required' => 'Naziv kategorije je obavezan.',
+        ],
+        'nazivKategorijeEdit' => [
+            'string' => 'Naziv kategorije je obavezan.',
+        ],
+        'nazivZanra' => [
+            'required' => 'Naziv žanra je obavezan.',
+        ],
+        'nazivZanraEdit' => [
+            'string' => 'Naziv žanra je obavezan.',
+        ],
+        'nazivIzdavac' => [
+            'required' => 'Naziv izdavača je obavezan.',
+        ],
+        'nazivIzdavacEdit' => [
+            'string' => 'Naziv izdavača je obavezan.',
+        ],
+        'nazivPovez' => [
+            'required' => 'Naziv poveza je obavezan.',
+        ],
+        'nazivPovezEdit' => [
+            'string' => 'Naziv poveza je obavezan.',
+        ],
+        'nazivFormat' => [
+            'required' => 'Naziv formata je obavezan.',
+        ],
+        'nazivFormatEdit' => [
+            'string' => 'Naziv formata je obavezan.',
+        ],
+        'nazivPismo' => [
+            'required' => 'Naziv pisma je obavezan.',
+        ],
+        'nazivPismoEdit' => [
+            'string' => 'Naziv pisma je obavezan.',
+        ],
     ],
 
     /*

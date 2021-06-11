@@ -29,7 +29,7 @@ class BindingService {
 
         //request all data, validate and update binding
         request()->validate([
-          'nazivPovezEdit' => 'sometimes|string|max:256',
+          'nazivPovezEdit' => 'string|max:256',
         ]);
 
         $povez->name = request('nazivPovezEdit');
