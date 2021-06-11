@@ -526,7 +526,7 @@ class BookController extends Controller
             'pismoEdit'             => 'required',
             'povezEdit'             => 'required',
             'formatEdit'            => 'required',
-            'isbnEdit'              => 'required|max:20',
+            'isbnEdit'              => 'required|unique|max:20',
             'jezikEdit'             => 'required',
         ]);
 
