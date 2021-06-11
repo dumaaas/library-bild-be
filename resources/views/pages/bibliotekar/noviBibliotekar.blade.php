@@ -91,7 +91,7 @@
 
                             <div class="mt-[20px]">
                                 <span>Šifra <span class="text-red-500">*</span></span>
-                                <input type="password" name="pwBibliotekar" id="pwBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekar()"/>
+                                <input type="password" name="pwBibliotekar" id="pwBibliotekar" autocomplete="new-password" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekar()"/>
                                 @error('pwBibliotekar')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror

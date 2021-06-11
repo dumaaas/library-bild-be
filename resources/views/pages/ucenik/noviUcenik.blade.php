@@ -90,7 +90,7 @@
 
                             <div class="mt-[20px]">
                                 <span>Šifra <span class="text-red-500">*</span></span>
-                                <input type="password" name="pwUcenik" id="pwUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwUcenik()"/>
+                                <input type="password" name="pwUcenik" id="pwUcenik" autocomplete="new-password" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwUcenik()"/>
                                 @error('pwUcenik')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror

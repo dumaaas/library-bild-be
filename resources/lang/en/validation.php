@@ -217,7 +217,7 @@ return [
         ],
         'jmbgUcenikEdit' => [
             'unique' => 'JMBG učenika već postoji u bazi podataka.',
-            'digits' => 'JMBG učenika mora sadržati samo brojeve.',
+            'digits' => 'JMBG učenika mora sadržati 14 cifara.',
         ],
         'emailUcenikEdit' => [
             'unique' => 'E-mail učenika već postoji u bazi podataka.',
