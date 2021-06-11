@@ -112,7 +112,7 @@
                                     <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
                                         <!-- Modal Header -->
                                         <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
-                                            <h3>Da li ste sigurni da želite da izbrišete učenika?</h3>
+                                            <h3>Da li ste sigurni da želite da izbrišete povez?</h3>
                                             <button class="text-black close ponisti focus:outline-none" id="{{$povez->id}}">
                                                 <span aria-hidden="true" class="text-[30px]">&times;</span>
                                             </button>
