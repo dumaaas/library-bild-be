@@ -119,8 +119,8 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!--Modal-->
                                     <div
-                                    
                                         class="absolute z-20 top-0 left-0 flex items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$user->id}}" id="{{$user->id}}">
                                         <!-- Modal -->
                                         <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
