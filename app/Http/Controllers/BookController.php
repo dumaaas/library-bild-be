@@ -471,7 +471,7 @@ class BookController extends Controller
             'knjigaPismo'      => 'required',
             'knjigaPovez'      => 'required',
             'knjigaFormat'     => 'required',
-            'knjigaIsbn'       => 'required|unique|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/',
+            'knjigaIsbn'       => 'required|unique:books,ISBN|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/',
             'knjigaJezik'      => 'required',
             'movieImages'      => 'required',
             'movieImages.*'    => 'mimes:jpeg,png,jpg',
@@ -526,14 +526,13 @@ class BookController extends Controller
             'pismoEdit'             => 'required',
             'povezEdit'             => 'required',
             'formatEdit'            => 'required',
-            'isbnEdit'              => 'required|unique|max:20',
+            'isbnEdit'              => 'nullable|unique:books,ISBN|max:20',
             'jezikEdit'             => 'required',
         ]);
 
         $knjiga->title=request('nazivKnjigaEdit');
         $knjiga->pages=request('brStranaEdit');
         $knjiga->publishYear=request('godinaIzdavanjaEdit');
-        $knjiga->ISBN=request('isbnEdit');
         $knjiga->quantity=request('knjigaKolicinaEdit');
         $knjiga->summary=request('kratki_sadrzaj_edit');
         $knjiga->format_id=request('formatEdit');
@@ -541,6 +540,10 @@ class BookController extends Controller
         $knjiga->script_id=request('pismoEdit');
         $knjiga->publisher_id=request('izdavacEdit');
         $knjiga->language_id=request('jezikEdit');
+
+        if(request('isbnEdit')) {
+            $knjiga->ISBN = request('isbnEdit');
+        }
 
         $knjiga->save();
 
@@ -581,7 +584,7 @@ class BookController extends Controller
                                 ->get(),
         ];
 
-        return view($viewName, $viewModel);
+        return redirect('evidencijaKnjiga')->with('success', 'Knjiga je uspješno izmijenjena.');
     }
 
     /**

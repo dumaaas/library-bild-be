@@ -64,6 +64,8 @@ $(function () {
 
 $(document).ready(function () {
 
+    // $('#tabMenu a[href="#{{ old('tabMultimedia') }}"]').tab('show');
+
     $('#autoriFilterPonisti').click(function (e) {
         e.preventDefault();
         $('.autoriFilterPonisti').prop("checked", false);
@@ -337,6 +339,7 @@ $(document).ready(function () {
     $(".ponisti").on('click', function () {
         var id=$(this).attr('id');
         var modal_id = "izbrisi-modal_"+id; 
+        console.log(id, modal_id);
         $("."+modal_id).addClass('hidden');
         $("."+modal_id).removeClass('flex');
     });
@@ -345,9 +348,9 @@ function AddReadMore() {
     //This limit you can set after how much characters you want to show Read More.
     var carLmt = 1000;
     // Text to show when text is collapsed
-    var readMoreTxt = " ... Prikazi vise &#8681;";
+    var readMoreTxt = " ... Prikaži više &#8681;";
     // Text to show when text is expanded
-    var readLessTxt = " Prikazi manje &#8657;";
+    var readLessTxt = " Prikaži manje &#8657;";
 
 
     //Traverse all selectors with this class and manupulate HTML part to show Read More
@@ -1936,15 +1939,6 @@ $('.form-checkbox').click(function () {
         $(this).closest('tr').removeClass('bg-gray-200');
     }
 })
-
-// Edit book multimedia - delete (hide) image
-$('#hide-image1').click(function () {
-    $('.hiddenImage1').hide();
-});
-
-$('#hide-image2').click(function () {
-    $('.hiddenImage2').hide();
-});
 
 // Header - dropdown for create button
 $('#dropdownCreate').click(function () {

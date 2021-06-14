@@ -161,6 +161,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //GALLERY - ROUTES
+    Route::get('/deleteImage/{slika}', [\App\Http\Controllers\GaleryController::class, 'deleteImage'])->name('deleteImage');
 
 
     //GENRE - ROUTES

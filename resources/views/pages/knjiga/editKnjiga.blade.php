@@ -520,11 +520,11 @@
                                 <img src="/storage/image/{{$slika->photo}}" alt="" class="h-[322px]">
                                 <!-- Checkbox (checked if image is cover photo of book)-->
                                 <input
-                                    class="absolute top-[10px] right-[10px] z-50 p-1 bg-white rounded-bl focus:outline-none"
+                                    class="absolute top-[10px] right-[10px] z-10 p-1 bg-white rounded-bl focus:outline-none"
                                     type="radio" name="imageCover" {{ $slika->cover == 1 ? 'checked' : '' }} />
                                 <!-- End checkbox -->
-                                <button
-                                    class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"
+                                <a href="#" id="{{$slika->id}}"
+                                    class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none show-izbrisiModal"
                                     type="button" id="hide-image1">
                                     <svg class="w-[25px] h-[25px] text-gray-700"
                                         xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -533,11 +533,35 @@
                                             stroke-width="2"
                                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
-                                </button>
+                                </a>
                                 <div
                                     class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs text-center bg-white bg-opacity-50">
                                         <span class="w-full font-bold text-gray-900 truncate">{{$slika->photo}}</span>
                                     <span class="text-xs text-gray-900">89kB</span>
+                                </div>
+                            </div>
+                            <!--Modal-->
+                            <div
+                                class="absolute z-20 top-[-232px] left-0 items-center justify-center hidden w-full h-screen bg-transparent izbrisi-modal_{{$slika->id}}" id="{{$slika->id}}">
+                                <!-- Modal -->
+                                <div class="w-[600px] bg-white rounded shadow-lg">
+                                    <!-- Modal Header -->
+                                    <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
+                                        <h3 class="text-gray-700">Da li ste sigurni da želite da izbrišete sliku?</h3>
+                                        <a href="#" class="text-black close ponisti focus:outline-none" id="{{$slika->id}}">
+                                            <span aria-hidden="true" class="text-[30px]">&times;</span>
+                                        </a>
+                                    </div>
+                                    <!-- Modal Body -->
+                                    <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
+                                        <a href="{{route('deleteImage', ['slika' => $slika->id])}}"
+                                            class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                                            <i class="fas fa-check mr-[7px]"></i> Izbriši
+                                        </a>
+                                        <a href="#" id="{{$slika->id}}" class="ponisti shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                                        <i class="fas fa-times mr-[7px]"></i> Poništi 
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
