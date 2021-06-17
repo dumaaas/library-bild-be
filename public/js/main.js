@@ -434,10 +434,41 @@ function dataFileDnD() {
         },
         addFiles(e) {
             const files = createFileList([...this.files], [...e.target.files]);
+            console.log(files);
             this.files = files;
-            // this.form.formData.files = [...files];
-        }
-    };
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            e.preventDefault();
+            var movieImage = $('#slika-upload').prop('files')[0] ?? null;
+            
+            let formData = new FormData(editBookForm);
+            if(movieImage != null){
+                formData.append('movieImage', movieImage);
+            }
+            var bookId= $("input[name=editBookId]").val();
+            $.ajax({
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                url: bookId+"/update/",
+                success: function(response){
+                    // window.location = "/settingsZanrovi";
+                    $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.uspjesno+'</div>');
+                },
+                error: function(response){
+                    $('#movieImageError').empty();
+                    
+                    $('#movieImageError').append(response.responseJSON.errors.movieImages);
+                }
+            });
+                    // this.form.formData.files = [...files];
+                }
+            };
 }
 
 // Student image upload
