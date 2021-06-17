@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('ucenikProfile')
+@section('studentProfile')
     <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
             <!-- Heading of content -->
         <div class="heading">
@@ -15,7 +15,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="../students" class="text-[#2196f3] hover:text-blue-600">
                                         Svi učenici
                                     </a>
                                 </li>
@@ -23,7 +23,7 @@
                                     <span class="mx-2">/</span>
                                 </li>
                                 <li>
-                                    <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
+                                    <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
                                         ID-{{$user->id}}
                                     </a>
                                 </li>
@@ -38,7 +38,7 @@
                             Resetuj šifru
                         </a>
                     @endcan
-                    <a href="{{ route('editUcenik', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                    <a href="{{ route('editStudent', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                         <i class="fas fa-edit mr-[3px] "></i>
                         Izmijeni podatke
                     </a>
@@ -52,7 +52,7 @@
                             aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                             <div class="py-1">
                                 <a href="#" tabindex="0" id="{{$user->id}}"
-                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-izbrisiModal"
+                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-deleteModal"
                                     role="menuitem">
                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
                                     <span class="px-4 py-0">Izbriši korisnika</span>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="border-b-[1px] py-4 text-gray-500 border-[#e4dfdf] pl-[30px]">
-            <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="inline active-book-nav">
+            <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="inline active-book-nav">
                 Osnovni detalji
             </a>
             <a href="{{route('ucenikIzdate',['user'=> $user->id])}}" class="inline ml-[70px] hover:text-blue-800">
@@ -82,7 +82,7 @@
                             </div>
                             <div class="mt-[40px]">
                                 <span class="text-gray-500">Tip korisnika</span>
-                                <p class="font-medium">{{$user->userType->name}}</p>
+                                <p class="font-medium">Učenik</p>
                             </div>
                             <div class="mt-[40px]">
                                 <span class="text-gray-500">JMBG</span>
@@ -120,19 +120,19 @@
         </div>
          <!--Modal-->
          <div
-                class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$user->id}}" id="{{$user->id}}">
+                class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 delete-modal_{{$user->id}}" id="{{$user->id}}">
                 <!-- Modal -->
                 <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
                     <!-- Modal Header -->
                     <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
                         <h3>Da li ste sigurni da želite da izbrišete učenika?</h3>
-                        <button class="text-black close ponisti focus:outline-none" id="{{$user->id}}">
+                        <button class="text-black close cancel focus:outline-none" id="{{$user->id}}">
                             <span aria-hidden="true" class="text-[30px]">&times;</span>
                         </button>
                     </div>
                     <!-- Modal Body -->
                     <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                        <a href="{{ route('deleteUcenik', ['user' => $user->id]) }}"
+                        <a href="{{ route('deleteStudent', ['user' => $user->id]) }}"
                             class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                             <i class="fas fa-check mr-[7px]"></i> Izbriši
                         </a>

@@ -96,7 +96,7 @@
                                 <i class="far fa-address-book mr-[8px] ml-[5px] py-1"></i>
                                 <span class="px-4 py-0">Bibliotekar</span>
                             </a>
-                            <a href="{{route('noviUcenik')}}" tabindex="0"
+                            <a href="{{route('addStudent')}}" tabindex="0"
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                role="menuitem">
                                 <i class="fas fa-users mr-[5px] ml-[3px] py-1"></i>
@@ -250,7 +250,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="/ucenik" aria-label="Ucenici">
+                                <a href="/students" aria-label="Ucenici">
                                     <i
                                         class="text-[18px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] fas fa-users"></i>
                                     <div class="hidden sidebar-item">
@@ -357,7 +357,7 @@
     @yield('editKnjigaSpecifikacija')
     @yield('editPismo')
     @yield('editBinding')
-    @yield('editUcenik')
+    @yield('editStudent')
     @yield('editZanr')
     @yield('evidencijaKnjiga')
     @yield('evidencijaKnjigaMultimedija')
@@ -382,7 +382,7 @@
     @yield('addFormat')
     @yield('noviIzdavac')
     @yield('addBinding')
-    @yield('noviUcenik')
+    @yield('addStudent')
     @yield('noviZanr')
     @yield('novoPismo')
     @yield('otpisiKnjigu')
@@ -394,12 +394,12 @@
     @yield('settingsPolisa')
     @yield('bindings')
     @yield('settingsZanrovi')
-    @yield('ucenik')
+    @yield('students')
     @yield('ucenikAktivne')
     @yield('ucenikArhivirane')
     @yield('ucenikIzdate')
     @yield('ucenikPrekoracenje')
-    @yield('ucenikProfile')
+    @yield('studentProfile')
     @yield('ucenikVracene')
     @yield('vraceneKnjige')
     @yield('vratiKnjigu')

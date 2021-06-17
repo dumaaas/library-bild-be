@@ -176,50 +176,50 @@ class UserService {
      *
      * @return void
      */
-    public function getUcenici() {
-        return $ucenici = User::with('userType')
+    public function getStudents() {
+        return $students = User::with('userType')
                         ->where('userType_id', '=', 3);
     }
 
     /**
      * Izvrsi validaciju podataka i edituj ucenika
      *
-     * @param  User  $ucenik
+     * @param  User  $student
      * @return void
      */
-    public function editUcenik($ucenik, $request) {
+    public function editStudent($student, $request) {
         //request all data, validate and update student
         request()->validate([
-            'imePrezimeUcenikEdit'=> 'nullable|string|max:128|regex:/^([^0-9]*)$/',
-            'jmbgUcenikEdit'      => 'nullable|digits:14|unique:users,jmbg',
-            'emailUcenikEdit'     => 'nullable|string|unique:users,email|max:128',
-            'usernameUcenikEdit'  => 'nullable|string|max:64',
-            'pwUcenikEdit'        => 'nullable|max:256|min:8|same:pw2UcenikEdit',
-            'pw2UcenikEdit'       => 'nullable|max:256|min:8|same:pwUcenikEdit',
-            'userImage'           => 'nullable|mimes:jpeg,png,jpg'
+            'studentNameEdit'      => 'nullable|string|max:128|regex:/^([^0-9]*)$/',
+            'studentJmbgEdit'      => 'nullable|digits:14|unique:users,jmbg',
+            'studentEmailEdit'     => 'nullable|string|unique:users,email|max:128',
+            'studentUsernameEdit'  => 'nullable|string|max:64',
+            'studentPasswordEdit'  => 'nullable|max:256|min:8|same:studentPassword2Edit',
+            'studentPassword2Edit' => 'nullable|max:256|min:8|same:studentPasswordEdit',
+            'userImage'            => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        if(request('imePrezimeUcenikEdit')) {
-            $ucenik->name = request('imePrezimeUcenikEdit');
+        if(request('studentNameEdit')) {
+            $student->name = request('studentNameEdit');
         }
-        if(request('jmbgUcenikEdit')) {
-            $ucenik->jmbg = request('jmbgUcenikEdit');
+        if(request('studentJmbgEdit')) {
+            $student->jmbg = request('studentJmbgEdit');
         }
-        if(request('emailUcenikEdit')) {
-            $ucenik->email = request('emailUcenikEdit');
+        if(request('studentEmailEdit')) {
+            $student->email = request('studentEmailEdit');
         }
-        if(request('usernameUcenikEdit')) {
-            $ucenik->username = request('usernameUcenikEdit');
-        }
-
-        $this->uploadEditPhoto($ucenik, $request);
-
-        if(request('pwUcenikEdit')) {
-            $sifra1 = request('pwUcenikEdit');
-            $ucenik->password=Hash::make($sifra1);
+        if(request('studentUsernameEdit')) {
+            $student->username = request('studentUsernameEdit');
         }
 
-        $ucenik->save();
+        $this->uploadEditPhoto($student, $request);
+
+        if(request('studentPasswordEdit')) {
+            $password = request('studentPasswordEdit');
+            $student->password=Hash::make($password);
+        }
+
+        $student->save();
     }
 
     /**
@@ -227,39 +227,39 @@ class UserService {
      *
      * @return void
      */
-    public function saveUcenik($request) {
+    public function saveStudent($request) {
         //request all data, validate and update student
         request()->validate([
-            'imePrezimeUcenik' => 'required|string|max:128|regex:/^([^0-9]*)$/',
-            'jmbgUcenik'       => 'required|digits:14|unique:users,jmbg',
-            'emailUcenik'      => 'required|string|unique:users,email|max:128',
-            'usernameUcenik'   => 'required|string|max:64',
-            'pwUcenik'         => 'required|max:256|min:8|same:pw2Ucenik',
-            'pw2Ucenik'        => 'required|max:256|min:8|same:pwUcenik',
-            'userImage'        => 'nullable|mimes:jpeg,png,jpg'
+            'studentName'       => 'required|string|max:128|regex:/^([^0-9]*)$/',
+            'studentJmbg'       => 'required|digits:14|unique:users,jmbg',
+            'studentEmail'      => 'required|string|unique:users,email|max:128',
+            'studentUsername'   => 'required|string|max:64',
+            'studentPassword'   => 'required|max:256|min:8|same:studentPassword2',
+            'studentPassword2'  => 'required|max:256|min:8|same:studentPassword',
+            'userImage'         => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $ucenik = new User();
+        $student = new User();
 
-        $ucenik->userType_id = 3;
+        $student->userType_id = 3;
 
-        $ucenik->name              = request('imePrezimeUcenik');
-        $ucenik->jmbg              = request('jmbgUcenik');
-        $ucenik->email_verified_at = now();
-        $ucenik->email             = request('emailUcenik');
-        $ucenik->username          = request('usernameUcenik');
-        $ucenik->remember_token    = Str::random(10);
+        $student->name              = request('studentName');
+        $student->jmbg              = request('studentJmbg');
+        $student->email_verified_at = now();
+        $student->email             = request('studentEmail');
+        $student->username          = request('studentUsername');
+        $student->remember_token    = Str::random(10);
 
-        $this->uploadPhoto($ucenik, $request);
+        $this->uploadPhoto($student, $request);
 
-        $sifra1 = request('pwUcenik');
-        $sifra2 = request('pw2Ucenik');
+        $password = request('studentPassword');
+        $passwordRepeat = request('studentPassword2');
 
-        $ucenik->password=Hash::make($sifra1);
+        $student->password=Hash::make($password);
 
-        $ucenik->save();
+        $student->save();
 
-        return $ucenik;
+        return $student;
     }
 
     /**
@@ -267,20 +267,20 @@ class UserService {
      *
      * @return void
      */
-    public function searchUcenici() {
+    public function searchStudents() {
 
-        $ucenici = User::query();
+        $students = User::query();
 
-        $ucenici = $this->getUcenici();
+        $students = $this->getStudents();
 
-        if(request('searchUcenici')) {
-            $ucenikPretraga = request('searchUcenici');
-            $ucenici = $ucenici->where('name', 'LIKE', '%'.$ucenikPretraga.'%');
+        if(request('searchStudents')) {
+            $searchedStudents = request('searchStudents');
+            $students = $students->where('name', 'LIKE', '%'.$searchedStudents.'%');
         }
 
-        $ucenici = $ucenici->paginate(7);
+        $students = $students->paginate(7);
 
-        return $ucenici;
+        return $students;
     }
 
     /**

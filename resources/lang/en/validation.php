@@ -186,40 +186,40 @@ return [
             'min' => 'Šifra bibliotekara mora sadržati minimum 8 cifara.',
             'same' => 'Šifre bibliotekara se moraju poklapati.',
         ],
-        'imePrezimeUcenik' => [
+        'studentName' => [
             'required' => 'Ime i prezime učenika je obavezno.',
             'regex' => 'Ime i prezime učenika ne može sadržati brojeve.',
         ],
-        'jmbgUcenik' => [
+        'studentJmbg' => [
             'required' => 'JMBG učenika je obavezan.',
             'unique' => 'JMBG učenika već postoji u bazi podataka.',
             'digits' => 'JMBG učenika mora sadržati samo brojeve.',
         ],
-        'emailUcenik' => [
+        'studentEmail' => [
             'required' => 'E-mail učenika je obavezan.',
             'unique' => 'E-mail učenika već postoji u bazi podataka.',
         ],
-        'usernameUcenik' => [
+        'studentUsername' => [
             'required' => 'Korisničko ime učenika je obavezno.',
         ],
-        'pwUcenik' => [
+        'studentPassword' => [
             'required' => 'Šifra učenika je obavezna.',
             'min' => 'Šifra učenika mora sadržati minimum 8 cifara.',
             'same' => 'Šifre učenika se moraju poklapati.',
         ],
-        'pw2Ucenik' => [
+        'studentPassword2' => [
             'required' => 'Šifra učenika je obavezna.',
             'min' => 'Šifra učenika mora sadržati minimum 8 cifara.',
             'same' => 'Šifre učenika se moraju poklapati.',
         ],
-        'imePrezimeUcenikEdit' => [
+        'studentNameEdit' => [
             'regex' => 'Ime i prezime učenika ne može sadržati brojeve.',
         ],
-        'jmbgUcenikEdit' => [
+        'studentJmbgEdit' => [
             'unique' => 'JMBG učenika već postoji u bazi podataka.',
             'digits' => 'JMBG učenika mora sadržati 14 cifara.',
         ],
-        'emailUcenikEdit' => [
+        'studentEmailEdit' => [
             'unique' => 'E-mail učenika već postoji u bazi podataka.',
         ],
         'authorName' => [

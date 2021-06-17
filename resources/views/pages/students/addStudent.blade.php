@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('noviUcenik')
+@section('addStudent')
 <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
             <!-- Heading of content -->
             <div class="heading">
@@ -15,7 +15,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="../students" class="text-[#2196f3] hover:text-blue-600">
                                             Svi učenici
                                         </a>
                                     </li>
@@ -43,21 +43,21 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('sacuvajUcenika')}}" method="POST" enctype="multipart/form-data" class="text-gray-700 text-[14px] forma">
+                <form action="{{route('saveStudent')}}" method="POST" enctype="multipart/form-data" class="text-gray-700 text-[14px]">
                 @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
                             <div class="mt-[20px]">
                                 <span>Ime i prezime <span class="text-red-500">*</span></span>
-                                <input type="text" name="imePrezimeUcenik" id="imePrezimeUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameUcenik()"/>
-                                @error('imePrezimeUcenik')
+                                <input type="text" name="studentName" id="studentName" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('studentName')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Tip korisnika</span>
-                                <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="tip_korisnika" disabled>
+                                <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="userType" disabled>
                                     <option value="">
                                         Učenik
                                     </option>
@@ -66,40 +66,40 @@
 
                             <div class="mt-[20px]">
                                 <span>JMBG <span class="text-red-500">*</span></span>
-                                <input type="text" name="jmbgUcenik" id="jmbgUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgUcenik()"/>
-                                @error('jmbgUcenik')
+                                <input type="text" name="studentJmbg" id="studentJmbg" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('studentJmbg')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>E-mail <span class="text-red-500">*</span></span>
-                                <input type="email" name="emailUcenik" id="emailUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailUcenik()"/>
-                                @error('emailUcenik')
+                                <input type="email" name="studentEmail" id="studentEmail" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('studentEmail')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Korisničko ime <span class="text-red-500">*</span></span>
-                                <input type="text" name="usernameUcenik" id="usernameUcenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameUcenik()"/>
-                                @error('usernameUcenik')
+                                <input type="text" name="studentUsername" id="studentUsername" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('studentUsername')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Šifra <span class="text-red-500">*</span></span>
-                                <input type="password" name="pwUcenik" id="pwUcenik" autocomplete="new-password" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwUcenik()"/>
-                                @error('pwUcenik')
+                                <input type="password" name="studentPassword" id="studentPassword" autocomplete="new-password" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('studentPassword')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Ponovi šifru <span class="text-red-500">*</span></span>
-                                <input type="password" name="pw2Ucenik" id="pw2Ucenik" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2Ucenik()"/>
-                                @error('pw2Ucenik')
+                                <input type="password" name="studentPassword2" id="studentPassword2" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('studentPassword2')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -133,8 +133,8 @@
                                         class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                         <i class="fas fa-times mr-[7px]"></i>  Poništi 
                                 </button>
-                                <button id="sacuvajUcenika" type="submit"
-                                        class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaUcenik()">
+                                <button id="saveStudent" type="submit"
+                                        class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                         <i class="fas fa-check mr-[7px]"></i>  Sačuvaj 
                                 </button>
                             </div>

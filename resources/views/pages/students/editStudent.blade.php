@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('editUcenik')
+@section('editStudent')
     <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading">
@@ -15,7 +15,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="../../ucenik" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="../../students" class="text-[#2196f3] hover:text-blue-600">
                                         Svi učenici
                                     </a>
                                 </li>
@@ -43,21 +43,21 @@
         </div>
         <!-- Space for content -->
         <div class="scroll height-content section-content">
-            <form method="POST" action="{{ route('updateUcenik', ['user' => $user->id]) }}" enctype="multipart/form-data" class="text-gray-700 text-[14px] forma">
+            <form method="POST" action="{{ route('updateStudent', ['user' => $user->id]) }}" enctype="multipart/form-data" class="text-gray-700 text-[14px]">
             @csrf
                 <div class="flex flex-row ml-[30px]">
                     <div class="w-[50%] mb-[100px]">
                         <div class="mt-[20px]">
                             <span>Ime i prezime <span class="text-red-500">*</span></span>
-                            <input type="text" name="imePrezimeUcenikEdit" id="imePrezimeUcenikEdit" placeholder="{{$user->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameUcenikEdit()"/>
-                            @error('imePrezimeUcenikEdit')
+                            <input type="text" name="studentNameEdit" id="studentNameEdit" placeholder="{{$user->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                            @error('studentNameEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <span>Tip korisnika</span>
-                            <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="tip_korisnika" disabled>
+                            <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="userType" disabled>
                                 <option value="">
                                     Učenik
                                 </option>
@@ -66,24 +66,24 @@
 
                         <div class="mt-[20px]">
                             <span>JMBG <span class="text-red-500">*</span></span>
-                            <input type="text" name="jmbgUcenikEdit" id="jmbgUcenikEdit" placeholder="{{$user->jmbg}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgUcenikEdit()"/>
-                            @error('jmbgUcenikEdit')
+                            <input type="text" name="studentJmbgEdit" id="studentJmbgEdit" placeholder="{{$user->jmbg}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                            @error('studentJmbgEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <span>E-mail <span class="text-red-500">*</span></span>
-                            <input type="email" name="emailUcenikEdit" id="emailUcenikEdit" placeholder="{{$user->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailUcenikEdit()"/>
-                            @error('emailUcenikEdit')
+                            <input type="email" name="studentEmailEdit" id="studentEmailEdit" placeholder="{{$user->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                            @error('studentEmailEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <span>Korisničko ime <span class="text-red-500">*</span></span>
-                            <input type="text" name="usernameUcenikEdit" id="usernameUcenikEdit" placeholder="{{$user->username}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameUcenikEdit()"/>
-                            @error('usernameUcenikEdit')
+                            <input type="text" name="studentUsernameEdit" id="studentUsernameEdit" placeholder="{{$user->username}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                            @error('studentUsernameEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
@@ -117,8 +117,8 @@
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                     <i class="fas fa-times mr-[7px]"></i> Poništi 
                             </button>
-                            <button id="sacuvajUcenikaEdit" type="submit"
-                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaUcenikEdit()">
+                            <button id="editStudent" type="submit"
+                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                     <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                             </button>
                         </div>

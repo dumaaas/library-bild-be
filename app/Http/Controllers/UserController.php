@@ -30,7 +30,7 @@ class UserController extends Controller
 {
 
     private $viewFolderLibrarian = 'pages/librarians';
-    private $viewFolderStudent = 'pages/ucenik';
+    private $viewFolderStudent = 'pages/students';
 
     /**
      * Prikazi konkretnog bibliotekara
@@ -201,12 +201,12 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziUcenike(UserService $userService) {
+    public function showStudents(UserService $userService) {
 
-        $viewName = $this->viewFolderStudent . '.ucenik';
+        $viewName = $this->viewFolderStudent . '.students';
 
         $viewModel = [
-            'ucenici' => $userService->getUcenici()->paginate(7)
+            'students' => $userService->getStudents()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -218,9 +218,9 @@ class UserController extends Controller
      * @param  User $user
      * @return void
      */
-    public function prikaziUcenikProfile(User $user) {
+    public function showStudentProfile(User $user) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikProfile';
+        $viewName = $this->viewFolderStudent . '.studentProfile';
 
         $viewModel = [
             'user' => $user
@@ -238,9 +238,9 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function prikaziNovogUcenika() {
+    public function showAddStudent() {
 
-        $viewName = $this->viewFolderStudent . '.noviUcenik';
+        $viewName = $this->viewFolderStudent . '.addStudent';
 
         return view($viewName);
     }
@@ -251,9 +251,9 @@ class UserController extends Controller
      * @param  User $user
      * @return void
      */
-    public function prikaziEditUcenik(User $user) {
+    public function showEditStudent(User $user) {
 
-        $viewName = $this->viewFolderStudent . '.editUcenik';
+        $viewName = $this->viewFolderStudent . '.editStudent';
 
         $viewModel = [
             'user' => $user
@@ -271,20 +271,21 @@ class UserController extends Controller
      *
      * @param  User $user
      * @param  UserService $userService
+     * @param  Request $request
      * @return void
      */
-    public function izmjeniUcenika(User $user, UserService $userService, Request $request) {
+    public function updateStudent(User $user, UserService $userService, Request $request) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikProfile';
+        $viewName = $this->viewFolderStudent . '.studentProfile';
 
         $viewModel = [
             'user' => $user
         ];
 
-        $userService->editUcenik($user, $request);
+        $userService->editStudent($user, $request);
 
-        //return back to the edit student form
-        return redirect('ucenik')->with('success', 'Učenik je uspješno izmijenjen!');
+        //return back to all students
+        return redirect('students')->with('success', 'Učenik je uspješno izmijenjen!');
     }
 
     /**
@@ -293,12 +294,12 @@ class UserController extends Controller
      * @param  User $user
      * @return void
      */
-    public function izbrisiUcenika(User $user) {
+    public function deleteStudent(User $user) {
 
-        $viewName = $this->viewFolderStudent . '.ucenik';
+        $viewName = $this->viewFolderStudent . '.students';
 
         $viewModel = [
-            'ucenici' => User::with('userType')
+            'students' => User::with('userType')
                     ->where('userType_id', '=', 3)
                     ->paginate(7),
         ];
@@ -308,28 +309,29 @@ class UserController extends Controller
         } else {
            
             User::destroy($user->id);
-            return redirect('ucenik')->with('success', 'Učenik je uspješno izbrisan!');
+            return redirect('students')->with('success', 'Učenik je uspješno izbrisan!');
         }
     }
 
     /**
      * Kreiraj i sacuvaj novog ucenika
      *
-     * @param  AuthorService $autorService
+     * @param  UserService $userService
+     * @param  Request $request
      * @return void
      */
-    public function sacuvajUcenika(UserService $userService, Request $request) {
+    public function saveStudent(UserService $userService, Request $request) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikProfile';
+        $viewName = $this->viewFolderStudent . '.studentProfile';
 
-        $user = $userService->saveUcenik($request);
+        $user = $userService->saveStudent($request);
 
         $viewModel = [
             'user' => $user
         ];
 
-        //return back to the edit student form
-        return redirect('ucenik')->with('success', 'Učenik je uspješno unesen!');
+        //return back to all students
+        return redirect('students')->with('success', 'Učenik je uspješno unesen!');
     }
 
     /**
@@ -338,14 +340,14 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function searchUcenici(UserService $userService) {
+    public function searchStudents(UserService $userService) {
 
-        $viewName = $this->viewFolderStudent . '.ucenik';
+        $viewName = $this->viewFolderStudent . '.students';
 
-        $ucenici = $userService->searchUcenici();
+        $students = $userService->searchStudents();
 
         $viewModel = [
-            'ucenici' => $ucenici
+            'students' => $students
         ];
 
         return view($viewName, $viewModel);
