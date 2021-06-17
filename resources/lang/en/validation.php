@@ -292,13 +292,13 @@ return [
         'datumRezervisanja' => [
             'required' => 'Datum rezervisanja je obavezan.',
         ],
-        'RESERVATION_PERIOD' => [
+        'reservationPeriod' => [
             'numeric' => 'Rok rezervacije mora sadržati samo brojeve.',
         ],
-        'RETURN_DUE_DATE' => [
+        'returnDueDate' => [
             'numeric' => 'Rok pozajmljivanja mora sadržati samo brojeve.',
         ],
-        'OVERDRAFT_PERIOD' => [
+        'overdraftPeriod' => [
             'numeric' => 'Rok prekoračenja mora sadržati samo brojeve.',
         ],
         'categoryName' => [
