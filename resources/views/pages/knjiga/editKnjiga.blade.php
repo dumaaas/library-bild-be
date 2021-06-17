@@ -52,8 +52,9 @@
             </p>
         </div>
         <!-- Space for content -->
-        <form action="{{route('updateKnjiga', ['knjiga' => $knjiga->id])}}" method="POST" class="text-gray-700 forma">
+        <form action="{{route('updateKnjiga', ['knjiga' => $knjiga->id])}}" method="POST" class="text-gray-700 forma" id="editBookForm">
             @csrf
+            <input type="hidden" name="editBookId" value="{{$knjiga->id}}"/>
             <div id="editDetails" class="block tabcontent">
                 <div class="scroll height-content section-content">
 
@@ -368,12 +369,17 @@
 
                 <div class="mt-[20px]">
                     <p>Izdavač <span class="text-red-500">*</span></p>
-                    <select
+                    <select placeholder="{{$knjiga->publisher->name}}"
                         class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                         name="izdavacEdit" id="izdavacEdit" onclick="clearErrorsIzdavacEdit()">
                         <option disabled></option>
+                        <option value="{{$knjiga->publisher->id}}">{{$knjiga->publisher->name}}</option>
                         @foreach($izdavaci as $izdavac)
-                            <option value="{{$izdavac->id}}">{{$izdavac->name}}</option>
+                            @if($izdavac->name == $knjiga->publisher->name)
+                                <option class="hidden" value="{{$izdavac->id}}"></option>
+                            @else
+                                <option value="{{$izdavac->id}}">{{$izdavac->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                     @error('izdavacEdit')
@@ -486,7 +492,8 @@
                      class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                     <div x-ref="dnd"
                          class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
-                        <input accept="*" type="file" multiple
+                        <input accept="image/*" type="file" multiple id="slika-upload"
+                               name="movieImages[]"
                                class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
                                @change="addFiles($event)"
                                @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');"
@@ -512,7 +519,7 @@
                         @drop.prevent="drop($event)"
                         @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
                         @foreach($knjiga->galery as $slika)
-                            <div class="relative flex flex-col text-xs bg-white bg-opacity-50 hiddenImage1"
+                            <div  class="relative flex flex-col text-xs bg-white bg-opacity-50 hiddenImage1"
                                 @dragstart="dragstart($event)"
                                 @dragend="fileDragging = null"
                                 :class="{'border-blue-600': fileDragging == index}"
@@ -536,7 +543,7 @@
                                 </a>
                                 <div
                                     class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs text-center bg-white bg-opacity-50">
-                                        <span class="w-full font-bold text-gray-900 truncate">{{$slika->photo}}</span>
+                                        <span  class="w-full font-bold text-gray-900 truncate">{{$slika->photo}}</span>
                                     <span class="text-xs text-gray-900">89kB</span>
                                 </div>
                             </div>

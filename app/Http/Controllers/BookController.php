@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\BookCategory;
 use App\Models\BookGenre;
 use App\Models\Rent;
+use App\Models\Galery;
 use App\Models\RentStatus;
 use App\Models\Reservation;
 use App\Models\ReservationStatus;
@@ -509,7 +510,7 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @return void
      */
-    public function updateKnjiga(Request $request, Book $knjiga, DashboardService $dashboardService) {
+    public function updateKnjiga(Request $request, Book $knjiga, DashboardService $dashboardService, Galery $gallery) {
         $viewName = $this->viewFolder . '.knjigaOsnovniDetalji';
 
         //request all data, validate and update author
@@ -546,6 +547,25 @@ class BookController extends Controller
         }
 
         $knjiga->save();
+
+        if($request->movieImage){
+            $filenameWithExt = $request->movieImage->getClientOriginalName();
+            // Get Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Extension
+            $extension = $request->movieImage->getClientOriginalExtension();
+            // Filename To store
+            $fileNameToStore = $filename. '_'. time().'.'.$extension;
+            // Upload Image
+            $path = $request->movieImage->storeAs('public/image', $fileNameToStore);
+        
+            $galery = new Galery();
+
+            $gallery->book_id = $knjiga->id;
+            $gallery->photo = $fileNameToStore;
+
+            $gallery->save();
+        }
 
         $kategorijeValues = $request->input('kategorijaValuesEdit');
         $kategorije = explode(',', $kategorijeValues);
