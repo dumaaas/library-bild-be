@@ -15,15 +15,15 @@ class PublisherController extends Controller
     /**
      * Prikazi stranicu za editovanje izdavaca
      *
-     * @param  Publisher $izdavac
+     * @param  Publisher $publisher
      * @return void
      */
-    public function prikaziEditIzdavac(Publisher $izdavac) {
+    public function showEditPublisher(Publisher $publisher) {
 
-        $viewName = $this->viewFolder . '.editIzdavac';
+        $viewName = $this->viewFolder . '.editPublisher';
 
         $viewModel = [
-            'izdavac' => $izdavac
+            'publisher' => $publisher
         ];
 
         return view($viewName, $viewModel);
@@ -34,9 +34,9 @@ class PublisherController extends Controller
      *
      * @return void
      */
-    public function prikaziNoviIzdavac() {
+    public function showAddPublisher() {
 
-        $viewName = $this->viewFolder . '.noviIzdavac';
+        $viewName = $this->viewFolder . '.addPublisher';
 
         return view($viewName);
     }
@@ -47,12 +47,12 @@ class PublisherController extends Controller
      * @param  PublisherService $publisherService
      * @return void
      */
-    public function prikaziSettingsIzdavac(PublisherService $publisherService) {
+    public function showPublishers(PublisherService $publisherService) {
 
-        $viewName = $this->viewFolder . '.settingsIzdavac';
+        $viewName = $this->viewFolder . '.publishers';
 
         $viewModel = [
-            'izdavaci' => $publisherService->getPublishers()->paginate(7)
+            'publishers' => $publisherService->getPublishers()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -61,51 +61,51 @@ class PublisherController extends Controller
     /**
      * Izmijeni podatke o izdavacu
      *
-     * @param  Publisher $izdavac
+     * @param  Publisher $publisher
      * @param  PublisherService $publisherService
      * @return void
      */
-    public function izmijeniIzdavaca(Publisher $izdavac, PublisherService $publisherService) {
+    public function updatePublisher(Publisher $publisher, PublisherService $publisherService) {
 
-        $viewName = $this->viewFolder . '.editIzdavac';
+        $viewName = $this->viewFolder . '.editPublisher';
 
         $viewModel = [
-            'izdavac' => $izdavac
+            'publisher' => $publisher
         ];
 
-        $publisherService->editPublisher($izdavac);
+        $publisherService->editPublisher($publisher);
         
         //return back to the publisher
-        return redirect('settingsIzdavac')->with('success', 'Izdavač je uspješno izmijenjen!');
+        return redirect('publishers')->with('success', 'Izdavač je uspješno izmijenjen!');
     }
 
     /**
      * Izbrisi izdavaca
      *
-     * @param  Publisher $izdavac
+     * @param  Publisher $publisher
      */
-    public function izbrisiIzdavaca(Publisher $izdavac) {
-        Publisher::destroy($izdavac->id);
+    public function deletePublisher(Publisher $publisher) {
+        Publisher::destroy($publisher->id);
         return back()->with('success', 'Izdavač je uspješno izbrisan!');
     }
 
     /**
      * Kreiraj i sacuvaj novog izdavaca
      *
-     * @param  Publisher $izdavac
+     * @param  Publisher $publisher
      * @param  PublisherService $publisherService
      */
-    public function sacuvajIzdavaca(Publisher $izdavac, PublisherService $publisherService) {
+    public function savePublisher(Publisher $publisher, PublisherService $publisherService) {
 
-        $viewName = $this->viewFolder . '.editIzdavac';
+        $viewName = $this->viewFolder . '.editPublisher';
 
         $viewModel = [
-            'izdavac' => $izdavac
+            'publisher' => $publisher
         ];
 
-        $publisherService->savePublisher($izdavac);
+        $publisherService->savePublisher($publisher);
 
         //return back to the publisher
-        return redirect('settingsIzdavac')->with('success', 'Izdavač je uspješno unesen!');
+        return redirect('publishers')->with('success', 'Izdavač je uspješno unesen!');
     }
 }

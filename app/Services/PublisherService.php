@@ -16,25 +16,25 @@ class PublisherService {
      * @return void
      */
     public function getPublishers(){
-        return $izdavaci = DB::table('publishers');
+        return $publishers = DB::table('publishers');
     }
 
     /**
      * Izvrsi validaciju podataka i edituj izdavaca
      *
-     * @param  Publisher $izdavac
+     * @param  Publisher $publisher
      * @return void
      */
-    public function editPublisher($izdavac){
+    public function editPublisher($publisher){
 
         //request all data, validate and update publisher
         request()->validate([
-            'nazivIzdavacEdit' => 'string|max:256',
+            'publisherNameEdit' => 'string|max:256',
         ]);
 
-        $izdavac->name = request('nazivIzdavacEdit');
+        $publisher->name = request('publisherNameEdit');
 
-        $izdavac->save();
+        $publisher->save();
     }
 
     /**
@@ -46,14 +46,14 @@ class PublisherService {
 
         //request all data, validate and update publisher
         request()->validate([
-            'nazivIzdavac' => 'required|string|max:256',
+            'publisherName' => 'required|string|max:256',
         ]);
 
-        $izdavac = new Publisher();
+        $publisher = new Publisher();
 
-        $izdavac->name = request('nazivIzdavac');
+        $publisher->name = request('publisherName');
 
-        $izdavac->save();
+        $publisher->save();
         
     }
     

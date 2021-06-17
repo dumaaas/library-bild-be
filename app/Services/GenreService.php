@@ -16,7 +16,7 @@ class GenreService {
      * @return void
      */
     public function getGenres(){
-        return $zanrovi = DB::table('genres');
+        return $genres = DB::table('genres');
     }
 
     /**
@@ -29,37 +29,37 @@ class GenreService {
     public function saveGenre($userService, $request) {
         //request all data, validate and add genre
         request()->validate([
-            'nazivZanra' => 'required|string|max:256',
+            'genreName' => 'required|string|max:256',
             'userImage'  => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $zanr = new Genre();
+        $genre = new Genre();
 
-        $zanr->name = request('nazivZanra');
-        $userService->uploadPhoto($zanr, $request);
+        $genre->name = request('genreName');
+        $userService->uploadPhoto($genre, $request);
 
-        $zanr->save();
+        $genre->save();
     }
 
     /**
      * Izvrsi validaciju podataka i edituj zanr
      *
-     * @param  Genre $zanr
+     * @param  Genre $genre
      * @param  UserService $userService
      * @param  Request $request
      * @return void
      */
-    public function editGenre($zanr, $userService, $request) {
+    public function editGenre($genre, $userService, $request) {
          //request all data, validate and update genre
          request()->validate([
-            'nazivZanraEdit' => 'string|max:256',
+            'genreNameEdit' => 'string|max:256',
             'userImage'      => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $zanr->name = request('nazivZanraEdit');
-        $userService->uploadEditPhoto($zanr, $request);
+        $genre->name = request('genreNameEdit');
+        $userService->uploadEditPhoto($genre, $request);
 
-        $zanr->save();
+        $genre->save();
     }
 
 }

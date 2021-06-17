@@ -15,15 +15,15 @@ class GenreController extends Controller
     /**
      * Prikazi stranicu za editovanje zanra
      *
-     * @param  Genre $zanr
+     * @param  Genre $genre
      * @return void
      */
-    public function prikaziEditZanr(Genre $zanr) {
+    public function showEditGenre(Genre $genre) {
 
-        $viewName = $this->viewFolder . '.editZanr';
+        $viewName = $this->viewFolder . '.editGenre';
 
         $viewModel = [
-            'zanr'=>$zanr
+            'genre'=>$genre
         ];
 
         return view($viewName,$viewModel);
@@ -35,12 +35,12 @@ class GenreController extends Controller
      * @param  GenreService $genreService
      * @return void
      */
-    public function prikaziSettingsZanrovi(GenreService $genreService) {
+    public function showGenres(GenreService $genreService) {
 
-        $viewName = $this->viewFolder . '.settingsZanrovi';
+        $viewName = $this->viewFolder . '.genres';
 
         $viewModel = [
-            'zanrovi'=> $genreService->getGenres()->paginate(7)
+            'genres'=> $genreService->getGenres()->paginate(7)
         ];
 
         return view($viewName,$viewModel);
@@ -51,9 +51,9 @@ class GenreController extends Controller
      *
      * @return void
      */
-    public function prikaziNoviZanr() {
+    public function showAddGenre() {
         
-        $viewName = $this->viewFolder . '.noviZanr';
+        $viewName = $this->viewFolder . '.addGenre';
 
         return view($viewName);
     }
@@ -65,37 +65,37 @@ class GenreController extends Controller
      * @param  UserService $userService
      * @param  Request $request
      */
-    public function sacuvajZanr(GenreService $genreService, UserService $userService, Request $request) {
+    public function saveGenre(GenreService $genreService, UserService $userService, Request $request) {
         
         $genreService->saveGenre($userService, $request);
 
-        return redirect('settingsZanrovi')->with('success', 'Žanr je uspješno unesen!');
+        return redirect('genres')->with('success', 'Žanr je uspješno unesen!');
     }
 
     /**
      * Izmijeni podatke o zanru
      *
-     * @param  Genre $zanr
+     * @param  Genre $genre
      * @param  GenreService $genreService
      * @param  UserService $userService
      * @param  Request $request
      * @return void
      */
-    public function izmijeniZanr(Genre $zanr, GenreService $genreService, UserService $userService, Request $request) {
+    public function updateGenre(Genre $genre, GenreService $genreService, UserService $userService, Request $request) {
         
-        $genreService->editGenre($zanr, $userService, $request);
+        $genreService->editGenre($genre, $userService, $request);
 
         //return back to all genres
-        return redirect('settingsZanrovi')->with('success', 'Žanr je uspješno izmijenjen!');
+        return redirect('genres')->with('success', 'Žanr je uspješno izmijenjen!');
     }
 
     /**
      * Izbrisi zanr
      *
-     * @param  Genre $zanr
+     * @param  Genre $genre
      */
-    public function izbrisiZanr(Genre $zanr) {
-        Genre::destroy($zanr->id);
+    public function deleteGenre(Genre $genre) {
+        Genre::destroy($genre->id);
         return back()->with('success', 'Žanr je uspješno izbrisan!');
     }
 }

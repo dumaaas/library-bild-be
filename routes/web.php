@@ -102,12 +102,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/searchArhiviraneRezervacije', [\App\Http\Controllers\RentController::class, 'searchArhiviraneRezervacije'])->name('searchArhiviraneRezervacije');
 
     //SCRIPT - ROUTES
-    Route::get('/editPismo/{pismo}', [\App\Http\Controllers\ScriptController::class, 'prikaziEditPismo'])->name('editPismo');
-    Route::get('/novoPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziNovoPismo'])->name('novoPismo');
-    Route::get('/settingsPismo', [\App\Http\Controllers\ScriptController::class, 'prikaziSettingsPismo'])->name('settingsPismo');
-    Route::post('/sacuvajPismo', [\App\Http\Controllers\ScriptController::class, 'sacuvajPismo'])->name('sacuvajPismo');
-    Route::post('/izmijeniPismo/{pismo}', [\App\Http\Controllers\ScriptController::class, 'izmijeniPismo'])->name('izmijeniPismo');
-    Route::get('/izbrisiPismo/{pismo}', [\App\Http\Controllers\ScriptController::class, 'izbrisiPismo'])->name('izbrisiPismo');
+    Route::get('/editScript/{script}', [\App\Http\Controllers\ScriptController::class, 'showEditScript'])->name('editScript');
+    Route::get('/addScript', [\App\Http\Controllers\ScriptController::class, 'showAddScript'])->name('addScript');
+    Route::get('/scripts', [\App\Http\Controllers\ScriptController::class, 'showScripts'])->name('scripts');
+    Route::post('/saveScript', [\App\Http\Controllers\ScriptController::class, 'saveScript'])->name('saveScript');
+    Route::post('/updateScript/{script}', [\App\Http\Controllers\ScriptController::class, 'updateScript'])->name('updateScript');
+    Route::get('/deleteScript/{script}', [\App\Http\Controllers\ScriptController::class, 'deleteScript'])->name('deleteScript');
 
 
     //FORMAT - ROUTES
@@ -132,12 +132,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //PUBLISHER - ROUTES
-    Route::get('/editIzdavac/{izdavac}', [\App\Http\Controllers\PublisherController::class, 'prikaziEditIzdavac'])->name('editIzdavac');
-    Route::get('/noviIzdavac', [\App\Http\Controllers\PublisherController::class, 'prikaziNoviIzdavac'])->name('prikaziNoviIzdavac');
-    Route::get('/settingsIzdavac', [\App\Http\Controllers\PublisherController::class, 'prikaziSettingsIzdavac'])->name('settingsIzdavac');
-    Route::post('/izmijeniIzdavaca/{izdavac}', [\App\Http\Controllers\PublisherController::class, 'izmijeniIzdavaca'])->name('izmijeniIzdavaca');
-    Route::get('/izbrisiIzdavaca/{izdavac}', [\App\Http\Controllers\PublisherController::class, 'izbrisiIzdavaca'])->name('izbrisiIzdavaca');
-    Route::post('/sacuvajIzdavaca}', [\App\Http\Controllers\PublisherController::class, 'sacuvajIzdavaca'])->name('sacuvajIzdavaca');
+    Route::get('/editPublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'showEditPublisher'])->name('editPublisher');
+    Route::get('/addPublisher', [\App\Http\Controllers\PublisherController::class, 'showAddPublisher'])->name('addPublisher');
+    Route::get('/publishers', [\App\Http\Controllers\PublisherController::class, 'showPublishers'])->name('publishers');
+    Route::post('/updatePublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'updatePublisher'])->name('updatePublisher');
+    Route::get('/deletePublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'deletePublisher'])->name('deletePublisher');
+    Route::post('/savePublisher}', [\App\Http\Controllers\PublisherController::class, 'savePublisher'])->name('savePublisher');
 
 
     //CATEGORY - ROUTES
@@ -165,17 +165,17 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //GENRE - ROUTES
-    Route::get('/editZanr{zanr}', [\App\Http\Controllers\GenreController::class, 'prikaziEditZanr'])->name('editZanr');
-    Route::get('/noviZanr', [\App\Http\Controllers\GenreController::class, 'prikaziNoviZanr'])->name('noviZanr');
-    Route::get('/settingsZanrovi', [\App\Http\Controllers\GenreController::class, 'prikaziSettingsZanrovi'])->name('settingsZanrovi');
-    Route::post('/sacuvajZanr', [\App\Http\Controllers\GenreController::class, 'sacuvajZanr'])->name('sacuvajZanr');
-    Route::post('/izmijeniZanr/{zanr}', [\App\Http\Controllers\GenreController::class, 'izmijeniZanr'])->name('izmijeniZanr');
-    Route::get('/izbrisiZanr/{zanr}', [\App\Http\Controllers\GenreController::class, 'izbrisiZanr'])->name('izbrisiZanr');
+    Route::get('/editGenre{genre}', [\App\Http\Controllers\GenreController::class, 'showEditGenre'])->name('editGenre');
+    Route::get('/addGenre', [\App\Http\Controllers\GenreController::class, 'showAddGenre'])->name('addGenre');
+    Route::get('/genres', [\App\Http\Controllers\GenreController::class, 'showGenres'])->name('genres');
+    Route::post('/saveGenre', [\App\Http\Controllers\GenreController::class, 'saveGenre'])->name('saveGenre');
+    Route::post('/updateGenre/{genre}', [\App\Http\Controllers\GenreController::class, 'updateGenre'])->name('updateGenre');
+    Route::get('/deleteGenre/{genre}', [\App\Http\Controllers\GenreController::class, 'deleteGenre'])->name('deleteGenre');
 
 
     //POLICY - ROUTES
-    Route::get('/settingsPolisa', [\App\Http\Controllers\PolicyController::class, 'prikaziSettingsPolisa'])->name('settingsPolisa');
-    Route::post('/izmijeniRok', [\App\Http\Controllers\PolicyController::class, 'izmijeniRok'])->name('izmijeniRok');
+    Route::get('/policy', [\App\Http\Controllers\PolicyController::class, 'showPolicy'])->name('policy');
+    Route::post('/changeDeadline', [\App\Http\Controllers\PolicyController::class, 'changeDeadline'])->name('changeDeadline');
 
 });
 

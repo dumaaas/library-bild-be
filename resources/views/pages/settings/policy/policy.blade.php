@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('settingsPolisa')
+@section('policy')
     @can('isAdmin')
         <section class="w-screen h-screen pl-[80px] py-4 text-gray-700">
             <!-- Heading of content -->
@@ -22,25 +22,25 @@
                 @endif
             </div>
             <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
-                <a href="{{route('settingsPolisa')}}" class="inline hover:text-blue-800 active-book-nav">
+                <a href="{{route('policy')}}" class="inline hover:text-blue-800 active-book-nav">
                     Polisa
                 </a>
-                <a href="{{route('settingsKategorije')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('categories')}}" class="inline ml-[70px] hover:text-blue-800">
                     Kategorija
                 </a>
-                <a href="{{route('settingsZanrovi')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('genres')}}" class="inline ml-[70px] hover:text-blue-800">
                     Žanr
                 </a>
-                <a href="{{route('settingsIzdavac')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('publishers')}}" class="inline ml-[70px] hover:text-blue-800">
                     Izdavač
                 </a>
-                <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('bindings')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
                 </a>
-                <a href="{{route('settingsFormat')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('formats')}}" class="inline ml-[70px] hover:text-blue-800">
                     Format
                 </a>
-                <a href="{{route('settingsPismo')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('scripts')}}" class="inline ml-[70px] hover:text-blue-800">
                     Pismo
                 </a>
             </div>
@@ -57,19 +57,19 @@
                                     Ovdje se definiše rok za rezervaciju u danima. Po isteku tog roka, rezervacija ističe i dobija status zatvaranja 'Rezervacija istekla'.
                                 </p>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Trenutni rok: {{$rokRezervacije->value}} dana
+                                    Trenutni rok: {{$reservationPeriod->value}} dana
                                 </p>
                             </div>
                             <div class="relative flex ml-[60px] mt-[20px]">
-                                <form action="{{route('izmijeniRok')}}" method="POST">
+                                <form action="{{route('changeDeadline')}}" method="POST">
                                 @csrf
                                     <div class="flex items-center w-[245px]">
-                                        <input type="text" name="rokRezervacije"
+                                        <input type="text" name="reservationPeriod"
                                             class="h-[50px] flex-1 w-full px-4 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border-[1px]  border-[#e4dfdf]  rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                                            placeholder="{{$rokRezervacije->value}}" />
+                                            placeholder="{{$reservationPeriod->value}}" />
                                         <p class="ml-[10px]">dana</p>
                                     </div>
-                                    @error('rokRezervacije')
+                                    @error('reservationPeriod')
                                     <div class="text-red-500">{{ $message }}</div>
                                     @enderror
                             </div>
@@ -83,17 +83,17 @@
                                     Ovdje se definiše rok za vraćanje u danima. Po isteku tog roka + rok prekoračenja, izdata knjiga ulazi u prekoračenje i moguće je otpisati primjerak.
                                 </p>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Trenutni rok: {{$rokPozajmljivanja->value}} dana
+                                    Trenutni rok: {{$returnDueDate->value}} dana
                                 </p>
                             </div>
                             <div class="relative flex flex-col ml-[60px] mt-[20px]">
                                     <div class="flex items-center w-[245px]">
-                                        <input type="text" name="rokPozajmljivanja"
+                                        <input type="text" name="returnDueDate"
                                             class="h-[50px] flex-1 w-full px-4 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border-[1px]  border-[#e4dfdf]  rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                                            placeholder="{{$rokPozajmljivanja->value}}" />
+                                            placeholder="{{$returnDueDate->value}}" />
                                         <p class="ml-[10px]">dana</p>
                                     </div>
-                                    @error('rokPozajmljivanja')
+                                    @error('returnDueDate')
                                     <div class="text-red-500">{{ $message }}</div>
                                     @enderror
                             </div>
@@ -107,17 +107,17 @@
                                     Ovdje se definiše rok za prekoračenje u danima. Nakon isteka roka za vraćanje student može vratiti knjigu u roku prekoračenja, nakon čega izdati primjerak ulazi u knjige u prekoračenju.
                                 </p>
                                 <p class="pt-[15px] max-w-[400px]">
-                                    Trenutni rok: {{$rokPrekoracenja->value}} dana
+                                    Trenutni rok: {{$overdraftPeriod->value}} dana
                                 </p>
                             </div>
                             <div class="relative flex flex-col ml-[60px] mt-[20px]">
                                     <div class="flex items-center w-[245px]">
-                                        <input type="text" name="rokPrekoracenja"
+                                        <input type="text" name="overdraftPeriod"
                                             class="h-[50px] flex-1 w-full px-4 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border-[1px]  border-[#e4dfdf]  rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                                            placeholder="{{$rokPrekoracenja->value}}" />
+                                            placeholder="{{$overdraftPeriod->value}}" />
                                         <p class="ml-[10px]">dana</p>
                                     </div>
-                                    @error('rokPrekoracenja')
+                                    @error('overdraftPeriod')
                                     <div class="text-red-500">{{ $message }}</div>
                                     @enderror
                             </div>

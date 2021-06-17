@@ -15,47 +15,47 @@ class PolicyController extends Controller
      *
      * @return void
      */
-    public function prikaziSettingsPolisa() {
+    public function showPolicy() {
 
-        $viewName = $this->viewFolder . '.settingsPolisa';
+        $viewName = $this->viewFolder . '.policy';
 
         $viewModel=[
-            'rokPozajmljivanja' => GlobalVariable::find(1),
-            'rokRezervacije' => GlobalVariable::find(2),
-            'rokPrekoracenja' => GlobalVariable::find(3)
+            'returnDueDate' => GlobalVariable::find(1),
+            'reservationPeriod' => GlobalVariable::find(2),
+            'overdraftPeriod' => GlobalVariable::find(3)
         ];
 
         return view($viewName, $viewModel);
     }
 
-    public function izmijeniRok(){
+    public function changeDeadline(){
 
          //request all data, validate and update RESERVATION_PERIOD, OVERDRAFT_PERIOD, RETURN_DUE_DATE
          request()->validate([
-            'rokRezervacije' => 'numeric|nullable|max:256',
-            'rokPozajmljivanja' => 'numeric|nullable|max:256',
-            'rokPrekoracenja' => 'numeric|nullable|max:256',
+            'reservationPeriod' => 'numeric|nullable|max:256',
+            'returnDueDate' => 'numeric|nullable|max:256',
+            'overdraftPeriod' => 'numeric|nullable|max:256',
         ]);
 
-        $rokPozajmljivanja = GlobalVariable::find(1);
-        $rokRezervacije = GlobalVariable::find(2);
-        $rokPrekoracenja = GlobalVariable::find(3);
+        $returnDueDate = GlobalVariable::find(1);
+        $reservationPeriod = GlobalVariable::find(2);
+        $overdraftPeriod = GlobalVariable::find(3);
 
-        if(request('rokPozajmljivanja')) {
-            $rokPozajmljivanja->value = request('rokPozajmljivanja');
+        if(request('returnDueDate')) {
+            $returnDueDate->value = request('returnDueDate');
         }
 
-        if(request('rokRezervacije')) {
-            $rokRezervacije->value = request('rokRezervacije');
+        if(request('reservationPeriod')) {
+            $reservationPeriod->value = request('reservationPeriod');
         }
 
-        if(request('rokPrekoracenja')) {
-            $rokPrekoracenja->value = request('rokPrekoracenja');
+        if(request('overdraftPeriod')) {
+            $overdraftPeriod->value = request('overdraftPeriod');
         }
 
-        $rokPozajmljivanja->save();
-        $rokRezervacije->save();
-        $rokPrekoracenja->save();
+        $returnDueDate->save();
+        $reservationPeriod->save();
+        $overdraftPeriod->save();
 
         return back()->with('success', 'Rok je uspješno izmijenjen!');
     }
