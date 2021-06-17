@@ -288,11 +288,6 @@ $(document).ready(function () {
     //this will execute on page load(to be more specific when document ready event occurs)
     activityCard();
 
-    //  // Form
-    //  $(".forma").submit(function (e) {
-    //    e.preventDefault();
-    //  });
-
     // Open Modal
     modal = $(".modal");
     $(".show-modal").on('click', function () {
@@ -326,19 +321,18 @@ $(document).ready(function () {
     })
 });
 
-    // Izbrisi ucenika
-    // izbrisiModal = $(".izbrisi-modal");
-    $(".show-izbrisiModal").on('click', function (e) {
+    // Modal za potvrdu brisanja
+    $(".show-deleteModal").on('click', function (e) {
         e.preventDefault();
         var id=$(this).attr('id');
-        var modal_id = "izbrisi-modal_"+id; 
+        var modal_id = "delete-modal_"+id; 
         $("."+modal_id).removeClass('hidden');
         $("."+modal_id).addClass('flex');
     });
     // Close Modal
-    $(".ponisti").on('click', function () {
+    $(".cancel").on('click', function () {
         var id=$(this).attr('id');
-        var modal_id = "izbrisi-modal_"+id; 
+        var modal_id = "delete-modal_"+id; 
         console.log(id, modal_id);
         $("."+modal_id).addClass('hidden');
         $("."+modal_id).removeClass('flex');
@@ -1429,52 +1423,6 @@ function clearErrorsNazivIzdavacEdit() {
 $("#sacuvajIzdavacEdit").keypress(function (e) {
     if (e.which == 13) {
         validacijaIzdavacEdit();
-        return false;
-    }
-});
-
-// Form validation for new book bind
-function validacijaPovez() {
-
-    $("#validateNazivPovez").empty();
-
-    let nazivPovez = $("#nazivPovez").val();
-
-    if (nazivPovez.length == 0) {
-        $('#validateNazivPovez').append('<p style="color:red;font-size:13px;">Morate unijeti naziv poveza!</p>');
-    }
-}
-
-function clearErrorsNazivPovez() {
-    $("#validateNazivPovez").empty();
-}
-
-$("#sacuvajPovez").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaPovez();
-        return false;
-    }
-});
-
-// Form validation for editing book bind info
-function validacijaPovezEdit() {
-
-    $("#validateNazivPovezEdit").empty();
-
-    let nazivPovezEdit = $("#nazivPovezEdit").val();
-
-    if (nazivPovezEdit.length == 0) {
-        $('#validateNazivPovezEdit').append('<p style="color:red;font-size:13px;">Morate unijeti naziv poveza!</p>');
-    }
-}
-
-function clearErrorsNazivPovezEdit() {
-    $("#validateNazivPovezEdit").empty();
-}
-
-$("#sacuvajPovezEdit").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaPovezEdit();
         return false;
     }
 });

@@ -16,25 +16,25 @@ class BindingService {
      * @return void
      */
     public function getBindings(){
-        return $povezi = DB::table('bindings');
+        return $bindings = DB::table('bindings');
     }
 
     /**
      * Izvrsi validaciju podataka i edituj povez
      *
-     * @param  Binding  $povez
+     * @param  Binding  $binding
      * @return void
      */
-    public function editBinding($povez){
+    public function editBinding($binding){
 
         //request all data, validate and update binding
         request()->validate([
-          'nazivPovezEdit' => 'string|max:256',
+          'bindingNameEdit' => 'string|max:256',
         ]);
 
-        $povez->name = request('nazivPovezEdit');
+        $binding->name = request('bindingNameEdit');
 
-        $povez->save();
+        $binding->save();
 
    }
 
@@ -47,14 +47,14 @@ class BindingService {
         
         //request all data, validate and update binding
         request()->validate([
-        'nazivPovez'=>'required|string|max:256',
+            'bindingName'=>'required|string|max:256',
         ]);
         
-        $povez = new Binding();
+        $binding = new Binding();
         
-        $povez->name=request('nazivPovez');
+        $binding->name=request('bindingName');
         
-        $povez->save();
+        $binding->save();
 
     }
 

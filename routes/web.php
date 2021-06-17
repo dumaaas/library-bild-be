@@ -123,12 +123,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //BINDING - ROUTES
-    Route::get('/editPovez/{povez}', [\App\Http\Controllers\BindingController::class, 'prikaziEditPovez'])->name('editPovez');
-    Route::get('/noviPovez', [\App\Http\Controllers\BindingController::class, 'prikaziNoviPovez'])->name('noviPovez');
-    Route::get('/settingsPovez', [\App\Http\Controllers\BindingController::class, 'prikaziSettingsPovez'])->name('settingsPovez');
-    Route::post('/sacuvajPovez', [\App\Http\Controllers\BindingController::class, 'sacuvajPovez'])->name('sacuvajPovez');
-    Route::post('/izmijeniPovez/{povez}', [\App\Http\Controllers\BindingController::class, 'izmijeniPovez'])->name('izmijeniPovez');
-    Route::get('/izbrisiPovez/{povez}', [\App\Http\Controllers\BindingController::class, 'izbrisiPovez'])->name('izbrisiPovez');
+    Route::get('/editBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'showEditBinding'])->name('editBinding');
+    Route::get('/addBinding', [\App\Http\Controllers\BindingController::class, 'showAddBinding'])->name('addBinding');
+    Route::get('/bindings', [\App\Http\Controllers\BindingController::class, 'showBindings'])->name('bindings');
+    Route::post('/saveBinding', [\App\Http\Controllers\BindingController::class, 'saveBinding'])->name('saveBinding');
+    Route::post('/updateBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'updateBinding'])->name('updateBinding');
+    Route::get('/deleteBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'deleteBinding'])->name('deleteBinding');
 
 
     //PUBLISHER - ROUTES

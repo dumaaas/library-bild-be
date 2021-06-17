@@ -15,15 +15,15 @@ class BindingController extends Controller
     /**
      * Prikazi stranicu za editovanje poveza
      *
-     * @param  Binding $povez
+     * @param  Binding $binding
      * @return void
      */
-    public function prikaziEditPovez(Binding $povez) {
+    public function showEditBinding(Binding $binding) {
 
-        $viewName = $this->viewFolder . '.editPovez';
+        $viewName = $this->viewFolder . '.editBinding';
 
         $viewModel = [
-            'povez'=>$povez
+            'binding'=>$binding
         ];
 
         return view($viewName, $viewModel);
@@ -34,9 +34,9 @@ class BindingController extends Controller
      *
      * @return void
      */
-    public function prikaziNoviPovez() {
+    public function showAddBinding() {
 
-        $viewName = $this->viewFolder . '.noviPovez';
+        $viewName = $this->viewFolder . '.addBinding';
 
         return view($viewName);
     }
@@ -47,12 +47,12 @@ class BindingController extends Controller
      * @param  BindingService $bindingService
      * @return void
      */
-    public function prikaziSettingsPovez(BindingService $bindingService) {
+    public function showBindings(BindingService $bindingService) {
 
-        $viewName = $this->viewFolder . '.settingsPovez';
+        $viewName = $this->viewFolder . '.bindings';
 
         $viewModel = [
-            'povezi'=>$bindingService->getBindings()->paginate(7)
+            'bindings'=>$bindingService->getBindings()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -61,51 +61,51 @@ class BindingController extends Controller
     /**
      * Kreiraj i sacuvaj novi povez
      *
-     * @param  Binding $povez
+     * @param  Binding $binding
      * @param  BindingService $bindingService
      */
-    public function sacuvajPovez(Binding $povez, BindingService $bindingService) {
+    public function saveBinding(Binding $binding, BindingService $bindingService) {
         
-        $viewName = $this->viewFolder . '.editPovez';
+        $viewName = $this->viewFolder . '.editBinding';
 
         $viewModel = [
-            'povez' => $povez
+            'binding' => $binding
         ];
 
-        $bindingService->saveBinding($povez);
+        $bindingService->saveBinding($binding);
 
         //return back
-        return redirect('settingsPovez')->with('success', 'Povez je uspješno unesen!');
+        return redirect('bindings')->with('success', 'Povez je uspješno unesen!');
     }
 
     /**
      * Izmijeni podatke o povezu
      *
-     * @param  Binding $povez
+     * @param  Binding $binding
      * @param  BindingService $bindingService
      * @return void
      */
-    public function izmijeniPovez(Binding $povez, BindingService $bindingService) {
+    public function updateBinding(Binding $binding, BindingService $bindingService) {
    
-        $viewName = $this->viewFolder . '.editPovez';
+        $viewName = $this->viewFolder . '.editBinding';
 
         $viewModel = [
-            'povez' => $povez
+            'binding' => $binding
         ];
 
-        $bindingService->editBinding($povez);
+        $bindingService->editBinding($binding);
 
         //return back to the binding
-        return redirect('settingsPovez')->with('success', 'Povez je uspješno izmijenjen!');
+        return redirect('bindings')->with('success', 'Povez je uspješno izmijenjen!');
     }
 
     /**
      * Izbrisi povez
      *
-     * @param  Binding $povez
+     * @param  Binding $binding
      */
-    public function izbrisiPovez(Binding $povez) {
-        Binding::destroy($povez->id);
+    public function deleteBinding(Binding $binding) {
+        Binding::destroy($binding->id);
         return back()->with('success', 'Povez je uspješno izbrisan!');
     }
 }

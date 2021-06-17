@@ -319,10 +319,10 @@ return [
         'nazivIzdavacEdit' => [
             'string' => 'Naziv izdavača je obavezan.',
         ],
-        'nazivPovez' => [
+        'bindingName' => [
             'required' => 'Naziv poveza je obavezan.',
         ],
-        'nazivPovezEdit' => [
+        'bindingNameEdit' => [
             'string' => 'Naziv poveza je obavezan.',
         ],
         'nazivFormat' => [
