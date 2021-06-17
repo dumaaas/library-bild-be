@@ -14,15 +14,15 @@ class ScriptController extends Controller
     /**
      * Prikazi stranicu za editovanje pisma
      *
-     * @param  Script $pismo
+     * @param  Script $script
      * @return void
      */
-    public function prikaziEditPismo(Script $pismo) {
+    public function showEditScript(Script $script) {
 
-        $viewName = $this->viewFolder . '.editPismo';
+        $viewName = $this->viewFolder . '.editScript';
 
         $viewModel = [
-            'pismo'=>$pismo
+            'script'=>$script
         ];
 
         return view($viewName ,$viewModel);
@@ -34,12 +34,12 @@ class ScriptController extends Controller
      * @param  ScriptService $scriptService
      * @return void
      */
-    public function prikaziSettingsPismo(ScriptService $scriptService) {
+    public function showScripts(ScriptService $scriptService) {
 
-        $viewName = $this->viewFolder . '.settingsPismo';
+        $viewName = $this->viewFolder . '.scripts';
 
         $viewModel = [
-            'pisma' => $scriptService->getScripts()->paginate(7)
+            'scripts' => $scriptService->getScripts()->paginate(7)
         ];
 
         return view($viewName ,$viewModel);
@@ -50,9 +50,9 @@ class ScriptController extends Controller
      *
      * @return void
      */
-    public function prikaziNovoPismo() {
+    public function showAddScript() {
 
-        $viewName = $this->viewFolder . '.novoPismo';
+        $viewName = $this->viewFolder . '.addScript';
 
         return view($viewName);
     }
@@ -60,51 +60,51 @@ class ScriptController extends Controller
     /**
      * Kreiraj i sacuvaj novo pismo
      *
-     * @param  Script $pismo
+     * @param  Script $script
      * @param  ScriptService $scriptService
      */
-    public function sacuvajPismo(Script $pismo, ScriptService $scriptService) {
+    public function saveScript(Script $script, ScriptService $scriptService) {
         
-        $viewName = $this->viewFolder . '.editPismo';
+        $viewName = $this->viewFolder . '.editScript';
 
         $viewModel = [
-            'pismo' => $pismo
+            'script' => $script
         ];
 
-        $scriptService->saveScript($pismo);
+        $scriptService->saveScript($script);
 
         //return back
-        return redirect('settingsPismo')->with('success', 'Pismo je uspješno uneseno!');
+        return redirect('scripts')->with('success', 'Pismo je uspješno uneseno!');
     }
 
     /**
      * Izmijeni podatke o pismu
      *
-     * @param  Script $pismo
+     * @param  Script $script
      * @param  ScriptService $scriptService
      * @return void
      */
-    public function izmijeniPismo(Script $pismo, ScriptService $scriptService) {
+    public function updateScript(Script $script, ScriptService $scriptService) {
 
-        $viewName = $this->viewFolder . '.editPismo';
+        $viewName = $this->viewFolder . '.editScript';
 
         $viewModel = [
-            'pismo' => $pismo
+            'script' => $script
         ];
 
-        $scriptService->editScript($pismo);
+        $scriptService->editScript($script);
 
         //return back to the script
-        return redirect('settingsPismo')->with('success', 'Pismo je uspješno izmijenjeno!');
+        return redirect('scripts')->with('success', 'Pismo je uspješno izmijenjeno!');
     }
 
     /**
      * Izbrisi pismo
      *
-     * @param  Script $pismo
+     * @param  Script $script
      */
-    public function izbrisiPismo(Script $pismo) {
-        Script::destroy($pismo->id);
+    public function deleteScript(Script $script) {
+        Script::destroy($script->id);
         return back()->with('success', 'Pismo je uspješno izbrisano!');
     }
 }

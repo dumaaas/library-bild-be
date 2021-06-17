@@ -1,6 +1,5 @@
 @extends('layouts.layout')
-
-@section('editIzdavac')
+@section('editGenre')
     @can('isAdmin')
         <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
         <!-- Heading of content -->
@@ -16,7 +15,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="{{route('settingsPolisa')}}" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="{{route('policy')}}" class="text-[#2196f3] hover:text-blue-600">
                                         Podešavanja
                                     </a>
                                 </li>
@@ -24,15 +23,15 @@
                                     <span class="mx-2">/</span>
                                 </li>
                                 <li>
-                                    <a href="{{route('settingsIzdavac')}}" class="text-[#2196f3] hover:text-blue-600">
-                                        Izdavači
+                                    <a href="{{route('genres')}}" class="text-[#2196f3] hover:text-blue-600">
+                                        Žanrovi
                                     </a>
                                 </li>
                                 <li>
                                     <span class="mx-2">/</span>
                                 </li>
                                 <li>
-                                    <a href="{{route('editIzdavac', ['izdavac' => $izdavac->id])}}" class="text-gray-400 hover:text-blue-600">
+                                    <a href="{{route('editGenre', ['genre' => $genre->id])}}" class="text-gray-400 hover:text-blue-600">
                                         Izmijeni podatke
                                     </a>
                                 </li>
@@ -53,15 +52,33 @@
 
         <!-- Space for content -->
         <div class="scroll height-content section-content">
-            <form action="{{route('izmijeniIzdavaca', ['izdavac' => $izdavac->id])}}" method="POST" class="text-gray-700 forma">
-                @csrf
+            <form action="{{route('updateGenre', ['genre' => $genre->id])}}" method="POST" enctype="multipart/form-data" class="text-gray-700">
+            @csrf
                 <div class="flex flex-row ml-[30px]">
                     <div class="w-[50%] mb-[150px]">
                         <div class="mt-[20px]">
-                            <p>Naziv izdavača <span class="text-red-500">*</span></p>
-                            <input type="text" name="nazivIzdavacEdit" id="nazivIzdavacEdit" value="{{$izdavac->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNazivIzdavacEdit()"/>
-                            @error('nazivIzdavacEdit')
+                            <p>Naziv žanra <span class="text-red-500">*</span></p>
+                            <input type="text" name="genreNameEdit" id="genreNameEdit" value="{{$genre->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                            @error('genreNameEdit')
                                 <div class="text-red-500">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mt-[20px]">
+                        <p>Odaberi ikonicu </p>
+                        <div id="empty-cover-art-ikonica"
+                            class="flex w-[90%] mt-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
+                            <div class="bg-gray-300 h-[40px] w-[102px] px-[20px] pt-[10px]">
+                                <label class="cursor-pointer">
+                                    <p class="leading-normal">Pretraži...</p>
+                                    <input id="icon-upload" type='file' class="hidden" name="userImage" :multiple="multiple"
+                                        :accept="accept" />
+                                </label>
+                            </div>
+                            <div id="icon-output" class="h-[40px] px-[20px] pt-[7px]"></div>
+
+                            </div>
+                            @error('userImage')
+                            <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -73,8 +90,8 @@
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                     <i class="fas fa-times mr-[7px]"></i> Poništi
                             </button>
-                            <button id="sacuvajIzdavacEdit" type="submit"
-                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaIzdavacEdit()">
+                            <button id="editGenre" type="submit"
+                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                     <i class="fas fa-check mr-[7px]"></i> Sačuvaj
                             </button>
                         </div>

@@ -16,25 +16,25 @@ class ScriptService {
      * @return void
      */
     public function getScripts(){
-        return $pisma = DB::table('scripts');
+        return $scripts = DB::table('scripts');
     }
 
     /**
      * Izvrsi validaciju podataka i edituj pismo
      *
-     * @param  Script $pismo
+     * @param  Script $script
      * @return void
      */
-    public function editScript($pismo){
+    public function editScript($script){
 
         //request all data, validate and update script
         request()->validate([
-            'nazivPismoEdit' => 'string|max:256',
+            'scriptNameEdit' => 'string|max:256',
         ]);
 
-        $pismo->name = request('nazivPismoEdit');
+        $script->name = request('scriptNameEdit');
 
-        $pismo->save();
+        $script->save();
    }
 
    /**
@@ -46,14 +46,14 @@ class ScriptService {
 
         //request all data, validate and update script
         request()->validate([
-            'nazivPismo'=>'required|string|max:256',
+            'scriptName'=>'required|string|max:256',
         ]);
 
-        $pisma = new Script();
+        $script = new Script();
 
-        $pisma->name=request('nazivPismo');
+        $script->name=request('scriptName');
 
-        $pisma->save();
+        $script->save();
     }
 
 }

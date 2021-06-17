@@ -292,13 +292,13 @@ return [
         'datumRezervisanja' => [
             'required' => 'Datum rezervisanja je obavezan.',
         ],
-        'rokRezervacije' => [
+        'reservationPeriod' => [
             'numeric' => 'Rok rezervacije mora sadržati samo brojeve.',
         ],
-        'rokPozajmljivanja' => [
+        'returnDueDate' => [
             'numeric' => 'Rok pozajmljivanja mora sadržati samo brojeve.',
         ],
-        'rokPrekoracenja' => [
+        'overdraftPeriod' => [
             'numeric' => 'Rok prekoračenja mora sadržati samo brojeve.',
         ],
         'categoryName' => [
@@ -307,16 +307,16 @@ return [
         'categoryNameEdit' => [
             'string' => 'Naziv kategorije je obavezan.',
         ],
-        'nazivZanra' => [
+        'genreName' => [
             'required' => 'Naziv žanra je obavezan.',
         ],
-        'nazivZanraEdit' => [
+        'genreNameEdit' => [
             'string' => 'Naziv žanra je obavezan.',
         ],
-        'nazivIzdavac' => [
+        'publisherName' => [
             'required' => 'Naziv izdavača je obavezan.',
         ],
-        'nazivIzdavacEdit' => [
+        'publisherNameEdit' => [
             'string' => 'Naziv izdavača je obavezan.',
         ],
         'bindingName' => [
@@ -331,10 +331,10 @@ return [
         'formatNameEdit' => [
             'string' => 'Naziv formata je obavezan.',
         ],
-        'nazivPismo' => [
+        'scriptName' => [
             'required' => 'Naziv pisma je obavezan.',
         ],
-        'nazivPismoEdit' => [
+        'scriptNameEdit' => [
             'string' => 'Naziv pisma je obavezan.',
         ],
     ],
