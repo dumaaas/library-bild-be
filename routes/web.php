@@ -25,14 +25,18 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboardAktivnostKonkretneKnjige/{knjiga}', [\App\Http\Controllers\DashboardController::class, 'prikaziDashboardAktivnostKonkretneKnjige'])->name('dashboardAktivnostKonkretneKnjige');
     Route::post('/filterAktivnosti', [\App\Http\Controllers\DashboardController::class, 'filterAktivnosti'])->name('filterAktivnosti');
 
-    //USER - ROUTES
-    Route::get('/bibliotekarProfile/{user}', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekara'])->name('bibliotekarProfile');
-    Route::get('/bibliotekari', [\App\Http\Controllers\UserController::class, 'prikaziBibliotekare']);
-    Route::get('/editBibliotekar/{user}', [\App\Http\Controllers\UserController::class, 'prikaziEditBibliotekar'])->name('editBibliotekar');
-    Route::post('/editBibliotekar/{user}/update', [\App\Http\Controllers\UserController::class, 'izmijeniBibliotekara'])->name('updateBibliotekar');
-    Route::get('/deleteBibliotekar/{user}', [\App\Http\Controllers\UserController::class, 'izbrisiBibliotekara'])->name('deleteBibliotekar');
-    Route::get('/noviBibliotekar', [\App\Http\Controllers\UserController::class, 'prikaziNoviBibliotekar'])->name('noviBibliotekar');
-    Route::post('/sacuvajBibliotekara', [\App\Http\Controllers\UserController::class, 'sacuvajBibliotekara'])->name('sacuvajBibliotekara');
+    //LIBRARIAN - ROUTES
+    Route::get('/librarianProfile/{user}', [\App\Http\Controllers\UserController::class, 'showLibrarian'])->name('librarianProfile');
+    Route::get('/librarians', [\App\Http\Controllers\UserController::class, 'showLibrarians']);
+    Route::get('/editLibrarian/{user}', [\App\Http\Controllers\UserController::class, 'showEditLibrarian'])->name('editLibrarian');
+    Route::post('/editLibrarian/{user}/update', [\App\Http\Controllers\UserController::class, 'updateLibrarian'])->name('updateLibrarian');
+    Route::get('/deleteLibrarian/{user}', [\App\Http\Controllers\UserController::class, 'deleteLibrarian'])->name('deleteLibrarian');
+    Route::get('/addLibrarian', [\App\Http\Controllers\UserController::class, 'showAddLibrarian'])->name('addLibrarian');
+    Route::post('/saveLibrarian', [\App\Http\Controllers\UserController::class, 'saveLibrarian'])->name('saveLibrarian');
+    Route::get('/searchLibrarians', [\App\Http\Controllers\UserController::class, 'searchLibrarians'])->name('searchLibrarians');
+    Route::post('/resetPassword/{user}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('resetPassword');
+
+    //STUDENT - ROUTES
     Route::get('/ucenik', [\App\Http\Controllers\UserController::class, 'prikaziUcenike']);
     Route::get('/ucenikProfile/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikProfile'])->name('ucenikProfile');
     Route::get('/editUcenik/{user}', [\App\Http\Controllers\UserController::class, 'prikaziEditUcenik'])->name('editUcenik');
@@ -45,8 +49,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/ucenikPrekoracenje/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje'])->name('ucenikPrekoracenje');
     Route::get('/ucenikAktivne/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne'])->name('ucenikAktivne');
     Route::get('/ucenikArhivirane/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane'])->name('ucenikArhivirane');
-    Route::post('/resetujSifru/{user}', [\App\Http\Controllers\UserController::class, 'resetujSifru'])->name('resetujSifru');
-    Route::get('/searchBibliotekari', [\App\Http\Controllers\UserController::class, 'searchBibliotekari'])->name('searchBibliotekari');
     Route::get('/searchUcenici', [\App\Http\Controllers\UserController::class, 'searchUcenici'])->name('searchUcenici');
 
 

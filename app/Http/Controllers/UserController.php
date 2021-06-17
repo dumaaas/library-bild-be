@@ -29,7 +29,7 @@ use App\Services\ReservationService;
 class UserController extends Controller
 {
 
-    private $viewFolderLibrarian = 'pages/bibliotekar';
+    private $viewFolderLibrarian = 'pages/librarians';
     private $viewFolderStudent = 'pages/ucenik';
 
     /**
@@ -38,9 +38,9 @@ class UserController extends Controller
      * @param  User $user
      * @return void
      */
-    public function prikaziBibliotekara(User $user) {
+    public function showLibrarian(User $user) {
 
-        $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
+        $viewName = $this->viewFolderLibrarian . '.librarianProfile';
 
         $viewModel = [
             'user' => $user
@@ -58,12 +58,12 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziBibliotekare(UserService $userService) {
+    public function showLibrarians(UserService $userService) {
 
-        $viewName = $this->viewFolderLibrarian . '.bibliotekari';
+        $viewName = $this->viewFolderLibrarian . '.librarians';
 
         $viewModel = [
-            'bibliotekari' => $userService->getBibliotekari()->paginate(7)
+            'librarians' => $userService->getLibrarians()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -75,9 +75,9 @@ class UserController extends Controller
      * @param  User $user
      * @return void
      */
-    public function prikaziEditBibliotekar(User $user) {
+    public function showEditLibrarian(User $user) {
 
-        $viewName = $this->viewFolderLibrarian . '.editBibliotekar';
+        $viewName = $this->viewFolderLibrarian . '.editLibrarian';
 
         $viewModel = [
             'user' => $user
@@ -94,9 +94,9 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function prikaziNoviBibliotekar() {
+    public function showAddLibrarian() {
 
-        $viewName = $this->viewFolderLibrarian . '.noviBibliotekar';
+        $viewName = $this->viewFolderLibrarian . '.addLibrarian';
 
         return view($viewName);
     }
@@ -105,15 +105,16 @@ class UserController extends Controller
      * Izmijeni podatke o bibliotekaru
      *
      * @param  User $user
-     * @param  AuthorService $autorService
+     * @param  UserService $userService
+     * @param  Request $request
      * @return void
      */
-    public function izmijeniBibliotekara(User $user, UserService $userService, Request $request) {
+    public function updateLibrarian(User $user, UserService $userService, Request $request) {
 
-        $userService->editBibliotekar($user, $request);
+        $userService->editLibrarian($user, $request);
 
-        //return back to the edit author form
-        return redirect('bibliotekari')->with('success', 'Bibliotekar je uspješno izmijenjen!');
+        //return back to all librarians
+        return redirect('librarians')->with('success', 'Bibliotekar je uspješno izmijenjen!');
     }
 
     /**
@@ -122,19 +123,19 @@ class UserController extends Controller
      * @param  User $user
      * @return void
      */
-    public function izbrisiBibliotekara(User $user) {
+    public function deleteLibrarian(User $user) {
 
-        $viewName = $this->viewFolderLibrarian . '.bibliotekari';
+        $viewName = $this->viewFolderLibrarian . '.librarians';
 
         $viewModel = [
-            'bibliotekari' => User::with('userType')
+            'librarians' => User::with('userType')
                     ->where('userType_id', '=', 2)
                     ->paginate(7)
         ];
 
         if ($user->userType->name != 'student' && (Gate::allows('isMyAccount', $user) || Gate::allows('isAdmin'))) {
             User::destroy($user->id);
-            return redirect('bibliotekari')->with('success', 'Bibliotekar je uspješno izbrisan!');
+            return redirect('librarians')->with('success', 'Bibliotekar je uspješno izbrisan!');
         } else {
             return abort(403, trans('Sorry, not sorry!'));
         }
@@ -147,9 +148,9 @@ class UserController extends Controller
      * @param UserService $userService
      * @return void
      */
-    public function resetujSifru(User $user, UserService $userService) {
+    public function resetPassword(User $user, UserService $userService) {
 
-        $userService->resetujSifru($user);
+        $userService->resetPassword($user);
 
         return back()->with('success', 'Šifra je uspješno resetovana!');
     }
@@ -157,21 +158,22 @@ class UserController extends Controller
     /**
      * Kreiraj i sacuvaj novog bibliotekara
      *
-     * @param  AuthorService $autorService
+     * @param  UserService $userService
+     * @param  Request $request
      * @return void
      */
-    public function sacuvajBibliotekara(UserService $userService, Request $request) {
+    public function saveLibrarian(UserService $userService, Request $request) {
 
-        $viewName = $this->viewFolderLibrarian . '.bibliotekarProfile';
+        $viewName = $this->viewFolderLibrarian . '.librarianProfile';
 
-        $user = $userService->saveBibliotekar($request);
+        $user = $userService->saveLibrarian($request);
 
         $viewModel = [
             'user' => $user
         ];
 
-        //return back to the librarian profile
-        return redirect('bibliotekari')->with('success', 'Bibliotekar je uspješno unesen!');
+        //return back to all librarians
+        return redirect('librarians')->with('success', 'Bibliotekar je uspješno unesen!');
     }
 
     /**
@@ -180,14 +182,14 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function searchBibliotekari(UserService $userService) {
+    public function searchLibrarians(UserService $userService) {
 
-        $viewName = $this->viewFolderLibrarian . '.bibliotekari';
+        $viewName = $this->viewFolderLibrarian . '.librarians';
 
-        $bibliotekari = $userService->searchBibliotekari();
+        $librarians = $userService->searchLibrarians();
 
         $viewModel = [
-            'bibliotekari' => $bibliotekari
+            'librarians' => $librarians
         ];
 
         return view($viewName, $viewModel);

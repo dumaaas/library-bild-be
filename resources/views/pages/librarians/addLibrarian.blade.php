@@ -1,6 +1,5 @@
 @extends('layouts.layout')
-
-@section('noviBibliotekar')
+@section('addLibrarian')
     @can('isAdmin')
         <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
             <!-- Heading of content -->
@@ -16,7 +15,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="bibliotekari" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="librarians" class="text-[#2196f3] hover:text-blue-600">
                                             Svi bibliotekari
                                         </a>
                                     </li>
@@ -44,21 +43,21 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('sacuvajBibliotekara')}}" method="POST" enctype="multipart/form-data" class="text-gray-700 text-[14px] forma">
+                <form action="{{route('saveLibrarian')}}" method="POST" enctype="multipart/form-data" class="text-gray-700 text-[14px]">
                     @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
                         <div class="mt-[20px]">
                                 <span>Ime i prezime <span class="text-red-500">*</span></span>
-                                <input type="text" name="imePrezimeBibliotekar" id="imePrezimeBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameBibliotekar()"/>
-                                @error('imePrezimeBibliotekar')
+                                <input type="text" name="librarianName" id="librarianName" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('librarianName')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Tip korisnika</span>
-                                <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="tip_korisnika" disabled>
+                                <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="userType" disabled>
                                     <option value="">
                                         Bibliotekar
                                     </option>
@@ -67,40 +66,40 @@
 
                             <div class="mt-[20px]">
                                 <span>JMBG <span class="text-red-500">*</span></span>
-                                <input type="text" name="jmbgBibliotekar" id="jmbgBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgBibliotekar()"/>
-                                @error('jmbgBibliotekar')
+                                <input type="text" name="librarianJmbg" id="librarianJmbg" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('librarianJmbg')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>E-mail <span class="text-red-500">*</span></span>
-                                <input type="email" name="emailBibliotekar" id="emailBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailBibliotekar()"/>
-                                @error('emailBibliotekar')
+                                <input type="email" name="librarianEmail" id="librarianEmail" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('librarianEmail')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Korisničko ime <span class="text-red-500">*</span></span>
-                                <input type="text" name="usernameBibliotekar" id="usernameBibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekar()"/>
-                                @error('usernameBibliotekar')
+                                <input type="text" name="librarianUsername" id="librarianUsername" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('librarianUsername')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Šifra <span class="text-red-500">*</span></span>
-                                <input type="password" name="pwBibliotekar" id="pwBibliotekar" autocomplete="new-password" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekar()"/>
-                                @error('pwBibliotekar')
+                                <input type="password" name="librarianPassword" id="librarianPassword" autocomplete="new-password" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('librarianPassword')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <span>Ponovi šifru <span class="text-red-500">*</span></span>
-                                <input type="password" name="pw2Bibliotekar" id="pw2Bibliotekar" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2Bibliotekar()"/>
-                                @error('pw2Bibliotekar')
+                                <input type="password" name="librarianPassword2" id="librarianPassword2" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
+                                @error('librarianPassword2')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -134,8 +133,8 @@
                                         class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                         <i class="fas fa-times mr-[7px]"></i> Poništi 
                                 </button>
-                                <button id="sacuvajBibliotekara" type="submit"
-                                        class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaBibliotekar()">
+                                <button id="addLibrarian" type="submit"
+                                        class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                         <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                 </button>
                             </div>

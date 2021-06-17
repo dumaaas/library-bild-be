@@ -137,28 +137,28 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'imePrezimeBibliotekar' => [
+        'librarianName' => [
             'required' => 'Ime i prezime bibliotekara je obavezno.',
             'regex' => 'Ime i prezime bibliotekara ne može sadržati brojeve.',
         ],
-        'jmbgBibliotekar' => [
+        'librarianJmbg' => [
             'required' => 'JMBG bibliotekara je obavezan.',
             'unique' => 'JMBG bibliotekara već postoji u bazi podataka.',
             'digits' => 'JMBG bibliotekara mora sadržati samo brojeve.',
         ],
-        'emailBibliotekar' => [
+        'librarianEmail' => [
             'required' => 'E-mail bibliotekara je obavezan.',
             'unique' => 'E-mail bibliotekara već postoji u bazi podataka.',
         ],
-        'usernameBibliotekar' => [
+        'librarianUsername' => [
             'required' => 'Korisničko ime bibliotekara je obavezno.',
         ],
-        'pwBibliotekar' => [
+        'librarianPassword' => [
             'required' => 'Šifra bibliotekara je obavezna.',
             'min' => 'Šifra bibliotekara mora sadržati minimum 8 cifara.',
             'same' => 'Šifre bibliotekara se moraju poklapati.',
         ],
-        'pw2Bibliotekar' => [
+        'librarianPassword2' => [
             'required' => 'Šifra bibliotekara je obavezna.',
             'min' => 'Šifra bibliotekara mora sadržati minimum 8 cifara.',
             'same' => 'Šifre bibliotekara se moraju poklapati.',
@@ -166,14 +166,14 @@ return [
         'userImage' => [
             'mimes' => 'Slika bibliotekara mora biti tipa: jpeg,png,jpg.',
         ],
-        'imePrezimeBibliotekarEdit' => [
+        'librarianNameEdit' => [
             'regex' => 'Ime i prezime bibliotekara ne može sadržati brojeve.',
         ],
-        'jmbgBibliotekarEdit' => [
+        'librarianJmbgEdit' => [
             'unique' => 'JMBG bibliotekara već postoji u bazi podataka.',
             'digits' => 'JMBG bibliotekara mora sadržati samo brojeve.',
         ],
-        'emailBibliotekarEdit' => [
+        'librarianEmailEdit' => [
             'unique' => 'E-mail bibliotekara već postoji u bazi podataka.',
         ],
         'pwReset' => [

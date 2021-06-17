@@ -26,8 +26,8 @@ class UserService {
      *
      * @return void
      */
-    public function getBibliotekari() {
-        return $bibliotekari = User::with('userType')
+    public function getLibrarians() {
+        return $librarians = User::with('userType')
                             ->where('userType_id', '=', 2);
     }
 
@@ -37,39 +37,39 @@ class UserService {
      * @param  User  $bibliotekar
      * @return void
      */
-    public function editBibliotekar($bibliotekar, $request) {
+    public function editLibrarian($librarian, $request) {
         //request all data, validate and update librarian
         request()->validate([
-            'imePrezimeBibliotekarEdit' => 'nullable|string|max:128|regex:/^([^0-9]*)$/',
-            'jmbgBibliotekarEdit'       => 'nullable|digits:14|unique:users,jmbg',
-            'emailBibliotekarEdit'      => 'nullable|string|unique:users,email|max:128',
-            'usernameBibliotekarEdit'   => 'nullable|string|max:64',
-            'pwBibliotekarEdit'         => 'nullable|max:256|min:8|same:pw2BibliotekarEdit',
-            'pw2BibliotekarEdit'        => 'nullable|max:256|min:8|same:pwBibliotekarEdit',
-            'userImage'                 => 'nullable|mimes:jpeg,png,jpg'
+            'librarianNameEdit'       => 'nullable|string|max:128|regex:/^([^0-9]*)$/',
+            'librarianJmbgEdit'       => 'nullable|digits:14|unique:users,jmbg',
+            'librarianEmailEdit'      => 'nullable|string|unique:users,email|max:128',
+            'librarianUsernameEdit'   => 'nullable|string|max:64',
+            'librarianPasswordEdit'   => 'nullable|max:256|min:8|same:librarianPassword2Edit',
+            'librarianPassword2Edit'  => 'nullable|max:256|min:8|same:librarianPasswordEdit',
+            'userImage'               => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        if(request('imePrezimeBibliotekarEdit')) {
-            $bibliotekar->name     = request('imePrezimeBibliotekarEdit');
+        if(request('librarianNameEdit')) {
+            $librarian->name     = request('librarianNameEdit');
         }
-        if(request('jmbgBibliotekarEdit')) {
-            $bibliotekar->jmbg     = request('jmbgBibliotekarEdit');
+        if(request('librarianJmbgEdit')) {
+            $librarian->jmbg     = request('librarianJmbgEdit');
         }
-        if(request('emailBibliotekarEdit')) {
-            $bibliotekar->email    = request('emailBibliotekarEdit');
+        if(request('librarianEmailEdit')) {
+            $librarian->email    = request('librarianEmailEdit');
         }
-        if(request('usernameBibliotekarEdit')) {
-            $bibliotekar->username = request('usernameBibliotekarEdit');
-        }
-
-        $this->uploadEditPhoto($bibliotekar, $request);
-
-        if(request('pwBibliotekarEdit')) {
-            $sifra1 = request('pwBibliotekarEdit');
-            $bibliotekar->password=Hash::make($sifra1);
+        if(request('librarianUsernameEdit')) {
+            $librarian->username = request('librarianUsernameEdit');
         }
 
-        $bibliotekar->save();
+        $this->uploadEditPhoto($librarian, $request);
+
+        if(request('librarianPasswordEdit')) {
+            $password = request('librarianPasswordEdit');
+            $librarian->password=Hash::make($password);
+        }
+
+        $librarian->save();
     }
 
     /**
@@ -77,39 +77,39 @@ class UserService {
      *
      * @return void
      */
-    public function saveBibliotekar($request) {
+    public function saveLibrarian($request) {
         //request all data, validate and add librarian
         request()->validate([
-            'imePrezimeBibliotekar' => 'required|max:128|regex:/^([^0-9]*)$/',
-            'jmbgBibliotekar'       => 'required|digits:14|unique:users,jmbg',
-            'emailBibliotekar'      => 'required|string|unique:users,email|max:128',
-            'usernameBibliotekar'   => 'required|string|max:64',
-            'pwBibliotekar'         => 'required|max:256|min:8|same:pw2Bibliotekar',
-            'pw2Bibliotekar'        => 'required|max:256|min:8|same:pwBibliotekar',
-            'userImage'             => 'nullable|mimes:jpeg,png,jpg'
+            'librarianName'       => 'required|max:128|regex:/^([^0-9]*)$/',
+            'librarianJmbg'       => 'required|digits:14|unique:users,jmbg',
+            'librarianEmail'      => 'required|string|unique:users,email|max:128',
+            'librarianUsername'   => 'required|string|max:64',
+            'librarianPassword'   => 'required|max:256|min:8|same:librarianPassword2',
+            'librarianPassword2'  => 'required|max:256|min:8|same:librarianPassword',
+            'userImage'           => 'nullable|mimes:jpeg,png,jpg'
         ]);
 
-        $bibliotekar = new User();
+        $librarian = new User();
 
-        $bibliotekar->userType_id = 2;
+        $librarian->userType_id = 2;
 
-        $bibliotekar->name              = request('imePrezimeBibliotekar');
-        $bibliotekar->jmbg              = request('jmbgBibliotekar');
-        $bibliotekar->email_verified_at = now();
-        $bibliotekar->email             = request('emailBibliotekar');
-        $bibliotekar->username          = request('usernameBibliotekar');
-        $bibliotekar->remember_token    = Str::random(10);
+        $librarian->name              = request('librarianName');
+        $librarian->jmbg              = request('librarianJmbg');
+        $librarian->email_verified_at = now();
+        $librarian->email             = request('librarianEmail');
+        $librarian->username          = request('librarianUsername');
+        $librarian->remember_token    = Str::random(10);
 
-        $this->uploadPhoto($bibliotekar, $request);
+        $this->uploadPhoto($librarian, $request);
 
-        $sifra1 = request('pwBibliotekar');
-        $sifra2 = request('pw2Bibliotekar');
+        $password = request('librarianPassword');
+        $passwordRepeat = request('librarianPassword2');
 
-        $bibliotekar->password=Hash::make($sifra1);
+        $librarian->password=Hash::make($password);
 
-        $bibliotekar->save();
+        $librarian->save();
 
-        return $bibliotekar;
+        return $librarian;
     }
 
     /**
@@ -117,20 +117,20 @@ class UserService {
      *
      * @return void
      */
-    public function searchBibliotekari() {
+    public function searchLibrarians() {
 
-        $bibliotekari = User::query();
+        $librarians = User::query();
 
-        $bibliotekari = $this->getBibliotekari();
+        $librarians = $this->getLibrarians();
 
-        if(request('searchBibliotekari')) {
-            $bibliotekarPretraga = request('searchBibliotekari');
-            $bibliotekari = $bibliotekari->where('name', 'LIKE', '%'.$bibliotekarPretraga.'%');
+        if(request('searchLibrarians')) {
+            $searchedLibrarians = request('searchLibrarians');
+            $librarians = $librarians->where('name', 'LIKE', '%'.$searchedLibrarians.'%');
         }
 
-        $bibliotekari = $bibliotekari->paginate(7);
+        $librarians = $librarians->paginate(7);
 
-        return $bibliotekari;
+        return $librarians;
     }
 
     /**
@@ -286,20 +286,20 @@ class UserService {
     /**
      * Resetuj sifru korisnika
      *
-     * @param  User  $ucenik
+     * @param  User  $user
      * @return void
      */
-    public function resetujSifru($user) {
-        //request all data, validate and update student
+    public function resetPassword($user) {
+        //request all data, validate and reset password
         request()->validate([
             'pwReset'  => 'required|min:8|max:256|same:pw2Reset',
             'pw2Reset' => 'required|min:8|max:256|same:pwReset',
         ]);
 
-        $sifra1 = request('pwReset');
-        $sifra2 = request('pw2Reset');
+        $password = request('pwReset');
+        $passwordRepeat = request('pw2Reset');
 
-        $user->password=Hash::make($sifra1);
+        $user->password=Hash::make($password);
 
         $user->save();
     }
