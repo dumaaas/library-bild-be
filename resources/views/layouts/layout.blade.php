@@ -90,7 +90,7 @@
                     <div class="absolute right-[12px] w-56 mt-[35px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                          aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                         <div class="py-1">
-                            <a href="{{route('noviBibliotekar')}}" tabindex="0"
+                            <a href="{{route('addLibrarian')}}" tabindex="0"
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                role="menuitem">
                                 <i class="far fa-address-book mr-[8px] ml-[5px] py-1"></i>
@@ -170,7 +170,7 @@
                     <div class="absolute right-[12px] w-56 mt-[35px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                          aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                         <div class="py-1">
-                            <a href="{{route('bibliotekarProfile', ['user' => auth()->user()->id])}}" tabindex="0"
+                            <a href="{{route('librarianProfile', ['user' => auth()->user()->id])}}" tabindex="0"
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                role="menuitem">
                                 <i class="fas fa-file mr-[8px] ml-[5px] py-1"></i>
@@ -230,7 +230,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="/bibliotekari" aria-label="Bibliotekari">
+                                <a href="/librarians" aria-label="Bibliotekari">
                                     <i
                                         class="text-[25px] text-[#707070] far fa-address-book transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                     <div class="hidden sidebar-item">
@@ -343,12 +343,12 @@
     @yield('arhiviraneRezervacije')
     @yield('autori')
     @yield('autorProfile')
-    @yield('bibliotekari')
-    @yield('bibliotekarProfile')
+    @yield('librarians')
+    @yield('librarianProfile')
     @yield('dashboard')
     @yield('dashboardAktivnost')
     @yield('editAutor')
-    @yield('editBibliotekar')
+    @yield('editLibrarian')
     @yield('editFormat')
     @yield('editIzdavac')
     @yield('editCategory')
@@ -378,7 +378,7 @@
     @yield('novaKnjigaMultimedija')
     @yield('novaKnjigaSpecifikacija')
     @yield('noviAutor')
-    @yield('noviBibliotekar')
+    @yield('addLibrarian')
     @yield('addFormat')
     @yield('noviIzdavac')
     @yield('addBinding')
@@ -429,19 +429,19 @@
             </button>
         </div>
         <!-- Modal Body -->
-        <form class="forma" method="POST" action="{{route('resetujSifru', ['user' => Auth::user()])}}">
+        <form class="forma" method="POST" action="{{route('resetPassword', ['user' => Auth::user()])}}">
             @csrf
             <div class="flex flex-col px-[30px] py-[30px]">
                 <div class="flex flex-col pb-[30px]">
                     <span>Unesi novu šifru <span class="text-red-500">*</span></span>
-                    <input class="h-[40px] px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" type="password" name="pwReset" id="pwResetBibliotekar" onkeydown="clearErrorsPwResetBibliotekar()">
+                    <input class="h-[40px] px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" type="password" name="pwReset" id="pwResetLibrarian">
                     @error('pwReset')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="flex flex-col pb-[30px]">
                     <span>Ponovi šifru <span class="text-red-500">*</span></span>
-                    <input class="h-[40px] px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" type="password" name="pw2Reset" id="pw2ResetBibliotekar" onkeydown="clearErrorsPw2ResetBibliotekar()">
+                    <input class="h-[40px] px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" type="password" name="pw2Reset" id="pw2ResetLibrarian">
                     @error('pw2Reset')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
@@ -452,9 +452,8 @@
                     class="text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                     <i class="fas fa-times mr-[7px]"></i> Poništi 
                 </button>
-                <button id="resetujSifruBibliotekar" type="submit"
-                    class="shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
-                    onclick="validacijaSifraBibliotekar()">
+                <button id="resetPassword" type="submit"
+                    class="shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                     <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                 </button>
             </div>
