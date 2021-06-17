@@ -350,8 +350,13 @@
     @yield('editAutor')
     @yield('editBibliotekar')
     @yield('editFormat')
+<<<<<<< HEAD
     @yield('editPublisher')
     @yield('editKategorija')
+=======
+    @yield('editIzdavac')
+    @yield('editCategory')
+>>>>>>> d32f2bbc8cc7eed279843885577811eed20e2bdc
     @yield('editKnjiga')
     @yield('editKnjigaMultimedija')
     @yield('editKnjigaSpecifikacija')
@@ -373,25 +378,38 @@
     @yield('knjigaOsnovniDetalji')
     @yield('knjigaSpecifikacija')
     @yield('knjigePrekoracenje')
-    @yield('novaKategorija')
+    @yield('addCategory')
     @yield('novaKnjiga')
     @yield('novaKnjigaMultimedija')
     @yield('novaKnjigaSpecifikacija')
     @yield('noviAutor')
     @yield('noviBibliotekar')
+<<<<<<< HEAD
     @yield('noviFormat')
     @yield('addPublisher')
+=======
+    @yield('addFormat')
+    @yield('noviIzdavac')
+>>>>>>> d32f2bbc8cc7eed279843885577811eed20e2bdc
     @yield('addBinding')
     @yield('noviUcenik')
     @yield('addGenre')
     @yield('addScript')
     @yield('otpisiKnjigu')
     @yield('rezervisiKnjigu')
+<<<<<<< HEAD
     @yield('settingsFormat')
     @yield('publishers')
     @yield('settingsKategorije')
     @yield('scripts')
     @yield('policy')
+=======
+    @yield('formats')
+    @yield('settingsIzdavac')
+    @yield('categories')
+    @yield('settingsPismo')
+    @yield('settingsPolisa')
+>>>>>>> d32f2bbc8cc7eed279843885577811eed20e2bdc
     @yield('bindings')
     @yield('genres')
     @yield('ucenik')

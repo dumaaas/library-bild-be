@@ -301,10 +301,10 @@ return [
         'OVERDRAFT_PERIOD' => [
             'numeric' => 'Rok prekoračenja mora sadržati samo brojeve.',
         ],
-        'nazivKategorije' => [
+        'categoryName' => [
             'required' => 'Naziv kategorije je obavezan.',
         ],
-        'nazivKategorijeEdit' => [
+        'categoryNameEdit' => [
             'string' => 'Naziv kategorije je obavezan.',
         ],
         'genreName' => [
@@ -325,10 +325,10 @@ return [
         'bindingNameEdit' => [
             'string' => 'Naziv poveza je obavezan.',
         ],
-        'nazivFormat' => [
+        'formatName' => [
             'required' => 'Naziv formata je obavezan.',
         ],
-        'nazivFormatEdit' => [
+        'formatNameEdit' => [
             'string' => 'Naziv formata je obavezan.',
         ],
         'scriptName' => [

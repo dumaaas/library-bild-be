@@ -15,15 +15,15 @@ class CategoryController extends Controller
     /**
      * Prikazi stranicu za editovanje kategorije
      *
-     * @param  Category $kategorija
+     * @param  Category $category
      * @return void
      */
-    public function prikaziEditKategorija(Category $kategorija) {
+    public function showEditCategory(Category $category) {
 
-        $viewName = $this->viewFolder . '.editKategorija';
+        $viewName = $this->viewFolder . '.editCategory';
 
         $viewModel = [
-            'kategorija'=>$kategorija
+            'category'=>$category
         ];
 
         return view($viewName, $viewModel);
@@ -35,12 +35,12 @@ class CategoryController extends Controller
      * @param  CategoryService $categoryService
      * @return void
      */
-    public function prikaziSettingsKategorije(CategoryService $categoryService) {
+    public function showCategories(CategoryService $categoryService) {
 
-        $viewName = $this->viewFolder . '.settingsKategorije';
+        $viewName = $this->viewFolder . '.categories';
 
         $viewModel = [
-            'kategorije' => $categoryService->getCategories()->paginate(7)
+            'categories' => $categoryService->getCategories()->paginate(7)
         ];
 
         return view($viewName,$viewModel);
@@ -51,9 +51,9 @@ class CategoryController extends Controller
      *
      * @return void
      */
-    public function prikaziNovaKategorija() {
+    public function showAddCategory() {
 
-        $viewName = $this->viewFolder . '.novaKategorija';
+        $viewName = $this->viewFolder . '.addCategory';
 
         return view($viewName);
     }
@@ -65,38 +65,38 @@ class CategoryController extends Controller
      * @param  UserService $userService
      * @param  Request $request
      */
-    public function sacuvajKategoriju(CategoryService $categoryService, UserService $userService, Request $request) {
+    public function saveCategory(CategoryService $categoryService, UserService $userService, Request $request) {
 
         $categoryService->saveCategory($userService, $request);
 
         //return back
-        return redirect('settingsKategorije')->with('success', 'Kategorija je uspješno unesena!');
+        return redirect('categories')->with('success', 'Kategorija je uspješno unesena!');
     }
 
     /**
      * Izmijeni podatke o kategoriji
      *
-     * @param  Category $kategorija
+     * @param  Category $category
      * @param  CategoryService $categoryService
      * @param  UserService $userService
      * @param  Request $request
      * @return void
      */
-    public function izmijeniKategoriju(Category $kategorija, CategoryService $categoryService, UserService $userService, Request $request) {
+    public function updateCategory(Category $category, CategoryService $categoryService, UserService $userService, Request $request) {
         
-        $categoryService->editCategory($kategorija, $userService, $request);
+        $categoryService->editCategory($category, $userService, $request);
 
-        //return back to the category
-        return redirect('settingsKategorije')->with('success', 'Kategorija je uspješno izmijenjena!');
+        //return back to all categories
+        return redirect('categories')->with('success', 'Kategorija je uspješno izmijenjena!');
     }
 
     /**
      * Izbrisi kategoriju
      *
-     * @param  Category $kategorija
+     * @param  Category $category
      */
-    public function izbrisiKategoriju(Category $kategorija) {
-        Category::destroy($kategorija->id);
+    public function deleteCategory(Category $category) {
+        Category::destroy($category->id);
         return back()->with('success', 'Kategorija je uspješno izbrisana!');
     }
 }

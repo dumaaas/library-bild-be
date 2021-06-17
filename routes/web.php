@@ -111,12 +111,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //FORMAT - ROUTES
-    Route::get('/editFormat/{format}', [\App\Http\Controllers\FormatController::class, 'prikaziEditFormat'])->name('editFormat');
-    Route::get('/noviFormat', [\App\Http\Controllers\FormatController::class, 'prikaziNoviFormat'])->name('noviFormat');
-    Route::get('/settingsFormat', [\App\Http\Controllers\FormatController::class, 'prikaziSettingsFormat'])->name('settingsFormat');
-    Route::post('/sacuvajFormat', [\App\Http\Controllers\FormatController::class, 'sacuvajFormat'])->name('sacuvajFormat');
-    Route::post('/izmijeniFormat/{format}', [\App\Http\Controllers\FormatController::class, 'izmijeniFormat'])->name('izmijeniFormat');
-    Route::get('/izbrisiFormat/{format}', [\App\Http\Controllers\FormatController::class, 'izbrisiFormat'])->name('izbrisiFormat');
+    Route::get('/editFormat/{format}', [\App\Http\Controllers\FormatController::class, 'showEditFormat'])->name('editFormat');
+    Route::get('/addFormat', [\App\Http\Controllers\FormatController::class, 'showAddFormat'])->name('addFormat');
+    Route::get('/formats', [\App\Http\Controllers\FormatController::class, 'showFormats'])->name('formats');
+    Route::post('/saveFormat', [\App\Http\Controllers\FormatController::class, 'saveFormat'])->name('saveFormat');
+    Route::post('/updateFormat/{format}', [\App\Http\Controllers\FormatController::class, 'updateFormat'])->name('updateFormat');
+    Route::get('/deleteFormat/{format}', [\App\Http\Controllers\FormatController::class, 'deleteFormat'])->name('deleteFormat');
 
 
     //LANGUAGE - ROUTES
@@ -141,12 +141,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //CATEGORY - ROUTES
-    Route::get('/editKategorija/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'prikaziEditKategorija'])->name('editKategorija');
-    Route::get('/novaKategorija', [\App\Http\Controllers\CategoryController::class, 'prikaziNovaKategorija'])->name('novaKategorija');
-    Route::get('/settingsKategorije', [\App\Http\Controllers\CategoryController::class, 'prikaziSettingsKategorije'])->name('settingsKategorije');
-    Route::post('/sacuvajKategoriju', [\App\Http\Controllers\CategoryController::class, 'sacuvajKategoriju'])->name('sacuvajKategoriju');
-    Route::post('/izmijeniKategoriju/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'izmijeniKategoriju'])->name('izmijeniKategoriju');
-    Route::get('/izbrisiKategoriju/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'izbrisiKategoriju'])->name('izbrisiKategoriju');
+    Route::get('/editCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'showEditCategory'])->name('editCategory');
+    Route::get('/addCategory', [\App\Http\Controllers\CategoryController::class, 'showAddCategory'])->name('addCategory');
+    Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'showCategories'])->name('categories');
+    Route::post('/saveCategory', [\App\Http\Controllers\CategoryController::class, 'saveCategory'])->name('saveCategory');
+    Route::post('/updateCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'updateCategory'])->name('updateCategory');
+    Route::get('/deleteCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'deleteCategory'])->name('deleteCategory');
 
 
     //AUTHOR - ROUTES
