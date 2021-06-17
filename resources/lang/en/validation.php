@@ -301,10 +301,10 @@ return [
         'rokPrekoracenja' => [
             'numeric' => 'Rok prekoračenja mora sadržati samo brojeve.',
         ],
-        'nazivKategorije' => [
+        'categoryName' => [
             'required' => 'Naziv kategorije je obavezan.',
         ],
-        'nazivKategorijeEdit' => [
+        'categoryNameEdit' => [
             'string' => 'Naziv kategorije je obavezan.',
         ],
         'nazivZanra' => [

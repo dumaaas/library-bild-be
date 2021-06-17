@@ -16,32 +16,32 @@ class CategoryService {
      * @return void
      */
     public function getCategories(){
-        return $kategorije = DB::table('categories');
+        return $categories = DB::table('categories');
     }
 
     /**
      * Izvrsi validaciju podataka i edituj kategoriju
      *
-     * @param  Category  $kategorija
+     * @param  Category  $category
      * @param  UserService $userService
      * @param  Request $request
      * @return void
      */
-    public function editCategory($kategorija, $userService, $request){
+    public function editCategory($category, $userService, $request){
 
         //request all data, validate and update category
         request()->validate([
-            'nazivKategorijeEdit'     => 'string|max:256',
-            'userImage'               => 'nullable|mimes:jpeg,png,jpg',
-            'opisKategorijeEdit'      => 'nullable|string|max:2048'
+            'categoryNameEdit'          => 'string|max:256',
+            'userImage'                 => 'nullable|mimes:jpeg,png,jpg',
+            'categoryDescriptionEdit'   => 'nullable|string|max:2048'
         ]);
 
-        $kategorija->name        = request('nazivKategorijeEdit');
-        $kategorija->description = request('opisKategorijeEdit');
+        $category->name        = request('categoryNameEdit');
+        $category->description = request('categoryDescriptionEdit');
 
-        $userService->uploadEditPhoto($kategorija, $request);
+        $userService->uploadEditPhoto($category, $request);
 
-        $kategorija->save();
+        $category->save();
    }
 
    /**
@@ -54,18 +54,18 @@ class CategoryService {
    public function saveCategory($userService, $request) {
     //request all data, validate and update category
     request()->validate([
-        'nazivKategorije' => 'required|string|max:256',
-        'userImage'       => 'nullable|mimes:jpeg,png,jpg',
-        'opisKategorije'  => 'nullable|string|max:2048',
+        'categoryName'         => 'required|string|max:256',
+        'userImage'            => 'nullable|mimes:jpeg,png,jpg',
+        'categoryDescription'  => 'nullable|string|max:2048',
     ]);
 
-    $kategorija = new Category();
+    $category = new Category();
 
-    $kategorija->name        = request('nazivKategorije');
-    $kategorija->description = request('opisKategorije');
+    $category->name        = request('categoryName');
+    $category->description = request('categoryDescription');
 
-    $userService->uploadPhoto($kategorija, $request);
+    $userService->uploadPhoto($category, $request);
 
-    $kategorija->save();
+    $category->save();
    }
 }

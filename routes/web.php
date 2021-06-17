@@ -141,12 +141,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //CATEGORY - ROUTES
-    Route::get('/editKategorija/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'prikaziEditKategorija'])->name('editKategorija');
-    Route::get('/novaKategorija', [\App\Http\Controllers\CategoryController::class, 'prikaziNovaKategorija'])->name('novaKategorija');
-    Route::get('/settingsKategorije', [\App\Http\Controllers\CategoryController::class, 'prikaziSettingsKategorije'])->name('settingsKategorije');
-    Route::post('/sacuvajKategoriju', [\App\Http\Controllers\CategoryController::class, 'sacuvajKategoriju'])->name('sacuvajKategoriju');
-    Route::post('/izmijeniKategoriju/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'izmijeniKategoriju'])->name('izmijeniKategoriju');
-    Route::get('/izbrisiKategoriju/{kategorija}', [\App\Http\Controllers\CategoryController::class, 'izbrisiKategoriju'])->name('izbrisiKategoriju');
+    Route::get('/editCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'showEditCategory'])->name('editCategory');
+    Route::get('/addCategory', [\App\Http\Controllers\CategoryController::class, 'showAddCategory'])->name('addCategory');
+    Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'showCategories'])->name('categories');
+    Route::post('/saveCategory', [\App\Http\Controllers\CategoryController::class, 'saveCategory'])->name('saveCategory');
+    Route::post('/updateCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'updateCategory'])->name('updateCategory');
+    Route::get('/deleteCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'deleteCategory'])->name('deleteCategory');
 
 
     //AUTHOR - ROUTES

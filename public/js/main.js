@@ -1243,52 +1243,6 @@ $("#rezervisiKnjigu").keypress(function (e) {
     }
 });
 
-// Form validation for new category
-function validacijaKategorija() {
-
-    $("#validateNazivKategorije").empty();
-
-    let nazivKategorije = $("#nazivKategorije").val();
-
-    if (nazivKategorije.length == 0) {
-        $('#validateNazivKategorije').append('<p style="color:red;font-size:13px;">Morate unijeti naziv kategorije!</p>');
-    }
-}
-
-function clearErrorsNazivKategorije() {
-    $("#validateNazivKategorije").empty();
-}
-
-$("#sacuvajKategoriju").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaKategorija();
-        return false;
-    }
-});
-
-// Form validation for editing category info
-function validacijaKategorijaEdit() {
-
-    $("#validateNazivKategorijeEdit").empty();
-
-    let nazivKategorijeEdit = $("#nazivKategorijeEdit").val();
-
-    if (nazivKategorijeEdit.length == 0) {
-        $('#validateNazivKategorijeEdit').append('<p style="color:red;font-size:13px;">Morate unijeti naziv kategorije!</p>');
-    }
-}
-
-function clearErrorsNazivKategorijeEdit() {
-    $("#validateNazivKategorijeEdit").empty();
-}
-
-$("#sacuvajKategorijuEdit").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaKategorijaEdit();
-        return false;
-    }
-});
-
 // Form validation for new author
 function validacijaAutor() {
 
@@ -1423,52 +1377,6 @@ function clearErrorsNazivIzdavacEdit() {
 $("#sacuvajIzdavacEdit").keypress(function (e) {
     if (e.which == 13) {
         validacijaIzdavacEdit();
-        return false;
-    }
-});
-
-// Form validation for new book format
-function validacijaFormat() {
-
-    $("#validateNazivFormat").empty();
-
-    let nazivFormat = $("#nazivFormat").val();
-
-    if (nazivFormat.length == 0) {
-        $('#validateNazivFormat').append('<p style="color:red;font-size:13px;">Morate unijeti naziv formata!</p>');
-    }
-}
-
-function clearErrorsNazivFormat() {
-    $("#validateNazivFormat").empty();
-}
-
-$("#sacuvajFormat").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaFormat();
-        return false;
-    }
-});
-
-// Form validation for editing book format info
-function validacijaFormatEdit() {
-
-    $("#validateNazivFormatEdit").empty();
-
-    let nazivFormatEdit = $("#nazivFormatEdit").val();
-
-    if (nazivFormatEdit.length == 0) {
-        $('#validateNazivFormatEdit').append('<p style="color:red;font-size:13px;">Morate unijeti naziv formata!</p>');
-    }
-}
-
-function clearErrorsNazivFormatEdit() {
-    $("#validateNazivFormatEdit").empty();
-}
-
-$("#sacuvajFormatEdit").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaFormatEdit();
         return false;
     }
 });
