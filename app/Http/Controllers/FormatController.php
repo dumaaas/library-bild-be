@@ -9,7 +9,7 @@ use App\Services\FormatService;
 class FormatController extends Controller
 {
     
-    private $viewFolder = 'pages/settings/format';
+    private $viewFolder = 'pages/settings/formats';
 
      /**
      * Prikazi stranicu za editovanje formata
