@@ -20,7 +20,7 @@
             @if(count($ucenici) > 0)
                 <div class="scroll height-dashboard">
                     <div class="flex items-center justify-between px-[50px] py-4 space-x-3 rounded-lg">
-                        <a href="{{ route('noviUcenik') }}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
+                        <a href="{{ route('noviUcenik') }}" class="btn-animation text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                             <i class="fas fa-plus mr-[15px]"></i> Novi učenik
                         </a>
                         <form action="searchUcenici" method="GET">
@@ -45,44 +45,44 @@
                         <table class="min-w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
-                                    <th class="px-4 py-3 leading-4 tracking-wider text-left text-blue-500">
+                                    <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </th>
-                                    <th class="px-4 py-4 leading-4 tracking-wider text-left">Ime i prezime<a href="#"><i class="ml-3 fa-lg fas fa-long-arrow-alt-down" onclick="sortTable()"></i></a></th>
-                                    <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">E-mail</th>
-                                    <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Tip korisnika</th>
-                                    <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Zadnji pristup sistemu</th>
-                                    <th class="px-4 py-4"> </th>
+                                    <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">Ime i prezime<a href="#"><i class="ml-3 fa-lg fas fa-long-arrow-alt-down" onclick="sortTable()"></i></a></th>
+                                    <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">E-mail</th>
+                                    <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Tip korisnika</th>
+                                    <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Zadnji pristup sistemu</th>
+                                    <th class="p-4"> </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
                             @foreach($ucenici as $user)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                    <td class="px-4 py-4 whitespace-no-wrap">
+                                    <td class="p-4 whitespace-nowrap">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </td>
-                                    <td class="flex flex-row items-center px-4 py-4">
+                                    <td class="flex flex-row items-center p-4">
                                         <img class="object-cover w-8 h-8 mr-2 rounded-full" src="/storage/image/{{$user->photo}}" alt=""/>
                                         <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}">
-                                            <span class="font-medium text-center">{{$user->name}}</span>
+                                            <span class="font-medium text-center whitespace-nowrap">{{$user->name}}</span>
                                         </a>
                                     </td>
-                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$user->email}}</td>
-                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                    <td class="p-4 truncate max-w-[200px]">{{$user->email}}</td>
+                                    <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                         Učenik
                                     </td>
-                                    <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                    <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                     @if ($user->login_count == 0)
                                         Nije logovan
                                     @else
                                         {{$user->last_login_at}}
                                     @endif
                                     </td>
-                                    <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
+                                    <td class="p-2 text-sm leading-5 text-right whitespace-nowrap">
                                         <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudent hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>

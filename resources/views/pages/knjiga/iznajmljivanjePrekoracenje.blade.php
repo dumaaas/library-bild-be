@@ -50,12 +50,12 @@
                 <table class="w-full shadow-lg" id="myTable">
                     <thead class="bg-[#EFF3F6]">
                     <tr class="border-b-[1px] border-[#e4dfdf]">
-                        <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
+                        <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </th>
-                        <th class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">Datum izdavanja<i class="ml-2 fas fa-filter datumDrop-toggle"></i>
+                        <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Datum izdavanja<i class="ml-2 fas fa-filter datumDrop-toggle"></i>
                             <div id="datumDropdown"
                                 class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                 <div
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">Izdato učeniku<i class="fas fa-filter uceniciDrop-toggle"></i>
+                        <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Izdato učeniku<i class="fas fa-filter uceniciDrop-toggle"></i>
                             <div id="uceniciDropdown"
                                 class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
                                 <ul class="border-b-2 border-gray-300 list-reset">
@@ -226,9 +226,9 @@
                                     </a>
                                 </div>
                             </div></th>
-                        <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Prekoračenje u
+                        <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Prekoračenje u
                             danima</th>
-                        <th class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">Trenutno
+                        <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Trenutno
                             zadržavanje knjige<i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
                             <div id="zadrzavanjeDropdown"
                                 class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -256,20 +256,20 @@
                                     </a>
                                 </div>
                             </div></th>
-                        <th class="px-4 py-4"> </th>
+                        <th class="p-4"> </th>
                     </tr>
                     </thead>
                     <tbody class="bg-white">
                     @foreach($iznajmljivanjePrekoracene as $iznajmljivanjePrekoracena)
                     <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                        <td class="px-4 py-3 whitespace-no-wrap">
+                        <td class="p-4 whitespace-nowrap">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </td>
-                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$iznajmljivanjePrekoracena->rent_date}}</td>
-                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$iznajmljivanjePrekoracena->student->name}}</td>
-                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$iznajmljivanjePrekoracena->rent_date}}</td>
+                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$iznajmljivanjePrekoracena->student->name}}</td>
+                        <td class="p-4 text-sm leading-5 truncate max-w-[180px]">
                             <div
                                 class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
                                 <span class="text-xs text-red-800">
@@ -277,12 +277,12 @@
                                 </span>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                        <td class="p-4 text-sm leading-5 truncate max-w-[180px]">
                             <div>
                                 <span>{{ \Carbon\Carbon::parse($iznajmljivanjePrekoracena->rent_date)->diffAsCarbonInterval() }}</span>
                             </div>
                         </td>
-                        <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
+                        <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
                             <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsIznajmljivanjeKnjigePrekoracenje hover:text-[#606FC7]">
                                 <i
                                     class="fas fa-ellipsis-v"></i>

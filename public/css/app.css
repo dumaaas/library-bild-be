@@ -1518,17 +1518,44 @@ h4 {
 .max-w-\[304px\]{
     max-width: 304px;
 }
+.max-w-\[500px\]{
+    max-width: 500px;
+}
 .max-w-\[550px\]{
     max-width: 550px;
 }
 .max-w-full{
     max-width: 100%;
 }
+.max-w-\[100px\]{
+    max-width: 100px;
+}
 .max-w-\[600px\]{
     max-width: 600px;
 }
+.max-w-\[200px\]{
+    max-width: 200px;
+}
 .max-w-\[400px\]{
     max-width: 400px;
+}
+.max-w-\[150px\]{
+    max-width: 150px;
+}
+.max-w-\[160px\]{
+    max-width: 160px;
+}
+.max-w-\[170px\]{
+    max-width: 170px;
+}
+.max-w-\[180px\]{
+    max-width: 180px;
+}
+.max-w-\[80px\]{
+    max-width: 80px;
+}
+.max-w-\[120px\]{
+    max-width: 120px;
 }
 .flex-initial{
     flex: 0 1 auto;
@@ -1959,11 +1986,11 @@ h4 {
 .p-1{
     padding: 0.25rem;
 }
-.p-\[10px\]{
-    padding: 10px;
-}
 .p-4{
     padding: 1rem;
+}
+.p-\[10px\]{
+    padding: 10px;
 }
 .p-0{
     padding: 0px;
@@ -2063,10 +2090,6 @@ h4 {
     padding-top: 15px;
     padding-bottom: 15px;
 }
-.py-3{
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-}
 .py-\[48px\]{
     padding-top: 48px;
     padding-bottom: 48px;
@@ -2090,6 +2113,10 @@ h4 {
 .py-10{
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+}
+.py-3{
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 .px-\[50px\]{
     padding-left: 50px;

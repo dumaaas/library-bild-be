@@ -20,7 +20,7 @@
             <div class="scroll height-evidencija">
                 <div class="flex items-center justify-between px-[30px] py-4 space-x-3 rounded-lg">
                     <a href="{{route('novaKnjiga')}}"
-                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
+                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                         <i class="fas fa-plus mr-[15px]"></i> Nova knjiga
                     </a>
                     <form action="searchKnjige" method="GET">
@@ -55,12 +55,12 @@
                             <!-- Table head-->
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
+                                        <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                                             <label class="inline-flex items-center">
                                                 <input type="checkbox" class="form-checkbox checkAll">
                                             </label>
                                         </th>
-                                        <th class="flex items-center px-4 py-4 leading-4 tracking-wider text-left">
+                                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                             Naziv knjige
                                             <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                         onclick="sortTable()"></i>
@@ -70,7 +70,7 @@
                                             <!-- Autor + dropdown filter for autor -->
                                             <form action='/filterAutori' method="GET">
                                                 <th
-                                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                         Autor<i class="ml-2 fas fa-filter" id="autoriMenu"></i>
                                                         <div id="autoriDropdown"
                                                             class="autoriMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
@@ -120,7 +120,7 @@
                                                 </th>
 
                                                 <!-- Kategorija + dropdown filter for kategorija -->
-                                                <th class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                                <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                         Kategorija<i class="ml-2 fas fa-filter" id="kategorijeMenu"></i>
                                                         <div id="kategorijeDropdown"
                                                             class="kategorijeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
@@ -169,26 +169,26 @@
                                                         </div>
                                                 </th>
                                             </form>
-                                            <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Na raspolaganju
+                                            <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Na raspolaganju
                                             </th>
-                                            <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Rezervisano</th>
-                                            <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Izdato</th>
-                                            <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">U prekoračenju</th>
-                                            <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Ukupna količina
+                                            <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Rezervisano</th>
+                                            <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Izdato</th>
+                                            <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">U prekoračenju</th>
+                                            <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Ukupna količina
                                             </th>
-                                            <th class="px-4 py-4"> </th>
+                                            <th class="p-1"> </th>
                                         </tr>
 
                                 </thead>
                                 <tbody class="bg-white" id="bookTable">
                                     @foreach($knjige as $knjiga)
                                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                                <td class="px-4 py-4 whitespace-no-wrap">
+                                                <td class="p-4 whitespace-nowrap">
                                                     <label class="inline-flex items-center">
                                                         <input type="checkbox" class="form-checkbox checkOthers">
                                                     </label>
                                                 </td>
-                                                <td class="flex flex-row items-center px-4 py-4">
+                                                <td class="flex flex-row items-center p-4 truncate max-w-[180px]">
                                                     @if(count($knjiga->coverImage) > 0 )
                                                         <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="" />
                                                     @endif
@@ -196,40 +196,40 @@
                                                         <span class="font-medium text-center">{{$knjiga->title}}</span>
                                                     </a>
                                                 </td>
-                                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                                <td class="p-4 text-sm leading-5 truncate max-w-[80px]">
                                                     @foreach($knjiga->author as $autor)
                                                         {{ $autor->author->name }}
                                                         {{ $loop->last ? '' : ',' }}
                                                     @endforeach
                                                 </td>
-                                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                                <td class="p-4 text-sm leading-5 truncate max-w-[80px]">
                                                     @foreach($knjiga->category as $kategorija)
                                                         {{$kategorija->category->name}}
                                                         {{ $loop->last ? '' : ',' }}
                                                     @endforeach
                                                 </td>
-                                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                                <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                     {{$knjiga->quantity - $knjiga->reservedBooks - $knjiga->rentedBooks}}
                                                 </td>
-                                                <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
+                                                <td class="p-4 text-sm leading-5 text-blue-800 whitespace-nowrap">
                                                     <a href="{{route('iznajmljivanjeArhivirane', ['knjiga' => $knjiga->id])}}">
                                                         {{$knjiga->reservedBooks}}
                                                     </a>
                                                 </td>
-                                                <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
+                                                <td class="p-4 text-sm leading-5 text-blue-800 whitespace-nowrap">
                                                     <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga->id])}}">
                                                         {{$knjiga->rentedBooks}}
                                                     </a>
                                                 </td>
-                                                <td class="px-4 py-4 text-sm leading-5 text-blue-800 whitespace-no-wrap">
+                                                <td class="p-4 text-sm leading-5 text-blue-800 whitespace-nowrap">
                                                     <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga->id])}}">
                                                         {{\App\Models\Rent::where('return_date', '<', Carbon\Carbon::now())->where('book_id', '=', $knjiga->id)->count()}}
                                                     </a>
                                                 </td>
-                                                <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                                <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                     {{$knjiga->quantity}}
                                                 </td>
-                                                <td class="px-6 py-4 text-sm leading-5 text-right whitespace-no-wrap">
+                                                <td class="p-1 text-sm leading-5 text-right whitespace-nowrap">
                                                     <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsKnjige hover:text-[#606FC7]">
                                                         <i
                                                             class="fas fa-ellipsis-v"></i>

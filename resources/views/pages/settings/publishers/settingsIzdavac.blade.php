@@ -47,7 +47,7 @@
             <div class="height-kategorije pb-[30px] scroll">
                 <div class="flex items-center px-[50px] py-8 space-x-3 rounded-lg">
                     <a href="{{route('prikaziNoviIzdavac')}}"
-                        class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
+                        class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                         <i class="fas fa-plus mr-[15px]"></i> Novi izdavač
                     </a>
                 </div>
@@ -57,29 +57,29 @@
                         <table class="min-w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
-                                    <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
+                                    <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </th>
-                                    <th class="px-4 py-4 leading-4 tracking-wider text-left">Naziv izdavača<a href="#"><i
+                                    <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">Naziv izdavača<a href="#"><i
                                                 class="ml-3 fa-lg fas fa-long-arrow-alt-down" onclick="sortTable()"></i></a>
                                     </th>
-                                    <th class="px-4 py-4"> </th>
+                                    <th class="p-4"> </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
                             @foreach($izdavaci as $izdavac)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                    <td class="px-4 py-4 whitespace-no-wrap">
+                                    <td class="p-4 whitespace-no-wrap">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </td>
-                                    <td class="flex flex-row items-center px-4 py-4">
+                                    <td class="flex flex-row items-center p-4">
                                         <p>{{$izdavac->name}}</p>
                                     </td>
-                                    <td class="px-4 py-4 text-sm leading-5 text-right whitespace-no-wrap">
+                                    <td class="p-4 text-sm leading-5 text-right whitespace-no-wrap">
                                         <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsPublisher hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>

@@ -24,7 +24,7 @@
         <div class="height-autori pb-[30px] scroll">
             <div class="flex items-center px-[30px] py-4 space-x-3 rounded-lg justify-between">
                 <a href="{{ route('noviAutor') }}"
-                   class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
+                   class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                     <i class="fas fa-plus mr-[15px]"></i> Novi autor
                 </a>
                 <form action="searchAutori" method="GET">
@@ -56,27 +56,27 @@
                 <table class="min-w-full shadow-lg" id="myTable">
                     <thead class="bg-[#EFF3F6]">
                     <tr class="border-b-[1px] border-[#e4dfdf]">
-                        <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
+                        <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </th>
-                        <th class="px-4 py-4 leading-4 tracking-wider text-left">Naziv autora<a href="#"><i
+                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">Naziv autora<a href="#"><i
                                     class="ml-3 fa-lg fas fa-long-arrow-alt-down" onclick="sortTable()"></i></a>
                         </th>
-                        <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Opis</th>
-                        <th class="px-4 py-4"> </th>
+                        <th class="p-4 text-sm leading-4 tracking-wider text-left">Opis</th>
+                        <th class="p-4"> </th>
                     </tr>
                     </thead>
                     <tbody class="bg-white">
                     @foreach($autori as $autor )
                         <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                            <td class="px-4 py-3 whitespace-no-wrap">
+                            <td class="p-4 whitespace-nowrap">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" class="form-checkbox">
                                 </label>
                             </td>
-                            <td class="flex flex-row items-center px-4 py-3">
+                            <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                 <a href="{{ route('autorProfile', ['autor' => $autor->id]) }}">
                                     <span class="mr-2 font-medium text-center">
                                         {{ $autor -> name }}
@@ -84,10 +84,10 @@
                                 </a>
                             </td>
                             </td>
-                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                            <td class="p-4 text-sm leading-5 truncate max-w-[500px]">
                                 {!! $autor->biography !!}
                             </td>
-                            <td class="px-4 py-3 text-sm leading-5 text-right whitespace-no-wrap">
+                            <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
                                 <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsAutori hover:text-[#606FC7]">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </p>
