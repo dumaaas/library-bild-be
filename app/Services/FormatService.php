@@ -16,7 +16,7 @@ class FormatService {
      * @return void
      */
     public function getFormats(){
-        return $formati = DB::table('formats');
+        return $formats = DB::table('formats');
     }
        
     /**
@@ -28,14 +28,14 @@ class FormatService {
 
         //request all data, validate and add format
         request()->validate([
-            'nazivFormat'=>'required|string|max:256',
+            'formatName'=>'required|string|max:256',
         ]);
 
-        $formati = new Format();
+        $format = new Format();
 
-        $formati->name=request('nazivFormat');
+        $format->name=request('formatName');
 
-        $formati->save();
+        $format->save();
     
     }
 
@@ -49,10 +49,10 @@ class FormatService {
 
         //request all data, validate and update genre
         request()->validate([
-            'nazivFormatEdit'=>'string|max:256',
+            'formatNameEdit'=>'string|max:256',
         ]);
 
-        $format->name=request('nazivFormatEdit');
+        $format->name=request('formatNameEdit');
 
         $format->save();
     

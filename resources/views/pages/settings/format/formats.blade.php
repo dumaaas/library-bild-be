@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('settingsFormat')
+@section('formats')
     @can('isAdmin')
         <section class="w-screen h-screen pl-[80px] py-4 text-gray-700">
             <!-- Heading of content -->
@@ -22,36 +22,36 @@
                 @endif
             </div>
             <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
-                <a href="{{route('settingsPolisa')}}" class="inline hover:text-blue-800">
+                <a href="{{route('policy')}}" class="inline hover:text-blue-800">
                     Polisa
                 </a>
-                <a href="{{route('settingsKategorije')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('categories')}}" class="inline ml-[70px] hover:text-blue-800">
                     Kategorija
                 </a>
-                <a href="{{route('settingsZanrovi')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('genres')}}" class="inline ml-[70px] hover:text-blue-800">
                     Žanr
                 </a>
-                <a href="{{route('settingsIzdavac')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('publishers')}}" class="inline ml-[70px] hover:text-blue-800">
                     Izdavač
                 </a>
-                <a href="{{route('settingsPovez')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('bindings')}}" class="inline ml-[70px] hover:text-blue-800">
                     Povez
                 </a>
-                <a href="{{route('settingsFormat')}}" class="inline ml-[70px] hover:text-blue-800 active-book-nav">
+                <a href="{{route('formats')}}" class="inline ml-[70px] hover:text-blue-800 active-book-nav">
                     Format
                 </a>
-                <a href="{{route('settingsPismo')}}" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('scripts')}}" class="inline ml-[70px] hover:text-blue-800">
                     Pismo
                 </a>
             </div>
             <div class="height-kategorije pb-[30px] scroll">
                 <div class="flex items-center px-[50px] py-8 space-x-3 rounded-lg">
-                    <a href="{{route('noviFormat')}}"
+                    <a href="{{route('addFormat')}}"
                         class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                         <i class="fas fa-plus mr-[15px]"></i> Novi format
                     </a>
                 </div>
-                @if(count($formati) > 0)
+                @if(count($formats) > 0)
                     <div
                         class="inline-block min-w-full px-[50px] pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
                         <table class="min-w-full shadow-lg" id="myTable">
@@ -69,7 +69,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
-                            @foreach($formati as $format)
+                            @foreach($formats as $format)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                     <td class="p-4 whitespace-no-wrap">
                                         <label class="inline-flex items-center">
@@ -95,7 +95,7 @@
                                                         <span class="px-4 py-0">Izmijeni format</span>
                                                     </a>
                                                     <a href="#" tabindex="0" id="{{$format->id}}"
-                                                        class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-izbrisiModal"
+                                                        class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-deleteModal"
                                                         role="menuitem">
                                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Izbriši format</span>
@@ -107,23 +107,23 @@
                                 </tr>
                                 <!--Modal-->
                                 <div
-                                    class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$format->id}}" id="{{$format->id}}">
+                                    class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 delete-modal_{{$format->id}}" id="{{$format->id}}">
                                     <!-- Modal -->
                                     <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
                                         <!-- Modal Header -->
                                         <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
                                             <h3>Da li ste sigurni da želite da izbrišete format?</h3>
-                                            <button class="text-black close ponisti focus:outline-none" id="{{$format->id}}">
+                                            <button class="text-black close cancel focus:outline-none" id="{{$format->id}}">
                                                 <span aria-hidden="true" class="text-[30px]">&times;</span>
                                             </button>
                                         </div>
                                         <!-- Modal Body -->
                                         <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                                            <a href="{{route('izbrisiFormat', ['format' => $format->id])}}"
+                                            <a href="{{route('deleteFormat', ['format' => $format->id])}}"
                                                 class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                 <i class="fas fa-check mr-[7px]"></i> Izbriši
                                             </a>
-                                            <a href="#" id="{{$format->id}}" class="ponisti shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                                            <a href="#" id="{{$format->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
                                             <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
                                         </div>
@@ -134,7 +134,7 @@
                         </table>
 
                         <div class="pt-[20px]">
-                            {{ $formati->links() }}
+                            {{ $formats->links() }}
                         </div>
 
                     </div>

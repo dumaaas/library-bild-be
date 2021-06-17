@@ -111,12 +111,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //FORMAT - ROUTES
-    Route::get('/editFormat/{format}', [\App\Http\Controllers\FormatController::class, 'prikaziEditFormat'])->name('editFormat');
-    Route::get('/noviFormat', [\App\Http\Controllers\FormatController::class, 'prikaziNoviFormat'])->name('noviFormat');
-    Route::get('/settingsFormat', [\App\Http\Controllers\FormatController::class, 'prikaziSettingsFormat'])->name('settingsFormat');
-    Route::post('/sacuvajFormat', [\App\Http\Controllers\FormatController::class, 'sacuvajFormat'])->name('sacuvajFormat');
-    Route::post('/izmijeniFormat/{format}', [\App\Http\Controllers\FormatController::class, 'izmijeniFormat'])->name('izmijeniFormat');
-    Route::get('/izbrisiFormat/{format}', [\App\Http\Controllers\FormatController::class, 'izbrisiFormat'])->name('izbrisiFormat');
+    Route::get('/editFormat/{format}', [\App\Http\Controllers\FormatController::class, 'showEditFormat'])->name('editFormat');
+    Route::get('/addFormat', [\App\Http\Controllers\FormatController::class, 'showAddFormat'])->name('addFormat');
+    Route::get('/formats', [\App\Http\Controllers\FormatController::class, 'showFormats'])->name('formats');
+    Route::post('/saveFormat', [\App\Http\Controllers\FormatController::class, 'saveFormat'])->name('saveFormat');
+    Route::post('/updateFormat/{format}', [\App\Http\Controllers\FormatController::class, 'updateFormat'])->name('updateFormat');
+    Route::get('/deleteFormat/{format}', [\App\Http\Controllers\FormatController::class, 'deleteFormat'])->name('deleteFormat');
 
 
     //LANGUAGE - ROUTES

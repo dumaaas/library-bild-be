@@ -325,10 +325,10 @@ return [
         'bindingNameEdit' => [
             'string' => 'Naziv poveza je obavezan.',
         ],
-        'nazivFormat' => [
+        'formatName' => [
             'required' => 'Naziv formata je obavezan.',
         ],
-        'nazivFormatEdit' => [
+        'formatNameEdit' => [
             'string' => 'Naziv formata je obavezan.',
         ],
         'nazivPismo' => [

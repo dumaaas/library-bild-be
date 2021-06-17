@@ -17,7 +17,7 @@ class FormatController extends Controller
      * @param  Format $format
      * @return void
      */
-    public function prikaziEditFormat(Format $format) {
+    public function showEditFormat(Format $format) {
 
         $viewName = $this->viewFolder . '.editFormat';
 
@@ -33,9 +33,9 @@ class FormatController extends Controller
      *
      * @return void
      */
-    public function prikaziNoviFormat() {
+    public function showAddFormat() {
 
-        $viewName = $this->viewFolder . '.noviFormat';
+        $viewName = $this->viewFolder . '.addFormat';
 
         return view($viewName);
     }
@@ -46,12 +46,12 @@ class FormatController extends Controller
      * @param  FormatService $formatService
      * @return void
      */
-    public function prikaziSettingsFormat(FormatService $formatService) {
+    public function showFormats(FormatService $formatService) {
 
-        $viewName = $this->viewFolder . '.settingsFormat';
+        $viewName = $this->viewFolder . '.formats';
 
         $viewModel = [
-            'formati' => $formatService->getFormats()->paginate(7)
+            'formats' => $formatService->getFormats()->paginate(7)
         ];
 
         return view($viewName,$viewModel);
@@ -63,7 +63,7 @@ class FormatController extends Controller
      * @param  Format $format
      * @param  FormatService $formatService
      */
-    public function sacuvajFormat(Format $format, FormatService $formatService) {
+    public function saveFormat(Format $format, FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.editFormat';
 
@@ -73,7 +73,7 @@ class FormatController extends Controller
 
         $formatService->saveFormat($format);
 
-        return redirect('settingsFormat')->with('success', 'Format je uspješno unesen!');
+        return redirect('formats')->with('success', 'Format je uspješno unesen!');
     }
 
     /**
@@ -83,7 +83,7 @@ class FormatController extends Controller
      * @param  FormatService $formatService
      * @return void
      */
-    public function izmijeniFormat(Format $format, FormatService $formatService) {
+    public function updateFormat(Format $format, FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.editFormat';
 
@@ -94,7 +94,7 @@ class FormatController extends Controller
         $formatService->editFormat($format);
 
         //return back to all genres
-        return redirect('settingsFormat')->with('success', 'Format je uspješno izmijenjen!');
+        return redirect('formats')->with('success', 'Format je uspješno izmijenjen!');
     }
 
     /**
@@ -102,7 +102,7 @@ class FormatController extends Controller
      *
      * @param  Format $format
      */
-    public function izbrisiFormat(Format $format) {
+    public function deleteFormat(Format $format) {
     
         Format::destroy($format->id);
         return back()->with('success', 'Format je uspješno izbrisan!');
