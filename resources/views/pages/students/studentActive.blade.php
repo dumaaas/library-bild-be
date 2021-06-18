@@ -503,30 +503,6 @@
                                     </div>
                                 </td>
                             </tr>
-                            <!--Modal-->
-                            <div
-                                class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 delete-modal_{{$user->id}}" id="{{$user->id}}">
-                                <!-- Modal -->
-                                <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
-                                    <!-- Modal Header -->
-                                    <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
-                                        <h3>Da li ste sigurni da želite da izbrišete korisnika?</h3>
-                                        <button class="text-black close cancel focus:outline-none" id="{{$user->id}}">
-                                            <span aria-hidden="true" class="text-[30px]">&times;</span>
-                                        </button>
-                                    </div>
-                                    <!-- Modal Body -->
-                                    <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                                        <a href="{{ route('deleteStudent', ['user' => $user->id]) }}}"
-                                            class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
-                                            <i class="fas fa-check mr-[7px]"></i> Izbriši
-                                        </a>
-                                        <a href="#" id="{{$user->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
-                                        <i class="fas fa-times mr-[7px]"></i> Poništi 
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                          @endforeach
                         </tbody>
                     </table>
@@ -546,6 +522,30 @@
                         <p class="font-medium text-red-600"> Učenik {{$user->name}} nema aktivnih rezervacija! </p>
                     </div>
                 @endif
+            </div>
+            <!--Modal-->
+            <div
+                class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 delete-modal_{{$user->id}}" id="{{$user->id}}">
+                <!-- Modal -->
+                <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
+                    <!-- Modal Header -->
+                    <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
+                        <h3>Da li ste sigurni da želite da izbrišete korisnika?</h3>
+                        <button class="text-black close cancel focus:outline-none" id="{{$user->id}}">
+                            <span aria-hidden="true" class="text-[30px]">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
+                        <a href="{{ route('deleteStudent', ['user' => $user->id]) }}}"
+                            class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                            <i class="fas fa-check mr-[7px]"></i> Izbriši
+                        </a>
+                        <a href="#" id="{{$user->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                        <i class="fas fa-times mr-[7px]"></i> Poništi 
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
         @endsection
