@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('autori')
+@section('authors')
     <section class="w-screen h-screen pl-[80px] py-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading mt-[7px]">
@@ -20,14 +20,14 @@
                 </div>
             @endif
         </div>
-        @if(count($autori) > 0)
+        @if(count($authors) > 0)
         <div class="height-autori pb-[30px] scroll">
             <div class="flex items-center px-[30px] py-4 space-x-3 rounded-lg justify-between">
-                <a href="{{ route('noviAutor') }}"
+                <a href="{{ route('addAuthor') }}"
                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                     <i class="fas fa-plus mr-[15px]"></i> Novi autor
                 </a>
-                <form action="searchAutori" method="GET">
+                <form action="searchAuthors" method="GET">
                     <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
                         <div class="flex items-center">
                             <div class="relative text-gray-600 focus-within:text-gray-400">
@@ -39,7 +39,7 @@
                                             </svg>
                                         </button>
                                     </span>
-                                <input type="search" name="searchAutori"
+                                <input type="search" name="searchAuthors"
                                     class="py-2 pl-10 text-sm text-white bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
                                     placeholder="Pretraži autore..." autocomplete="off">
                             </div>
@@ -69,7 +69,7 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white">
-                    @foreach($autori as $autor )
+                    @foreach($authors as $author )
                         <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                             <td class="p-4 whitespace-nowrap">
                                 <label class="inline-flex items-center">
@@ -77,39 +77,39 @@
                                 </label>
                             </td>
                             <td class="flex flex-row items-center p-4 whitespace-nowrap">
-                                <a href="{{ route('autorProfile', ['autor' => $autor->id]) }}">
+                                <a href="{{ route('authorProfile', ['author' => $author->id]) }}">
                                     <span class="mr-2 font-medium text-center">
-                                        {{ $autor -> name }}
+                                        {{ $author -> name }}
                                     </span>
                                 </a>
                             </td>
                             </td>
                             <td class="p-4 text-sm leading-5 truncate max-w-[500px]">
-                                {!! $autor->biography !!}
+                                {!! $author->biography !!}
                             </td>
                             <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
-                                <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsAutori hover:text-[#606FC7]">
+                                <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsAuthors hover:text-[#606FC7]">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </p>
                                 <div
-                                    class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-autori">
+                                    class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-authors">
                                     <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                          aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                         <div class="py-1">
-                                            <a href="{{ route('autorProfile', ['autor' => $autor->id]) }}" tabindex="0"
+                                            <a href="{{ route('authorProfile', ['author' => $author->id]) }}" tabindex="0"
                                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                role="menuitem">
                                                 <i class="far fa-file mr-[5px] ml-[5px] py-1"></i>
                                                 <span class="px-4 py-0">Pogledaj detalje</span>
                                             </a>
-                                            <a href="{{ route('editAutor', ['autor' => $autor->id]) }}" tabindex="0"
+                                            <a href="{{ route('editAuthor', ['author' => $author->id]) }}" tabindex="0"
                                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                role="menuitem">
                                                 <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                                 <span class="px-4 py-0">Izmijeni autora</span>
                                             </a>
-                                            <a href="#" tabindex="0" id="{{$autor->id}}"
-                                               class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-izbrisiModal"
+                                            <a href="#" tabindex="0" id="{{$author->id}}"
+                                               class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-deleteModal"
                                                role="menuitem">
                                                 <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
                                                 <span class="px-4 py-0">Izbriši autora</span>
@@ -121,23 +121,23 @@
                         </tr>
                         <!--Modal-->
                         <div
-                            class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$autor->id}}" id="{{$autor->id}}">
+                            class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 delete-modal_{{$author->id}}" id="{{$author->id}}">
                             <!-- Modal -->
                             <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
                                 <!-- Modal Header -->
                                 <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
                                     <h3>Da li ste sigurni da želite da izbrišete autora?</h3>
-                                    <button class="text-black close ponisti focus:outline-none" id="{{$autor->id}}">
+                                    <button class="text-black close cancel focus:outline-none" id="{{$author->id}}">
                                         <span aria-hidden="true" class="text-[30px]">&times;</span>
                                     </button>
                                 </div>
                                 <!-- Modal Body -->
                                 <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                                    <a href="{{ route('deleteAutor', ['autor' => $autor->id]) }}"
+                                    <a href="{{ route('deleteAuthor', ['author' => $author->id]) }}"
                                         class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                         <i class="fas fa-check mr-[7px]"></i> Izbriši
                                     </a>
-                                    <a href="#" id="{{$autor->id}}" class="ponisti shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                                    <a href="#" id="{{$author->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
                                     <i class="fas fa-times mr-[7px]"></i> Poništi 
                                     </a>
                                 </div>
@@ -147,14 +147,14 @@
                     </tbody>
                 </table>
                 <div class="pt-[20px]">
-                    {{ $autori->links() }}
+                    {{ $authors->links() }}
 
                 </div>
             </div>
         </div>
         @else
         <div class="mx-[20px] mt-[20px]">
-            <a href="{{ route('noviAutor') }}"
+            <a href="{{ route('addAuthor') }}"
                 class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                 <i class="fas fa-plus mr-[15px]"></i> Novi autor
             </a>

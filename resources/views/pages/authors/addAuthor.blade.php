@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('noviAutor')
+@section('addAuthor')
 
 <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
             <!-- Heading of content -->
@@ -16,7 +16,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="../autori" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="../authors" class="text-[#2196f3] hover:text-blue-600">
                                             Evidencija autora
                                         </a>
                                     </li>
@@ -45,13 +45,13 @@
 
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('sacuvajAutora')}}" method="POST" class="text-gray-700 forma">
+                <form action="{{route('saveAuthor')}}" method="POST" class="text-gray-700">
                     @csrf
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[150px]">
                             <div class="mt-[20px]">
                                 <p>Ime i prezime <span class="text-red-500">*</span></p>
-                                <input type="text" name="authorName" id="imePrezimeAutor" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsImePrezimeAutor()"/>
+                                <input type="text" name="authorName" id="authorName" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
                                 @error('authorName')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
@@ -76,8 +76,8 @@
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                     <i class="fas fa-times mr-[7px]"></i> Ponisti 
                                 </button>
-                                <button id="sacuvajAutora" type="submit"
-                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaAutor()">
+                                <button id="saveAuthor" type="submit"
+                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                     <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
                                 </button>
                             </div>

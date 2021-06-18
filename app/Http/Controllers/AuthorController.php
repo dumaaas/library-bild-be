@@ -20,20 +20,20 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
 
-    private $viewFolder = 'pages/autor';
+    private $viewFolder = 'pages/authors';
 
     /**
      * Prikazi sve autore
      *
-     * @param  AuthorService $autorService
+     * @param  AuthorService $authorService
      * @return void
      */
-    public function prikaziAutore(AuthorService $autorService) {
+    public function showAuthors(AuthorService $authorService) {
 
-        $viewName = $this->viewFolder . '.autori';
+        $viewName = $this->viewFolder . '.authors';
 
         $viewModel = [
-            'autori' => $autorService->getAutori()->paginate(7)
+            'authors' => $authorService->getAuthors()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -42,15 +42,15 @@ class AuthorController extends Controller
     /**
      * Prikazi konkretnog autora
      *
-     * @param  Author $autor
+     * @param  Author $auhtor
      * @return void
      */
-    public function prikaziAutora(Author $autor) {
+    public function showAuthor(Author $author) {
 
-        $viewName = $this->viewFolder . '.autorProfile';
+        $viewName = $this->viewFolder . '.authorProfile';
 
         $viewModel = [
-            'autor' => $autor
+            'author' => $author
         ];
 
         return view($viewName, $viewModel);
@@ -59,14 +59,14 @@ class AuthorController extends Controller
     /**
      * Prikazi stranicu za editovanje autora
      *
-     * @param  Author $autor
+     * @param  Author $author
      * @return void
      */
-    public function prikaziEditAutor(Author $autor) {
-        $viewName = $this->viewFolder . '.editAutor';
+    public function showEditAuthor(Author $author) {
+        $viewName = $this->viewFolder . '.editAuthor';
 
         $viewModel = [
-            'autor' => $autor
+            'author' => $author
         ];
 
         return view($viewName, $viewModel);
@@ -77,8 +77,8 @@ class AuthorController extends Controller
      *
      * @return void
      */
-    public function prikaziNoviAutor() {
-        $viewName = $this->viewFolder . '.noviAutor';
+    public function showAddAuthor() {
+        $viewName = $this->viewFolder . '.addAuthor';
 
         return view($viewName);
     }
@@ -86,49 +86,49 @@ class AuthorController extends Controller
     /**
      * Izmijeni podatke o autoru
      *
-     * @param  Author $autor
-     * @param  AuthorService $autorService
+     * @param  Author $author
+     * @param  AuthorService $authorService
      * @return void
      */
-    public function izmijeniAutora(Author $autor, AuthorService $autorService) {
-        $viewName = $this->viewFolder . '.editAutor';
+    public function updateAuthor(Author $author, AuthorService $authorService) {
+        $viewName = $this->viewFolder . '.editAuthor';
 
-        $autorService->editAutor($autor);
+        $authorService->editAuthor($author);
 
         $viewModel = [
-            'autor' => $autor
+            'author' => $author
         ];
 
-        return redirect('autori')->with('success', 'Autor je uspješno izmijenjen!');
+        return redirect('authors')->with('success', 'Autor je uspješno izmijenjen!');
     }
 
     /**
      * Izbrisi autora
      *
-     * @param  Author $autor
+     * @param  Author $author
      */
-    public function izbrisiAutora(Author $autor) {
-        Author::destroy($autor->id);
+    public function deleteAuthor(Author $author) {
+        Author::destroy($author->id);
 
-        return redirect('autori')->with('success', 'Autor je uspješno izbrisan!');
+        return redirect('authors')->with('success', 'Autor je uspješno izbrisan!');
     }
 
     /**
      * Kreiraj i sacuvaj novog autora
      *
-     * @param  AuthorService $autorService
+     * @param  AuthorService $authorService
      */
-    public function sacuvajAutora(AuthorService $autorService) {
+    public function saveAuthor(AuthorService $authorService) {
 
-        $viewName = $this->viewFolder . '.autorProfile';
+        $viewName = $this->viewFolder . '.authorProfile';
 
-        $autor = $autorService->saveAutor();
+        $author = $authorService->saveAuthor();
 
         $viewModel = [
-            'autor' => $autor
+            'author' => $author
         ];
 
-        return redirect('autori')->with('success', 'Autor je uspješno unesen!');
+        return redirect('authors')->with('success', 'Autor je uspješno unesen!');
     }
 
     /**
@@ -137,14 +137,14 @@ class AuthorController extends Controller
      * @param  AuthorService $authorService
      * @return void
      */
-    public function searchAutori(AuthorService $authorService) {
+    public function searchAuthors(AuthorService $authorService) {
 
-        $viewName = $this->viewFolder . '.autori';
+        $viewName = $this->viewFolder . '.authors';
 
-        $autori = $authorService->searchAutori();
+        $authors = $authorService->searchAuthors();
 
         $viewModel = [
-            'autori' => $autori
+            'authors' => $authors
         ];
 
         return view($viewName, $viewModel);
