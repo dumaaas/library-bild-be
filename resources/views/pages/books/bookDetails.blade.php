@@ -14,7 +14,7 @@
             <a href="{{route('bookDetails', ['book' => $book])}}" class="inline active-book-nav hover:text-blue-800">
                 Osnovni detalji
             </a>
-            <a href="{{route('knjigaSpecifikacija', ['knjiga' => $book])}}" class="inline ml-[70px] hover:text-blue-800">
+            <a href="{{route('bookSpecification', ['book' => $book])}}" class="inline ml-[70px] hover:text-blue-800">
                 Specifikacija
             </a>
             <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $book])}}" class="inline ml-[70px] hover:text-blue-800">

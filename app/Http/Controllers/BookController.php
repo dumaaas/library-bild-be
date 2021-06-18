@@ -126,16 +126,16 @@ class BookController extends Controller
     /**
      * Prikazi stranicu sa specifikacijama konkretne knjige
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  DashboardService $dashboardService
      * @return void
      */
-    public function prikaziKnjigaSpecifikacija(Book $knjiga, DashboardService $dashboardService) {
-        $viewName = $this->viewFolder . '.knjigaSpecifikacija';
+    public function showBookSpecification(Book $book, DashboardService $dashboardService) {
+        $viewName = $this->viewFolder . '.bookSpecification';
 
         $viewModel = [
-            'knjiga'     => $knjiga,
-            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
+            'book'     => $book,
+            'activities' => $dashboardService->getBookActivity($book->id)
                                 ->take(3)
                                 ->get(),
         ];

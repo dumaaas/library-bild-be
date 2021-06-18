@@ -87,7 +87,7 @@
         <div class="flex flex-row overflow-auto height-osnovniDetalji">
             <!-- PLACE FOR YIELDING BOOK SECTIONS -->
             @yield('detailsBook')
-            @yield('specifikacijaKnjige')
+            @yield('specificationBook')
             @yield('izdateIznajmljivanje')
             @yield('prekoracenjeIznajmljivanje')
             @yield('vraceneIznajmljivanje')
