@@ -947,52 +947,6 @@ $("#rezervisiKnjigu").keypress(function (e) {
     }
 });
 
-// Form validation for new author
-function validacijaAutor() {
-
-    $("#validateImePrezimeAutor").empty();
-
-    let imePrezimeAutor = $("#imePrezimeAutor").val();
-
-    if (imePrezimeAutor.length == 0) {
-        $('#validateImePrezimeAutor').append('<p style="color:red;font-size:13px;">Morate unijeti ime i prezime autora!</p>');
-    }
-}
-
-function clearErrorsImePrezimeAutor() {
-    $("#validateImePrezimeAutor").empty();
-}
-
-$("#sacuvajAutora").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaAutor();
-        return false;
-    }
-});
-
-// Form validation for editing author info
-function validacijaAutorEdit() {
-
-    $("#validateImePrezimeAutorEdit").empty();
-
-    let imePrezimeAutorEdit = $("#imePrezimeAutorEdit").val();
-
-    if (imePrezimeAutorEdit.length == 0) {
-        $('#validateImePrezimeAutorEdit').append('<p style="color:red;font-size:13px;">Morate unijeti ime i prezime autora!</p>');
-    }
-}
-
-function clearErrorsImePrezimeAutorEdit() {
-    $("#validateImePrezimeAutorEdit").empty();
-}
-
-$("#sacuvajAutoraEdit").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaAutorEdit();
-        return false;
-    }
-});
-
 function sortTableDate(row) {
     var table, rows, switching, i, x, y, shouldSwitch;
     table = $(".sortTableDate");
@@ -1724,30 +1678,30 @@ $(document).on('mouseup', function (e) {
 });
 
 // Autori - dropdown
-$(".dotsAutori").click(function () {
-    var dotsAutori = $(this);
-    var dropdownAutori = dotsAutori.closest("td").find(".dropdown-autori");
-    dropdownAutori.toggle();
+$(".dotsAuthors").click(function () {
+    var dotsAuthors = $(this);
+    var dropdownAuthors = dotsAuthors.closest("td").find(".dropdown-authors");
+    dropdownAuthors.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownAutori = $(".dropdown-autori");
-    if (!dropdownAutori.is(e.target) &&
-        dropdownAutori.has(e.target).length === 0) {
-        dropdownAutori.slideUp();
+    var dropdownAuthors = $(".dropdown-authors");
+    if (!dropdownAuthors.is(e.target) &&
+        dropdownAuthors.has(e.target).length === 0) {
+        dropdownAuthors.slideUp();
     }
 });
 
 // Autori - profile - dropdown
-$(".dotsAutor").click(function () {
-    $(".dropdown-autor").toggle();
+$(".dotsAuthor").click(function () {
+    $(".dropdown-author").toggle();
 })
 
 $(document).on('mouseup', function (e) {
     var dropdownAutor = $(".dropdown-autor");
     if (!dropdownAutor.is(e.target) &&
         dropdownAutor.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsAutor')) {
+        !$(e.target).is('.dotsAuthor')) {
         dropdownAutor.slideUp();
     }
 });

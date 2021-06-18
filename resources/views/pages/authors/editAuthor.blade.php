@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('editAutor')
+@section('editAuthor')
         <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading">
@@ -15,7 +15,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="../../autori" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="../../authors" class="text-[#2196f3] hover:text-blue-600">
                                         Evidencija autora
                                     </a>
                                 </li>
@@ -44,13 +44,13 @@
 
         <!-- Space for content -->
         <div class="scroll height-content section-content">
-            <form method="POST" action="{{ route('updateAutor', ['autor' => $autor->id]) }}" class="text-gray-700 forma">
+            <form method="POST" action="{{ route('updateAuthor', ['author' => $author->id]) }}" class="text-gray-700">
                 @csrf
                 <div class="flex flex-row ml-[30px]">
                     <div class="w-[50%] mb-[150px]">
                         <div class="mt-[20px]">
                             <p>Ime i prezime <span class="text-red-500">*</span></p>
-                            <input type="text" name="name" id="imePrezimeAutorEdit" value="{{$autor->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsImePrezimeAutorEdit()"/>
+                            <input type="text" name="name" id="authorNameEdit" value="{{$author->name}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"/>
                             @error('name')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -60,7 +60,7 @@
                             <p class="inline-block mb-2">Opis</p>
                             <textarea name="biography"
                                       class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
-                                    {{$autor->biography}}
+                                    {{$author->biography}}
                                 </textarea>
                                 @error('biography')
                                     <div class="text-red-500">{{ $message }}</div>
@@ -75,8 +75,8 @@
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                     <i class="fas fa-times mr-[7px]"></i> Ponisti 
                             </button>
-                            <button id="sacuvajAutoraEdit"
-                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaAutorEdit()">
+                            <button id="editAuthor"
+                                    class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                     <i class="fas fa-check mr-[7px]"></i> Sacuvaj 
                             </button>
                         </div>

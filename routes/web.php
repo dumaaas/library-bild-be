@@ -152,14 +152,14 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //AUTHOR - ROUTES
-    Route::get('/autorProfile/{autor}', [\App\Http\Controllers\AuthorController::class, 'prikaziAutora'])->name('autorProfile');
-    Route::get('/autori', [\App\Http\Controllers\AuthorController::class, 'prikaziAutore']);
-    Route::get('/editAutor/{autor}', [\App\Http\Controllers\AuthorController::class, 'prikaziEditAutor'])->name('editAutor');
-    Route::post('/editAutor/{autor}/update', [\App\Http\Controllers\AuthorController::class, 'izmijeniAutora'])->name('updateAutor');
-    Route::get('/noviAutor', [\App\Http\Controllers\AuthorController::class, 'prikaziNoviAutor'])->name('noviAutor');
-    Route::get('/deleteAutor/{autor}', [\App\Http\Controllers\AuthorController::class, 'izbrisiAutora'])->name('deleteAutor');
-    Route::post('/sacuvajAutora', [\App\Http\Controllers\AuthorController::class, 'sacuvajAutora'])->name('sacuvajAutora');
-    Route::get('/searchAutori', [\App\Http\Controllers\AuthorController::class, 'searchAutori'])->name('searchAutori');
+    Route::get('/authorProfile/{author}', [\App\Http\Controllers\AuthorController::class, 'showAuthor'])->name('authorProfile');
+    Route::get('/authors', [\App\Http\Controllers\AuthorController::class, 'showAuthors']);
+    Route::get('/editAuthor/{author}', [\App\Http\Controllers\AuthorController::class, 'showEditAuthor'])->name('editAuthor');
+    Route::post('/editAuthor/{author}/update', [\App\Http\Controllers\AuthorController::class, 'updateAuthor'])->name('updateAuthor');
+    Route::get('/addAuthor', [\App\Http\Controllers\AuthorController::class, 'showAddAuthor'])->name('addAuthor');
+    Route::get('/deleteAuthor/{author}', [\App\Http\Controllers\AuthorController::class, 'deleteAuthor'])->name('deleteAuthor');
+    Route::post('/saveAuthor', [\App\Http\Controllers\AuthorController::class, 'saveAuthor'])->name('saveAuthor');
+    Route::get('/searchAuthors', [\App\Http\Controllers\AuthorController::class, 'searchAuthors'])->name('searchAuthors');
 
 
     //GALLERY - ROUTES

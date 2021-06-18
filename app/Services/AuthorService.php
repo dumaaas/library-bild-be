@@ -24,27 +24,27 @@ class AuthorService {
      *
      * @return void
      */
-    public function getAutori() {
+    public function getAuthors() {
         return DB::table('authors');
     }
 
     /**
      * Izvrsi validaciju podataka i edituj autora
      *
-     * @param  Author  $autor
+     * @param  Author  $author
      * @return void
      */
-    public function editAutor($autor) {
+    public function editAuthor($author) {
         //request all data, validate and update movie
         request()->validate([
             'name'        => 'sometimes|regex:/^([^0-9]*)$/|max:128',
             'biography'   => 'nullable|string|max:4128'
         ]);
 
-        $autor->name      = request('name');
-        $autor->biography = request('biography');
+        $author->name      = request('name');
+        $author->biography = request('biography');
 
-        $autor->save();
+        $author->save();
     }
 
     /**
@@ -52,21 +52,21 @@ class AuthorService {
      *
      * @return void
      */
-    public function saveAutor() {
+    public function saveAuthor() {
         //request all data, validate and update author
         request()->validate([
             'authorName'        => 'required|max:128|regex:/^([^0-9]*)$/',
             'authorBiography'   => 'nullable|string|max:4128'
         ]);
 
-        $autor = new Author();
+        $author = new Author();
 
-        $autor->name      = request('authorName');
-        $autor->biography = request('authorBiography');
+        $author->name      = request('authorName');
+        $author->biography = request('authorBiography');
 
-        $autor->save();
+        $author->save();
 
-        return $autor;
+        return $author;
     }
 
     /**
@@ -74,17 +74,17 @@ class AuthorService {
      *
      * @return void
      */
-    public function searchAutori() {
+    public function searchAuthors() {
 
-        $autori = Author::query();
+        $authors = Author::query();
 
-        if(request('searchAutori')) {
-            $autoriPretraga = request('searchAutori');
-            $autori = $autori->where('name', 'LIKE', '%'.$autoriPretraga.'%');
+        if(request('searchAuthors')) {
+            $authorsSearch = request('searchAuthors');
+            $authors = $authors->where('name', 'LIKE', '%'.$authorsSearch.'%');
         }
 
-        $autori = $autori->paginate(7);
+        $authors = $authors->paginate(7);
 
-        return $autori;
+        return $authors;
     }
 }
