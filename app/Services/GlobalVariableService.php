@@ -51,10 +51,10 @@ class GlobalVariableService {
      *
      * @return void
      */
-    public function getRokPrekoracenja() {
-        $rok = DB::table('global_variables')->where('id', '=', 3)->first();
+    public function getOverdraftPeriod() {
+        $period = DB::table('global_variables')->where('id', '=', 3)->first();
 
-        return $rok->value;
+        return $period->value;
     }
 
 }

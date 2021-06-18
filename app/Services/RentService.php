@@ -42,12 +42,12 @@ class RentService
      *
      * @return void
      */
-    public function getPrekoraceneKnjige() {
+    public function getOverdueBooks() {
         
-        $rok = new GlobalVariableService();
-        $rokValue = $rok->getRokPrekoracenja();
+        $globalVariable = new GlobalVariableService();
+        $period = $globalVariable->getOverdraftPeriod();
 
-        return Rent::whereRaw('return_date + interval '. $rokValue .' day < ?', [Carbon::now()])
+        return Rent::whereRaw('return_date + interval '. $period .' day < ?', [Carbon::now()])
                     ->where(function ($query) {
                         $query->select('statusBook_id')
                             ->from('rent_statuses')
@@ -58,11 +58,11 @@ class RentService
     }
 
     /**
-     * Vrati sveizdate knjige
+     * Vrati sve izdate knjige
      *
      * @return void
      */
-    public function getIzdateKnjige() {
+    public function getRentedBooks() {
         return Rent::where(function ($query) {
                         $query->select('statusBook_id')
                             ->from('rent_statuses')
@@ -77,7 +77,7 @@ class RentService
      *
      * @return void
      */
-    public function getVraceneKnjige() {
+    public function getReturnedBooks() {
         return Rent::where(function ($query) {
                         $query->select('statusBook_id')
                             ->from('rent_statuses')

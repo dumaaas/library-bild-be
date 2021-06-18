@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('ucenikPrekoracenje')
+@section('studentRented')
 <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
             <!-- Heading of content -->
             <div class="heading">
@@ -15,7 +15,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="../students" class="text-[#2196f3] hover:text-blue-600">
                                             Svi učenici
                                         </a>
                                     </li>
@@ -23,7 +23,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
+                                        <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
                                             ID-{{$user->id}}
                                         </a>
                                     </li>
@@ -38,20 +38,20 @@
                                 Resetuj šifru
                             </a>
                         @endcan
-                        <a href="{{ route('editUcenik', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{ route('editStudent', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-edit mr-[3px] "></i>
                             Izmijeni podatke
                         </a>
                         <p
-                            class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsUcenikKnjigePrekoracenje hover:text-[#606FC7]">
+                            class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsStudentProfileEvidencija hover:text-[#606FC7]">
                             <i class="fas fa-ellipsis-v"></i>
                         </p>
                         <div
-                            class="z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 ucenik-prekoracenje-knjige">
+                            class="z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-student-profile-evidencija">
                             <div class="absolute right-0 w-56 mt-[10px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <a href="{{ route('deleteUcenik', ['user' => $user->id]) }}" tabindex="0"
+                                    <a href="{{ route('deleteStudent', ['user' => $user->id]) }}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
@@ -64,10 +64,10 @@
                 </div>
             </div>
             <div class="border-b-[1px] py-4 text-gray-500 border-[#e4dfdf] pl-[30px]">
-                <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="inline hover:text-blue-800">
+                <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="inline hover:text-blue-800">
                     Osnovni detalji
                 </a>
-                <a href="{{route('ucenikIzdate',['user'=> $user->id])}}" class="inline ml-[70px] active-book-nav">
+                <a href="{{route('studentRented',['user'=> $user->id])}}" class="inline ml-[70px] active-book-nav">
                     Evidencija iznajmljivanja
                 </a>
             </div>
@@ -79,15 +79,14 @@
                             <div class="w-[300px] pl-[32px]">
                                 <span class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                     <div
-                                        class="py-[15px] px-[20px] w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
-                                        <a href="{{route('ucenikIzdate', ['user' => $user])}}" aria-label="Sve knjige" class="flex items-center">
+                                        class="py-[15px] px-[20px] w-[268px] cursor-pointer bg-[#EFF3F6] rounded-[10px]">
+                                        <a href="{{route('studentRented', ['user' => $user])}}" aria-label="Sve knjige" class="flex items-center">
                                             <i
-                                                class="text-[#707070] transition duration-300 ease-in group-hover:text-[#576cdf] far fa-copy text-[20px]"></i>
+                                                class="transition duration-300 ease-in group-hover:text-[#576cdf] text-[#576cdf] far fa-copy text-[20px]"></i>
                                             <div>
                                                 <p
-                                                    class="transition duration-300 ease-in group-hover:text-[#576cdf]  text-[15px] ml-[18px]">
-                                                    Izdate knjige
-                                                </p>
+                                                    class="transition duration-300 ease-in group-hover:text-[#576cdf] text-[#576cdf] text-[15px] ml-[18px]">
+                                                    Izdate knjige</p>
                                             </div>
                                         </a>
                                     </div>
@@ -99,15 +98,14 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikVracene', ['user' => $user])}}" aria-label="Vracene knjige"
+                                        <a href="{{route('studentReturned', ['user' => $user])}}" aria-label="Vracene knjige"
                                             class="flex items-center">
                                             <i
-                                                class="transition duration-300 ease-in  text-[#707070] text-[20px] fas fa-file group-hover:text-[#576cdf]"></i>
+                                                class="text-[#707070] text-[20px] fas fa-file transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                             <div>
                                                 <p
-                                                    class="transition duration-300 ease-in  text-[15px] ml-[21px] group-hover:text-[#576cdf]">
-                                                    Vraćene knjige
-                                                </p>
+                                                    class="text-[15px] ml-[21px] transition duration-300 ease-in group-hover:text-[#576cdf]">
+                                                    Vraćene knjige</p>
                                             </div>
                                         </a>
                                     </div>
@@ -118,14 +116,14 @@
                             <div class="w-[300px] pl-[28px]">
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
-                                        class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikPrekoracenje', ['user' => $user])}}" aria-label="Knjige na raspolaganju"
+                                        class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
+                                        <a href="{{route('studentOverdue', ['user' => $user])}}" aria-label="Knjige u prekoracenju"
                                             class="flex items-center">
                                             <i
-                                                class="text-[#576cdf] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in "></i>
+                                                class="text-[#707070] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                             <div>
                                                 <p
-                                                    class="text-[15px] ml-[17px] transition duration-300 ease-in text-[#576cdf]">
+                                                    class="text-[15px] ml-[17px] transition duration-300 ease-in group-hover:text-[#576cdf]">
                                                     Knjige u prekoračenju</p>
                                             </div>
                                         </a>
@@ -173,7 +171,7 @@
                         </li>
                     </ul>
                 </div>
-                @if(count($ucenikPrekoracene) > 0)
+                @if(count($rentedBooks) > 0)
                     <div class="w-full mt-[10px] ml-2 px-2">
                         <table class="w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
@@ -189,9 +187,10 @@
                                                 onclick="sortTable()"></i>
                                         </a>
                                     </th>
+                                    <!-- Datum izdavanja + dropdown filter for datum -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                        Datum izdavanja<i class="ml-2 fas fa-filter datumDrop-toggle"></i>
+                                        Datum izdavanja<i class="fas fa-filter datumDrop-toggle"></i>
                                         <div id="datumDropdown"
                                             class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                             <div
@@ -219,8 +218,7 @@
                                             </div>
                                         </div>
                                     </th>
-                                    <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">Prekoračenje u danima
-                                    </th>
+                                    <!-- Trenutno zadrzavanje + dropdown filter for zadrzavanje -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
                                         Trenutno zadržavanje knjige<i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
@@ -251,11 +249,157 @@
                                             </div>
                                         </div>
                                     </th>
+                                    <!-- Knjigu izdao + dropdown filter for bibliotekar -->
+                                    <th
+                                        class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                        Knjigu izdao<i class="fas fa-filter bibliotekariDrop-toggle"></i>
+                                        <div id="bibliotekariDropdown"
+                                            class="bibliotekariMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                            <ul class="border-b-2 border-gray-300 list-reset">
+                                                <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
+                                                    <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
+                                                        placeholder="Search"
+                                                        onkeyup="filterFunction('searchLibrarians', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
+                                                        id="searchLibrarians"><br>
+                                                    <button
+                                                        class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </li>
+                                                <div class="h-[200px] scroll font-normal">
+                                                    <li
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        <label class="flex items-center justify-start">
+                                                            <div
+                                                                class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                <input type="checkbox" class="absolute opacity-0">
+                                                                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                </svg>
+                                                            </div>
+                                                        </label>
+                                                        <img width="40px" height="30px" class="ml-[15px] rounded-full"
+                                                            src="img/profileExample.jpg">
+                                                        <p
+                                                            class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                            Bibliotekar Bulatovic
+                                                        </p>
+                                                    </li>
+                                                    <li
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        <label class="flex items-center justify-start">
+                                                            <div
+                                                                class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                <input type="checkbox" class="absolute opacity-0">
+                                                                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                </svg>
+                                                            </div>
+                                                        </label>
+                                                        <img width="40px" height="30px" class="ml-[15px] rounded-full"
+                                                            src="img/profileExample.jpg">
+                                                        <p
+                                                            class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                            Pero Perovic
+                                                        </p>
+                                                    </li>
+                                                    <li
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        <label class="flex items-center justify-start">
+                                                            <div
+                                                                class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                <input type="checkbox" class="absolute opacity-0">
+                                                                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                </svg>
+                                                            </div>
+                                                        </label>
+                                                        <img width="40px" height="30px" class="ml-[15px] rounded-full"
+                                                            src="img/profileExample.jpg">
+                                                        <p
+                                                            class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                            Marko Markovic
+                                                        </p>
+                                                    </li>
+                                                    <li
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        <label class="flex items-center justify-start">
+                                                            <div
+                                                                class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                <input type="checkbox" class="absolute opacity-0">
+                                                                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                </svg>
+                                                            </div>
+                                                        </label>
+                                                        <img width="40px" height="30px" class="ml-[15px] rounded-full"
+                                                            src="img/profileExample.jpg">
+                                                        <p
+                                                            class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                            Nikola Nikolic
+                                                        </p>
+                                                    </li>
+                                                    <li
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        <label class="flex items-center justify-start">
+                                                            <div
+                                                                class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                <input type="checkbox" class="absolute opacity-0">
+                                                                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                </svg>
+                                                            </div>
+                                                        </label>
+                                                        <img width="40px" height="30px" class="ml-[15px] rounded-full"
+                                                            src="img/profileExample.jpg">
+                                                        <p
+                                                            class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                            Zivko Zivkovic
+                                                        </p>
+                                                    </li>
+                                                    <li
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        <label class="flex items-center justify-start">
+                                                            <div
+                                                                class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                                                                <input type="checkbox" class="absolute opacity-0">
+                                                                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                                </svg>
+                                                            </div>
+                                                        </label>
+                                                        <img width="40px" height="30px" class="ml-[15px] rounded-full"
+                                                            src="img/profileExample.jpg">
+                                                        <p
+                                                            class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
+                                                            Petar Petrovic
+                                                        </p>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                            <div class="flex pt-[10px] text-white ">
+                                                <a href="#"
+                                                    class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
+                                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
+                                                </a>
+                                                <a href="#"
+                                                    class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
+                                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </th>
                                     <th class="px-4 py-4"> </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
-                            @foreach($ucenikPrekoracene as $ucenikPrekoracena)
+                            @foreach($rentedBooks as $rentedBook)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                     <td class="px-4 py-3 whitespace-no-wrap">
                                         <label class="inline-flex items-center">
@@ -263,72 +407,51 @@
                                         </label>
                                     </td>
                                     <td class="flex flex-row items-center px-4 py-3">
-                                        @if(count($ucenikPrekoracena->book->coverImage) > 0 )
-                                            <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$ucenikPrekoracena->book->coverImage[0]->photo}}" alt="" />
+                                        @if(count($rentedBook->book->coverImage) > 0 )
+                                            <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$rentedBook->book->coverImage[0]->photo}}" alt="" />
                                         @endif
-                                        <a href="{{route('izdavanjeDetalji', ['knjiga' => $ucenikPrekoracena->book, 'ucenik' => $ucenikPrekoracena->student])}}">
-                                            <span class="font-medium text-center">{{$ucenikPrekoracena->book->title}}</span>
+                                        <a href="{{route('izdavanjeDetalji', ['knjiga' => $rentedBook->book, 'ucenik' => $rentedBook->student])}}">
+                                            <span class="font-medium text-center">{{$rentedBook->book->title}}</span>
                                         </a>
                                     </td>
-                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikPrekoracena->rent_date}}</td>
-                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                        <div class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
-                                            <span class="text-xs text-red-800">
-                                                {{ \Carbon\Carbon::parse($ucenikPrekoracena->return_date)->diffInDays(\Carbon\Carbon::now()) }} dan/a
-                                            </span>
-                                        </div>
-                                    </td>
+                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$rentedBook->rent_date}}</td>
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                                         <div>
-                                            <span>{{ \Carbon\Carbon::parse($ucenikPrekoracena->rent_date)->diffAsCarbonInterval() }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($rentedBook->rent_date)->diffAsCarbonInterval() }}</span>
                                         </div>
                                     </td>
+                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$rentedBook->librarian->name}}</td>
                                     <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                         <p
-                                            class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsUcenikPrekoracenjeKnjige hover:text-[#606FC7]">
+                                            class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudentProfileBookRecord hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>
                                         <div
-                                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 ucenik-prekoracenje-knjige-tabela">
+                                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-student-profile-evidencija-knjige">
                                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117"
                                                 role="menu">
                                                 <div class="py-1">
-                                                    <a href="{{route('izdavanjeDetalji', ['knjiga' => $ucenikPrekoracena->book, 'ucenik' => $ucenikPrekoracena->student])}}" tabindex="0"
+                                                    <a href="{{route('izdavanjeDetalji', ['knjiga' => $rentedBook->book, 'ucenik' => $rentedBook->student])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Pogledaj detalje</span>
                                                     </a>
 
-                                                    <a href="{{route('izdajKnjigu', ['knjiga' => $ucenikPrekoracena->book])}}" tabindex="0"
-                                                        class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                        role="menuitem">
-                                                        <i class="far fa-hand-scissors mr-[10px] ml-[5px] py-1"></i>
-                                                        <span class="px-4 py-0">Izdaj knjigu</span>
-                                                    </a>
-
-                                                    <a href="{{route('rezervisiKnjigu', ['knjiga' => $ucenikPrekoracena->book])}}" tabindex="0"
-                                                        class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
-                                                        role="menuitem">
-                                                        <i class="far fa-calendar-check mr-[10px] ml-[5px] py-1"></i>
-                                                        <span class="px-4 py-0">Rezerviši knjigu</span>
-                                                    </a>
-
-                                                    <a href="{{route('vratiKnjigu', ['knjiga' => $ucenikPrekoracena->book])}}" tabindex="0"
+                                                    <a href="{{route('vratiKnjigu', ['knjiga' => $rentedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fas fa-redo-alt mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Vrati knjigu</span>
                                                     </a>
 
-                                                    <a href="{{route('otpisiKnjigu', ['knjiga' => $ucenikPrekoracena->book])}}" tabindex="0"
+                                                    <a href="{{route('otpisiKnjigu', ['knjiga' => $rentedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fas fa-level-up-alt mr-[14px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Otpiši knjigu</span>
                                                     </a>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -338,7 +461,7 @@
                             </tbody>
                         </table>
                         <div class="pt-[20px]">
-                        {{$ucenikPrekoracene->links()}}
+                        {{$rentedBooks->links()}}
                         </div>
                     </div>
                 @else
@@ -348,7 +471,7 @@
                                 d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
                             </path>
                         </svg>
-                        <p class="font-medium text-red-600"> Učenik {{$user->name}} nema primjeraka u prekoračenju! </p>
+                        <p class="font-medium text-red-600"> Učenik {{$user->name}} nema izdatih primjeraka! </p>
                     </div>
                 @endif
             </div>

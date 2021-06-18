@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('ucenikVracene')
+@section('studentReturned')
 <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
             <!-- Heading of content -->
             <div class="heading">
@@ -15,7 +15,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="../students" class="text-[#2196f3] hover:text-blue-600">
                                             Svi učenici
                                         </a>
                                     </li>
@@ -23,7 +23,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
+                                        <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
                                             ID-{{$user->id}}
                                         </a>
                                     </li>
@@ -38,7 +38,7 @@
                                 Resetuj šifru
                             </a>
                         @endcan
-                        <a href="{{ route('editUcenik', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{ route('editStudent', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-edit mr-[3px] "></i>
                             Izmijeni podatke
                         </a>
@@ -51,7 +51,7 @@
                             <div class="absolute right-0 w-56 mt-[10px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <a href="{{ route('deleteUcenik', ['user' => $user->id]) }}" tabindex="0"
+                                    <a href="{{ route('deleteStudent', ['user' => $user->id]) }}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
@@ -64,10 +64,10 @@
                 </div>
             </div>
             <div class="border-b-[1px] py-4 text-gray-500 border-[#e4dfdf] pl-[30px]">
-                <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="inline hover:text-blue-800">
+                <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="inline hover:text-blue-800">
                     Osnovni detalji
                 </a>
-                <a href="{{route('ucenikIzdate',['user'=> $user->id])}}" class="inline ml-[70px] active-book-nav">
+                <a href="{{route('studentRented',['user'=> $user->id])}}" class="inline ml-[70px] active-book-nav">
                     Evidencija iznajmljivanja
                 </a>
             </div>
@@ -80,7 +80,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                     <div
                                         class="py-[15px] px-[20px] w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
-                                        <a href="{{route('ucenikIzdate', ['user' => $user])}}" aria-label="Sve knjige" class="flex items-center">
+                                        <a href="{{route('studentRented', ['user' => $user])}}" aria-label="Sve knjige" class="flex items-center">
                                             <i
                                                 class="text-[#707070] transition duration-300 ease-in group-hover:text-[#576cdf] far fa-copy text-[20px]"></i>
                                             <div>
@@ -99,7 +99,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikVracene', ['user' => $user])}}" aria-label="Vracene knjige"
+                                        <a href="{{route('studentReturned', ['user' => $user])}}" aria-label="Vracene knjige"
                                             class="flex items-center">
                                             <i
                                                 class="transition duration-300 ease-in text-[20px] fas fa-file text-[#576cdf]"></i>
@@ -119,7 +119,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikPrekoracenje', ['user' => $user])}}" aria-label="Knjige na raspolaganju"
+                                        <a href="{{route('studentOverdue', ['user' => $user])}}" aria-label="Knjige u prekoracenju"
                                             class="flex items-center">
                                             <i
                                                 class="text-[#707070] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -173,7 +173,7 @@
                         </li>
                     </ul>
                 </div>
-                @if(count($ucenikVracene) > 0)
+                @if(count($returnedBooks) > 0)
                     <div class="w-full mt-[10px] ml-2 px-2">
                         <table class="w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
@@ -288,8 +288,8 @@
                                                 <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                     <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                         placeholder="Search"
-                                                        onkeyup="filterFunction('searchBibliotekari', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
-                                                        id="searchBibliotekari"><br>
+                                                        onkeyup="filterFunction('searchLibrarians', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
+                                                        id="searchLibrarians"><br>
                                                     <button
                                                         class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                         <i class="fas fa-search"></i>
@@ -428,7 +428,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
-                            @foreach($ucenikVracene as $ucenikVracena)
+                            @foreach($returnedBooks as $returnedBook)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                     <td class="px-4 py-3 whitespace-no-wrap">
                                         <label class="inline-flex items-center">
@@ -436,21 +436,21 @@
                                         </label>
                                     </td>
                                     <td class="flex flex-row items-center px-4 py-3">
-                                        @if(count($ucenikVracena->book->coverImage) > 0 )
-                                            <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$ucenikVracena->book->coverImage[0]->photo}}" alt="" />
+                                        @if(count($returnedBook->book->coverImage) > 0 )
+                                            <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$returnedBook->book->coverImage[0]->photo}}" alt="" />
                                         @endif
-                                        <a href="{{route('izdavanjeDetalji', ['knjiga' => $ucenikVracena->book, 'ucenik' => $ucenikVracena->student])}}">
-                                            <span class="font-medium text-center">{{$ucenikVracena->book->title}}</span>
+                                        <a href="{{route('izdavanjeDetalji', ['knjiga' => $returnedBook->book, 'ucenik' => $returnedBook->student])}}">
+                                            <span class="font-medium text-center">{{$returnedBook->book->title}}</span>
                                         </a>
                                     </td>
-                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikVracena->rent_date}}</td>
-                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikVracena->rentStatus[0]->date}}</td>
+                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$returnedBook->rent_date}}</td>
+                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$returnedBook->rentStatus[0]->date}}</td>
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                                         <div>
-                                            <span>{{ \Carbon\Carbon::parse($ucenikVracena->rent_date)->diffAsCarbonInterval($ucenikVracena->rentStatus[0]->date) }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($returnedBook->rent_date)->diffAsCarbonInterval($returnedBook->rentStatus[0]->date) }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikVracena->librarian->name}}</td>
+                                    <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$returnedBook->librarian->name}}</td>
                                     <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                         <p
                                             class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsUcenikVraceneKnjigeTabela hover:text-[#606FC7]">
@@ -462,35 +462,35 @@
                                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117"
                                                 role="menu">
                                                 <div class="py-1">
-                                                    <a href="{{route('izdavanjeDetalji', ['knjiga' => $ucenikVracena->book, 'ucenik' => $ucenikVracena->student])}}" tabindex="0"
+                                                    <a href="{{route('izdavanjeDetalji', ['knjiga' => $returnedBook->book, 'ucenik' => $returnedBook->student])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Pogledaj detalje</span>
                                                     </a>
 
-                                                    <a href="{{route('izdajKnjigu', ['knjiga' => $ucenikVracena->book])}}" tabindex="0"
+                                                    <a href="{{route('izdajKnjigu', ['knjiga' => $returnedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-hand-scissors mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Izdaj knjigu</span>
                                                     </a>
 
-                                                    <a href="{{route('rezervisiKnjigu', ['knjiga' => $ucenikVracena->book])}}" tabindex="0"
+                                                    <a href="{{route('rezervisiKnjigu', ['knjiga' => $returnedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-calendar-check mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Rezerviši knjigu</span>
                                                     </a>
 
-                                                    <a href="{{route('vratiKnjigu', ['knjiga' => $ucenikVracena->book])}}" tabindex="0"
+                                                    <a href="{{route('vratiKnjigu', ['knjiga' => $returnedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fas fa-redo-alt mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Vrati knjigu</span>
                                                     </a>
 
-                                                    <a href="{{route('otpisiKnjigu', ['knjiga' => $ucenikVracena->book])}}" tabindex="0"
+                                                    <a href="{{route('otpisiKnjigu', ['knjiga' => $returnedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fas fa-level-up-alt mr-[14px] ml-[5px] py-1"></i>
@@ -507,7 +507,7 @@
                         </table>
 
                         <div class="pt-[20px]">
-                        {{$ucenikVracene->links()}}
+                        {{$returnedBooks->links()}}
                         </div>
 
                     </div>

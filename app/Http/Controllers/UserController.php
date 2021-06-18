@@ -361,16 +361,16 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziUcenikIzdate(User $user, RentService $rentService, UserService $userService) {
+    public function showStudentRented(User $user, RentService $rentService, UserService $userService) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikIzdate';
+        $viewName = $this->viewFolderStudent . '.studentRented';
 
         // pokupi samo knjige sa statusom izdata za konkretnog ucenika
-        $izdate = $rentService->getIzdateKnjige()->where('student_id', '=', $user->id)->paginate(7);
+        $rentedBooks = $rentService->getRentedBooks()->where('student_id', '=', $user->id)->paginate(7);
 
         $viewModel = [
             'user' => $user,
-            'ucenikIzdate'=> $izdate
+            'rentedBooks'=> $rentedBooks
         ];
 
         return view($viewName, $viewModel);
@@ -384,11 +384,11 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziUcenikVracene(User $user, RentService $rentService, UserService $userService) {
+    public function showStudentReturned(User $user, RentService $rentService, UserService $userService) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikVracene';
+        $viewName = $this->viewFolderStudent . '.studentReturned';
 
-        $ucenikV = Rent::where('student_id', '=', $user->id)
+        $studentReturnedBooks = Rent::where('student_id', '=', $user->id)
             ->where(function ($query) {
                 $query->select('statusBook_id')
                     ->from('rent_statuses')
@@ -397,18 +397,18 @@ class UserController extends Controller
                     ->limit(1);
             }, 1);
 
-        $ucenikVracene = Rent::where('student_id', '=', $user->id)
+        $returnedBooks = Rent::where('student_id', '=', $user->id)
             ->where(function ($query) {
                 $query->select('statusBook_id')
                     ->from('rent_statuses')
                     ->whereColumn('rent_statuses.rent_id', 'rents.id')
                     ->orderByDesc('rent_statuses.date')
                     ->limit(1);
-            }, 3)->union($ucenikV);
+            }, 3)->union($studentReturnedBooks);
 
         $viewModel = [
             'user' => $user,
-            'ucenikVracene' => $ucenikVracene->paginate(7)
+            'returnedBooks' => $returnedBooks->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -422,15 +422,15 @@ class UserController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziUcenikPrekoracenje(User $user, RentService $rentService, UserService $userService) {
+    public function showStudentOverdue(User $user, RentService $rentService, UserService $userService) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikPrekoracenje';
+        $viewName = $this->viewFolderStudent . '.studentOverdue';
 
-        $prekoracene = $rentService->getPrekoraceneKnjige()->where('student_id', '=', $user->id)->paginate(7);
+        $overdueBooks = $rentService->getOverdueBooks()->where('student_id', '=', $user->id)->paginate(7);
 
         $viewModel = [
             'user' => $user,
-            'ucenikPrekoracene' => $prekoracene
+            'overdueBooks' => $overdueBooks
         ];
 
         return view($viewName, $viewModel);

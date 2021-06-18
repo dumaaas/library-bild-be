@@ -45,9 +45,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/saveStudent', [\App\Http\Controllers\UserController::class, 'saveStudent'])->name('saveStudent');
     Route::get('/deleteStudent/{user}', [\App\Http\Controllers\UserController::class, 'deleteStudent'])->name('deleteStudent');
     Route::get('/searchStudents', [\App\Http\Controllers\UserController::class, 'searchStudents'])->name('searchStudents');
-    Route::get('/ucenikIzdate/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikIzdate'])->name('ucenikIzdate');
-    Route::get('/ucenikVracene/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikVracene'])->name('ucenikVracene');
-    Route::get('/ucenikPrekoracenje/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikPrekoracenje'])->name('ucenikPrekoracenje');
+    Route::get('/studentRented/{user}', [\App\Http\Controllers\UserController::class, 'showStudentRented'])->name('studentRented');
+    Route::get('/studentReturned/{user}', [\App\Http\Controllers\UserController::class, 'showStudentReturned'])->name('studentReturned');
+    Route::get('/studentOverdue/{user}', [\App\Http\Controllers\UserController::class, 'showStudentOverdue'])->name('studentOverdue');
     Route::get('/ucenikAktivne/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne'])->name('ucenikAktivne');
     Route::get('/ucenikArhivirane/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane'])->name('ucenikArhivirane');
 
