@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('ucenikAktivne')
+@section('studentActive')
 <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
             <!-- Heading of content -->
             <div class="heading">
@@ -15,7 +15,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="../ucenik" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="../students" class="text-[#2196f3] hover:text-blue-600">
                                             Svi učenici
                                         </a>
                                     </li>
@@ -23,7 +23,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
+                                        <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="text-gray-400 hover:text-blue-600">
                                             ID-{{$user->id}}
                                         </a>
                                     </li>
@@ -38,7 +38,7 @@
                                 Resetuj šifru
                             </a>
                         @endcan
-                        <a href="{{ route('editUcenik', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{ route('editStudent', ['user' => $user->id]) }}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-edit mr-[3px] "></i>
                             Izmijeni podatke
                         </a>
@@ -51,7 +51,7 @@
                             <div class="absolute right-0 w-56 mt-[10px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <a href="{{ route('deleteUcenik', ['user' => $user->id]) }}" tabindex="0"
+                                    <a href="{{ route('deleteStudent', ['user' => $user->id]) }}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
@@ -64,10 +64,10 @@
                 </div>
             </div>
             <div class="border-b-[1px] py-4 text-gray-500 border-[#e4dfdf] pl-[30px]">
-                <a href="{{ route('ucenikProfile', ['user' => $user->id]) }}" class="inline hover:text-blue-800">
+                <a href="{{ route('studentProfile', ['user' => $user->id]) }}" class="inline hover:text-blue-800">
                     Osnovni detalji
                 </a>
-                <a href="{{route('ucenikIzdate',['user'=> $user->id])}}" class="inline ml-[70px] active-book-nav">
+                <a href="{{route('studentRented',['user'=> $user->id])}}" class="inline ml-[70px] active-book-nav">
                     Evidencija iznajmljivanja
                 </a>
             </div>
@@ -80,7 +80,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                     <div
                                         class="py-[15px] px-[20px] w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
-                                        <a href="{{route('ucenikIzdate', ['user' => $user])}}" aria-label="Sve knjige" class="flex items-center">
+                                        <a href="{{route('studentRented', ['user' => $user])}}" aria-label="Sve knjige" class="flex items-center">
                                             <i
                                                 class="text-[#707070] transition duration-300 ease-in group-hover:text-[#576cdf] far fa-copy text-[20px]"></i>
                                             <div>
@@ -99,7 +99,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikVracene', ['user' => $user])}}" aria-label="Vracene knjige"
+                                        <a href="{{route('studentReturned', ['user' => $user])}}" aria-label="Vracene knjige"
                                             class="flex items-center">
                                             <i
                                                 class="transition duration-300 ease-in  text-[#707070] text-[20px] fas fa-file group-hover:text-[#576cdf]"></i>
@@ -119,7 +119,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikPrekoracenje', ['user' => $user])}}" aria-label="Knjige na raspolaganju"
+                                        <a href="{{route('studentOverdue', ['user' => $user])}}" aria-label="Knjige na raspolaganju"
                                             class="flex items-center">
                                             <i
                                                 class="group-hover:text-[#576cdf] text-[#707070] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in "></i>
@@ -139,7 +139,7 @@
                                     class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikAktivne', ['user' => $user])}}" aria-label="Rezervacije" class="flex items-center">
+                                        <a href="{{route('studentActive', ['user' => $user])}}" aria-label="Rezervacije" class="flex items-center">
                                             <i
                                                 class="text-[#576cdf] text-[20px] far fa-calendar-check transition duration-300 ease-in"></i>
                                             <div>
@@ -157,7 +157,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('ucenikArhivirane', ['user' => $user])}}" aria-label="Rezervacije"
+                                        <a href="{{route('studentArchived', ['user' => $user])}}" aria-label="Rezervacije"
                                             class="flex items-center">
                                             <i
                                                 class="text-[#707070] text-[20px] fas fa-calendar-alt transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -173,7 +173,7 @@
                         </li>
                     </ul>
                 </div>
-                @if(count($ucenikAktivne) > 0)
+                @if(count($activeReservations) > 0)
                 <div class="w-full mt-[10px] ml-2 px-2">
                     <table class="w-full shadow-lg rezervacije" id="myTable">
                         <thead class="bg-[#EFF3F6]">
@@ -460,7 +460,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-                        @foreach($ucenikAktivne as $ucenikAktivna)
+                        @foreach($activeReservations as $activeReservation)
                             <tr
                                 class="hover:bg-gray-200 hover:shadow-md bg-gray-200 border-b-[1px] border-[#e4dfdf] changeBg">
                                 <td class="px-4 py-3 whitespace-no-wrap">
@@ -469,19 +469,19 @@
                                     </label>
                                 </td>
                                 <td class="flex flex-row items-center px-4 py-3">
-                                    @if(count($ucenikAktivna->book->coverImage) > 0 )
-                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$ucenikAktivna->book->coverImage[0]->photo}}" alt="" />
+                                    @if(count($activeReservation->book->coverImage) > 0 )
+                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$activeReservation->book->coverImage[0]->photo}}" alt="" />
                                     @endif
-                                    <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $ucenikAktivna->book])}}">
-                                        <span class="font-medium text-center">{{$ucenikAktivna->book->title}}</span>
+                                    <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $activeReservation->book])}}">
+                                        <span class="font-medium text-center">{{$activeReservation->book->title}}</span>
                                     </a>
                                 </td>
-                                <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikAktivna->reservation_date}}</td>
-                                <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$ucenikAktivna->reservation_date->addDays(20)}}</td>
+                                <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$activeReservation->reservation_date}}</td>
+                                <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$activeReservation->reservation_date->addDays(20)}}</td>
                                 <td class="flex flex-row items-center px-4 py-3">
-                                    <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$ucenikAktivna->student->photo}}"
+                                    <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$activeReservation->student->photo}}"
                                         alt="" />
-                                    <a href="{{route('ucenikProfile', ['user' => $ucenikAktivna->student])}}" class="ml-2 font-medium text-center">{{$ucenikAktivna->student->name}}</a>
+                                    <a href="{{route('studentProfile', ['user' => $activeReservation->student])}}" class="ml-2 font-medium text-center">{{$activeReservation->student->name}}</a>
                                 </td>
                                 <td class="px-4 py-3 changeStatus">
                                     <a href="#" class="hover:text-green-500 mr-[5px]">
@@ -508,7 +508,7 @@
                     </table>
 
                     <div class="pt-[20px]">
-                    {{$ucenikAktivne->links()}}
+                    {{$activeReservations->links()}}
                     </div>
 
                 </div>

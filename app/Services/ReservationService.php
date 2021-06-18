@@ -27,7 +27,7 @@ class ReservationService
      *
      * @return void
      */
-    public function getAktivneRezervacije() {
+    public function getActiveReservations() {
         return Reservation::with('book', 'student')
                     ->where('closeReservation_id', '=', null);
     }
@@ -37,7 +37,7 @@ class ReservationService
      *
      * @return void
      */
-    public function getArhiviraneRezervacije() {
+    public function getArchivedReservations() {
         return Reservation::with('book', 'student', 'reservationStatus')
                     ->where('closeReservation_id', '!=', null);
     }

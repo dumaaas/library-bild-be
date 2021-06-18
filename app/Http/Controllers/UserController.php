@@ -443,13 +443,13 @@ class UserController extends Controller
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function prikaziUcenikAktivne(User $user, ReservationService $reservationService) {
+    public function showStudentActive(User $user, ReservationService $reservationService) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikAktivne';
+        $viewName = $this->viewFolderStudent . '.studentActive';
 
         $viewModel = [
             'user' => $user,
-            'ucenikAktivne' => $reservationService->getAktivneRezervacije()->where('student_id', '=', $user->id)->paginate(7)
+            'activeReservations' => $reservationService->getActiveReservations()->where('student_id', '=', $user->id)->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -462,13 +462,13 @@ class UserController extends Controller
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function prikaziUcenikArhivirane(User $user, ReservationService $reservationService) {
+    public function showStudentArchived(User $user, ReservationService $reservationService) {
 
-        $viewName = $this->viewFolderStudent . '.ucenikArhivirane';
+        $viewName = $this->viewFolderStudent . '.studentArchived';
 
         $viewModel = [
             'user' => $user,
-            'ucenikArhivirane' => $reservationService->getArhiviraneRezervacije()->where('student_id', '=', $user->id)->paginate(7)
+            'archivedReservations' => $reservationService->getArchivedReservations()->where('student_id', '=', $user->id)->paginate(7)
         ];
 
         return view($viewName, $viewModel);

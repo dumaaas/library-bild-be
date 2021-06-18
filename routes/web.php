@@ -48,8 +48,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/studentRented/{user}', [\App\Http\Controllers\UserController::class, 'showStudentRented'])->name('studentRented');
     Route::get('/studentReturned/{user}', [\App\Http\Controllers\UserController::class, 'showStudentReturned'])->name('studentReturned');
     Route::get('/studentOverdue/{user}', [\App\Http\Controllers\UserController::class, 'showStudentOverdue'])->name('studentOverdue');
-    Route::get('/ucenikAktivne/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikAktivne'])->name('ucenikAktivne');
-    Route::get('/ucenikArhivirane/{user}', [\App\Http\Controllers\UserController::class, 'prikaziUcenikArhivirane'])->name('ucenikArhivirane');
+    Route::get('/studentActive/{user}', [\App\Http\Controllers\UserController::class, 'showStudentActive'])->name('studentActive');
+    Route::get('/studentArchived/{user}', [\App\Http\Controllers\UserController::class, 'showStudentArchived'])->name('studentArchived');
 
 
     //BOOK - ROUTES
