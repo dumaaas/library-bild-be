@@ -17,7 +17,7 @@ class ScriptController extends Controller
      * @param  Script $script
      * @return void
      */
-    public function showEditScript(Script $script) {
+    public function showEdit(Script $script) {
 
         $viewName = $this->viewFolder . '.editScript';
 
@@ -34,7 +34,7 @@ class ScriptController extends Controller
      * @param  ScriptService $scriptService
      * @return void
      */
-    public function showScripts(ScriptService $scriptService) {
+    public function index(ScriptService $scriptService) {
 
         $viewName = $this->viewFolder . '.scripts';
 
@@ -50,7 +50,7 @@ class ScriptController extends Controller
      *
      * @return void
      */
-    public function showAddScript() {
+    public function showAdd() {
 
         $viewName = $this->viewFolder . '.addScript';
 
@@ -63,7 +63,7 @@ class ScriptController extends Controller
      * @param  Script $script
      * @param  ScriptService $scriptService
      */
-    public function saveScript(Script $script, ScriptService $scriptService) {
+    public function save(Script $script, ScriptService $scriptService) {
         
         $viewName = $this->viewFolder . '.editScript';
 
@@ -84,7 +84,7 @@ class ScriptController extends Controller
      * @param  ScriptService $scriptService
      * @return void
      */
-    public function updateScript(Script $script, ScriptService $scriptService) {
+    public function update(Script $script, ScriptService $scriptService) {
 
         $viewName = $this->viewFolder . '.editScript';
 
@@ -103,7 +103,7 @@ class ScriptController extends Controller
      *
      * @param  Script $script
      */
-    public function deleteScript(Script $script) {
+    public function delete(Script $script) {
         Script::destroy($script->id);
         return back()->with('success', 'Pismo je uspješno izbrisano!');
     }

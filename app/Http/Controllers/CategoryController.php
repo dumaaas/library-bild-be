@@ -18,7 +18,7 @@ class CategoryController extends Controller
      * @param  Category $category
      * @return void
      */
-    public function showEditCategory(Category $category) {
+    public function showEdit(Category $category) {
 
         $viewName = $this->viewFolder . '.editCategory';
 
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      * @param  CategoryService $categoryService
      * @return void
      */
-    public function showCategories(CategoryService $categoryService) {
+    public function index(CategoryService $categoryService) {
 
         $viewName = $this->viewFolder . '.categories';
 
@@ -51,7 +51,7 @@ class CategoryController extends Controller
      *
      * @return void
      */
-    public function showAddCategory() {
+    public function showAdd() {
 
         $viewName = $this->viewFolder . '.addCategory';
 
@@ -65,7 +65,7 @@ class CategoryController extends Controller
      * @param  UserService $userService
      * @param  Request $request
      */
-    public function saveCategory(CategoryService $categoryService, UserService $userService, Request $request) {
+    public function save(CategoryService $categoryService, UserService $userService, Request $request) {
 
         $categoryService->saveCategory($userService, $request);
 
@@ -82,7 +82,7 @@ class CategoryController extends Controller
      * @param  Request $request
      * @return void
      */
-    public function updateCategory(Category $category, CategoryService $categoryService, UserService $userService, Request $request) {
+    public function update(Category $category, CategoryService $categoryService, UserService $userService, Request $request) {
         
         $categoryService->editCategory($category, $userService, $request);
 
@@ -95,7 +95,7 @@ class CategoryController extends Controller
      *
      * @param  Category $category
      */
-    public function deleteCategory(Category $category) {
+    public function delete(Category $category) {
         Category::destroy($category->id);
         return back()->with('success', 'Kategorija je uspješno izbrisana!');
     }

@@ -18,7 +18,7 @@ class BindingController extends Controller
      * @param  Binding $binding
      * @return void
      */
-    public function showEditBinding(Binding $binding) {
+    public function showEdit(Binding $binding) {
 
         $viewName = $this->viewFolder . '.editBinding';
 
@@ -34,7 +34,7 @@ class BindingController extends Controller
      *
      * @return void
      */
-    public function showAddBinding() {
+    public function showAdd() {
 
         $viewName = $this->viewFolder . '.addBinding';
 
@@ -47,7 +47,7 @@ class BindingController extends Controller
      * @param  BindingService $bindingService
      * @return void
      */
-    public function showBindings(BindingService $bindingService) {
+    public function index(BindingService $bindingService) {
 
         $viewName = $this->viewFolder . '.bindings';
 
@@ -64,7 +64,7 @@ class BindingController extends Controller
      * @param  Binding $binding
      * @param  BindingService $bindingService
      */
-    public function saveBinding(Binding $binding, BindingService $bindingService) {
+    public function save(Binding $binding, BindingService $bindingService) {
         
         $viewName = $this->viewFolder . '.editBinding';
 
@@ -85,7 +85,7 @@ class BindingController extends Controller
      * @param  BindingService $bindingService
      * @return void
      */
-    public function updateBinding(Binding $binding, BindingService $bindingService) {
+    public function update(Binding $binding, BindingService $bindingService) {
    
         $viewName = $this->viewFolder . '.editBinding';
 
@@ -104,7 +104,7 @@ class BindingController extends Controller
      *
      * @param  Binding $binding
      */
-    public function deleteBinding(Binding $binding) {
+    public function delete(Binding $binding) {
         Binding::destroy($binding->id);
         return back()->with('success', 'Povez je uspješno izbrisan!');
     }

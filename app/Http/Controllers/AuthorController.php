@@ -28,7 +28,7 @@ class AuthorController extends Controller
      * @param  AuthorService $authorService
      * @return void
      */
-    public function showAuthors(AuthorService $authorService) {
+    public function index(AuthorService $authorService) {
 
         $viewName = $this->viewFolder . '.authors';
 
@@ -45,7 +45,7 @@ class AuthorController extends Controller
      * @param  Author $auhtor
      * @return void
      */
-    public function showAuthor(Author $author) {
+    public function show(Author $author) {
 
         $viewName = $this->viewFolder . '.authorProfile';
 
@@ -62,7 +62,7 @@ class AuthorController extends Controller
      * @param  Author $author
      * @return void
      */
-    public function showEditAuthor(Author $author) {
+    public function showEdit(Author $author) {
         $viewName = $this->viewFolder . '.editAuthor';
 
         $viewModel = [
@@ -77,7 +77,7 @@ class AuthorController extends Controller
      *
      * @return void
      */
-    public function showAddAuthor() {
+    public function showAdd() {
         $viewName = $this->viewFolder . '.addAuthor';
 
         return view($viewName);
@@ -90,7 +90,7 @@ class AuthorController extends Controller
      * @param  AuthorService $authorService
      * @return void
      */
-    public function updateAuthor(Author $author, AuthorService $authorService) {
+    public function update(Author $author, AuthorService $authorService) {
         $viewName = $this->viewFolder . '.editAuthor';
 
         $authorService->editAuthor($author);
@@ -107,7 +107,7 @@ class AuthorController extends Controller
      *
      * @param  Author $author
      */
-    public function deleteAuthor(Author $author) {
+    public function delete(Author $author) {
         Author::destroy($author->id);
 
         return redirect('authors')->with('success', 'Autor je uspješno izbrisan!');
@@ -118,7 +118,7 @@ class AuthorController extends Controller
      *
      * @param  AuthorService $authorService
      */
-    public function saveAuthor(AuthorService $authorService) {
+    public function save(AuthorService $authorService) {
 
         $viewName = $this->viewFolder . '.authorProfile';
 
@@ -137,7 +137,7 @@ class AuthorController extends Controller
      * @param  AuthorService $authorService
      * @return void
      */
-    public function searchAuthors(AuthorService $authorService) {
+    public function search(AuthorService $authorService) {
 
         $viewName = $this->viewFolder . '.authors';
 

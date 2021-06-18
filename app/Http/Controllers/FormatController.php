@@ -17,7 +17,7 @@ class FormatController extends Controller
      * @param  Format $format
      * @return void
      */
-    public function showEditFormat(Format $format) {
+    public function showEdit(Format $format) {
 
         $viewName = $this->viewFolder . '.editFormat';
 
@@ -33,7 +33,7 @@ class FormatController extends Controller
      *
      * @return void
      */
-    public function showAddFormat() {
+    public function showAdd() {
 
         $viewName = $this->viewFolder . '.addFormat';
 
@@ -46,7 +46,7 @@ class FormatController extends Controller
      * @param  FormatService $formatService
      * @return void
      */
-    public function showFormats(FormatService $formatService) {
+    public function index(FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.formats';
 
@@ -63,7 +63,7 @@ class FormatController extends Controller
      * @param  Format $format
      * @param  FormatService $formatService
      */
-    public function saveFormat(Format $format, FormatService $formatService) {
+    public function save(Format $format, FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.editFormat';
 
@@ -83,7 +83,7 @@ class FormatController extends Controller
      * @param  FormatService $formatService
      * @return void
      */
-    public function updateFormat(Format $format, FormatService $formatService) {
+    public function update(Format $format, FormatService $formatService) {
 
         $viewName = $this->viewFolder . '.editFormat';
 
@@ -102,7 +102,7 @@ class FormatController extends Controller
      *
      * @param  Format $format
      */
-    public function deleteFormat(Format $format) {
+    public function delete(Format $format) {
     
         Format::destroy($format->id);
         return back()->with('success', 'Format je uspješno izbrisan!');

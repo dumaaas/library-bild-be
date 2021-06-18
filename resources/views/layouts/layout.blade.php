@@ -370,7 +370,7 @@
     @yield('iznajmljivanjeIzdate')
     @yield('iznajmljivanjePrekoracenje')
     @yield('iznajmljivanjeVracene')
-    @yield('knjigaOsnovniDetalji')
+    @yield('bookDetails')
     @yield('knjigaSpecifikacija')
     @yield('knjigePrekoracenje')
     @yield('addCategory')

@@ -29,7 +29,7 @@
                                             <span class="mx-2">/</span>
                                         </li>
                                         <li>
-                                            <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $book->id])}}"
+                                            <a href="{{route('bookDetails', ['book' => $book->id])}}"
                                                 class="text-[#2196f3] hover:text-blue-600">
                                                 KNJIGA-{{$book->id}}
                                             </a>

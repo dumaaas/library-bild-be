@@ -18,7 +18,7 @@ class GenreController extends Controller
      * @param  Genre $genre
      * @return void
      */
-    public function showEditGenre(Genre $genre) {
+    public function showEdit(Genre $genre) {
 
         $viewName = $this->viewFolder . '.editGenre';
 
@@ -35,7 +35,7 @@ class GenreController extends Controller
      * @param  GenreService $genreService
      * @return void
      */
-    public function showGenres(GenreService $genreService) {
+    public function index(GenreService $genreService) {
 
         $viewName = $this->viewFolder . '.genres';
 
@@ -51,7 +51,7 @@ class GenreController extends Controller
      *
      * @return void
      */
-    public function showAddGenre() {
+    public function showAdd() {
         
         $viewName = $this->viewFolder . '.addGenre';
 
@@ -65,7 +65,7 @@ class GenreController extends Controller
      * @param  UserService $userService
      * @param  Request $request
      */
-    public function saveGenre(GenreService $genreService, UserService $userService, Request $request) {
+    public function save(GenreService $genreService, UserService $userService, Request $request) {
         
         $genreService->saveGenre($userService, $request);
 
@@ -81,7 +81,7 @@ class GenreController extends Controller
      * @param  Request $request
      * @return void
      */
-    public function updateGenre(Genre $genre, GenreService $genreService, UserService $userService, Request $request) {
+    public function update(Genre $genre, GenreService $genreService, UserService $userService, Request $request) {
         
         $genreService->editGenre($genre, $userService, $request);
 
@@ -94,7 +94,7 @@ class GenreController extends Controller
      *
      * @param  Genre $genre
      */
-    public function deleteGenre(Genre $genre) {
+    public function delete(Genre $genre) {
         Genre::destroy($genre->id);
         return back()->with('success', 'Žanr je uspješno izbrisan!');
     }

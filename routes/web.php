@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/editKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjigaSpecifikacija']);
     Route::get('/evidencijaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjiga'])->name('evidencijaKnjiga');
     Route::get('/evidencijaKnjigaMultimedija/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjigaMultimedija'])->name('evidencijaKnjigaMultimedija');
-    Route::get('/knjigaOsnovniDetalji/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziKnjigaOsnovniDetalji'])->name('knjigaOsnovniDetalji');
+    Route::get('/bookDetails/{book}', [\App\Http\Controllers\BookController::class, 'showBookDetails'])->name('bookDetails');
     Route::get('/knjigaSpecifikacija/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziKnjigaSpecifikacija'])->name('knjigaSpecifikacija');
     Route::get('/novaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjiga'])->name('novaKnjiga');
     Route::get('/novaKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaMultimedija']);
@@ -104,62 +104,62 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/searchArhiviraneRezervacije', [\App\Http\Controllers\RentController::class, 'searchArhiviraneRezervacije'])->name('searchArhiviraneRezervacije');
 
     //SCRIPT - ROUTES
-    Route::get('/editScript/{script}', [\App\Http\Controllers\ScriptController::class, 'showEditScript'])->name('editScript');
-    Route::get('/addScript', [\App\Http\Controllers\ScriptController::class, 'showAddScript'])->name('addScript');
-    Route::get('/scripts', [\App\Http\Controllers\ScriptController::class, 'showScripts'])->name('scripts');
-    Route::post('/saveScript', [\App\Http\Controllers\ScriptController::class, 'saveScript'])->name('saveScript');
-    Route::post('/updateScript/{script}', [\App\Http\Controllers\ScriptController::class, 'updateScript'])->name('updateScript');
-    Route::get('/deleteScript/{script}', [\App\Http\Controllers\ScriptController::class, 'deleteScript'])->name('deleteScript');
+    Route::get('/editScript/{script}', [\App\Http\Controllers\ScriptController::class, 'showEdit'])->name('editScript');
+    Route::get('/addScript', [\App\Http\Controllers\ScriptController::class, 'showAdd'])->name('addScript');
+    Route::get('/scripts', [\App\Http\Controllers\ScriptController::class, 'index'])->name('scripts');
+    Route::post('/saveScript', [\App\Http\Controllers\ScriptController::class, 'save'])->name('saveScript');
+    Route::post('/updateScript/{script}', [\App\Http\Controllers\ScriptController::class, 'update'])->name('updateScript');
+    Route::get('/deleteScript/{script}', [\App\Http\Controllers\ScriptController::class, 'delete'])->name('deleteScript');
 
 
     //FORMAT - ROUTES
-    Route::get('/editFormat/{format}', [\App\Http\Controllers\FormatController::class, 'showEditFormat'])->name('editFormat');
-    Route::get('/addFormat', [\App\Http\Controllers\FormatController::class, 'showAddFormat'])->name('addFormat');
-    Route::get('/formats', [\App\Http\Controllers\FormatController::class, 'showFormats'])->name('formats');
-    Route::post('/saveFormat', [\App\Http\Controllers\FormatController::class, 'saveFormat'])->name('saveFormat');
-    Route::post('/updateFormat/{format}', [\App\Http\Controllers\FormatController::class, 'updateFormat'])->name('updateFormat');
-    Route::get('/deleteFormat/{format}', [\App\Http\Controllers\FormatController::class, 'deleteFormat'])->name('deleteFormat');
+    Route::get('/editFormat/{format}', [\App\Http\Controllers\FormatController::class, 'showEdit'])->name('editFormat');
+    Route::get('/addFormat', [\App\Http\Controllers\FormatController::class, 'showAdd'])->name('addFormat');
+    Route::get('/formats', [\App\Http\Controllers\FormatController::class, 'index'])->name('formats');
+    Route::post('/saveFormat', [\App\Http\Controllers\FormatController::class, 'save'])->name('saveFormat');
+    Route::post('/updateFormat/{format}', [\App\Http\Controllers\FormatController::class, 'update'])->name('updateFormat');
+    Route::get('/deleteFormat/{format}', [\App\Http\Controllers\FormatController::class, 'delete'])->name('deleteFormat');
 
 
     //LANGUAGE - ROUTES
 
 
     //BINDING - ROUTES
-    Route::get('/editBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'showEditBinding'])->name('editBinding');
-    Route::get('/addBinding', [\App\Http\Controllers\BindingController::class, 'showAddBinding'])->name('addBinding');
-    Route::get('/bindings', [\App\Http\Controllers\BindingController::class, 'showBindings'])->name('bindings');
-    Route::post('/saveBinding', [\App\Http\Controllers\BindingController::class, 'saveBinding'])->name('saveBinding');
-    Route::post('/updateBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'updateBinding'])->name('updateBinding');
-    Route::get('/deleteBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'deleteBinding'])->name('deleteBinding');
+    Route::get('/editBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'showEdit'])->name('editBinding');
+    Route::get('/addBinding', [\App\Http\Controllers\BindingController::class, 'showAdd'])->name('addBinding');
+    Route::get('/bindings', [\App\Http\Controllers\BindingController::class, 'index'])->name('bindings');
+    Route::post('/saveBinding', [\App\Http\Controllers\BindingController::class, 'save'])->name('saveBinding');
+    Route::post('/updateBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'update'])->name('updateBinding');
+    Route::get('/deleteBinding/{binding}', [\App\Http\Controllers\BindingController::class, 'delete'])->name('deleteBinding');
 
 
     //PUBLISHER - ROUTES
-    Route::get('/editPublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'showEditPublisher'])->name('editPublisher');
-    Route::get('/addPublisher', [\App\Http\Controllers\PublisherController::class, 'showAddPublisher'])->name('addPublisher');
-    Route::get('/publishers', [\App\Http\Controllers\PublisherController::class, 'showPublishers'])->name('publishers');
-    Route::post('/updatePublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'updatePublisher'])->name('updatePublisher');
-    Route::get('/deletePublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'deletePublisher'])->name('deletePublisher');
-    Route::post('/savePublisher}', [\App\Http\Controllers\PublisherController::class, 'savePublisher'])->name('savePublisher');
+    Route::get('/editPublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'showEdit'])->name('editPublisher');
+    Route::get('/addPublisher', [\App\Http\Controllers\PublisherController::class, 'showAdd'])->name('addPublisher');
+    Route::get('/publishers', [\App\Http\Controllers\PublisherController::class, 'index'])->name('publishers');
+    Route::post('/updatePublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'update'])->name('updatePublisher');
+    Route::get('/deletePublisher/{publisher}', [\App\Http\Controllers\PublisherController::class, 'delete'])->name('deletePublisher');
+    Route::post('/savePublisher}', [\App\Http\Controllers\PublisherController::class, 'save'])->name('savePublisher');
 
 
     //CATEGORY - ROUTES
-    Route::get('/editCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'showEditCategory'])->name('editCategory');
-    Route::get('/addCategory', [\App\Http\Controllers\CategoryController::class, 'showAddCategory'])->name('addCategory');
-    Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'showCategories'])->name('categories');
-    Route::post('/saveCategory', [\App\Http\Controllers\CategoryController::class, 'saveCategory'])->name('saveCategory');
-    Route::post('/updateCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'updateCategory'])->name('updateCategory');
-    Route::get('/deleteCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'deleteCategory'])->name('deleteCategory');
+    Route::get('/editCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'showEdit'])->name('editCategory');
+    Route::get('/addCategory', [\App\Http\Controllers\CategoryController::class, 'showAdd'])->name('addCategory');
+    Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index'])->name('categories');
+    Route::post('/saveCategory', [\App\Http\Controllers\CategoryController::class, 'save'])->name('saveCategory');
+    Route::post('/updateCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('updateCategory');
+    Route::get('/deleteCategory/{category}', [\App\Http\Controllers\CategoryController::class, 'delete'])->name('deleteCategory');
 
 
     //AUTHOR - ROUTES
-    Route::get('/authorProfile/{author}', [\App\Http\Controllers\AuthorController::class, 'showAuthor'])->name('authorProfile');
-    Route::get('/authors', [\App\Http\Controllers\AuthorController::class, 'showAuthors']);
-    Route::get('/editAuthor/{author}', [\App\Http\Controllers\AuthorController::class, 'showEditAuthor'])->name('editAuthor');
-    Route::post('/editAuthor/{author}/update', [\App\Http\Controllers\AuthorController::class, 'updateAuthor'])->name('updateAuthor');
-    Route::get('/addAuthor', [\App\Http\Controllers\AuthorController::class, 'showAddAuthor'])->name('addAuthor');
-    Route::get('/deleteAuthor/{author}', [\App\Http\Controllers\AuthorController::class, 'deleteAuthor'])->name('deleteAuthor');
-    Route::post('/saveAuthor', [\App\Http\Controllers\AuthorController::class, 'saveAuthor'])->name('saveAuthor');
-    Route::get('/searchAuthors', [\App\Http\Controllers\AuthorController::class, 'searchAuthors'])->name('searchAuthors');
+    Route::get('/authorProfile/{author}', [\App\Http\Controllers\AuthorController::class, 'show'])->name('authorProfile');
+    Route::get('/authors', [\App\Http\Controllers\AuthorController::class, 'index']);
+    Route::get('/editAuthor/{author}', [\App\Http\Controllers\AuthorController::class, 'showEdit'])->name('editAuthor');
+    Route::post('/editAuthor/{author}/update', [\App\Http\Controllers\AuthorController::class, 'update'])->name('updateAuthor');
+    Route::get('/addAuthor', [\App\Http\Controllers\AuthorController::class, 'showAdd'])->name('addAuthor');
+    Route::get('/deleteAuthor/{author}', [\App\Http\Controllers\AuthorController::class, 'delete'])->name('deleteAuthor');
+    Route::post('/saveAuthor', [\App\Http\Controllers\AuthorController::class, 'save'])->name('saveAuthor');
+    Route::get('/searchAuthors', [\App\Http\Controllers\AuthorController::class, 'search'])->name('searchAuthors');
 
 
     //GALLERY - ROUTES
@@ -167,16 +167,16 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //GENRE - ROUTES
-    Route::get('/editGenre{genre}', [\App\Http\Controllers\GenreController::class, 'showEditGenre'])->name('editGenre');
-    Route::get('/addGenre', [\App\Http\Controllers\GenreController::class, 'showAddGenre'])->name('addGenre');
-    Route::get('/genres', [\App\Http\Controllers\GenreController::class, 'showGenres'])->name('genres');
-    Route::post('/saveGenre', [\App\Http\Controllers\GenreController::class, 'saveGenre'])->name('saveGenre');
-    Route::post('/updateGenre/{genre}', [\App\Http\Controllers\GenreController::class, 'updateGenre'])->name('updateGenre');
-    Route::get('/deleteGenre/{genre}', [\App\Http\Controllers\GenreController::class, 'deleteGenre'])->name('deleteGenre');
+    Route::get('/editGenre{genre}', [\App\Http\Controllers\GenreController::class, 'showEdit'])->name('editGenre');
+    Route::get('/addGenre', [\App\Http\Controllers\GenreController::class, 'showAdd'])->name('addGenre');
+    Route::get('/genres', [\App\Http\Controllers\GenreController::class, 'index'])->name('genres');
+    Route::post('/saveGenre', [\App\Http\Controllers\GenreController::class, 'save'])->name('saveGenre');
+    Route::post('/updateGenre/{genre}', [\App\Http\Controllers\GenreController::class, 'update'])->name('updateGenre');
+    Route::get('/deleteGenre/{genre}', [\App\Http\Controllers\GenreController::class, 'delete'])->name('deleteGenre');
 
 
     //POLICY - ROUTES
-    Route::get('/policy', [\App\Http\Controllers\PolicyController::class, 'showPolicy'])->name('policy');
+    Route::get('/policy', [\App\Http\Controllers\PolicyController::class, 'index'])->name('policy');
     Route::post('/changeDeadline', [\App\Http\Controllers\PolicyController::class, 'changeDeadline'])->name('changeDeadline');
 
 });

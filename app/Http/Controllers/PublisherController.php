@@ -18,7 +18,7 @@ class PublisherController extends Controller
      * @param  Publisher $publisher
      * @return void
      */
-    public function showEditPublisher(Publisher $publisher) {
+    public function showEdit(Publisher $publisher) {
 
         $viewName = $this->viewFolder . '.editPublisher';
 
@@ -34,7 +34,7 @@ class PublisherController extends Controller
      *
      * @return void
      */
-    public function showAddPublisher() {
+    public function showAdd() {
 
         $viewName = $this->viewFolder . '.addPublisher';
 
@@ -47,7 +47,7 @@ class PublisherController extends Controller
      * @param  PublisherService $publisherService
      * @return void
      */
-    public function showPublishers(PublisherService $publisherService) {
+    public function index(PublisherService $publisherService) {
 
         $viewName = $this->viewFolder . '.publishers';
 
@@ -65,7 +65,7 @@ class PublisherController extends Controller
      * @param  PublisherService $publisherService
      * @return void
      */
-    public function updatePublisher(Publisher $publisher, PublisherService $publisherService) {
+    public function update(Publisher $publisher, PublisherService $publisherService) {
 
         $viewName = $this->viewFolder . '.editPublisher';
 
@@ -84,7 +84,7 @@ class PublisherController extends Controller
      *
      * @param  Publisher $publisher
      */
-    public function deletePublisher(Publisher $publisher) {
+    public function delete(Publisher $publisher) {
         Publisher::destroy($publisher->id);
         return back()->with('success', 'Izdavač je uspješno izbrisan!');
     }
@@ -95,7 +95,7 @@ class PublisherController extends Controller
      * @param  Publisher $publisher
      * @param  PublisherService $publisherService
      */
-    public function savePublisher(Publisher $publisher, PublisherService $publisherService) {
+    public function save(Publisher $publisher, PublisherService $publisherService) {
 
         $viewName = $this->viewFolder . '.editPublisher';
 

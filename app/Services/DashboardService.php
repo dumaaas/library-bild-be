@@ -61,12 +61,12 @@ class DashboardService
     /**
      * Vrati aktivnosti za konkretnu knjigu
      *
-     * @param  Book  $knjiga
+     * @param  Book  $book
      * @return void
      */
-    public function getBookActivity($knjiga) {
+    public function getBookActivity($book) {
         return Rent::with('book', 'student', 'librarian')
-                        ->where('book_id', 'LIKE', $knjiga)
+                        ->where('book_id', 'LIKE', $book)
                         ->orderBy('rent_date', 'DESC');
     }
 

@@ -15,7 +15,7 @@ class PolicyController extends Controller
      *
      * @return void
      */
-    public function showPolicy() {
+    public function index() {
 
         $viewName = $this->viewFolder . '.policy';
 
