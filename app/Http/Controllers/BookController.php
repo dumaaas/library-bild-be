@@ -86,16 +86,16 @@ class BookController extends Controller
     /**
      * Prikazi stranicu sa multimedijom kod konkretne knjige
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  DashboardService $dashboardService
      * @return void
      */
-    public function prikaziEvidencijaKnjigaMultimedija(Book $knjiga, DashboardService $dashboardService) {
-        $viewName = $this->viewFolder . '.evidencijaKnjigaMultimedija';
+    public function showBookMultimedia(Book $book, DashboardService $dashboardService) {
+        $viewName = $this->viewFolder . '.bookMultimedia';
 
         $viewModel = [
-            'knjiga'     => $knjiga,
-            'aktivnosti' => $dashboardService->getBookActivity($knjiga->id)
+            'book'     => $book,
+            'activities' => $dashboardService->getBookActivity($book->id)
                                 ->take(3)
                                 ->get(),
         ];

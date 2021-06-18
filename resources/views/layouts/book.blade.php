@@ -88,12 +88,12 @@
             <!-- PLACE FOR YIELDING BOOK SECTIONS -->
             @yield('detailsBook')
             @yield('specificationBook')
+            @yield('multimediaBook')
             @yield('izdateIznajmljivanje')
             @yield('prekoracenjeIznajmljivanje')
             @yield('vraceneIznajmljivanje')
             @yield('aktivneIznajmljivanje')
             @yield('arhiviraneIznajmljivanje')
-            @yield('knjigeMultimedija')
             <div class="min-w-[20%] border-l-[1px] border-[#e4dfdf] ">
                 <div class="border-b-[1px] border-[#e4dfdf]">
                     <div class="mx-[30px] mt-[20px] flex flex-row">

@@ -11,7 +11,7 @@
             <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $book])}}" class="inline ml-[70px] hover:text-blue-800">
                 Evidencija iznajmljivanja
             </a>
-            <a href="{{route('evidencijaKnjigaMultimedija', ['knjiga' => $book])}}" class="inline ml-[70px] hover:text-blue-800">
+            <a href="{{route('bookMultimedia', ['book' => $book])}}" class="inline ml-[70px] hover:text-blue-800">
                 Multimedija
             </a>
         </div>

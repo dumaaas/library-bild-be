@@ -360,7 +360,7 @@
     @yield('editStudent')
     @yield('editGenre')
     @yield('evidencijaKnjiga')
-    @yield('evidencijaKnjigaMultimedija')
+    @yield('bookMultimedia')
     @yield('rentBook')
     @yield('rentBookError')
     @yield('izdateKnjige')

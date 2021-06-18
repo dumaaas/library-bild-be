@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/editKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjigaMultimedija']);
     Route::get('/editKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjigaSpecifikacija']);
     Route::get('/evidencijaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjiga'])->name('evidencijaKnjiga');
-    Route::get('/evidencijaKnjigaMultimedija/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjigaMultimedija'])->name('evidencijaKnjigaMultimedija');
+    Route::get('/bookMultimedia/{book}', [\App\Http\Controllers\BookController::class, 'showBookMultimedia'])->name('bookMultimedia');
     Route::get('/bookDetails/{book}', [\App\Http\Controllers\BookController::class, 'showBookDetails'])->name('bookDetails');
     Route::get('/bookSpecification/{book}', [\App\Http\Controllers\BookController::class, 'showBookSpecification'])->name('bookSpecification');
     Route::get('/novaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjiga'])->name('novaKnjiga');
