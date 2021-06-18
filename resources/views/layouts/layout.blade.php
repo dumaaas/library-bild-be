@@ -361,8 +361,8 @@
     @yield('editGenre')
     @yield('evidencijaKnjiga')
     @yield('evidencijaKnjigaMultimedija')
-    @yield('izdajKnjigu')
-    @yield('izdajKnjiguError')
+    @yield('rentBook')
+    @yield('rentBookError')
     @yield('izdateKnjige')
     @yield('izdavanjeDetalji')
     @yield('iznajmljivanjeAktivne')
@@ -386,7 +386,7 @@
     @yield('addGenre')
     @yield('addScript')
     @yield('otpisiKnjigu')
-    @yield('rezervisiKnjigu')
+    @yield('reserveBook')
     @yield('formats')
     @yield('publishers')
     @yield('categories')
@@ -402,7 +402,7 @@
     @yield('studentProfile')
     @yield('studentReturned')
     @yield('vraceneKnjige')
-    @yield('vratiKnjigu')
+    @yield('returnBook')
     @yield('izdavanjeDetaljiError')
 </main>
 

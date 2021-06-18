@@ -39,7 +39,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
-    private $viewFolder = 'pages/knjiga';
+    private $viewFolder = 'pages/books';
 
     /**
      * Prikazi stranicu za editovanje knjige
@@ -170,20 +170,20 @@ class BookController extends Controller
     /**
      * Prikazi stranicu za vracanje knjige
      *
-     * @param  Book $knjiga
-     * @param  DashboardService $dashboardService
+     * @param  Book $book
+     * @param  RentService $rentService
      * @return void
      */
-    public function prikaziVratiKnjigu(Book $knjiga, RentService $rentService) {
-        $viewName = $this->viewFolder . '.vratiKnjigu';
+    public function showReturnBook(Book $book, RentService $rentService) {
+        $viewName = $this->viewFolder . '.returnBook';
 
-        $vratiKnjige = $rentService->getIzdateKnjige()
-                            ->where('book_id', '=', $knjiga->id)
+        $rentedBooks = $rentService->getRentedBooks()
+                            ->where('book_id', '=', $book->id)
                             ->paginate(7);
 
         $viewModel = [
-            'knjiga'      => $knjiga,
-            'vratiKnjige' => $vratiKnjige,
+            'book'      => $book,
+            'rentedBooks' => $rentedBooks,
         ];
 
         return view($viewName, $viewModel);
@@ -212,70 +212,70 @@ class BookController extends Controller
     }
 
     /**
-     * Prikazi stranicu za vracanje knjige
+     * Prikazi stranicu za rezervisanje knjige
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  UserService $userService
      * @param  RentService $rentService
      * @return void
      */
-    public function prikaziRezervisiKnjigu(Book $knjiga, UserService $userService, RentService $rentService) {
-        $viewNameRezervisi = $this->viewFolder . '.rezervisiKnjigu';
-        $viewNameError = $this->viewFolder . '.izdajKnjiguError';
+    public function showReserveBook(Book $book, UserService $userService, RentService $rentService) {
+        $viewNameReserve = $this->viewFolder . '.reserveBook';
+        $viewNameError = $this->viewFolder . '.rentBookError';
 
-        $knjigeNaRaspolaganju = $knjiga->quantity - $knjiga->rentedBooks - $knjiga->reservedBooks;
+        $availableBooks = $book->quantity - $book->rentedBooks - $book->reservedBooks;
 
-        $viewModelRezervisi = [
-            'knjiga'  => $knjiga,
-            'ucenici' => $userService->getUcenici()->get(),
+        $viewModelReserve = [
+            'book'  => $book,
+            'students' => $userService->getStudents()->get(),
         ];
 
         $viewModelError = [
-            'knjiga'            => $knjiga,
-            'prekoraceneKnjige' => $rentService->getPrekoraceneKnjige()
-                                        ->where('book_id', '=', $knjiga->id)
+            'book'         => $book,
+            'overdueBooks' => $rentService->getOverdueBooks()
+                                        ->where('book_id', '=', $book->id)
                                         ->get()
         ];
 
-        if($knjigeNaRaspolaganju > 0) {
-            return view($viewNameRezervisi, $viewModelRezervisi);
+        if($availableBooks > 0) {
+            return view($viewNameReserve, $viewModelReserve);
         } else {
             return view($viewNameError, $viewModelError);
         }
     }
 
     /**
-     * Prikazi stranicu za vracanje knjige
+     * Prikazi stranicu za izdavanje knjige
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  UserService $userService
      * @param  RentService $rentService
      * @return void
      */
-    public function prikaziIzdajKnjigu(Book $knjiga, UserService $userService, RentService $rentService) {
-        $viewNameIzdaj = $this->viewFolder . '.izdajKnjigu';
-        $viewNameError = $this->viewFolder . '.izdajKnjiguError';
+    public function showRentBook(Book $book, UserService $userService, RentService $rentService) {
+        $viewNameRent = $this->viewFolder . '.rentBook';
+        $viewNameError = $this->viewFolder . '.rentBookError';
 
-        $knjigeNaRaspolaganju = $knjiga->quantity - $knjiga->rentedBooks - $knjiga->reservedBooks;
+        $availableBooks = $book->quantity - $book->rentedBooks - $book->reservedBooks;
 
-        $viewModelIzdaj = [
-            'knjiga'            => $knjiga,
-            'ucenici'           => $userService->getUcenici()->get(),
-            'rokPozajmljivanja' => GlobalVariable::find(1),
-            'prekoraceneKnjige' => $rentService->getPrekoraceneKnjige()
-                                        ->where('book_id', '=', $knjiga->id)
+        $viewModelRent = [
+            'book'          => $book,
+            'students'      => $userService->getStudents()->get(),
+            'returnDueDate' => GlobalVariable::find(1),
+            'overdueBooks'  => $rentService->getOverdueBooks()
+                                        ->where('book_id', '=', $book->id)
                                         ->get(),
         ];
 
         $viewModelError = [
-            'knjiga'            => $knjiga,
-            'prekoraceneKnjige' => $rentService->getPrekoraceneKnjige()
-                                        ->where('book_id', '=', $knjiga->id)
+            'book'         => $book,
+            'overdueBooks' => $rentService->getOverdueBooks()
+                                        ->where('book_id', '=', $book->id)
                                         ->get(),
         ];
 
-        if($knjigeNaRaspolaganju > 0) {
-            return view($viewNameIzdaj, $viewModelIzdaj);
+        if($availableBooks > 0) {
+            return view($viewNameRent, $viewModelRent);
         } else {
             return view($viewNameError, $viewModelError);
         }
@@ -284,15 +284,15 @@ class BookController extends Controller
     /**
      * Izdaj knjigu
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  BookService $bookService
      * @param  RentService $rentService
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function sacuvajIzdavanje(Book $knjiga, BookService $bookService, RentService $rentService, ReservationService $reservationService) {
+    public function rent(Book $book, BookService $bookService, RentService $rentService, ReservationService $reservationService) {
 
-        $bookService->saveRent($knjiga->id, $rentService, $reservationService);
+        $bookService->saveRent($book->id, $rentService, $reservationService);
 
         return back()->with('success', 'Knjiga je uspješno izdata!');
     }
@@ -300,15 +300,15 @@ class BookController extends Controller
     /**
      * Rezervisi knjigu
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  BookService $bookService
-     * @param  RentService $rentService
      * @param  ReservationService $reservationService
+     * @param  GlobalVariableService $globalVariableService
      * @return void
      */
-    public function sacuvajRezervisanje(Book $knjiga, BookService $bookService, ReservationService $reservationService, GlobalVariableService $globalVariableService) {
+    public function reserve(Book $book, BookService $bookService, ReservationService $reservationService, GlobalVariableService $globalVariableService) {
 
-        $bookService->saveReservation($knjiga, $reservationService, $globalVariableService);
+        $bookService->saveReservation($book, $reservationService, $globalVariableService);
 
         return back()->with('success', 'Knjiga je uspješno rezervisana!');
     }
@@ -649,11 +649,12 @@ class BookController extends Controller
      * Vrati knjige
      *
      * @param  BookService $bookService
+     * @param  GlobalVariableService $globalVariableService
      * @return void
      */
-    public function vratiKnjige(BookService $bookService, GlobalVariableService $globalVariableService) {
+    public function returnBooks(BookService $bookService, GlobalVariableService $globalVariableService) {
 
-        $bookService->vratiKnjige($globalVariableService);
+        $bookService->returnBooks($globalVariableService);
 
         return back()->with('success', 'Knjiga je uspješno vraćena!');
     }
@@ -696,18 +697,20 @@ class BookController extends Controller
     /**
      * Prikazi pretrazene ucenike cije se knjige vracaju
      *
+     * @param  Book $book
      * @param  BookService $bookService
+     * @param  RentService $rentService
      * @return void
      */
-    public function searchVrati(Book $knjiga, BookService $bookService, RentService $rentService) {
+    public function searchReturn(Book $book, BookService $bookService, RentService $rentService) {
 
-        $viewName = $this->viewFolder . '.vratiKnjigu';
+        $viewName = $this->viewFolder . '.returnBook';
 
-        $knjigeVrati = $bookService->searchVratiKnjige($knjiga, $rentService);
+        $rentedBooks = $bookService->searchReturnBook($book, $rentService);
 
         $viewModel = [
-            'vratiKnjige'     => $knjigeVrati,
-            'knjiga'     => $knjiga
+            'rentedBooks'     => $rentedBooks,
+            'book'           => $book
         ];
 
         return view($viewName, $viewModel);

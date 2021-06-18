@@ -469,21 +469,21 @@
                                                         <span class="px-4 py-0">Pogledaj detalje</span>
                                                     </a>
 
-                                                    <a href="{{route('izdajKnjigu', ['knjiga' => $returnedBook->book])}}" tabindex="0"
+                                                    <a href="{{route('rentBook', ['book' => $returnedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-hand-scissors mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Izdaj knjigu</span>
                                                     </a>
 
-                                                    <a href="{{route('rezervisiKnjigu', ['knjiga' => $returnedBook->book])}}" tabindex="0"
+                                                    <a href="{{route('reserveBook', ['book' => $returnedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-calendar-check mr-[10px] ml-[5px] py-1"></i>
                                                         <span class="px-4 py-0">Rezerviši knjigu</span>
                                                     </a>
 
-                                                    <a href="{{route('vratiKnjigu', ['knjiga' => $returnedBook->book])}}" tabindex="0"
+                                                    <a href="{{route('returnBook', ['book' => $returnedBook->book])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="fas fa-redo-alt mr-[10px] ml-[5px] py-1"></i>

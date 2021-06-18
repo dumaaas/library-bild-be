@@ -57,9 +57,9 @@ class ReservationService
      *
      * @return void
      */
-    public function getRezervacija($knjiga, $ucenik) {
-        return Reservation::where('book_id', '=', $knjiga)
-                                ->where('student_id', '=', $ucenik)
+    public function getReservation($book, $student) {
+        return Reservation::where('book_id', '=', $book)
+                                ->where('student_id', '=', $student)
                                 ->where('closeReservation_id', '=', 5)
                                 ->first();
     }
@@ -70,8 +70,8 @@ class ReservationService
      * @param  Book  $knjiga
      * @return void
      */
-    public function updateReservationStatus($rezervacija) {
-        $reservationStatus = ReservationStatus::find($rezervacija);
+    public function updateReservationStatus($reservation) {
+        $reservationStatus = ReservationStatus::find($reservation);
         $reservationStatus->statusReservation_id = 2;
         $reservationStatus->save();
     }
@@ -79,40 +79,41 @@ class ReservationService
     /**
      * Sacuvaj rezervaciju
      *
-     * @param  Book  $knjiga
+     * @param  Book  $book
+     * @param  GlobalVariableService  $globalVariableService
      * @return void
      */
-    public function saveReservation($knjiga, $globalVariableService) {
-        $rezervisanje = new Reservation();
+    public function saveReservation($book, $globalVariableService) {
+        $reservation = new Reservation();
 
-        $rezervisanje->book_id             = $knjiga;
-        $rezervisanje->librarian_id        = Auth::id();
-        $rezervisanje->student_id          = request('ucenik');
-        $rezervisanje->reservation_date    = request('datumRezervisanja');
-        $rezervisanje->close_date          = $rezervisanje->reservation_date->addDays($globalVariableService->getRokRezervacije());
-        $rezervisanje->request_date        = now();
-        $rezervisanje->closeReservation_id = 5;
+        $reservation->book_id             = $book;
+        $reservation->librarian_id        = Auth::id();
+        $reservation->student_id          = request('student');
+        $reservation->reservation_date    = request('reservationDate');
+        $reservation->close_date          = $reservation->reservation_date->addDays($globalVariableService->getReservationPeriod());
+        $reservation->request_date        = now();
+        $reservation->closeReservation_id = 5;
 
-        $rezervisanje->save();
+        $reservation->save();
 
-        return $rezervisanje;
+        return $reservation;
     }
 
     /**
      * Sacuvaj status rezervacije
      *
-     * @param  int $rezervacijaId
-     * @param  date $rezervacijaDate
+     * @param  int $reservationId
+     * @param  date $reservationDate
      * @return void
      */
-    public function saveReservationStatus($rezervacijaId, $rezervacijaDate) {
-        $statusRezervisanja = new ReservationStatus();
+    public function saveReservationStatus($reservationId, $reservationDate) {
+        $reservationStatus = new ReservationStatus();
 
-        $statusRezervisanja->reservation_id       = $rezervacijaId;
-        $statusRezervisanja->statusReservation_id = 1;
-        $statusRezervisanja->date                 = $rezervacijaDate;
+        $reservationStatus->reservation_id       = $reservationId;
+        $reservationStatus->statusReservation_id = 1;
+        $reservationStatus->date                 = $reservationDate;
 
-        $statusRezervisanja->save();
+        $reservationStatus->save();
     }
 
     /**

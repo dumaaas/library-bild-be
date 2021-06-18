@@ -881,72 +881,6 @@ $("#sacuvajSpecifikacijuEdit").keypress(function (e) {
     }
 });
 
-// Form validation for renting books
-function validacijaIzdavanje() {
-
-    $("#validateUcenikIzdavanje").empty();
-    $("#validateDatumIzdavanja").empty();
-
-    let ucenikIzdavanje = $("#ucenikIzdavanje").val();
-    let datumIzdavanja = $("#datumIzdavanja").val();
-
-    if (ucenikIzdavanje == null) {
-        $('#validateUcenikIzdavanje').append('<p style="color:red;font-size:13px;">Morate selektovati ucenika!</p>');
-    }
-
-    if (datumIzdavanja.length == 0) {
-        $('#validateDatumIzdavanja').append('<p style="color:red;font-size:13px;">Morate selektovati datum izdavanja!</p>');
-    }
-}
-
-function clearErrorsUcenikIzdavanje() {
-    $("#validateUcenikIzdavanje").empty();
-}
-
-function clearErrorsDatumIzdavanja() {
-    $("#validateDatumIzdavanja").empty();
-}
-
-$("#izdajKnjigu").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaIzdavanje();
-        return false;
-    }
-});
-
-// Form validation for making reservations
-function validacijaRezervisanje() {
-
-    $("#validateUcenikRezervisanje").empty();
-    $("#validateDatumRezervisanja").empty();
-
-    let ucenikRezervisanje = $("#ucenikRezervisanje").val();
-    let datumRezervisanja = $("#datumRezervisanja").val();
-
-    if (ucenikRezervisanje == null) {
-        $('#validateUcenikRezervisanje').append('<p style="color:red;font-size:13px;">Morate selektovati ucenika!</p>');
-    }
-
-    if (datumRezervisanja.length == 0) {
-        $('#validateDatumRezervisanja').append('<p style="color:red;font-size:13px;">Morate selektovati datum rezervisanja!</p>');
-    }
-}
-
-function clearErrorsUcenikRezervisanje() {
-    $("#validateUcenikRezervisanje").empty();
-}
-
-function clearErrorsDatumRezervisanja() {
-    $("#validateDatumRezervisanja").empty();
-}
-
-$("#rezervisiKnjigu").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaRezervisanje();
-        return false;
-    }
-});
-
 function sortTableDate(row) {
     var table, rows, switching, i, x, y, shouldSwitch;
     table = $(".sortTableDate");
@@ -1255,11 +1189,11 @@ function dropdown() {
     }
 }
 
-function funkcijaDatumVracanja(numberOfDaysToAdd) {
+function returnDateFunction(numberOfDaysToAdd) {
 
-    var selectedDate = new Date($('#datumIzdavanja').val());
+    var selectedDate = new Date($('#rentDate').val());
     selectedDate.setDate(selectedDate.getDate() + parseInt(numberOfDaysToAdd));
-    document.getElementById('datumVracanja').valueAsDate = selectedDate;
+    document.getElementById('returnDate').valueAsDate = selectedDate;
 }
 
 //click on one and check all checkboxes (vratiKnjigu.php)

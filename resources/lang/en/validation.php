@@ -283,13 +283,13 @@ return [
             'unique' => 'ISBN knjige već postoji u bazi podataka.',
             'regex' => 'ISBN knjige mora biti pravilnog formata.',
         ],
-        'ucenik' => [
+        'student' => [
             'required' => 'Obavezno je odabrati učenika.',
         ],
-        'datumIzdavanja' => [
+        'rentDate' => [
             'required' => 'Datum izdavanja je obavezan.',
         ],
-        'datumRezervisanja' => [
+        'reservationDate' => [
             'required' => 'Datum rezervisanja je obavezan.',
         ],
         'reservationPeriod' => [

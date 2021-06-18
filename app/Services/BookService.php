@@ -39,69 +39,70 @@ class BookService {
     /**
      * Sacuvaj izdavanje knjige
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  RentService $rentService
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function saveRent($knjiga, $rentService, $reservationService) {
+    public function saveRent($book, $rentService, $reservationService) {
 
         request()->validate([
-            'ucenik'         => 'required',
-            'datumIzdavanja' => 'required',
-            'datumVracanja'  => 'required',
+            'student'         => 'required',
+            'rentDate' => 'required',
+            'returnDate'  => 'required',
         ]);
 
         //sacuvaj izdavanje
-        $izdavanje = $rentService->saveRent($knjiga);
+        $rent = $rentService->saveRent($book);
 
         //promijeni status rezervacije u izdata i zatvori rezervaciju
-        $rezervacija = $reservationService->getRezervacija($knjiga, $izdavanje->student_id);
+        $reservation = $reservationService->getReservation($book, $rent->student_id);
 
-        if($rezervacija != null) {
-            $rezervacija->closeReservation_id = 4;
-            $rezervacija->save();
+        if($reservation != null) {
+            $reservation->closeReservation_id = 4;
+            $reservation->save();
 
-            $reservationService->updateReservationStatus($rezervacija->id);
+            $reservationService->updateReservationStatus($reservation->id);
         }
 
         //dodavanje u tabelu rent_statuses
-        $rentService->saveRentStatus($izdavanje->id, $izdavanje->rent_date);
+        $rentService->saveRentStatus($rent->id, $rent->rent_date);
 
         //update broj izdatih knjiga
-        $izdataKnjiga = Book::find($knjiga);
-        $updateIzdateKnjige = $izdataKnjiga->rentedBooks + 1;
-        $izdataKnjiga->rentedBooks = $updateIzdateKnjige;
+        $rentedBook = Book::find($book);
+        $updateRentedBook = $rentedBook->rentedBooks + 1;
+        $rentedBook->rentedBooks = $updateRentedBook;
 
-        if($rezervacija != null) {
-            $izdataKnjiga->reservedBooks = $izdataKnjiga->reservedBooks-1;
+        if($reservation != null) {
+            $rentedBook->reservedBooks = $rentedBook->reservedBooks-1;
         }
 
-        $izdataKnjiga->save();
+        $rentedBook->save();
     }
 
     /**
      * Sacuvaj rezervaciju knjige
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  ReservationService $reservationService
+     * @param  GlobalVariableService $globalVariableService
      * @return void
      */
-    public function saveReservation($knjiga, $reservationService, $globalVariableService) {
+    public function saveReservation($book, $reservationService, $globalVariableService) {
         request()->validate([
-            'ucenik'            => 'required',
-            'datumRezervisanja' => 'required',
+            'student'         => 'required',
+            'reservationDate' => 'required',
         ]);
 
-        $rezervisanje = $reservationService->saveReservation($knjiga->id, $globalVariableService);
+        $reservation = $reservationService->saveReservation($book->id, $globalVariableService);
 
         //dodavanje u tabelu reservation_statuses
-        $reservationService->saveReservationStatus($rezervisanje->id, $rezervisanje->reservation_date);
+        $reservationService->saveReservationStatus($reservation->id, $reservation->reservation_date);
 
         //update broj rezervisanih knjiga
-        $rezervisanaKnjiga = Book::find($knjiga->id);
-        $rezervisanaKnjiga->reservedBooks = $rezervisanaKnjiga->reservedBooks + 1;
-        $rezervisanaKnjiga->save();
+        $reservedBook = Book::find($book->id);
+        $reservedBook->reservedBooks = $reservedBook->reservedBooks + 1;
+        $reservedBook->save();
     }
 
     /**
@@ -223,10 +224,11 @@ class BookService {
 
     /**
      * Sacuvaj vracanje knjiga
-     *
+     * 
+     * @param GlobalVariableServis $globalVariableService
      * @return void
      */
-    public function vratiKnjige($globalVariableService) {
+    public function returnBooks($globalVariableService) {
         $knjige=request('vratiKnjigu');
 
         foreach($knjige as $knjiga){
@@ -238,7 +240,7 @@ class BookService {
             $rentStatus=new RentStatus();
             $rentStatus->rent_id=$rent->id;
 
-            if($rent->rent_date<Carbon::now()->subDays($globalVariableService->getRokIzdavanja() + $globalVariableService->getRokPrekoracenja())){
+            if($rent->rent_date<Carbon::now()->subDays($globalVariableService->getReturnDueDate() + $globalVariableService->getOverdraftPeriod())){
                 $rentStatus->statusBook_id=3;
             }
             else{
@@ -359,25 +361,25 @@ class BookService {
      *
      * @return void
      */
-    public function searchVratiKnjige(Book $knjiga, RentService $rentService) {
-        $vratiKnjige = Rent::query();
-        if(request('searchVrati')) {
-            $ucenikPretraga = request('searchVrati');
-            $vratiKnjige = $rentService->getIzdateKnjige()
-                            ->where('book_id', '=', $knjiga->id)
+    public function searchReturnBook(Book $book, RentService $rentService) {
+        $rentedBooks = Rent::query();
+        if(request('searchReturn')) {
+            $searchedStudent = request('searchReturn');
+            $rentedBooks = $rentService->getRentedBooks()
+                            ->where('book_id', '=', $book->id)
                             ->where(function ($query) {
                                 $query->select('name')
                                     ->from('users')
                                     ->whereColumn('users.id', 'rents.student_id');
-                            }, 'LIKE', '%'.$ucenikPretraga.'%');
+                            }, 'LIKE', '%'.$searchedStudent.'%');
         }else{
-            $vratiKnjige = $rentService->getIzdateKnjige()
-                            ->where('book_id', '=', $knjiga->id);
+            $rentedBooks = $rentService->getRentedBooks()
+                            ->where('book_id', '=', $book->id);
         }
 
-        $vratiKnjige = $vratiKnjige->paginate(7);
+        $rentedBooks = $rentedBooks->paginate(7);
 
-        return $vratiKnjige;
+        return $rentedBooks;
     }
 
     /**

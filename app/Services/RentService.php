@@ -96,21 +96,21 @@ class RentService
     /**
      * Sacuvaj rent
      *
-     * @param  Book  $knjiga
+     * @param  Book  $book
      * @return void
      */
-    public function saveRent($knjiga) {
-        $izdavanje = new Rent();
+    public function saveRent($book) {
+        $rent = new Rent();
 
-        $izdavanje->book_id = $knjiga;
-        $izdavanje->librarian_id = Auth::id();
-        $izdavanje->student_id = request('ucenik');
-        $izdavanje->rent_date = request('datumIzdavanja');
-        $izdavanje->return_date = request('datumVracanja');
+        $rent->book_id = $book;
+        $rent->librarian_id = Auth::id();
+        $rent->student_id = request('student');
+        $rent->rent_date = request('rentDate');
+        $rent->return_date = request('returnDate');
 
-        $izdavanje->save();
+        $rent->save();
 
-        return $izdavanje;
+        return $rent;
     }
 
     /**
@@ -121,13 +121,13 @@ class RentService
      * @return void
      */
     public function saveRentStatus($rentId, $rentDate) {
-        $statusIzdavanja = new RentStatus();
+        $rentStatus = new RentStatus();
 
-        $statusIzdavanja->rent_id = $rentId;
-        $statusIzdavanja->statusBook_id = 2;
-        $statusIzdavanja->date = $rentDate;
+        $rentStatus->rent_id = $rentId;
+        $rentStatus->statusBook_id = 2;
+        $rentStatus->date = $rentDate;
 
-        $statusIzdavanja->save();
+        $rentStatus->save();
     }
     
     /**
