@@ -63,8 +63,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/novaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjiga'])->name('novaKnjiga');
     Route::get('/novaKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaMultimedija']);
     Route::get('/novaKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaSpecifikacija']);
-    Route::get('/otpisiKnjigu/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziOtpisiKnjigu'])->name('otpisiKnjigu');
-    Route::get('/otpisiKnjige', [\App\Http\Controllers\BookController::class, 'otpisiKnjige'])->name('otpisiKnjige');;
+    Route::get('/writeOffBook/{book}', [\App\Http\Controllers\BookController::class, 'showWriteOffBook'])->name('writeOffBook');
+    Route::get('/writeOffBooks', [\App\Http\Controllers\BookController::class, 'writeOffBooks'])->name('writeOffBooks');
     Route::get('/reserveBook/{book}', [\App\Http\Controllers\BookController::class, 'showReserveBook'])->name('reserveBook');
     Route::post('/reserveBook/{book}/reserve', [\App\Http\Controllers\BookController::class, 'reserve'])->name('reserve');
     Route::get('/rentBook/{book}', [\App\Http\Controllers\BookController::class, 'showRentBook'])->name('rentBook');
@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/filterAutori', [\App\Http\Controllers\BookController::class, 'filterAutori'])->name('filterAutori');
     Route::get('/searchKnjige', [\App\Http\Controllers\BookController::class, 'searchKnjige'])->name('searchKnjige');
     Route::get('/searchReturn/{book}', [\App\Http\Controllers\BookController::class, 'searchReturn'])->name('searchReturn');
-    Route::get('/searchOtpisi/{knjiga}', [\App\Http\Controllers\BookController::class, 'searchOtpisi'])->name('searchOtpisi');
+    Route::get('/searchWriteOff/{book}', [\App\Http\Controllers\BookController::class, 'searchWriteOff'])->name('searchWriteOff');
 
     //RESERVATION - ROUTES
 

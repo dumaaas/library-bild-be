@@ -261,11 +261,11 @@ class BookService {
      *
      * @return void
      */
-    public function otpisiKnjige() {
-        $knjige=request('otpisiKnjigu');
+    public function writeOffBooks() {
+        $books = request('writeOffBook');
 
-        foreach($knjige as $knjiga){
-            $rent=Rent::find($knjiga);
+        foreach($books as $oneBook){
+            $rent=Rent::find($oneBook);
             $book=Book::find($rent->book_id);
             $book->rentedBooks=$book->rentedBooks-1;
             $book->quantity=$book->quantity-1;
@@ -385,27 +385,29 @@ class BookService {
     /**
      * Vrati pretrazene ucenike od kojih se otpisuje knjiga
      *
+     * @param Book $book
+     * @param RentService $rentService
      * @return void
      */
-    public function searchOtpisiKnjige(Book $knjiga, RentService $rentService) {
-        $otpisiKnjige = Rent::query();
-        if(request('searchOtpisi')) {
-            $ucenikPretraga = request('searchOtpisi');
-            $otpisiKnjige = $rentService->getPrekoraceneKnjige()
-                            ->where('book_id', '=', $knjiga->id)
+    public function searchWriteOffBooks(Book $book, RentService $rentService) {
+        $rent = Rent::query();
+        if(request('searchWriteOff')) {
+            $searchedStudent = request('searchWriteOff');
+            $rent = $rentService->getOverdueBooks()
+                            ->where('book_id', '=', $book->id)
                             ->where(function ($query) {
                                 $query->select('name')
                                     ->from('users')
                                     ->whereColumn('users.id', 'rents.student_id');
-                            }, 'LIKE', '%'.$ucenikPretraga.'%');
+                            }, 'LIKE', '%'.$searchedStudent.'%');
         }else{
-            $otpisiKnjige = $rentService->getPrekoraceneKnjige()
-                            ->where('book_id', '=', $knjiga->id);
+            $rent = $rentService->getOverdueBooks()
+                            ->where('book_id', '=', $book->id);
         }
 
-        $otpisiKnjige = $otpisiKnjige->paginate(7);
+        $rent = $rent->paginate(7);
 
-        return $otpisiKnjige;
+        return $rent;
     }
 
     // public function getCoverImage($knjiga) {

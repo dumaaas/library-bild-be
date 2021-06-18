@@ -192,20 +192,20 @@ class BookController extends Controller
     /**
      * Prikazi stranicu za otpis knjige
      *
-     * @param  Book $knjiga
-     * @param  DashboardService $dashboardService
+     * @param  Book $book
+     * @param  RentService $rentService
      * @return void
      */
-    public function prikaziOtpisiKnjigu(Book $knjiga, RentService $rentService) {
-        $viewName = $this->viewFolder . '.otpisiKnjigu';
+    public function showWriteOffBook(Book $book, RentService $rentService) {
+        $viewName = $this->viewFolder . '.writeOffBook';
 
-        $otpisiKnjige = $rentService->getPrekoraceneKnjige()
-                            ->where('book_id', '=', $knjiga->id)
+        $overdueBooks = $rentService->getOverdueBooks()
+                            ->where('book_id', '=', $book->id)
                             ->paginate(7);
 
         $viewModel = [
-            'knjiga'       => $knjiga,
-            'otpisiKnjige' => $otpisiKnjige
+            'book'       => $book,
+            'overdueBooks' => $overdueBooks
         ];
 
         return view($viewName, $viewModel);
@@ -663,12 +663,11 @@ class BookController extends Controller
      * Otpisi knjige
      *
      * @param  BookService $bookService
-     * @param  RentService $rentService
      * @return void
      */
-    public function otpisiKnjige(BookService $bookService){
+    public function writeOffBooks(BookService $bookService){
 
-        $bookService->otpisiKnjige();
+        $bookService->writeOffBooks();
 
         return back()->with('success', 'Knjiga je uspješno otpisana!');
     }
@@ -719,18 +718,20 @@ class BookController extends Controller
     /**
      * Prikazi pretrazene ucenike cije se knjige otpisuju
      *
+     * @param  Book $book
      * @param  BookService $bookService
+     * @param  RentService $rentService
      * @return void
      */
-    public function searchOtpisi(Book $knjiga, BookService $bookService, RentService $rentService) {
+    public function searchWriteOff(Book $book, BookService $bookService, RentService $rentService) {
 
-        $viewName = $this->viewFolder . '.otpisiKnjigu';
+        $viewName = $this->viewFolder . '.writeOffBook';
 
-        $knjigeOtpisi = $bookService->searchOtpisiKnjige($knjiga, $rentService);
+        $overdueBooks = $bookService->searchWriteOffBooks($book, $rentService);
 
         $viewModel = [
-            'otpisiKnjige'     => $knjigeOtpisi,
-            'knjiga'     => $knjiga
+            'overdueBooks'     => $overdueBooks,
+            'book'     => $book
         ];
 
         return view($viewName, $viewModel);

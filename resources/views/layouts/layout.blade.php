@@ -385,7 +385,7 @@
     @yield('addStudent')
     @yield('addGenre')
     @yield('addScript')
-    @yield('otpisiKnjigu')
+    @yield('writeOffBook')
     @yield('reserveBook')
     @yield('formats')
     @yield('publishers')
