@@ -410,7 +410,7 @@
                                         @if(count($rentedBook->book->coverImage) > 0 )
                                             <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$rentedBook->book->coverImage[0]->photo}}" alt="" />
                                         @endif
-                                        <a href="{{route('izdavanjeDetalji', ['knjiga' => $rentedBook->book, 'ucenik' => $rentedBook->student])}}">
+                                        <a href="{{route('rentDetails', ['book' => $rentedBook->book, 'student' => $rentedBook->student])}}">
                                             <span class="font-medium text-center">{{$rentedBook->book->title}}</span>
                                         </a>
                                     </td>
@@ -432,7 +432,7 @@
                                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117"
                                                 role="menu">
                                                 <div class="py-1">
-                                                    <a href="{{route('izdavanjeDetalji', ['knjiga' => $rentedBook->book, 'ucenik' => $rentedBook->student])}}" tabindex="0"
+                                                    <a href="{{route('rentDetails', ['book' => $rentedBook->book, 'student' => $rentedBook->student])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                         <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
