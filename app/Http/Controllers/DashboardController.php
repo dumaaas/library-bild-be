@@ -36,15 +36,15 @@ class DashboardController extends Controller
      * @param  DashboardService $dashboardService
      * @return void
      */
-    public function prikaziDashboard(DashboardService $dashboardService, ReservationService $reservationService, RentService $rentService) {
+    public function showDashboard(DashboardService $dashboardService, ReservationService $reservationService, RentService $rentService) {
         $viewName = $this->viewFolder . '.dashboard';
 
         $viewModel = [
-            'rezervacije'    => $dashboardService->getLatestReservation(),
-            'aktivnosti'     => $dashboardService->getLatestActivities(),
-            'prekoraceneNum' => $rentService->getPrekoraceneKnjige()->count(),
-            'izdateNum'      => $rentService->getIzdateKnjige()->count(),
-            'rezervisaneNum' => $reservationService->getRezervisaneKnjige()->count(),
+            'reservations'    => $dashboardService->getLatestReservation(),
+            'activities'     => $dashboardService->getLatestActivities(),
+            'overdueNum' => $rentService->getOverdueBooks()->count(),
+            'rentedNum'      => $rentService->getRentedBooks()->count(),
+            'reservedNum' => $reservationService->getReservedBooks()->count(),
         ];
 
         return view($viewName, $viewModel);
@@ -58,15 +58,15 @@ class DashboardController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziDashboardAktivnost(DashboardService $dashboardService, BookService $bookService, UserService $userService) {
-        $viewName = $this->viewFolder . '.dashboardAktivnost';
+    public function showDashboardActivity(DashboardService $dashboardService, BookService $bookService, UserService $userService) {
+        $viewName = $this->viewFolder . '.dashboardActivity';
 
         $viewModel = [
-            'aktivnosti'   => $dashboardService->getActivities(),
-            'knjiga'       => null,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
-            'knjige'       => $bookService->getBooks()->get(),
+            'activities'   => $dashboardService->getActivities(),
+            'book'       => null,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
+            'books'       => $bookService->getBooks()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -75,21 +75,21 @@ class DashboardController extends Controller
     /**
      * Prikazi sve aktivnosti kod konkretne knjige
      *
-     * @param  Book $knjiga
+     * @param  Book $book
      * @param  DashboardService $dashboardService
      * @param  BookService $bookService
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziDashboardAktivnostKonkretneKnjige(Book $knjiga, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
-        $viewName = $this->viewFolder . '.dashboardAktivnost';
+    public function showDashboardActivitySpecificBook(Book $book, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
+        $viewName = $this->viewFolder . '.dashboardActivity';
 
         $viewModel = [
-            'aktivnosti'   => $dashboardService->getBookActivity($knjiga->id)->get(),
-            'knjiga'       => $knjiga,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
-            'knjige'       => $bookService->getBooks()->get(),
+            'activities'   => $dashboardService->getBookActivity($book->id)->get(),
+            'book'       => $book,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
+            'books'       => $bookService->getBooks()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -104,22 +104,22 @@ class DashboardController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function filterAktivnosti(Request $request, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
+    public function filterActivities(Request $request, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
         
-        $aktivnosti = $dashboardService->filterActivities(
-            $request->ucenici, 
-            $request->bibliotekari, 
-            $request->knjige,
-            $request->datumOd, 
-            $request->datumDo
+        $activities = $dashboardService->filterActivities(
+            $request->students, 
+            $request->librarians, 
+            $request->books,
+            $request->dateFrom, 
+            $request->dateTo
         );
 
         $responseJson = [
-            "aktivnosti"   => $aktivnosti,
-            'knjiga'       => null,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
-            'knjige'       => $bookService->getBooks(),
+            "activities"   => $activities,
+            'book'       => null,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
+            'books'       => $bookService->getBooks(),
         ];
 
         return response()->json($responseJson);

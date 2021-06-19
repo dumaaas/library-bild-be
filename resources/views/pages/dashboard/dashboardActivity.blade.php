@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('dashboardAktivnost')
+@section('dashboardActivity')
     <section class="w-screen h-screen pl-[80px] py-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading mt-[7px]">
@@ -17,32 +17,32 @@
                         <div class="">
                             <div class="rounded">
                                 <div class="relative">
-                                    <a class="w-auto rounded cursor-pointer focus:outline-none uceniciDrop-toggle">
-                                                <span id="uceniciSvi" class="float-left">Učenici: Svi </span>
+                                    <a class="w-auto rounded cursor-pointer focus:outline-none studentsDrop-toggle">
+                                                <span id="studentsAll" class="float-left">Učenici: Svi </span>
                                                 <i
                                                         class="px-[7px] fas fa-angle-down"></i>
                                     </a>
-                                    <div id="uceniciDropdown"
-                                         class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
+                                    <div id="studentsDropdown"
+                                         class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                         <ul class="border-b-2 border-gray-300 list-reset">
                                             <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                        placeholder="Search"
-                                                       onkeyup="filterFunction('searchUcenici', 'uceniciDropdown', 'dropdown-item-izdato')"
-                                                       id="searchUcenici"><br>
+                                                       onkeyup="filterFunction('searchStudents', 'studentsDropdown', 'dropdown-item-rented')"
+                                                       id="searchStudents"><br>
                                                 <button
                                                     class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </li>
                                             <div class="h-[200px] scroll">
-                                                @foreach($ucenici as $ucenik)
+                                                @foreach($students as $student)
                                                 <li
-                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-izdato">
+                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-rented">
                                                     <label class="flex items-center justify-start">
                                                         <div
                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                            <input type="checkbox" class="absolute opacity-0 uceniciFilterPonisti" name="uceniciFilter[]" value="{{$ucenik->id}}">
+                                                            <input type="checkbox" class="absolute opacity-0 studentsFilterCancel" name="studentsFilter[]" value="{{$student->id}}">
                                                             <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                  viewBox="0 0 20 20">
                                                                 <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -53,18 +53,18 @@
                                                          src="img/profileStudent.jpg">
                                                     <p
                                                         class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                        {{$ucenik->name}}
+                                                        {{$student->name}}
                                                     </p>
                                                 </li>
                                                 @endforeach
                                             </div>
                                         </ul>
                                         <div class="flex pt-[10px] text-white ">
-                                            <a href="#" id="uceniciFilter"
+                                            <a href="#" id="studentsFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                             </a>
-                                            <a href="#" id="uceniciFilterPonisti"
+                                            <a href="#" id="studentsFilterCancel"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
@@ -76,31 +76,31 @@
                         <div class="ml-[25px]">
                             <div class="rounded">
                                 <div class="relative">
-                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none bibliotekariDrop-toggle">
-                                                <span id="bibliotekariSvi" class="float-left">Bibliotekari: Svi </span><i
+                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none librariansDrop-toggle">
+                                                <span id="librariansAll" class="float-left">Bibliotekari: Svi </span><i
                                                         class="px-[7px] fas fa-angle-down"></i>
                                     </a>
-                                    <div id="bibliotekariDropdown"
-                                         class="bibliotekariMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
+                                    <div id="librariansDropdown"
+                                         class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
                                         <ul class="border-b-2 border-gray-300 list-reset">
                                             <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                        placeholder="Search"
-                                                       onkeyup="filterFunction('searchBibliotekari', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
-                                                       id="searchBibliotekari"><br>
+                                                       onkeyup="filterFunction('searchLibrarians', 'librariansDropdown', 'dropdown-item-librarian')"
+                                                       id="searchLibrarians"><br>
                                                 <button
                                                     class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </li>
                                             <div class="h-[200px] scroll">
-                                                @foreach($bibliotekari as $bibliotekar)
+                                                @foreach($librarians as $librarian)
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                <input type="checkbox" class="absolute opacity-0 bibliotekariFilterPonisti" name="bibliotekariFilter[]" value="{{$bibliotekar->id}}">
+                                                                <input type="checkbox" class="absolute opacity-0 librariansFilterCancel" name="librariansFilter[]" value="{{$librarian->id}}">
                                                                 <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                      viewBox="0 0 20 20">
                                                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -109,20 +109,20 @@
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
                                                              src="img/profileExample.jpg">
-                                                        <p id="bibliotekariFilter"
+                                                        <p id="librariansFilter"
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                            {{$bibliotekar->name}}
+                                                            {{$librarian->name}}
                                                         </p>
                                                     </li>
                                                 @endforeach
                                             </div>
                                         </ul>
                                         <div class="flex pt-[10px] text-white ">
-                                            <a href="#" id="bibliotekariFilter"
+                                            <a href="#" id="librariansFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                             </a>
-                                            <a href="#" id="bibliotekariFilterPonisti"
+                                            <a href="#" id="librariansFilterCancel"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
@@ -134,42 +134,42 @@
                         <div class="ml-[25px]">
                             <div class="rounded">
                                 <div class="relative">
-                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none" id="knjigeMenu">
-                                        @if($knjiga != null)
-                                            <span id="knjigeSvi" class='float-left bg-blue-200 text-blue-800 px-[5px]'>
-                                                Knjige:  {{$knjiga->title}}
+                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none" id="booksMenu">
+                                        @if($book != null)
+                                            <span id="booksAll" class='float-left bg-blue-200 text-blue-800 px-[5px]'>
+                                                Knjige:  {{$book->title}}
                                             </span>
                                             <i class="px-[7px] fas fa-angle-down"></i>
 
                                         @else
-                                            <span id="knjigeSvi" class='float-left'>
+                                            <span id="booksAll" class='float-left'>
                                                 Knjiga:  Sve
                                             </span>
                                             <i class="px-[7px] fas fa-angle-down"></i>
                                         @endif
 
                                     </a>
-                                    <div id="knjigeDropdown"
-                                         class="knjigeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
+                                    <div id="booksDropdown"
+                                         class="booksMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
                                         <ul class="border-b-2 border-gray-300 list-reset">
                                             <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                        placeholder="Search"
-                                                       onkeyup="filterFunction('searchKnjige', 'knjigeDropdown', 'dropdown-item-knjiga')"
-                                                       id="searchKnjige"><br>
+                                                       onkeyup="filterFunction('searchBooks', 'booksDropdown', 'dropdown-item-book')"
+                                                       id="searchBooks"><br>
                                                 <button
                                                     class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </li>
                                             <div class="h-[200px] scroll">
-                                                @foreach($knjige as $k)
+                                                @foreach($books as $b)
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-knjiga">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-book">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                <input type="checkbox" class="absolute opacity-0 knjigeFilterPonisti" name="knjigeFilter[]" value="{{$k->id}}">
+                                                                <input type="checkbox" class="absolute opacity-0 booksFilterCancel" name="booksFilter[]" value="{{$b->id}}">
                                                                 <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                      viewBox="0 0 20 20">
                                                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -178,20 +178,20 @@
                                                         </label>
                                                         <img width="30px" height="30px" class="ml-[15px]"
                                                              src="img/tomsojer.jpg">
-                                                        <p id="knjigeFilter"
+                                                        <p id="booksFilter"
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                            {{$k->title}}
+                                                            {{$b->title}}
                                                         </p>
                                                     </li>
                                                 @endforeach
                                             </div>
                                         </ul>
                                         <div class="flex pt-[10px] text-white ">
-                                            <a href="#" id="knjigeFilter"
+                                            <a href="#" id="booksFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                <i class="fas fa-check ml-[4px]"></i> Sačuvaj 
                                             </a>
-                                            <a href="#" id="knjigeFilterPonisti"
+                                            <a href="#" id="booksFilterCancel"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                <i class="fas fa-times ml-[4px]"></i> Poništi 
                                             </a>
@@ -203,18 +203,18 @@
                         <div class="ml-[25px]">
                             <div class="rounded">
                                 <div class="relative">
-                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none" id="transakcijeMenu">
+                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none" id="transactionsMenu">
                                                 <span class="float-left">Transakcije: Sve <i
                                                         class="px-[7px] fas fa-angle-down"></i></span>
                                     </a>
-                                    <div id="transakcijeDropdown"
-                                         class="transakcijeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
+                                    <div id="transactionsDropdown"
+                                         class="transactionsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
                                         <ul class="border-b-2 border-gray-300 list-reset">
                                             <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                        placeholder="Search"
-                                                       onkeyup="filterFunction('searchTransakcije', 'transakcijeDropdown', 'dropdown-item-transakcije')"
-                                                       id="searchTransakcije"><br>
+                                                       onkeyup="filterFunction('searchTransactions', 'transactionsDropdown', 'dropdown-item-transactions')"
+                                                       id="searchTransactions"><br>
                                                 <button
                                                     class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                     <i class="fas fa-search"></i>
@@ -222,7 +222,7 @@
                                             </li>
                                             <div class="h-[200px] scroll">
                                                 <li
-                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transakcije">
+                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transactions">
                                                     <label class="flex items-center justify-start">
                                                         <div
                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -239,7 +239,7 @@
                                                     </p>
                                                 </li>
                                                 <li
-                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transakcije">
+                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transactions">
                                                     <label class="flex items-center justify-start">
                                                         <div
                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -256,7 +256,7 @@
                                                     </p>
                                                 </li>
                                                 <li
-                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transakcije">
+                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transactions">
                                                     <label class="flex items-center justify-start">
                                                         <div
                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -273,7 +273,7 @@
                                                     </p>
                                                 </li>
                                                 <li
-                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transakcije">
+                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-transactions">
                                                     <label class="flex items-center justify-start">
                                                         <div
                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -308,33 +308,33 @@
                         <div class="ml-[25px]">
                             <div class="rounded">
                                 <div class="relative">
-                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none datumDrop-toggle">
-                                                <span id="datumSvi" class="float-left">
+                                    <a class="inline-block w-auto rounded cursor-pointer focus:outline-none dateDrop-toggle">
+                                                <span id="dateAll" class="float-left">
                                                     Datum: Svi
                                                 </span>
                                                 <i class="px-[7px] fas fa-angle-down"></i>
                                     </a>
-                                    <div id="datumDropdown"
-                                         class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
+                                    <div id="dateDropdown"
+                                         class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md pin-t pin-l border-2 border-gray-300">
                                         <div
                                             class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                             <div>
                                                 <label class="font-medium text-gray-500">Period od:</label>
                                                 <input type="date"
-                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none datumFilterPonisti" id="datumOdFilter">
+                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none dateFilterCancel" id="dateFromFilter">
                                             </div>
                                             <div class="ml-[50px]">
                                                 <label class="font-medium text-gray-500">Period do:</label>
                                                 <input type="date"
-                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none datumFilterPonisti" id="datumDoFilter">
+                                                       class="border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none dateFilterCancel" id="dateToFilter">
                                             </div>
                                         </div>
                                         <div class="flex pt-[10px] text-white ">
-                                            <a href="#" id="datumFilter"
+                                            <a href="#" id="dateFilter"
                                                class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#009688] bg-[#46A149] rounded-[5px]">
                                                <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                             </a>
-                                            <a href="#" id="datumFilterPonisti"
+                                            <a href="#" id="dateFilterCancel"
                                                class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                <i class="fas fa-times mr-[7px]"></i> Poništi 
                                             </a>
@@ -343,34 +343,34 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('dashboardAktivnost')}}" class="ml-[35px] cursor-pointer hover:text-blue-600">
+                        <a href="{{route('dashboardActivity')}}" class="ml-[35px] cursor-pointer hover:text-blue-600">
                             <i class="fas fa-sync-alt"></i>
                         </a>
                     </div>
                     </form>
                     <!-- Activity Cards -->
                     <div id="activityCards">
-                        @foreach($aktivnosti as $aktivnost)
+                        @foreach($activities as $activity)
                             <div class="activity-card hidden flex-row mb-[30px]">
                                 <div class="w-[60px] h-[60px]">
-                                    <img class="rounded-full" src="/storage/image/{{$aktivnost->librarian->photo}}" alt="">
+                                    <img class="rounded-full" src="/storage/image/{{$activity->librarian->photo}}" alt="">
                                 </div>
                                 <div class="ml-[15px] mt-[5px] flex flex-col">
 
                                     <div class="text-gray-500 mb-[5px]">
-                                        @if(count($aktivnost->rentStatus) > 0)
-                                            @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                        @if(count($activity->rentStatus) > 0)
+                                            @if($activity->rentStatus[0]->statusBook_id == 2)
                                                 <p class="uppercase">
                                                     Izdavanje knjige
                                                     <span class="inline lowercase">
-                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    - {{$activity->rentStatus[0]->date->diffForHumans()}}
                                                     </span>
                                                 </p>
                                             @else
                                                 <p class="uppercase">
                                                     Vraćanje knjige
                                                     <span class="inline lowercase">
-                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    - {{$activity->rentStatus[0]->date->diffForHumans()}}
                                                     </span>
                                                 </p>
                                             @endif
@@ -378,34 +378,34 @@
                                     </div>
                                     <div class="">
                                         <p>
-                                            <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
-                                                {{$aktivnost->librarian->name}}
+                                            <a href="{{route('librarianProfile', ['user' => $activity->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
+                                                {{$activity->librarian->name}}
                                             </a>
-                                            @if(count($aktivnost->rentStatus) > 0)
-                                                @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                            @if(count($activity->rentStatus) > 0)
+                                                @if($activity->rentStatus[0]->statusBook_id == 2)
                                                     izdao/la knjigu
                                                 @else
                                                     vratio/la knjigu
                                                 @endif
                                             @endif
-                                            <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
-                                                {{$aktivnost->book->title}}
+                                            <a  href="{{route('bookDetails', ['book' => $activity->book])}}" class="font-medium">
+                                                {{$activity->book->title}}
                                             </a>
-                                            @if(count($aktivnost->rentStatus) > 0)
-                                                @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                            @if(count($activity->rentStatus) > 0)
+                                                @if($activity->rentStatus[0]->statusBook_id == 2)
                                                     učeniku
                                                 @else
                                                     od učenika
                                                 @endif
                                             @endif
-                                            <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
-                                                {{$aktivnost->student->name}}
+                                            <a href="{{route('studentProfile', ['user' => $activity->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                                {{$activity->student->name}}
                                             </a>
                                             dana
                                             <span class="font-medium">
-                                        {{$aktivnost->rent_date}}.
+                                        {{$activity->rent_date}}.
                                     </span>
-                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('rentDetails', ['book' => $activity->book, 'student' => $activity->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 više detalja >>
                                             </a>
                                         </p>

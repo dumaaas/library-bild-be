@@ -26,14 +26,14 @@ class RentService
     /**
      * Vrati trazenu transakciju
      *
-     * @param  Book  $knjiga
-     * @param  User  $ucenik
+     * @param  Book  $book
+     * @param  User  $student
      * @return void
      */
-    public function getTransakcija($knjiga, $ucenik) {
+    public function getTransaction($book, $student) {
         return Rent::with('book', 'student', 'librarian')
-                    ->where('book_id', '=', $knjiga)
-                    ->where('student_id', '=', $ucenik)
+                    ->where('book_id', '=', $book)
+                    ->where('student_id', '=', $student)
                     ->first();
     }
 
@@ -133,14 +133,14 @@ class RentService
     /**
      * Izbrisi transakciju
      *
-     * @param  Book  $knjiga
-     * @param  User  $ucenik
+     * @param  Book  $book
+     * @param  User  $student
      * @return void
      */
-    public function deleteTransakcija($knjiga, $ucenik) {
-        $transakcija = $this->getTransakcija($knjiga, $ucenik);
+    public function deleteTransaction($book, $student) {
+        $transaction = $this->getTransaction($book, $student);
             
-        Rent::destroy($transakcija->id);
+        Rent::destroy($transaction->id);
     }
 
     /**
@@ -148,30 +148,30 @@ class RentService
      *
      * @return void
      */
-    public function filtirajIzdateKnjige() {
-        $izdate = Rent::query();
-        $izdate = $izdate->with('book', 'student', 'librarian')
+    public function filtrateRentedBooks() {
+        $rented = Rent::query();
+        $rented = $rented->with('book', 'student', 'librarian')
                         ->where('return_date', '=', null);
 
-        if(request('uceniciFilter')) {
-            $ucenici = request('uceniciFilter');
-            $izdate  = $izdate->whereIn('student_id', $ucenici);
+        if(request('studentsFilter')) {
+            $students = request('studentsFilter');
+            $rented  = $rented->whereIn('student_id', $students);
         }
 
-        if(request('bibliotekariFilter')) {
-            $bibliotekari = request('bibliotekariFilter');
-            $izdate       = $izdate->whereIn('librarian_id', $bibliotekari);
+        if(request('librariansFilter')) {
+            $librarians = request('librariansFilter');
+            $rented       = $rented->whereIn('librarian_id', $librarians);
         }
 
-        if(request('filterDatumOd') && request('filterDatumDo')) {
-            $datumOd = request('filterDatumOd');
-            $datumDo = request('filterDatumDo');
-            $izdate  = $izdate->whereBetween('rent_date', [$datumOd, $datumDo]);
+        if(request('filterDateFrom') && request('filterDateTo')) {
+            $dateFrom = request('filterDateFrom');
+            $dateTo = request('filterDateTo');
+            $rented  = $rented->whereBetween('rent_date', [$dateFrom, $dateTo]);
         }
 
-        $izdate = $izdate->paginate(7);
+        $rented = $rented->paginate(7);
 
-        return $izdate;
+        return $rented;
     }
 
     /**
@@ -179,36 +179,36 @@ class RentService
      *
      * @return void
      */
-    public function filtirajVraceneKnjige() {
-        $vracene = Rent::query();
-        $vracene = $vracene->with('book', 'student', 'librarian')
+    public function filtrateReturnedBooks() {
+        $returned = Rent::query();
+        $returned = $returned->with('book', 'student', 'librarian')
                         ->where('return_date', '!=', null);
 
-        if(request('uceniciFilter')) {
-            $ucenici = request('uceniciFilter');
-            $vracene = $vracene->whereIn('student_id', $ucenici);
+        if(request('studentsFilter')) {
+            $students = request('studentsFilter');
+            $returned = $returned->whereIn('student_id', $students);
         }
 
-        if(request('bibliotekariFilter')) {
-            $bibliotekari = request('bibliotekariFilter');
-            $vracene      = $vracene->whereIn('librarian_id', $bibliotekari);
+        if(request('librariansFilter')) {
+            $librarians = request('librariansFilter');
+            $returned      = $returned->whereIn('librarian_id', $librarians);
         }
 
-        if(request('filterDatumOd') && request('filterDatumDo')) {
-            $datumOd = request('filterDatumOd');
-            $datumDo = request('filterDatumDo');
-            $vracene = $vracene->whereBetween('rent_date', [$datumOd, $datumDo]);
+        if(request('filterDateFrom') && request('filterDateTo')) {
+            $dateFrom = request('filterDateFrom');
+            $dateTo = request('filterDateTo');
+            $returned = $returned->whereBetween('rent_date', [$dateFrom, $dateTo]);
         }
 
-        if(request('filterVracenaOd') && request('filterVracenaDo')) {
-            $vracenaOd = request('filterVracenaOd');
-            $vracenaDo = request('filterVracenaDo');
-            $vracene   = $vracene->whereBetween('return_date', [$vracenaOd, $vracenaDo]);
+        if(request('filterReturnedFrom') && request('filterReturnedTo')) {
+            $returnedFrom = request('filterReturnedFrom');
+            $returnedTo = request('filterReturnedTo');
+            $returned   = $returned->whereBetween('return_date', [$returnedFrom, $returnedTo]);
         }
 
-        $vracene = $vracene->paginate(7);
+        $returned = $returned->paginate(7);
 
-        return $vracene;
+        return $returned;
     }
 
     /**
@@ -216,26 +216,26 @@ class RentService
      *
      * @return void
      */
-    public function filtirajPrekoraceneKnjige() {
-        $prekoracene = Rent::query();
-        $prekoracene = $prekoracene->with('book', 'student', 'librarian')
+    public function filtrateOverdueBooks() {
+        $overdue = Rent::query();
+        $overdue = $overdue->with('book', 'student', 'librarian')
                             ->where('return_date', '=', null)
                             ->where('rent_date', '<', Carbon::now()->subDays(30));
 
-        if(request('uceniciFilter')) {
-            $ucenici     = request('uceniciFilter');
-            $prekoracene = $prekoracene->whereIn('student_id', $ucenici);
+        if(request('studentsFilter')) {
+            $students     = request('studentsFilter');
+            $overdue = $overdue->whereIn('student_id', $students);
         }
 
-        if(request('filterDatumOd') && request('filterDatumDo')) {
-            $datumOd     = request('filterDatumOd');
-            $datumDo     = request('filterDatumDo');
-            $prekoracene = $prekoracene->whereBetween('rent_date', [$datumOd, $datumDo]);
+        if(request('filterDateFrom') && request('filterDateTo')) {
+            $dateFrom     = request('filterDateFrom');
+            $dateTo     = request('filterDateTo');
+            $overdue = $overdue->whereBetween('rent_date', [$dateFrom, $dateTo]);
         }
 
-        $prekoracene = $prekoracene->paginate(7);
+        $overdue = $overdue->paginate(7);
 
-        return $prekoracene;
+        return $overdue;
     }
 
     /**
@@ -243,23 +243,23 @@ class RentService
      *
      * @return void
      */
-    public function searchIzdateKnjige() {
-        $izdate = Rent::query();
+    public function searchRentedBooks() {
+        $rented = Rent::query();
         
-        $izdate = $this->getIzdateKnjige();
+        $rented = $this->getRentedBooks();
 
-        if(request('searchIzdate')) {
-            $knjiga = request('searchIzdate');
-            $izdate = $izdate->where(function ($query) {
+        if(request('searchRented')) {
+            $book = request('searchRented');
+            $rented = $rented->where(function ($query) {
                 $query->select('title')
                     ->from('books')
                     ->whereColumn('books.id', 'rents.book_id');
-            }, 'LIKE', '%'.$knjiga.'%');
+            }, 'LIKE', '%'.$book.'%');
         }
 
-        $izdate = $izdate->paginate(7);
+        $rented = $rented->paginate(7);
 
-        return $izdate;
+        return $rented;
     }
 
     /**
@@ -267,15 +267,15 @@ class RentService
      *
      * @return void
      */
-    public function searchVraceneKnjige() {
+    public function searchReturnedBooks() {
 
-        if(request('searchVracene')) {
-            $knjiga = request('searchVracene');
-            $vracene = Rent::where(function ($query) {
+        if(request('searchReturned')) {
+            $book = request('searchReturned');
+            $returned = Rent::where(function ($query) {
                 $query->select('title')
                     ->from('books')
                     ->whereColumn('books.id', 'rents.book_id');
-            }, 'LIKE', '%'.$knjiga.'%')
+            }, 'LIKE', '%'.$book.'%')
                 ->where(function ($query) {
                 $query->select('statusBook_id')
                     ->from('rent_statuses')
@@ -291,9 +291,9 @@ class RentService
             }, 3);
         }
 
-        $vracene = $vracene->paginate(7);
+        $returned = $returned->paginate(7);
 
-        return $vracene;
+        return $returned;
     }
 
     /**
@@ -301,23 +301,23 @@ class RentService
      *
      * @return void
      */
-    public function searchPrekoraceneKnjige() {
+    public function searchOverdueBooks() {
 
-        $prekoracene = Rent::query();
+        $overdue = Rent::query();
         
-        $prekoracene = $this->getPrekoraceneKnjige();
+        $overdue = $this->getOverdueBooks();
 
-        if(request('searchPrekoracene')) {
-            $knjiga = request('searchPrekoracene');
-            $prekoracene = $prekoracene->where(function ($query) {
+        if(request('searchOverdue')) {
+            $book = request('searchOverdue');
+            $overdue = $overdue->where(function ($query) {
                 $query->select('title')
                     ->from('books')
                     ->whereColumn('books.id', 'rents.book_id');
-            }, 'LIKE', '%'.$knjiga.'%');
+            }, 'LIKE', '%'.$book.'%');
         }
 
-        $prekoracene = $prekoracene->paginate(7);
+        $overdue = $overdue->paginate(7);
 
-        return $prekoracene;
+        return $overdue;
     }
 }

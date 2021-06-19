@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('novaKnjiga')
+@section('addBook')
 
     <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
         <!-- Heading of content -->
@@ -16,7 +16,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="{{route('evidencijaKnjiga')}}" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="{{route('bookRecords')}}" class="text-[#2196f3] hover:text-blue-600">
                                         Evidencija knjiga
                                     </a>
                                 </li>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            @error('knjigaIsbn')
+            @error('bookIsbn')
                 <div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-red-600 right-[20px]">
                     <p class="text-red-200">Knjiga nije uspješno unesena!</p>
                 </div>
@@ -52,42 +52,42 @@
         </div>
         <!-- Space for content -->
         <div class="scroll height-content section-content">
-            <form class="text-gray-700 forma" action="{{route('sacuvajKnjigu')}}" method="POST" enctype="multipart/form-data">
+            <form class="text-gray-700 forma" action="{{route('saveBook')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div id="details" class="block tabcontent">
                     <div class="flex flex-row ml-[30px] mb-[150px]">
                         <div class="w-[50%]">
                             <div class="mt-[20px]">
                                 <p>Naziv knjige <span class="text-red-500">*</span></p>
-                                <input type="text" name="nazivKnjiga" id="nazivKnjiga"
+                                <input type="text" name="bookTitle" id="bookTitle"
                                        class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                        onkeydown="clearErrorsNazivKnjiga()" />
-                                @error('nazivKnjiga')
+                                @error('bookTitle')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <p class="inline-block mb-2">Kratki sadržaj</p>
-                                <textarea name="kratki_sadrzaj"
+                                <textarea name="summary"
                                           class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
 
                                 </textarea>
-                                @error('kratki_sadrzaj')
+                                @error('summary')
                                 <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <p>Izaberite kategorije <span class="text-red-500">*</span></p>
-                                <select x-cloak id="kategorija" name="knjigaKategorije[]">
-                                    @foreach($kategorije as $kategorija)
-                                        <option value="{{$kategorija->id}}">{{$kategorija->name}}</option>
+                                <select x-cloak id="category" name="bookCategories[]">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
 
                                 <div x-data="dropdown()" x-init="loadOptions()" class="flex flex-col w-[90%]">
-                                    <input name="valuesKategorije" id="kategorijaInput" type="hidden"
+                                    <input name="valuesCategories" id="categoryInput" type="hidden"
                                            x-bind:value="selectedValues()">
                                     <div class="relative inline-block w-[100%]">
                                         <div class="relative flex flex-col items-center">
@@ -170,21 +170,21 @@
                                     </div>
                                 </div>
                             </div>
-                            @error('valuesKategorije')
+                            @error('valuesCategories')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>Izaberite žanrove <span class="text-red-500">*</span></p>
-                            <select x-cloak id="zanr" name="knjigaZanrovi[]">
-                                @foreach($zanrovi as $zanr)
-                                    <option value="{{$zanr->id}}">{{$zanr->name}}</option>
+                            <select x-cloak id="genre" name="bookGenres[]">
+                                @foreach($genres as $genre)
+                                    <option value="{{$genre->id}}">{{$genre->name}}</option>
                                 @endforeach
                             </select>
 
-                            <div x-data="dropdown()" x-init="loadOptionsZanrovi()" class="flex flex-col w-[90%]">
-                                <input name="valuesZanrovi" id="zanroviInput" type="hidden" x-bind:value="selectedValues()">
+                            <div x-data="dropdown()" x-init="loadOptionsGenres()" class="flex flex-col w-[90%]">
+                                <input name="valuesGenres" id="genresInput" type="hidden" x-bind:value="selectedValues()">
                                 <div class="relative inline-block w-[100%]">
                                     <div class="relative flex flex-col items-center">
                                         <div x-on:click="open" class="w-full svelte-1l8159u">
@@ -266,7 +266,7 @@
                                 </div>
                             </div>
                         </div>
-                        @error('valuesZanrovi')
+                        @error('valuesGenres')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
@@ -275,14 +275,14 @@
             <div class="w-[50%]">
                 <div class="mt-[20px]">
                     <p>Izaberite autore <span class="text-red-500">*</span></p>
-                    <select x-cloak id="autori" name="knjigaAutori[]">
-                        @foreach($autori as $autor)
-                            <option value="{{$autor->id}}">{{$autor->name}}</option>
+                    <select x-cloak id="authors" name="bookAuthors[]">
+                        @foreach($authors as $author)
+                            <option value="{{$author->id}}">{{$author->name}}</option>
                         @endforeach
                     </select>
 
-                    <div x-data="dropdown()" x-init="loadOptionsAutori()" class="flex flex-col w-[90%]">
-                        <input name="valuesAutori" id="autoriInput" type="hidden" x-bind:value="selectedValues()">
+                    <div x-data="dropdown()" x-init="loadOptionsAuthors()" class="flex flex-col w-[90%]">
+                        <input name="valuesAuthors" id="authorsInput" type="hidden" x-bind:value="selectedValues()">
                         <div class="relative inline-block w-[100%]">
                             <div class="relative flex flex-col items-center">
                                 <div x-on:click="open" class="w-full svelte-1l8159u">
@@ -362,7 +362,7 @@
                         </div>
                     </div>
                 </div>
-                @error('valuesAutori')
+                @error('valuesAuthors')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
             </div>
@@ -371,15 +371,15 @@
                 <p>Izdavač <span class="text-red-500">*</span></p>
                 <select
                     class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
-                    name="knjigaIzdavac" id="izdavac" onclick="clearErrorsIzdavac()">
+                    name="bookPublisher" id="publisher" onclick="clearErrorsIzdavac()">
                     <option disabled selected></option>
-                    @foreach($izdavaci as $izdavac)
-                        <option value="{{$izdavac->id}}">
-                            {{$izdavac->name}}
+                    @foreach($publishers as $publisher)
+                        <option value="{{$publisher->id}}">
+                            {{$publisher->name}}
                         </option>
                     @endforeach
                 </select>
-                @error('knjigaIzdavac')
+                @error('bookPublisher')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
             </div>
@@ -388,7 +388,7 @@
                 <p>Godina izdavanja <span class="text-red-500">*</span></p>
                 <select
                     class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
-                    name="godinaIzdavanja" id="godinaIzdavanja" onclick="clearErrorsGodinaIzdavanja()">
+                    name="publishYear" id="publishYear" onclick="clearErrorsGodinaIzdavanja()">
                     <option disabled selected></option>
                     @for($i=2000;$i<=2021;$i++)
                         <option value="{{$i}}">
@@ -396,17 +396,17 @@
                         </option>
                     @endfor
                 </select>
-                @error('godinaIzdavanja')
+                @error('publishYear')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="mt-[20px]">
                 <p>Količina <span class="text-red-500">*</span></p>
-                <input type="text" name="knjigaKolicina" id="knjigaKolicina"
+                <input type="text" name="quantity" id="quantity"
                        class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                        onkeydown="clearErrorsKnjigaKolicina()" />
-                @error('knjigaKolicina')
+                @error('quantity')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
             </div>
@@ -420,7 +420,7 @@
                                 class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                 <i class="fas fa-times mr-[7px]"></i> Poništi 
                         </button>
-                        <button id="sacuvajKnjigu" type="submit"
+                        <button id="saveBook" type="submit"
                                 class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
                                 onclick="validacijaKnjiga()">
                                 <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
@@ -544,7 +544,7 @@
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                     <i class="fas fa-times mr-[7px]"></i> Poništi 
                             </button>
-                            <button id="vratiKnjigu" type="submit"
+                            <button id="returnBook" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]">
                                     <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                             </button>
@@ -557,76 +557,76 @@
                     <div class="w-[50%] mb-[150px]">
                         <div class="mt-[20px]">
                             <p>Broj strana <span class="text-red-500">*</span></p>
-                            <input type="text" name="brStrana" id="brStrana" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsBrStrana()"/>
-                            @error('brStrana')
+                            <input type="text" name="pages" id="pages" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsBrStrana()"/>
+                            @error('pages')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>Jezik <span class="text-red-500">*</span></p>
-                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="knjigaJezik" id="jezik">
+                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="bookLanguage" id="language">
                                 <option disabled selected></option>
-                                @foreach($jezici as $jezik)
-                                    <option value="{{$jezik->id}}">
-                                        {{$jezik->name}}
+                                @foreach($languages as $language)
+                                    <option value="{{$language->id}}">
+                                        {{$language->name}}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('knjigaJezik')
+                            @error('bookLanguage')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>Pismo <span class="text-red-500">*</span></p>
-                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="knjigaPismo" id="pismo" onclick="clearErrorsPismo()">
+                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="bookScript" id="script" onclick="clearErrorsPismo()">
                                 <option disabled selected></option>
-                                @foreach($pisma as $pismo)
-                                    <option value="{{$pismo->id}}">
-                                        {{$pismo->name}}
+                                @foreach($scripts as $script)
+                                    <option value="{{$script->id}}">
+                                        {{$script->name}}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('knjigaPismo')
+                            @error('bookScript')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>Povez <span class="text-red-500">*</span></p>
-                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="knjigaPovez" id="povez" onclick="clearErrorsPovez()">
+                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="bookBinding" id="binding" onclick="clearErrorsPovez()">
                                 <option disabled selected></option>
-                                @foreach($povezi as $povez)
-                                    <option value="{{$povez->id}}">
-                                        {{$povez->name}}
+                                @foreach($bindings as $binding)
+                                    <option value="{{$binding->id}}">
+                                        {{$binding->name}}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('knjigaPovez')
+                            @error('bookBinding')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>Format <span class="text-red-500">*</span></p>
-                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="knjigaFormat" id="format" onclick="clearErrorsFormat()">
+                            <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="bookFormat" id="format" onclick="clearErrorsFormat()">
                                 <option disabled selected></option>
-                                @foreach($formati as $format)
+                                @foreach($formats as $format)
                                     <option value="{{$format->id}}">
                                         {{$format->name}}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('knjigaFormat')
+                            @error('bookFormat')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>Međunarodni standardni broj knjige <span class="text-red-500">*</span></p>
-                            <input type="text" name="knjigaIsbn" id="isbn" placeholder="111-1-11-111111-1" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbn()"/>
-                            @error('knjigaIsbn')
+                            <input type="text" name="bookIsbn" id="isbn" placeholder="111-1-11-111111-1" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbn()"/>
+                            @error('bookIsbn')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
@@ -639,7 +639,7 @@
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                     <i class="fas fa-times mr-[7px]"></i> Poništi
                             </button>
-                            <button id="sacuvajSpecifikaciju" type="submit"
+                            <button id="saveSpecification" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" onclick="validacijaSpecifikacija()">
                                     <i class="fas fa-check mr-[7px]"></i> Sačuvaj
                             </button>
@@ -652,7 +652,7 @@
     </section>
 
     <script>
-        CKEDITOR.replace('kratki_sadrzaj', {
+        CKEDITOR.replace('summary', {
             width: "90%",
             height: "150px"
         });

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('evidencijaKnjiga')
+@section('bookRecords')
     <section class="w-screen h-screen pl-[80px] py-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading mt-[7px]">
@@ -16,14 +16,14 @@
             @endif
         </div>
         <!-- Space for content -->
-        @if(count($knjige) > 0)
+        @if(count($books) > 0)
             <div class="scroll height-evidencija">
                 <div class="flex items-center justify-between px-[30px] py-4 space-x-3 rounded-lg">
-                    <a href="{{route('novaKnjiga')}}"
+                    <a href="{{route('addBook')}}"
                     class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                         <i class="fas fa-plus mr-[15px]"></i> Nova knjiga
                     </a>
-                    <form action="searchKnjige" method="GET">
+                    <form action="searchBooks" method="GET">
                         <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
                             <div class="flex items-center">
                                 <div class="relative text-gray-600 focus-within:text-gray-400">
@@ -35,7 +35,7 @@
                                                 </svg>
                                             </button>
                                         </span>
-                                    <input type="search" name="searchKnjige"
+                                    <input type="search" name="searchBooks"
                                         class="py-2 pl-10 text-sm text-white bg-white rounded-md focus:outline-none focus:bg-white focus:text-gray-900"
                                         placeholder="Pretraži knjige..." autocomplete="off">
                                 </div>
@@ -50,7 +50,7 @@
                 <div class="px-[30px] pt-2 bg-white">
                     <div class="w-full mt-2">
                         <!-- Table -->
-                        @if(count($knjige) > 0)
+                        @if(count($books) > 0)
                         <table class="w-full shadow-lg" id="myTable">
                             <!-- Table head-->
                             <thead class="bg-[#EFF3F6]">
@@ -68,30 +68,30 @@
                                         </th>
 
                                             <!-- Autor + dropdown filter for autor -->
-                                            <form action='/filterAutori' method="GET">
+                                            <form action='/filterAuthors' method="GET">
                                                 <th
                                                     class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
-                                                        Autor<i class="ml-2 fas fa-filter" id="autoriMenu"></i>
-                                                        <div id="autoriDropdown"
-                                                            class="autoriMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
+                                                        Autor<i class="ml-2 fas fa-filter" id="authorsMenu"></i>
+                                                        <div id="authorsDropdown"
+                                                            class="authorsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
                                                             <ul class="border-b-2 border-gray-300 list-reset">
                                                                 <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                                     <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                                         placeholder="Search"
-                                                                        onkeyup="filterFunction('searchAutori', 'autoriDropdown', 'dropdown-item-autor')"
-                                                                        id="searchAutori"><br>
+                                                                        onkeyup="filterFunction('searchAuthors', 'authorsDropdown', 'dropdown-item-author')"
+                                                                        id="searchAuthors"><br>
                                                                     <button
                                                                         class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                                         <i class="fas fa-search"></i>
                                                                     </button>
                                                                 </li>
                                                                 <div class="h-[200px] scroll font-normal">
-                                                                    @foreach($autori as $autor)
-                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-autor">
+                                                                    @foreach($authors as $author)
+                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-author">
                                                                             <label class="flex items-center justify-start">
                                                                                 <div
                                                                                     class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                                    <input type="checkbox" class="absolute opacity-0 autoriFilterPonisti" name="autoriFilter[]" value="{{$autor->id}}">
+                                                                                    <input type="checkbox" class="absolute opacity-0 authorsFilterCancel" name="authorsFilter[]" value="{{$author->id}}">
                                                                                     <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                                         viewBox="0 0 20 20">
                                                                                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -100,7 +100,7 @@
                                                                             </label>
                                                                             <p
                                                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                                {{$autor->name}}
+                                                                                {{$author->name}}
                                                                             </p>
                                                                         </li>
                                                                     @endforeach
@@ -111,7 +111,7 @@
                                                                 class="py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                                 <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                                                 </button>
-                                                                <button type="reset" id="autoriFilterPonisti"
+                                                                <button type="reset" id="authorsFilterCancel"
                                                                 class="ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                                 <i class="fas fa-times mr-[7px]"></i> Poništi 
                                                                 </button>
@@ -121,27 +121,27 @@
 
                                                 <!-- Kategorija + dropdown filter for kategorija -->
                                                 <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
-                                                        Kategorija<i class="ml-2 fas fa-filter" id="kategorijeMenu"></i>
-                                                        <div id="kategorijeDropdown"
-                                                            class="kategorijeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
+                                                        Kategorija<i class="ml-2 fas fa-filter" id="categoriesMenu"></i>
+                                                        <div id="categoriesDropdown"
+                                                            class="categoriesMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
                                                             <ul class="border-b-2 border-gray-300 list-reset">
                                                                 <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                                     <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                                         placeholder="Search"
-                                                                        onkeyup="filterFunction('searchKategorije', 'kategorijeDropdown', 'dropdown-item-kategorija')"
-                                                                        id="searchKategorije"><br>
+                                                                        onkeyup="filterFunction('searchCategories', 'categoriesDropdown', 'dropdown-item-category')"
+                                                                        id="searchCategories"><br>
                                                                     <button
                                                                         class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                                         <i class="fas fa-search"></i>
                                                                     </button>
                                                                 </li>
                                                                 <div class="h-[200px] scroll font-normal">
-                                                                    @foreach($kategorije as $kategorija)
-                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-kategorija">
+                                                                    @foreach($categories as $category)
+                                                                        <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-category">
                                                                             <label class="flex items-center justify-start">
                                                                                 <div
                                                                                     class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                                    <input type="checkbox" class="absolute opacity-0 kategorijaFilterPonisti" name="kategorijeFilter[]" value="{{$kategorija->id}}">
+                                                                                    <input type="checkbox" class="absolute opacity-0 categoryFilterCancel" name="categoriesFilter[]" value="{{$category->id}}">
                                                                                     <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                                         viewBox="0 0 20 20">
                                                                                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -150,7 +150,7 @@
                                                                             </label>
                                                                             <p
                                                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                                {{$kategorija->name}}
+                                                                                {{$category->name}}
                                                                             </p>
                                                                         </li>
                                                                     @endforeach
@@ -181,109 +181,109 @@
 
                                 </thead>
                                 <tbody class="bg-white" id="bookTable">
-                                    @foreach($knjige as $knjiga)
+                                    @foreach($books as $book)
                                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                                 <td class="p-4 whitespace-nowrap">
                                                     <label class="inline-flex items-center">
                                                         <input type="checkbox" class="form-checkbox checkOthers">
                                                     </label>
                                                 </td>
-                                                <td class="flex flex-row items-center p-4 truncate max-w-[180px]">
-                                                    @if(count($knjiga->coverImage) > 0 )
-                                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$knjiga->coverImage[0]->photo}}" alt="" />
+                                                <td class="flex flex-row items-center p-4 truncate max-w-[200px]">
+                                                    @if(count($book->coverImage) > 0 )
+                                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$book->coverImage[0]->photo}}" alt="" />
                                                     @endif
-                                                    <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga->id])}}">
-                                                        <span class="font-medium text-center">{{$knjiga->title}}</span>
+                                                    <a href="{{route('bookDetails', ['book' => $book->id])}}">
+                                                        <span class="font-medium text-center">{{$book->title}}</span>
                                                     </a>
                                                 </td>
-                                                <td class="p-4 text-sm leading-5 truncate max-w-[80px]">
-                                                    @foreach($knjiga->author as $autor)
-                                                        {{ $autor->author->name }}
+                                                <td class="p-4 text-sm leading-5 truncate max-w-[200px]">
+                                                    @foreach($book->author as $author)
+                                                        {{ $author->author->name }}
                                                         {{ $loop->last ? '' : ',' }}
                                                     @endforeach
                                                 </td>
-                                                <td class="p-4 text-sm leading-5 truncate max-w-[80px]">
-                                                    @foreach($knjiga->category as $kategorija)
-                                                        {{$kategorija->category->name}}
+                                                <td class="p-4 text-sm leading-5 truncate max-w-[200px]">
+                                                    @foreach($book->category as $category)
+                                                        {{$category->category->name}}
                                                         {{ $loop->last ? '' : ',' }}
                                                     @endforeach
                                                 </td>
                                                 <td class="p-4 text-sm leading-5 whitespace-nowrap">
-                                                    {{$knjiga->quantity - $knjiga->reservedBooks - $knjiga->rentedBooks}}
+                                                    {{$book->quantity - $book->reservedBooks - $book->rentedBooks}}
                                                 </td>
                                                 <td class="p-4 text-sm leading-5 text-blue-800 whitespace-nowrap">
-                                                    <a href="{{route('iznajmljivanjeArhivirane', ['knjiga' => $knjiga->id])}}">
-                                                        {{$knjiga->reservedBooks}}
+                                                    <a href="{{route('rentingArchived', ['book' => $book->id])}}">
+                                                        {{$book->reservedBooks}}
                                                     </a>
                                                 </td>
                                                 <td class="p-4 text-sm leading-5 text-blue-800 whitespace-nowrap">
-                                                    <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $knjiga->id])}}">
-                                                        {{$knjiga->rentedBooks}}
+                                                    <a href="{{route('rentingRented', ['book' => $book->id])}}">
+                                                        {{$book->rentedBooks}}
                                                     </a>
                                                 </td>
                                                 <td class="p-4 text-sm leading-5 text-blue-800 whitespace-nowrap">
-                                                    <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $knjiga->id])}}">
-                                                        {{\App\Models\Rent::where('return_date', '<', Carbon\Carbon::now())->where('book_id', '=', $knjiga->id)->count()}}
+                                                    <a href="{{route('rentingOverdue', ['book' => $book->id])}}">
+                                                        {{\App\Models\Rent::where('return_date', '<', Carbon\Carbon::now())->where('book_id', '=', $book->id)->count()}}
                                                     </a>
                                                 </td>
                                                 <td class="p-4 text-sm leading-5 whitespace-nowrap">
-                                                    {{$knjiga->quantity}}
+                                                    {{$book->quantity}}
                                                 </td>
                                                 <td class="p-1 text-sm leading-5 text-right whitespace-nowrap">
-                                                    <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsKnjige hover:text-[#606FC7]">
+                                                    <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsBooks hover:text-[#606FC7]">
                                                         <i
                                                             class="fas fa-ellipsis-v"></i>
                                                     </p>
                                                     <div
-                                                        class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-knjige">
+                                                        class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-books">
                                                         <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                                             aria-labelledby="headlessui-menu-button-1"
                                                             id="headlessui-menu-items-117" role="menu">
                                                             <div class="py-1">
-                                                                <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $knjiga->id])}}" tabindex="0"
+                                                                <a href="{{route('bookDetails', ['book' => $book->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Pogledaj detalje</span>
                                                                 </a>
 
-                                                                <a href="{{route('editKnjiga', ['knjiga' => $knjiga->id])}}" tabindex="0"
+                                                                <a href="{{route('editBook', ['book' => $book->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="fas fa-edit mr-[6px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Izmijeni knjigu</span>
                                                                 </a>
 
-                                                                <a href="{{route('otpisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
+                                                                <a href="{{route('writeOffBook', ['book' => $book->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="fas fa-level-up-alt mr-[14px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Otpiši knjigu</span>
                                                                 </a>
 
-                                                                <a href="{{route('izdajKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
+                                                                <a href="{{route('rentBook', ['book' => $book->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="far fa-hand-scissors mr-[10px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Izdaj knjigu</span>
                                                                 </a>
 
-                                                                <a href="{{route('vratiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
+                                                                <a href="{{route('returnBook', ['book' => $book->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="fas fa-redo-alt mr-[10px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Vrati knjigu</span>
                                                                 </a>
 
-                                                                <a href="{{route('rezervisiKnjigu', ['knjiga' => $knjiga->id])}}" tabindex="0"
+                                                                <a href="{{route('reserveBook', ['book' => $book->id])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                     <i class="far fa-calendar-check mr-[10px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Rezerviši knjigu</span>
                                                                 </a>
 
-                                                                <a href="#" tabindex="0" id="{{$knjiga->id}}"
-                                                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-izbrisiModal"
+                                                                <a href="#" tabindex="0" id="{{$book->id}}"
+                                                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600 show-deleteModal"
                                                                 role="menuitem">
                                                                     <i class="fa fa-trash mr-[10px] ml-[5px] py-1"></i>
                                                                     <span class="px-4 py-0">Izbriši knjigu</span>
@@ -295,23 +295,23 @@
                                             </tr>
                                             <!--Modal-->
                                             <div
-                                                class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$knjiga->id}}" id="{{$knjiga->id}}">
+                                                class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 delete-modal_{{$book->id}}" id="{{$book->id}}">
                                                 <!-- Modal -->
                                                 <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
                                                     <!-- Modal Header -->
                                                     <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
                                                         <h3>Da li ste sigurni da želite da izbrišete knjigu?</h3>
-                                                        <button class="text-black close ponisti focus:outline-none" id="{{$knjiga->id}}">
+                                                        <button class="text-black close cancel focus:outline-none" id="{{$book->id}}">
                                                             <span aria-hidden="true" class="text-[30px]">&times;</span>
                                                         </button>
                                                     </div>
                                                     <!-- Modal Body -->
                                                     <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                                                        <a href="{{route('izbrisiKnjigu', ['knjiga' => $knjiga->id])}}"
+                                                        <a href="{{route('deleteBook', ['book' => $book->id])}}"
                                                             class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                             <i class="fas fa-check mr-[7px]"></i> Izbriši
                                                         </a>
-                                                        <a href="#" id="{{$knjiga->id}}" class="ponisti shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                                                        <a href="#" id="{{$book->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
                                                         <i class="fas fa-times mr-[7px]"></i> Poništi 
                                                         </a>
                                                     </div>
@@ -321,7 +321,7 @@
                                 </tbody>
                             </table>
                             <div class="pt-[20px]">
-                                {{$knjige->links()}}
+                                {{$books->links()}}
                             </div>
                             @else
                             <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
@@ -333,7 +333,7 @@
                                 <p class="font-medium text-red-600"> Nisu pronađeni traženi rezultati! </p>
                             </div>
                             <div>
-                                <a class="text-blue-500" href="{{route('evidencijaKnjiga')}}">
+                                <a class="text-blue-500" href="{{route('bookRecords')}}">
                                     &#8592; Nazad
                                 </a>
                             </div>
@@ -344,7 +344,7 @@
             </div>
         @else
             <div class="mx-[20px] mt-[20px]">
-                    <a href="{{route('novaKnjiga')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
+                    <a href="{{route('addBook')}}" class="btn-animation inline-flex items-center text-sm py-2.5 px-5 rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE]">
                         <i class="fas fa-plus mr-[15px]"></i> Nova knjiga
                     </a>
                 <div class="w-[360px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">

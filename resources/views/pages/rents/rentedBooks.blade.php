@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('izdateKnjige')
+@section('rentedBooks')
 
 <section class="w-screen h-screen pl-[80px] py-4 text-gray-700">
             <!-- Heading of content -->
@@ -19,11 +19,11 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-dashboard">
-                <form action="searchIzdateKnjige" method="GET">
+                <form action="searchRentedBooks" method="GET">
                     <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
                         <div class="flex items-center">
                             <div class="relative text-gray-600 focus-within:text-gray-400">
-                                <input type="search" name="searchIzdate"
+                                <input type="search" name="searchRented"
                                     class="py-2 pl-2 text-sm text-white bg-white border-2 border-gray-200 rounded-md focus:outline-none focus:bg-white focus:text-gray-900 w-[600px]"
                                     placeholder="Pretraži knjige..." autocomplete="off">
                             </div>
@@ -44,7 +44,7 @@
                                             class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                             <div
                                                 class="py-[15px] px-[20px] w-[268px] cursor-pointer bg-[#EFF3F6] rounded-[10px]">
-                                                <a href="{{route('izdateKnjige')}}" aria-label="Sve knjige"
+                                                <a href="{{route('rentedBooks')}}" aria-label="Sve knjige"
                                                     class="flex items-center">
                                                     <i
                                                         class="transition duration-300 ease-in group-hover:text-[#576cdf] text-[#576cdf] far fa-copy text-[20px]"></i>
@@ -65,7 +65,7 @@
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('vraceneKnjige')}}" aria-label="Izdate knjige"
+                                                <a href="{{route('returnedBooks')}}" aria-label="Izdate knjige"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] fas fa-file transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -85,7 +85,7 @@
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('knjigePrekoracenje')}}" aria-label="Knjige na raspolaganju"
+                                                <a href="{{route('overdueBooks')}}" aria-label="Knjige na raspolaganju"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -105,7 +105,7 @@
                                             class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('aktivneRezervacije')}}" aria-label="Rezervacije"
+                                                <a href="{{route('activeReservations')}}" aria-label="Rezervacije"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] far fa-calendar-check transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -125,7 +125,7 @@
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('arhiviraneRezervacije')}}" aria-label="Rezervacije"
+                                                <a href="{{route('archivedReservations')}}" aria-label="Rezervacije"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] fas fa-calendar-alt transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -143,10 +143,10 @@
                         </div>
 
                         <div class="w-full mt-[10px] ml-2 px-2">
-                            @if(count($izdate) > 0)
+                            @if(count($rented) > 0)
                                 <table class="w-full shadow-lg" id="myTable">
                                     <thead class="bg-[#EFF3F6]">
-                                        <form action="/filterIzdateKnjige" method="GET">
+                                        <form action="/filterRentedBooks" method="GET">
                                             @csrf
                                             <tr class="border-b-[1px] border-[#e4dfdf]">
                                             <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
@@ -163,29 +163,29 @@
                                             <!-- Izdato uceniku + dropdown filter for ucenik -->
                                             <th
                                                 class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                                Izdato učeniku <i class="ml-2 fas fa-filter uceniciDrop-toggle"></i>
-                                                <div id="uceniciDropdown"
-                                                    class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
+                                                Izdato učeniku <i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
+                                                <div id="studentsDropdown"
+                                                    class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
                                                     <ul class="border-b-2 border-gray-300 list-reset">
                                                         <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                             <input
                                                                 class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                                 placeholder="Search"
-                                                                onkeyup="filterFunction('searchUcenici', 'uceniciDropdown', 'dropdown-item-ucenik')"
-                                                                id="searchUcenici"><br>
+                                                                onkeyup="filterFunction('searchStudents', 'studentsDropdown', 'dropdown-item-student')"
+                                                                id="searchStudents"><br>
                                                             <button
                                                                 class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                                 <i class="fas fa-search"></i>
                                                             </button>
                                                         </li>
                                                         <div class="h-[200px] scroll font-normal">
-                                                            @foreach($ucenici as $ucenik)
+                                                            @foreach($students as $student)
                                                                 <li
-                                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-student">
                                                                     <label class="flex items-center justify-start">
                                                                         <div
                                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                            <input type="checkbox" class="absolute opacity-0 uceniciFilterPonisti" name="uceniciFilter[]" value="{{$ucenik->id}}">
+                                                                            <input type="checkbox" class="absolute opacity-0 studentsFilterCancel" name="studentsFilter[]" value="{{$student->id}}">
                                                                             <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                                 viewBox="0 0 20 20">
                                                                                 <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -194,10 +194,10 @@
                                                                     </label>
                                                                     <img width="40px" height="30px"
                                                                         class="ml-[15px] rounded-full"
-                                                                        src="/storage/image/{{$ucenik->photo}}">
+                                                                        src="/storage/image/{{$student->photo}}">
                                                                     <p
                                                                         class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                        {{$ucenik->name}}
+                                                                        {{$student->name}}
                                                                     </p>
                                                                 </li>
                                                             @endforeach
@@ -208,7 +208,7 @@
                                                             class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                             <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                                         </button>
-                                                        <a href="#" id="uceniciFilterPonisti"
+                                                        <a href="#" id="studentsFilterCancel"
                                                             class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                             <i class="fas fa-times mr-[7px]"></i> Poništi 
                                                         </a>
@@ -219,20 +219,20 @@
                                             <!-- Datum izdavanja + dropdown filter for datum -->
                                             <th
                                                 class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                                Datum izdavanja <i class="fas fa-filter datumDrop-toggle"></i>
-                                                <div id="datumDropdown"
-                                                    class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
+                                                Datum izdavanja <i class="fas fa-filter dateDrop-toggle"></i>
+                                                <div id="dateDropdown"
+                                                    class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                                     <div
                                                         class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                         <div>
                                                             <label class="font-medium text-gray-500">Period od:</label>
                                                             <input type="date"
-                                                                class="datumFilterPonisti border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterDatumOd">
+                                                                class="dateFilterCancel border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterDateFrom">
                                                         </div>
                                                         <div class="ml-[50px]">
                                                             <label class="font-medium text-gray-500">Period do:</label>
                                                             <input type="date"
-                                                                class="datumFilterPonisti border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterDatumDo">
+                                                                class="dateFilterCancel border-[1px] border-[#e4dfdf]  cursor-pointer focus:outline-none" name="filterDateTo">
                                                         </div>
                                                     </div>
                                                     <div class="flex pt-[10px] text-white ">
@@ -240,7 +240,7 @@
                                                             class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                             <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                                         </button>
-                                                        <a id="datumFilterPonisti"
+                                                        <a id="dateFilterCancel"
                                                             class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                             <i class="fas fa-times mr-[7px]"></i> Poništi 
                                                         </a>
@@ -256,29 +256,29 @@
                                             <!-- Knjigu izdao + dropdown filter for bibliotekar -->
                                             <th
                                                 class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                                Knjigu izdao <i class="fas fa-filter bibliotekariDrop-toggle"></i>
-                                                <div id="bibliotekariDropdown"
-                                                    class="bibliotekariMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                                Knjigu izdao <i class="fas fa-filter librariansDrop-toggle"></i>
+                                                <div id="librariansDropdown"
+                                                    class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                                     <ul class="border-b-2 border-gray-300 list-reset">
                                                         <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                             <input
                                                                 class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                                 placeholder="Search"
-                                                                onkeyup="filterFunction('searchBibliotekari', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
-                                                                id="searchBibliotekari"><br>
+                                                                onkeyup="filterFunction('searchLibrarians', 'librariansDropdown', 'dropdown-item-librarian')"
+                                                                id="searchLibrarians"><br>
                                                             <button
                                                                 class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                                 <i class="fas fa-search"></i>
                                                             </button>
                                                         </li>
                                                         <div class="h-[200px] scroll font-normal">
-                                                            @foreach($bibliotekari as $bibliotekar)
+                                                            @foreach($librarians as $librarian)
                                                                 <li
-                                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                                    class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                                     <label class="flex items-center justify-start">
                                                                         <div
                                                                             class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
-                                                                            <input type="checkbox" class="absolute opacity-0 bibliotekariFilterPonisti" name="bibliotekariFilter[]" value="{{$bibliotekar->id}}">
+                                                                            <input type="checkbox" class="absolute opacity-0 librariansFilterCancel" name="librariansFilter[]" value="{{$librarian->id}}">
                                                                             <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"
                                                                                 viewBox="0 0 20 20">
                                                                                 <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -290,7 +290,7 @@
                                                                         src="img/profileExample.jpg">
                                                                     <p
                                                                         class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
-                                                                        {{$bibliotekar->name}}
+                                                                        {{$librarian->name}}
                                                                     </p>
                                                                 </li>
                                                             @endforeach
@@ -301,7 +301,7 @@
                                                             class="btn-animation py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                                             <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
                                                         </button>
-                                                        <a href="#" id="bibliotekariFilterPonisti"
+                                                        <a href="#" id="librariansFilterCancel"
                                                             class="btn-animation ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                                             <i class="fas fa-times mr-[7px]"></i> Poništi 
                                                         </a>
@@ -313,7 +313,7 @@
                                         </form>
                                     </thead>
                                     <tbody class="bg-white">
-                                        @foreach($izdate as $izdata)
+                                        @foreach($rented as $rent)
                                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                             <td class="px-4 py-3 whitespace-no-wrap">
                                                 <label class="inline-flex items-center">
@@ -321,56 +321,56 @@
                                                 </label>
                                             </td>
                                             <td class="flex flex-row items-center px-4 py-3">
-                                                @if(count($izdata->book->coverImage) > 0 )
-                                                    <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$izdata->book->coverImage[0]->photo}}" alt="" />
+                                                @if(count($rent->book->coverImage) > 0 )
+                                                    <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$rent->book->coverImage[0]->photo}}" alt="" />
                                                 @endif
-                                                <a href="{{route('izdavanjeDetalji', ['knjiga' => $izdata->book, 'ucenik' => $izdata->student])}}">
-                                                    <span class="font-medium text-center">{{$izdata->book->title}}</span>
+                                                <a href="{{route('rentDetails', ['book' => $rent->book, 'student' => $rent->student])}}">
+                                                    <span class="font-medium text-center">{{$rent->book->title}}</span>
                                                 </a>
                                             </td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                                <a href="{{route('ucenikProfile', ['user' => $izdata->student])}}">
-                                                    {{$izdata->student->name}}
+                                                <a href="{{route('studentProfile', ['user' => $rent->student])}}">
+                                                    {{$rent->student->name}}
                                                 </a>
                                             </td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$izdata->rent_date}}</td>
+                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$rent->rent_date}}</td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
                                                 <div>
-                                                    <span>{{ \Carbon\Carbon::parse($izdata->rent_date)->diffAsCarbonInterval() }}</span>
+                                                    <span>{{ \Carbon\Carbon::parse($rent->rent_date)->diffAsCarbonInterval() }}</span>
                                                 </div>
                                             </td>
                                             <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
-                                                <a href="{{route('bibliotekarProfile', ['user' => $izdata->librarian])}}">
-                                                    {{$izdata->librarian->name}}
+                                                <a href="{{route('librarianProfile', ['user' => $rent->librarian])}}">
+                                                    {{$rent->librarian->name}}
 
                                                 </a>
                                             </td>
                                             <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                                 <p
-                                                    class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsIzdateKnjige hover:text-[#606FC7]">
+                                                    class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsRentedBooks hover:text-[#606FC7]">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </p>
                                                 <div
-                                                    class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 izdate-knjige">
+                                                    class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 rented-books">
                                                     <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                                         aria-labelledby="headlessui-menu-button-1"
                                                         id="headlessui-menu-items-117" role="menu">
                                                         <div class="py-1">
-                                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $izdata->book, 'ucenik' => $izdata->student])}}" tabindex="0"
+                                                            <a href="{{route('rentDetails', ['book' => $rent->book, 'student' => $rent->student])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                 <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
                                                                 <span class="px-4 py-0">Pogledaj detalje</span>
                                                             </a>
 
-                                                            <a href="{{route('otpisiKnjigu', ['knjiga' => $izdata->book])}}" tabindex="0"
+                                                            <a href="{{route('writeOffBook', ['book' => $rent->book])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                 <i class="fas fa-level-up-alt mr-[14px] ml-[5px] py-1"></i>
                                                                 <span class="px-4 py-0">Otpiši knjigu</span>
                                                             </a>
 
-                                                            <a href="{{route('vratiKnjigu', ['knjiga' => $izdata->book])}}" tabindex="0"
+                                                            <a href="{{route('returnBook', ['book' => $rent->book])}}" tabindex="0"
                                                                 class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                                 role="menuitem">
                                                                 <i class="fas fa-redo-alt mr-[10px] ml-[5px] py-1"></i>
@@ -385,7 +385,7 @@
                                     </tbody>
                                 </table>
 
-                                {{$izdate->links()}}
+                                {{$rented->links()}}
                             @else
                                 <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                                     <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
@@ -396,7 +396,7 @@
                                     <p class="font-medium text-red-600"> Nisu pronađeni traženi rezultati! </p>
                                 </div>
                                 <div>
-                                    <a class="text-blue-500" href="{{route('izdateKnjige')}}">
+                                    <a class="text-blue-500" href="{{route('rentedBooks')}}">
                                         &#8592; Nazad
                                     </a>
                                 </div>

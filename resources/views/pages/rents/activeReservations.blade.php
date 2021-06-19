@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('aktivneRezervacije')
+@section('activeReservations')
     <section class="w-screen h-screen pl-[80px] py-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading mt-[7px]">
@@ -10,11 +10,11 @@
         </div>
         <!-- Space for content -->
         <div class="scroll height-dashboard">
-            <form action="searchAktivneRezervacije" method="GET">
+            <form action="searchActiveReservations" method="GET">
                 <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
                     <div class="flex items-center">
                         <div class="relative text-gray-600 focus-within:text-gray-400">
-                            <input type="search" name="searchAktivne"
+                            <input type="search" name="searchActive"
                                 class="py-2 pl-2 text-sm text-white bg-white border-2 border-gray-200 rounded-md focus:outline-none focus:bg-white focus:text-gray-900 w-[600px]"
                                 placeholder="Pretraži knjige..." autocomplete="off">
                         </div>
@@ -35,7 +35,7 @@
                                             class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                             <div
                                                 class="py-[15px] px-[20px] w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
-                                                <a href="{{route('izdateKnjige')}}" aria-label="Sve knjige"
+                                                <a href="{{route('rentedBooks')}}" aria-label="Sve knjige"
                                                    class="flex items-center">
                                                     <i
                                                         class="text-[#707070] transition duration-300 ease-in group-hover:text-[#576cdf] far fa-copy text-[20px]"></i>
@@ -56,7 +56,7 @@
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('vraceneKnjige')}}" aria-label="Vracene knjige"
+                                                <a href="{{route('returnedBooks')}}" aria-label="Vracene knjige"
                                                    class="flex items-center">
                                                     <i
                                                         class="transition duration-300 ease-in  text-[#707070] text-[20px] fas fa-file group-hover:text-[#576cdf]"></i>
@@ -77,7 +77,7 @@
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('knjigePrekoracenje')}}" aria-label="Knjige na raspolaganju"
+                                                <a href="{{route('overdueBooks')}}" aria-label="Knjige na raspolaganju"
                                                    class="flex items-center">
                                                     <i
                                                         class="group-hover:text-[#576cdf] text-[#707070] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in "></i>
@@ -97,7 +97,7 @@
                                             class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('aktivneRezervacije')}}" aria-label="Rezervacije"
+                                                <a href="{{route('activeReservations')}}" aria-label="Rezervacije"
                                                    class="flex items-center">
                                                     <i
                                                         class="text-[#576cdf] text-[20px] far fa-calendar-check transition duration-300 ease-in"></i>
@@ -117,7 +117,7 @@
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
                                                 class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                                <a href="{{route('arhiviraneRezervacije')}}" aria-label="Rezervacije"
+                                                <a href="{{route('archivedReservations')}}" aria-label="Rezervacije"
                                                    class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] fas fa-calendar-alt transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -134,7 +134,7 @@
                         </ul>
                     </div>
                     <div class="w-full mt-[10px] ml-2 px-2">
-                        @if(count($aktivne) > 0)
+                        @if(count($active) > 0)
                             <table class="w-full shadow-lg rezervacije" id="myTable">
                                 <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
@@ -151,9 +151,9 @@
                                     <!-- Datum rezervacije + dropdown filter for date -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                        Datum rezervacije<i class="ml-2 fas fa-filter datumDrop-toggle"></i>
-                                        <div id="datumDropdown"
-                                            class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
+                                        Datum rezervacije<i class="ml-2 fas fa-filter dateDrop-toggle"></i>
+                                        <div id="dateDropdown"
+                                            class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                             <div
                                                 class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <div>
@@ -184,16 +184,16 @@
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
                                         Rezervaciju
-                                        podnio<i class="ml-2 fas fa-filter uceniciDrop-toggle"></i>
-                                        <div id="uceniciDropdown"
-                                            class="uceniciMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px]  right-0 border-2 border-gray-300">
+                                        podnio<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
+                                        <div id="studentsDropdown"
+                                            class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px]  right-0 border-2 border-gray-300">
                                             <ul class="border-b-2 border-gray-300 list-reset">
                                                 <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                     <input
                                                         class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                         placeholder="Search"
-                                                        onkeyup="filterFunction('searchUcenici', 'uceniciDropdown', 'dropdown-item-ucenik')"
-                                                        id="searchUcenici"><br>
+                                                        onkeyup="filterFunction('searchStudents', 'studentsDropdown', 'dropdown-item-student')"
+                                                        id="searchStudents"><br>
                                                     <button
                                                         class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
                                                         <i class="fas fa-search"></i>
@@ -201,7 +201,7 @@
                                                 </li>
                                                 <div class="h-[200px] scroll font-normal">
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-student">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -221,7 +221,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-student">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -241,7 +241,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-student">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -261,7 +261,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-student">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -281,7 +281,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-student">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -301,7 +301,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-ucenik">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-student">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -404,7 +404,7 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white">
-                                    @foreach($aktivne as $aktivna)
+                                    @foreach($active as $activ)
                                         <tr
                                         class="hover:bg-gray-200 hover:shadow-md bg-gray-200 border-b-[1px] border-[#e4dfdf] changeBg">
                                         <td class="px-4 py-3 whitespace-no-wrap">
@@ -413,17 +413,17 @@
                                             </label>
                                         </td>
                                         <td class="flex flex-row items-center px-4 py-3">
-                                            @if(count($aktivna->book->coverImage) > 0 ) 
-                                                <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$aktivna->book->coverImage[0]->photo}}" alt="" />
+                                            @if(count($activ->book->coverImage) > 0 ) 
+                                                <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$activ->book->coverImage[0]->photo}}" alt="" />
                                             @endif
-                                            <span class="font-medium text-center">{{$aktivna->book->title}}</span>
+                                            <span class="font-medium text-center">{{$activ->book->title}}</span>
                                         </td>
-                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$aktivna->request_date}}</td>
+                                        <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$activ->request_date}}</td>
                                         <td class="flex flex-row items-center px-4 py-3">
-                                            <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$aktivna->student->photo}}"
+                                            <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$activ->student->photo}}"
                                                 alt="" />
-                                            <a href="{{route('ucenikProfile', ['user' => $aktivna->student])}}" class="ml-2 font-medium text-center">
-                                            {{$aktivna->student->name}}
+                                            <a href="{{route('studentProfile', ['user' => $activ->student])}}" class="ml-2 font-medium text-center">
+                                            {{$activ->student->name}}
                                             </a>
                                         </td>
                                         <td class="px-4 py-3 changeStatus">
@@ -448,22 +448,22 @@
                                         </td>
                                         <td class="px-4 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                             <p
-                                                class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsAktivneRezervacije hover:text-[#606FC7]">
+                                                class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsActiveReservations hover:text-[#606FC7]">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </p>
                                             <div
-                                                class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 aktivne-rezervacije">
+                                                class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 active-reservations">
                                                 <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                                     aria-labelledby="headlessui-menu-button-1"
                                                     id="headlessui-menu-items-117" role="menu">
                                                     <div class="py-1">
-                                                        <a href="izdavanjeDetalji.php" tabindex="0"
+                                                        <a href="{{route('rentDetails', ['book' => $activ->book, 'student' => $activ->student])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                             <i class="far fa-file mr-[10px] ml-[5px] py-1"></i>
                                                             <span class="px-4 py-0">Pogledaj detalje</span>
                                                         </a>
-                                                        <a href="izdajKnjigu.php" tabindex="0"
+                                                        <a href="{{route('rentBook', ['book' => $activ->book->id])}}" tabindex="0"
                                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                         role="menuitem">
                                                             <i class="far fa-hand-scissors mr-[10px] ml-[5px] py-1"></i>
@@ -484,7 +484,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{$aktivne->links()}}
+                            {{$active->links()}}
                         @else 
                             <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                                 <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">
@@ -495,7 +495,7 @@
                                 <p class="font-medium text-red-600"> Nisu pronađeni traženi rezultati! </p>
                             </div>
                             <div>
-                                <a class="text-blue-500" href="{{route('izdateKnjige')}}">
+                                <a class="text-blue-500" href="{{route('rentedBooks')}}">
                                     &#8592; Nazad 
                                 </a>
                             </div>

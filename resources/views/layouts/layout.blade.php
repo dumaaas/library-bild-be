@@ -65,7 +65,7 @@
             <div class="flex items-center">
                 <!-- Notification Icon -->
                 <div class="relative block">
-                    <a href="{{route('dashboardAktivnost')}}" class="relative inline-block px-3 py-2 focus:outline-none"
+                    <a href="{{route('dashboardActivity')}}" class="relative inline-block px-3 py-2 focus:outline-none"
                        aria-label="Notification">
                         <div class="flex items-center h-5">
                             <div class="_xpkakx">
@@ -102,7 +102,7 @@
                                 <i class="fas fa-users mr-[5px] ml-[3px] py-1"></i>
                                 <span class="px-4 py-0">Učenik</span>
                             </a>
-                            <a href="{{route('novaKnjiga')}}" tabindex="0"
+                            <a href="{{route('addBook')}}" tabindex="0"
                                class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                role="menuitem">
                                 <i class="far fa-copy mr-[10px] ml-[5px] py-1"></i>
@@ -268,7 +268,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="/evidencijaKnjiga" aria-label="Knjige">
+                                <a href="/bookRecords" aria-label="Knjige">
                                     <i
                                         class="text-[25px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] far fa-copy"></i>
                                     <div class="hidden sidebar-item">
@@ -304,7 +304,7 @@
                         <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="/izdateKnjige" aria-label="Knjige">
+                                <a href="/rentedBooks" aria-label="Knjige">
                                     <i
                                         class="text-[22px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] fas fa-exchange-alt"></i>
                                     <div class="hidden sidebar-item">
@@ -339,44 +339,44 @@
         @endcan
     </nav>
     <!-- PLACE FOR @YIELDS -->
-    @yield('aktivneRezervacije')
-    @yield('arhiviraneRezervacije')
+    @yield('activeReservations')
+    @yield('archivedReservations')
     @yield('authors')
     @yield('authorProfile')
     @yield('librarians')
     @yield('librarianProfile')
     @yield('dashboard')
-    @yield('dashboardAktivnost')
+    @yield('dashboardActivity')
     @yield('editAuthor')
     @yield('editLibrarian')
     @yield('editFormat')
     @yield('editPublisher')
     @yield('editCategory')
-    @yield('editKnjiga')
-    @yield('editKnjigaMultimedija')
-    @yield('editKnjigaSpecifikacija')
+    @yield('editBook')
+    @yield('editBookMultimedia')
+    @yield('editBookSpecification')
     @yield('editScript')
     @yield('editBinding')
     @yield('editStudent')
     @yield('editGenre')
-    @yield('evidencijaKnjiga')
+    @yield('bookRecords')
     @yield('bookMultimedia')
     @yield('rentBook')
     @yield('rentBookError')
-    @yield('izdateKnjige')
-    @yield('izdavanjeDetalji')
-    @yield('iznajmljivanjeAktivne')
-    @yield('iznajmljivanjeArhivirane')
-    @yield('iznajmljivanjeIzdate')
-    @yield('iznajmljivanjePrekoracenje')
-    @yield('iznajmljivanjeVracene')
+    @yield('rentedBooks')
+    @yield('rentDetails')
+    @yield('rentingActive')
+    @yield('rentingArchived')
+    @yield('rentingRented')
+    @yield('rentingOverdue')
+    @yield('rentingReturned')
     @yield('bookDetails')
     @yield('bookSpecification')
-    @yield('knjigePrekoracenje')
+    @yield('overdueBooks')
     @yield('addCategory')
-    @yield('novaKnjiga')
-    @yield('novaKnjigaMultimedija')
-    @yield('novaKnjigaSpecifikacija')
+    @yield('addBook')
+    @yield('addBookMultimedia')
+    @yield('addBookSpecification')
     @yield('addAuthor')
     @yield('addLibrarian')
     @yield('addFormat')
@@ -401,9 +401,9 @@
     @yield('studentOverdue')
     @yield('studentProfile')
     @yield('studentReturned')
-    @yield('vraceneKnjige')
+    @yield('returnedBooks')
     @yield('returnBook')
-    @yield('izdavanjeDetaljiError')
+    @yield('rentDetailsError')
 </main>
 
 <!-- Notification for small devices -->

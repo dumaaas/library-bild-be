@@ -14,27 +14,27 @@
                 <div class="mr-[30px]">
                     <h3 class="uppercase mb-[20px]">Aktivnosti</h3>
                     <!-- Activity Cards -->
-                    @if(count($aktivnosti) > 0)
-                        @foreach($aktivnosti as $aktivnost)
+                    @if(count($activities) > 0)
+                        @foreach($activities as $activity)
                             <div class="activity-card flex flex-row mb-[30px]">
                                 <div class="w-[60px] h-[60px]">
-                                    <img class="rounded-full" src="/storage/image/{{$aktivnost->librarian->photo}}" alt="">
+                                    <img class="rounded-full" src="/storage/image/{{$activity->librarian->photo}}" alt="">
                                 </div>
                                 <div class="ml-[15px] mt-[5px] flex flex-col">
                                     <div class="text-gray-500 mb-[5px]">
-                                        @if(count($aktivnost->rentStatus) > 0)
-                                            @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                        @if(count($activity->rentStatus) > 0)
+                                            @if($activity->rentStatus[0]->statusBook_id == 2)
                                                 <p class="uppercase">
                                                     Izdavanje knjige
                                                     <span class="inline lowercase">
-                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    - {{$activity->rentStatus[0]->date->diffForHumans()}}
                                                     </span>
                                                 </p>
                                             @else
                                                 <p class="uppercase">
                                                     Vraćanje knjige
                                                     <span class="inline lowercase">
-                                                    - {{$aktivnost->rentStatus[0]->date->diffForHumans()}}
+                                                    - {{$activity->rentStatus[0]->date->diffForHumans()}}
                                                     </span>
                                                 </p>
                                             @endif
@@ -42,36 +42,36 @@
                                     </div>
                                     <div class="">
                                         <p>
-                                            <a href="{{route('bibliotekarProfile', ['user' => $aktivnost->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
-                                                {{$aktivnost->librarian->name}}
+                                            <a href="{{route('librarianProfile', ['user' => $activity->librarian])}}" class="text-[#2196f3] hover:text-blue-600">
+                                                {{$activity->librarian->name}}
                                             </a>
-                                            @if(count($aktivnost->rentStatus) > 0)
-                                                @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                            @if(count($activity->rentStatus) > 0)
+                                                @if($activity->rentStatus[0]->statusBook_id == 2)
                                                     izdao/la knjigu
                                                 @else
                                                     vratio/la knjigu
                                                 @endif
                                             @endif
-                                            <a  href="{{route('knjigaOsnovniDetalji', ['knjiga' => $aktivnost->book])}}" class="font-medium">
-                                                {{$aktivnost->book->title}}
+                                            <a  href="{{route('bookDetails', ['book' => $activity->book])}}" class="font-medium">
+                                                {{$activity->book->title}}
                                             </a>
-                                            @if(count($aktivnost->rentStatus) > 0)
-                                                @if($aktivnost->rentStatus[0]->statusBook_id == 2)
+                                            @if(count($activity->rentStatus) > 0)
+                                                @if($activity->rentStatus[0]->statusBook_id == 2)
                                                     učeniku
                                                 @else
                                                     od učenika
                                                 @endif
                                             @endif
-                                            <a href="{{route('ucenikProfile', ['user' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
-                                                {{$aktivnost->student->name}}
+                                            <a href="{{route('studentProfile', ['user' => $activity->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                                {{$activity->student->name}}
                                             </a>
                                             dana
                                             <span class="font-medium">
-                                                @if(count($aktivnost->rentStatus) > 0)
-                                                    {{$aktivnost->rentStatus[0]->date}}.
+                                                @if(count($activity->rentStatus) > 0)
+                                                    {{$activity->rentStatus[0]->date}}.
                                                 @endif
                                             </span>
-                                            <a href="{{route('izdavanjeDetalji', ['knjiga' => $aktivnost->book, 'ucenik' => $aktivnost->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('rentDetails', ['book' => $activity->book, 'student' => $activity->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                                 više detalja >>
                                             </a>
                                         </p>
@@ -80,7 +80,7 @@
                             </div>
                         @endforeach
                         <div class="inline-block w-full mt-4">
-                            <a href="{{route('dashboardAktivnost')}}"
+                            <a href="{{route('dashboardActivity')}}"
                             class="btn-animation block text-center w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">
                                 Prikaži
                             </a>
@@ -105,24 +105,24 @@
                     <div>
                         <table class="w-[560px] table-auto">
                             <tbody class="bg-gray-200">
-                                @foreach($rezervacije as $rezervacija)
+                                @foreach($reservations as $reservation)
                                     <tr class="bg-white border-b-[1px] border-[#e4dfdf]">
                                     <td class="flex flex-row items-center px-2 py-4">
                                         <img class="object-cover w-8 h-8 rounded-full "
-                                             src="/storage/image/{{$rezervacija->student->photo}}" alt="" />
-                                        <a href="{{route('ucenikProfile', ['user' => $rezervacija->student])}}" class="ml-2 font-medium text-center">
-                                            {{$rezervacija->student->name}}
+                                             src="/storage/image/{{$reservation->student->photo}}" alt="" />
+                                        <a href="{{route('studentProfile', ['user' => $reservation->student])}}" class="ml-2 font-medium text-center">
+                                            {{$reservation->student->name}}
                                         </a>
                                     <td>
                                     </td>
                                     <td class="px-2 py-2">
-                                        <a href="{{route('knjigaOsnovniDetalji', ['knjiga' => $rezervacija->book])}}">
-                                            {{$rezervacija->book->title}}
+                                        <a href="{{route('bookDetails', ['book' => $reservation->book])}}">
+                                            {{$reservation->book->title}}
                                         </a>
                                     </td>
                                     <td class="px-2 py-2">
                                         <span class="px-[10px] py-[3px] bg-gray-200 text-gray-800 rounded-[10px]">
-                                            {{$rezervacija->reservation_date->toDateString()}}
+                                            {{$reservation->reservation_date->toDateString()}}
                                         </span>
                                     </td>
                                     <td class="px-2 py-2">
@@ -138,7 +138,7 @@
                             </tbody>
                         </table>
                         <div class="text-right mt-[5px]">
-                            <a href="{{route('aktivneRezervacije')}}" class="text-[#2196f3] hover:text-blue-600">
+                            <a href="{{route('activeReservations')}}" class="text-[#2196f3] hover:text-blue-600">
                                 <i class="fas fa-calendar-alt mr-[4px]" aria-hidden="true"></i>
                                 Prikaži sve
                             </a>
@@ -150,36 +150,36 @@
                         </h3>
                         <div class="text-right">
                             <div class="flex pb-[30px]">
-                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('izdateKnjige')}}">
+                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('rentedBooks')}}">
                                     Izdate knjige
                                 </a>
-                                <div class="ml-[30px] bg-green-600 transition duration-200 ease-in  hover:bg-green-900 stats-bar-green h-[26px]" style="width: {{$izdateNum}}px">
+                                <div class="ml-[30px] bg-green-600 transition duration-200 ease-in  hover:bg-green-900 stats-bar-green h-[26px]" style="width: {{$rentedNum}}px">
 
                                 </div>
                                 <p class="ml-[10px] number-green text-[#2196f3] hover:text-blue-600">
-                                    {{$izdateNum}}
+                                    {{$rentedNum}}
                                 </p>
                             </div>
                             <div class="flex pb-[30px]">
-                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('arhiviraneRezervacije')}}">
+                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('archivedReservations')}}">
                                     Rezervisane knjige
                                 </a>
-                                <div class="ml-[30px] bg-yellow-600 transition duration-200 ease-in  hover:bg-yellow-900 stats-bar-yellow  h-[26px]" style="width: {{$rezervisaneNum}}px">
+                                <div class="ml-[30px] bg-yellow-600 transition duration-200 ease-in  hover:bg-yellow-900 stats-bar-yellow  h-[26px]" style="width: {{$reservedNum}}px">
 
                                 </div>
                                 <p class="ml-[10px] text-[#2196f3] hover:text-blue-600 number-yellow">
-                                    {{$rezervisaneNum}}
+                                    {{$reservedNum}}
                                 </p>
                             </div>
                             <div class="flex pb-[30px]">
-                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('knjigePrekoracenje')}}">
+                                <a class="w-[145px] text-[#2196f3] hover:text-blue-600" href="{{route('overdueBooks')}}">
                                     Knjige u prekoračenju
                                 </a>
-                                <div class="ml-[30px] bg-red-600 transition duration-200 ease-in hover:bg-red-900 stats-bar-red h-[26px]" style="width: {{$prekoraceneNum}}px">
+                                <div class="ml-[30px] bg-red-600 transition duration-200 ease-in hover:bg-red-900 stats-bar-red h-[26px]" style="width: {{$overdueNum}}px">
 
                                 </div>
                                 <p class="ml-[10px] text-[#2196f3] hover:text-blue-600 number-red">
-                                    {{$prekoraceneNum}}
+                                    {{$overdueNum}}
                                 </p>
                             </div>
                         </div>

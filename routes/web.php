@@ -20,10 +20,10 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
 
     //DASHBOARD - ROUTES
-    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'prikaziDashboard'])->name('dashboard');
-    Route::get('/dashboardAktivnost', [\App\Http\Controllers\DashboardController::class, 'prikaziDashboardAktivnost'])->name('dashboardAktivnost');
-    Route::get('/dashboardAktivnostKonkretneKnjige/{knjiga}', [\App\Http\Controllers\DashboardController::class, 'prikaziDashboardAktivnostKonkretneKnjige'])->name('dashboardAktivnostKonkretneKnjige');
-    Route::post('/filterAktivnosti', [\App\Http\Controllers\DashboardController::class, 'filterAktivnosti'])->name('filterAktivnosti');
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'showDashboard'])->name('dashboard');
+    Route::get('/dashboardActivity', [\App\Http\Controllers\DashboardController::class, 'showDashboardActivity'])->name('dashboardActivity');
+    Route::get('/dashboardActivitySpecificBook/{book}', [\App\Http\Controllers\DashboardController::class, 'showDashboardActivitySpecificBook'])->name('dashboardActivitySpecificBook');
+    Route::post('/filterActivities', [\App\Http\Controllers\DashboardController::class, 'filterActivities'])->name('filterActivities');
 
     //LIBRARIAN - ROUTES
     Route::get('/librarianProfile/{user}', [\App\Http\Controllers\UserController::class, 'showLibrarian'])->name('librarianProfile');
@@ -53,16 +53,16 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //BOOK - ROUTES
-    Route::get('/editKnjiga/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjiga'])->name('editKnjiga');
-    Route::get('/editKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjigaMultimedija']);
-    Route::get('/editKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziEditKnjigaSpecifikacija']);
-    Route::get('/evidencijaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziEvidencijaKnjiga'])->name('evidencijaKnjiga');
+    Route::get('/editBook/{book}', [\App\Http\Controllers\BookController::class, 'showEditBook'])->name('editBook');
+    Route::get('/editBookMultimedia', [\App\Http\Controllers\BookController::class, 'showEditBookMultimedia']);
+    Route::get('/editBookSpecification', [\App\Http\Controllers\BookController::class, 'showEditBookSpecification']);
+    Route::get('/bookRecords', [\App\Http\Controllers\BookController::class, 'showBookRecords'])->name('bookRecords');
     Route::get('/bookMultimedia/{book}', [\App\Http\Controllers\BookController::class, 'showBookMultimedia'])->name('bookMultimedia');
     Route::get('/bookDetails/{book}', [\App\Http\Controllers\BookController::class, 'showBookDetails'])->name('bookDetails');
     Route::get('/bookSpecification/{book}', [\App\Http\Controllers\BookController::class, 'showBookSpecification'])->name('bookSpecification');
-    Route::get('/novaKnjiga', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjiga'])->name('novaKnjiga');
-    Route::get('/novaKnjigaMultimedija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaMultimedija']);
-    Route::get('/novaKnjigaSpecifikacija', [\App\Http\Controllers\BookController::class, 'prikaziNovaKnjigaSpecifikacija']);
+    Route::get('/addBook', [\App\Http\Controllers\BookController::class, 'showAddBook'])->name('addBook');
+    Route::get('/addBookMultimedia', [\App\Http\Controllers\BookController::class, 'showAddBookMultimedia']);
+    Route::get('/addBookSpecification', [\App\Http\Controllers\BookController::class, 'showaAddBookSpecification']);
     Route::get('/writeOffBook/{book}', [\App\Http\Controllers\BookController::class, 'showWriteOffBook'])->name('writeOffBook');
     Route::get('/writeOffBooks', [\App\Http\Controllers\BookController::class, 'writeOffBooks'])->name('writeOffBooks');
     Route::get('/reserveBook/{book}', [\App\Http\Controllers\BookController::class, 'showReserveBook'])->name('reserveBook');
@@ -71,37 +71,37 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/rentBook/{book}/rent', [\App\Http\Controllers\BookController::class, 'rent'])->name('rent');
     Route::get('/returnBook/{book}', [\App\Http\Controllers\BookController::class, 'showReturnBook'])->name('returnBook');
     Route::get('/returnBooks', [\App\Http\Controllers\BookController::class, 'returnBooks'])->name('returnBooks');
-    Route::get('/iznajmljivanjeIzdate/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeIzdate'])->name('iznajmljivanjeIzdate');
-    Route::get('/iznajmljivanjePrekoracenje/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjePrekoracenje'])->name('iznajmljivanjePrekoracenje');
-    Route::get('/iznajmljivanjeVracene/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeVracene'])->name('iznajmljivanjeVracene');
-    Route::get('/iznajmljivanjeAktivne/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeAktivne'])->name('iznajmljivanjeAktivne');
-    Route::get('/iznajmljivanjeArhivirane/{knjiga}', [\App\Http\Controllers\BookController::class, 'prikaziIznajmljivanjeArhivirane'])->name('iznajmljivanjeArhivirane');
-    Route::post('/sacuvajKnjigu', [\App\Http\Controllers\BookController::class, 'sacuvajKnjigu'])->name('sacuvajKnjigu');
-    Route::get('/izbrisiKnjigu/{knjiga}', [\App\Http\Controllers\BookController::class, 'izbrisiKnjigu'])->name('izbrisiKnjigu');
-    Route::post('/editKnjiga/{knjiga}/update', [\App\Http\Controllers\BookController::class, 'updateKnjiga'])->name('updateKnjiga');
-    Route::get('/filterAutori', [\App\Http\Controllers\BookController::class, 'filterAutori'])->name('filterAutori');
-    Route::get('/searchKnjige', [\App\Http\Controllers\BookController::class, 'searchKnjige'])->name('searchKnjige');
+    Route::get('/rentingRented/{book}', [\App\Http\Controllers\BookController::class, 'showRentingRented'])->name('rentingRented');
+    Route::get('/rentingOverdue/{book}', [\App\Http\Controllers\BookController::class, 'showRentingOverdue'])->name('rentingOverdue');
+    Route::get('/rentingReturned/{book}', [\App\Http\Controllers\BookController::class, 'showRentingReturned'])->name('rentingReturned');
+    Route::get('/rentingActive/{book}', [\App\Http\Controllers\BookController::class, 'showRentingActive'])->name('rentingActive');
+    Route::get('/rentingArchived/{book}', [\App\Http\Controllers\BookController::class, 'showRentingArchived'])->name('rentingArchived');
+    Route::post('/saveBook', [\App\Http\Controllers\BookController::class, 'saveBook'])->name('saveBook');
+    Route::get('/deleteBook/{book}', [\App\Http\Controllers\BookController::class, 'deleteBook'])->name('deleteBook');
+    Route::post('/editBook/{book}/update', [\App\Http\Controllers\BookController::class, 'updateBook'])->name('updateBook');
+    Route::get('/filterAuthors', [\App\Http\Controllers\BookController::class, 'filterAuthors'])->name('filterAuthors');
+    Route::get('/searchBooks', [\App\Http\Controllers\BookController::class, 'searchBooks'])->name('searchBooks');
     Route::get('/searchReturn/{book}', [\App\Http\Controllers\BookController::class, 'searchReturn'])->name('searchReturn');
     Route::get('/searchWriteOff/{book}', [\App\Http\Controllers\BookController::class, 'searchWriteOff'])->name('searchWriteOff');
 
     //RESERVATION - ROUTES
 
     //RENT - ROUTES
-    Route::get('/izdavanjeDetalji/{knjiga}/{ucenik}', [\App\Http\Controllers\RentController::class, 'prikaziIzdavanjeDetalji'])->name('izdavanjeDetalji');
-    Route::get('/knjigePrekoracenje', [\App\Http\Controllers\RentController::class, 'prikaziKnjigePrekoracenje'])->name('knjigePrekoracenje');
-    Route::get('/izdateKnjige', [\App\Http\Controllers\RentController::class, 'prikaziIzdateKnjige'])->name('izdateKnjige');
-    Route::get('/vraceneKnjige', [\App\Http\Controllers\RentController::class, 'prikaziVraceneKnjige'])->name('vraceneKnjige');
-    Route::get('/aktivneRezervacije', [\App\Http\Controllers\RentController::class, 'prikaziAktivneRezervacije'])->name('aktivneRezervacije');
-    Route::get('/arhiviraneRezervacije', [\App\Http\Controllers\RentController::class, 'prikaziArhiviraneRezervacije'])->name('arhiviraneRezervacije');
-    Route::get('/izbrisiTransakciju/{knjiga}/{ucenik}', [\App\Http\Controllers\RentController::class, 'izbrisiTransakciju'])->name('izbrisiTransakciju');
-    Route::get('/filterIzdateKnjige', [\App\Http\Controllers\RentController::class, 'filterIzdateKnjige'])->name('filterIzdateKnjige');
-    Route::get('/filterVraceneKnjige', [\App\Http\Controllers\RentController::class, 'filterVraceneKnjige'])->name('filterVraceneKnjige');
-    Route::get('/filterPrekoraceneKnjige', [\App\Http\Controllers\RentController::class, 'filterPrekoraceneKnjige'])->name('filterPrekoraceneKnjige');
-    Route::get('/searchIzdateKnjige', [\App\Http\Controllers\RentController::class, 'searchIzdateKnjige'])->name('searchIzdateKnjige');
-    Route::get('/searchVraceneKnjige', [\App\Http\Controllers\RentController::class, 'searchVraceneKnjige'])->name('searchVraceneKnjige');
-    Route::get('/searchPrekoraceneKnjige', [\App\Http\Controllers\RentController::class, 'searchPrekoraceneKnjige'])->name('searchPrekoraceneKnjige');
-    Route::get('/searchAktivneRezervacije', [\App\Http\Controllers\RentController::class, 'searchAktivneRezervacije'])->name('searchAktivneRezervacije');
-    Route::get('/searchArhiviraneRezervacije', [\App\Http\Controllers\RentController::class, 'searchArhiviraneRezervacije'])->name('searchArhiviraneRezervacije');
+    Route::get('/rentDetails/{book}/{student}', [\App\Http\Controllers\RentController::class, 'showRentDetails'])->name('rentDetails');
+    Route::get('/overdueBooks', [\App\Http\Controllers\RentController::class, 'showOverdueBooks'])->name('overdueBooks');
+    Route::get('/rentedBooks', [\App\Http\Controllers\RentController::class, 'showRentedBooks'])->name('rentedBooks');
+    Route::get('/returnedBooks', [\App\Http\Controllers\RentController::class, 'showReturnedBooks'])->name('returnedBooks');
+    Route::get('/activeReservations', [\App\Http\Controllers\RentController::class, 'showActiveReservations'])->name('activeReservations');
+    Route::get('/archivedReservations', [\App\Http\Controllers\RentController::class, 'showarchivedReservations'])->name('archivedReservations');
+    Route::get('/deleteTransaction/{book}/{student}', [\App\Http\Controllers\RentController::class, 'deleteTransaction'])->name('deleteTransaction');
+    Route::get('/filterRentedBooks', [\App\Http\Controllers\RentController::class, 'filterRentedBooks'])->name('filterRentedBooks');
+    Route::get('/filterReturnedBooks', [\App\Http\Controllers\RentController::class, 'filterReturnedBooks'])->name('filterReturnedBooks');
+    Route::get('/filterOverdueBooks', [\App\Http\Controllers\RentController::class, 'filterOverdueBooks'])->name('filterOverdueBooks');
+    Route::get('/searchRentedBooks', [\App\Http\Controllers\RentController::class, 'searchRentedBooks'])->name('searchRentedBooks');
+    Route::get('/searchReturnedBooks', [\App\Http\Controllers\RentController::class, 'searchReturnedBooks'])->name('searchReturnedBooks');
+    Route::get('/searchOverdueBooks', [\App\Http\Controllers\RentController::class, 'searchOverdueBooks'])->name('searchOverdueBooks');
+    Route::get('/searchActiveReservations', [\App\Http\Controllers\RentController::class, 'searchActiveReservations'])->name('searchActiveReservations');
+    Route::get('/searchArchivedReservations', [\App\Http\Controllers\RentController::class, 'searchArchivedReservations'])->name('searchArchivedReservations');
 
     //SCRIPT - ROUTES
     Route::get('/editScript/{script}', [\App\Http\Controllers\ScriptController::class, 'showEdit'])->name('editScript');
@@ -163,7 +163,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //GALLERY - ROUTES
-    Route::get('/deleteImage/{slika}', [\App\Http\Controllers\GaleryController::class, 'deleteImage'])->name('deleteImage');
+    Route::get('/deleteImage/{photo}', [\App\Http\Controllers\GaleryController::class, 'deleteImage'])->name('deleteImage');
 
 
     //GENRE - ROUTES

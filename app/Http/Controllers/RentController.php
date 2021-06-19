@@ -28,34 +28,34 @@ use Illuminate\Http\Request;
 class RentController extends Controller
 {
 
-    private $viewFolder = 'pages/rent';
+    private $viewFolder = 'pages/rents';
 
     /**
      * Prikazi detalje o transakciji
      *
-     * @param  Book $knjiga
-     * @param  User $ucenik
+     * @param  Book $book
+     * @param  User $student
      * @param  RentService $rentService
      * @return void
      */
-    public function prikaziIzdavanjeDetalji(Book $knjiga, User $ucenik, ReservationService $reservationService, RentService $rentService) {
+    public function showRentDetails(Book $book, User $student, ReservationService $reservationService, RentService $rentService) {
 
-        $viewName      = $this->viewFolder . '.izdavanjeDetalji';
-        $viewNameError = $this->viewFolder . '.izdavanjeDetaljiError';
+        $viewName      = $this->viewFolder . '.rentDetails';
+        $viewNameError = $this->viewFolder . '.rentDetailsError';
 
 
-        $transakcija = $rentService->getTransakcija($knjiga->id, $ucenik->id);
+        $transaction = $rentService->getTransaction($book->id, $student->id);
 
         $viewModel = [
-            'transakcija' => $transakcija,
+            'transaction' => $transaction,
         ];
 
         $viewModelError = [
-            'knjiga' => $knjiga,
-            'ucenik' => $ucenik,
+            'book' => $book,
+            'student' => $student,
         ];
 
-        if($transakcija != null) {
+        if($transaction != null) {
             return view($viewName, $viewModel);
         } else {
             return view($viewNameError, $viewModelError);
@@ -69,15 +69,15 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziKnjigePrekoracenje(RentService $rentService, UserService $userService, GlobalVariableService $globalVariableService) {
-        $viewName = $this->viewFolder . '.knjigePrekoracenje';
+    public function showOverdueBooks(RentService $rentService, UserService $userService, GlobalVariableService $globalVariableService) {
+        $viewName = $this->viewFolder . '.overdueBooks';
 
-        $prekoracene = $rentService->getPrekoraceneKnjige($globalVariableService)->paginate(7);
+        $overdued = $rentService->getOverdueBooks($globalVariableService)->paginate(7);
 
         $viewModel = [
-            'prekoracene'  => $prekoracene,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'overdued'  => $overdued,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -90,16 +90,16 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziIzdateKnjige(RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.izdateKnjige';
+    public function showRentedBooks(RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.rentedBooks';
 
         // pokupi samo knjige sa statusom izdatata
-        $izdate = $rentService->getIzdateKnjige()->paginate(7);
+        $rented = $rentService->getRentedBooks()->paginate(7);
 
         $viewModel = [
-            'izdate'       => $izdate,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'rented'       => $rented,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -112,16 +112,16 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function prikaziVraceneKnjige(RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.vraceneKnjige';
+    public function showReturnedBooks(RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.returnedBooks';
 
         // pokupi samo knjige sa statusom izdatata
-        $vracene = $rentService->getVraceneKnjige()->paginate(7);
+        $returned = $rentService->getReturnedBooks()->paginate(7);
 
         $viewModel = [
-            'vracene'      => $vracene,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'returned'      => $returned,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -133,11 +133,11 @@ class RentController extends Controller
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function prikaziAktivneRezervacije(ReservationService $reservationService) {
-        $viewName = $this->viewFolder . '.aktivneRezervacije';
+    public function showActiveReservations(ReservationService $reservationService) {
+        $viewName = $this->viewFolder . '.activeReservations';
 
         $viewModel = [
-            'aktivne' => $reservationService->getAktivneRezervacije()->paginate(7),
+            'active' => $reservationService->getActiveReservations()->paginate(7),
         ];
 
         return view($viewName, $viewModel);
@@ -149,11 +149,11 @@ class RentController extends Controller
      * @param  ReservationService $reservationService
      * @return void
      */
-    public function prikaziArhiviraneRezervacije(ReservationService $reservationService) {
-        $viewName = $this->viewFolder . '.arhiviraneRezervacije';
+    public function showArchivedReservations(ReservationService $reservationService) {
+        $viewName = $this->viewFolder . '.archivedReservations';
 
         $viewModel = [
-            'arhivirane' => $reservationService->getArhiviraneRezervacije()->paginate(7)
+            'archived' => $reservationService->getArchivedReservations()->paginate(7)
         ];
 
         return view($viewName, $viewModel);
@@ -162,25 +162,25 @@ class RentController extends Controller
     /**
      * Izbrisi transakciju
      *
-     * @param  Book $knjiga
-     * @param  User $ucenik
+     * @param  Book $book
+     * @param  User $student
      * @param  RentService $rentService
      * @param  UserService $userService
      * @return void
      */
-    public function izbrisiTransakciju(Book $knjiga, User $ucenik, RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.izdateKnjige';
+    public function deleteTransaction(Book $book, User $student, RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.rentedBooks';
 
-        $rentService->deleteTransakcija($knjiga->id, $ucenik->id);
-        $izdate = $rentService->getIzdateKnjige()->paginate(7);
+        $rentService->deleteTransaction($book->id, $student->id);
+        $rented = $rentService->getRentedBooks()->paginate(7);
 
         $viewModel = [
-            'izdate'       => $izdate,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'rented'       => $rented,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
-        return redirect('izdateKnjige')->with('success','Zapis je uspješno izbrisan!');
+        return redirect('rentedBooks')->with('success','Zapis je uspješno izbrisan!');
     }
 
     /**
@@ -190,15 +190,15 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function filterIzdateKnjige(RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.izdateKnjige';
+    public function filterRentedBooks(RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.rentedBooks';
 
-        $izdate = $rentService->filtirajIzdateKnjige();
+        $rented = $rentService->filtrateRentedBooks();
 
         $viewModel = [
-            'izdate'       => $izdate,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'rented'       => $rented,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -212,15 +212,15 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function searchIzdateKnjige(RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.izdateKnjige';
+    public function searchRentedBooks(RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.rentedBooks';
 
-        $izdate = $rentService->searchIzdateKnjige();
+        $rented = $rentService->searchRentedBooks();
 
         $viewModel = [
-            'izdate'       => $izdate,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'rented'       => $rented,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -234,15 +234,15 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function filterVraceneKnjige(RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.vraceneKnjige';
+    public function filterReturnedBooks(RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.returnedBooks';
 
-        $vracene = $rentService->filtirajVraceneKnjige();
+        $returned = $rentService->filtrateReturnedBooks();
 
         $viewModal = [
-            'vracene'      => $vracene,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'returned'      => $returned,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -255,16 +255,16 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function searchVraceneKnjige(RentService $rentService, UserService $userService) {
+    public function searchReturnedBooks(RentService $rentService, UserService $userService) {
 
-        $viewName = $this->viewFolder . '.vraceneKnjige';
+        $viewName = $this->viewFolder . '.returnedBooks';
 
-        $vracene = $rentService->searchVraceneKnjige();
+        $returned = $rentService->searchReturnedBooks();
 
         $viewModel = [
-            'vracene'       => $vracene,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'returned'       => $returned,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -278,15 +278,15 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function filterPrekoraceneKnjige(RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.knjigePrekoracenje';
+    public function filterOverdueBooks(RentService $rentService, UserService $userService) {
+        $viewName = $this->viewFolder . '.overdueBooks';
 
-        $prekoracene = $rentService->filtirajPrekoraceneKnjige();
+        $overdued = $rentService->filtrateOverdueBooks();
 
         $viewModal = [
-            'prekoracene'  => $prekoracene,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'overdued'  => $overdued,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -299,16 +299,16 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function searchPrekoraceneKnjige(RentService $rentService, UserService $userService) {
+    public function searchOverdueBooks(RentService $rentService, UserService $userService) {
 
-        $viewName = $this->viewFolder . '.knjigePrekoracenje';
+        $viewName = $this->viewFolder . '.overdueBooks';
 
-        $prekoracene = $rentService->searchPrekoraceneKnjige();
+        $overdued = $rentService->searchOverdueBooks();
 
         $viewModel = [
-            'prekoracene'       => $prekoracene,
-            'ucenici'      => $userService->getUcenici()->get(),
-            'bibliotekari' => $userService->getBibliotekari()->get(),
+            'overdued'       => $overdued,
+            'students'      => $userService->getStudents()->get(),
+            'librarians' => $userService->getLibrarians()->get(),
         ];
 
         return view($viewName, $viewModel);
@@ -322,14 +322,14 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function searchAktivneRezervacije(ReservationService $reservationService, UserService $userService) {
+    public function searchActiveReservations(ReservationService $reservationService, UserService $userService) {
 
-        $viewName = $this->viewFolder . '.aktivneRezervacije';
+        $viewName = $this->viewFolder . '.activeReservations';
 
-        $aktivne = $reservationService->searchAktivneRezervacije();
+        $active = $reservationService->searchActiveReservations();
 
         $viewModel = [
-            'aktivne' => $aktivne
+            'active' => $active
         ];
 
         return view($viewName, $viewModel);
@@ -343,14 +343,14 @@ class RentController extends Controller
      * @param  UserService $userService
      * @return void
      */
-    public function searchArhiviraneRezervacije(ReservationService $reservationService, UserService $userService) {
+    public function searchArchivedReservations(ReservationService $reservationService, UserService $userService) {
 
-        $viewName = $this->viewFolder . '.arhiviraneRezervacije';
+        $viewName = $this->viewFolder . '.archivedReservations';
 
-        $arhivirane = $reservationService->searchArhiviraneRezervacije();
+        $archived = $reservationService->searchArchivedReservations();
 
         $viewModel = [
-            'arhivirane' => $arhivirane
+            'archived' => $archived
         ];
 
         return view($viewName, $viewModel);

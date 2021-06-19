@@ -22,7 +22,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="{{route('evidencijaKnjiga')}}" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('bookRecords')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Evidencija knjiga
                                         </a>
                                     </li>
@@ -66,7 +66,7 @@
                         <div class="absolute right-0 w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                              aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                             <div class="py-1">
-                                <a href="{{route('editKnjiga', ['knjiga' => $book])}}" tabindex="0"
+                                <a href="{{route('editBook', ['book' => $book])}}" tabindex="0"
                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                    role="menuitem">
                                     <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
@@ -89,11 +89,11 @@
             @yield('detailsBook')
             @yield('specificationBook')
             @yield('multimediaBook')
-            @yield('izdateIznajmljivanje')
-            @yield('prekoracenjeIznajmljivanje')
-            @yield('vraceneIznajmljivanje')
-            @yield('aktivneIznajmljivanje')
-            @yield('arhiviraneIznajmljivanje')
+            @yield('rentedRenting')
+            @yield('overdueRenting')
+            @yield('returnedRenting')
+            @yield('activeRenting')
+            @yield('archivedRenting')
             <div class="min-w-[20%] border-l-[1px] border-[#e4dfdf] ">
                 <div class="border-b-[1px] border-[#e4dfdf]">
                     <div class="mx-[30px] mt-[20px] flex flex-row">
@@ -108,13 +108,13 @@
                             <p class=" bg-green-200 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                 {{$book->quantity - $book->reservedBooks - $book->rentedBooks}} primjeraka
                             </p>
-                            <a href="{{route('iznajmljivanjeArhivirane', ['knjiga' => $book->id])}}"><p
+                            <a href="{{route('rentingArchived', ['book' => $book->id])}}"><p
                                     class=" mt-[16px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                     {{$book->reservedBooks}} primjeraka</p></a>
-                            <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $book->id])}}"><p
+                            <a href="{{route('rentingRented', ['book' => $book->id])}}"><p
                                     class=" mt-[16px] bg-blue-200 text-blue-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                     {{$book->rentedBooks}} primjeraka</p></a>
-                            <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $book->id])}}">
+                            <a href="{{route('rentingOverdue', ['book' => $book->id])}}">
                                 <p class=" mt-[16px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                     @php
                                         $service = new \App\Services\RentService;
@@ -176,7 +176,7 @@
                                 </p>
                             </div>
                             <div>
-                                <a href="{{route('izdavanjeDetalji', ['knjiga' => $activity->book, 'ucenik' => $activity->student])}}" class="text-[#2196f3] hover:text-blue-600">
+                                <a href="{{route('rentDetails', ['book' => $activity->book, 'student' => $activity->student])}}" class="text-[#2196f3] hover:text-blue-600">
                                     više detalja >>
                                 </a>
                             </div>
@@ -184,7 +184,7 @@
                     @endforeach
                     @if($activities->count() > 0 )
                             <div class="mt-[40px]">
-                                <a href="{{route('dashboardAktivnostKonkretneKnjige', ['knjiga' => $book])}}" class="text-[#2196f3] hover:text-blue-600">
+                                <a href="{{route('dashboardActivitySpecificBook', ['book' => $book])}}" class="text-[#2196f3] hover:text-blue-600">
                                     <i class="fas fa-history"></i> Prikaži sve
                                 </a>
                             </div>

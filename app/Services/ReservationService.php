@@ -47,7 +47,7 @@ class ReservationService
      *
      * @return void
      */
-    public function getRezervisaneKnjige() {
+    public function getReservedBooks() {
         return Reservation::with('book', 'student', 'reservationStatus')
                     ->where('closeReservation_id', '=', 5);
     }
@@ -121,24 +121,24 @@ class ReservationService
      *
      * @return void
      */
-    public function searchAktivneRezervacije() {
+    public function searchActiveReservations() {
 
-        $aktivne = Reservation::query();
+        $active = Reservation::query();
 
-        $aktivne = $this->getAktivneRezervacije();
+        $active = $this->getActiveReservations();
 
-        if(request('searchAktivne')) {
-            $knjiga = request('searchAktivne');
-            $aktivne = $aktivne->where(function ($query) {
+        if(request('searchActive')) {
+            $book = request('searchActive');
+            $active = $active->where(function ($query) {
                 $query->select('title')
                     ->from('books')
                     ->whereColumn('books.id', 'reservations.book_id');
-            }, 'LIKE', '%'.$knjiga.'%');
+            }, 'LIKE', '%'.$book.'%');
         }
 
-        $aktivne = $aktivne->paginate(7);
+        $active = $active->paginate(7);
 
-        return $aktivne;
+        return $active;
     }
 
     /**
@@ -146,30 +146,30 @@ class ReservationService
      *
      * @return void
      */
-    public function searchArhiviraneRezervacije() {
+    public function searchArchivedReservations() {
 
-        $arhivirane = Reservation::query();
+        $archived = Reservation::query();
 
-        $arhivirane = $this->getArhiviraneRezervacije();
+        $archived = $this->getArchivedReservations();
 
-        if(request('searchArhivirane')) {
-            $knjiga = request('searchArhivirane');
-            $arhivirane = $arhivirane->where(function ($query) {
+        if(request('searchArchived')) {
+            $book = request('searchArchived');
+            $archived = $archived->where(function ($query) {
                 $query->select('title')
                     ->from('books')
                     ->whereColumn('books.id', 'reservations.book_id');
-            }, 'LIKE', '%'.$knjiga.'%');
+            }, 'LIKE', '%'.$book.'%');
         }
 
-        $arhivirane = $arhivirane->paginate(7);
+        $archived = $archived->paginate(7);
 
-        return $arhivirane;
+        return $archived;
     }
 
-    public function getTransakcija($knjiga, $ucenik) {
+    public function getTransaction($book, $student) {
         return Reservation::with('book', 'student', 'librarian')
-            ->where('book_id', '=', $knjiga)
-            ->where('student_id', '=', $ucenik)
+            ->where('book_id', '=', $book)
+            ->where('student_id', '=', $student)
             ->first();
     }
 }

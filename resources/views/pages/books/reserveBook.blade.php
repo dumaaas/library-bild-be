@@ -20,7 +20,7 @@
                                 <nav class="w-full rounded">
                                     <ol class="flex list-reset">
                                         <li>
-                                            <a href="{{route('evidencijaKnjiga')}}" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('bookRecords')}}" class="text-[#2196f3] hover:text-blue-600">
                                                 Evidencija knjiga
                                             </a>
                                         </li>
@@ -73,7 +73,7 @@
                             <div class="absolute right-0 w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <a href="{{route('editKnjiga', ['knjiga' => $book->id])}}" tabindex="0"
+                                    <a href="{{route('editBook', ['book' => $book->id])}}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
@@ -150,7 +150,7 @@
                 </form>
                 <!--Modal-->
                 <div
-                    class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 izbrisi-modal_{{$book->id}}" id="{{$book->id}}">
+                    class="absolute z-20 top-0 left-0 items-center justify-center hidden w-full h-screen bg-black bg-opacity-10 delete-modal_{{$book->id}}" id="{{$book->id}}">
                     <!-- Modal -->
                     <div class="w-[500px] bg-white rounded shadow-lg md:w-1/3">
                         <!-- Modal Header -->
@@ -162,7 +162,7 @@
                         </div>
                         <!-- Modal Body -->
                         <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                            <a href="{{route('izbrisiKnjigu', ['knjiga' => $book->id])}}"
+                            <a href="{{route('deleteBook', ['book' => $book->id])}}"
                                 class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                 <i class="fas fa-check mr-[7px]"></i> Izbriši
                             </a>

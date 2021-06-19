@@ -73,39 +73,39 @@ class DashboardService
     /**
      * Filtiraj aktivnosti po trazenim uslovima
      *
-     * @param  Request  $uceniciRequest
-     * @param  Request  $bibliotekariRequest
-     * @param  Request  $knjigeRequest
-     * @param  Request  $datumOdRequest
-     * @param  Request  $datumDoRequest
+     * @param  Request  $studentsRequest
+     * @param  Request  $librariansRequest
+     * @param  Request  $booksRequest
+     * @param  Request  $dateFromRequest
+     * @param  Request  $dateToRequest
      * @return void
      */
-    public function filterActivities($uceniciRequest, $bibliotekariRequest, $knjigeRequest, $datumOdRequest, $datumDoRequest) {
-        $aktivnosti = Rent::query();
-        $aktivnosti = $aktivnosti->with('book', 'student', 'librarian');
+    public function filterActivities($studentsRequest, $librariansRequest, $booksRequest, $dateFromRequest, $dateToRequest) {
+        $activities = Rent::query();
+        $activities = $activities->with('book', 'student', 'librarian');
 
-        if($uceniciRequest) {
-            $ucenici    = $uceniciRequest;
-            $aktivnosti = $aktivnosti->whereIn('student_id', $ucenici);
+        if($studentsRequest) {
+            $students    = $studentsRequest;
+            $activities = $activities->whereIn('student_id', $students);
         }
 
-        if($bibliotekariRequest) {
-            $bibliotekari = $bibliotekariRequest;
-            $aktivnosti   = $aktivnosti->whereIn('librarian_id', $bibliotekari);
+        if($librariansRequest) {
+            $librarians = $librariansRequest;
+            $activities   = $activities->whereIn('librarian_id', $librarians);
         }
 
-        if($knjigeRequest) {
-            $knjige     = $knjigeRequest;
-            $aktivnosti = $aktivnosti->whereIn('book_id', $knjige);
+        if($booksRequest) {
+            $books     = $booksRequest;
+            $activities = $activities->whereIn('book_id', $books);
         }
 
-        if($datumOdRequest && $datumDoRequest) {
-            $datumOd    = $datumOdRequest;
-            $datumDo    = $datumDoRequest;
-            $aktivnosti = $aktivnosti->whereBetween('rent_date', [$datumOd, $datumDo]);
+        if($dateFromRequest && $dateToRequest) {
+            $dateFrom    = $dateFromRequest;
+            $dateTo    = $dateToRequest;
+            $activities = $activities->whereBetween('rent_date', [$dateFrom, $dateTo]);
         }
 
-        return $aktivnosti->orderBy('rent_date', 'DESC')->get();
+        return $activities->orderBy('rent_date', 'DESC')->get();
     }
 
 }

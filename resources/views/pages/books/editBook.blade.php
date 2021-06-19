@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('editKnjiga')
+@section('editBook')
     <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
         <!-- Heading of content -->
         <div class="heading">
@@ -14,7 +14,7 @@
                         <nav class="w-full rounded">
                             <ol class="flex list-reset">
                                 <li>
-                                    <a href="../evidencijaKnjiga" class="text-[#2196f3] hover:text-blue-600">
+                                    <a href="../bookRecords" class="text-[#2196f3] hover:text-blue-600">
                                         Evidencija knjiga
                                     </a>
                                 </li>
@@ -52,9 +52,9 @@
             </p>
         </div>
         <!-- Space for content -->
-        <form action="{{route('updateKnjiga', ['knjiga' => $knjiga->id])}}" method="POST" class="text-gray-700 forma" id="editBookForm">
+        <form action="{{route('updateBook', ['book' => $book->id])}}" method="POST" class="text-gray-700 forma" id="editBookForm">
             @csrf
-            <input type="hidden" name="editBookId" value="{{$knjiga->id}}"/>
+            <input type="hidden" name="editBookId" value="{{$book->id}}"/>
             <div id="editDetails" class="block tabcontent">
                 <div class="scroll height-content section-content">
 
@@ -62,33 +62,33 @@
                         <div class="w-[50%]">
                             <div class="mt-[20px]">
                                 <p>Naziv knjige <span class="text-red-500">*</span></p>
-                                <input type="text" name="nazivKnjigaEdit" id="nazivKnjigaEdit" value="{{$knjiga->title}}"
+                                <input type="text" name="bookTitleEdit" id="bookTitleEdit" value="{{$book->title}}"
                                        class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                        onkeydown="clearErrorsNazivKnjigaEdit()" />
-                                @error('nazivKnjigaEdit')
+                                @error('bookTitleEdit')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-[20px]">
                                 <p class="inline-block mb-2">Kratki sadržaj</p>
-                                <textarea name="kratki_sadrzaj_edit"
+                                <textarea name="summary"
                                           class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
-                                    {{$knjiga->summary}}
+                                    {{$book->summary}}
                                 </textarea>
                             </div>
 
                             <div class="mt-[20px]">
                                 <p>Izaberite kategorije <span class="text-red-500">*</span></p>
-                                <select x-cloak id="kategorijaEdit">
-                                    @foreach($kategorije as $kategorija)
-                                        <option value="{{$kategorija->id}}">{{$kategorija->name}}</option>
+                                <select x-cloak id="categoryEdit">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
 
                                 <div x-data="dropdown()" x-init="loadOptionsEdit()" class="flex flex-col w-[90%]">
-                                    <input name="kategorijaValuesEdit" id="kategorijaInputEdit" type="hidden"
-                                           x-bind:value="selectedValuesKategorijaEdit()">
+                                    <input name="categoryValuesEdit" id="categoryInputEdit" type="hidden"
+                                           x-bind:value="selectedValuesCategoryEdit()">
                                     <div class="relative inline-block w-[100%]">
                                         <div class="relative flex flex-col items-center">
                                             <div x-on:click="open" class="w-full svelte-1l8159u">
@@ -170,21 +170,21 @@
                                     </div>
                                 </div>
                             </div>
-                            @error('kategorijaValuesEdit')
+                            @error('categoryValuesEdit')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mt-[20px]">
                             <p>Izaberite žanrove <span class="text-red-500">*</span></p>
-                            <select x-cloak id="zanrEdit">
-                                @foreach($zanrovi as $zanr)
-                                    <option value="{{$zanr->id}}">{{$zanr->name}}</option>
+                            <select x-cloak id="genreEdit">
+                                @foreach($genres as $genre)
+                                    <option value="{{$genre->id}}">{{$genre->name}}</option>
                                 @endforeach
                             </select>
 
-                            <div x-data="dropdown()" x-init="loadOptionsZanroviEdit()" class="flex flex-col w-[90%]">
-                                <input name="zanrValuesEdit" id="zanroviInputEdit" type="hidden" x-bind:value="selectedValuesZanrEdit()">
+                            <div x-data="dropdown()" x-init="loadOptionsGenresEdit()" class="flex flex-col w-[90%]">
+                                <input name="genreValuesEdit" id="genresInputEdit" type="hidden" x-bind:value="selectedValuesGenreEdit()">
                                 <div class="relative inline-block w-[100%]">
                                     <div class="relative flex flex-col items-center">
                                         <div x-on:click="open" class="w-full svelte-1l8159u">
@@ -266,7 +266,7 @@
                                 </div>
                             </div>
                         </div>
-                        @error('zanrValuesEdit')
+                        @error('genreValuesEdit')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
@@ -275,14 +275,14 @@
                 <div class="w-[50%]">
                     <div class="mt-[20px]">
                         <p>Izaberite autore <span class="text-red-500">*</span></p>
-                        <select x-cloak id="autoriEdit">
-                            @foreach($autori as $autor)
-                                <option value="{{$autor->id}}">{{$autor->name}}</option>
+                        <select x-cloak id="authorsEdit">
+                            @foreach($authors as $author)
+                                <option value="{{$author->id}}">{{$author->name}}</option>
                             @endforeach
                         </select>
 
-                        <div x-data="dropdown()" x-init="loadOptionsAutoriEdit()" class="flex flex-col w-[90%]">
-                            <input name="autoriValuesEdit" id="autoriInputEdit" type="hidden" x-bind:value="selectedValuesAutoriEdit()">
+                        <div x-data="dropdown()" x-init="loadOptionsAuthorsEdit()" class="flex flex-col w-[90%]">
+                            <input name="authorsValuesEdit" id="authorsInputEdit" type="hidden" x-bind:value="selectedValuesAuthorsEdit()">
                             <div class="relative inline-block w-[100%]">
                                 <div class="relative flex flex-col items-center">
                                     <div x-on:click="open" class="w-full svelte-1l8159u">
@@ -362,27 +362,27 @@
                             </div>
                         </div>
                     </div>
-                    @error('autoriValuesEdit')
+                    @error('authorsValuesEdit')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mt-[20px]">
                     <p>Izdavač <span class="text-red-500">*</span></p>
-                    <select placeholder="{{$knjiga->publisher->name}}"
+                    <select placeholder="{{$book->publisher->name}}"
                         class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
-                        name="izdavacEdit" id="izdavacEdit" onclick="clearErrorsIzdavacEdit()">
+                        name="publisherEdit" id="publisherEdit" onclick="clearErrorsIzdavacEdit()">
                         <option disabled></option>
-                        <option value="{{$knjiga->publisher->id}}">{{$knjiga->publisher->name}}</option>
-                        @foreach($izdavaci as $izdavac)
-                            @if($izdavac->name == $knjiga->publisher->name)
-                                <option class="hidden" value="{{$izdavac->id}}"></option>
+                        <option value="{{$book->publisher->id}}">{{$book->publisher->name}}</option>
+                        @foreach($publishers as $publisher)
+                            @if($publisher->name == $book->publisher->name)
+                                <option class="hidden" value="{{$publisher->id}}"></option>
                             @else
-                                <option value="{{$izdavac->id}}">{{$izdavac->name}}</option>
+                                <option value="{{$publisher->id}}">{{$publisher->name}}</option>
                             @endif
                         @endforeach
                     </select>
-                    @error('izdavacEdit')
+                    @error('publisherEdit')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
@@ -391,23 +391,23 @@
                     <p>Godina izdavanja <span class="text-red-500">*</span></p>
                     <select
                         class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
-                        name="godinaIzdavanjaEdit" id="godinaIzdavanjaEdit" onclick="clearErrorsGodinaIzdavanjaEdit()">
+                        name="publishYearEdit" id="publishYearEdit" onclick="clearErrorsGodinaIzdavanjaEdit()">
                         <option disabled></option>
                         @for($i=1500; $i<=2021; $i++)
                             <option value="{{$i}}">{{$i}}</option>
                         @endfor
                     </select>
-                    @error('godinaIzdavanjaEdit')
+                    @error('publishYearEdit')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mt-[20px]">
                     <p>Količina <span class="text-red-500">*</span></p>
-                    <input type="text" name="knjigaKolicinaEdit" id="knjigaKolicinaEdit" value="{{$knjiga->quantity}}"
+                    <input type="text" name="quantity" id="quantity" value="{{$book->quantity}}"
                            class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                            onkeydown="clearErrorsKnjigaKolicinaEdit()" />
-                    @error('knjigaKolicinaEdit')
+                    @error('quantity')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
@@ -419,47 +419,47 @@
                 <div class="w-[50%] mb-[150px]">
                     <div class="mt-[20px]">
                         <p>Broj strana <span class="text-red-500">*</span></p>
-                        <input type="text" name="brStranaEdit" id="brStranaEdit" value="{{$knjiga->pages}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsBrStranaEdit()"/>
-                        @error('brStranaEdit')
+                        <input type="text" name="pagesEdit" id="pagesEdit" value="{{$book->pages}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsBrStranaEdit()"/>
+                        @error('pagesEdit')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mt-[20px]">
                         <p>Pismo <span class="text-red-500">*</span></p>
-                        <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="pismoEdit" id="pismoEdit" onclick="clearErrorsPismoEdit()">
+                        <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="scriptEdit" id="scriptEdit" onclick="clearErrorsPismoEdit()">
                             <option disabled></option>
-                            @foreach($pisma as $pismo)
-                                <option value="{{$pismo->id}}">{{$pismo->name}}</option>
+                            @foreach($scripts as $script)
+                                <option value="{{$script->id}}">{{$script->name}}</option>
                             @endforeach
                         </select>
-                        @error('pismoEdit')
+                        @error('scriptEdit')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mt-[20px]">
                         <p>Jezik <span class="text-red-500">*</span></p>
-                        <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="jezikEdit" id="jezikEdit">
+                        <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="languageEdit" id="languageEdit">
                             <option disabled></option>
-                            @foreach($jezici as $jezik)
-                                <option value="{{$jezik->id}}">{{$jezik->name}}</option>
+                            @foreach($languages as $language)
+                                <option value="{{$language->id}}">{{$language->name}}</option>
                             @endforeach
                         </select>
-                        @error('jezikEdit')
+                        @error('languageEdit')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mt-[20px]">
                         <p>Povez <span class="text-red-500">*</span></p>
-                        <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="povezEdit" id="povezEdit" onclick="clearErrorsPovezEdit()">
+                        <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="bindingEdit" id="bindingEdit" onclick="clearErrorsPovezEdit()">
                             <option disabled></option>
-                            @foreach($povezi as $povez)
-                                <option value="{{$povez->id}}">{{$povez->name}}</option>
+                            @foreach($bindings as $binding)
+                                <option value="{{$binding->id}}">{{$binding->name}}</option>
                             @endforeach
                         </select>
-                        @error('povezEdit')
+                        @error('bindingEdit')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
@@ -468,7 +468,7 @@
                         <p>Format <span class="text-red-500">*</span></p>
                         <select class="flex w-[45%] mt-2 px-2 py-2 border bg-white border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="formatEdit" id="formatEdit" onclick="clearErrorsFormatEdit()">
                             <option disabled></option>
-                            @foreach($formati as $format)
+                            @foreach($formats as $format)
                                 <option value="{{$format->id}}">{{$format->name}}</option>
                             @endforeach
                         </select>
@@ -479,7 +479,7 @@
 
                     <div class="mt-[20px]">
                         <p>Međunarodni standardni broj knjige <span class="text-red-500">*</span></p>
-                        <input type="text" name="isbnEdit" id="isbnEdit" placeholder="{{$knjiga->ISBN}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbnEdit()"/>
+                        <input type="text" name="isbnEdit" id="isbnEdit" placeholder="{{$book->ISBN}}" class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsIsbnEdit()"/>
                         @error('isbnEdit')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
@@ -518,19 +518,19 @@
                     <div class="grid grid-cols-3 gap-4 mt-4 2xl:grid-cols-4"
                         @drop.prevent="drop($event)"
                         @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
-                        @foreach($knjiga->galery as $slika)
+                        @foreach($book->galery as $photo)
                             <div  class="relative flex flex-col text-xs bg-white bg-opacity-50 hiddenImage1"
                                 @dragstart="dragstart($event)"
                                 @dragend="fileDragging = null"
                                 :class="{'border-blue-600': fileDragging == index}"
                                 draggable="true" :data-index="index">
-                                <img src="/storage/image/{{$slika->photo}}" alt="" class="h-[322px]">
+                                <img src="/storage/image/{{$photo->photo}}" alt="" class="h-[322px]">
                                 <!-- Checkbox (checked if image is cover photo of book)-->
                                 <input
                                     class="absolute top-[10px] right-[10px] z-10 p-1 bg-white rounded-bl focus:outline-none"
-                                    type="radio" name="imageCover" {{ $slika->cover == 1 ? 'checked' : '' }} />
+                                    type="radio" name="imageCover" {{ $photo->cover == 1 ? 'checked' : '' }} />
                                 <!-- End checkbox -->
-                                <a href="#" id="{{$slika->id}}"
+                                <a href="#" id="{{$photo->id}}"
                                     class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none show-izbrisiModal"
                                     type="button" id="hide-image1">
                                     <svg class="w-[25px] h-[25px] text-gray-700"
@@ -543,29 +543,29 @@
                                 </a>
                                 <div
                                     class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs text-center bg-white bg-opacity-50">
-                                        <span  class="w-full font-bold text-gray-900 truncate">{{$slika->photo}}</span>
+                                        <span  class="w-full font-bold text-gray-900 truncate">{{$photo->photo}}</span>
                                     <span class="text-xs text-gray-900">89kB</span>
                                 </div>
                             </div>
                             <!--Modal-->
                             <div
-                                class="absolute z-20 top-[-232px] left-0 items-center justify-center hidden w-full h-screen bg-transparent izbrisi-modal_{{$slika->id}}" id="{{$slika->id}}">
+                                class="absolute z-20 top-[-232px] left-0 items-center justify-center hidden w-full h-screen bg-transparent delete-modal_{{$photo->id}}" id="{{$photo->id}}">
                                 <!-- Modal -->
                                 <div class="w-[600px] bg-white rounded shadow-lg">
                                     <!-- Modal Header -->
                                     <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
                                         <h3 class="text-gray-700">Da li ste sigurni da želite da izbrišete sliku?</h3>
-                                        <a href="#" class="text-black close ponisti focus:outline-none" id="{{$slika->id}}">
+                                        <a href="#" class="text-black close cancel focus:outline-none" id="{{$photo->id}}">
                                             <span aria-hidden="true" class="text-[30px]">&times;</span>
                                         </a>
                                     </div>
                                     <!-- Modal Body -->
                                     <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                                        <a href="{{route('deleteImage', ['slika' => $slika->id])}}"
+                                        <a href="{{route('deleteImage', ['photo' => $photo->id])}}"
                                             class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                             <i class="fas fa-check mr-[7px]"></i> Izbriši
                                         </a>
-                                        <a href="#" id="{{$slika->id}}" class="ponisti shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                                        <a href="#" id="{{$photo->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
                                         <i class="fas fa-times mr-[7px]"></i> Poništi 
                                         </a>
                                     </div>
@@ -654,7 +654,7 @@
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
                                     <i class="fas fa-times mr-[7px]"></i> Poništi 
                             </button>
-                            <button id="sacuvajKnjiguEdit" type="submit"
+                            <button id="saveBookEdit" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
                                     onclick="validacijaKnjigaEdit()">
                                     <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
@@ -666,7 +666,7 @@
     </section>
 
     <script>
-        CKEDITOR.replace('kratki_sadrzaj_edit', {
+        CKEDITOR.replace('summary', {
             width: "90%",
             height: "150px"
         });

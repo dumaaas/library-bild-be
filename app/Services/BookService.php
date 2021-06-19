@@ -111,83 +111,83 @@ class BookService {
      * @return void
      */
     public function saveBook() {
-        $knjiga = new Book();
+        $book = new Book();
 
-        $knjiga->title=request('nazivKnjiga');
-        $knjiga->pages=request('brStrana');
-        $knjiga->publishYear=request('godinaIzdavanja');
-        $knjiga->ISBN=request('knjigaIsbn');
-        $knjiga->quantity=request('knjigaKolicina');
-        $knjiga->summary=request('kratki_sadrzaj');
-        $knjiga->format_id=request('knjigaFormat');
-        $knjiga->binding_id=request('knjigaPovez');
-        $knjiga->script_id=request('knjigaPismo');
-        $knjiga->publisher_id=request('knjigaIzdavac');
-        $knjiga->language_id=request('knjigaJezik');
+        $book->title=request('bookTitle');
+        $book->pages=request('pages');
+        $book->publishYear=request('publishYear');
+        $book->ISBN=request('bookIsbn');
+        $book->quantity=request('quantity');
+        $book->summary=request('summary');
+        $book->format_id=request('bookFormat');
+        $book->binding_id=request('bookBinding');
+        $book->script_id=request('bookScript');
+        $book->publisher_id=request('bookPublisher');
+        $book->language_id=request('bookLanguage');
 
 
-        $knjiga->save();
+        $book->save();
 
-        return $knjiga;
+        return $book;
     }
 
     /**
      * Sacuvaj kategorije za konkretnu knjigu
      *
-     * @param Book $knjiga
-     * @param Category $kategorija
+     * @param Book $book
+     * @param Category $category
      * @return void
      */
-    public function saveBookCategories($kategorijeValues, $knjiga) {
-        $kategorije = explode(',', $kategorijeValues);
+    public function saveBookCategories($categoriesValues, $book) {
+        $categories = explode(',', $categoriesValues);
 
-        foreach($kategorije as $kategorija) {
-            $knjigaKategorije = new BookCategory();
+        foreach($categories as $category) {
+            $bookCategories = new BookCategory();
 
-            $knjigaKategorije->book_id = $knjiga;
-            $knjigaKategorije->category_id = $kategorija;
+            $bookCategories->book_id = $book;
+            $bookCategories->category_id = $category;
 
-            $knjigaKategorije->save();
+            $bookCategories->save();
        }
     }
 
     /**
      * Sacuvaj zanrove za konkretnu knjigu
      *
-     * @param Book $knjiga
-     * @param Genre $zanr
+     * @param Book $book
+     * @param Genre $genre
      * @return void
      */
-    public function saveBookGenres($zanroviValues, $knjiga) {
-        $zanrovi = explode(',', $zanroviValues);
+    public function saveBookGenres($genresValues, $book) {
+        $genres = explode(',', $genresValues);
 
-        foreach($zanrovi as $zanr) {
-            $knjigaZanrovi = new BookGenre();
+        foreach($genres as $genre) {
+            $bookGenres = new BookGenre();
 
-            $knjigaZanrovi->book_id = $knjiga;
-            $knjigaZanrovi->genre_id = $zanr;
+            $bookGenres->book_id = $book;
+            $bookGenres->genre_id = $genre;
 
-            $knjigaZanrovi->save();
+            $bookGenres->save();
         }
     }
 
     /**
      * Sacuvaj autore za konkretnu knjigu
      *
-     * @param Book $knjiga
-     * @param Author $autor
+     * @param Book $book
+     * @param Author $author
      * @return void
      */
-    public function saveBookAuthors($autoriValues, $knjiga) {
-        $autori = explode(',', $autoriValues);
+    public function saveBookAuthors($authorsValues, $book) {
+        $authors = explode(',', $authorsValues);
 
-        foreach($autori as $autor) {
-            $knjigaAutori = new BookAuthor();
+        foreach($authors as $author) {
+            $bookAuthors = new BookAuthor();
 
-            $knjigaAutori->book_id = $knjiga;
-            $knjigaAutori->author_id = $autor;
+            $bookAuthors->book_id = $book;
+            $bookAuthors->author_id = $author;
 
-            $knjigaAutori->save();
+            $bookAuthors->save();
         }
 
     }
@@ -197,29 +197,29 @@ class BookService {
      *
      * @return void
      */
-    public function filterAutori() {
-        $knjige = Book::query();
-        $knjige = $knjige->with('author', 'category');
+    public function filterAuthors() {
+        $books = Book::query();
+        $books = $books->with('author', 'category');
 
-        if(request('autoriFilter')) {
-            $autori = request('autoriFilter');
-            foreach($autori as $autor) {
-                $knjige->whereHas('author', function($q) use ($autor) {
-                    $q->where('author_id', $autor);
+        if(request('authorsFilter')) {
+            $authors = request('authorsFilter');
+            foreach($authors as $author) {
+                $books->whereHas('author', function($q) use ($author) {
+                    $q->where('author_id', $author);
                 });
             }
         }
 
-        if(request('kategorijeFilter')) {
-            $kategorije = request('kategorijeFilter');
-            foreach($kategorije as $kategorija) {
-                $knjige->whereHas('category', function($q) use ($kategorija) {
-                    $q->where('category_id', $kategorija);
+        if(request('categoriesFilter')) {
+            $categories = request('categoriesFilter');
+            foreach($categories as $category) {
+                $books->whereHas('category', function($q) use ($category) {
+                    $q->where('category_id', $category);
                 });
             }
         }
 
-        return $knjige;
+        return $books;
     }
 
     /**
@@ -229,10 +229,10 @@ class BookService {
      * @return void
      */
     public function returnBooks($globalVariableService) {
-        $knjige=request('vratiKnjigu');
+        $books=request('returnBook');
 
-        foreach($knjige as $knjiga){
-            $rent=Rent::find($knjiga);
+        foreach($books as $book){
+            $rent=Rent::find($book);
 
             $rent->librarian_received_id = Auth::user()->id;
             $rent->save();
@@ -279,21 +279,21 @@ class BookService {
      *
      * @return void
      */
-    public function searchKnjige() {
+    public function searchBooks() {
 
-        $knjige = Book::query();
+        $books = Book::query();
 
-        if(request('searchKnjige')) {
-            $knjigaPretraga = request('searchKnjige');
-            $knjige = $knjige->where('title', 'LIKE', '%'.$knjigaPretraga.'%');
+        if(request('searchBooks')) {
+            $bookSearch = request('searchBooks');
+            $books = $books->where('title', 'LIKE', '%'.$bookSearch.'%');
         }
 
-        $knjige = $knjige->paginate(7);
+        $books = $books->paginate(7);
 
-        return $knjige;
+        return $books;
     }
 
-    public function uploadBookImages($knjiga, $request) {
+    public function uploadBookImages($book, $request) {
         if ($request->hasFile('movieImages')) {
             $movieImages = $request->file('movieImages');
             $coverImage = request('imageCover');
@@ -313,7 +313,7 @@ class BookService {
                 // Save image in Galery
                 $galery = new Galery();
 
-                $galery->book_id = $knjiga;
+                $galery->book_id = $book;
                 $galery->photo = $fileNameToStore;
 
                 if($movieImages[$coverImage] == $movieImage) {
@@ -325,7 +325,7 @@ class BookService {
         }
     }
 
-    public function editBookImages($knjiga, $request) {
+    public function editBookImages($book, $request) {
         if ($request->hasFile('movieImages')) {
             $movieImages = $request->file('movieImages');
             $coverImage = request('imageCover');
@@ -344,7 +344,7 @@ class BookService {
                 // Save image in Galery
                 $galery = new Galery();
 
-                $galery->book_id = $knjiga;
+                $galery->book_id = $book;
                 $galery->photo = $fileNameToStore;
 
                 if($movieImages[$coverImage] == $movieImage) {

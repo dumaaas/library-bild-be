@@ -9,7 +9,7 @@
             <a href="{{route('bookSpecification', ['book' => $book])}}" class="inline ml-[70px]  hover:text-blue-800">
                 Specifikacija
             </a>
-            <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $book])}}" class="inline ml-[70px] hover:text-blue-800">
+            <a href="{{route('rentingRented', ['book' => $book])}}" class="inline ml-[70px] hover:text-blue-800">
                 Evidencija iznajmljivanja
             </a>
             <a href="{{route('bookMultimedia', ['book' => $book])}}" class="inline ml-[70px] active-book-nav hover:text-blue-800">
@@ -46,7 +46,7 @@
                     </div>
                     <!-- Modal Body -->
                     <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                        <a href="{{route('izbrisiKnjigu', ['knjiga' => $book->id])}}"
+                        <a href="{{route('deleteBook', ['book' => $book->id])}}"
                             class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                             <i class="fas fa-check mr-[7px]"></i> Izbriši
                         </a>

@@ -927,121 +927,121 @@ function sortTableDate(row) {
 }
 
 
-$('#autoriMenu').on('click', function () {
-    $('.autoriMenu').toggle();
+$('#authorsMenu').on('click', function () {
+    $('.authorsMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var autoriMenu = $(".autoriMenu");
-    if (!autoriMenu.is(e.target) &&
-        autoriMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.autoriMenu')) {
-        autoriMenu.slideUp();
+    var authorsMenu = $(".authorsMenu");
+    if (!authorsMenu.is(e.target) &&
+        authorsMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.authorsMenu')) {
+        authorsMenu.slideUp();
     }
 });
 
-$('#kategorijeMenu').on('click', function () {
-    $('.kategorijeMenu').toggle();
+$('#categoriesMenu').on('click', function () {
+    $('.categoriesMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var kategorijeMenu = $(".kategorijeMenu");
-    if (!kategorijeMenu.is(e.target) &&
-        kategorijeMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.kategorijeMenu')) {
-        kategorijeMenu.slideUp();
+    var categoriesMenu = $(".categoriesMenu");
+    if (!categoriesMenu.is(e.target) &&
+        categoriesMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.categoriesMenu')) {
+        categoriesMenu.slideUp();
     }
 });
 
 
-$('.uceniciDrop-toggle').on('click', function () {
-    $('.uceniciMenu').toggle();
+$('.studentsDrop-toggle').on('click', function () {
+    $('.studentsMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var uceniciMenu = $(".uceniciMenu");
-    if (!uceniciMenu.is(e.target) &&
-        uceniciMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.uceniciMenu')) {
-        uceniciMenu.slideUp();
+    var studentsMenu = $(".studentsMenu");
+    if (!studentsMenu.is(e.target) &&
+        studentsMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.studentsMenu')) {
+        studentsMenu.slideUp();
     }
 });
 
-$('.bibliotekariDrop-toggle').on('click', function () {
-    $('.bibliotekariMenu').toggle();
+$('.librariansDrop-toggle').on('click', function () {
+    $('.librariansMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var bibliotekariMenu = $(".bibliotekariMenu");
-    if (!bibliotekariMenu.is(e.target) &&
-        bibliotekariMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.bibliotekariMenu')) {
-        bibliotekariMenu.slideUp();
+    var librariansMenu = $(".librariansMenu");
+    if (!librariansMenu.is(e.target) &&
+        librariansMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.librariansMenu')) {
+        librariansMenu.slideUp();
     }
 });
 
-$('#knjigeMenu').on('click', function () {
-    $('.knjigeMenu').toggle();
+$('#booksMenu').on('click', function () {
+    $('.booksMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var knjigeMenu = $(".knjigeMenu");
-    if (!knjigeMenu.is(e.target) &&
-        knjigeMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.knjigeMenu')) {
-        knjigeMenu.slideUp();
+    var booksMenu = $(".booksMenu");
+    if (!booksMenu.is(e.target) &&
+        booksMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.booksMenu')) {
+        booksMenu.slideUp();
     }
 });
 
-$('#transakcijeMenu').on('click', function () {
-    $('.transakcijeMenu').toggle();
+$('#transactionsMenu').on('click', function () {
+    $('.transactionsMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var transakcijeMenu = $(".transakcijeMenu");
-    if (!transakcijeMenu.is(e.target) &&
-        transakcijeMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.transakcijeMenu')) {
-        transakcijeMenu.slideUp();
+    var transactionsMenu = $(".transactionsMenu");
+    if (!transactionsMenu.is(e.target) &&
+        transactionsMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.transactionsMenu')) {
+        transactionsMenu.slideUp();
     }
 });
 
-$('.datumDrop-toggle').on('click', function () {
-    $('.datumMenu').toggle();
+$('.dateDrop-toggle').on('click', function () {
+    $('.dateMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var datumMenu = $(".datumMenu");
-    if (!datumMenu.is(e.target) &&
-        datumMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.datumMenu')) {
-        datumMenu.slideUp();
+    var dateMenu = $(".dateMenu");
+    if (!dateMenu.is(e.target) &&
+        dateMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.dateMenu')) {
+        dateMenu.slideUp();
     }
 });
 
-$('.zadrzavanjeDrop-toggle').on('click', function () {
-    $('.zadrzavanjeMenu').toggle();
+$('.delayDrop-toggle').on('click', function () {
+    $('.delayMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var datumMenu = $(".zadrzavanjeMenu");
-    if (!datumMenu.is(e.target) &&
-        datumMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.zadrzavanjeMenu')) {
-        datumMenu.slideUp();
+    var dateMenu = $(".delayMenu");
+    if (!dateMenu.is(e.target) &&
+        dateMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.delayMenu')) {
+        dateMenu.slideUp();
     }
 });
 
-$('.vracanjeDrop-toggle').on('click', function () {
-    $('.vracanjeMenu').toggle();
+$('.returningDrop-toggle').on('click', function () {
+    $('.returningMenu').toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var vracanjeMenu = $(".vracanjeMenu");
-    if (!vracanjeMenu.is(e.target) &&
-        vracanjeMenu.has(e.target).length === 0 &&
-        !$(e.target).is('.vracanjeMenu')) {
-        vracanjeMenu.slideUp();
+    var returningMenu = $(".returningMenu");
+    if (!returningMenu.is(e.target) &&
+        returningMenu.has(e.target).length === 0 &&
+        !$(e.target).is('.returningMenu')) {
+        returningMenu.slideUp();
     }
 });
 
@@ -1110,7 +1110,7 @@ function dropdown() {
             this.selected.splice(index, 1);
         },
         loadOptions() {
-            const options = document.getElementById('kategorija').options;
+            const options = document.getElementById('category').options;
             for (let i = 0; i < options.length; i++) {
                 this.options.push({
                     value: options[i].value,
@@ -1120,7 +1120,7 @@ function dropdown() {
             }
         },
         loadOptionsEdit() {
-            const options = document.getElementById('kategorijaEdit').options;
+            const options = document.getElementById('categoryEdit').options;
             for (let i = 0; i < options.length; i++) {
                 this.options.push({
                     value: options[i].value,
@@ -1129,8 +1129,8 @@ function dropdown() {
                 });
             }
         },
-        loadOptionsZanrovi() {
-            const options = document.getElementById('zanr').options;
+        loadOptionsGenres() {
+            const options = document.getElementById('genre').options;
             for (let i = 0; i < options.length; i++) {
                 this.options.push({
                     value: options[i].value,
@@ -1139,8 +1139,8 @@ function dropdown() {
                 });
             }
         },
-        loadOptionsZanroviEdit() {
-            const options = document.getElementById('zanrEdit').options;
+        loadOptionsGenresEdit() {
+            const options = document.getElementById('genreEdit').options;
             for (let i = 0; i < options.length; i++) {
                 this.options.push({
                     value: options[i].value,
@@ -1149,8 +1149,8 @@ function dropdown() {
                 });
             }
         },
-        loadOptionsAutori() {
-            const options = document.getElementById('autori').options;
+        loadOptionsAuthors() {
+            const options = document.getElementById('authors').options;
             for (let i = 0; i < options.length; i++) {
                 this.options.push({
                     value: options[i].value,
@@ -1159,8 +1159,8 @@ function dropdown() {
                 });
             }
         },
-        loadOptionsAutoriEdit() {
-            const options = document.getElementById('autoriEdit').options;
+        loadOptionsAuthorsEdit() {
+            const options = document.getElementById('authorsEdit').options;
             for (let i = 0; i < options.length; i++) {
                 this.options.push({
                     value: options[i].value,
@@ -1174,16 +1174,16 @@ function dropdown() {
                 return this.options[option].value;
             })
         },
-        selectedValuesKategorijaEdit() {
-            const options = document.getElementById('kategorijaEdit').options;
+        selectedValuesCategoryEdit() {
+            const options = document.getElementById('categoryEdit').options;
             return options[1].value;
         },
-        selectedValuesZanrEdit() {
-            const options = document.getElementById('zanrEdit').options;
+        selectedValuesGenreEdit() {
+            const options = document.getElementById('genreEdit').options;
             return options[2].value;
         },
-        selectedValuesAutoriEdit() {
-            const options = document.getElementById('autoriEdit').options;
+        selectedValuesAuthorsEdit() {
+            const options = document.getElementById('authorsEdit').options;
             return options[0].value;
         }
     }
@@ -1537,77 +1537,77 @@ $(document).on('mouseup', function (e) {
 });
 
 // Izdate knjige - dropdown
-$(".dotsIzdateKnjige").click(function () {
-    var dotsIzdateKnjige = $(this);
-    var dropdownIzdateKnjige = dotsIzdateKnjige.closest("td").find(".izdate-knjige");
-    dropdownIzdateKnjige.toggle();
+$(".dotsRentedBooks").click(function () {
+    var dotsRentedBooks = $(this);
+    var dropdownRentedBooks = dotsRentedBooks.closest("td").find(".rented-books");
+    dropdownRentedBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIzdateKnjige = $(".izdate-knjige");
-    if (!dropdownIzdateKnjige.is(e.target) &&
-        dropdownIzdateKnjige.has(e.target).length === 0) {
-        dropdownIzdateKnjige.slideUp();
+    var dropdownRentedBooks = $(".rented-books");
+    if (!dropdownRentedBooks.is(e.target) &&
+        dropdownRentedBooks.has(e.target).length === 0) {
+        dropdownRentedBooks.slideUp();
     }
 });
 
 // Vracene knjige - dropdown
-$(".dotsVraceneKnjige").click(function () {
-    var dotsVraceneKnjige = $(this);
-    var dropdownVraceneKnjige = dotsVraceneKnjige.closest("td").find(".vracene-knjige");
-    dropdownVraceneKnjige.toggle();
+$(".dotsReturnedBooks").click(function () {
+    var dotsReturnedBooks = $(this);
+    var dropdownReturnedBooks = dotsReturnedBooks.closest("td").find(".returned-books");
+    dropdownReturnedBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownVraceneKnjige = $(".vracene-knjige");
-    if (!dropdownVraceneKnjige.is(e.target) &&
-        dropdownVraceneKnjige.has(e.target).length === 0) {
-        dropdownVraceneKnjige.slideUp();
+    var dropdownReturnedBooks = $(".returned-books");
+    if (!dropdownReturnedBooks.is(e.target) &&
+        dropdownReturnedBooks.has(e.target).length === 0) {
+        dropdownReturnedBooks.slideUp();
     }
 });
 
 // Knjige u prekoracenju - dropdown
-$(".dotsKnjigePrekoracenje").click(function () {
-    var dotsKnjigePrekoracenje = $(this);
-    var dropdownKnjigePrekoracenje = dotsKnjigePrekoracenje.closest("td").find(".knjige-prekoracenje");
-    dropdownKnjigePrekoracenje.toggle();
+$(".dotsOverdueBooks").click(function () {
+    var dotsOverdueBooks = $(this);
+    var dropdownOverdueBooks = dotsOverdueBooks.closest("td").find(".overdue-books");
+    dropdownOverdueBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownKnjigePrekoracenje = $(".knjige-prekoracenje");
-    if (!dropdownKnjigePrekoracenje.is(e.target) &&
-        dropdownKnjigePrekoracenje.has(e.target).length === 0) {
-        dropdownKnjigePrekoracenje.slideUp();
+    var dropdownOverdueBooks = $(".overdue-books");
+    if (!dropdownOverdueBooks.is(e.target) &&
+        dropdownOverdueBooks.has(e.target).length === 0) {
+        dropdownOverdueBooks.slideUp();
     }
 });
 
 // Aktivne rezervacije - dropdown
-$(".dotsAktivneRezervacije").click(function () {
-    var dotsAktivneRezervacije = $(this);
-    var dropdownAktivneRezervacije = dotsAktivneRezervacije.closest("td").find(".aktivne-rezervacije");
-    dropdownAktivneRezervacije.toggle();
+$(".dotsActiveReservations").click(function () {
+    var dotsActiveReservations = $(this);
+    var dropdownActiveReservations = dotsActiveReservations.closest("td").find(".active-reservations");
+    dropdownActiveReservations.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownAktivneRezervacije = $(".aktivne-rezervacije");
-    if (!dropdownAktivneRezervacije.is(e.target) &&
-        dropdownAktivneRezervacije.has(e.target).length === 0) {
-        dropdownAktivneRezervacije.slideUp();
+    var dropdownActiveReservations = $(".active-reservations");
+    if (!dropdownActiveReservations.is(e.target) &&
+        dropdownActiveReservations.has(e.target).length === 0) {
+        dropdownActiveReservations.slideUp();
     }
 });
 
 // Arhivirane rezervacije - dropdown
-$(".dotsArhiviraneRezervacije").click(function () {
-    var dotsArhiviraneRezervacije = $(this);
-    var dropdownArhiviraneRezervacije = dotsArhiviraneRezervacije.closest("td").find(".arhivirane-rezervacije");
-    dropdownArhiviraneRezervacije.toggle();
+$(".dotsArchivedReservations").click(function () {
+    var dotsArchivedReservations = $(this);
+    var dropdownArchivedReservations = dotsArchivedReservations.closest("td").find(".archived-reservations");
+    dropdownArchivedReservations.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownArhiviraneRezervacije = $(".arhivirane-rezervacije");
-    if (!dropdownArhiviraneRezervacije.is(e.target) &&
-        dropdownArhiviraneRezervacije.has(e.target).length === 0) {
-        dropdownArhiviraneRezervacije.slideUp();
+    var dropdownArchivedReservations = $(".archived-reservations");
+    if (!dropdownArchivedReservations.is(e.target) &&
+        dropdownArchivedReservations.has(e.target).length === 0) {
+        dropdownArchivedReservations.slideUp();
     }
 });
 
@@ -1641,17 +1641,17 @@ $(document).on('mouseup', function (e) {
 });
 
 // Knjige - dropdown
-$(".dotsKnjige").click(function () {
-    var dotsKnjige = $(this);
-    var dropdownKnjige = dotsKnjige.closest("td").find(".dropdown-knjige");
-    dropdownKnjige.toggle();
+$(".dotsBooks").click(function () {
+    var dotsBooks = $(this);
+    var dropdownBooks = dotsBooks.closest("td").find(".dropdown-books");
+    dropdownBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownKnjige = $(".dropdown-knjige");
-    if (!dropdownKnjige.is(e.target) &&
-        dropdownKnjige.has(e.target).length === 0) {
-        dropdownKnjige.slideUp();
+    var dropdownBooks = $(".dropdown-books");
+    if (!dropdownBooks.is(e.target) &&
+        dropdownBooks.has(e.target).length === 0) {
+        dropdownBooks.slideUp();
     }
 });
 
@@ -1768,161 +1768,161 @@ $(document).on('mouseup', function (e) {
 });
 
 // Iznajmljivanje - izdate - dropdown
-$(".dotsIznajmljivanjeIzdate").click(function () {
-    $(".dropdown-iznajmljivanje-izdate").toggle();
+$(".dotsRentingRented").click(function () {
+    $(".dropdown-renting-rented").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeIzdate = $(".dropdown-iznajmljivanje-izdate");
-    if (!dropdownIznajmljivanjeIzdate.is(e.target) &&
-        dropdownIznajmljivanjeIzdate.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIznajmljivanjeIzdate')) {
-        dropdownIznajmljivanjeIzdate.slideUp();
+    var dropdownRentingRented = $(".dropdown-renting-rented");
+    if (!dropdownRentingRented.is(e.target) &&
+        dropdownRentingRented.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentingRented')) {
+        dropdownRentingRented.slideUp();
     }
 });
 
 // Iznajmljivanje - vracene - dropdown
-$(".dotsIznajmljivanjeVracene").click(function () {
-    $(".dropdown-iznajmljivanje-vracene").toggle();
+$(".dotsRentingReturned").click(function () {
+    $(".dropdown-renting-returned").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeVracene = $(".dropdown-iznajmljivanje-vracene");
-    if (!dropdownIznajmljivanjeVracene.is(e.target) &&
-        dropdownIznajmljivanjeVracene.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIznajmljivanjeVracene')) {
-        dropdownIznajmljivanjeVracene.slideUp();
+    var dropdownRentingReturned = $(".dropdown-renting-returned");
+    if (!dropdownRentingReturned.is(e.target) &&
+        dropdownRentingReturned.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentingReturned')) {
+        dropdownRentingReturned.slideUp();
     }
 });
 
 // Iznajmljivanje - prekoracenje - dropdown
-$(".dotsIznajmljivanjePrekoracenje").click(function () {
-    $(".dropdown-iznajmljivanje-prekoracenje").toggle();
+$(".dotsRentingOverdue").click(function () {
+    $(".dropdown-renting-overdue").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjePrekoracenje = $(".dropdown-iznajmljivanje-prekoracenje");
-    if (!dropdownIznajmljivanjePrekoracenje.is(e.target) &&
-        dropdownIznajmljivanjePrekoracenje.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIznajmljivanjePrekoracenje')) {
-        dropdownIznajmljivanjePrekoracenje.slideUp();
+    var dropdownRentingOverdue = $(".dropdown-renting-overdue");
+    if (!dropdownRentingOverdue.is(e.target) &&
+        dropdownRentingOverdue.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentingOverdue')) {
+        dropdownRentingOverdue.slideUp();
     }
 });
 
 // Iznajmljivanje - aktivne rezervacije - dropdown
-$(".dotsIznajmljivanjeAktivneRezervacije").click(function () {
-    $(".dropdown-iznajmljivanje-aktivne-rezervacije").toggle();
+$(".dotsRentingActiveReservations").click(function () {
+    $(".dropdown-renting-active-reservations").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeAktivneRezervacije = $(".dropdown-iznajmljivanje-aktivne-rezervacije");
-    if (!dropdownIznajmljivanjeAktivneRezervacije.is(e.target) &&
-        dropdownIznajmljivanjeAktivneRezervacije.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIznajmljivanjeAktivneRezervacije')) {
-        dropdownIznajmljivanjeAktivneRezervacije.slideUp();
+    var dropdownRentingActiveReservations = $(".dropdown-renting-active-reservations");
+    if (!dropdownRentingActiveReservations.is(e.target) &&
+        dropdownRentingActiveReservations.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentingActiveReservations')) {
+        dropdownRentingActiveReservations.slideUp();
     }
 });
 
 // Iznajmljivanje - arhivirane rezervacije - dropdown
-$(".dotsIznajmljivanjeArhiviraneRezervacije").click(function () {
-    $(".dropdown-iznajmljivanje-arhivirane-rezervacije").toggle();
+$(".dotsRentingArchivedReservations").click(function () {
+    $(".dropdown-renting-archived-reservations").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeArhiviraneRezervacije = $(".dropdown-iznajmljivanje-arhivirane-rezervacije");
-    if (!dropdownIznajmljivanjeArhiviraneRezervacije.is(e.target) &&
-        dropdownIznajmljivanjeArhiviraneRezervacije.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIznajmljivanjeArhiviraneRezervacije')) {
-        dropdownIznajmljivanjeArhiviraneRezervacije.slideUp();
+    var dropdownRentingArchivedReservations = $(".dropdown-renting-archived-reservations");
+    if (!dropdownRentingArchivedReservations.is(e.target) &&
+        dropdownRentingArchivedReservations.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentingArchivedReservations')) {
+        dropdownRentingArchivedReservations.slideUp();
     }
 });
 
 // Izdavanje - detalji - dropdown
-$(".dotsIzdavanjeDetalji").click(function () {
-    $(".dropdown-izdavanje-detalji").toggle();
+$(".dotsRentDetails").click(function () {
+    $(".dropdown-rent-details").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIzdavanjeDetalji = $(".dropdown-izdavanje-detalji");
-    if (!dropdownIzdavanjeDetalji.is(e.target) &&
-        dropdownIzdavanjeDetalji.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIzdavanjeDetalji')) {
-        dropdownIzdavanjeDetalji.slideUp();
+    var dropdownRentDetails = $(".dropdown-rent-details");
+    if (!dropdownRentDetails.is(e.target) &&
+        dropdownRentDetails.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentDetails')) {
+        dropdownRentDetails.slideUp();
     }
 });
 
 // Iznajmljivanje - izdate knjige - tabela - dropdown
-$(".dotsIznajmljivanjeIzdateKnjige").click(function () {
-    var dotsIznajmljivanjeIzdateKnjige = $(this);
-    var dropdownIznajmljivanjeIzdateKnjige = dotsIznajmljivanjeIzdateKnjige.closest("td").find(".iznajmljivanje-izdate-knjige");
-    dropdownIznajmljivanjeIzdateKnjige.toggle();
+$(".dotsRentingRentedBooks").click(function () {
+    var dotsRentingRentedBooks = $(this);
+    var dropdownRentingRentedBooks = dotsRentingRentedBooks.closest("td").find(".renting-rented-books");
+    dropdownRentingRentedBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeIzdateKnjige = $(".iznajmljivanje-izdate-knjige");
-    if (!dropdownIznajmljivanjeIzdateKnjige.is(e.target) &&
-        dropdownIznajmljivanjeIzdateKnjige.has(e.target).length === 0) {
-        dropdownIznajmljivanjeIzdateKnjige.slideUp();
+    var dropdownRentingRentedBooks = $(".renting-rented-books");
+    if (!dropdownRentingRentedBooks.is(e.target) &&
+        dropdownRentingRentedBooks.has(e.target).length === 0) {
+        dropdownRentingRentedBooks.slideUp();
     }
 });
 
 // Iznajmljivanje - vracene knjige - tabela - dropdown
-$(".dotsIznajmljivanjeVraceneKnjige").click(function () {
-    var dotsIznajmljivanjeVraceneKnjige = $(this);
-    var dropdownIznajmljivanjeVraceneKnjige = dotsIznajmljivanjeVraceneKnjige.closest("td").find(".iznajmljivanje-vracene-knjige");
-    dropdownIznajmljivanjeVraceneKnjige.toggle();
+$(".dotsRentingReturnedBooks").click(function () {
+    var dotsRentingReturnedBooks = $(this);
+    var dropdownRentingReturnedBooks = dotsRentingReturnedBooks.closest("td").find(".renting-returned-books");
+    dropdownRentingReturnedBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeVraceneKnjige = $(".iznajmljivanje-vracene-knjige");
-    if (!dropdownIznajmljivanjeVraceneKnjige.is(e.target) &&
-        dropdownIznajmljivanjeVraceneKnjige.has(e.target).length === 0) {
-        dropdownIznajmljivanjeVraceneKnjige.slideUp();
+    var dropdownRentingReturnedBooks = $(".renting-returned-books");
+    if (!dropdownRentingReturnedBooks.is(e.target) &&
+        dropdownRentingReturnedBooks.has(e.target).length === 0) {
+        dropdownRentingReturnedBooks.slideUp();
     }
 });
 
 // Iznajmljivanje - knjige u prekoracenju - tabela - dropdown
-$(".dotsIznajmljivanjeKnjigePrekoracenje").click(function () {
-    var dotsIznajmljivanjeKnjigePrekoracenje = $(this);
-    var dropdownIznajmljivanjeKnjigePrekoracenje = dotsIznajmljivanjeKnjigePrekoracenje.closest("td").find(".iznajmljivanje-knjige-prekoracenje");
-    dropdownIznajmljivanjeKnjigePrekoracenje.toggle();
+$(".dotsRentingBooksOverdue").click(function () {
+    var dotsRentingBooksOverdue = $(this);
+    var dropdownRentingBooksOverdue = dotsRentingBooksOverdue.closest("td").find(".renting-books-overdue");
+    dropdownRentingBooksOverdue.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeKnjigePrekoracenje = $(".iznajmljivanje-knjige-prekoracenje");
-    if (!dropdownIznajmljivanjeKnjigePrekoracenje.is(e.target) &&
-        dropdownIznajmljivanjeKnjigePrekoracenje.has(e.target).length === 0) {
-        dropdownIznajmljivanjeKnjigePrekoracenje.slideUp();
+    var dropdownRentingBooksOverdue = $(".renting-books-overdue");
+    if (!dropdownRentingBooksOverdue.is(e.target) &&
+        dropdownRentingBooksOverdue.has(e.target).length === 0) {
+        dropdownRentingBooksOverdue.slideUp();
     }
 });
 
 // Iznajmljivanje - aktivne rezervacije - tabela - dropdown
-$(".dotsIznajmljivanjeAktivneRezervacijeTabela").click(function () {
-    var dotsIznajmljivanjeAktivneRezervacijeTabela = $(this);
-    var dropdownIznajmljivanjeAktivneRezervacijeTabela = dotsIznajmljivanjeAktivneRezervacijeTabela.closest("td").find(".iznajmljivanje-aktivne-rezervacije");
-    dropdownIznajmljivanjeAktivneRezervacijeTabela.toggle();
+$(".dotsRentingActiveReservationsTable").click(function () {
+    var dotsRentingActiveReservationsTable = $(this);
+    var dropdownRentingActiveReservationsTable = dotsRentingActiveReservationsTable.closest("td").find(".renting-active-reservations");
+    dropdownRentingActiveReservationsTable.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeAktivneRezervacijeTabela = $(".iznajmljivanje-aktivne-rezervacije");
-    if (!dropdownIznajmljivanjeAktivneRezervacijeTabela.is(e.target) &&
-        dropdownIznajmljivanjeAktivneRezervacijeTabela.has(e.target).length === 0) {
-        dropdownIznajmljivanjeAktivneRezervacijeTabela.slideUp();
+    var dropdownRentingActiveReservationsTable = $(".renting-active-reservations");
+    if (!dropdownRentingActiveReservationsTable.is(e.target) &&
+        dropdownRentingActiveReservationsTable.has(e.target).length === 0) {
+        dropdownRentingActiveReservationsTable.slideUp();
     }
 });
 
 // Iznajmljivanje - aktivne rezervacije - tabela - dropdown
-$(".dotsIznajmljivanjeArhiviraneRezervacijeTabela").click(function () {
-    var dotsIznajmljivanjeArhiviraneRezervacijeTabela = $(this);
-    var dropdownIznajmljivanjeArhiviraneRezervacijeTabela = dotsIznajmljivanjeArhiviraneRezervacijeTabela.closest("td").find(".iznajmljivanje-arhivirane-rezervacije");
-    dropdownIznajmljivanjeArhiviraneRezervacijeTabela.toggle();
+$(".dotsRentingArchivedReservationsTable").click(function () {
+    var dotsRentingArchivedReservationsTable = $(this);
+    var dropdownRentingArchivedReservationsTable = dotsRentingArchivedReservationsTable.closest("td").find(".renting-archived-reservations");
+    dropdownRentingArchivedReservationsTable.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIznajmljivanjeArhiviraneRezervacijeTabela = $(".iznajmljivanje-arhivirane-rezervacije");
-    if (!dropdownIznajmljivanjeArhiviraneRezervacijeTabela.is(e.target) &&
-        dropdownIznajmljivanjeArhiviraneRezervacijeTabela.has(e.target).length === 0) {
-        dropdownIznajmljivanjeArhiviraneRezervacijeTabela.slideUp();
+    var dropdownRentingArchivedReservationsTable = $(".renting-archived-reservations");
+    if (!dropdownRentingArchivedReservationsTable.is(e.target) &&
+        dropdownRentingArchivedReservationsTable.has(e.target).length === 0) {
+        dropdownRentingArchivedReservationsTable.slideUp();
     }
 });
 

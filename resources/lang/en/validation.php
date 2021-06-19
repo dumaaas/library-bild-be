@@ -229,43 +229,43 @@ return [
         'name' => [
             'regex' => 'Ime i prezime autora ne može sadržati brojeve.',
         ],
-        'nazivKnjiga' => [
+        'bookTitle' => [
             'required' => 'Naziv knjige je obavezan.',
         ],
-        'valuesKategorije' => [
+        'valuesCategories' => [
             'required' => 'Kategorija je obavezna.',
         ],
-        'valuesZanrovi' => [
+        'valuesGenres' => [
             'required' => 'Žanr je obavezan.',
         ],
-        'valuesAutori' => [
+        'valuesAuthors' => [
             'required' => 'Autor je obavezan.',
         ],
-        'knjigaIzdavac' => [
+        'bookPublisher' => [
             'required' => 'Izdavač je obavezan.',
         ],
-        'godinaIzdavanja' => [
+        'publishYear' => [
             'required' => 'Godina izdavanja je obavezna.',
         ],
-        'knjigaKolicina' => [
+        'quantity' => [
             'required' => 'Količina je obavezna.',
         ],
-        'brStrana' => [
+        'pages' => [
             'required' => 'Broj strana je obavezan.',
         ],
-        'knjigaPismo' => [
+        'bookScript' => [
             'required' => 'Pismo je obavezno.',
         ],
-        'knjigaJezik' => [
+        'bookLanguage' => [
             'required' => 'Jezik je obavezan.',
         ],
-        'knjigaPovez' => [
+        'bookBinding' => [
             'required' => 'Povez je obavezan.',
         ],
-        'knjigaFormat' => [
+        'bookFormat' => [
             'required' => 'Format je obavezan.',
         ],
-        'knjigaIsbn' => [
+        'bookIsbn' => [
             'required' => 'ISBN knjige je obavezan.',
             'unique' => 'ISBN knjige već postoji u bazi podataka.',
             'regex' => 'ISBN knjige mora biti pravilnog formata.',

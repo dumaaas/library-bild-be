@@ -22,7 +22,7 @@
                                 <nav class="w-full rounded">
                                     <ol class="flex list-reset">
                                         <li>
-                                            <a href="{{route('evidencijaKnjiga')}}" class="text-[#2196f3] hover:text-blue-600">
+                                            <a href="{{route('bookRecords')}}" class="text-[#2196f3] hover:text-blue-600">
                                                 Evidencija knjiga
                                             </a>
                                         </li>
@@ -75,7 +75,7 @@
                             <div class="absolute right-0 w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <a href="{{route('editKnjiga', ['knjiga' => $book->id])}}" tabindex="0"
+                                    <a href="{{route('editBook', ['book' => $book->id])}}" tabindex="0"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
@@ -165,17 +165,17 @@
                                             class=" bg-green-200 text-green-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                             {{$book -> quantity- $book->reservedBooks - $book->rentedBooks}}
                                             primjeraka</p>
-                                        <a href="{{route('iznajmljivanjeAktivne', ['knjiga' => $book])}}">
+                                        <a href="{{route('rentingActive', ['book' => $book])}}">
                                             <p
                                                 class=" mt-[16px] bg-yellow-200 text-yellow-700 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                                 {{$book -> reservedBooks}} primjeraka</p>
                                         </a>
-                                        <a href="{{route('iznajmljivanjeIzdate', ['knjiga' => $book])}}">
+                                        <a href="{{route('rentingRented', ['book' => $book])}}">
                                             <p
                                                 class=" mt-[16px] bg-blue-200 text-blue-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                                 {{$book -> rentedBooks}} primjeraka</p>
                                         </a>
-                                        <a href="{{route('iznajmljivanjePrekoracenje', ['knjiga' => $book])}}">
+                                        <a href="{{route('rentingOverdue', ['book' => $book])}}">
                                             <p
                                                 class=" mt-[16px] bg-red-200 text-red-800 rounded-[10px] px-[6px] py-[2px] text-[14px]">
                                                 {{count($overdueBooks)}} primjeraka</p>
@@ -218,7 +218,7 @@
                         </div>
                         <!-- Modal Body -->
                         <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                            <a href="{{route('izbrisiKnjigu', ['knjiga' => $book->id])}}"
+                            <a href="{{route('deleteBook', ['book' => $book->id])}}"
                                 class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                 <i class="fas fa-check mr-[7px]"></i> Izbriši
                             </a>
