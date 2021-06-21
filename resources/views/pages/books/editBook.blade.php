@@ -119,7 +119,7 @@
                                                     <div x-show="selected.length    == 0" class="flex-1">
                                                         <input
                                                             class="w-full h-full p-1 px-2 text-gray-800 bg-transparent outline-none appearance-none"
-                                                            x-bind:value="selectedValuesKategorijaEdit()">
+                                                            x-bind:value="selectedValuesCategoryEdit()">
                                                     </div>
                                                 </div>
                                                 <div
@@ -215,7 +215,7 @@
                                                 <div x-show="selected.length    == 0" class="flex-1">
                                                     <input
                                                         class="w-full h-full p-1 px-2 text-gray-800 bg-transparent outline-none appearance-none"
-                                                        x-bind:value="selectedValuesZanrEdit()">
+                                                        x-bind:value="selectedValuesGenreEdit()">
                                                 </div>
                                             </div>
                                             <div
@@ -312,7 +312,7 @@
                                             <div x-show="selected.length    == 0" class="flex-1">
                                                 <input
                                                     class="w-full h-full p-1 px-2 text-gray-800 bg-transparent outline-none appearance-none"
-                                                    x-bind:value="selectedValuesAutoriEdit()">
+                                                    x-bind:value="selectedValuesAuthorsEdit()">
                                             </div>
                                         </div>
                                         <div class="flex items-center w-8 py-1 pl-2 pr-1 text-gray-300 svelte-1l8159u">

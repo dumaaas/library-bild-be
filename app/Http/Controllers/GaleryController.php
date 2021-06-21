@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class GaleryController extends Controller
 {
 
-    private $viewFolderBook = 'pages/knjiga';
+    private $viewFolderBook = 'pages/books';
 
     /**
      * Update slike
@@ -45,7 +45,7 @@ class GaleryController extends Controller
             $gallery->save();
         }
 
-        return back()->with('success','Slika je uspješno sacuvana!');
+        return back()->with('success','Slika je uspješno sačuvana!');
     }
 
     /**
