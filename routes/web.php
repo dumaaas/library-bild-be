@@ -163,8 +163,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     //GALLERY - ROUTES
-    Route::get('/deleteImage/{photo}', [\App\Http\Controllers\GaleryController::class, 'deleteImage'])->name('deleteImage');
-
+    Route::post('/deleteImage/{photo}', [\App\Http\Controllers\GaleryController::class, 'deleteImage'])->name('deleteImage');
+    Route::post('/updateImage', [\App\Http\Controllers\GaleryController::class, 'update'])->name('updateImage');
 
     //GENRE - ROUTES
     Route::get('/editGenre{genre}', [\App\Http\Controllers\GenreController::class, 'showEdit'])->name('editGenre');

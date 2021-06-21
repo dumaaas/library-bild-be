@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('editBook')
-    <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700">
+    <section class="w-screen h-screen pl-[80px] pb-4 text-gray-700" xmlns:x-bind="http://www.w3.org/1999/xhtml">
         <!-- Heading of content -->
         <div class="heading">
             <div class="flex border-b-[1px] border-[#e4dfdf]">
@@ -44,7 +44,7 @@
             <p onclick="openTab(event, 'editDetails')" class="inline cursor-pointer active-book-nav tablinks hover:text-blue-800">
                 Osnovni detalji
             </p>
-            <p  onclick="openTab(event, 'editSpecification')" class="cursor-pointer tablinks inline ml-[70px] hover:text-blue-800 ">
+            <p  onclick="openTab(event, 'editSpecification')" class="cursor-pointer tablinks inline ml-[70px] hover:text-blue-800">
                 Specifikacija
             </p>
             <p onclick="openTab(event, 'editMultimedia')" class="cursor-pointer tablinks inline ml-[70px] hover:text-blue-800">
@@ -492,7 +492,7 @@
                      class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                     <div x-ref="dnd"
                          class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
-                        <input accept="image/*" type="file" multiple id="slika-upload"
+                        <input accept="image/*" type="file" multiple id="imageUpload"
                                name="movieImages[]"
                                class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
                                @change="addFiles($event)"
@@ -530,7 +530,8 @@
                                     class="absolute top-[10px] right-[10px] z-10 p-1 bg-white rounded-bl focus:outline-none"
                                     type="radio" name="imageCover" {{ $photo->cover == 1 ? 'checked' : '' }} />
                                 <!-- End checkbox -->
-                                <a href="#" id="{{$photo->id}}"
+                                <a id="{{$photo->id}}"
+                                   onclick="removeImage({{$photo}})"
                                     class="absolute bottom-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none show-izbrisiModal"
                                     type="button" id="hide-image1">
                                     <svg class="w-[25px] h-[25px] text-gray-700"
@@ -566,7 +567,7 @@
                                             <i class="fas fa-check mr-[7px]"></i> Izbriši
                                         </a>
                                         <a href="#" id="{{$photo->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
-                                        <i class="fas fa-times mr-[7px]"></i> Poništi 
+                                        <i class="fas fa-times mr-[7px]"></i> Poništi
                                         </a>
                                     </div>
                                 </div>
@@ -652,12 +653,12 @@
                         <div class="inline-block w-full text-white text-right py-[7px] mr-[100px]">
                             <button type="reset"
                                     class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                    <i class="fas fa-times mr-[7px]"></i> Poništi 
+                                    <i class="fas fa-times mr-[7px]"></i> Poništi
                             </button>
                             <button id="saveBookEdit" type="submit"
                                     class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]"
                                     onclick="validacijaKnjigaEdit()">
-                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj 
+                                    <i class="fas fa-check mr-[7px]"></i> Sačuvaj
                             </button>
                         </div>
                     </div>

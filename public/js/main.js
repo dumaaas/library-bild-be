@@ -325,14 +325,14 @@ $(document).ready(function () {
     $(".show-deleteModal").on('click', function (e) {
         e.preventDefault();
         var id=$(this).attr('id');
-        var modal_id = "delete-modal_"+id; 
+        var modal_id = "delete-modal_"+id;
         $("."+modal_id).removeClass('hidden');
         $("."+modal_id).addClass('flex');
     });
     // Close Modal
     $(".cancel").on('click', function () {
         var id=$(this).attr('id');
-        var modal_id = "delete-modal_"+id; 
+        var modal_id = "delete-modal_"+id;
         console.log(id, modal_id);
         $("."+modal_id).addClass('hidden');
         $("."+modal_id).removeClass('flex');
@@ -428,41 +428,66 @@ function dataFileDnD() {
         },
         addFiles(e) {
             const files = createFileList([...this.files], [...e.target.files]);
-            console.log(files);
             this.files = files;
+
+            var fd = new FormData();
+            var ins = document.getElementById('imageUpload').files.length;
+
+            for (var x = 0; x < ins; x++) {
+                fd.append("movieImages[]", document.getElementById('imageUpload').files[x]);
+            }
+
+            const bookId= $("input[name=editBookId]").val();
+            fd.append('bookId',bookId);
 
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            e.preventDefault();
-            var movieImage = $('#slika-upload').prop('files')[0] ?? null;
-            
-            let formData = new FormData(editBookForm);
-            if(movieImage != null){
-                formData.append('movieImage', movieImage);
-            }
-            var bookId= $("input[name=editBookId]").val();
+
             $.ajax({
-                type: "POST",
-                data: formData,
-                processData: false,
+                type: 'POST',
+                cache: false,
                 contentType: false,
-                url: bookId+"/update/",
+                processData: false,
+                data : fd,
+                url: "/updateImage",
                 success: function(response){
                     // window.location = "/settingsZanrovi";
-                    $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.uspjesno+'</div>');
+                    // $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.uspjesno+'</div>');
                 },
                 error: function(response){
                     $('#movieImageError').empty();
-                    
+
                     $('#movieImageError').append(response.responseJSON.errors.movieImages);
                 }
             });
-                    // this.form.formData.files = [...files];
-                }
-            };
+        },
+    };
+}
+
+function removeImage(image) {
+    var imageId = image.id;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        data: imageId,
+        url: "/deleteImage/"+imageId,
+        success: function(response){
+            location.reload();
+            // $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.success+'</div>');
+        },
+        error: function(response){
+            $('#movieImageError').empty();
+        }
+    });
 }
 
 // Student image upload
