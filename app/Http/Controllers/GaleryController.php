@@ -45,7 +45,7 @@ class GaleryController extends Controller
             $gallery->save();
         }
 
-        return back()->with('success','Slika je uspješno sačuvana!');
+        return response()->json(['success'=>'Slika je uspješno sačuvana!']);
     }
 
     /**

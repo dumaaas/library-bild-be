@@ -39,6 +39,7 @@
                     @endphp
                 </div>
             @endif
+            <div id="successBookEdit"></div>
         </div>
         <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
             <p onclick="openTab(event, 'editDetails')" class="inline cursor-pointer active-book-nav tablinks hover:text-blue-800">
@@ -495,7 +496,7 @@
                         <input accept="image/*" type="file" multiple id="imageUpload"
                                name="movieImages[]"
                                class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
-                               @change="addFiles($event)"
+                               onchange="addFiles()"
                                @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');"
                                @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
                                @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"

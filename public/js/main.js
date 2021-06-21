@@ -426,47 +426,42 @@ function dataFileDnD() {
 
             return blobUrl;
         },
-        addFiles(e) {
-            const files = createFileList([...this.files], [...e.target.files]);
-            this.files = files;
-
-            var fd = new FormData();
-            var ins = document.getElementById('imageUpload').files.length;
-
-            for (var x = 0; x < ins; x++) {
-                fd.append("movieImages[]", document.getElementById('imageUpload').files[x]);
-            }
-
-            const bookId= $("input[name=editBookId]").val();
-            fd.append('bookId',bookId);
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: 'POST',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data : fd,
-                url: "/updateImage",
-                success: function(response){
-                    // window.location = "/settingsZanrovi";
-                    // $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.uspjesno+'</div>');
-                },
-                error: function(response){
-                    $('#movieImageError').empty();
-
-                    $('#movieImageError').append(response.responseJSON.errors.movieImages);
-                }
-            });
-        },
+    
     };
 }
 
+function addFiles() {
+   
+    var fd = new FormData();
+    var ins = document.getElementById('imageUpload').files.length;
+    for (var x = 0; x < ins; x++) {
+        fd.append("movieImages[]", document.getElementById('imageUpload').files[x]);
+    }
+    const bookId= $("input[name=editBookId]").val();
+    fd.append('bookId',bookId);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data : fd,
+        url: "/updateImage",
+        success: function(response){
+    
+            $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.success+'</div>');
+       console.log(response.success);
+        },
+        error: function(response){
+            $('#movieImageError').empty();
+            $('#movieImageError').append(response.responseJSON.errors.movieImages);
+        }
+    });
+}
 function removeImage(image) {
     var imageId = image.id;
     $.ajaxSetup({
