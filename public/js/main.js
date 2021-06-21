@@ -66,93 +66,92 @@ $(document).ready(function () {
 
     // $('#tabMenu a[href="#{{ old('tabMultimedia') }}"]').tab('show');
 
-    $('#autoriFilterPonisti').click(function (e) {
+    $('#authorsFilterCancel').click(function (e) {
         e.preventDefault();
-        $('.autoriFilterPonisti').prop("checked", false);
+        $('.authorsFilterCancel').prop("checked", false);
     })
 
-    $('#kategorijeFilterPonisti').click(function (e) {
+    $('#categoriesFilterCancel').click(function (e) {
         e.preventDefault();
-        $('.kategorijeFilterPonisti').prop("checked", false);
+        $('.categoriesFilterCancel').prop("checked", false);
     })
 
-    $('#uceniciFilterPonisti').click(function (e) {
+    $('#studentsFilterCancel').click(function (e) {
         e.preventDefault();
-        $('.uceniciFilterPonisti').prop("checked", false);
+        $('.studentsFilterCancel').prop("checked", false);
     })
 
-    $('#bibliotekariFilterPonisti').click(function (e) {
+    $('#librariansFilterCancel').click(function (e) {
         e.preventDefault();
-        $('.bibliotekariFilterPonisti').prop("checked", false);
+        $('.librariansFilterCancel').prop("checked", false);
     })
 
-    $('#knjigeFilterPonisti').click(function (e) {
+    $('#booksFilterCancel').click(function (e) {
         e.preventDefault();
-        $('.knjigeFilterPonisti').prop("checked", false);
+        $('.booksFilterCancel').prop("checked", false);
     })
 
-    $('#datumFilterPonisti').click(function (e) {
+    $('#dateFilterCancel').click(function (e) {
         e.preventDefault();
-        $('.datumFilterPonisti').val("");
+        $('.dateFilterCancel').val("");
     })
 
-    $('#vracenaFilterPonisti').click(function (e) {
+    $('#returnedFilterCancel').click(function (e) {
         e.preventDefault();
-        $('.vracenaFilterPonisti').val("");
+        $('.returnedFilterCancel').val("");
     })
 
     //dashboardAktivnost filter za pretragu aktivnosti
-    $('#uceniciFilter, #datumFilter, #bibliotekariFilter, #knjigeFilter').click(function (e) {
+    $('#studentsFilter, #dateFilter, #librariansFilter, #booksFilter').click(function (e) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         e.preventDefault();
-        var ucenici = [];
-        var knjige = [];
-        var bibliotekari = [];
-        ucenici = $('input:checked[name="uceniciFilter[]"]').map( function() {
+        var students = [];
+        var books = [];
+        var librarians = [];
+        students = $('input:checked[name="studentsFilter[]"]').map( function() {
             return $(this).val();
         }).get();
 
-        knjige = $('input:checked[name="knjigeFilter[]"]').map( function() {
+        books = $('input:checked[name="booksFilter[]"]').map( function() {
             return $(this).val();
         }).get();
 
-        bibliotekari = $('input:checked[name="bibliotekariFilter[]"]').map( function() {
+        librarians = $('input:checked[name="librariansFilter[]"]').map( function() {
             return $(this).val();
         }).get();
 
-        var datumOd = $('#datumOdFilter').val();
-        var datumDo = $('#datumDoFilter').val();
+        var dateFrom = $('#dateFromFilter').val();
+        var dateTo = $('#dateToFilter').val();
 
         var subcat = '';
 
         $.ajax({
             type: "POST",
             data: {
-                ucenici: ucenici,
-                knjige: knjige,
-                bibliotekari: bibliotekari,
-                datumOd: datumOd,
-                datumDo: datumDo,
+                students: students,
+                books: books,
+                librarians: librarians,
+                dateFrom: dateFrom,
+                dateTo: dateTo,
             },
-            url: "/filterAktivnosti",
+            url: "/filterActivities",
             dataType: 'json',
             success: function (response) {
 
-                if (response.aktivnosti.length > 0) {
+                if (response.activities.length > 0) {
                   $('#activityCards3').hide();
                   $('#activityCards2').show();
-                    console.log(response);
                     $('#activityCards').hide();
-                    var aktivnosti = response.aktivnosti;
+                    var activities = response.activities;
 
-                    aktivnosti.forEach(aktivnost => {
+                    activities.forEach(activity => {
                         subcat += '<div class="activity-card2 hidden flex-row mb-[30px]">';
                         subcat += '<div class="w-[60px] h-[60px]">';
-                        subcat += '<img class="rounded-full" src="/storage/image/'+ aktivnost.librarian.photo + '" alt="">';
+                        subcat += '<img class="rounded-full" src="/storage/image/'+ activity.librarian.photo + '" alt="">';
                         subcat += '</div>';
                         subcat += '<div class="ml-[15px] mt-[5px] flex flex-col">';
                         subcat += '<div class="text-gray-500 mb-[5px]">';
@@ -164,22 +163,22 @@ $(document).ready(function () {
                         subcat += '</div>';
                         subcat += '<div class="">';
                         subcat += '<p>';
-                        subcat += '<a href="/bibliotekarProfile/' + aktivnost.librarian.id + '" class="text-[#2196f3] hover:text-blue-600">';
-                        subcat += aktivnost.librarian.name;
+                        subcat += '<a href="/librarianProfile/' + activity.librarian.id + '" class="text-[#2196f3] hover:text-blue-600">';
+                        subcat += activity.librarian.name;
                         subcat += '</a>';
                         subcat += ' rented a book ';
-                        subcat += '<a href="/knjigaOsnovniDetalji/' + aktivnost.book.id + '" class="font-medium">';
-                        subcat += aktivnost.book.title;
+                        subcat += '<a href="/bookDetails/' + activity.book.id + '" class="font-medium">';
+                        subcat += activity.book.title;
                         subcat += '</a>';
                         subcat += ' to ';
-                        subcat += '<a href="/ucenikProfile/' + aktivnost.student.id + '" class="text-[#2196f3] hover:text-blue-600">';
-                        subcat += aktivnost.student.name;
+                        subcat += '<a href="/studentProfile/' + activity.student.id + '" class="text-[#2196f3] hover:text-blue-600">';
+                        subcat += activity.student.name;
                         subcat += '</a>';
                         subcat += ' on ';
                         subcat += '<span class="font-medium">';
-                        subcat += aktivnost.rent_date+'.';
+                        subcat += activity.rent_date+'.';
                         subcat += '</span>';
-                        subcat += '<a href="/izdavanjeDetalji/' + aktivnost.book.id + '/' + aktivnost.student.id+'" class="text-[#2196f3] hover:text-blue-600">';
+                        subcat += '<a href="/rentDetails/' + activity.book.id + '/' + activity.student.id+'" class="text-[#2196f3] hover:text-blue-600">';
                         subcat += ' more details >>';
                         subcat += '</a>';
                         subcat += '</p>';
@@ -188,7 +187,7 @@ $(document).ready(function () {
                         subcat += '</div>';
                     });
 
-                    if(aktivnosti.length>10) {
+                    if(activities.length>10) {
                         subcat += '<div class="inline-block w-full mt-4">'
                         subcat += '<button type="button"'
                         subcat += 'class="btn-animation w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded activity-showMore2 hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">'
@@ -200,77 +199,77 @@ $(document).ready(function () {
                     $('#activityCards2').html(subcat);
                     $('#activityCards2').show();
                     activityCard2();
-                    uceniciString = ucenici.toString();
-                    if(uceniciString != "") {
-                        $('#uceniciSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Učenici: "+uceniciString);
+                    studentsString = students.toString();
+                    if(studentsString != "") {
+                        $('#studentsAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#studentsAll').text("Učenici: "+studentsString);
                     } else {
-                        $('#uceniciSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Učenici: Svi");
+                        $('#studentsAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#studentsAll').text("Učenici: Svi");
                     }
 
-                    bibliotekariString = bibliotekari.toString();
-                    if(bibliotekariString != "") {
-                        $('#bibliotekariSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#bibliotekariSvi').text("Bibliotekari: "+bibliotekariString);
+                    librariansString = librarians.toString();
+                    if(librariansString != "") {
+                        $('#librariansAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#librariansAll').text("Bibliotekari: "+librariansString);
                     } else {
-                        $('#bibliotekariSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#bibliotekariSvi').text("Bibliotekari: Svi");
+                        $('#librariansAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#librariansAll').text("Bibliotekari: Svi");
                     }
 
-                    knjigeString = knjige.toString();
-                    if(knjigeString != "") {
-                        $('#knjigeSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#knjigeSvi').text("Knjige: "+knjigeString);
+                    booksString = books.toString();
+                    if(booksString != "") {
+                        $('#booksAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#booksAll').text("Knjige: "+booksString);
                     } else {
-                        $('#knjigeSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#knjigeSvi').text("Knjige: Sve");
+                        $('#booksAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#booksAll').text("Knjige: Sve");
                     }
 
-                    if(datumOd != "" && datumDo != "") {
-                        $('#datumSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#datumSvi').text("Datum: "+datumOd+" - "+datumDo);
+                    if(dateFrom != "" && dateTo != "") {
+                        $('#dateAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#dateAll').text("Datum: "+dateFrom+" - "+dateTo);
                     } else {
-                        $('#datumSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#datumSvi').text("Datum: Svi");
+                        $('#dateAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#dateAll').text("Datum: Svi");
                     }
 
 
                 } else {
 
-                    uceniciString = ucenici.toString();
-                    if(uceniciString != "") {
-                        $('#uceniciSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Učenici: "+uceniciString);
+                    studentsString = students.toString();
+                    if(studentsString != "") {
+                        $('#studentsAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#studentsAll').text("Učenici: "+studentsString);
                     } else {
-                        $('#uceniciSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#uceniciSvi').text("Učenici: Svi");
+                        $('#studentsAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#studentsAll').text("Učenici: Svi");
                     }
 
-                    bibliotekariString = bibliotekari.toString();
-                    if(bibliotekariString != "") {
-                        $('#bibliotekariSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#bibliotekariSvi').text("Bibliotekari: "+bibliotekariString);
+                    librariansString = librarians.toString();
+                    if(librariansString != "") {
+                        $('#librariansAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#librariansAll').text("Bibliotekari: "+librariansString);
                     } else {
-                        $('#bibliotekariSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#bibliotekariSvi').text("Bibliotekari: Svi");
+                        $('#librariansAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#librariansAll').text("Bibliotekari: Svi");
                     }
 
-                    knjigeString = knjige.toString();
-                    if(knjigeString != "") {
-                        $('#knjigeSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#knjigeSvi').text("Knjige: "+knjigeString);
+                    booksString = books.toString();
+                    if(booksString != "") {
+                        $('#booksAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#booksAll').text("Knjige: "+booksString);
                     } else {
-                        $('#knjigeSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#knjigeSvi').text("Knjige: Sve");
+                        $('#booksAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#booksAll').text("Knjige: Sve");
                     }
 
-                    if(datumOd != "" && datumDo != "") {
-                        $('#datumSvi').addClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#datumSvi').text("Datum: "+datumOd+" - "+datumDo);
+                    if(dateFrom != "" && dateTo != "") {
+                        $('#dateAll').addClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#dateAll').text("Datum: "+dateFrom+" - "+dateTo);
                     } else {
-                        $('#datumSvi').removeClass("bg-blue-200 text-blue-800 px-[5px]");
-                        $('#datumSvi').text("Datum: Svi");
+                        $('#dateAll').removeClass("bg-blue-200 text-blue-800 px-[5px]");
+                        $('#dateAll').text("Datum: Svi");
                     }
 
                     $('#activityCards2').hide();
@@ -299,26 +298,6 @@ $(document).ready(function () {
         modal.addClass('hidden');
         modal.removeClass('flex');
     })
-
-    // Vrati Knjigu Modal
-    vratiModal = $(".vrati-modal");
-    $(".show-vratiModal").on('click', function () {
-        vratiModal.removeClass('hidden');
-    })
-    // Close Modal
-    $(".close-modal").on('click', function () {
-        vratiModal.addClass('hidden');
-    })
-
-    // Otpisi Knjigu Modal
-    otpisiModal = $(".otpisi-modal");
-    $(".show-otpisiModal").on('click', function () {
-        otpisiModal.removeClass('hidden');
-    })
-    // Close Modal
-    $(".otpisi-modal").on('click', function () {
-        otpisiModal.addClass('hidden');
-    })
 });
 
     // Modal za potvrdu brisanja
@@ -333,7 +312,6 @@ $(document).ready(function () {
     $(".cancel").on('click', function () {
         var id=$(this).attr('id');
         var modal_id = "delete-modal_"+id;
-        console.log(id, modal_id);
         $("."+modal_id).addClass('hidden');
         $("."+modal_id).removeClass('flex');
     });
@@ -452,9 +430,7 @@ function addFiles() {
         data : fd,
         url: "/updateImage",
         success: function(response){
-    
             $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.success+'</div>');
-       console.log(response.success);
         },
         error: function(response){
             $('#movieImageError').empty();
@@ -558,8 +534,8 @@ function sortTable() {
     }
 }
 //rezervacije promjena statusa
-let rezervacije = $('.rezervacije');
-rezervacije.on('click', (event) => {
+let reservations = $('.reservations');
+reservations.on('click', (event) => {
     if (event.target.classList.contains('reservedStatus')) {
         event.target.closest('.changeStatus').classList.add('hidden');
         event.target.closest('.changeStatus').nextElementSibling.classList.remove('hidden');
@@ -606,300 +582,6 @@ $(".deniedBook").click(function () {
     var backgroundRowChange = checkMark.closest("tr")
     backgroundRowChange.removeClass('bg-gray-200')
 })
-
-// Form validation for new book
-function validacijaKnjiga() {
-
-    $("#validateNazivKnjiga").empty();
-    $("#validateKategorija").empty();
-    $("#validateZanr").empty();
-    $("#validateAutori").empty();
-    $("#validateIzdavac").empty();
-    $("#validateGodinaIzdavanja").empty();
-    $("#validateKnjigaKolicina").empty();
-
-
-    let nazivKnjiga = $("#nazivKnjiga").val();
-    let kategorija = $("#kategorijaInput").val();
-    let zanr = $("#zanroviInput").val();
-    let autori = $("#autoriInput").val();
-    let izdavac = $("#izdavac").val();
-    let godinaIzdavanja = $("#godinaIzdavanja").val();
-    let knjigaKolicina = $("#knjigaKolicina").val();
-
-    if (nazivKnjiga.length == 0) {
-        $('#validateNazivKnjiga').append('<p style="color:red;font-size:13px;">Morate unijeti naziv knjige!</p>');
-    }
-
-    if (kategorija.length == 0) {
-        $('#validateKategorija').append('<p style="color:red;font-size:13px;">Morate selektovati kategoriju!</p>');
-    }
-
-    if (zanr.length == 0) {
-        $('#validateZanr').append('<p style="color:red;font-size:13px;">Morate selektovati zanr!</p>');
-    }
-
-    if (autori.length == 0) {
-        $('#validateAutori').append('<p style="color:red;font-size:13px;">Morate odabrati autore!</p>');
-    }
-
-    if (izdavac == null) {
-        $('#validateIzdavac').append('<p style="color:red;font-size:13px;">Morate selektovati izdavaca!</p>');
-    }
-
-    if (godinaIzdavanja == null) {
-        $('#validateGodinaIzdavanja').append('<p style="color:red;font-size:13px;">Morate selektovati godinu izdavanja!</p>');
-    }
-
-    if (knjigaKolicina.length == 0) {
-        $('#validateKnjigaKolicina').append('<p style="color:red;font-size:13px;">Morate unijeti kolicinu!</p>');
-    }
-}
-
-function clearErrorsNazivKnjiga() {
-    $("#validateNazivKnjiga").empty();
-}
-
-function clearErrorsKategorija() {
-    $("#validateKategorija").empty();
-}
-
-function clearErrorsZanr() {
-    $("#validateZanr").empty();
-}
-
-function clearErrorsAutori() {
-    $("#validateAutori").empty();
-}
-
-function clearErrorsIzdavac() {
-    $("#validateIzdavac").empty();
-}
-
-function clearErrorsGodinaIzdavanja() {
-    $("#validateGodinaIzdavanja").empty();
-}
-
-function clearErrorsKnjigaKolicina() {
-    $("#validateKnjigaKolicina").empty();
-}
-
-$("#sacuvajKnjigu").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaKnjiga();
-        return false;
-    }
-});
-
-// Form validation for editing book info
-function validacijaKnjigaEdit() {
-
-    $("#validateNazivKnjigaEdit").empty();
-    $("#validateKategorijaEdit").empty();
-    $("#validateZanrEdit").empty();
-    $("#validateAutoriEdit").empty();
-    $("#validateIzdavacEdit").empty();
-    $("#validateGodinaIzdavanjaEdit").empty();
-    $("#validateKnjigaKolicinaEdit").empty();
-
-
-    let nazivKnjigaEdit = $("#nazivKnjigaEdit").val();
-    let kategorijaInputEdit = $("#kategorijaInputEdit").val();
-    let zanroviInputEdit = $("#zanroviInputEdit").val();
-    let autoriInputEdit = $("#autoriInputEdit").val();
-    let izdavacEdit = $("#izdavacEdit").val();
-    let godinaIzdavanjaEdit = $("#godinaIzdavanjaEdit").val();
-    let knjigaKolicinaEdit = $("#knjigaKolicinaEdit").val();
-
-    if (nazivKnjigaEdit.length == 0) {
-        $('#validateNazivKnjigaEdit').append('<p style="color:red;font-size:13px;">Morate unijeti naziv knjige!</p>');
-    }
-
-    if (kategorijaInputEdit.length == 0) {
-        $('#validateKategorijaEdit').append('<p style="color:red;font-size:13px;">Morate selektovati kategoriju!</p>');
-    }
-
-    if (zanroviInputEdit.length == 0) {
-        $('#validateZanrEdit').append('<p style="color:red;font-size:13px;">Morate selektovati zanr!</p>');
-    }
-
-    if (autoriInputEdit.length == 0) {
-        $('#validateAutoriEdit').append('<p style="color:red;font-size:13px;">Morate odabrati autore!</p>');
-    }
-
-    if (izdavacEdit == null) {
-        $('#validateIzdavacEdit').append('<p style="color:red;font-size:13px;">Morate selektovati izdavaca!</p>');
-    }
-
-    if (godinaIzdavanjaEdit == null) {
-        $('#validateGodinaIzdavanjaEdit').append('<p style="color:red;font-size:13px;">Morate selektovati godinu izdavanja!</p>');
-    }
-
-    if (knjigaKolicinaEdit.length == 0) {
-        $('#validateKnjigaKolicinaEdit').append('<p style="color:red;font-size:13px;">Morate unijeti kolicinu!</p>');
-    }
-}
-
-function clearErrorsNazivKnjigaEdit() {
-    $("#validateNazivKnjigaEdit").empty();
-}
-
-function clearErrorsKategorijaEdit() {
-    $("#validateKategorijaEdit").empty();
-}
-
-function clearErrorsZanrEdit() {
-    $("#validateZanrEdit").empty();
-}
-
-function clearErrorsAutoriEdit() {
-    $("#validateAutoriEdit").empty();
-}
-
-function clearErrorsIzdavacEdit() {
-    $("#validateIzdavacEdit").empty();
-}
-
-function clearErrorsGodinaIzdavanjaEdit() {
-    $("#validateGodinaIzdavanjaEdit").empty();
-}
-
-function clearErrorsKnjigaKolicinaEdit() {
-    $("#validateKnjigaKolicinaEdit").empty();
-}
-
-$("#sacuvajKnjiguEdit").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaKnjigaEdit();
-        return false;
-    }
-});
-
-// Form validation for new specification of the book
-function validacijaSpecifikacija() {
-
-    $("#validateBrStrana").empty();
-    $("#validatePismo").empty();
-    $("#validatePovez").empty();
-    $("#validateFormat").empty();
-    $("#validateIsbn").empty();
-
-    let brStrana = $("#brStrana").val();
-    let pismo = $("#pismo").val();
-    let povez = $("#povez").val();
-    let format = $("#format").val();
-    let isbn = $("#isbn").val();
-
-    if (brStrana.length == 0) {
-        $('#validateBrStrana').append('<p style="color:red;font-size:13px;">Morate unijeti broj strana!</p>');
-    }
-
-    if (pismo == null) {
-        $('#validatePismo').append('<p style="color:red;font-size:13px;">Morate selektovati pismo!</p>');
-    }
-
-    if (povez == null) {
-        $('#validatePovez').append('<p style="color:red;font-size:13px;">Morate selektovati povez!</p>');
-    }
-
-    if (format == null) {
-        $('#validateFormat').append('<p style="color:red;font-size:13px;">Morate selektovati format!</p>');
-    }
-
-    if (isbn.length == 0) {
-        $('#validateIsbn').append('<p style="color:red;font-size:13px;">Morate unijeti ISBN!</p>');
-    }
-}
-
-function clearErrorsBrStrana() {
-    $("#validateBrStrana").empty();
-}
-
-function clearErrorsPismo() {
-    $("#validatePismo").empty();
-}
-
-function clearErrorsPovez() {
-    $("#validatePovez").empty();
-}
-
-function clearErrorsFormat() {
-    $("#validateFormat").empty();
-}
-
-function clearErrorsIsbn() {
-    $("#validateIsbn").empty();
-}
-
-$("#sacuvajSpecifikaciju").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaSpecifikacija();
-        return false;
-    }
-});
-
-// Form validation for editing specification of the book
-function validacijaSpecifikacijaEdit() {
-
-    $("#validateBrStranaEdit").empty();
-    $("#validatePismoEdit").empty();
-    $("#validatePovezEdit").empty();
-    $("#validateFormatEdit").empty();
-    $("#validateIsbnEdit").empty();
-
-    let brStranaEdit = $("#brStranaEdit").val();
-    let pismoEdit = $("#pismoEdit").val();
-    let povezEdit = $("#povezEdit").val();
-    let formatEdit = $("#formatEdit").val();
-    let isbnEdit = $("#isbnEdit").val();
-
-    if (brStranaEdit.length == 0) {
-        $('#validateBrStranaEdit').append('<p style="color:red;font-size:13px;">Morate unijeti broj strana!</p>');
-    }
-
-    if (pismoEdit == null) {
-        $('#validatePismoEdit').append('<p style="color:red;font-size:13px;">Morate selektovati pismo!</p>');
-    }
-
-    if (povezEdit == null) {
-        $('#validatePovezEdit').append('<p style="color:red;font-size:13px;">Morate selektovati povez!</p>');
-    }
-
-    if (formatEdit == null) {
-        $('#validateFormatEdit').append('<p style="color:red;font-size:13px;">Morate selektovati format!</p>');
-    }
-
-    if (isbnEdit.length == 0) {
-        $('#validateIsbnEdit').append('<p style="color:red;font-size:13px;">Morate unijeti ISBN!</p>');
-    }
-}
-
-function clearErrorsBrStranaEdit() {
-    $("#validateBrStranaEdit").empty();
-}
-
-function clearErrorsPismoEdit() {
-    $("#validatePismoEdit").empty();
-}
-
-function clearErrorsPovezEdit() {
-    $("#validatePovezEdit").empty();
-}
-
-function clearErrorsFormatEdit() {
-    $("#validateFormatEdit").empty();
-}
-
-function clearErrorsIsbnEdit() {
-    $("#validateIsbnEdit").empty();
-}
-
-$("#sacuvajSpecifikacijuEdit").keypress(function (e) {
-    if (e.which == 13) {
-        validacijaSpecifikacijaEdit();
-        return false;
-    }
-});
 
 function sortTableDate(row) {
     var table, rows, switching, i, x, y, shouldSwitch;
@@ -1080,8 +762,6 @@ $(document).on('mouseup', function (e) {
 
 function filterFunction(id, dropdown, item) {
     var input, filter, ul, li, a, i;
-    console.log(id);
-    console.log(dropdown);
 
     input = document.getElementById(id);
     filter = input.value.toUpperCase();
@@ -1398,147 +1078,147 @@ $(document).on('mouseup', function (e) {
 });
 
 // Student - profile - record - dropdown
-$(".dotsStudentProfileEvidencija").click(function () {
-    $(".dropdown-student-profile-evidencija").toggle();
+$(".dotsStudentProfileRecords").click(function () {
+    $(".dropdown-student-profile-records").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownStudentProfileEvidencija = $(".dropdown-student-profile-evidencija");
-    if (!dropdownStudentProfileEvidencija.is(e.target) &&
-        dropdownStudentProfileEvidencija.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsStudentProfileEvidencija')) {
-        dropdownStudentProfileEvidencija.slideUp();
+    var dropdownStudentProfileRecords = $(".dropdown-student-profile-records");
+    if (!dropdownStudentProfileRecords.is(e.target) &&
+        dropdownStudentProfileRecords.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsStudentProfileRecords')) {
+        dropdownStudentProfileRecords.slideUp();
     }
 });
 
 // Student - profile - vracene knjige - dropdown
-$(".dotsUcenikVraceneKnjige").click(function () {
-    $(".ucenik-vracene-knjige").toggle();
+$(".dotsStudentReturnedBooks").click(function () {
+    $(".student-returned-books").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownUcenikVraceneKnjige = $(".ucenik-vracene-knjige");
-    if (!dropdownUcenikVraceneKnjige.is(e.target) &&
-        dropdownUcenikVraceneKnjige.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsUcenikVraceneKnjige')) {
-        dropdownUcenikVraceneKnjige.slideUp();
+    var dropdownStudentReturnedBooks = $(".student-returned-books");
+    if (!dropdownStudentReturnedBooks.is(e.target) &&
+        dropdownStudentReturnedBooks.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsStudentReturnedBooks')) {
+        dropdownStudentReturnedBooks.slideUp();
     }
 });
 
 // Student - profile - knjige u prekoracenju - dropdown
-$(".dotsUcenikKnjigePrekoracenje").click(function () {
-    $(".ucenik-prekoracenje-knjige").toggle();
+$(".dotsStudentBooksOverdue").click(function () {
+    $(".student-overdue-books").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownUcenikKnjigePrekoracenje = $(".ucenik-prekoracenje-knjige");
-    if (!dropdownUcenikKnjigePrekoracenje.is(e.target) &&
-        dropdownUcenikKnjigePrekoracenje.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsUcenikKnjigePrekoracenje')) {
-        dropdownUcenikKnjigePrekoracenje.slideUp();
+    var dropdownStudentBooksOverdue = $(".student-overdue-books");
+    if (!dropdownStudentBooksOverdue.is(e.target) &&
+        dropdownStudentBooksOverdue.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsStudentBooksOverdue')) {
+        dropdownStudentBooksOverdue.slideUp();
     }
 });
 
 // Student - profile - aktivne knjige - dropdown
-$(".dotsUcenikKnjigeAktivne").click(function () {
-    $(".ucenik-aktivne-knjige").toggle();
+$(".dotsStudentBooksActive").click(function () {
+    $(".student-active-books").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownUcenikKnjigeAktivne = $(".ucenik-aktivne-knjige");
-    if (!dropdownUcenikKnjigeAktivne.is(e.target) &&
-        dropdownUcenikKnjigeAktivne.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsUcenikKnjigeAktivne')) {
-        dropdownUcenikKnjigeAktivne.slideUp();
+    var dropdownStudentBooksActive = $(".student-active-books");
+    if (!dropdownStudentBooksActive.is(e.target) &&
+        dropdownStudentBooksActive.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsStudentBooksActive')) {
+        dropdownStudentBooksActive.slideUp();
     }
 });
 
 // Student - profile - arhivirane knjige - dropdown
-$(".dotsUcenikKnjigeArhivirane").click(function () {
-    $(".ucenik-arhivirane-knjige").toggle();
+$(".dotsStudentBooksArchived").click(function () {
+    $(".student-archived-books").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownUcenikKnjigeArhivirane = $(".ucenik-arhivirane-knjige");
-    if (!dropdownUcenikKnjigeArhivirane.is(e.target) &&
-        dropdownUcenikKnjigeArhivirane.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsUcenikKnjigeArhivirane')) {
-        dropdownUcenikKnjigeArhivirane.slideUp();
+    var dropdownStudentBooksArchived = $(".student-archived-books");
+    if (!dropdownStudentBooksArchived.is(e.target) &&
+        dropdownStudentBooksArchived.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsStudentBooksArchived')) {
+        dropdownStudentBooksArchived.slideUp();
     }
 });
 
 // Student - profile - book record - dropdown
 $(".dotsStudentProfileBookRecord").click(function () {
     var dotsStudentProfileBookRecord = $(this);
-    var dropdownStudentProfileEvidencijaKnjige = dotsStudentProfileBookRecord.closest("td").find(".dropdown-student-profile-evidencija-knjige");
-    dropdownStudentProfileEvidencijaKnjige.toggle();
+    var dropdownStudentProfileBookRecords = dotsStudentProfileBookRecord.closest("td").find(".dropdown-student-profile-record-book");
+    dropdownStudentProfileBookRecords.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownStudentProfileEvidencijaKnjige = $(".dropdown-student-profile-evidencija-knjige");
-    if (!dropdownStudentProfileEvidencijaKnjige.is(e.target) &&
-        dropdownStudentProfileEvidencijaKnjige.has(e.target).length === 0) {
-        dropdownStudentProfileEvidencijaKnjige.slideUp();
+    var dropdownStudentProfileBookRecords = $(".dropdown-student-profile-record-book");
+    if (!dropdownStudentProfileBookRecords.is(e.target) &&
+        dropdownStudentProfileBookRecords.has(e.target).length === 0) {
+        dropdownStudentProfileBookRecords.slideUp();
     }
 });
 
 // Student - profile - vracene knjige tabela - dropdown
-$(".dotsUcenikVraceneKnjigeTabela").click(function () {
-    var dotsUcenikVraceneKnjigeTabela = $(this);
-    var dropdownUcenikVraceneKnjigeTabela = dotsUcenikVraceneKnjigeTabela.closest("td").find(".ucenik-vracene-knjige-tabela");
-    dropdownUcenikVraceneKnjigeTabela.toggle();
+$(".dotsStudentReturnedBooksTable").click(function () {
+    var dotsStudentReturnedBooksTable = $(this);
+    var dropdownStudentReturnedBooksTable = dotsStudentReturnedBooksTable.closest("td").find(".student-returned-books-table");
+    dropdownStudentReturnedBooksTable.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownUcenikVraceneKnjigeTabela = $(".ucenik-vracene-knjige-tabela");
-    if (!dropdownUcenikVraceneKnjigeTabela.is(e.target) &&
-        dropdownUcenikVraceneKnjigeTabela.has(e.target).length === 0) {
-        dropdownUcenikVraceneKnjigeTabela.slideUp();
+    var dropdownStudentReturnedBooksTable = $(".student-returned-books-table");
+    if (!dropdownStudentReturnedBooksTable.is(e.target) &&
+        dropdownStudentReturnedBooksTable.has(e.target).length === 0) {
+        dropdownStudentReturnedBooksTable.slideUp();
     }
 });
 
 // Student - profile - knjige u prekoracenju tabela - dropdown
-$(".dotsUcenikPrekoracenjeKnjige").click(function () {
-    var dotsUcenikPrekoracenjeKnjige = $(this);
-    var dropdownPrekoracenjeKnjige = dotsUcenikPrekoracenjeKnjige.closest("td").find(".ucenik-prekoracenje-knjige-tabela");
-    dropdownPrekoracenjeKnjige.toggle();
+$(".dotsStudentOverdueBooks").click(function () {
+    var dotsStudentOverdueBooks = $(this);
+    var dropdownOverdueBooks = dotsStudentOverdueBooks.closest("td").find(".student-overdue-books-table");
+    dropdownOverdueBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownPrekoracenjeKnjige = $(".ucenik-prekoracenje-knjige-tabela");
-    if (!dropdownPrekoracenjeKnjige.is(e.target) &&
-        dropdownPrekoracenjeKnjige.has(e.target).length === 0) {
-        dropdownPrekoracenjeKnjige.slideUp();
+    var dropdownOverdueBooks = $(".student-overdue-books-table");
+    if (!dropdownOverdueBooks.is(e.target) &&
+        dropdownOverdueBooks.has(e.target).length === 0) {
+        dropdownOverdueBooks.slideUp();
     }
 });
 
 // Student - profile - aktivne knjige tabela - dropdown
-$(".dotsUcenikAktivneKnjige").click(function () {
-    var dotsUcenikAktivneKnjige = $(this);
-    var dropdownAktivneKnjige = dotsUcenikAktivneKnjige.closest("td").find(".ucenik-aktivne-knjige-tabela");
-    dropdownAktivneKnjige.toggle();
+$(".dotsStudentActiveBooks").click(function () {
+    var dotsStudentActiveBooks = $(this);
+    var dropdownActiveBooks = dotsStudentActiveBooks.closest("td").find(".student-active-books-table");
+    dropdownActiveBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownAktivneKnjige = $(".ucenik-aktivne-knjige-tabela");
-    if (!dropdownAktivneKnjige.is(e.target) &&
-        dropdownAktivneKnjige.has(e.target).length === 0) {
-        dropdownAktivneKnjige.slideUp();
+    var dropdownActiveBooks = $(".student-active-books-table");
+    if (!dropdownActiveBooks.is(e.target) &&
+        dropdownActiveBooks.has(e.target).length === 0) {
+        dropdownActiveBooks.slideUp();
     }
 });
 
 // Student - profile - arhivirane knjige tabela - dropdown
-$(".dotsUcenikArhiviraneKnjige").click(function () {
-    var dotsUcenikArhiviraneKnjige = $(this);
-    var dropdownArhiviraneKnjige = dotsUcenikArhiviraneKnjige.closest("td").find(".ucenik-arhivirane-knjige-tabela");
-    dropdownArhiviraneKnjige.toggle();
+$(".dotsStudentArchivedBooks").click(function () {
+    var dotsStudentArchivedBooks = $(this);
+    var dropdownArchivedBooks = dotsStudentArchivedBooks.closest("td").find(".student-archived-books-table");
+    dropdownArchivedBooks.toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownArhiviraneKnjige = $(".ucenik-arhivirane-knjige-tabela");
-    if (!dropdownArhiviraneKnjige.is(e.target) &&
-        dropdownArhiviraneKnjige.has(e.target).length === 0) {
-        dropdownArhiviraneKnjige.slideUp();
+    var dropdownArchivedBooks = $(".student-archived-books-table");
+    if (!dropdownArchivedBooks.is(e.target) &&
+        dropdownArchivedBooks.has(e.target).length === 0) {
+        dropdownArchivedBooks.slideUp();
     }
 });
 
@@ -1652,7 +1332,7 @@ $(".dotsAuthor").click(function () {
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownAutor = $(".dropdown-autor");
+    var dropdownAutor = $(".dropdown-author");
     if (!dropdownAutor.is(e.target) &&
         dropdownAutor.has(e.target).length === 0 &&
         !$(e.target).is('.dotsAuthor')) {
@@ -1676,114 +1356,114 @@ $(document).on('mouseup', function (e) {
 });
 
 // Knjiga - osnovni detalji - dropdown
-$(".dotsKnjigaOsnovniDetalji").click(function () {
-    $(".dropdown-knjiga-osnovni-detalji").toggle();
+$(".dotsBookDetails").click(function () {
+    $(".dropdown-book-details").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownKnjigaOsnovniDetalji = $(".dropdown-knjiga-osnovni-detalji");
-    if (!dropdownKnjigaOsnovniDetalji.is(e.target) &&
-        dropdownKnjigaOsnovniDetalji.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsKnjigaOsnovniDetalji')) {
-        dropdownKnjigaOsnovniDetalji.slideUp();
+    var dropdownBookDetails = $(".dropdown-book-details");
+    if (!dropdownBookDetails.is(e.target) &&
+        dropdownBookDetails.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsBookDetails')) {
+        dropdownBookDetails.slideUp();
     }
 });
 
 // Izdaj knjigu - dropdown
-$(".dotsIzdajKnjigu").click(function () {
-    $(".dropdown-izdaj-knjigu").toggle();
+$(".dotsRentBook").click(function () {
+    $(".dropdown-rent-book").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIzdajKnjigu = $(".dropdown-izdaj-knjigu");
-    if (!dropdownIzdajKnjigu.is(e.target) &&
-        dropdownIzdajKnjigu.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIzdajKnjigu')) {
-        dropdownIzdajKnjigu.slideUp();
+    var dropdownRentBook = $(".dropdown-rent-book");
+    if (!dropdownRentBook.is(e.target) &&
+        dropdownRentBook.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentBook')) {
+        dropdownRentBook.slideUp();
     }
 });
 
 // Izdaj knjigu error - dropdown
-$(".dotsIzdajKnjiguError").click(function () {
-    $(".dropdown-izdaj-knjigu-error").toggle();
+$(".dotsRentBookError").click(function () {
+    $(".dropdown-rent-book-error").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownIzdajKnjiguError = $(".dropdown-izdaj-knjigu-error");
-    if (!dropdownIzdajKnjiguError.is(e.target) &&
-        dropdownIzdajKnjiguError.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsIzdajKnjiguError')) {
-        dropdownIzdajKnjiguError.slideUp();
+    var dropdownRentBookError = $(".dropdown-rent-book-error");
+    if (!dropdownRentBookError.is(e.target) &&
+        dropdownRentBookError.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsRentBookError')) {
+        dropdownRentBookError.slideUp();
     }
 });
 
 // Vrati knjigu - dropdown
-$(".dotsVratiKnjigu").click(function () {
-    $(".dropdown-vrati-knjigu").toggle();
+$(".dotsReturnBook").click(function () {
+    $(".dropdown-return-book").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownVratiKnjigu = $(".dropdown-vrati-knjigu");
-    if (!dropdownVratiKnjigu.is(e.target) &&
-        dropdownVratiKnjigu.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsVratiKnjigu')) {
-        dropdownVratiKnjigu.slideUp();
+    var dropdownReturnBook = $(".dropdown-return-book");
+    if (!dropdownReturnBook.is(e.target) &&
+        dropdownReturnBook.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsReturnBook')) {
+        dropdownReturnBook.slideUp();
     }
 });
 
 // Rezervisi knjigu - dropdown
-$(".dotsRezervisiKnjigu").click(function () {
-    $(".dropdown-rezervisi-knjigu").toggle();
+$(".dotsReserveBook").click(function () {
+    $(".dropdown-reserve-book").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownRezervisiKnjigu = $(".dropdown-rezervisi-knjigu");
-    if (!dropdownRezervisiKnjigu.is(e.target) &&
-        dropdownRezervisiKnjigu.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsRezervisiKnjigu')) {
-        dropdownRezervisiKnjigu.slideUp();
+    var dropdownReserveBook = $(".dropdown-reserve-book");
+    if (!dropdownReserveBook.is(e.target) &&
+        dropdownReserveBook.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsReserveBook')) {
+        dropdownReserveBook.slideUp();
     }
 });
 
 // Otpisi knjigu - dropdown
-$(".dotsOtpisiKnjigu").click(function () {
-    $(".dropdown-otpisi-knjigu").toggle();
+$(".dotsWriteOffBook").click(function () {
+    $(".dropdown-writeoff-book").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownOtpisiKnjigu = $(".dropdown-otpisi-knjigu");
-    if (!dropdownOtpisiKnjigu.is(e.target) &&
-        dropdownOtpisiKnjigu.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsOtpisiKnjigu')) {
-        dropdownOtpisiKnjigu.slideUp();
+    var dropdownWriteOffBook = $(".dropdown-writeoff-book");
+    if (!dropdownWriteOffBook.is(e.target) &&
+        dropdownWriteOffBook.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsWriteOffBook')) {
+        dropdownWriteOffBook.slideUp();
     }
 });
 
 // Knjiga - specifikacija - dropdown
-$(".dotsKnjigaSpecifikacija").click(function () {
-    $(".dropdown-knjiga-specifikacija").toggle();
+$(".dotsBookSpecification").click(function () {
+    $(".dropdown-book-specification").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownKnjigaSpecifikacija = $(".dropdown-knjiga-specifikacija");
-    if (!dropdownKnjigaSpecifikacija.is(e.target) &&
-        dropdownKnjigaSpecifikacija.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsKnjigaSpecifikacija')) {
-        dropdownKnjigaSpecifikacija.slideUp();
+    var dropdownBookSpecification = $(".dropdown-book-specification");
+    if (!dropdownBookSpecification.is(e.target) &&
+        dropdownBookSpecification.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsBookSpecification')) {
+        dropdownBookSpecification.slideUp();
     }
 });
 
 // Knjiga - multimedija - dropdown
-$(".dotsKnjigaMultimedija").click(function () {
-    $(".dropdown-knjiga-multimedija").toggle();
+$(".dotsBookMultimedia").click(function () {
+    $(".dropdown-book-multimedia").toggle();
 })
 
 $(document).on('mouseup', function (e) {
-    var dropdownKnjigaMultimedija = $(".dropdown-knjiga-multimedija");
-    if (!dropdownKnjigaMultimedija.is(e.target) &&
-        dropdownKnjigaMultimedija.has(e.target).length === 0 &&
-        !$(e.target).is('.dotsKnjigaMultimedija')) {
-        dropdownKnjigaMultimedija.slideUp();
+    var dropdownBookMultimedia = $(".dropdown-book-multimedia");
+    if (!dropdownBookMultimedia.is(e.target) &&
+        dropdownBookMultimedia.has(e.target).length === 0 &&
+        !$(e.target).is('.dotsBookMultimedia')) {
+        dropdownBookMultimedia.slideUp();
     }
 });
 
@@ -1963,7 +1643,7 @@ $('.checkAll').click(function () {
         $('.form-checkbox').prop('checked', false);
         $('tr').removeClass('bg-gray-200');
         $('tr').children().eq(1).html('Naziv knjige<a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down" onclick="sortTable()"></i></a>')
-        $('tr').children().eq(2).html('Autor<i class="ml-2 fas fa-filter"></i><div id="autoriDropdown" class="autoriMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300"><ul class="border-b-2 border-gray-300 list-reset"><li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300"><input class="w-full h-10 px-2 border-2 rounded focus:outline-none" placeholder="Search" onkeyup="filterFunction(" searchAutori ", "autoriDropdown ")" id="searchAutori"><br> <button class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900"><i class="fas fa-search"></i></button></li><div class="h-[200px] scroll font-normal"> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"> <input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />  </svg> </div> </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600"> Autor Autorovic </p> </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg> </div>  </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 2 </p>  </li>  <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200">  <label class="flex items-center justify-start">  <div  class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"> <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20">  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg>  </div> </label>  <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 3  </p> </li>  <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />  </svg> </div> </label>  <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600"> Autor Autorovic 4  </p> </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start">  <div  class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /></svg> </div> </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 5 </p> </li><li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"><input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20">  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />  </svg> </div> </label> <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 6 </p> </li> </div></ul><div class="flex pt-[10px] text-white "> <a href="#" class="py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">  Sacuvaj <i class="fas fa-check ml-[4px]"></i> </a> <a href="#"  class="ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]"> Ponisti <i class="fas fa-times ml-[4px]"></i> </a> </div></div>')
+        $('tr').children().eq(2).html('Autor<i class="ml-2 fas fa-filter"></i><div id="authorsDropdown" class="authorsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300"><ul class="border-b-2 border-gray-300 list-reset"><li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300"><input class="w-full h-10 px-2 border-2 rounded focus:outline-none" placeholder="Search" onkeyup="filterFunction(" searchAuthors ", "authorsDropdown ")" id="searchAuthors"><br> <button class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900"><i class="fas fa-search"></i></button></li><div class="h-[200px] scroll font-normal"> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"> <input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />  </svg> </div> </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600"> Autor Autorovic </p> </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg> </div>  </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 2 </p>  </li>  <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200">  <label class="flex items-center justify-start">  <div  class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"> <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20">  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg>  </div> </label>  <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 3  </p> </li>  <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />  </svg> </div> </label>  <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600"> Autor Autorovic 4  </p> </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start">  <div  class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /></svg> </div> </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 5 </p> </li><li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"><input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20">  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />  </svg> </div> </label> <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Autor Autorovic 6 </p> </li> </div></ul><div class="flex pt-[10px] text-white "> <a href="#" class="py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">  Sacuvaj <i class="fas fa-check ml-[4px]"></i> </a> <a href="#"  class="ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]"> Ponisti <i class="fas fa-times ml-[4px]"></i> </a> </div></div>')
         $('tr').children().eq(3).html('Kategorija<i class="ml-2 fas fa-filter"></i><div id="kategorijeDropdown" class="kategorijeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300"><ul class="border-b-2 border-gray-300 list-reset">  <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300"> <input class="w-full h-10 px-2 border-2 rounded focus:outline-none" placeholder="Search"  onkeyup="filterFunction("searchKategorije", "kategorijeDropdown")"  id="searchKategorije"><br><button class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">  <i class="fas fa-search"></i> </button> </li><div class="h-[200px] scroll font-normal"> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />   </svg> </div> </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Romani </p> </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start">  <div  class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"> <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg> </div> </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600"> Udzbenici </p></li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start"> <div   class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0"> <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20">  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg> </div>  </label>  <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Drame </p> </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200"> <label class="flex items-center justify-start">  <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20">  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />  </svg>  </div> </label> <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600"> Naucna fantastika </p> </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200">  <label class="flex items-center justify-start"> <div class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500"> <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"  viewBox="0 0 20 20">  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg> </div> </label> <p class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Romedije  </p>  </li> <li class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200">  <label class="flex items-center justify-start"> <div   class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">  <input type="checkbox" class="absolute opacity-0">  <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current"   viewBox="0 0 20 20"> <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /> </svg> </div>  </label> <p  class="block p-2 text-black cursor-pointer group-hover:text-blue-600">  Trileri </p> </li> </div> </ul> <div class="flex pt-[10px] text-white "> <a href="#" class="py-2 px-[20px] transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]"> Sacuvaj <i class="fas fa-check ml-[4px]"></i> </a>  <a href="#" class="ml-[20px] py-2 px-[20px] transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">  Ponisti <i class="fas fa-times ml-[4px]"></i> </a></div></div>')
         $('tr').children().eq(4).html('Na raspolaganju')
         $('tr').children().eq(5).html('Rezervisano')

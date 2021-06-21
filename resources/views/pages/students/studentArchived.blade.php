@@ -43,11 +43,11 @@
                             Izmijeni podatke
                         </a>
                         <p
-                            class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsUcenikKnjigeArhivirane hover:text-[#606FC7]">
+                            class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsStudentBooksArchived hover:text-[#606FC7]">
                             <i class="fas fa-ellipsis-v"></i>
                         </p>
                         <div
-                            class="z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 ucenik-arhivirane-knjige">
+                            class="z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 student-archived-books">
                             <div class="absolute right-0 w-56 mt-[10px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
@@ -139,7 +139,7 @@
                                     class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('studentActive', ['user' => $user])}}" aria-label="Rezervacije" class="flex items-center">
+                                        <a href="{{route('studentActive', ['user' => $user])}}" aria-label="Reservations" class="flex items-center">
                                             <i
                                                 class="text-[#707070] group-hover:text-[#576cdf] text-[20px] far fa-calendar-check transition duration-300 ease-in"></i>
                                             <div>
@@ -157,7 +157,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('studentArchived', ['user' => $user])}}" aria-label="Rezervacije"
+                                        <a href="{{route('studentArchived', ['user' => $user])}}" aria-label="Reservations"
                                             class="flex items-center">
                                             <i
                                                 class="text-[20px] fas fa-calendar-alt transition duration-300 ease-in text-[#576cdf]"></i>
@@ -175,7 +175,7 @@
                 </div>
                 @if(count($archivedReservations) > 0)
                     <div class="w-full mt-[10px] ml-2 px-2">
-                        <table class="w-full shadow-lg rezervacije" id="myTable">
+                        <table class="w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
                                     <th class="px-4 py-3 leading-4 tracking-wider text-left text-blue-500">
@@ -557,11 +557,11 @@
                                     </td>
                                     <td class="px-4 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                         <p
-                                            class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsUcenikArhiviraneKnjige hover:text-[#606FC7]">
+                                            class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudentArchivedBooks hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>
                                         <div
-                                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 ucenik-arhivirane-knjige-tabela">
+                                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 student-archived-books-table">
                                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117"
                                                 role="menu">

@@ -43,11 +43,11 @@
                             Izmijeni podatke
                         </a>
                         <p
-                            class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsUcenikVraceneKnjige hover:text-[#606FC7]">
+                            class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-gray-300 dotsStudentReturnedBooks hover:text-[#606FC7]">
                             <i class="fas fa-ellipsis-v"></i>
                         </p>
                         <div
-                            class="z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 ucenik-vracene-knjige">
+                            class="z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 student-returned-books">
                             <div class="absolute right-0 w-56 mt-[10px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
@@ -139,7 +139,7 @@
                                     class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('studentActive', ['user' => $user])}}" aria-label="Rezervacije" class="flex items-center">
+                                        <a href="{{route('studentActive', ['user' => $user])}}" aria-label="Reservations" class="flex items-center">
                                             <i
                                                 class="text-[#707070] text-[20px] far fa-calendar-check transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                             <div>
@@ -157,7 +157,7 @@
                                 <span class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
                                         class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
-                                        <a href="{{route('studentArchived', ['user' => $user])}}" aria-label="Rezervacije"
+                                        <a href="{{route('studentArchived', ['user' => $user])}}" aria-label="Reservations"
                                             class="flex items-center">
                                             <i
                                                 class="text-[#707070] text-[20px] fas fa-calendar-alt transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
@@ -453,11 +453,11 @@
                                     <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$returnedBook->librarian->name}}</td>
                                     <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
                                         <p
-                                            class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsUcenikVraceneKnjigeTabela hover:text-[#606FC7]">
+                                            class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudentReturnedBooksTable hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>
                                         <div
-                                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 ucenik-vracene-knjige-tabela">
+                                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 student-returned-books-table">
                                             <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117"
                                                 role="menu">

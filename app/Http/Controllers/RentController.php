@@ -239,7 +239,7 @@ class RentController extends Controller
 
         $returned = $rentService->filtrateReturnedBooks();
 
-        $viewModal = [
+        $viewModel = [
             'returned'      => $returned,
             'students'      => $userService->getStudents()->get(),
             'librarians' => $userService->getLibrarians()->get(),
@@ -283,7 +283,7 @@ class RentController extends Controller
 
         $overdued = $rentService->filtrateOverdueBooks();
 
-        $viewModal = [
+        $viewModel = [
             'overdued'  => $overdued,
             'students'      => $userService->getStudents()->get(),
             'librarians' => $userService->getLibrarians()->get(),

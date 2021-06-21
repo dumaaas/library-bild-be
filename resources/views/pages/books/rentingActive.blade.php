@@ -48,7 +48,7 @@
         <!-- Space for content -->
         @if(count($rentingActive) > 0)
             <div class="w-full mt-[10px] ml-2 px-4">
-                <table class="w-full shadow-lg rezervacije" id="myTable">
+                <table class="w-full shadow-lg reservations" id="myTable">
                     <thead class="bg-[#EFF3F6]">
                     <tr class="border-b-[1px] border-[#e4dfdf]">
                         <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
