@@ -26,7 +26,6 @@ class AuthorController extends Controller
      * Prikazi sve autore
      *
      * @param  AuthorService $authorService
-     * @return void
      */
     public function index(AuthorService $authorService) {
 
@@ -43,7 +42,6 @@ class AuthorController extends Controller
      * Prikazi konkretnog autora
      *
      * @param  Author $auhtor
-     * @return void
      */
     public function show(Author $author) {
 
@@ -60,7 +58,6 @@ class AuthorController extends Controller
      * Prikazi stranicu za editovanje autora
      *
      * @param  Author $author
-     * @return void
      */
     public function showEdit(Author $author) {
         $viewName = $this->viewFolder . '.editAuthor';
@@ -75,7 +72,6 @@ class AuthorController extends Controller
     /**
      * Prikazi stranicu za unos novog autora
      *
-     * @return void
      */
     public function showAdd() {
         $viewName = $this->viewFolder . '.addAuthor';
@@ -88,7 +84,6 @@ class AuthorController extends Controller
      *
      * @param  Author $author
      * @param  AuthorService $authorService
-     * @return void
      */
     public function update(Author $author, AuthorService $authorService) {
         $viewName = $this->viewFolder . '.editAuthor';
@@ -135,7 +130,6 @@ class AuthorController extends Controller
      * Prikazi pretrazene autore
      *
      * @param  AuthorService $authorService
-     * @return void
      */
     public function search(AuthorService $authorService) {
 

@@ -16,7 +16,6 @@ class BindingController extends Controller
      * Prikazi stranicu za editovanje poveza
      *
      * @param  Binding $binding
-     * @return void
      */
     public function showEdit(Binding $binding) {
 
@@ -32,7 +31,6 @@ class BindingController extends Controller
     /**
      * Prikazi stranicu za unos novog poveza
      *
-     * @return void
      */
     public function showAdd() {
 
@@ -45,7 +43,6 @@ class BindingController extends Controller
      * Prikazi sve poveze
      *
      * @param  BindingService $bindingService
-     * @return void
      */
     public function index(BindingService $bindingService) {
 
@@ -83,7 +80,6 @@ class BindingController extends Controller
      *
      * @param  Binding $binding
      * @param  BindingService $bindingService
-     * @return void
      */
     public function update(Binding $binding, BindingService $bindingService) {
    

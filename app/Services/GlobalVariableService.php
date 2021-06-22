@@ -27,7 +27,6 @@ class GlobalVariableService {
     /**
      * Vrati rok izdavanja
      *
-     * @return void
      */
     public function getReturnDueDate() {
         $dueDate =  DB::table('global_variables')->where('id', '=', 1)->first();
@@ -38,7 +37,6 @@ class GlobalVariableService {
     /**
      * Vrati rok rezervacije
      *
-     * @return void
      */
     public function getReservationPeriod() {
         $period = DB::table('global_variables')->where('id', '=', 2)->first();
@@ -49,7 +47,6 @@ class GlobalVariableService {
     /**
      * Vrati rok prekoracenja
      *
-     * @return void
      */
     public function getOverdraftPeriod() {
         $period = DB::table('global_variables')->where('id', '=', 3)->first();

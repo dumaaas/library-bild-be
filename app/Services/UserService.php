@@ -24,7 +24,6 @@ class UserService {
     /**
      * Vrati sve bibliotekare iz baze podataka
      *
-     * @return void
      */
     public function getLibrarians() {
         return $librarians = User::with('userType')
@@ -35,7 +34,6 @@ class UserService {
      * Izvrsi validaciju podataka i edituj bibliotekara
      *
      * @param  User  $bibliotekar
-     * @return void
      */
     public function editLibrarian($librarian, $request) {
         //request all data, validate and update librarian
@@ -75,7 +73,6 @@ class UserService {
     /**
      * Kreiraj novog bibliotekara i sacuvaj ga u bazu
      *
-     * @return void
      */
     public function saveLibrarian($request) {
         //request all data, validate and add librarian
@@ -115,7 +112,6 @@ class UserService {
     /**
      * Vrati pretrazene bibliotekare
      *
-     * @return void
      */
     public function searchLibrarians() {
 
@@ -138,7 +134,6 @@ class UserService {
      *
      * @param User $user
      * @param Request $request
-     * @return void
      */
     public function uploadPhoto($user, $request) {
         if ($request->hasFile('userImage')) {
@@ -153,7 +148,6 @@ class UserService {
      *
      * @param User $user
      * @param Request $request
-     * @return void
      */
     public function uploadEditPhoto($user, $request) {
         if ($request->hasFile('userImage')) {
@@ -174,7 +168,6 @@ class UserService {
     /**
      * Vrati sve ucenike iz baze podataka
      *
-     * @return void
      */
     public function getStudents() {
         return $students = User::with('userType')
@@ -185,7 +178,6 @@ class UserService {
      * Izvrsi validaciju podataka i edituj ucenika
      *
      * @param  User  $student
-     * @return void
      */
     public function editStudent($student, $request) {
         //request all data, validate and update student
@@ -225,7 +217,6 @@ class UserService {
     /**
      * Kreiraj novog ucenika i sacuvaj ga u bazu
      *
-     * @return void
      */
     public function saveStudent($request) {
         //request all data, validate and update student
@@ -265,7 +256,6 @@ class UserService {
     /**
      * Vrati pretrazene ucenike
      *
-     * @return void
      */
     public function searchStudents() {
 
@@ -287,7 +277,6 @@ class UserService {
      * Resetuj sifru korisnika
      *
      * @param  User  $user
-     * @return void
      */
     public function resetPassword($user) {
         //request all data, validate and reset password

@@ -13,7 +13,6 @@ class BindingService {
     /**
      * Vrati sve poveze iz baze podataka
      *
-     * @return void
      */
     public function getBindings(){
         return $bindings = DB::table('bindings');
@@ -23,7 +22,6 @@ class BindingService {
      * Izvrsi validaciju podataka i edituj povez
      *
      * @param  Binding  $binding
-     * @return void
      */
     public function editBinding($binding){
 
@@ -41,7 +39,6 @@ class BindingService {
     /**
      * Kreiraj novi povez i sacuvaj ga u bazi
      *
-     * @return void
      */
     public function saveBinding(){
         

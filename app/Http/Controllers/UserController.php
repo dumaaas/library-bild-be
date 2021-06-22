@@ -36,7 +36,6 @@ class UserController extends Controller
      * Prikazi konkretnog bibliotekara
      *
      * @param  User $user
-     * @return void
      */
     public function showLibrarian(User $user) {
 
@@ -56,7 +55,6 @@ class UserController extends Controller
      * Prikazi sve bibliotekare
      *
      * @param  UserService $userService
-     * @return void
      */
     public function showLibrarians(UserService $userService) {
 
@@ -73,7 +71,6 @@ class UserController extends Controller
      * Prikazi stranicu za editovanje bibliotekara
      *
      * @param  User $user
-     * @return void
      */
     public function showEditLibrarian(User $user) {
 
@@ -92,7 +89,6 @@ class UserController extends Controller
     /**
      * Prikazi stranicu za unos novog bibliotekara
      *
-     * @return void
      */
     public function showAddLibrarian() {
 
@@ -107,7 +103,6 @@ class UserController extends Controller
      * @param  User $user
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function updateLibrarian(User $user, UserService $userService, Request $request) {
 
@@ -121,7 +116,6 @@ class UserController extends Controller
      * Izbrisi bibliotekara
      *
      * @param  User $user
-     * @return void
      */
     public function deleteLibrarian(User $user) {
 
@@ -146,7 +140,6 @@ class UserController extends Controller
      *
      * @param User  $user
      * @param UserService $userService
-     * @return void
      */
     public function resetPassword(User $user, UserService $userService) {
 
@@ -160,7 +153,6 @@ class UserController extends Controller
      *
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function saveLibrarian(UserService $userService, Request $request) {
 
@@ -180,7 +172,6 @@ class UserController extends Controller
      * Prikazi pretrazene bibliotekare
      *
      * @param  UserService $userService
-     * @return void
      */
     public function searchLibrarians(UserService $userService) {
 
@@ -199,7 +190,6 @@ class UserController extends Controller
      * Prikazi sve ucenike
      *
      * @param  UserService $userService
-     * @return void
      */
     public function showStudents(UserService $userService) {
 
@@ -216,7 +206,6 @@ class UserController extends Controller
      * Prikazi konkretnog ucenika
      *
      * @param  User $user
-     * @return void
      */
     public function showStudentProfile(User $user) {
 
@@ -236,7 +225,6 @@ class UserController extends Controller
     /**
      * Prikazi stranicu za unos novog ucenika
      *
-     * @return void
      */
     public function showAddStudent() {
 
@@ -249,7 +237,6 @@ class UserController extends Controller
      * Prikazi stranicu za editovanje ucenika
      *
      * @param  User $user
-     * @return void
      */
     public function showEditStudent(User $user) {
 
@@ -272,7 +259,6 @@ class UserController extends Controller
      * @param  User $user
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function updateStudent(User $user, UserService $userService, Request $request) {
 
@@ -292,7 +278,6 @@ class UserController extends Controller
      * Izbrisi ucenika
      *
      * @param  User $user
-     * @return void
      */
     public function deleteStudent(User $user) {
 
@@ -318,7 +303,6 @@ class UserController extends Controller
      *
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function saveStudent(UserService $userService, Request $request) {
 
@@ -338,7 +322,6 @@ class UserController extends Controller
      * Prikazi pretrazene ucenike
      *
      * @param  UserService $userService
-     * @return void
      */
     public function searchStudents(UserService $userService) {
 
@@ -359,7 +342,6 @@ class UserController extends Controller
      * @param  User $user
      * @param  RentService $rentService
      * @param  UserService $userService
-     * @return void
      */
     public function showStudentRented(User $user, RentService $rentService, UserService $userService) {
 
@@ -382,7 +364,6 @@ class UserController extends Controller
      * @param  User $user
      * @param  RentService $rentService
      * @param  UserService $userService
-     * @return void
      */
     public function showStudentReturned(User $user, RentService $rentService, UserService $userService) {
 
@@ -420,7 +401,6 @@ class UserController extends Controller
      * @param  User $user
      * @param  RentService $rentService
      * @param  UserService $userService
-     * @return void
      */
     public function showStudentOverdue(User $user, RentService $rentService, UserService $userService) {
 
@@ -441,7 +421,6 @@ class UserController extends Controller
      *
      * @param  User $user
      * @param  ReservationService $reservationService
-     * @return void
      */
     public function showStudentActive(User $user, ReservationService $reservationService) {
 
@@ -460,7 +439,6 @@ class UserController extends Controller
      *
      * @param  User $user
      * @param  ReservationService $reservationService
-     * @return void
      */
     public function showStudentArchived(User $user, ReservationService $reservationService) {
 

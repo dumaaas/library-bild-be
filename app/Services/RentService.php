@@ -28,7 +28,6 @@ class RentService
      *
      * @param  Book  $book
      * @param  User  $student
-     * @return void
      */
     public function getTransaction($book, $student) {
         return Rent::with('book', 'student', 'librarian')
@@ -40,7 +39,6 @@ class RentService
     /**
      * Vrati sve knjige u prekoracenju
      *
-     * @return void
      */
     public function getOverdueBooks() {
         
@@ -60,7 +58,6 @@ class RentService
     /**
      * Vrati sve izdate knjige
      *
-     * @return void
      */
     public function getRentedBooks() {
         return Rent::where(function ($query) {
@@ -75,7 +72,6 @@ class RentService
     /**
      * Vrati sve vracene knjige
      *
-     * @return void
      */
     public function getReturnedBooks() {
         return Rent::where(function ($query) {
@@ -97,7 +93,6 @@ class RentService
      * Sacuvaj rent
      *
      * @param  Book  $book
-     * @return void
      */
     public function saveRent($book) {
         $rent = new Rent();
@@ -118,7 +113,6 @@ class RentService
      *
      * @param  int $rentId
      * @param  date $rentDate
-     * @return void
      */
     public function saveRentStatus($rentId, $rentDate) {
         $rentStatus = new RentStatus();
@@ -135,7 +129,6 @@ class RentService
      *
      * @param  Book  $book
      * @param  User  $student
-     * @return void
      */
     public function deleteTransaction($book, $student) {
         $transaction = $this->getTransaction($book, $student);
@@ -146,7 +139,6 @@ class RentService
     /**
      * Vrati filtrirane izdate knjige
      *
-     * @return void
      */
     public function filtrateRentedBooks() {
         $rented = Rent::query();
@@ -177,7 +169,6 @@ class RentService
     /**
      * Vrati filtrirane vracene knjige
      *
-     * @return void
      */
     public function filtrateReturnedBooks() {
         $returned = Rent::query();
@@ -214,7 +205,6 @@ class RentService
     /**
      * Vrati filtrirane knjige u prekoracenju
      *
-     * @return void
      */
     public function filtrateOverdueBooks() {
         $overdue = Rent::query();
@@ -241,7 +231,6 @@ class RentService
     /**
      * Vrati pretrazene izdate knjige
      *
-     * @return void
      */
     public function searchRentedBooks() {
         $rented = Rent::query();
@@ -265,7 +254,6 @@ class RentService
     /**
      * Vrati pretrazene vracene knjige
      *
-     * @return void
      */
     public function searchReturnedBooks() {
 
@@ -299,7 +287,6 @@ class RentService
     /**
      * Vrati pretrazene knjige u prekoracenju
      *
-     * @return void
      */
     public function searchOverdueBooks() {
 

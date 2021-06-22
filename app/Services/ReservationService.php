@@ -25,7 +25,6 @@ class ReservationService
     /**
      * Vrati sve aktivne rezervacije
      *
-     * @return void
      */
     public function getActiveReservations() {
         return Reservation::with('book', 'student')
@@ -35,7 +34,6 @@ class ReservationService
     /**
      * Vrati sve arhivirane rezervacije
      *
-     * @return void
      */
     public function getArchivedReservations() {
         return Reservation::with('book', 'student', 'reservationStatus')
@@ -45,7 +43,6 @@ class ReservationService
     /**
      * Vrati sve rezervisane knjige
      *
-     * @return void
      */
     public function getReservedBooks() {
         return Reservation::with('book', 'student', 'reservationStatus')
@@ -55,7 +52,6 @@ class ReservationService
     /**
      * Vrati konkretnu rezervaciju
      *
-     * @return void
      */
     public function getReservation($book, $student) {
         return Reservation::where('book_id', '=', $book)
@@ -68,7 +64,6 @@ class ReservationService
      * Updateuj status rezervacije za konkretnu rezervaciju
      *
      * @param  Book  $knjiga
-     * @return void
      */
     public function updateReservationStatus($reservation) {
         $reservationStatus = ReservationStatus::find($reservation);
@@ -81,7 +76,6 @@ class ReservationService
      *
      * @param  Book  $book
      * @param  GlobalVariableService  $globalVariableService
-     * @return void
      */
     public function saveReservation($book, $globalVariableService) {
         $reservation = new Reservation();
@@ -104,7 +98,6 @@ class ReservationService
      *
      * @param  int $reservationId
      * @param  date $reservationDate
-     * @return void
      */
     public function saveReservationStatus($reservationId, $reservationDate) {
         $reservationStatus = new ReservationStatus();
@@ -119,7 +112,6 @@ class ReservationService
     /**
      * Vrati pretrazene aktivne rezervacije / Nije testirano!
      *
-     * @return void
      */
     public function searchActiveReservations() {
 
@@ -144,7 +136,6 @@ class ReservationService
     /**
      * Vrati pretrazene arhivirane rezervacije
      *
-     * @return void
      */
     public function searchArchivedReservations() {
 

@@ -56,7 +56,7 @@
                             </label>
                         </th>
                         <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Datum izdavanja<i class="ml-2 fas fa-filter dateDrop-toggle"></i>
-                            <div id="datumDropdown"
+                            <div id="dateDropdown"
                                 class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                 <div
                                     class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">

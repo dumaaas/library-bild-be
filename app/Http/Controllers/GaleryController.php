@@ -17,7 +17,6 @@ class GaleryController extends Controller
      * Update slike
      *
      * @param  Request $request
-     * @return void
      */
     public function update(Request $request)
     {
@@ -52,7 +51,6 @@ class GaleryController extends Controller
      * Izbrisi sliku
      *
      * @param  User $user
-     * @return response
      */
     public function deleteImage(Galery $photo)
     {

@@ -190,9 +190,9 @@
                                     <!-- Datum izdavanja + dropdown filter for datum -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                        Datum izdavanja<i class="fas fa-filter datumDrop-toggle"></i>
-                                        <div id="datumDropdown"
-                                            class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
+                                        Datum izdavanja<i class="fas fa-filter dateDrop-toggle"></i>
+                                        <div id="dateDropdown"
+                                            class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                             <div
                                                 class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <div>
@@ -221,9 +221,9 @@
                                     <!-- Trenutno zadrzavanje + dropdown filter for zadrzavanje -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                        Trenutno zadržavanje knjige<i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
-                                        <div id="zadrzavanjeDropdown"
-                                            class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                        Trenutno zadržavanje knjige<i class="fas fa-filter delayDrop-toggle"></i>
+                                        <div id="delayDropdown"
+                                            class="delayMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                             <div
                                                 class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <div>
@@ -252,14 +252,14 @@
                                     <!-- Knjigu izdao + dropdown filter for bibliotekar -->
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                        Knjigu izdao<i class="fas fa-filter bibliotekariDrop-toggle"></i>
-                                        <div id="bibliotekariDropdown"
-                                            class="bibliotekariMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                        Knjigu izdao<i class="fas fa-filter librariansDrop-toggle"></i>
+                                        <div id="librariansDropdown"
+                                            class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                             <ul class="border-b-2 border-gray-300 list-reset">
                                                 <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                     <input class="w-full h-10 px-2 border-2 rounded focus:outline-none"
                                                         placeholder="Search"
-                                                        onkeyup="filterFunction('searchLibrarians', 'bibliotekariDropdown', 'dropdown-item-bibliotekar')"
+                                                        onkeyup="filterFunction('searchLibrarians', 'librariansDropdown', 'dropdown-item-librarian')"
                                                         id="searchLibrarians"><br>
                                                     <button
                                                         class="absolute block text-xl text-center text-gray-400 transition-colors w-7 h-7 leading-0 top-[14px] right-4 focus:outline-none hover:text-gray-900">
@@ -268,7 +268,7 @@
                                                 </li>
                                                 <div class="h-[200px] scroll font-normal">
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -287,7 +287,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -306,7 +306,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -325,7 +325,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -344,7 +344,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
@@ -363,7 +363,7 @@
                                                         </p>
                                                     </li>
                                                     <li
-                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-bibliotekar">
+                                                        class="flex p-2 mt-[2px] pt-[15px] group hover:bg-gray-200 dropdown-item-librarian">
                                                         <label class="flex items-center justify-start">
                                                             <div
                                                                 class="flex items-center justify-center flex-shrink-0 w-[16px] h-[16px] mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">

@@ -34,7 +34,6 @@ class DashboardController extends Controller
      * Prikazi dashboard
      *
      * @param  DashboardService $dashboardService
-     * @return void
      */
     public function showDashboard(DashboardService $dashboardService, ReservationService $reservationService, RentService $rentService) {
         $viewName = $this->viewFolder . '.dashboard';
@@ -56,7 +55,6 @@ class DashboardController extends Controller
      * @param  DashboardService $dashboardService
      * @param  BookService $bookService
      * @param  UserService $userService
-     * @return void
      */
     public function showDashboardActivity(DashboardService $dashboardService, BookService $bookService, UserService $userService) {
         $viewName = $this->viewFolder . '.dashboardActivity';
@@ -79,7 +77,6 @@ class DashboardController extends Controller
      * @param  DashboardService $dashboardService
      * @param  BookService $bookService
      * @param  UserService $userService
-     * @return void
      */
     public function showDashboardActivitySpecificBook(Book $book, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
         $viewName = $this->viewFolder . '.dashboardActivity';
@@ -102,7 +99,6 @@ class DashboardController extends Controller
      * @param  DashboardService $dashboardService
      * @param  BookService $bookService
      * @param  UserService $userService
-     * @return void
      */
     public function filterActivities(Request $request, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
         

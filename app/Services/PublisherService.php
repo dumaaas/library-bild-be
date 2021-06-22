@@ -13,7 +13,6 @@ class PublisherService {
     /**
      * Vrati sve izdavace iz baze podataka
      *
-     * @return void
      */
     public function getPublishers(){
         return $publishers = DB::table('publishers');
@@ -23,7 +22,6 @@ class PublisherService {
      * Izvrsi validaciju podataka i edituj izdavaca
      *
      * @param  Publisher $publisher
-     * @return void
      */
     public function editPublisher($publisher){
 
@@ -40,7 +38,6 @@ class PublisherService {
     /**
      * Kreiraj novog izdavaca i sacuvaj ga u bazi
      *
-     * @return void
      */
     public function savePublisher(){
 

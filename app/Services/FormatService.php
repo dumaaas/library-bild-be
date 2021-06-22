@@ -13,7 +13,6 @@ class FormatService {
     /**
      * Vrati sve formate iz baze podataka
      *
-     * @return void
      */
     public function getFormats(){
         return $formats = DB::table('formats');
@@ -22,7 +21,6 @@ class FormatService {
     /**
      * Kreiraj novi format i sacuvaj ga u bazi
      *
-     * @return void
      */
     public function saveFormat(){
 
@@ -43,7 +41,6 @@ class FormatService {
      * Izvrsi validaciju podataka i edituj format
      *
      * @param  Format $format
-     * @return void
      */
     public function editFormat($format){
 

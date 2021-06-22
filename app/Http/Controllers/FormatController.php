@@ -15,7 +15,6 @@ class FormatController extends Controller
      * Prikazi stranicu za editovanje formata
      *
      * @param  Format $format
-     * @return void
      */
     public function showEdit(Format $format) {
 
@@ -31,7 +30,6 @@ class FormatController extends Controller
     /**
      * Prikazi stranicu za unos novog formata
      *
-     * @return void
      */
     public function showAdd() {
 
@@ -44,7 +42,6 @@ class FormatController extends Controller
      * Prikazi sve formate
      *
      * @param  FormatService $formatService
-     * @return void
      */
     public function index(FormatService $formatService) {
 
@@ -81,7 +78,6 @@ class FormatController extends Controller
      *
      * @param  Format $format
      * @param  FormatService $formatService
-     * @return void
      */
     public function update(Format $format, FormatService $formatService) {
 

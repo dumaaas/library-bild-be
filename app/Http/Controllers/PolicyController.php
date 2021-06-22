@@ -13,7 +13,6 @@ class PolicyController extends Controller
     /**
      * Prikazi sve polise
      *
-     * @return void
      */
     public function index() {
 

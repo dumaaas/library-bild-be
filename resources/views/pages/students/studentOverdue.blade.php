@@ -191,9 +191,9 @@
                                     </th>
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                        Datum izdavanja<i class="ml-2 fas fa-filter datumDrop-toggle"></i>
-                                        <div id="datumDropdown"
-                                            class="datumMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
+                                        Datum izdavanja<i class="ml-2 fas fa-filter dateDrop-toggle"></i>
+                                        <div id="dateDropdown"
+                                            class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                             <div
                                                 class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <div>
@@ -223,9 +223,9 @@
                                     </th>
                                     <th
                                         class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
-                                        Trenutno zadržavanje knjige<i class="fas fa-filter zadrzavanjeDrop-toggle"></i>
-                                        <div id="zadrzavanjeDropdown"
-                                            class="zadrzavanjeMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                        Trenutno zadržavanje knjige<i class="fas fa-filter delayDrop-toggle"></i>
+                                        <div id="delayDropdown"
+                                            class="delayMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                             <div
                                                 class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                 <div>

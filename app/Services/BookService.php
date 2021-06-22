@@ -30,7 +30,6 @@ class BookService {
     /**
      * Vrati sve knjige
      *
-     * @return void
      */
     public function getBooks() {
         return DB::table('books');
@@ -42,7 +41,6 @@ class BookService {
      * @param  Book $book
      * @param  RentService $rentService
      * @param  ReservationService $reservationService
-     * @return void
      */
     public function saveRent($book, $rentService, $reservationService) {
 
@@ -86,7 +84,6 @@ class BookService {
      * @param  Book $book
      * @param  ReservationService $reservationService
      * @param  GlobalVariableService $globalVariableService
-     * @return void
      */
     public function saveReservation($book, $reservationService, $globalVariableService) {
         request()->validate([
@@ -108,7 +105,6 @@ class BookService {
     /**
      * Sacuvaj knjigu
      *
-     * @return void
      */
     public function saveBook() {
         $book = new Book();
@@ -136,7 +132,6 @@ class BookService {
      *
      * @param Book $book
      * @param Category $category
-     * @return void
      */
     public function saveBookCategories($categoriesValues, $book) {
         $categories = explode(',', $categoriesValues);
@@ -156,7 +151,6 @@ class BookService {
      *
      * @param Book $book
      * @param Genre $genre
-     * @return void
      */
     public function saveBookGenres($genresValues, $book) {
         $genres = explode(',', $genresValues);
@@ -176,7 +170,6 @@ class BookService {
      *
      * @param Book $book
      * @param Author $author
-     * @return void
      */
     public function saveBookAuthors($authorsValues, $book) {
         $authors = explode(',', $authorsValues);
@@ -195,7 +188,6 @@ class BookService {
     /**
      * Vrati trazene autore
      *
-     * @return void
      */
     public function filterAuthors() {
         $books = Book::query();
@@ -226,7 +218,6 @@ class BookService {
      * Sacuvaj vracanje knjiga
      * 
      * @param GlobalVariableServis $globalVariableService
-     * @return void
      */
     public function returnBooks($globalVariableService) {
         $books=request('returnBook');
@@ -259,7 +250,6 @@ class BookService {
     /**
      * Sacuvaj otpisivanje knjiga
      *
-     * @return void
      */
     public function writeOffBooks() {
         $books = request('writeOffBook');
@@ -277,7 +267,6 @@ class BookService {
     /**
      * Vrati pretrazene knjige
      *
-     * @return void
      */
     public function searchBooks() {
 
@@ -359,7 +348,6 @@ class BookService {
     /**
      * Vrati pretrazene ucenike od kojih se vraca knjiga
      *
-     * @return void
      */
     public function searchReturnBook(Book $book, RentService $rentService) {
         $rentedBooks = Rent::query();
@@ -387,7 +375,6 @@ class BookService {
      *
      * @param Book $book
      * @param RentService $rentService
-     * @return void
      */
     public function searchWriteOffBooks(Book $book, RentService $rentService) {
         $rent = Rent::query();

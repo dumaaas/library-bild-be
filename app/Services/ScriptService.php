@@ -13,7 +13,6 @@ class ScriptService {
     /**
      * Vrati sva pisma iz baze podataka
      *
-     * @return void
      */
     public function getScripts(){
         return $scripts = DB::table('scripts');
@@ -23,7 +22,6 @@ class ScriptService {
      * Izvrsi validaciju podataka i edituj pismo
      *
      * @param  Script $script
-     * @return void
      */
     public function editScript($script){
 
@@ -40,7 +38,6 @@ class ScriptService {
    /**
      * Kreiraj novo pismo i sacuvaj ga u bazi
      *
-     * @return void
      */
     public function saveScript(){
 

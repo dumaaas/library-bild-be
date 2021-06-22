@@ -240,9 +240,9 @@
                                                 <!-- Datum vracanja + dropdown filter for date -->
                                                 <th
                                                     class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                                    Datum vraćanja<i class="fas fa-filter returnDrop-toggle"></i>
-                                                    <div id="returnDropdown"
-                                                        class="returnMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                                    Datum vraćanja<i class="fas fa-filter returningDrop-toggle"></i>
+                                                    <div id="returningDropdown"
+                                                        class="returningMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                                         <div
                                                             class="flex justify-between flex-row p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                             <div>
@@ -276,9 +276,9 @@
                                                 <!-- Knjigu primio + dropdown filter for bibliotekari -->
                                                 <th
                                                     class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
-                                                    Knjigu primio<i class="fas fa-filter lirariansDrop-toggle"></i>
-                                                    <div id="lirariansDropdown"
-                                                        class="lirariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
+                                                    Knjigu primio<i class="fas fa-filter librariansDrop-toggle"></i>
+                                                    <div id="librariansDropdown"
+                                                        class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                                         <ul class="border-b-2 border-gray-300 list-reset">
                                                             <li class="p-2 pb-[15px] border-b-[2px] relative border-gray-300">
                                                                 <input

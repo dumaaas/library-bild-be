@@ -45,7 +45,6 @@ class BookController extends Controller
      * Prikazi stranicu za editovanje knjige
      *
      * @param  Book $book
-     * @return void
      */
     public function showEditBook(Book $book) {
         $viewName = $this->viewFolder . '.editBook';
@@ -69,7 +68,6 @@ class BookController extends Controller
      * Prikazi sve knjige
      *
      * @param  AuthorService $authorService
-     * @return void
      */
     public function showBookRecords(AuthorService $authorService) {
         $viewName = $this->viewFolder . '.bookRecords';
@@ -88,7 +86,6 @@ class BookController extends Controller
      *
      * @param  Book $book
      * @param  DashboardService $dashboardService
-     * @return void
      */
     public function showBookMultimedia(Book $book, DashboardService $dashboardService) {
         $viewName = $this->viewFolder . '.bookMultimedia';
@@ -108,7 +105,6 @@ class BookController extends Controller
      *
      * @param  Book $book
      * @param  DashboardService $dashboardService
-     * @return void
      */
     public function showBookDetails(Book $book, DashboardService $dashboardService) {
         $viewName = $this->viewFolder . '.bookDetails';
@@ -128,7 +124,6 @@ class BookController extends Controller
      *
      * @param  Book $book
      * @param  DashboardService $dashboardService
-     * @return void
      */
     public function showBookSpecification(Book $book, DashboardService $dashboardService) {
         $viewName = $this->viewFolder . '.bookSpecification';
@@ -147,7 +142,6 @@ class BookController extends Controller
      * Prikazi stranicu za dodavanje knjige
      *
      * @param  AuthorService $authorService
-     * @return void
      */
     public function showAddBook(AuthorService $authorService) {
         $viewName = $this->viewFolder . '.addBook';
@@ -171,7 +165,6 @@ class BookController extends Controller
      *
      * @param  Book $book
      * @param  RentService $rentService
-     * @return void
      */
     public function showReturnBook(Book $book, RentService $rentService) {
         $viewName = $this->viewFolder . '.returnBook';
@@ -193,7 +186,6 @@ class BookController extends Controller
      *
      * @param  Book $book
      * @param  RentService $rentService
-     * @return void
      */
     public function showWriteOffBook(Book $book, RentService $rentService) {
         $viewName = $this->viewFolder . '.writeOffBook';
@@ -216,7 +208,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  UserService $userService
      * @param  RentService $rentService
-     * @return void
      */
     public function showReserveBook(Book $book, UserService $userService, RentService $rentService) {
         $viewNameReserve = $this->viewFolder . '.reserveBook';
@@ -249,7 +240,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  UserService $userService
      * @param  RentService $rentService
-     * @return void
      */
     public function showRentBook(Book $book, UserService $userService, RentService $rentService) {
         $viewNameRent = $this->viewFolder . '.rentBook';
@@ -287,7 +277,6 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @param  RentService $rentService
      * @param  ReservationService $reservationService
-     * @return void
      */
     public function rent(Book $book, BookService $bookService, RentService $rentService, ReservationService $reservationService) {
 
@@ -303,7 +292,6 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @param  ReservationService $reservationService
      * @param  GlobalVariableService $globalVariableService
-     * @return void
      */
     public function reserve(Book $book, BookService $bookService, ReservationService $reservationService, GlobalVariableService $globalVariableService) {
 
@@ -318,7 +306,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  DashboardService $dashboardService
      * @param  RentService $rentService
-     * @return void
      */
     public function showRentingRented(Book $book, DashboardService $dashboardService, RentService $rentService) {
         $viewName = $this->viewFolder . '.rentingRented';
@@ -342,7 +329,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  DashboardService $dashboardService
      * @param  RentService $rentService
-     * @return void
      */
     public function showRentingOverdue(Book $book, DashboardService $dashboardService, RentService $rentService) {
         $viewName = $this->viewFolder . '.rentingOverdue';
@@ -366,7 +352,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  DashboardService $dashboardService
      * @param  RentService $rentService
-     * @return void
      */
     public function showRentingReturned(Book $book, DashboardService $dashboardService) {
         $viewName = $this->viewFolder . '.rentingReturned';
@@ -404,7 +389,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  DashboardService $dashboardService
      * @param  ReservationService $reservationService
-     * @return void
      */
     public function showRentingActive(Book $book, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.rentingActive';
@@ -429,7 +413,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  DashboardService $dashboardService
      * @param  ReservationService $reservationService
-     * @return void
      */
     public function showRentingArchived(Book $book, DashboardService $dashboardService, ReservationService $reservationService) {
         $viewName = $this->viewFolder . '.rentingArchived';
@@ -452,7 +435,6 @@ class BookController extends Controller
      *
      * @param  Request $request
      * @param  BookService $bookService
-     * @return void
      */
     public function saveBook(Request $request, BookService $bookService, DashboardService $dashboardService) {
         $viewName = $this->viewFolder . '.bookDetails';
@@ -507,7 +489,6 @@ class BookController extends Controller
      *
      * @param  Request $request
      * @param  BookService $bookService
-     * @return void
      */
     public function updateBook(Request $request, Book $book, DashboardService $dashboardService, Galery $gallery) {
         $viewName = $this->viewFolder . '.bookDetails';
@@ -610,7 +591,6 @@ class BookController extends Controller
      * Izbrisi konkretnu knjigu
      *
      * @param  Book $book
-     * @return void
      */
     public function deleteBook(Book $book) {
         Book::destroy($book->id);
@@ -623,7 +603,6 @@ class BookController extends Controller
      * @param  BookService $bookService
      * @param  AuthorService $authorService
      * @param  CategoryService $categoryService
-     * @return void
      */
     public function filterAuthors(BookService $bookService, AuthorService $authorService, CategoryService $categoryService) {
         $viewName = $this->viewFolder . '.bookRecords';
@@ -649,7 +628,6 @@ class BookController extends Controller
      *
      * @param  BookService $bookService
      * @param  GlobalVariableService $globalVariableService
-     * @return void
      */
     public function returnBooks(BookService $bookService, GlobalVariableService $globalVariableService) {
 
@@ -662,7 +640,6 @@ class BookController extends Controller
      * Otpisi knjige
      *
      * @param  BookService $bookService
-     * @return void
      */
     public function writeOffBooks(BookService $bookService){
 
@@ -675,7 +652,6 @@ class BookController extends Controller
      * Prikazi pretrazene knjige
      *
      * @param  BookService $bookService
-     * @return void
      */
     public function searchBooks(BookService $bookService, Authorservice $authorService) {
 
@@ -698,7 +674,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  BookService $bookService
      * @param  RentService $rentService
-     * @return void
      */
     public function searchReturn(Book $book, BookService $bookService, RentService $rentService) {
 
@@ -720,7 +695,6 @@ class BookController extends Controller
      * @param  Book $book
      * @param  BookService $bookService
      * @param  RentService $rentService
-     * @return void
      */
     public function searchWriteOff(Book $book, BookService $bookService, RentService $rentService) {
 

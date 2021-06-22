@@ -16,7 +16,6 @@ class PublisherController extends Controller
      * Prikazi stranicu za editovanje izdavaca
      *
      * @param  Publisher $publisher
-     * @return void
      */
     public function showEdit(Publisher $publisher) {
 
@@ -32,7 +31,6 @@ class PublisherController extends Controller
     /**
      * Prikazi stranicu za unos novog izdavaca
      *
-     * @return void
      */
     public function showAdd() {
 
@@ -45,7 +43,6 @@ class PublisherController extends Controller
      * Prikazi sve izdavace
      *
      * @param  PublisherService $publisherService
-     * @return void
      */
     public function index(PublisherService $publisherService) {
 
@@ -63,7 +60,6 @@ class PublisherController extends Controller
      *
      * @param  Publisher $publisher
      * @param  PublisherService $publisherService
-     * @return void
      */
     public function update(Publisher $publisher, PublisherService $publisherService) {
 

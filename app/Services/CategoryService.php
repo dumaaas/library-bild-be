@@ -13,7 +13,6 @@ class CategoryService {
     /**
      * Vrati sve kategorije iz baze podataka
      *
-     * @return void
      */
     public function getCategories(){
         return $categories = DB::table('categories');
@@ -25,7 +24,6 @@ class CategoryService {
      * @param  Category  $category
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function editCategory($category, $userService, $request){
 
@@ -49,7 +47,6 @@ class CategoryService {
      *
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
    public function saveCategory($userService, $request) {
     //request all data, validate and update category

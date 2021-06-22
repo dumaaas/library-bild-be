@@ -13,7 +13,6 @@ class GenreService {
     /**
      * Vrati sve zanrove iz baze podataka
      *
-     * @return void
      */
     public function getGenres(){
         return $genres = DB::table('genres');
@@ -24,7 +23,6 @@ class GenreService {
      *
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function saveGenre($userService, $request) {
         //request all data, validate and add genre
@@ -47,7 +45,6 @@ class GenreService {
      * @param  Genre $genre
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function editGenre($genre, $userService, $request) {
          //request all data, validate and update genre

@@ -16,7 +16,6 @@ class GenreController extends Controller
      * Prikazi stranicu za editovanje zanra
      *
      * @param  Genre $genre
-     * @return void
      */
     public function showEdit(Genre $genre) {
 
@@ -33,7 +32,6 @@ class GenreController extends Controller
      * Prikazi sve zanrove
      *
      * @param  GenreService $genreService
-     * @return void
      */
     public function index(GenreService $genreService) {
 
@@ -49,7 +47,6 @@ class GenreController extends Controller
     /**
      * Prikazi stranicu za unos novog zanra
      *
-     * @return void
      */
     public function showAdd() {
         
@@ -79,7 +76,6 @@ class GenreController extends Controller
      * @param  GenreService $genreService
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function update(Genre $genre, GenreService $genreService, UserService $userService, Request $request) {
         

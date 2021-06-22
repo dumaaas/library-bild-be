@@ -22,7 +22,6 @@ class AuthorService {
     /**
      * Vrati sve autore iz baze podataka
      *
-     * @return void
      */
     public function getAuthors() {
         return DB::table('authors');
@@ -32,7 +31,6 @@ class AuthorService {
      * Izvrsi validaciju podataka i edituj autora
      *
      * @param  Author  $author
-     * @return void
      */
     public function editAuthor($author) {
         //request all data, validate and update movie
@@ -50,7 +48,6 @@ class AuthorService {
     /**
      * Kreiraj novog autora i sacuvaj ga u bazi
      *
-     * @return void
      */
     public function saveAuthor() {
         //request all data, validate and update author
@@ -72,7 +69,6 @@ class AuthorService {
     /**
      * Vrati pretrazene autore
      *
-     * @return void
      */
     public function searchAuthors() {
 

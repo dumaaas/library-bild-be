@@ -16,7 +16,6 @@ class CategoryController extends Controller
      * Prikazi stranicu za editovanje kategorije
      *
      * @param  Category $category
-     * @return void
      */
     public function showEdit(Category $category) {
 
@@ -33,7 +32,6 @@ class CategoryController extends Controller
      * Prikazi sve kategorije
      *
      * @param  CategoryService $categoryService
-     * @return void
      */
     public function index(CategoryService $categoryService) {
 
@@ -49,7 +47,6 @@ class CategoryController extends Controller
     /**
      * Prikazi stranicu za unos nove kategorije
      *
-     * @return void
      */
     public function showAdd() {
 
@@ -80,7 +77,6 @@ class CategoryController extends Controller
      * @param  CategoryService $categoryService
      * @param  UserService $userService
      * @param  Request $request
-     * @return void
      */
     public function update(Category $category, CategoryService $categoryService, UserService $userService, Request $request) {
         

@@ -15,7 +15,6 @@ class ScriptController extends Controller
      * Prikazi stranicu za editovanje pisma
      *
      * @param  Script $script
-     * @return void
      */
     public function showEdit(Script $script) {
 
@@ -32,7 +31,6 @@ class ScriptController extends Controller
      * Prikazi sva pisma
      *
      * @param  ScriptService $scriptService
-     * @return void
      */
     public function index(ScriptService $scriptService) {
 
@@ -48,7 +46,6 @@ class ScriptController extends Controller
     /**
      * Prikazi stranicu za unos novog pisma
      *
-     * @return void
      */
     public function showAdd() {
 
@@ -82,7 +79,6 @@ class ScriptController extends Controller
      *
      * @param  Script $script
      * @param  ScriptService $scriptService
-     * @return void
      */
     public function update(Script $script, ScriptService $scriptService) {
 

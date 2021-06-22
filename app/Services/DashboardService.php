@@ -25,7 +25,6 @@ class DashboardService
     /**
      * Vrati poslednje 4 rezervacije iz baze
      *
-     * @return void
      */
     public function getLatestReservation() {
         return Reservation::with('book', 'student')
@@ -37,7 +36,6 @@ class DashboardService
     /**
      * Vrati sve aktivnosti
      *
-     * @return void
      */
     public function getActivities() {
         return Rent::with('book', 'student', 'librarian')
@@ -49,7 +47,6 @@ class DashboardService
     /**
      * Vrati ooslednjih 10 aktivnosti
      *
-     * @return void
      */
     public function getLatestActivities() {
         return Rent::with('book', 'student', 'librarian')
@@ -62,7 +59,6 @@ class DashboardService
      * Vrati aktivnosti za konkretnu knjigu
      *
      * @param  Book  $book
-     * @return void
      */
     public function getBookActivity($book) {
         return Rent::with('book', 'student', 'librarian')
@@ -78,7 +74,6 @@ class DashboardService
      * @param  Request  $booksRequest
      * @param  Request  $dateFromRequest
      * @param  Request  $dateToRequest
-     * @return void
      */
     public function filterActivities($studentsRequest, $librariansRequest, $booksRequest, $dateFromRequest, $dateToRequest) {
         $activities = Rent::query();
