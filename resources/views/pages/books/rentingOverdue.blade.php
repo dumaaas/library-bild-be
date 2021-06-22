@@ -262,7 +262,7 @@
                     <tbody class="bg-white">
                     @foreach($rentingOverdued as $rentingOverdue)
                     <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                        <td class="p-4 whitespace-nowrap">
+                        <td class="p-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
@@ -282,7 +282,7 @@
                                 <span>{{ \Carbon\Carbon::parse($rentingOverdue->rent_date)->diffAsCarbonInterval() }}</span>
                             </div>
                         </td>
-                        <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
+                        <td class="p-4 text-sm leading-5 text-right">
                             <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsRentingBooksOverdue hover:text-[#606FC7]">
                                 <i
                                     class="fas fa-ellipsis-v"></i>
@@ -342,7 +342,9 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{$rentingOverdued->links()}}
+                <div class="pt-[20px]">
+                    {{$rentingOverdued->links()}}
+                </div>
             </div>
         @else
             <div class="mx-[40px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">

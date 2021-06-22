@@ -430,7 +430,7 @@
                     <tbody class="bg-white">
                     @foreach($rentingReturned as $rentingReturn)
                     <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                        <td class="p-4 whitespace-nowrap">
+                        <td class="p-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
@@ -444,7 +444,7 @@
                             </div>
                         </td>
                         <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$rentingReturn->librarian->name}}</td>
-                        <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
+                        <td class="p-4 text-sm leading-5 text-right">
                             <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsRentingReturnedBooks hover:text-[#606FC7]">
                                 <i
                                     class="fas fa-ellipsis-v"></i>
@@ -504,8 +504,9 @@
                     </tbody>
                     @endforeach
                 </table>
-
-                {{$rentingReturned->links()}}
+                <div class="pt-[20px]">
+                    {{$rentingReturned->links()}}
+                </div>
 
             </div>
         @else

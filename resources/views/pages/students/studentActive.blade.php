@@ -178,16 +178,16 @@
                     <table class="w-full shadow-lg reservations" id="myTable">
                         <thead class="bg-[#EFF3F6]">
                             <tr class="border-b-[1px] border-[#e4dfdf]">
-                                <th class="px-4 py-3 leading-4 tracking-wider text-left text-blue-500">
+                                <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                                     <label class="inline-flex items-center">
                                         <input type="checkbox" class="form-checkbox">
                                     </label>
                                 </th>
-                                <th class="flex items-center px-4 py-4 leading-4 tracking-wider text-left">Naziv
+                                <th class="flex items-center p-4 leading-4 tracking-wider text-left whitespace-nowrap">Naziv
                                     knjige<a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                             onclick="sortTable()"></i></a></th>
                                 <th
-                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                     Datum
                                     rezervacije<i class="ml-2 fas fa-filter dateDrop-toggle"></i>
                                     <div id="dateDropdown"
@@ -218,7 +218,7 @@
                                     </div>
                                 </th>
                                 <th
-                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                     Rezervacija
                                     ističe<i class="ml-2 fas fa-filter delayDrop-toggle"></i>
                                     <div id="delayDropdown"
@@ -249,7 +249,7 @@
                                     </div>
                                 </th>
                                 <th
-                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                     Rezervaciju
                                     podnio<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
                                     <div id="studentsDropdown"
@@ -395,7 +395,7 @@
                                     </div>
                                 </th>
                                 <th
-                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                     Status<i class="ml-2 fas fa-filter statusDrop-toggle"></i>
                                     <div id="statusDropdown"
                                         class="statusMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -463,12 +463,12 @@
                         @foreach($activeReservations as $activeReservation)
                             <tr
                                 class="hover:bg-gray-200 hover:shadow-md bg-gray-200 border-b-[1px] border-[#e4dfdf] changeBg">
-                                <td class="px-4 py-3 whitespace-no-wrap">
+                                <td class="p-4">
                                     <label class="inline-flex items-center">
                                         <input type="checkbox" class="form-checkbox">
                                     </label>
                                 </td>
-                                <td class="flex flex-row items-center px-4 py-3">
+                                <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                     @if(count($activeReservation->book->coverImage) > 0 )
                                         <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$activeReservation->book->coverImage[0]->photo}}" alt="" />
                                     @endif
@@ -476,14 +476,14 @@
                                         <span class="font-medium text-center">{{$activeReservation->book->title}}</span>
                                     </a>
                                 </td>
-                                <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$activeReservation->reservation_date}}</td>
-                                <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$activeReservation->reservation_date->addDays(20)}}</td>
-                                <td class="flex flex-row items-center px-4 py-3">
+                                <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$activeReservation->reservation_date}}</td>
+                                <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$activeReservation->reservation_date->addDays(20)}}</td>
+                                <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                     <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$activeReservation->student->photo}}"
                                         alt="" />
                                     <a href="{{route('studentProfile', ['user' => $activeReservation->student])}}" class="ml-2 font-medium text-center">{{$activeReservation->student->name}}</a>
                                 </td>
-                                <td class="px-4 py-3 changeStatus">
+                                <td class="p-4 changeStatus whitespace-nowrap">
                                     <a href="#" class="hover:text-green-500 mr-[5px]">
                                         <i class="fas fa-check reservedStatus"></i>
                                     </a>
@@ -491,13 +491,13 @@
                                         <i class="fas fa-times deniedStatus"></i>
                                     </a>
                                 </td>
-                                <td class="hidden px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
+                                <td class="hidden p-4 text-sm leading-5 text-blue-900 whitespace-nowrap">
                                     <div
                                         class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
                                         <span class="text-xs text-yellow-700">Rezervisano</span>
                                     </div>
                                 </td>
-                                <td class="hidden px-4 py-3 text-sm leading-5 text-blue-900 whitespace-no-wrap">
+                                <td class="hidden p-4 text-sm leading-5 text-blue-900 whitespace-nowrap">
                                     <div class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
                                         <span class="text-xs text-red-800">Odbijeno</span>
                                     </div>
@@ -508,7 +508,7 @@
                     </table>
 
                     <div class="pt-[20px]">
-                    {{$activeReservations->links()}}
+                        {{$activeReservations->links()}}
                     </div>
 
                 </div>

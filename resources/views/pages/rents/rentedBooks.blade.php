@@ -149,12 +149,12 @@
                                         <form action="/filterRentedBooks" method="GET">
                                             @csrf
                                             <tr class="border-b-[1px] border-[#e4dfdf]">
-                                            <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
+                                            <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                                                 <label class="inline-flex items-center">
                                                     <input type="checkbox" class="form-checkbox">
                                                 </label>
                                             </th>
-                                            <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                            <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                                 Naziv knjige
                                                 <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                         onclick="sortTable()"></i>
@@ -162,7 +162,7 @@
                                             </th>
                                             <!-- Izdato uceniku + dropdown filter for ucenik -->
                                             <th
-                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                 Izdato učeniku <i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
                                                 <div id="studentsDropdown"
                                                     class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
@@ -218,7 +218,7 @@
 
                                             <!-- Datum izdavanja + dropdown filter for datum -->
                                             <th
-                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                                class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                 Datum izdavanja <i class="fas fa-filter dateDrop-toggle"></i>
                                                 <div id="dateDropdown"
                                                     class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
@@ -250,12 +250,12 @@
 
                                             <!-- Trenutno zadrzavanje + dropdown filter for zadrzavanje -->
                                             <th
-                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left">
+                                                class="relative p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">
                                                 Trenutno zadržavanje knjige
                                             </th>
                                             <!-- Knjigu izdao + dropdown filter for bibliotekar -->
                                             <th
-                                                class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer">
+                                                class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                 Knjigu izdao <i class="fas fa-filter librariansDrop-toggle"></i>
                                                 <div id="librariansDropdown"
                                                     class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -308,19 +308,19 @@
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th class="px-4 py-4"> </th>
+                                            <th class="p-4"> </th>
                                         </tr>
                                         </form>
                                     </thead>
                                     <tbody class="bg-white">
                                         @foreach($rented as $rent)
                                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                            <td class="px-4 py-3 whitespace-no-wrap">
+                                            <td class="p-4">
                                                 <label class="inline-flex items-center">
                                                     <input type="checkbox" class="form-checkbox">
                                                 </label>
                                             </td>
-                                            <td class="flex flex-row items-center px-4 py-3">
+                                            <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                                 @if(count($rent->book->coverImage) > 0 )
                                                     <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$rent->book->coverImage[0]->photo}}" alt="" />
                                                 @endif
@@ -328,24 +328,24 @@
                                                     <span class="font-medium text-center">{{$rent->book->title}}</span>
                                                 </a>
                                             </td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                 <a href="{{route('studentProfile', ['user' => $rent->student])}}">
                                                     {{$rent->student->name}}
                                                 </a>
                                             </td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$rent->rent_date}}</td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rent->rent_date}}</td>
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                 <div>
                                                     <span>{{ \Carbon\Carbon::parse($rent->rent_date)->diffAsCarbonInterval() }}</span>
                                                 </div>
                                             </td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                 <a href="{{route('librarianProfile', ['user' => $rent->librarian])}}">
                                                     {{$rent->librarian->name}}
 
                                                 </a>
                                             </td>
-                                            <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 text-right">
                                                 <p
                                                     class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsRentedBooks hover:text-[#606FC7]">
                                                     <i class="fas fa-ellipsis-v"></i>
@@ -384,8 +384,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
-                                {{$rented->links()}}
+                                <div class="pt-[20px]">
+                                    {{$rented->links()}}
+                                </div>
                             @else
                                 <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                                     <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">

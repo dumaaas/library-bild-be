@@ -141,12 +141,12 @@
                                     <thead class="bg-[#EFF3F6]">
                                         <form action="/filterOverdueBooks" method="GET">
                                             <tr class="border-b-[1px] border-[#e4dfdf]">
-                                                <th class="px-4 py-4 leading-4 tracking-wider text-left text-blue-500">
+                                                <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                                                     <label class="inline-flex items-center">
                                                         <input type="checkbox" class="form-checkbox">
                                                     </label>
                                                 </th>
-                                                <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                                <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                                     Naziv knjige
                                                     <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                             onclick="sortTable()"></i>
@@ -154,7 +154,7 @@
                                                 </th>
                                                 <!-- Datum izdavanja + dropdown filter for date -->
                                                 <th
-                                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                     Datum izdavanja<i class="ml-2 fas fa-filter dateDrop-toggle"></i>
                                                     <div id="dateDropdown"
                                                         class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
@@ -185,7 +185,7 @@
                                                 </th>
                                                 <!-- Izdato uceniku + dropdown filter for ucenik -->
                                                 <th
-                                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                     Izdato učeniku<i class="fas fa-filter studentsDrop-toggle"></i>
                                                     <div id="studentsDropdown"
                                                         class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
@@ -239,15 +239,15 @@
                                                     </div>
                                                 </th>
                                                 <!-- Prekoracenje u danima -->
-                                                <th class="px-4 py-4 text-sm leading-4 tracking-wider text-left">
+                                                <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">
                                                     Prekoračenje u danima
                                                 </th>
                                                 <!-- Trenutno zadrzavanje knjige + dropdown filter for date -->
                                                 <th
-                                                    class="relative px-4 py-4 text-sm leading-4 tracking-wider text-left cursor-pointer ">
+                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
                                                     Trenutno zadržavanje knjige
                                                 </th>
-                                                <th class="px-4 py-4"> </th>
+                                                <th class="p-4"> </th>
                                             </tr>
                                         </form>
 
@@ -255,12 +255,12 @@
                                     <tbody class="bg-white">
                                     @foreach($overdued as $overdue)
                                         <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                            <td class="px-4 py-3 whitespace-no-wrap">
+                                            <td class="p-4">
                                                 <label class="inline-flex items-center">
                                                     <input type="checkbox" class="form-checkbox">
                                                 </label>
                                             </td>
-                                            <td class="flex flex-row items-center px-4 py-3">
+                                            <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                                 @if(count($overdue->book->coverImage) > 0 ) 
                                                     <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$overdue->book->coverImage[0]->photo}}" alt="" />
                                                 @endif
@@ -268,13 +268,13 @@
                                                     <span class="font-medium text-center">{{$overdue->book->title}}</span>
                                                 </a>
                                             </td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">{{$overdue->rent_date}}</td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$overdue->rent_date}}</td>
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                 <a href="{{route('studentProfile', ['user' => $overdue->student])}}">
                                                     {{$overdue->student->name}}
                                                 </a>
                                             </td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                 <div
                                             
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
@@ -283,12 +283,12 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td class="px-4 py-3 text-sm leading-5 whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                 <div>
                                                     <span>{{ \Carbon\Carbon::parse($overdue->rent_date)->diffAsCarbonInterval() }}</span>
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-3 text-sm leading-5 text-right whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 text-right">
                                                 <p
                                                     class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsOverdueBooks hover:text-[#606FC7]">
                                                     <i class="fas fa-ellipsis-v "></i>
@@ -349,7 +349,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                {{$overdued->links()}}
+                                <div class="pt-[20px]">
+                                    {{$overdued->links()}}
+                                </div>
                             @else 
                                 <div class="flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
                                     <svg viewBox="0 0 24 24" class="w-5 h-5 mr-3 text-red-600 sm:w-5 sm:h-5">

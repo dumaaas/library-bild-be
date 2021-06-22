@@ -71,15 +71,15 @@
                             <tbody class="bg-white">
                             @foreach($publishers as $publisher)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                    <td class="p-4 whitespace-no-wrap">
+                                    <td class="p-4">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </td>
-                                    <td class="flex flex-row items-center p-4">
+                                    <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                         <p>{{$publisher->name}}</p>
                                     </td>
-                                    <td class="p-4 text-sm leading-5 text-right whitespace-no-wrap">
+                                    <td class="p-4 text-sm leading-5 text-right">
                                         <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsPublisher hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>

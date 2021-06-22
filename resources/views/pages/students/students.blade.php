@@ -19,12 +19,12 @@
             <!-- Space for content -->
             @if(count($students) > 0)
                 <div class="scroll height-dashboard">
-                    <div class="flex items-center justify-between px-[50px] py-4 space-x-3 rounded-lg">
+                    <div class="flex items-center justify-between pl-[40px] pr-[20px] xl:pl-[50px] xl:pr-[30px] py-4 space-x-3 rounded-lg">
                         <a href="{{ route('addStudent') }}" class="btn-animation text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">
                             <i class="fas fa-plus mr-[15px]"></i> Novi učenik
                         </a>
                         <form action="searchStudents" method="GET">
-                            <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
+                            <div class="flex items-center pl-6 py-4 space-x-3 rounded-lg ml-[292px]">
                                 <div class="flex items-center">
                                     <div class="relative text-gray-600 focus-within:text-gray-400">
                                         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -41,7 +41,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="inline-block min-w-full px-[50px] pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
+                    <div class="inline-block min-w-full pl-[40px] pr-[20px] xl:pl-[50px] xl:pr-[30px] pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
                         <table class="min-w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
@@ -82,8 +82,8 @@
                                         {{$user->last_login_at}}
                                     @endif
                                     </td>
-                                    <td class="p-2 text-sm leading-5 text-right whitespace-nowrap">
-                                        <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsStudent hover:text-[#606FC7]">
+                                    <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
+                                        <p class="inline cursor-pointer text-[20px] py-[10px] px-[10px] 2xl:px-[30px] border-gray-300 dotsStudent hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>
                                         <div

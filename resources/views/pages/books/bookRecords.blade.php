@@ -176,14 +176,14 @@
                                             <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">U prekoračenju</th>
                                             <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">Ukupna količina
                                             </th>
-                                            <th class="p-1"> </th>
+                                            <th class="p-4"> </th>
                                         </tr>
 
                                 </thead>
                                 <tbody class="bg-white" id="bookTable">
                                     @foreach($books as $book)
                                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                                <td class="p-4 whitespace-nowrap">
+                                                <td class="p-4">
                                                     <label class="inline-flex items-center">
                                                         <input type="checkbox" class="form-checkbox checkOthers">
                                                     </label>
@@ -229,7 +229,7 @@
                                                 <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                     {{$book->quantity}}
                                                 </td>
-                                                <td class="p-1 text-sm leading-5 text-right whitespace-nowrap">
+                                                <td class="p-4 text-sm leading-5 text-right">
                                                     <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsBooks hover:text-[#606FC7]">
                                                         <i
                                                             class="fas fa-ellipsis-v"></i>

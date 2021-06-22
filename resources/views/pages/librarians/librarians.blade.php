@@ -25,7 +25,7 @@
                         <i class="fas fa-plus mr-[15px]"></i> Novi bibliotekar
                     </a>
                     <form action="searchLibrarians" method="GET">
-                        <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
+                        <div class="flex items-center pl-6 py-4 space-x-3 rounded-lg ml-[292px]">
                             <div class="flex items-center">
                                 <div class="relative text-gray-600 focus-within:text-gray-400">
                                         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -97,7 +97,7 @@
                             @endif
                             </td>
                             <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
-                                <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsLibrarian hover:text-[#606FC7]">
+                                <p class="inline cursor-pointer text-[20px] py-[10px] px-[10px] 2xl:px-[30px] border-gray-300 dotsLibrarian hover:text-[#606FC7]">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </p>
                                 <div

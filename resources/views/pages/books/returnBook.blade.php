@@ -134,24 +134,24 @@
                             <table class="min-w-full shadow-lg" id="vratiKnjiguTable">
                                 <thead class="bg-[#EFF3F6]">
                                     <tr class="border-b-[1px] border-[#e4dfdf]">
-                                        <th class="px-4 py-3 leading-4 tracking-wider text-left text-blue-500">
+                                        <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
                                             <label class="inline-flex items-center">
                                                 <input type="checkbox" class="select-all form-checkbox">
                                             </label>
                                         </th>
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                             Izdato učeniku
                                         </th>
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                             Datum izdavanja
                                         </th>
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                             Trenutno zadržavanje knjige
                                         </th>
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                             Prekoračenje u danima
                                         </th>
-                                        <th class="px-4 py-4 leading-4 tracking-wider text-left">
+                                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
                                             Knjigu izdao
                                         </th>
                                     </tr>
@@ -159,21 +159,21 @@
                                 <tbody class="bg-white">
                                     @foreach($rentedBooks as $rentedBook)
                                         <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                            <td class="px-4 py-4 whitespace-no-wrap">
+                                            <td class="p-4">
                                                 <label class="inline-flex items-center">
                                                     <input type="checkbox" class="form-checkbox" name="vratiKnjigu[]" value="{{$rentedBook->id}}">
                                                 </label>
                                             </td>
-                                            <td class="flex flex-row items-center px-4 py-4">
+                                            <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                                 <img class="object-cover w-8 h-8 mr-2 rounded-full" src="/storage/image/{{$rentedBook->student->photo}}"
                                                     alt="" />
                                                 <a href="{{route('studentProfile', ['user' => $rentedBook->student])}}">
                                                     <span class="font-medium text-center">{{$rentedBook->student->name}}</span>
                                                 </a>
                                             </td>
-                                            <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$rentedBook->rent_date}}</td>
-                                            <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{ \Carbon\Carbon::parse($rentedBook->rent_date)->diffAsCarbonInterval() }}</td>
-                                            <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentedBook->rent_date}}</td>
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">{{ \Carbon\Carbon::parse($rentedBook->rent_date)->diffAsCarbonInterval() }}</td>
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
                                                     @if($rentedBook->return_date < \Carbon\Carbon::now())
                                                         <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
                                                             {{ \Carbon\Carbon::parse($rentedBook->return_date)->diffInDays(\Carbon\Carbon::now()) }} dan/a
@@ -185,7 +185,7 @@
                                                     @endif
                                                 </span>
                                             </td>
-                                            <td class="px-4 py-4 text-sm leading-5 whitespace-no-wrap">{{$rentedBook->librarian->name}}</td>
+                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentedBook->librarian->name}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

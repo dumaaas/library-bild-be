@@ -331,7 +331,7 @@
                     @foreach($rentingActive as $rentingActiv)
                     <tr
                         class="hover:bg-gray-200 hover:shadow-md bg-gray-200 border-b-[1px] border-[#e4dfdf] changeBg">
-                        <td class="p-4 whitespace-nowrap">
+                        <td class="p-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
@@ -343,7 +343,7 @@
                                 alt="" />
                             <a href="{{route('studentProfile',['user' => $rentingActiv->student->id])}}" class="ml-2 font-medium text-center">{{$rentingActiv->student->name}}</a>
                         </td>
-                        <td class="p-4 changeStatus">
+                        <td class="p-4 changeStatus whitespace-nowrap">
                             <a href="#" class="hover:text-green-500 mr-[5px]">
                                 <i class="fas fa-check reservedStatus"></i>
                             </a>
@@ -363,7 +363,7 @@
                                 <span class="text-xs text-red-800">Odbijeno</span>
                             </div>
                         </td>
-                        <td class="p-4 text-sm leading-5 text-right whitespace-nowrap">
+                        <td class="p-4 text-sm leading-5 text-right">
                             <p
                                 class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsRentingActiveReservationTable hover:text-[#606FC7]">
                                 <i class="fas fa-ellipsis-v"></i>
@@ -401,9 +401,9 @@
                     @endforeach
                     </tbody>
                 </table>
-
-                {{$rentingActive->links()}}
-
+                <div class="pt-[20px]">
+                    {{$rentingActive->links()}}
+                </div>
             </div>
         @else
             <div class="mx-[40px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
