@@ -64,12 +64,12 @@
                             <i class="far fa-calendar-check mr-[3px] "></i>
                             Rezerviši knjigu
                         </a>
-                        <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-[#e4dfdf] dotsVratiKnjigu hover:text-[#606FC7]">
+                        <p class="inline cursor-pointer text-[25px] py-[10px] pl-[30px] border-l-[1px] border-[#e4dfdf] dotsReturnBook hover:text-[#606FC7]">
                             <i
                                 class="fas fa-ellipsis-v"></i>
                         </p>
                         <div
-                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-vrati-knjigu">
+                            class="relative z-10 hidden transition-all duration-300 origin-top-right transform scale-95 -translate-y-2 dropdown-return-book">
                             <div class="absolute right-0 w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">

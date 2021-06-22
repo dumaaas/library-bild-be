@@ -113,7 +113,7 @@
                                     <!-- Modal Header -->
                                     <div class="flex items-center justify-between px-[30px] py-[20px] border-b">
                                         <h3>Da li ste sigurni da želite da izbrišete pismo?</h3>
-                                        <button class="text-black close ponisti focus:outline-none" id="{{$script->id}}">
+                                        <button class="text-black close cancel focus:outline-none" id="{{$script->id}}">
                                             <span aria-hidden="true" class="text-[30px]">&times;</span>
                                         </button>
                                     </div>
@@ -123,7 +123,7 @@
                                             class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                             <i class="fas fa-check mr-[7px]"></i> Izbriši
                                         </a>
-                                        <a href="#" id="{{$script->id}}" class="ponisti shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
+                                        <a href="#" id="{{$script->id}}" class="cancel shadow-lg w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] bg-[#F44336] hover:bg-[#F55549] text-center">
                                         <i class="fas fa-times mr-[7px]"></i> Poništi 
                                         </a>
                                     </div>
