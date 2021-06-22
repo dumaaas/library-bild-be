@@ -66,7 +66,7 @@
                                         </label>
                                     </td>
                                     <td class="flex flex-row items-center p-4">
-                                        <img class="object-cover w-8 h-8 mr-2 rounded-full" src="/storage/image/{{$user->photo}}" alt=""/>
+                                        <img class="object-cover w-8 h-8 mr-4 rounded-full" src="/storage/image/{{$user->photo}}" alt=""/>
                                         <a href="{{ route('studentProfile', ['user' => $user->id]) }}">
                                             <span class="font-medium text-center whitespace-nowrap">{{$user->name}}</span>
                                         </a>

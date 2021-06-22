@@ -79,8 +79,8 @@
                                         </label>
                                     </td>
                                     <td class="flex flex-row items-center p-4 whitespace-nowrap">
-                                        <img class="object-cover w-8 h-8 mr-2" src="/storage/image/{{$category->photo}}" alt="" />
-                                        <p class="ml-4 text-center">{{$category->name}}</p>
+                                        <img class="object-cover w-8 h-8 mr-4" src="/storage/image/{{$category->photo}}" alt="" />
+                                        <p class="text-center">{{$category->name}}</p>
                                     </td>
                                     <td class="p-4 text-sm leading-5 truncate max-w-[500px]">{{$category->description}}</td>
                                     <td class="p-4 text-sm leading-5 text-right">

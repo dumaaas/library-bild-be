@@ -404,6 +404,11 @@ function dataFileDnD() {
 
             return blobUrl;
         },
+        addFiles(e) {
+            const files = createFileList([...this.files], [...e.target.files]);
+            this.files = files;
+            // this.form.formData.files = [...files];
+          }
     
     };
 }

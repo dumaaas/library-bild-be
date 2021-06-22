@@ -470,7 +470,7 @@
                                 </td>
                                 <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                     @if(count($activeReservation->book->coverImage) > 0 )
-                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$activeReservation->book->coverImage[0]->photo}}" alt="" />
+                                        <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$activeReservation->book->coverImage[0]->photo}}" alt="" />
                                     @endif
                                     <a href="{{route('bookDetails', ['book' => $activeReservation->book])}}">
                                         <span class="font-medium text-center">{{$activeReservation->book->title}}</span>
@@ -479,9 +479,9 @@
                                 <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$activeReservation->reservation_date}}</td>
                                 <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$activeReservation->reservation_date->addDays(20)}}</td>
                                 <td class="flex flex-row items-center p-4 whitespace-nowrap">
-                                    <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$activeReservation->student->photo}}"
+                                    <img class="object-cover w-8 h-8 mr-4 rounded-full" src="/storage/image/{{$activeReservation->student->photo}}"
                                         alt="" />
-                                    <a href="{{route('studentProfile', ['user' => $activeReservation->student])}}" class="ml-2 font-medium text-center">{{$activeReservation->student->name}}</a>
+                                    <a href="{{route('studentProfile', ['user' => $activeReservation->student])}}" class="font-medium text-center">{{$activeReservation->student->name}}</a>
                                 </td>
                                 <td class="p-4 changeStatus whitespace-nowrap">
                                     <a href="#" class="hover:text-green-500 mr-[5px]">

@@ -60,7 +60,7 @@
                                                 <input type="checkbox" class="form-checkbox checkAll">
                                             </label>
                                         </th>
-                                        <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
+                                        <th class="p-4 text-sm leading-4 tracking-wider text-left whitespace-nowrap">
                                             Naziv knjige
                                             <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                         onclick="sortTable()"></i>
@@ -190,7 +190,7 @@
                                                 </td>
                                                 <td class="flex flex-row items-center p-4 truncate max-w-[200px]">
                                                     @if(count($book->coverImage) > 0 )
-                                                        <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$book->coverImage[0]->photo}}" alt="" />
+                                                        <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$book->coverImage[0]->photo}}" alt="" />
                                                     @endif
                                                     <a href="{{route('bookDetails', ['book' => $book->id])}}">
                                                         <span class="font-medium text-center">{{$book->title}}</span>

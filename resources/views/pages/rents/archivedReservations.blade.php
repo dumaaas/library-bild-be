@@ -478,7 +478,7 @@
                                         </td>
                                         <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                             @if(count($archive->book->coverImage) > 0 )
-                                                <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$archive->book->coverImage[0]->photo}}" alt="" />
+                                                <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$archive->book->coverImage[0]->photo}}" alt="" />
                                             @endif
                                             <span class="font-medium text-center">{{$archive->book->title}}</span>
                                         </td>

@@ -7,7 +7,7 @@
             <div class="heading">
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
                     <div class="py-[10px] flex flex-row">
-                        <div class="w-[77px] pl-[30px]">
+                        <div class="w-[77px] h-[72px] pl-[30px] flex items-center">
                             @if(count($book->coverImage) > 0 ) 
                                 <img src="/storage/image/{{$book->coverImage[0]->photo}}" alt="">
                             @endif

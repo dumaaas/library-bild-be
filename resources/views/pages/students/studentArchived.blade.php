@@ -499,7 +499,7 @@
                                     </td>
                                     <td class="flex flex-row items-center p-4 whitespace-nowrap">
                                         @if(count($archivedReservation->book->coverImage) > 0 )
-                                            <img class="object-cover w-8 mr-2 h-11" src="/storage/image/{{$archivedReservation->book->coverImage[0]->photo}}" alt="" />
+                                            <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$archivedReservation->book->coverImage[0]->photo}}" alt="" />
                                         @endif
                                         <a href="{{route('bookDetails', ['book' => $archivedReservation->book])}}">
                                             <span class="font-medium text-center">{{$archivedReservation->book->title}}</span>
@@ -508,9 +508,9 @@
                                     <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$archivedReservation->reservation_date}}</td>
                                     <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$archivedReservation->reservation_date->addDays(20)}}</td>
                                     <td class="flex flex-row items-center p-4 whitespace-nowrap">
-                                        <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$archivedReservation->student->photo}}"
+                                        <img class="object-cover w-8 h-8 mr-4 rounded-full" src="/storage/image/{{$archivedReservation->student->photo}}"
                                             alt="" />
-                                        <a href="{{route('studentProfile', ['user' => $archivedReservation->student])}}" class="ml-2 font-medium text-center">{{$archivedReservation->student->name}}</a>
+                                        <a href="{{route('studentProfile', ['user' => $archivedReservation->student])}}" class="font-medium text-center">{{$archivedReservation->student->name}}</a>
                                     </td>
                                     <td class="p-4 text-sm leading-5 text-blue-900 whitespace-nowrap">
                                             @if($archivedReservation->closeReservation_id == 1)

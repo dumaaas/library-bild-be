@@ -360,14 +360,14 @@
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[150px]">{{$rentingArchive->reservation_date}}</td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[150px]">{{$rentingArchive->reservation_date->addDays(20)}}</td>
-                        <td class="flex flex-row items-center p-4 truncate max-w-[200px]">
-                            <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$rentingArchive->student->photo}}"
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingArchive->reservation_date}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingArchive->reservation_date->addDays(20)}}</td>
+                        <td class="flex flex-row items-center p-4 whitespace-nowrap">
+                            <img class="object-cover w-8 h-8 mr-4 rounded-full" src="/storage/image/{{$rentingArchive->student->photo}}"
                                 alt="" />
-                            <a href="{{route('studentProfile',['user' => $rentingArchive->student->id])}}" class="ml-2 font-medium text-center">{{$rentingArchive->student->name}}</a>
+                            <a href="{{route('studentProfile',['user' => $rentingArchive->student->id])}}" class="font-medium text-center">{{$rentingArchive->student->name}}</a>
                         </td>
-                        <td class="p-4 text-sm leading-5 text-blue-900 truncate max-w-[100px]">
+                        <td class="p-4 text-sm leading-5 text-blue-900 whitespace-nowrap">
                             @if($rentingArchive->closeReservation_id == 1)
                                 <div
                                     class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">

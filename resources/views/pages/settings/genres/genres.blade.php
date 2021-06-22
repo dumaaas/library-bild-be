@@ -77,7 +77,7 @@
                                         </label>
                                     </td>
                                     <td class="flex flex-row items-center p-4 whitespace-nowrap">
-                                        <img class="object-cover w-8 h-8 mr-2" src="/storage/image/{{$genre->photo}}" alt="" />
+                                        <img class="object-cover w-8 h-8 mr-4" src="/storage/image/{{$genre->photo}}" alt="" />
                                         <p>{{$genre->name}}</p>
                                     </td>
                                     <td class="p-4 text-sm leading-5 text-right">

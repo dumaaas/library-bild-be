@@ -435,15 +435,15 @@
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$rentingReturn->student->name}}</td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$rentingReturn->rent_date}}</td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$rentingReturn->rentStatus[0]->date}}</td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[150px]">
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingReturn->student->name}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingReturn->rent_date}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingReturn->rentStatus[0]->date}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">
                             <div>
                                 <span>{{ \Carbon\Carbon::parse($rentingReturn->rent_date)->diffAsCarbonInterval($rentingReturn->rentStatus[0]->date) }}</span>
                             </div>
                         </td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$rentingReturn->librarian->name}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingReturn->librarian->name}}</td>
                         <td class="p-4 text-sm leading-5 text-right">
                             <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsRentingReturnedBooks hover:text-[#606FC7]">
                                 <i

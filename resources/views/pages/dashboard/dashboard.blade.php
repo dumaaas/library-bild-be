@@ -16,11 +16,11 @@
                     <!-- Activity Cards -->
                     @if(count($activities) > 0)
                         @foreach($activities as $activity)
-                            <div class="activity-card flex flex-row mb-[30px]">
+                            <div class="activity-card flex flex-row items-center mb-[30px]">
                                 <div class="w-[60px] h-[60px]">
                                     <img class="rounded-full" src="/storage/image/{{$activity->librarian->photo}}" alt="">
                                 </div>
-                                <div class="ml-[15px] mt-[5px] flex flex-col">
+                                <div class="ml-[16px] mt-[5px] flex flex-col">
                                     <div class="text-gray-500 mb-[5px]">
                                         @if(count($activity->rentStatus) > 0)
                                             @if($activity->rentStatus[0]->statusBook_id == 2)
@@ -103,29 +103,29 @@
                         Rezervacije knjiga
                     </h3>
                     <div>
-                        <table class="w-[560px] table-auto">
+                        <table class="xl:w-[560px] w-[450px] table-auto">
                             <tbody class="bg-gray-200">
                                 @foreach($reservations as $reservation)
                                     <tr class="bg-white border-b-[1px] border-[#e4dfdf]">
-                                    <td class="flex flex-row items-center px-2 py-4">
+                                    <td class="flex flex-row items-center px-2 py-4 xl:max-w-[250px] max-w-[180px]">
                                         <img class="object-cover w-8 h-8 rounded-full "
                                              src="/storage/image/{{$reservation->student->photo}}" alt="" />
-                                        <a href="{{route('studentProfile', ['user' => $reservation->student])}}" class="ml-2 font-medium text-center">
+                                        <a href="{{route('studentProfile', ['user' => $reservation->student])}}" class="truncate ml-[16px] font-medium text-center">
                                             {{$reservation->student->name}}
                                         </a>
                                     <td>
                                     </td>
-                                    <td class="px-2 py-2">
+                                    <td class="px-2 py-2 whitespace-nowrap">
                                         <a href="{{route('bookDetails', ['book' => $reservation->book])}}">
                                             {{$reservation->book->title}}
                                         </a>
                                     </td>
-                                    <td class="px-2 py-2">
+                                    <td class="px-2 py-2 whitespace-nowrap">
                                         <span class="px-[10px] py-[3px] bg-gray-200 text-gray-800 rounded-[10px]">
                                             {{$reservation->reservation_date->toDateString()}}
                                         </span>
                                     </td>
-                                    <td class="px-2 py-2">
+                                    <td class="px-2 py-2 whitespace-nowrap">
                                         <a href="#" class="hover:text-green-500 mr-[5px]">
                                             <i class="fas fa-check"></i>
                                         </a>

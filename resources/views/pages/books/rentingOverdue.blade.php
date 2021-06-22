@@ -267,9 +267,9 @@
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$rentingOverdue->rent_date}}</td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[100px]">{{$rentingOverdue->student->name}}</td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[180px]">
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingOverdue->rent_date}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingOverdue->student->name}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">
                             <div
                                 class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
                                 <span class="text-xs text-red-800">
@@ -277,7 +277,7 @@
                                 </span>
                             </div>
                         </td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[180px]">
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">
                             <div>
                                 <span>{{ \Carbon\Carbon::parse($rentingOverdue->rent_date)->diffAsCarbonInterval() }}</span>
                             </div>

@@ -6,13 +6,13 @@
             <!-- Heading of content -->
             <div class="heading">
                 <div class="flex flex-row justify-between border-b-[1px] border-[#e4dfdf]">
-                    <div class="py-[10px] flex flex-row">
-                        <div class="w-[77px] pl-[30px]">
+                    <div class="py-[10px] flex flex-row items-center">
+                        <div class="w-[77px] h-[72px] pl-[30px] flex items-center">
                             @if(count($transaction->book->coverImage) > 0 )
                                 <img src="/storage/image/{{$transaction->book->coverImage[0]->photo}}" alt="">
                             @endif
                         </div>
-                        <div class="pl-[15px]  flex flex-col">
+                        <div class="pl-[16px] flex flex-col">
                             <div>
                                 <h1>
                                     {{$transaction->book->title}}
@@ -103,7 +103,7 @@
                                     <div class="mt-[20px]">
                                         <span class="text-gray-500">Tip transakcije</span><br>
                                         <p
-                                            class="inline-block bg-blue-200 text-blue-800 rounded-[10px] text-center px-[6px] py-[2px]">
+                                            class="inline-block bg-blue-200 text-blue-800 rounded-[10px] text-center mt-1 px-[6px] py-[2px]">
                                             Izdavanje knjiga
                                         </p>
                                     </div>
@@ -145,7 +145,7 @@
                                 <div class="mt-[20px]">
                                     <span class="text-gray-500">Tip transakcije</span><br>
                                     <p
-                                        class="inline-block bg-blue-200 text-blue-800 rounded-[10px] text-center px-[6px] py-[2px]">
+                                        class="inline-block bg-blue-200 text-blue-800 rounded-[10px] text-center mt-1 px-[6px] py-[2px]">
                                         Vraćanje knjige
                                     </p>
                                 </div>

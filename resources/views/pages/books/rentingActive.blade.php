@@ -336,12 +336,12 @@
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[150px]">{{$rentingActiv->reservation_date}}</td>
-                        <td class="p-4 text-sm leading-5 truncate max-w-[150px]">{{$rentingActiv->reservation_date->addDays(20)}}</td>
-                        <td class="flex flex-row items-center p-4 truncate max-w-[150px]">
-                            <img class="object-cover w-8 h-8 rounded-full" src="/storage/image/{{$rentingActiv->student->photo}}"
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingActiv->reservation_date}}</td>
+                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingActiv->reservation_date->addDays(20)}}</td>
+                        <td class="flex flex-row items-center p-4 whitespace-nowrap">
+                            <img class="object-cover w-8 h-8 mr-4 rounded-full" src="/storage/image/{{$rentingActiv->student->photo}}"
                                 alt="" />
-                            <a href="{{route('studentProfile',['user' => $rentingActiv->student->id])}}" class="ml-2 font-medium text-center">{{$rentingActiv->student->name}}</a>
+                            <a href="{{route('studentProfile',['user' => $rentingActiv->student->id])}}" class="font-medium text-center">{{$rentingActiv->student->name}}</a>
                         </td>
                         <td class="p-4 changeStatus whitespace-nowrap">
                             <a href="#" class="hover:text-green-500 mr-[5px]">
