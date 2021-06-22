@@ -1711,7 +1711,11 @@ function openTab(evt, tabName) {
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
+    var nameTab = document.getElementById(tabName);
+    // nameTab.style.display = "flex";
+
+    nameTab.style.display = "block";
+
     evt.currentTarget.className += " active-book-nav";
 }
 
