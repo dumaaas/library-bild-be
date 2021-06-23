@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Script;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Services\ScriptService;
 

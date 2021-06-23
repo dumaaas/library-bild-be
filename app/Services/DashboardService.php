@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Models\Reservation;
 use App\Models\Rent;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 /*

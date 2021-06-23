@@ -12,7 +12,7 @@ use App\Services\UserService;
 use App\Services\ReservationService;
 use App\Services\GlobalVariableService;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 /*

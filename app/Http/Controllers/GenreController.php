@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Genre;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Services\GenreService;
 use App\Services\UserService;

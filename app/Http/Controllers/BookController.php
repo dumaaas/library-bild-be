@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\GlobalVariableService;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Book;
 use App\Models\Author;
 use App\Models\BookAuthor;

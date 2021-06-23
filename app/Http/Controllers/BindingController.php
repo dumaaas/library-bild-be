@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Binding;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Services\BindingService;
 

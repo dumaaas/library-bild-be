@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Rent;
 use App\Models\RentStatus;
