@@ -11,7 +11,7 @@
             <!-- Space for content -->
             <div class="scroll height-dashboard">
                 <form action="searchReturnedBooks" method="GET">
-                    <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
+                    <div class="flex items-center justify-center xl:justify-start px-6 py-4 space-x-3 rounded-lg xl:ml-[200px] 2xl:ml-[292px]">
                         <div class="flex items-center">
                             <div class="relative text-gray-600 focus-within:text-gray-400">
                                 <input type="search" name="searchReturned"
@@ -26,22 +26,22 @@
                 </form>
                 <div>
                     <!-- Space for content -->
-                    <div class="flex justify-start pt-3 bg-white">
+                    <div class="flex flex-col justify-start pt-3 bg-white xl:flex-row">
                         <div class="mt-[10px]">
-                            <ul class="text-[#2D3B48]">
+                            <ul class="text-[#2D3B48] flex xl:block">
                                 <li class="mb-[4px]">
-                                    <div class="w-[300px] pl-[32px]">
+                                    <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-4 2xl:pl-[32px]">
                                         <span
                                             class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                             <div
-                                                class="py-[15px] px-[20px] w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
+                                                class="py-[15px] px-[10px] 2xl:px-[20px] w-[170px] xl:w-[190px] 2xl:w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
                                                 <a href="{{route('rentedBooks')}}" aria-label="Sve knjige"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] transition duration-300 ease-in group-hover:text-[#576cdf] far fa-copy text-[20px]"></i>
                                                     <div>
                                                         <p
-                                                            class="transition duration-300 ease-in group-hover:text-[#576cdf]  text-[15px] ml-[18px]">
+                                                            class="transition duration-300 ease-in group-hover:text-[#576cdf]  text-xs 2xl:text-[15px] ml-[18px]">
                                                             Izdate knjige
                                                         </p>
                                                     </div>
@@ -51,18 +51,18 @@
                                     </div>
                                 </li>
                                 <li class="mb-[4px]">
-                                    <div class="w-[300px] pl-[32px]">
+                                    <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[32px]">
                                         <span
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
-                                                class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
+                                                class="group bg-[#EFF3F6] hover:bg-[#EFF3F6] py-[15px] px-[10px] 2xl:px-[20px] w-[170px] xl:w-[190px] 2xl:w-[268px] rounded-[10px] cursor-pointer">
                                                 <a href="{{route('returnedBooks')}}" aria-label="Vracene knjige"
                                                     class="flex items-center">
                                                     <i
                                                         class="transition duration-300 ease-in text-[20px] fas fa-file text-[#576cdf]"></i>
                                                     <div>
                                                         <p
-                                                            class="transition duration-300 ease-in  text-[15px] ml-[21px] text-[#576cdf]">
+                                                            class="transition duration-300 ease-in  text-xs 2xl:text-[15px] ml-[21px] text-[#576cdf]">
                                                             Vraćene knjige
                                                         </p>
                                                     </div>
@@ -72,18 +72,18 @@
                                     </div>
                                 </li>
                                 <li class="mb-[4px]">
-                                    <div class="w-[300px] pl-[28px]">
+                                    <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[28px]">
                                         <span
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
-                                                class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
+                                                class="group hover:bg-[#EFF3F6] py-[15px] px-[10px] 2xl:px-[20px] w-[190px] 2xl:w-[268px] rounded-[10px] cursor-pointer">
                                                 <a href="{{route('overdueBooks')}}" aria-label="Knjige na raspolaganju"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] fas fa-exclamation-triangle transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                                     <div>
                                                         <p
-                                                            class="text-[15px] ml-[17px] transition duration-300 ease-in group-hover:text-[#576cdf]">
+                                                            class="text-xs 2xl:text-[15px] ml-[17px] transition duration-300 ease-in group-hover:text-[#576cdf]">
                                                             Knjige u prekoračenju</p>
                                                     </div>
                                                 </a>
@@ -91,19 +91,19 @@
                                         </span>
                                     </div>
                                 </li>
-                                <li class="mb-[4px]">
-                                    <div class="w-[300px] border-t-[1px] border-[#e4dfdf]">
+                                <li class="pl-2 xl:pl-0 mb-[4px]">
+                                    <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] border-l-[1px] xl:border-l-0 xl:border-t-[1px] border-[#e4dfdf] pl-2 xl:pl-4 2xl:pl-[32px]">
                                         <span
-                                            class=" pl-[32px] whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
+                                            class="whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
-                                                class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
+                                                class="group hover:bg-[#EFF3F6] py-[15px] px-[10px] 2xl:px-[20px] w-[190px] 2xl:w-[268px] rounded-[10px] cursor-pointer">
                                                 <a href="{{route('activeReservations')}}" aria-label="Reservations"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] far fa-calendar-check transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                                     <div>
                                                         <p
-                                                            class="text-[15px] ml-[19px] transition duration-300 ease-in group-hover:text-[#576cdf]">
+                                                            class="text-xs 2xl:text-[15px] ml-[19px] transition duration-300 ease-in group-hover:text-[#576cdf]">
                                                             Aktivne rezervacije</p>
                                                     </div>
                                                 </a>
@@ -112,18 +112,18 @@
                                     </div>
                                 </li>
                                 <li class="mb-[4px]">
-                                    <div class="w-[300px] pl-[32px]">
+                                    <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[32px]">
                                         <span
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div
-                                                class="group hover:bg-[#EFF3F6] py-[15px] px-[20px] w-[268px] rounded-[10px] cursor-pointer">
+                                                class="group hover:bg-[#EFF3F6] py-[15px] px-[10px] 2xl:px-[20px] w-[190px] 2xl:w-[268px] rounded-[10px] cursor-pointer">
                                                 <a href="{{route('archivedReservations')}}" aria-label="Reservations"
                                                     class="flex items-center">
                                                     <i
                                                         class="text-[#707070] text-[20px] fas fa-calendar-alt transition duration-300 ease-in group-hover:text-[#576cdf]"></i>
                                                     <div>
                                                         <p
-                                                            class="text-[15px] ml-[19px] transition duration-300 ease-in group-hover:text-[#576cdf]">
+                                                            class="text-xs 2xl:text-[15px] ml-[19px] transition duration-300 ease-in group-hover:text-[#576cdf]">
                                                             Arhivirane rezervacije</p>
                                                     </div>
                                                 </a>
@@ -134,18 +134,18 @@
                             </ul>
                         </div>
 
-                        <div class="w-full mt-[10px] ml-2 px-2">
+                        <div class="w-full mt-[10px] xl:ml-2 pr-2 pl-4 xl:pl-2">
                             @if(count($returned) > 0)
                                 <table class="w-full shadow-lg" id="myTable">
                                     <thead class="bg-[#EFF3F6]">
                                         <form action="/filterReturnedBooks" method="GET">
                                             <tr class="border-b-[1px] border-[#e4dfdf]">
-                                                <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
+                                                <th class="px-2 py-4 leading-4 tracking-wider text-left text-blue-500 2xl:px-4">
                                                     <label class="inline-flex items-center">
                                                         <input type="checkbox" class="form-checkbox">
                                                     </label>
                                                 </th>
-                                                <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
+                                                <th class="px-2 py-4 text-xs leading-4 tracking-wider text-left 2xl:px-4 whitespace-nowrap 2xl:text-sm">
                                                     Naziv knjige
                                                     <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                             onclick="sortTable()"></i>
@@ -153,7 +153,7 @@
                                                 </th>
                                                 <!-- Izdato uceniku + dropdown filter for ucenik -->
                                                 <th
-                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
+                                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm 2xl:px-4 whitespace-nowrap">
                                                     Izdato učeniku<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
                                                     <div id="studentsDropdown"
                                                         class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
@@ -208,7 +208,7 @@
                                                 </th>
                                                 <!-- Datum izdavanja + dropdown filter for date -->
                                                 <th
-                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
+                                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm 2xl:px-4 whitespace-nowrap">
                                                     Datum izdavanja<i class="fas fa-filter dateDrop-toggle"></i>
                                                     <div id="dateDropdown"
                                                         class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
@@ -239,7 +239,7 @@
                                                 </th>
                                                 <!-- Datum vracanja + dropdown filter for date -->
                                                 <th
-                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
+                                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm 2xl:px-4 whitespace-nowrap">
                                                     Datum vraćanja<i class="fas fa-filter returningDrop-toggle"></i>
                                                     <div id="returningDropdown"
                                                         class="returningMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -270,12 +270,12 @@
                                                 </th>
                                                 <!-- Zadrzavanje knjige + dropdown filter for date -->
                                                 <th
-                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
+                                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm 2xl:px-4 whitespace-nowrap">
                                                     Zadržavanje knjige
                                                 </th>
                                                 <!-- Knjigu primio + dropdown filter for bibliotekari -->
                                                 <th
-                                                    class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">
+                                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm 2xl:px-4 whitespace-nowrap">
                                                     Knjigu primio<i class="fas fa-filter librariansDrop-toggle"></i>
                                                     <div id="librariansDropdown"
                                                         class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -328,46 +328,46 @@
                                                         </div>
                                                     </div>
                                                 </th>
-                                                <th class="p-4"> </th>
+                                                <th class="px-2 py-4 2xl:px-4"> </th>
                                             </tr>
                                         </form>
                                     </thead>
                                     <tbody class="bg-white">
                                     @foreach($returned as $return)
                                         <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                            <td class="p-4">
+                                            <td class="px-2 py-4 2xl:px-4">
                                                 <label class="inline-flex items-center">
                                                     <input type="checkbox" class="form-checkbox">
                                                 </label>
                                             </td>
-                                            <td class="flex flex-row items-center p-4 whitespace-nowrap">
+                                            <td class="flex flex-row items-center px-2 py-4 2xl:px-4 whitespace-nowrap">
                                                 @if(count($return->book->coverImage) > 0 ) 
                                                     <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$return->book->coverImage[0]->photo}}" alt="" />
                                                 @endif
                                                 <a href="{{route('rentDetails', ['book' => $return->book, 'student' => $return->student])}}">
-                                                    <span class="font-medium text-center">{{$return->book->title}}</span>
+                                                    <span class="text-xs font-medium text-center 2xl:text-sm">{{$return->book->title}}</span>
                                                 </a>
                                             </td>
-                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
-                                                <a href="{{route('studentProfile', ['user' => $return->student])}}">
+                                            <td class="px-2 py-4 leading-5 2xl:px-4 whitespace-nowrap">
+                                                <a href="{{route('studentProfile', ['user' => $return->student])}}" class="text-xs 2xl:text-sm">
                                                     {{$return->student->name}}
                                                 </a>
                                             </td>
-                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$return->rent_date}}</td>
-                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$return->rentStatus[0]->date}}</td>
-                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
+                                            <td class="px-2 py-4 text-xs leading-5 2xl:text-sm 2xl:px-4 whitespace-nowrap">{{$return->rent_date}}</td>
+                                            <td class="px-2 py-4 text-xs leading-5 2xl:text-sm 2xl:px-4 whitespace-nowrap">{{$return->rentStatus[0]->date}}</td>
+                                            <td class="px-2 py-4 leading-5 2xl:px-4 truncate max-w-[150px] xl:max-w-[180px] 2xl:max-w-full">
                                                 <div>
-                                                    <span>{{ \Carbon\Carbon::parse($return->rent_date)->diffAsCarbonInterval($return->rentStatus[0]->date) }}</span>
+                                                    <span class="text-xs 2xl:text-sm">{{ \Carbon\Carbon::parse($return->rent_date)->diffAsCarbonInterval($return->rentStatus[0]->date) }}</span>
                                                 </div>
                                             </td>
-                                            <td class="p-4 text-sm leading-5 whitespace-nowrap">
-                                                <a href="{{route('librarianProfile', ['user' => $return->receivedLibrarian])}}">
+                                            <td class="px-2 py-4 leading-5 2xl:px-4 whitespace-nowrap">
+                                                <a href="{{route('librarianProfile', ['user' => $return->receivedLibrarian])}}" class="text-xs 2xl:text-sm">
                                                     {{$return->receivedLibrarian->name}}
                                                 </a>
                                             </td>
-                                            <td class="p-4 text-sm leading-5 text-right">
+                                            <td class="px-2 py-4 leading-5 text-right 2xl:px-4">
                                                 <p
-                                                    class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsReturnedBooks hover:text-[#606FC7]">
+                                                    class="inline cursor-pointer text-[20px] py-[10px] px-[5px] 2xl:px-[30px] border-gray-300 dotsReturnedBooks hover:text-[#606FC7]">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </p>
                                                 <div
