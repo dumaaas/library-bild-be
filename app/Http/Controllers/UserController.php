@@ -119,8 +119,6 @@ class UserController extends Controller
      */
     public function deleteLibrarian(User $user) {
 
-        $viewName = $this->viewFolderLibrarian . '.librarians';
-
         $viewModel = [
             'librarians' => User::with('userType')
                     ->where('userType_id', '=', 2)
@@ -155,8 +153,6 @@ class UserController extends Controller
      * @param  Request $request
      */
     public function saveLibrarian(UserService $userService, Request $request) {
-
-        $viewName = $this->viewFolderLibrarian . '.librarianProfile';
 
         $user = $userService->saveLibrarian($request);
 
@@ -262,8 +258,6 @@ class UserController extends Controller
      */
     public function updateStudent(User $user, UserService $userService, Request $request) {
 
-        $viewName = $this->viewFolderStudent . '.studentProfile';
-
         $viewModel = [
             'user' => $user
         ];
@@ -280,8 +274,6 @@ class UserController extends Controller
      * @param  User $user
      */
     public function deleteStudent(User $user) {
-
-        $viewName = $this->viewFolderStudent . '.students';
 
         $viewModel = [
             'students' => User::with('userType')
@@ -305,8 +297,6 @@ class UserController extends Controller
      * @param  Request $request
      */
     public function saveStudent(UserService $userService, Request $request) {
-
-        $viewName = $this->viewFolderStudent . '.studentProfile';
 
         $user = $userService->saveStudent($request);
 

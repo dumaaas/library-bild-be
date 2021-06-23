@@ -36,6 +36,7 @@ class DashboardController extends Controller
      * @param  DashboardService $dashboardService
      */
     public function showDashboard(DashboardService $dashboardService, ReservationService $reservationService, RentService $rentService) {
+        
         $viewName = $this->viewFolder . '.dashboard';
 
         $viewModel = [
@@ -57,6 +58,7 @@ class DashboardController extends Controller
      * @param  UserService $userService
      */
     public function showDashboardActivity(DashboardService $dashboardService, BookService $bookService, UserService $userService) {
+
         $viewName = $this->viewFolder . '.dashboardActivity';
 
         $viewModel = [
@@ -79,6 +81,7 @@ class DashboardController extends Controller
      * @param  UserService $userService
      */
     public function showDashboardActivitySpecificBook(Book $book, DashboardService $dashboardService, BookService $bookService, UserService $userService) {
+        
         $viewName = $this->viewFolder . '.dashboardActivity';
 
         $viewModel = [

@@ -29,6 +29,7 @@ class GlobalVariableService {
      *
      */
     public function getReturnDueDate() {
+
         $dueDate =  DB::table('global_variables')->where('id', '=', 1)->first();
 
         return $dueDate->value;
@@ -39,6 +40,7 @@ class GlobalVariableService {
      *
      */
     public function getReservationPeriod() {
+
         $period = DB::table('global_variables')->where('id', '=', 2)->first();
 
         return $period->value;
@@ -49,6 +51,7 @@ class GlobalVariableService {
      *
      */
     public function getOverdraftPeriod() {
+        
         $period = DB::table('global_variables')->where('id', '=', 3)->first();
 
         return $period->value;

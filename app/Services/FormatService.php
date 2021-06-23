@@ -15,6 +15,7 @@ class FormatService {
      *
      */
     public function getFormats(){
+        
         return $formats = DB::table('formats');
     }
        

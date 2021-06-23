@@ -62,8 +62,6 @@ class FormatController extends Controller
      */
     public function save(Format $format, FormatService $formatService) {
 
-        $viewName = $this->viewFolder . '.editFormat';
-
         $viewModel = [
             'format' => $format
         ];
@@ -80,8 +78,6 @@ class FormatController extends Controller
      * @param  FormatService $formatService
      */
     public function update(Format $format, FormatService $formatService) {
-
-        $viewName = $this->viewFolder . '.editFormat';
 
         $viewModel = [
             'format' => $format
@@ -101,6 +97,7 @@ class FormatController extends Controller
     public function delete(Format $format) {
     
         Format::destroy($format->id);
+        
         return back()->with('success', 'Format je uspješno izbrisan!');
     }
 }

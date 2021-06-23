@@ -61,8 +61,6 @@ class ScriptController extends Controller
      * @param  ScriptService $scriptService
      */
     public function save(Script $script, ScriptService $scriptService) {
-        
-        $viewName = $this->viewFolder . '.editScript';
 
         $viewModel = [
             'script' => $script
@@ -70,7 +68,7 @@ class ScriptController extends Controller
 
         $scriptService->saveScript($script);
 
-        //return back
+        //return back to all scripts
         return redirect('scripts')->with('success', 'Pismo je uspješno uneseno!');
     }
 
@@ -82,15 +80,13 @@ class ScriptController extends Controller
      */
     public function update(Script $script, ScriptService $scriptService) {
 
-        $viewName = $this->viewFolder . '.editScript';
-
         $viewModel = [
             'script' => $script
         ];
 
         $scriptService->editScript($script);
 
-        //return back to the script
+        //return back to all scripts
         return redirect('scripts')->with('success', 'Pismo je uspješno izmijenjeno!');
     }
 
@@ -100,7 +96,9 @@ class ScriptController extends Controller
      * @param  Script $script
      */
     public function delete(Script $script) {
+
         Script::destroy($script->id);
+        
         return back()->with('success', 'Pismo je uspješno izbrisano!');
     }
 }

@@ -15,6 +15,7 @@ class CategoryService {
      *
      */
     public function getCategories(){
+
         return $categories = DB::table('categories');
     }
 
@@ -49,6 +50,7 @@ class CategoryService {
      * @param  Request $request
      */
    public function saveCategory($userService, $request) {
+       
     //request all data, validate and update category
     request()->validate([
         'categoryName'         => 'required|string|max:256',

@@ -27,6 +27,7 @@ class ReservationService
      *
      */
     public function getActiveReservations() {
+
         return Reservation::with('book', 'student')
                     ->where('closeReservation_id', '=', null);
     }
@@ -36,6 +37,7 @@ class ReservationService
      *
      */
     public function getArchivedReservations() {
+
         return Reservation::with('book', 'student', 'reservationStatus')
                     ->where('closeReservation_id', '!=', null);
     }
@@ -45,6 +47,7 @@ class ReservationService
      *
      */
     public function getReservedBooks() {
+
         return Reservation::with('book', 'student', 'reservationStatus')
                     ->where('closeReservation_id', '=', 5);
     }
@@ -54,6 +57,7 @@ class ReservationService
      *
      */
     public function getReservation($book, $student) {
+
         return Reservation::where('book_id', '=', $book)
                                 ->where('student_id', '=', $student)
                                 ->where('closeReservation_id', '=', 5)
@@ -66,6 +70,7 @@ class ReservationService
      * @param  Book  $knjiga
      */
     public function updateReservationStatus($reservation) {
+
         $reservationStatus = ReservationStatus::find($reservation);
         $reservationStatus->statusReservation_id = 2;
         $reservationStatus->save();
@@ -78,6 +83,7 @@ class ReservationService
      * @param  GlobalVariableService  $globalVariableService
      */
     public function saveReservation($book, $globalVariableService) {
+
         $reservation = new Reservation();
 
         $reservation->book_id             = $book;
@@ -100,6 +106,7 @@ class ReservationService
      * @param  date $reservationDate
      */
     public function saveReservationStatus($reservationId, $reservationDate) {
+
         $reservationStatus = new ReservationStatus();
 
         $reservationStatus->reservation_id       = $reservationId;
@@ -158,6 +165,7 @@ class ReservationService
     }
 
     public function getTransaction($book, $student) {
+        
         return Reservation::with('book', 'student', 'librarian')
             ->where('book_id', '=', $book)
             ->where('student_id', '=', $student)

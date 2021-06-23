@@ -66,7 +66,7 @@ class CategoryController extends Controller
 
         $categoryService->saveCategory($userService, $request);
 
-        //return back
+        //return back to all categories
         return redirect('categories')->with('success', 'Kategorija je uspješno unesena!');
     }
 
@@ -92,7 +92,9 @@ class CategoryController extends Controller
      * @param  Category $category
      */
     public function delete(Category $category) {
+
         Category::destroy($category->id);
+        
         return back()->with('success', 'Kategorija je uspješno izbrisana!');
     }
 }

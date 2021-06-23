@@ -68,6 +68,7 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function showOverdueBooks(RentService $rentService, UserService $userService, GlobalVariableService $globalVariableService) {
+
         $viewName = $this->viewFolder . '.overdueBooks';
 
         $overdued = $rentService->getOverdueBooks($globalVariableService)->paginate(7);
@@ -88,6 +89,7 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function showRentedBooks(RentService $rentService, UserService $userService) {
+
         $viewName = $this->viewFolder . '.rentedBooks';
 
         // pokupi samo knjige sa statusom izdatata
@@ -109,6 +111,7 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function showReturnedBooks(RentService $rentService, UserService $userService) {
+
         $viewName = $this->viewFolder . '.returnedBooks';
 
         // pokupi samo knjige sa statusom izdatata
@@ -129,6 +132,7 @@ class RentController extends Controller
      * @param  ReservationService $reservationService
      */
     public function showActiveReservations(ReservationService $reservationService) {
+
         $viewName = $this->viewFolder . '.activeReservations';
 
         $viewModel = [
@@ -144,6 +148,7 @@ class RentController extends Controller
      * @param  ReservationService $reservationService
      */
     public function showArchivedReservations(ReservationService $reservationService) {
+
         $viewName = $this->viewFolder . '.archivedReservations';
 
         $viewModel = [
@@ -162,7 +167,6 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function deleteTransaction(Book $book, User $student, RentService $rentService, UserService $userService) {
-        $viewName = $this->viewFolder . '.rentedBooks';
 
         $rentService->deleteTransaction($book->id, $student->id);
         $rented = $rentService->getRentedBooks()->paginate(7);
@@ -183,6 +187,7 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function filterRentedBooks(RentService $rentService, UserService $userService) {
+
         $viewName = $this->viewFolder . '.rentedBooks';
 
         $rented = $rentService->filtrateRentedBooks();
@@ -204,6 +209,7 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function searchRentedBooks(RentService $rentService, UserService $userService) {
+
         $viewName = $this->viewFolder . '.rentedBooks';
 
         $rented = $rentService->searchRentedBooks();
@@ -225,6 +231,7 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function filterReturnedBooks(RentService $rentService, UserService $userService) {
+
         $viewName = $this->viewFolder . '.returnedBooks';
 
         $returned = $rentService->filtrateReturnedBooks();
@@ -267,6 +274,7 @@ class RentController extends Controller
      * @param  UserService $userService
      */
     public function filterOverdueBooks(RentService $rentService, UserService $userService) {
+        
         $viewName = $this->viewFolder . '.overdueBooks';
 
         $overdued = $rentService->filtrateOverdueBooks();

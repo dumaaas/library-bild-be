@@ -15,6 +15,7 @@ class GenreService {
      *
      */
     public function getGenres(){
+
         return $genres = DB::table('genres');
     }
 
@@ -25,6 +26,7 @@ class GenreService {
      * @param  Request $request
      */
     public function saveGenre($userService, $request) {
+
         //request all data, validate and add genre
         request()->validate([
             'genreName' => 'required|string|max:256',
@@ -47,6 +49,7 @@ class GenreService {
      * @param  Request $request
      */
     public function editGenre($genre, $userService, $request) {
+        
          //request all data, validate and update genre
          request()->validate([
             'genreNameEdit' => 'string|max:256',

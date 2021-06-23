@@ -62,8 +62,6 @@ class BindingController extends Controller
      * @param  BindingService $bindingService
      */
     public function save(Binding $binding, BindingService $bindingService) {
-        
-        $viewName = $this->viewFolder . '.editBinding';
 
         $viewModel = [
             'binding' => $binding
@@ -82,8 +80,6 @@ class BindingController extends Controller
      * @param  BindingService $bindingService
      */
     public function update(Binding $binding, BindingService $bindingService) {
-   
-        $viewName = $this->viewFolder . '.editBinding';
 
         $viewModel = [
             'binding' => $binding
@@ -101,7 +97,9 @@ class BindingController extends Controller
      * @param  Binding $binding
      */
     public function delete(Binding $binding) {
+
         Binding::destroy($binding->id);
+        
         return back()->with('success', 'Povez je uspješno izbrisan!');
     }
 }

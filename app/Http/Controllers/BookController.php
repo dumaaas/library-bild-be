@@ -47,6 +47,7 @@ class BookController extends Controller
      * @param  Book $book
      */
     public function showEditBook(Book $book) {
+
         $viewName = $this->viewFolder . '.editBook';
 
         $viewModel = [
@@ -70,6 +71,7 @@ class BookController extends Controller
      * @param  AuthorService $authorService
      */
     public function showBookRecords(AuthorService $authorService) {
+
         $viewName = $this->viewFolder . '.bookRecords';
 
         $viewModel = [
@@ -88,6 +90,7 @@ class BookController extends Controller
      * @param  DashboardService $dashboardService
      */
     public function showBookMultimedia(Book $book, DashboardService $dashboardService) {
+
         $viewName = $this->viewFolder . '.bookMultimedia';
 
         $viewModel = [
@@ -107,6 +110,7 @@ class BookController extends Controller
      * @param  DashboardService $dashboardService
      */
     public function showBookDetails(Book $book, DashboardService $dashboardService) {
+
         $viewName = $this->viewFolder . '.bookDetails';
 
         $viewModel = [
@@ -126,6 +130,7 @@ class BookController extends Controller
      * @param  DashboardService $dashboardService
      */
     public function showBookSpecification(Book $book, DashboardService $dashboardService) {
+
         $viewName = $this->viewFolder . '.bookSpecification';
 
         $viewModel = [
@@ -144,6 +149,7 @@ class BookController extends Controller
      * @param  AuthorService $authorService
      */
     public function showAddBook(AuthorService $authorService) {
+
         $viewName = $this->viewFolder . '.addBook';
 
         $viewModel = [
@@ -167,6 +173,7 @@ class BookController extends Controller
      * @param  RentService $rentService
      */
     public function showReturnBook(Book $book, RentService $rentService) {
+
         $viewName = $this->viewFolder . '.returnBook';
 
         $rentedBooks = $rentService->getRentedBooks()
@@ -188,6 +195,7 @@ class BookController extends Controller
      * @param  RentService $rentService
      */
     public function showWriteOffBook(Book $book, RentService $rentService) {
+
         $viewName = $this->viewFolder . '.writeOffBook';
 
         $overdueBooks = $rentService->getOverdueBooks()
@@ -210,6 +218,7 @@ class BookController extends Controller
      * @param  RentService $rentService
      */
     public function showReserveBook(Book $book, UserService $userService, RentService $rentService) {
+
         $viewNameReserve = $this->viewFolder . '.reserveBook';
         $viewNameError = $this->viewFolder . '.rentBookError';
 
@@ -242,6 +251,7 @@ class BookController extends Controller
      * @param  RentService $rentService
      */
     public function showRentBook(Book $book, UserService $userService, RentService $rentService) {
+
         $viewNameRent = $this->viewFolder . '.rentBook';
         $viewNameError = $this->viewFolder . '.rentBookError';
 
@@ -308,6 +318,7 @@ class BookController extends Controller
      * @param  RentService $rentService
      */
     public function showRentingRented(Book $book, DashboardService $dashboardService, RentService $rentService) {
+
         $viewName = $this->viewFolder . '.rentingRented';
 
         $viewModel = [
@@ -333,6 +344,7 @@ class BookController extends Controller
     public function showRentingOverdue(Book $book, DashboardService $dashboardService, RentService $rentService) {
         $viewName = $this->viewFolder . '.rentingOverdue';
 
+
         $viewModel = [
             'book'               => $book,
             'activities'         => $dashboardService->getBookActivity($book->id)
@@ -354,6 +366,7 @@ class BookController extends Controller
      * @param  RentService $rentService
      */
     public function showRentingReturned(Book $book, DashboardService $dashboardService) {
+
         $viewName = $this->viewFolder . '.rentingReturned';
 
         $rentingR = Rent::where('book_id', '=', $book->id)
@@ -391,6 +404,7 @@ class BookController extends Controller
      * @param  ReservationService $reservationService
      */
     public function showRentingActive(Book $book, DashboardService $dashboardService, ReservationService $reservationService) {
+        
         $viewName = $this->viewFolder . '.rentingActive';
 
         $viewModel = [
@@ -415,6 +429,7 @@ class BookController extends Controller
      * @param  ReservationService $reservationService
      */
     public function showRentingArchived(Book $book, DashboardService $dashboardService, ReservationService $reservationService) {
+
         $viewName = $this->viewFolder . '.rentingArchived';
 
         $viewModel = [
@@ -437,9 +452,8 @@ class BookController extends Controller
      * @param  BookService $bookService
      */
     public function saveBook(Request $request, BookService $bookService, DashboardService $dashboardService) {
-        $viewName = $this->viewFolder . '.bookDetails';
 
-        //request all data, validate and update author
+        //request all data, validate and save book
         request()->validate([
             'bookTitle'        => 'required|max:256',
             'summary'          => 'max:4128',
@@ -479,8 +493,7 @@ class BookController extends Controller
                                 ->get(),
         ];
 
-        //redirect to book
-        // return view($viewName, $viewModel);
+        //redirect to all books
         return redirect('bookRecords')->with('success', 'Knjiga je uspješno unsesena!');
     }
 
@@ -491,9 +504,8 @@ class BookController extends Controller
      * @param  BookService $bookService
      */
     public function updateBook(Request $request, Book $book, DashboardService $dashboardService, Galery $gallery) {
-        $viewName = $this->viewFolder . '.bookDetails';
 
-        //request all data, validate and update author
+        //request all data, validate and update book
         request()->validate([
             'bookTitleEdit'         => 'required|max:256',
             'summary_edit'          => 'required|max:4128',
@@ -593,7 +605,9 @@ class BookController extends Controller
      * @param  Book $book
      */
     public function deleteBook(Book $book) {
+
         Book::destroy($book->id);
+
         return redirect('bookRecords')->with('success','Knjiga je uspješno obrisana!');
     }
 
@@ -605,6 +619,7 @@ class BookController extends Controller
      * @param  CategoryService $categoryService
      */
     public function filterAuthors(BookService $bookService, AuthorService $authorService, CategoryService $categoryService) {
+        
         $viewName = $this->viewFolder . '.bookRecords';
 
         $books = $bookService->filterAuthors()

@@ -63,15 +63,13 @@ class PublisherController extends Controller
      */
     public function update(Publisher $publisher, PublisherService $publisherService) {
 
-        $viewName = $this->viewFolder . '.editPublisher';
-
         $viewModel = [
             'publisher' => $publisher
         ];
 
         $publisherService->editPublisher($publisher);
         
-        //return back to the publisher
+        //return back to all publishers
         return redirect('publishers')->with('success', 'Izdavač je uspješno izmijenjen!');
     }
 
@@ -81,7 +79,9 @@ class PublisherController extends Controller
      * @param  Publisher $publisher
      */
     public function delete(Publisher $publisher) {
+
         Publisher::destroy($publisher->id);
+
         return back()->with('success', 'Izdavač je uspješno izbrisan!');
     }
 
@@ -93,15 +93,13 @@ class PublisherController extends Controller
      */
     public function save(Publisher $publisher, PublisherService $publisherService) {
 
-        $viewName = $this->viewFolder . '.editPublisher';
-
         $viewModel = [
             'publisher' => $publisher
         ];
 
         $publisherService->savePublisher($publisher);
 
-        //return back to the publisher
+        //return back to all publishers
         return redirect('publishers')->with('success', 'Izdavač je uspješno unesen!');
     }
 }

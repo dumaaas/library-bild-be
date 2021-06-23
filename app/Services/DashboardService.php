@@ -27,6 +27,7 @@ class DashboardService
      *
      */
     public function getLatestReservation() {
+
         return Reservation::with('book', 'student')
                     ->latest()
                     ->take(4)
@@ -38,6 +39,7 @@ class DashboardService
      *
      */
     public function getActivities() {
+
         return Rent::with('book', 'student', 'librarian')
                     ->orderBy('rent_date', 'DESC')
                     ->get();
@@ -49,6 +51,7 @@ class DashboardService
      *
      */
     public function getLatestActivities() {
+
         return Rent::with('book', 'student', 'librarian')
                     ->orderBy('rent_date', 'DESC')
                     ->take(10)
@@ -61,6 +64,7 @@ class DashboardService
      * @param  Book  $book
      */
     public function getBookActivity($book) {
+
         return Rent::with('book', 'student', 'librarian')
                         ->where('book_id', 'LIKE', $book)
                         ->orderBy('rent_date', 'DESC');
@@ -76,6 +80,7 @@ class DashboardService
      * @param  Request  $dateToRequest
      */
     public function filterActivities($studentsRequest, $librariansRequest, $booksRequest, $dateFromRequest, $dateToRequest) {
+        
         $activities = Rent::query();
         $activities = $activities->with('book', 'student', 'librarian');
 

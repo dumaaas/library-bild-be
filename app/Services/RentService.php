@@ -30,6 +30,7 @@ class RentService
      * @param  User  $student
      */
     public function getTransaction($book, $student) {
+
         return Rent::with('book', 'student', 'librarian')
                     ->where('book_id', '=', $book)
                     ->where('student_id', '=', $student)
@@ -60,6 +61,7 @@ class RentService
      *
      */
     public function getRentedBooks() {
+
         return Rent::where(function ($query) {
                         $query->select('statusBook_id')
                             ->from('rent_statuses')
@@ -74,6 +76,7 @@ class RentService
      *
      */
     public function getReturnedBooks() {
+
         return Rent::where(function ($query) {
                         $query->select('statusBook_id')
                             ->from('rent_statuses')
@@ -95,6 +98,7 @@ class RentService
      * @param  Book  $book
      */
     public function saveRent($book) {
+
         $rent = new Rent();
 
         $rent->book_id = $book;
@@ -115,6 +119,7 @@ class RentService
      * @param  date $rentDate
      */
     public function saveRentStatus($rentId, $rentDate) {
+
         $rentStatus = new RentStatus();
 
         $rentStatus->rent_id = $rentId;
@@ -131,6 +136,7 @@ class RentService
      * @param  User  $student
      */
     public function deleteTransaction($book, $student) {
+
         $transaction = $this->getTransaction($book, $student);
             
         Rent::destroy($transaction->id);
@@ -141,6 +147,7 @@ class RentService
      *
      */
     public function filtrateRentedBooks() {
+
         $rented = Rent::query();
         $rented = $rented->with('book', 'student', 'librarian')
                         ->where('return_date', '=', null);
@@ -171,6 +178,7 @@ class RentService
      *
      */
     public function filtrateReturnedBooks() {
+
         $returned = Rent::query();
         $returned = $returned->with('book', 'student', 'librarian')
                         ->where('return_date', '!=', null);
@@ -207,6 +215,7 @@ class RentService
      *
      */
     public function filtrateOverdueBooks() {
+
         $overdue = Rent::query();
         $overdue = $overdue->with('book', 'student', 'librarian')
                             ->where('return_date', '=', null)
@@ -233,6 +242,7 @@ class RentService
      *
      */
     public function searchRentedBooks() {
+        
         $rented = Rent::query();
         
         $rented = $this->getRentedBooks();

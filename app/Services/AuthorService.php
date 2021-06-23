@@ -24,6 +24,7 @@ class AuthorService {
      *
      */
     public function getAuthors() {
+
         return DB::table('authors');
     }
 
@@ -33,6 +34,7 @@ class AuthorService {
      * @param  Author  $author
      */
     public function editAuthor($author) {
+
         //request all data, validate and update movie
         request()->validate([
             'name'        => 'sometimes|regex:/^([^0-9]*)$/|max:128',
@@ -50,6 +52,7 @@ class AuthorService {
      *
      */
     public function saveAuthor() {
+        
         //request all data, validate and update author
         request()->validate([
             'authorName'        => 'required|max:128|regex:/^([^0-9]*)$/',

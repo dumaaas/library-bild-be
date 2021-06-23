@@ -15,6 +15,7 @@ class ScriptService {
      *
      */
     public function getScripts(){
+        
         return $scripts = DB::table('scripts');
     }
 

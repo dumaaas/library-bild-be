@@ -26,6 +26,7 @@ class UserService {
      *
      */
     public function getLibrarians() {
+
         return $librarians = User::with('userType')
                             ->where('userType_id', '=', 2);
     }
@@ -36,6 +37,7 @@ class UserService {
      * @param  User  $bibliotekar
      */
     public function editLibrarian($librarian, $request) {
+
         //request all data, validate and update librarian
         request()->validate([
             'librarianNameEdit'       => 'nullable|string|max:128|regex:/^([^0-9]*)$/',
@@ -75,6 +77,7 @@ class UserService {
      *
      */
     public function saveLibrarian($request) {
+
         //request all data, validate and add librarian
         request()->validate([
             'librarianName'       => 'required|max:128|regex:/^([^0-9]*)$/',
@@ -136,6 +139,7 @@ class UserService {
      * @param Request $request
      */
     public function uploadPhoto($user, $request) {
+
         if ($request->hasFile('userImage')) {
             $this->uploadEditPhoto($user, $request);
         } else {
@@ -150,6 +154,7 @@ class UserService {
      * @param Request $request
      */
     public function uploadEditPhoto($user, $request) {
+
         if ($request->hasFile('userImage')) {
             $filenameWithExt = $request->file('userImage')->getClientOriginalName();
             // Get Filename
@@ -170,6 +175,7 @@ class UserService {
      *
      */
     public function getStudents() {
+
         return $students = User::with('userType')
                         ->where('userType_id', '=', 3);
     }
@@ -180,6 +186,7 @@ class UserService {
      * @param  User  $student
      */
     public function editStudent($student, $request) {
+
         //request all data, validate and update student
         request()->validate([
             'studentNameEdit'      => 'nullable|string|max:128|regex:/^([^0-9]*)$/',
@@ -219,6 +226,7 @@ class UserService {
      *
      */
     public function saveStudent($request) {
+
         //request all data, validate and update student
         request()->validate([
             'studentName'       => 'required|string|max:128|regex:/^([^0-9]*)$/',
@@ -279,6 +287,7 @@ class UserService {
      * @param  User  $user
      */
     public function resetPassword($user) {
+        
         //request all data, validate and reset password
         request()->validate([
             'pwReset'  => 'required|min:8|max:256|same:pw2Reset',

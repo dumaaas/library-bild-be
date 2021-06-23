@@ -91,7 +91,9 @@ class GenreController extends Controller
      * @param  Genre $genre
      */
     public function delete(Genre $genre) {
+
         Genre::destroy($genre->id);
+        
         return back()->with('success', 'Žanr je uspješno izbrisan!');
     }
 }

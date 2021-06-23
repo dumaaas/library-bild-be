@@ -60,6 +60,7 @@ class AuthorController extends Controller
      * @param  Author $author
      */
     public function showEdit(Author $author) {
+        
         $viewName = $this->viewFolder . '.editAuthor';
 
         $viewModel = [
@@ -74,6 +75,7 @@ class AuthorController extends Controller
      *
      */
     public function showAdd() {
+
         $viewName = $this->viewFolder . '.addAuthor';
 
         return view($viewName);
@@ -86,7 +88,6 @@ class AuthorController extends Controller
      * @param  AuthorService $authorService
      */
     public function update(Author $author, AuthorService $authorService) {
-        $viewName = $this->viewFolder . '.editAuthor';
 
         $authorService->editAuthor($author);
 
@@ -103,6 +104,7 @@ class AuthorController extends Controller
      * @param  Author $author
      */
     public function delete(Author $author) {
+
         Author::destroy($author->id);
 
         return redirect('authors')->with('success', 'Autor je uspješno izbrisan!');
@@ -114,8 +116,6 @@ class AuthorController extends Controller
      * @param  AuthorService $authorService
      */
     public function save(AuthorService $authorService) {
-
-        $viewName = $this->viewFolder . '.authorProfile';
 
         $author = $authorService->saveAuthor();
 

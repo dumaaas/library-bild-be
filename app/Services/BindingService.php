@@ -15,6 +15,7 @@ class BindingService {
      *
      */
     public function getBindings(){
+        
         return $bindings = DB::table('bindings');
     }
 

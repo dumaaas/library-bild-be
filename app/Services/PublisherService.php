@@ -15,6 +15,7 @@ class PublisherService {
      *
      */
     public function getPublishers(){
+        
         return $publishers = DB::table('publishers');
     }
 

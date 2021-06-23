@@ -32,6 +32,7 @@ class BookService {
      *
      */
     public function getBooks() {
+
         return DB::table('books');
     }
 
@@ -86,6 +87,7 @@ class BookService {
      * @param  GlobalVariableService $globalVariableService
      */
     public function saveReservation($book, $reservationService, $globalVariableService) {
+
         request()->validate([
             'student'         => 'required',
             'reservationDate' => 'required',
@@ -107,6 +109,7 @@ class BookService {
      *
      */
     public function saveBook() {
+
         $book = new Book();
 
         $book->title=request('bookTitle');
@@ -134,6 +137,7 @@ class BookService {
      * @param Category $category
      */
     public function saveBookCategories($categoriesValues, $book) {
+
         $categories = explode(',', $categoriesValues);
 
         foreach($categories as $category) {
@@ -153,6 +157,7 @@ class BookService {
      * @param Genre $genre
      */
     public function saveBookGenres($genresValues, $book) {
+
         $genres = explode(',', $genresValues);
 
         foreach($genres as $genre) {
@@ -172,6 +177,7 @@ class BookService {
      * @param Author $author
      */
     public function saveBookAuthors($authorsValues, $book) {
+
         $authors = explode(',', $authorsValues);
 
         foreach($authors as $author) {
@@ -190,6 +196,7 @@ class BookService {
      *
      */
     public function filterAuthors() {
+
         $books = Book::query();
         $books = $books->with('author', 'category');
 
@@ -220,6 +227,7 @@ class BookService {
      * @param GlobalVariableServis $globalVariableService
      */
     public function returnBooks($globalVariableService) {
+
         $books=request('returnBook');
 
         foreach($books as $book){
@@ -252,6 +260,7 @@ class BookService {
      *
      */
     public function writeOffBooks() {
+
         $books = request('writeOffBook');
 
         foreach($books as $oneBook){
@@ -283,6 +292,7 @@ class BookService {
     }
 
     public function uploadBookImages($book, $request) {
+
         if ($request->hasFile('movieImages')) {
             $movieImages = $request->file('movieImages');
             $coverImage = request('imageCover');
@@ -315,6 +325,7 @@ class BookService {
     }
 
     public function editBookImages($book, $request) {
+
         if ($request->hasFile('movieImages')) {
             $movieImages = $request->file('movieImages');
             $coverImage = request('imageCover');
@@ -350,6 +361,7 @@ class BookService {
      *
      */
     public function searchReturnBook(Book $book, RentService $rentService) {
+
         $rentedBooks = Rent::query();
         if(request('searchReturn')) {
             $searchedStudent = request('searchReturn');
@@ -377,6 +389,7 @@ class BookService {
      * @param RentService $rentService
      */
     public function searchWriteOffBooks(Book $book, RentService $rentService) {
+        
         $rent = Rent::query();
         if(request('searchWriteOff')) {
             $searchedStudent = request('searchWriteOff');
