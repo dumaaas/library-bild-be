@@ -1,62 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# library-bild-be
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Back-end development for the library-bild project (https://github.com/dumaaas/library-bild) built with Laravel framework + MySQL + Blade.
 
-## About Laravel
+## 📚 Online library
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Online Library is an Automated Library System that handles the various functions of the library. It provides a complete solution to the library management software.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Features of Online Library:
+ 
+ -  Integration of all records of students
+ -  Manage the records systematically
+ -  It can track any information online
+ -  Manage all information online
+ -  Easy to maintain records
+ -  It leads to fast book entry
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Advantages of Online Library:
 
-## Learning Laravel
+ -  It is user-friendly software
+ -  It helps in maintaining records
+ -  One can track any information through this system
+ -  Searching is easy in the online library system
+ -  Users can check the availability of a particular book online
+ -  It increases the efficiency
+ -  It saves human effort and time
+ -  It reduces the chances of error
+ -  It acts as an anti-theft
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### The user role "Librarian" includes: 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ - overview of users
+ - adding/deleting users
+ - overview of books
+ - adding/deleting/editing books
+ - overview of rented, returned books (for a single users, for a single book, for all books)
+ - overview of overdue books (for a single users, for a single book, for all books)
+ - overview of active and archived reservations (for a single users, for a single book, for all books)
+ - access to dashboard where he can see and filter with activities, latest reservation and book activity statistics
+ - can reserve a book
+ - can cancel the reservation
+ - can rent a book
+ - can return a book
+ - can write off a book
 
-## Laravel Sponsors
+### The user role "Administrator" includes:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+ - inherits everything from the librarian 
+ - overview of librarians
+ - adding/deleting librarians
+ - overview of genres, categories, bindigs, formats, languages, publisher, scripts
+ - adding/deleting/editing all of the above
+ - updating general policies for the book
 
-### Premium Partners
+### The user role "User" includes: 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+ - overview of books
+ - can reserve a book
+ - can rent a book
 
-## Contributing
+This role will be developed with the mobile application.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## :man_technologist: How to install?
 
-## Code of Conduct
+Run following snipets
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+ - cd /path/to/workspace/directory 
+ - git clone https://github.com/dumaaas/library-bild-be.git 
+ - cd library-bild-be 
+ - composer install
+ - copy .env.example .env(for linux users:'cp .env.example .env')
+ - php artisan key:generate
+ - open .env file enter required fields for database connection
+ - start MySQL
+ - php artisan migrate
+ - php artisan storage:link
+ - php artisan db:seed
+ - php artisan serve
 
-## Security Vulnerabilities
+In seeder files you can find user credentials to log in. Every user has it s own dashboard and it should be pretty intuitive to use.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🚀 Tech/framework 
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* Laravel
+* MySQL
