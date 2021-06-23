@@ -49,12 +49,12 @@
                 <table class="w-full shadow-lg" id="myTable">
                     <thead class="bg-[#EFF3F6]">
                     <tr class="border-b-[1px] border-[#e4dfdf]">
-                        <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
+                        <th class="p-2 leading-4 tracking-wider text-left text-blue-500 xl:p-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </th>
-                        <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Izdato učeniku<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
+                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Izdato učeniku<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
                             <div id="studentsDropdown"
                                 class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
                                 <ul class="border-b-2 border-gray-300 list-reset">
@@ -197,7 +197,7 @@
                                     </a>
                                 </div>
                             </div></th>
-                        <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Datum izdavanja<i class="fas fa-filter dateDrop-toggle"></i>
+                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Datum izdavanja<i class="fas fa-filter dateDrop-toggle"></i>
                             <div id="dateDropdown"
                                 class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                 <div
@@ -225,7 +225,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Trenutno
+                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Trenutno
                             zadržavanje knjige <i class="fas fa-filter delayDrop-toggle"></i>
                             <div id="delayDropdown"
                                 class="delayMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -253,7 +253,7 @@
                                     </a>
                                 </div>
                             </div></th>
-                        <th class="relative p-4 text-sm leading-4 tracking-wider text-left cursor-pointer whitespace-nowrap">Knjigu izdao<i class="fas fa-filter librariansDrop-toggle"></i>
+                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Knjigu izdao<i class="fas fa-filter librariansDrop-toggle"></i>
                             <div id="librariansDropdown"
                                 class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                 <ul class="border-b-2 border-gray-300 list-reset">
@@ -402,21 +402,21 @@
                     <tbody class="bg-white">
                     @foreach($rentingRented as $rentingRent)
                     <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                        <td class="p-4">
+                        <td class="p-2 xl:p-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </td>
-                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingRent->student->name}}</td>
-                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingRent->rentStatus[0]->date}}</td>
-                        <td class="p-4 text-sm leading-5 whitespace-nowrap">
+                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">{{$rentingRent->student->name}}</td>
+                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">{{$rentingRent->rentStatus[0]->date}}</td>
+                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">
                             <div>
                                 <span>{{ \Carbon\Carbon::parse($rentingRent->rent_date)->diffAsCarbonInterval() }}</span>
                             </div>
                         </td>
-                        <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$rentingRent->librarian->name}}</td>
-                        <td class="p-4 text-sm leading-5 text-right">
-                            <p class="inline cursor-pointer text-[20px] py-[10px] px-[30px] border-gray-300 dotsRentingRentedBooks hover:text-[#606FC7]">
+                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">{{$rentingRent->librarian->name}}</td>
+                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 text-right xl:p-4">
+                            <p class="inline cursor-pointer text-[20px] py-[10px] px-[5px] xl:px-[30px] border-gray-300 dotsRentingRentedBooks hover:text-[#606FC7]">
                                 <i
                                     class="fas fa-ellipsis-v"></i>
                             </p>
