@@ -44,7 +44,7 @@
                     Pismo
                 </a>
             </div>
-            <div class="height-kategorije pb-[30px] scroll">
+            <div class="height-categories pb-[30px] scroll">
                 <div class="flex items-center px-[50px] py-8 space-x-3 rounded-lg">
                     <a href="{{route('addBinding')}}"
                         class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">

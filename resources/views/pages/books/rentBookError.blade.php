@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-row overflow-auto height-izdajKnjigu">
+            <div class="flex flex-row overflow-auto scroll height-studentProfile">
                 <div class="">
                     <!-- Space for content -->
                     <div class="pl-[30px] section- mt-[20px]">

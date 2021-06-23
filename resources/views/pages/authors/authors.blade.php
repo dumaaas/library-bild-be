@@ -21,7 +21,7 @@
             @endif
         </div>
         @if(count($authors) > 0)
-        <div class="height-autori pb-[30px] scroll">
+        <div class="height-authors pb-[30px] scroll">
             <div class="flex items-center px-[30px] py-4 space-x-3 rounded-lg justify-between">
                 <a href="{{ route('addAuthor') }}"
                    class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] hover:bg-[#4558BE] whitespace-nowrap">

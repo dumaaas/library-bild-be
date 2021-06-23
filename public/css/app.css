@@ -106,44 +106,32 @@
 .nav-height {
     height: calc(100% - 60px);
 }
-.height-vratiKnjigu {
-    height: calc(100% - 192px);
-}
-.height-izdajKnjigu {
+.height-rentBook {
     height: calc(100% - 156px);
 }
-.height-osnovniDetalji {
+.height-bookDetails {
     height: calc(100% - 134px);
 }
 .height-profile {
     height: calc(100% - 153px);
 }
-.height-ucenikProfile {
+.height-studentProfile {
     height: calc(100% - 184px);
-}
-.height-detaljiIzdavanje {
-    height: calc(100% - 148px);
-}
-.height-ucenikEvidencija {
-    height: calc(100% - 200px);
 }
 .width-evidencija {
     width: calc(100% - 300px);
 }
-.height-kategorije {
+.height-categories {
     height: calc(100% - 165px);
 }
-.height-ucenikIzdate {
+.height-studentRented {
     height: calc(100% - 210px);
 }
-.height-autori {
+.height-authors {
     height: calc(100% - 105px);
 }
-.height-evidencija {
+.height-records {
     height: calc(100% - 150px);
-}
-.height-iznajmljivanje {
-    height: calc(100% - 160px);
 }
 /*Show More/Show less - text*/
 .addReadMore.showlesscontent .SecSec,

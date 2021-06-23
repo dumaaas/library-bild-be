@@ -84,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-row overflow-auto height-osnovniDetalji">
+        <div class="flex flex-row overflow-auto height-bookDetails">
             <!-- PLACE FOR YIELDING BOOK SECTIONS -->
             @yield('detailsBook')
             @yield('specificationBook')

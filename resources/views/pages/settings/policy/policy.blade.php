@@ -44,7 +44,7 @@
                     Pismo
                 </a>
             </div>
-            <div class="height-ucenikProfile pb-[30px] scroll">
+            <div class="height-studentProfile pb-[30px] scroll">
                 <!-- Space for content -->
                 <div class="section- mt-[20px]">
                     <div class="flex flex-col">
