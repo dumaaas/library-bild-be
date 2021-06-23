@@ -453,7 +453,7 @@ class BookController extends Controller
             'bookScript'       => 'required',
             'bookBinding'      => 'required',
             'bookFormat'       => 'required',
-            'bookIsbn'         => 'required|unique:books,ISBN|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/',
+            'bookIsbn'         => 'required|unique:books,ISBN|regex:/^(\d{3})-(\d{1})-(\d{2})-(\d{6})-(\d{1})/',
             'bookLanguage'     => 'required',
             'movieImages'      => 'required',
             'movieImages.*'    => 'mimes:jpeg,png,jpg',
@@ -507,7 +507,7 @@ class BookController extends Controller
             'scriptEdit'            => 'required',
             'bindingEdit'           => 'required',
             'formatEdit'            => 'required',
-            'isbnEdit'              => 'nullable|unique:books,ISBN|max:20',
+            'isbnEdit'              => 'nullable|unique:books,ISBN|regex:/^(\d{3})-(\d{1})-(\d{2})-(\d{6})-(\d{1})/',
             'languageEdit'          => 'required',
         ]);
 

@@ -71,7 +71,7 @@
                 Evidencija iznajmljivanja
             </a>
         </div>
-        <div class="height-ucenikProfile pb-[30px] scroll">
+        <div class="height-studentProfile pb-[30px] scroll">
                 <!-- Space for content -->
             <div class="pl-[30px] section- mt-[20px]">
                     <div class="flex flex-row">

@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-row height-ucenikProfile scroll pb-[20px]">
+            <div class="flex flex-row height-studentProfile scroll pb-[20px]">
                 <div class="">
                     <!-- Space for content -->
                     <div class="pl-[30px] section- mt-[20px]">

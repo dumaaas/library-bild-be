@@ -72,7 +72,7 @@
                 </a>
             </div>
             <!-- Space for content -->
-            <div class="flex flex-col justify-start pt-3 bg-white xl:flex-row height-ucenikIzdate scroll">
+            <div class="flex flex-col justify-start pt-3 bg-white xl:flex-row height-studentRented scroll">
                 <div class="mt-[10px]">
                     <ul class="text-[#2D3B48] flex xl:block">
                         <li class="mb-[4px]">
@@ -280,7 +280,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileExample.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Bibliotekar Bulatovic
@@ -299,7 +299,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileExample.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Pero Perovic
@@ -318,7 +318,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileExample.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Marko Markovic
@@ -337,7 +337,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileExample.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Nikola Nikolic
@@ -356,7 +356,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileExample.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Zivko Zivkovic
@@ -375,7 +375,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileExample.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Petar Petrovic

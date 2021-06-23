@@ -72,7 +72,7 @@
                 </a>
             </div>
             <!-- Space for content -->
-            <div class="flex flex-col justify-start pt-3 bg-white xl:flex-row height-ucenikIzdate scroll">
+            <div class="flex flex-col justify-start pt-3 bg-white xl:flex-row height-studentRented scroll">
                 <div class="mt-[10px]">
                     <ul class="text-[#2D3B48] flex xl:block">
                         <li class="mb-[4px]">
