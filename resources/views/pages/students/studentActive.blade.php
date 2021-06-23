@@ -76,7 +76,7 @@
                 <div class="mt-[10px]">
                     <ul class="text-[#2D3B48] flex xl:block">
                         <li class="mb-[4px]">
-                            <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[32px]">
+                            <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-4 2xl:pl-[32px]">
                                 <span class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                     <div
                                         class="py-[15px] px-[10px] 2xl:px-[20px] w-[170px] xl:w-[190px] 2xl:w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
@@ -133,7 +133,7 @@
                                 </span>
                             </div>
                         </li>
-                        <li class="pl-4 xl:pl-0 mb-[4px]">
+                        <li class="pl-2 xl:pl-0 mb-[4px]">
                             <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] border-l-[1px] xl:border-l-0 xl:border-t-[1px] border-[#e4dfdf] pl-2 xl:pl-4 2xl:pl-[32px]">
                                 <span
                                     class="whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
@@ -178,16 +178,16 @@
                     <table class="w-full shadow-lg reservations" id="myTable">
                         <thead class="bg-[#EFF3F6]">
                             <tr class="border-b-[1px] border-[#e4dfdf]">
-                                <th class="p-2 leading-4 tracking-wider text-left text-blue-500 xl:p-3 2xl:p-4">
+                                <th class="px-2 py-4 leading-4 tracking-wider text-left text-blue-500 xl:px-4">
                                     <label class="inline-flex items-center">
                                         <input type="checkbox" class="form-checkbox">
                                     </label>
                                 </th>
-                                <th class="flex items-center p-2 leading-4 tracking-wider text-left xl:p-3 2xl:p-4 whitespace-nowrap">Naziv
+                                <th class="flex items-center px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-4 whitespace-nowrap 2xl:text-sm">Naziv
                                     knjige<a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                             onclick="sortTable()"></i></a></th>
                                 <th
-                                    class="relative p-2 text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">
                                     Datum
                                     rezervacije<i class="ml-2 fas fa-filter dateDrop-toggle"></i>
                                     <div id="dateDropdown"
@@ -218,7 +218,7 @@
                                     </div>
                                 </th>
                                 <th
-                                    class="relative p-2 text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">
                                     Rezervacija
                                     ističe<i class="ml-2 fas fa-filter delayDrop-toggle"></i>
                                     <div id="delayDropdown"
@@ -249,7 +249,7 @@
                                     </div>
                                 </th>
                                 <th
-                                    class="relative p-2 text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">
                                     Rezervaciju
                                     podnio<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
                                     <div id="studentsDropdown"
@@ -395,7 +395,7 @@
                                     </div>
                                 </th>
                                 <th
-                                    class="relative p-2 text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">
                                     Status<i class="ml-2 fas fa-filter statusDrop-toggle"></i>
                                     <div id="statusDropdown"
                                         class="statusMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -463,27 +463,27 @@
                         @foreach($activeReservations as $activeReservation)
                             <tr
                                 class="hover:bg-gray-200 hover:shadow-md bg-gray-200 border-b-[1px] border-[#e4dfdf] changeBg">
-                                <td class="p-2 xl:p-3 2xl:p-4">
+                                <td class="px-2 py-4 xl:px-4">
                                     <label class="inline-flex items-center">
                                         <input type="checkbox" class="form-checkbox">
                                     </label>
                                 </td>
-                                <td class="flex flex-row items-center p-2 xl:p-3 2xl:p-4 whitespace-nowrap">
+                                <td class="flex flex-row items-center px-2 py-4 xl:px-4 whitespace-nowrap">
                                     @if(count($activeReservation->book->coverImage) > 0 )
                                         <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$activeReservation->book->coverImage[0]->photo}}" alt="" />
                                     @endif
-                                    <a href="{{route('bookDetails', ['book' => $activeReservation->book])}}" class="text-xs 2xl:text-sm">
-                                        <span class="font-medium text-center">{{$activeReservation->book->title}}</span>
+                                    <a href="{{route('bookDetails', ['book' => $activeReservation->book])}}">
+                                        <span class="text-xs font-medium text-center 2xl:text-sm">{{$activeReservation->book->title}}</span>
                                     </a>
                                 </td>
-                                <td class="p-2 text-xs leading-5 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">{{$activeReservation->reservation_date}}</td>
-                                <td class="p-2 text-xs leading-5 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">{{$activeReservation->reservation_date->addDays(20)}}</td>
-                                <td class="flex flex-row items-center p-2 xl:p-3 2xl:p-4 whitespace-nowrap">
+                                <td class="px-2 py-4 text-xs leading-5 xl:px-4 2xl:text-sm whitespace-nowrap">{{$activeReservation->reservation_date}}</td>
+                                <td class="px-2 py-4 text-xs leading-5 xl:px-4 2xl:text-sm whitespace-nowrap">{{$activeReservation->reservation_date->addDays(20)}}</td>
+                                <td class="flex flex-row items-center px-2 py-4 xl:px-4 whitespace-nowrap">
                                     <img class="object-cover w-8 h-10 mr-4 rounded-full" src="/storage/image/{{$activeReservation->student->photo}}"
                                         alt="" />
                                     <a href="{{route('studentProfile', ['user' => $activeReservation->student])}}" class="text-xs font-medium text-center 2xl:text-sm">{{$activeReservation->student->name}}</a>
                                 </td>
-                                <td class="p-2 xl:p-3 2xl:p-4 changeStatus whitespace-nowrap">
+                                <td class="px-2 py-4 xl:px-4 changeStatus whitespace-nowrap">
                                     <a href="#" class="hover:text-green-500 mr-[5px] text-xs 2xl:text-sm">
                                         <i class="fas fa-check reservedStatus"></i>
                                     </a>
@@ -491,13 +491,13 @@
                                         <i class="fas fa-times deniedStatus"></i>
                                     </a>
                                 </td>
-                                <td class="hidden p-2 text-sm leading-5 text-blue-900 xl:p-3 2xl:p-4 whitespace-nowrap">
+                                <td class="hidden px-2 py-4 leading-5 text-blue-900 xl:px-4 whitespace-nowrap">
                                     <div
                                         class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
                                         <span class="text-xs text-yellow-700 2xl:text-sm">Rezervisano</span>
                                     </div>
                                 </td>
-                                <td class="hidden p-2 text-sm leading-5 text-blue-900 xl:p-3 2xl:p-4 whitespace-nowrap">
+                                <td class="hidden px-2 py-4 leading-5 text-blue-900 xl:px-4 whitespace-nowrap">
                                     <div class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
                                         <span class="text-xs text-red-800 2xl:text-sm">Odbijeno</span>
                                     </div>

@@ -76,7 +76,7 @@
                 <div class="mt-[10px]">
                     <ul class="text-[#2D3B48] flex xl:block">
                         <li class="mb-[4px]">
-                            <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[32px]">
+                            <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-4 2xl:pl-[32px]">
                                 <span class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                     <div
                                         class="py-[15px] px-[10px] 2xl:px-[20px] w-[170px] xl:w-[190px] 2xl:w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
@@ -133,7 +133,7 @@
                                 </span>
                             </div>
                         </li>
-                        <li class="pl-4 xl:pl-0 mb-[4px]">
+                        <li class="pl-2 xl:pl-0 mb-[4px]">
                             <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] border-l-[1px] xl:border-l-0 xl:border-t-[1px] border-[#e4dfdf] pl-2 xl:pl-4 2xl:pl-[32px]">
                                 <span
                                     class="whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
@@ -178,16 +178,16 @@
                         <table class="w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
-                                    <th class="p-2 leading-4 tracking-wider text-left text-blue-500 xl:p-3 2xl:p-4">
+                                    <th class="px-2 py-4 leading-4 tracking-wider text-left text-blue-500 xl:px-4">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </th>
-                                    <th class="flex items-center p-2 text-xs leading-4 tracking-wider text-left xl:p-3 2xl:p-4 whitespace-nowrap 2xl:text-sm">Naziv
+                                    <th class="flex items-center px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-4 whitespace-nowrap 2xl:text-sm">Naziv
                                         knjige<a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                 onclick="sortTable()"></i></a></th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Datum rezervacije<i class="ml-2 fas fa-filter dateDrop-toggle"></i>
                                         <div id="dateDropdown"
                                             class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
@@ -217,7 +217,7 @@
                                         </div>
                                     </th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Rezervacija ističe<i class="ml-2 fas fa-filter delayDrop-toggle"></i>
                                         <div id="delayDropdown"
                                             class="delayMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -247,7 +247,7 @@
                                         </div>
                                     </th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Rezervaciju podnio<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
                                         <div id="studentsDropdown"
                                             class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px]  right-0 border-2 border-gray-300">
@@ -392,7 +392,7 @@
                                         </div>
                                     </th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Status<i class="ml-2 fas fa-filter statusDrop-toggle"></i>
                                         <div id="statusDropdown"
                                             class="statusMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -486,38 +486,38 @@
                                             </div>
                                         </div>
                                     </th>
-                                    <th class="p-2 xl:p-3 2xl:p-4"> </th>
+                                    <th class="px-2 py-4 xl:px-4"> </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
                             @foreach($archivedReservations as $archivedReservation)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                    <td class="p-2 xl:p-3 2xl:p-4">
+                                    <td class="px-2 py-4 xl:px-4">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </td>
-                                    <td class="flex flex-row items-center p-2 xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    <td class="flex flex-row items-center px-2 py-4 xl:px-4 whitespace-nowrap">
                                         @if(count($archivedReservation->book->coverImage) > 0 )
                                             <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$archivedReservation->book->coverImage[0]->photo}}" alt="" />
                                         @endif
                                         <a href="{{route('bookDetails', ['book' => $archivedReservation->book])}}" class="text-xs 2xl:text-sm">
-                                            <span class="font-medium text-center">{{$archivedReservation->book->title}}</span>
+                                            <span class="text-xs font-medium text-center 2xl:text-sm">{{$archivedReservation->book->title}}</span>
                                         </a>
                                     </td>
-                                    <td class="p-2 text-xs leading-5 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">{{$archivedReservation->reservation_date}}</td>
-                                    <td class="p-2 text-xs leading-5 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">{{$archivedReservation->reservation_date->addDays(20)}}</td>
-                                    <td class="flex flex-row items-center p-2 xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    <td class="px-2 py-4 text-xs leading-5 xl:px-4 2xl:text-sm whitespace-nowrap">{{$archivedReservation->reservation_date}}</td>
+                                    <td class="px-2 py-4 text-xs leading-5 xl:px-4 2xl:text-sm whitespace-nowrap">{{$archivedReservation->reservation_date->addDays(20)}}</td>
+                                    <td class="flex flex-row items-center px-2 py-4 xl:px-4 whitespace-nowrap">
                                         <img class="object-cover w-8 h-10 mr-4 rounded-full" src="/storage/image/{{$archivedReservation->student->photo}}"
                                             alt="" />
                                         <a href="{{route('studentProfile', ['user' => $archivedReservation->student])}}" class="text-xs font-medium text-center 2xl:text-sm">{{$archivedReservation->student->name}}</a>
                                     </td>
-                                    <td class="p-2 text-xs leading-5 text-blue-900 2xl:text-sm xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    <td class="px-2 py-4 leading-5 text-blue-900 xl:px-4 whitespace-nowrap">
                                             @if($archivedReservation->closeReservation_id == 1)
                                                 <div
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
 
-                                                    <span class="text-xs text-red-700">
+                                                    <span class="text-xs text-red-700 2xl:text-sm">
                                                         Istekla
                                                     </span>
                                                 </div>
@@ -525,7 +525,7 @@
                                                 <div
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
 
-                                                    <span class="text-xs text-red-800">
+                                                    <span class="text-xs text-red-800 2xl:text-sm">
                                                         Odbijena
                                                     </span>
                                                 </div>
@@ -533,7 +533,7 @@
                                                 <div
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-red-200 rounded-[10px]">
 
-                                                    <span class="text-xs text-red-800">
+                                                    <span class="text-xs text-red-800 2xl:text-sm">
                                                         Otkazana
                                                     </span>
                                                 </div>
@@ -541,7 +541,7 @@
                                                 <div
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-yellow-200 rounded-[10px]">
 
-                                                    <span class="text-xs text-yellow-800">
+                                                    <span class="text-xs text-yellow-800 2xl:text-sm">
                                                         Izdata
                                                     </span>
                                                 </div>
@@ -549,15 +549,15 @@
                                                 <div
                                                     class="inline-block px-[6px] py-[2px] font-medium bg-green-200 rounded-[10px]">
 
-                                                    <span class="text-xs text-green-800">
+                                                    <span class="text-xs text-green-800 2xl:text-sm">
                                                         Rezervisana
                                                     </span>
                                                 </div>
                                             @endif
                                     </td>
-                                    <td class="p-2 text-xs leading-5 text-right 2xl:text-sm xl:p-3 2xl:p-4">
+                                    <td class="px-2 py-4 leading-5 text-right xl:px-4">
                                         <p
-                                            class="inline cursor-pointer text-[20px] py-[10px] px-[10px] xl:px-[20px] 2xl:px-[30px] border-gray-300 dotsStudentArchivedBooks hover:text-[#606FC7]">
+                                            class="inline cursor-pointer text-[20px] py-[10px] px-[10px] 2xl:px-[30px] border-gray-300 dotsStudentArchivedBooks hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>
                                         <div

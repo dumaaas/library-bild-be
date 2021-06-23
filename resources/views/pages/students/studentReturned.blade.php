@@ -76,7 +76,7 @@
                 <div class="mt-[10px]">
                     <ul class="text-[#2D3B48] flex xl:block">
                         <li class="mb-[4px]">
-                            <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[32px]">
+                            <div class="w-[170px] xl:w-[210px] 2xl:w-[300px] pl-4 2xl:pl-[32px]">
                                 <span class=" whitespace-nowrap w-full text-[25px]  flex justify-between fill-current">
                                     <div
                                         class="py-[15px] px-[10px] 2xl:px-[20px] w-[170px] xl:w-[190px] 2xl:w-[268px] cursor-pointer group hover:bg-[#EFF3F6] rounded-[10px]">
@@ -133,8 +133,8 @@
                                 </span>
                             </div>
                         </li>
-                        <li class="pl-4 xl:pl-0 mb-[4px]">
-                            <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] border-l-[1px] xl:border-l-0 xl:border-t-[1px] border-[#e4dfdf] xl:pl-4 2xl:pl-[32px]">
+                        <li class="pl-2 xl:pl-0 mb-[4px]">
+                            <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] border-l-[1px] xl:border-l-0 xl:border-t-[1px] border-[#e4dfdf] pl-2 xl:pl-4 2xl:pl-[32px]">
                                 <span
                                     class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                     <div
@@ -178,19 +178,19 @@
                         <table class="w-full shadow-lg" id="myTable">
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
-                                    <th class="p-2 leading-4 tracking-wider text-left text-blue-500 xl:p-3 2xl:p-4">
+                                    <th class="px-2 py-4 leading-4 tracking-wider text-left text-blue-500 xl:px-3 2xl:px-4">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </th>
-                                    <th class="p-2 text-xs leading-4 tracking-wider text-left xl:p-3 2xl:p-4 whitespace-nowrap 2xl:text-sm">
+                                    <th class="px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-3 2xl:px-4 whitespace-nowrap 2xl:text-sm">
                                         Naziv knjige
                                         <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                 onclick="sortTable()"></i>
                                         </a>
                                     </th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-3 2xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Datum izdavanja<i class="fas fa-filter dateDrop-toggle"></i>
                                         <div id="dateDropdown"
                                             class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
@@ -220,7 +220,7 @@
                                         </div>
                                     </th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-3 2xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Datum vraćanja<i class="fas fa-filter returningDrop-toggle"></i>
                                         <div id="returningDropdown"
                                             class="returningMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -250,7 +250,7 @@
                                         </div>
                                     </th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-3 2xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Zadržavanje knjige <i class="fas fa-filter delayDrop-toggle"></i>
                                         <div id="delayDropdown"
                                             class="delayMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -280,7 +280,7 @@
                                         </div>
                                     </th>
                                     <th
-                                        class="relative p-2 text-xs leading-4 tracking-wider text-left cursor-pointer xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">
+                                        class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer xl:px-3 2xl:px-4 2xl:text-sm whitespace-nowrap">
                                         Knjigu primio<i class="fas fa-filter librariansDrop-toggle"></i>
                                         <div id="librariansDropdown"
                                             class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -424,36 +424,36 @@
                                             </div>
                                         </div>
                                     </th>
-                                    <th class="p-2 xl:p-3 2xl:p-4"> </th>
+                                    <th class="px-2 py-4 xl:px-3 2xl:px-4"> </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
                             @foreach($returnedBooks as $returnedBook)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                    <td class="p-2 xl:p-3 2xl:p-4">
+                                    <td class="px-2 py-4 xl:px-3 2xl:px-4">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox">
                                         </label>
                                     </td>
-                                    <td class="flex flex-row items-center p-2 xl:p-3 2xl:p-4 whitespace-nowrap">
+                                    <td class="flex flex-row items-center px-2 py-4 xl:px-3 2xl:px-4 whitespace-nowrap">
                                         @if(count($returnedBook->book->coverImage) > 0 )
                                             <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$returnedBook->book->coverImage[0]->photo}}" alt="" />
                                         @endif
-                                        <a href="{{route('rentDetails', ['book' => $returnedBook->book, 'student' => $returnedBook->student])}}" class="text-xs 2xl:text-sm">
-                                            <span class="font-medium text-center">{{$returnedBook->book->title}}</span>
+                                        <a href="{{route('rentDetails', ['book' => $returnedBook->book, 'student' => $returnedBook->student])}}">
+                                            <span class="text-xs font-medium text-center 2xl:text-sm">{{$returnedBook->book->title}}</span>
                                         </a>
                                     </td>
-                                    <td class="p-2 text-xs leading-5 xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">{{$returnedBook->rent_date}}</td>
-                                    <td class="p-2 text-xs leading-5 xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">{{$returnedBook->rentStatus[0]->date}}</td>
-                                    <td class="p-2 text-xs leading-5 xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">
+                                    <td class="px-2 py-4 text-xs leading-5 xl:px-3 2xl:px-4 2xl:text-sm whitespace-nowrap">{{$returnedBook->rent_date}}</td>
+                                    <td class="px-2 py-4 text-xs leading-5 xl:px-3 2xl:px-4 2xl:text-sm whitespace-nowrap">{{$returnedBook->rentStatus[0]->date}}</td>
+                                    <td class="px-2 py-4 leading-5 xl:px-3 2xl:px-4 whitespace-nowrap">
                                         <div>
-                                            <span>{{ \Carbon\Carbon::parse($returnedBook->rent_date)->diffAsCarbonInterval($returnedBook->rentStatus[0]->date) }}</span>
+                                            <span class="text-xs 2xl:text-sm">{{ \Carbon\Carbon::parse($returnedBook->rent_date)->diffAsCarbonInterval($returnedBook->rentStatus[0]->date) }}</span>
                                         </div>
                                     </td>
-                                    <td class="p-2 text-xs leading-5 xl:p-3 2xl:p-4 2xl:text-sm whitespace-nowrap">{{$returnedBook->librarian->name}}</td>
-                                    <td class="p-2 text-xs leading-5 text-right xl:p-3 2xl:p-4 2xl:text-sm">
+                                    <td class="px-2 py-4 text-xs leading-5 xl:px-3 2xl:px-4 2xl:text-sm whitespace-nowrap">{{$returnedBook->librarian->name}}</td>
+                                    <td class="px-2 py-4 leading-5 text-right xl:px-3 2xl:px-4">
                                         <p
-                                            class="inline cursor-pointer text-[20px] py-[10px] px-[5px] xl:px-[20px] 2xl:px-[30px] border-gray-300 dotsStudentReturnedBooksTable hover:text-[#606FC7]">
+                                            class="inline cursor-pointer text-[20px] py-[10px] px-[10px] 2xl:px-[15px] border-gray-300 dotsStudentReturnedBooksTable hover:text-[#606FC7]">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </p>
                                         <div

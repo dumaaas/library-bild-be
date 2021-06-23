@@ -55,12 +55,12 @@
                             <!-- Table head-->
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
-                                        <th class="p-2 leading-4 tracking-wider text-left text-blue-500 xl:p-4">
+                                        <th class="px-2 py-4 leading-4 tracking-wider text-left text-blue-500 xl:px-4">
                                             <label class="inline-flex items-center">
                                                 <input type="checkbox" class="form-checkbox checkAll">
                                             </label>
                                         </th>
-                                        <th class="p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">
+                                        <th class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">
                                             Naziv knjige
                                             <a href="#"><i class="ml-2 fa-lg fas fa-long-arrow-alt-down"
                                                         onclick="sortTable()"></i>
@@ -70,7 +70,7 @@
                                             <!-- Autor + dropdown filter for autor -->
                                             <form action='/filterAuthors' method="GET">
                                                 <th
-                                                    class="relative p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm whitespace-nowrap">
+                                                    class="relative py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm whitespace-nowrap">
                                                         Autor<i class="ml-2 fas fa-filter" id="authorsMenu"></i>
                                                         <div id="authorsDropdown"
                                                             class="authorsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
@@ -120,7 +120,7 @@
                                                 </th>
 
                                                 <!-- Kategorija + dropdown filter for kategorija -->
-                                                <th class="relative p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm whitespace-nowrap">
+                                                <th class="relative py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm whitespace-nowrap">
                                                         Kategorija<i class="ml-2 fas fa-filter" id="categoriesMenu"></i>
                                                         <div id="categoriesDropdown"
                                                             class="categoriesMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
@@ -169,67 +169,67 @@
                                                         </div>
                                                 </th>
                                             </form>
-                                            <th class="p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Na raspolaganju
+                                            <th class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Na raspolaganju
                                             </th>
-                                            <th class="p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Rezervisano</th>
-                                            <th class="p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Izdato</th>
-                                            <th class="p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">U prekoračenju</th>
-                                            <th class="p-2 xl:p-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Ukupna količina
+                                            <th class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Rezervisano</th>
+                                            <th class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Izdato</th>
+                                            <th class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">U prekoračenju</th>
+                                            <th class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-4 tracking-wider text-left 2xl:text-sm whitespace-nowrap">Ukupna količina
                                             </th>
-                                            <th class="p-4"> </th>
+                                            <th class="px-2 py-4 xl:px-4"> </th>
                                         </tr>
 
                                 </thead>
                                 <tbody class="bg-white" id="bookTable">
                                     @foreach($books as $book)
                                             <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                                <td class="p-2 xl:p-4">
+                                                <td class="px-2 py-4 xl:px-4">
                                                     <label class="inline-flex items-center">
                                                         <input type="checkbox" class="form-checkbox checkOthers">
                                                     </label>
                                                 </td>
-                                                <td class="flex flex-row items-center p-2 xl:p-4 truncate max-w-[160px] xl:max-w-[200px]">
+                                                <td class="flex flex-row items-center px-2 py-4 xl:px-4 whitespace-nowrap">
                                                     @if(count($book->coverImage) > 0 )
                                                         <img class="object-cover w-8 h-10 mr-4" src="/storage/image/{{$book->coverImage[0]->photo}}" alt="" />
                                                     @endif
                                                     <a href="{{route('bookDetails', ['book' => $book->id])}}">
-                                                        <span class="text-[11px] xl:text-xs font-medium 2xl:text-center">{{$book->title}}</span>
+                                                        <span class="text-[11px] xl:text-xs font-medium 2xl:text-center 2xl:text-sm">{{$book->title}}</span>
                                                     </a>
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs 2xl:text-sm leading-5 truncate max-w-[100px] 2xl:max-w-[200px]">
+                                                <td class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs 2xl:text-sm leading-5 truncate max-w-[100px] 2xl:max-w-[200px]">
                                                     @foreach($book->author as $author)
                                                         {{ $author->author->name }}
                                                         {{ $loop->last ? '' : ',' }}
                                                     @endforeach
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs 2xl:text-sm leading-5 truncate max-w-[100px] 2xl:max-w-[200px]">
+                                                <td class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs 2xl:text-sm leading-5 truncate max-w-[100px] 2xl:max-w-[200px]">
                                                     @foreach($book->category as $category)
                                                         {{$category->category->name}}
                                                         {{ $loop->last ? '' : ',' }}
                                                     @endforeach
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs leading-5 2xl:text-sm whitespace-nowrap">
+                                                <td class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-5 2xl:text-sm whitespace-nowrap">
                                                     {{$book->quantity - $book->reservedBooks - $book->rentedBooks}}
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs leading-5 text-blue-800 2xl:text-sm whitespace-nowrap">
+                                                <td class="px-2 py-4 leading-5 text-blue-800 xl:px-4 whitespace-nowrap">
                                                     <a href="{{route('rentingArchived', ['book' => $book->id])}}" class="text-[11px] xl:text-xs 2xl:text-sm">
                                                         {{$book->reservedBooks}}
                                                     </a>
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs leading-5 text-blue-800 2xl:text-sm whitespace-nowrap">
+                                                <td class="px-2 py-4 leading-5 text-blue-800 xl:px-4 whitespace-nowrap">
                                                     <a href="{{route('rentingRented', ['book' => $book->id])}}" class="text-[11px] xl:text-xs 2xl:text-sm">
                                                         {{$book->rentedBooks}}
                                                     </a>
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs leading-5 text-blue-800 2xl:text-sm whitespace-nowrap">
+                                                <td class="px-2 py-4 leading-5 text-blue-800 xl:px-4 whitespace-nowrap">
                                                     <a href="{{route('rentingOverdue', ['book' => $book->id])}}" class="text-[11px] xl:text-xs 2xl:text-sm">
                                                         {{\App\Models\Rent::where('return_date', '<', Carbon\Carbon::now())->where('book_id', '=', $book->id)->count()}}
                                                     </a>
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs leading-5 2xl:text-sm whitespace-nowrap">
+                                                <td class="py-4 px-2 xl:px-4 text-[11px] xl:text-xs leading-5 2xl:text-sm whitespace-nowrap">
                                                     {{$book->quantity}}
                                                 </td>
-                                                <td class="p-2 xl:p-4 text-[11px] xl:text-xs leading-5 text-right 2xl:text-sm">
+                                                <td class="px-2 py-4 leading-5 text-right xl:px-4">
                                                     <p class="inline cursor-pointer text-[20px] py-[10px] px-[5px] xl:px-[20px] 2xl:px-[30px] border-gray-300 dotsBooks hover:text-[#606FC7]">
                                                         <i
                                                             class="fas fa-ellipsis-v"></i>
