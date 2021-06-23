@@ -295,7 +295,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileStudent.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Pero Perović
@@ -314,7 +314,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileStudent.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Marko Marković
@@ -333,7 +333,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileStudent.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Nikola Nikolić
@@ -352,7 +352,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileStudent.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Živko Živković
@@ -371,7 +371,7 @@
                                                             </div>
                                                         </label>
                                                         <img width="40px" height="30px" class="ml-[15px] rounded-full"
-                                                            src="img/profileStudent.jpg">
+                                                            src="/storage/image/{{$user->photo}}">
                                                         <p
                                                             class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                             Petar Petrović
