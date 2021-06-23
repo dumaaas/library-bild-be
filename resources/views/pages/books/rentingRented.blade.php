@@ -83,7 +83,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileStudent.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Učenik Učeniković
@@ -102,7 +102,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileStudent.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Pero Perović
@@ -121,7 +121,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileStudent.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Marko Marković
@@ -140,7 +140,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileStudent.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Nikola Nikolić
@@ -159,7 +159,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileStudent.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Živko Živković
@@ -178,7 +178,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileStudent.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Petar Petrović
@@ -282,7 +282,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileExample.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Bibliotekar Bulatović
@@ -301,7 +301,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileExample.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Pero Perović
@@ -320,7 +320,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileExample.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Marko Marković
@@ -339,7 +339,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileExample.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Nikola Nikolić
@@ -358,7 +358,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileExample.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Živko Živković
@@ -377,7 +377,7 @@
                                             </label>
                                             <img width="40px" height="30px"
                                                 class="ml-[15px] rounded-full"
-                                                src="img/profileExample.jpg">
+                                                src="/storage/image/default.jpg">
                                             <p
                                                 class="block p-2 text-black cursor-pointer group-hover:text-blue-600">
                                                 Petar Petrović
