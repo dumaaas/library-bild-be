@@ -131,7 +131,7 @@
                 <form action="{{route('returnBooks')}}" method="GET">
                         <div
                             class="inline-block min-w-full pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
-                            <table class="min-w-full shadow-lg" id="vratiKnjiguTable">
+                            <table class="min-w-full shadow-lg">
                                 <thead class="bg-[#EFF3F6]">
                                     <tr class="border-b-[1px] border-[#e4dfdf]">
                                         <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
