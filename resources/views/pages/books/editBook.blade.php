@@ -542,11 +542,10 @@
                                 <!-- Checkbox (checked if image is cover photo of book)-->
                                 <input
                                     class="absolute top-[10px] right-[10px] z-[1] p-1 bg-white rounded-bl focus:outline-none"
-                                    type="radio" name="imageCover" {{ $photo->cover == 1 ? 'checked' : '' }} />
+                                    type="radio" name="imageCoverEdit" {{ $photo->cover == 1 ? 'checked' : '' }} />
                                 <!-- End checkbox -->
                                 <a id="{{$photo->id}}"
-                                   onclick="removeImage({{$photo}})"
-                                    class="absolute bottom-0 right-0 z-40 p-1 bg-white focus:outline-none show-izbrisiModal"
+                                    class="absolute bottom-0 right-0 z-40 p-1 bg-white cursor-pointer focus:outline-none show-deleteModal"
                                     type="button" id="hide-image1">
                                     <svg class="w-[25px] h-[25px] text-gray-700"
                                         xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -576,7 +575,7 @@
                                     </div>
                                     <!-- Modal Body -->
                                     <div class="flex items-center justify-center px-[30px] py-[20px] border-t w-100 text-white">
-                                        <a href="{{route('deleteImage', ['photo' => $photo->id])}}"
+                                        <a href="#" onclick="removeImage({{$photo}})"
                                             class=" text-center shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in hover:bg-[#46A149] bg-[#4CAF50] rounded-[5px]">
                                             <i class="fas fa-check mr-[7px]"></i> Izbriši
                                         </a>

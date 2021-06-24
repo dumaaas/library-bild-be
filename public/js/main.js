@@ -436,6 +436,9 @@ function addFiles() {
         url: "/updateImage",
         success: function(response){
             $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.success+'</div>');
+            setTimeout(function(){
+                location.reload();
+            }, 2000);
         },
         error: function(response){
             $('#movieImageError').empty();
@@ -457,8 +460,10 @@ function removeImage(image) {
         data: imageId,
         url: "/deleteImage/"+imageId,
         success: function(response){
-            location.reload();
-            // $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.success+'</div>');
+            $('#successBookEdit').append('<div class="fadeInOut absolute top-[91px] py-[15px] px-[30px] rounded-[15px] text-white bg-[#4CAF50] right-[20px] fadeIn"><i class="fa fa-check mr-[5px]" aria-hidden="true"></i>'+response.success+'</div>');
+            setTimeout(function(){
+                location.reload();
+            }, 2000);
         },
         error: function(response){
             $('#movieImageError').empty();
