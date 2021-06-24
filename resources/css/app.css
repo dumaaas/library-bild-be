@@ -274,3 +274,12 @@ input:checked+svg {
         font-size: 16px;
     }
 }
+
+.active-sideMenu { 
+    background-color: #EAEAEA; 
+}
+
+/* to override the existing css for "a" tag */
+#sidebar .active-sideMenu a i{ 
+    color:#3F51B5; 
+}

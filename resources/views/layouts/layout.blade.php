@@ -209,13 +209,13 @@
             <div class="mt-[30px]">
                 <ul class="text-[#2D3B48] sidebar-nav">
                     <!-- Dashboard Icon -->
-                    <li class="bg-[#EAEAEA] pt-[18px] pb-[14px] mb-[4px] group hover:bg-[#EAEAEA]">
+                    <li class="pt-[18px] pb-[14px] mb-[4px] group hover:bg-[#EAEAEA]">
                         <div class="ml-[25px]">
                         <span class="flex justify-between w-full fill-current whitespace-nowrap">
                             <div class="transition duration-300 ease-in group-hover:text-[#576cdf]">
                                 <a href="/dashboard" aria-label="Dashboard">
                                     <i
-                                        class="text-white bg-[#3F51B5] px-[5px] pt-[4px] pb-[5px] fas fa-tachometer-alt text-[19px] rounded-[3px]"></i>
+                                        class=" px-[5px] pt-[4px] pb-[5px] fas fa-tachometer-alt text-[19px] rounded-[3px] text-[#707070]"></i>
                                     <div class="hidden sidebar-item">
                                         <p class="inline text-[15px] ml-[15px]">Dashboard</p>
                                     </div>
@@ -325,16 +325,21 @@
         @can('isAdmin')
         <div class="sidebar-nav py-[10px] border-t-[1px] border-[#e4dfdf] pt-[23px] pb-[29px]  group hover:bg-[#EFF3F6]">
             <!-- Settings Icon -->
-            <a href="/policy" aria-label="Settngs" class="ml-[30px]">
-            <span class="whitespace-nowrap">
-                <i
-                    class="transition duration-300 ease-in group-hover:text-[#576cdf] text-[22px] text-[#707070] fas fa-cog"></i>
-                <div class="hidden sidebar-item">
-                    <p class="transition duration-300 ease-in group-hover:text-[#576cdf] inline text-[15px] ml-[20px]">
-                        Podešavanja</p>
-                </div>
-            </span>
-            </a>
+            <ul>
+                <li class="h-[60px] pt-[18px] pb-[14px]">           
+                    <a href="/policy" aria-label="Settngs" class="ml-[30px]">
+                        <span class="whitespace-nowrap">
+                            <i
+                                class="transition duration-300 ease-in group-hover:text-[#576cdf] text-[22px] text-[#707070] fas fa-cog"></i>
+                            <div class="hidden sidebar-item">
+                                <p class="transition duration-300 ease-in group-hover:text-[#576cdf] inline text-[15px] ml-[20px]">
+                                    Podešavanja</p>
+                            </div>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+ 
         </div>
         @endcan
     </nav>
