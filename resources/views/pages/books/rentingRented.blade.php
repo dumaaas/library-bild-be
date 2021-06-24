@@ -15,30 +15,30 @@
                 Multimedija
             </a>
         </div>
-        <div class="py-4 pt-[20px] pl-[30px] text-[#2D3B48]">
+        <div class="py-4 pt-[20px] pl-[30px] text-[#2D3B48] flex flex-wrap 2xl:block">
             <a href="{{route('rentingRented', ['book' => $book])}}"
-               class="py-[15px] px-[20px] w-[268px] text-[#576cdf] cursor-pointer bg-[#EFF3F6] rounded-[10px] inline hover:text-[#576cdf]">
+               class="py-[15px] px-[20px] w-[268px] text-[#576cdf] cursor-pointer bg-[#EFF3F6] rounded-[10px] inline hover:text-[#576cdf] whitespace-nowrap">
                 <i class="text-[20px] far fa-copy mr-[3px]"></i>
                 Izdate knjige
             </a>
             <a href="{{route('rentingReturned', ['book' => $book])}}"
-               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] ml-[20px] pr-[10px]">
+               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] 2xl:ml-[20px] 2xl:pr-[10px] whitespace-nowrap">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] fas fa-file mr-[3px]"></i>
                 Vraćene knjige
             </a>
             <a href="{{route('rentingOverdue', ['book' => $book])}}"
-               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] mx-[20px] pr-[10px]">
+               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] 2xl:mx-[20px] 2xl:pr-[10px] whitespace-nowrap">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] fas fa-exclamation-triangle mr-[3px]"></i>
                 Knjige u prekoračenju
             </a>
             <a class="border-r-[1px] py-[10px] border-[#e4dfdf]"></a>
             <a href="{{route('rentingActive', ['book' => $book])}}"
-               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] ml-[20px] pr-[10px]">
+               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] 2xl:ml-[20px] 2xl:pr-[10px] whitespace-nowrap">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] far fa-calendar-check mr-[3px]"></i>
                 Aktivne rezervacije
             </a>
             <a href="{{route('rentingArchived', ['book' => $book])}}"
-               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] ml-[20px] pr-[10px]">
+               class="inline py-[15px] rounded-[10px] group px-[20px] w-[268px] hover:text-[#576cdf] hover:bg-[#EFF3F6] 2xl:ml-[20px] 2xl:pr-[10px] whitespace-nowrap">
                 <i class="text-[20px] text-[#707070] group-hover:text-[#576cdf] fas fa-calendar-alt  mr-[3px]"></i>
                 Arhivirane rezervacije
             </a>
@@ -49,12 +49,12 @@
                 <table class="w-full shadow-lg" id="myTable">
                     <thead class="bg-[#EFF3F6]">
                     <tr class="border-b-[1px] border-[#e4dfdf]">
-                        <th class="p-2 leading-4 tracking-wider text-left text-blue-500 xl:p-4">
+                        <th class="px-2 py-4 leading-4 tracking-wider text-left text-blue-500 xl:px-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </th>
-                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Izdato učeniku<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
+                        <th class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">Izdato učeniku<i class="ml-2 fas fa-filter studentsDrop-toggle"></i>
                             <div id="studentsDropdown"
                                 class="studentsMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-t pin-l border-2 border-gray-300">
                                 <ul class="border-b-2 border-gray-300 list-reset">
@@ -197,7 +197,7 @@
                                     </a>
                                 </div>
                             </div></th>
-                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Datum izdavanja<i class="fas fa-filter dateDrop-toggle"></i>
+                        <th class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">Datum izdavanja<i class="fas fa-filter dateDrop-toggle"></i>
                             <div id="dateDropdown"
                                 class="dateMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] pin-l border-2 border-gray-300">
                                 <div
@@ -225,7 +225,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Trenutno
+                        <th class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">Trenutno
                             zadržavanje knjige <i class="fas fa-filter delayDrop-toggle"></i>
                             <div id="delayDropdown"
                                 class="delayMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
@@ -253,7 +253,7 @@
                                     </a>
                                 </div>
                             </div></th>
-                        <th class="relative p-2 text-[11px] xl:text-xs 2xl:text-sm leading-4 tracking-wider text-left cursor-pointer xl:p-4 whitespace-nowrap">Knjigu izdao<i class="fas fa-filter librariansDrop-toggle"></i>
+                        <th class="relative px-2 py-4 text-xs leading-4 tracking-wider text-left cursor-pointer 2xl:text-sm xl:px-4 whitespace-nowrap">Knjigu izdao<i class="fas fa-filter librariansDrop-toggle"></i>
                             <div id="librariansDropdown"
                                 class="librariansMenu hidden absolute rounded bg-white min-w-[310px] p-[10px] shadow-md top-[42px] right-0 border-2 border-gray-300">
                                 <ul class="border-b-2 border-gray-300 list-reset">
@@ -396,26 +396,26 @@
                                     </a>
                                 </div>
                             </div></th>
-                        <th class="p-4"> </th>
+                        <th class="px-2 py-4 xl:px-4"> </th>
                     </tr>
                     </thead>
                     <tbody class="bg-white">
                     @foreach($rentingRented as $rentingRent)
                     <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                        <td class="p-2 xl:p-4">
+                        <td class="px-2 py-4 xl:px-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox">
                             </label>
                         </td>
-                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">{{$rentingRent->student->name}}</td>
-                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">{{$rentingRent->rentStatus[0]->date}}</td>
-                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">
+                        <td class="px-2 py-4 text-xs leading-5 2xl:text-sm xl:px-4 whitespace-nowrap">{{$rentingRent->student->name}}</td>
+                        <td class="px-2 py-4 text-xs leading-5 2xl:text-sm xl:px-4 whitespace-nowrap">{{$rentingRent->rentStatus[0]->date}}</td>
+                        <td class="px-2 py-4 leading-5 xl:px-4 truncate max-w-[150px] xl:max-w-full">
                             <div>
-                                <span>{{ \Carbon\Carbon::parse($rentingRent->rent_date)->diffAsCarbonInterval() }}</span>
+                                <span class="text-xs 2xl:text-sm">{{ \Carbon\Carbon::parse($rentingRent->rent_date)->diffAsCarbonInterval() }}</span>
                             </div>
                         </td>
-                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 xl:p-4 whitespace-nowrap">{{$rentingRent->librarian->name}}</td>
-                        <td class="p-2 text-[11px] xl:text-xs 2xl:text-sm leading-5 text-right xl:p-4">
+                        <td class="px-2 py-4 text-xs leading-5 2xl:text-sm xl:px-4 whitespace-nowrap">{{$rentingRent->librarian->name}}</td>
+                        <td class="px-2 py-4 leading-5 text-right xl:px-4">
                             <p class="inline cursor-pointer text-[20px] py-[10px] px-[5px] xl:px-[30px] border-gray-300 dotsRentingRentedBooks hover:text-[#606FC7]">
                                 <i
                                     class="fas fa-ellipsis-v"></i>

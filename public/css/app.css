@@ -1368,6 +1368,9 @@ h4 {
 .h-\[50px\]{
     height: 50px;
 }
+.h-\[160px\]{
+    height: 160px;
+}
 .min-h-screen{
     min-height: 100vh;
 }
@@ -1547,6 +1550,9 @@ h4 {
 }
 .max-w-\[400px\]{
     max-width: 400px;
+}
+.max-w-\[130px\]{
+    max-width: 130px;
 }
 .flex-initial{
     flex: 0 1 auto;
@@ -2258,6 +2264,9 @@ h4 {
 .pt-\[7px\]{
     padding-top: 7px;
 }
+.pl-\[20px\]{
+    padding-left: 20px;
+}
 .text-left{
     text-align: left;
 }
@@ -2952,8 +2961,14 @@ h4 {
     .xl\:ml-2{
         margin-left: 0.5rem;
     }
+    .xl\:ml-\[20px\]{
+        margin-left: 20px;
+    }
     .xl\:block{
         display: block;
+    }
+    .xl\:flex{
+        display: flex;
     }
     .xl\:w-\[560px\]{
         width: 560px;
@@ -2970,8 +2985,14 @@ h4 {
     .xl\:max-w-\[180px\]{
         max-width: 180px;
     }
+    .xl\:max-w-full{
+        max-width: 100%;
+    }
     .xl\:flex-row{
         flex-direction: row;
+    }
+    .xl\:flex-wrap{
+        flex-wrap: wrap;
     }
     .xl\:justify-start{
         justify-content: flex-start;
@@ -3022,8 +3043,18 @@ h4 {
     }
 }
 @media (min-width: 1536px){
+    .\32xl\:mx-\[20px\]{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
     .\32xl\:ml-\[292px\]{
         margin-left: 292px;
+    }
+    .\32xl\:ml-\[20px\]{
+        margin-left: 20px;
+    }
+    .\32xl\:block{
+        display: block;
     }
     .\32xl\:w-\[300px\]{
         width: 300px;
@@ -3062,8 +3093,8 @@ h4 {
     .\32xl\:pl-\[32px\]{
         padding-left: 32px;
     }
-    .\32xl\:pl-\[28px\]{
-        padding-left: 28px;
+    .\32xl\:pr-\[10px\]{
+        padding-right: 10px;
     }
     .\32xl\:text-center{
         text-align: center;

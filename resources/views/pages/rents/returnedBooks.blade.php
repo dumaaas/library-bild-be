@@ -72,7 +72,7 @@
                                     </div>
                                 </li>
                                 <li class="mb-[4px]">
-                                    <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[28px]">
+                                    <div class="w-[190px] xl:w-[210px] 2xl:w-[300px] pl-2 xl:pl-4 2xl:pl-[32px]">
                                         <span
                                             class=" whitespace-nowrap w-full text-[25px] flex justify-between fill-current">
                                             <div

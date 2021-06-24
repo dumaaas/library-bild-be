@@ -106,7 +106,7 @@
                             Otpiši knjigu
                         </h3>
                         <form action="{{ route('searchWriteOff', ['book' => $book->id]) }}" method="GET">
-                                <div class="flex items-center px-6 py-4 space-x-3 rounded-lg ml-[292px]">
+                                <div class="flex items-center pl-6 py-4 space-x-3 rounded-lg ml-[292px]">
                                     <div class="flex items-center">
                                         <div class="relative text-gray-600 focus-within:text-gray-400">
                                             <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -134,24 +134,24 @@
                         <table class="min-w-full shadow-lg">
                             <thead class="bg-[#EFF3F6]">
                                 <tr class="border-b-[1px] border-[#e4dfdf]">
-                                    <th class="p-4 leading-4 tracking-wider text-left text-blue-500">
+                                    <th class="px-2 py-4 leading-4 tracking-wider text-left text-blue-500 xl:px-4">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="select-all form-checkbox">
                                         </label>
                                     </th>
-                                    <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
+                                    <th class="px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-4 whitespace-nowrap 2xl:text-sm">
                                         Izdato učeniku
                                     </th>
-                                    <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
+                                    <th class="px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-4 whitespace-nowrap 2xl:text-sm">
                                         Datum izdavanja
                                     </th>
-                                    <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
+                                    <th class="px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-4 whitespace-nowrap 2xl:text-sm">
                                         Trenutno zadržavanje knjige
                                     </th>
-                                    <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
+                                    <th class="px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-4 whitespace-nowrap 2xl:text-sm">
                                         Prekoračenje u danima
                                     </th>
-                                    <th class="p-4 leading-4 tracking-wider text-left whitespace-nowrap">
+                                    <th class="px-2 py-4 text-xs leading-4 tracking-wider text-left xl:px-4 whitespace-nowrap 2xl:text-sm">
                                         Knjigu izdao
                                     </th>
                                 </tr>
@@ -159,26 +159,26 @@
                             <tbody class="bg-white">
                             @foreach($overdueBooks as $overdueBook)
                                 <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
-                                    <td class="p-4">
+                                    <td class="px-2 py-4 xl:px-4">
                                         <label class="inline-flex items-center">
                                             <input type="checkbox" class="form-checkbox" name="writeOffBook[]" value="{{$overdueBook->id}}">
                                         </label>
                                     </td>
-                                    <td class="flex flex-row items-center p-4 whitespace-nowrap">
-                                        <img class="object-cover w-8 h-8 mr-2 rounded-full" src="/storage/image/{{$overdueBook->student->photo}}"
+                                    <td class="flex flex-row items-center px-2 py-4 xl:px-4 whitespace-nowrap">
+                                        <img class="object-cover w-8 h-10 mr-2 rounded-full" src="/storage/image/{{$overdueBook->student->photo}}"
                                             alt="" />
                                         <a href="{{route('studentProfile', ['user' => $overdueBook->student])}}">
-                                            <span class="font-medium text-center">{{$overdueBook->student->name}}</span>
+                                            <span class="text-xs font-medium text-center 2xl:text-sm">{{$overdueBook->student->name}}</span>
                                         </a>
                                     </td>
-                                    <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$overdueBook->rent_date}}</td>
-                                    <td class="p-4 text-sm leading-5 whitespace-nowrap">{{ \Carbon\Carbon::parse($overdueBook->rent_date)->diffAsCarbonInterval() }}</td>
-                                    <td class="p-4 text-sm leading-5 whitespace-nowrap">
-                                        <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px]">
+                                    <td class="px-2 py-4 text-xs leading-5 2xl:text-sm xl:px-4 whitespace-nowrap">{{$overdueBook->rent_date}}</td>
+                                    <td class="px-2 py-4 text-xs leading-5 2xl:text-sm xl:px-4 truncate max-w-[150px] xl:max-w-full">{{ \Carbon\Carbon::parse($overdueBook->rent_date)->diffAsCarbonInterval() }}</td>
+                                    <td class="px-2 py-4 leading-5 xl:px-4 whitespace-nowrap">
+                                        <span class="px-[6px] py-[2px] bg-red-200 text-red-800 rounded-[10px] text-xs 2xl:text-sm">
                                             {{ \Carbon\Carbon::parse($overdueBook->return_date)->diffInDays(\Carbon\Carbon::now()) }} dan/a
                                         </span>
                                     </td>
-                                    <td class="p-4 text-sm leading-5 whitespace-nowrap">{{$overdueBook->librarian->name}}</td>
+                                    <td class="px-2 py-4 text-xs leading-5 2xl:text-sm xl:px-4 whitespace-nowrap">{{$overdueBook->librarian->name}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
