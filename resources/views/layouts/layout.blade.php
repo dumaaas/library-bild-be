@@ -42,7 +42,7 @@
 </head>
 <body>
 <header
-    class="z-20 small:hidden  flex items-center text-white justify-between w-full h-[71px] pr-[30px] mx-auto bg-[#4558BE]">
+    class="z-20 xs:hidden  lg:flex items-center text-white justify-between w-full h-[71px] pr-[30px] mx-auto bg-[#4558BE]">
     <!-- logo -->
     <div class="logo-font inline-flex bg-[#3F51B5] py-[18px] px-[30px]">
         <a class="_o6689fn" href="#">
@@ -195,7 +195,7 @@
 </header>
 
 <!-- Main content -->
-<main class="flex flex-row small:hidden">
+<main class="flex-row lg:flex xs:hidden">
 
     <!-- Sidebar -->
     <nav id="sidebar"
@@ -412,7 +412,7 @@
 </main>
 
 <!-- Notification for small devices -->
-<div class="py-[20px] hidden small:block bg-gradient-to-r  from-red-500 mt-[100px]">
+<div class="py-[20px] lg:hidden xs:block bg-[#4558BE] mt-[100px]">
     <h1 class="text-[40px] font-medium text-center text-white">
         Trenutno nedostupno...
     </h1>
