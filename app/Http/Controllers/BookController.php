@@ -540,25 +540,6 @@ class BookController extends Controller
 
         $book->save();
 
-        if($request->movieImage){
-            $filenameWithExt = $request->movieImage->getClientOriginalName();
-            // Get Filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just Extension
-            $extension = $request->movieImage->getClientOriginalExtension();
-            // Filename To store
-            $fileNameToStore = $filename. '_'. time().'.'.$extension;
-            // Upload Image
-            $path = $request->movieImage->storeAs('public/image', $fileNameToStore);
-        
-            $galery = new Galery();
-
-            $gallery->book_id = $book->id;
-            $gallery->photo = $fileNameToStore;
-
-            $gallery->save();
-        }
-
         $categoriesValues = $request->input('categoryValuesEdit');
         $categories = explode(',', $categoriesValues);
 
