@@ -267,7 +267,9 @@ class RentService
      */
     public function searchReturnedBooks() {
 
-        if(request('searchReturned')) {
+
+
+        if(request('searchReturned')&&request('searchReturned')!='') {
             $book = request('searchReturned');
             $returned = Rent::where(function ($query) {
                 $query->select('title')
@@ -287,6 +289,10 @@ class RentService
                     ->orderByDesc('rent_statuses.date')
                     ->limit(1);
             }, 3);
+        }
+        else{
+            $returned = Rent::query();
+            $returned = $this->getReturnedBooks();
         }
 
         $returned = $returned->paginate(7);
