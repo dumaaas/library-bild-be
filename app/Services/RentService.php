@@ -181,7 +181,8 @@ class RentService
 
         $returned = Rent::query();
         $returned = $returned->with('book', 'student', 'librarian')
-                        ->where('return_date', '!=', null);
+                        ->where('return_date', '!=', null)
+                        ->where('librarian_received_id', '!=', null);
 
         if(request('studentsFilter')) {
             $students = request('studentsFilter');
