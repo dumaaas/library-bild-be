@@ -73,7 +73,7 @@
 
                             <div class="mt-[20px]">
                                 <p class="inline-block mb-2">Kratki sadržaj</p>
-                                <textarea name="summary"
+                                <textarea name="summary_edit"
                                           class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]">
                                     {{$book->summary}}
                                 </textarea>
@@ -413,10 +413,10 @@
 
                             <div class="mt-[20px]">
                                 <p>Količina <span class="text-red-500">*</span></p>
-                                <input type="text" name="quantity" id="quantity" value="{{$book->quantity}}"
+                                <input type="text" name="quantityEdit" id="quantityEdit" value="{{$book->quantity}}"
                                     class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                                     onkeydown="clearErrorsKnjigaKolicinaEdit()" />
-                                @error('quantity')
+                                @error('quantityEdit')
                                     <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -680,7 +680,7 @@
     </section>
 
     <script>
-        CKEDITOR.replace('summary', {
+        CKEDITOR.replace('summary_edit', {
             width: "90%",
             height: "150px"
         });
