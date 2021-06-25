@@ -230,8 +230,8 @@ class BookService {
 
         $books=request('returnBook');
 
-        foreach($books as $book){
-            $rent=Rent::find($book);
+        foreach($books as $oneBook){
+            $rent=Rent::find($oneBook);
 
             $rent->librarian_received_id = Auth::user()->id;
             $rent->save();

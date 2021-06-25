@@ -161,7 +161,7 @@
                                         <tr class="hover:bg-gray-200 hover:shadow-md border-b-[1px] border-[#e4dfdf]">
                                             <td class="px-2 py-4 xl:px-4">
                                                 <label class="inline-flex items-center">
-                                                    <input type="checkbox" class="form-checkbox" name="vratiKnjigu[]" value="{{$rentedBook->id}}">
+                                                    <input type="checkbox" class="form-checkbox" name="returnBook[]" value="{{$rentedBook->id}}">
                                                 </label>
                                             </td>
                                             <td class="flex flex-row items-center px-2 py-4 xl:px-4 whitespace-nowrap">
