@@ -436,10 +436,10 @@
                     </tr>
                     @endforeach
                     </tbody>
-                    <div class="pt-[20px]">
-                        {{$rentingArchived->links()}}
-                    </div>
                 </table>
+                <div class="pt-[20px]">
+                    {{$rentingArchived->links()}}
+                </div>
             </div>
         @else
             <div class="mx-[40px] flex items-center px-6 py-4 my-4 text-lg bg-red-200 rounded-lg">
